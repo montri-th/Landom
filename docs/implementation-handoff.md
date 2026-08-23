@@ -37,16 +37,16 @@ Recommended sheet tabs and keys:
 
 | Tab | Primary key | Important relations / controls |
 |---|---|---|
-| `people` | `person_id` | One ID only; names, publication consent, placeholder bio |
+| `people_registry` | `person_id` | One ID only; names, core publication state, blank owner-pending bio |
 | `engagements` | `engagement_id` | `person_id`, role type, start/end/cohort |
 | `institutions` | `institution_id` | Official TH/EN names and approved short labels |
 | `programs` | `program_id` | `institution_id`, official TH/EN names and approved short labels |
-| `education_records` | `education_record_id` | `person_id`, `institution_id`, optional `program_id`, degree |
-| `works` | `work_id` | One canonical work/product name per release |
+| `education` | `education_record_id` | `person_id`, `institution_id`, optional `program_id`, degree |
+| `works` | `work_id` | Canonical work/product name plus localized catalog route and link evidence scope |
 | `contributions` | `contribution_id` | `person_id`, `work_id`, optional matching `engagement_id` |
 | `achievements` | `achievement_id` | Recipient person IDs, optional related work, public evidence URL |
-| `social_profiles` | `social_profile_id` | Platform, URL, verification, consent, publication status |
-| `assets` | `asset_id` | Person, path, source verification, consent, rights, publication status |
+| `social_profiles` | `social_profile_id` | Platform, private candidate, public URL, verification, consent, publication basis, scoped owner approval |
+| `assets` | `asset_id` | Person, governed local path, verification, consent, rights, publication basis, owner approval, hash |
 
 Use protected lookup ranges and dropdown validation for IDs, roles, statuses, institutions, programs, works, verification, consent, rights, and publication states. Do not use display names as foreign keys. Keep audit/evidence columns beside the status they support. Prefer append-only engagement/contribution history over changing a person's canonical ID when their role changes.
 
@@ -61,7 +61,7 @@ Refresh sequence:
      --output-dir data/generated
    ```
 
-3. Review changes in `data/generated/`, especially IDs, renamed dimensions, contributions, social URLs, image assets, and placeholder bios.
+3. Review changes in `data/generated/`, especially IDs, renamed dimensions, contributions, work routes, approved public social URLs, governed image assets, and blank/approved bios.
 4. Run `npm run build`. This repeats validation and tests, creates the allowlisted artifact, and validates `dist/`.
 5. Commit public source/generated files only. Never add the raw snapshot, contact columns, downloaded CVs, cookies, or credentials.
 
@@ -84,6 +84,8 @@ For role-aware education display:
 - Part-time or mixed history: use the engagement relevant to the selected period and avoid implying a current role from an old education record.
 - Masonry card: short institution/program labels.
 - Detail dialog: official full institution/program labels.
+- FDI program display copy is exact: `Full-stack Developer Intern, FDI` in both UI locales.
+- The Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์`, not `วศ.คอมพิวเตอร์`.
 - If a required program or qualification is still unknown, show an explicit pending-confirmation label beside the verified institution; never repeat an institution name as though it were the program.
 
 ## 4. Public IDs and relationships
@@ -116,7 +118,7 @@ The static shell owns these required IDs; changes require updating the validator
 | `#people-board` | masonry result board |
 | `#person-dialog`, `#modal-close` | complete person detail dialog |
 
-Cards must be keyboard-operable `.person-card` buttons. Small screens keep search compact and move secondary filters into `#filter-dialog`. Unapproved or broken person images fall back to `.avatar-initials`.
+Cards must be keyboard-operable `.person-card` buttons. Small screens keep search compact and move secondary filters into `#filter-dialog`. Unapproved or broken person images fall back to the full nickname in `.avatar-name`; do not derive initials.
 
 The app fetches `./data/generated/site-data.json`; keep URLs relative so project Pages works under `/Landom/`.
 
@@ -124,7 +126,7 @@ Discovery uses one canonical URL, `https://montri-th.github.io/Landom/`, shared 
 
 ## 6. Social and image approval gate
 
-Current release behavior, following the owner instruction for this directory, renders all 48 core profile records. `people.publication.consentStatus=pending` does not suppress the core card or detail record; it blocks direct social links and portrait assets. Placeholder bio text remains visibly provisional and `owner_pending`. If policy later changes to require per-person opt-in for the core registry itself, update the data contract, validator, and UI filtering together rather than silently reusing the social/asset gate.
+Current release behavior, following the owner instruction for this directory, renders all 48 core profile records. `people.publication.consentStatus=pending` does not suppress the core card or detail record. Bio fields remain `null/null` with `owner_pending` until the profile owner supplies or approves exact public copy; recruitment intent, interviewer comments, scores, and project records are not converted into personality text.
 
 Private social and asset review columns use only these enums:
 
@@ -133,22 +135,22 @@ Private social and asset review columns use only these enums:
 | verification | `owner_review_required`, `verified`, `rejected`, `missing` |
 | consent | `granted`, `pending`, `denied` |
 | rights | `cleared`, `pending`, `denied`, `revoked` |
+| social publication basis | `individual_consent`, `owner_authorized_public_profile_link`, null |
+| portrait publication basis | `individual_consent`, `owner_authorized_public_profile_portrait`, null |
 | publication | `publishable`, `withheld_pending_*`, `withdrawn` |
 
 `withheld_pending_*` denotes the controlled family of reason-specific pending states (for example, pending consent or rights). It never passes the publication gate. `withdrawn` is terminal for public display until a new, evidenced review changes the record; it is not interchangeable with `pending`.
 
-Public social records require all of the following:
+Public social records require exact identity verification, a `publicUrl`, and `publicationStatus: publishable`, plus one of these explicitly recorded bases:
 
-1. the profile is matched to the person with recorded evidence;
-2. `verificationStatus` is `verified`;
-3. both the profile and person have `consentStatus: granted`;
-4. `publicationStatus` is `publishable`.
+1. `individual_consent` with the profile/person consent statuses granted; or
+2. `owner_authorized_public_profile_link` with `ownerApproval.status: granted`, approval date, scope `public_profile_link_only`, and source reference.
 
-Do not infer consent from following/follower visibility or from an open browser session. Store no session cookie, internal follower list, private message, email, phone, Line, Discord, or CV identifier in public JSON.
+The second basis is a scoped directory-owner publication decision, not individual consent. Keep `consentStatus: pending` unless actual individual consent is recorded. Store no session cookie, internal follower list, private message, email, phone, Line, Discord, CV identifier, or unpublished candidate handle in public JSON.
 
-Person-image records additionally require `rightsStatus: cleared` and `publicationStatus: publishable`. Copy approved images into `public/assets/people/` using the canonical person ID rather than an original social filename. Every file there must have a matching fully approved `assets[]` record. Failed, pending, revoked, missing, or broken assets render initials.
+Person-image records additionally require `rightsStatus: cleared`, exact identity verification, and either individual consent or `owner_authorized_public_profile_portrait` with scoped owner approval. Copy/normalize approved images into `public/assets/people/<personId>.jpg`; public data stores only the local path, SHA-256, media metadata, and bounded evidence label. Expiring CDN/source-profile URLs stay in private evidence and `sourceUrl` remains null. Every file there must have a matching publishable `assets[]` record. Failed, pending, revoked, missing, or broken assets render the full nickname as fallback.
 
-The brand lockup policy is separately recorded in `docs/assets-manifest.json`. Validate its checksum after any asset replacement.
+The approved portrait inventory is `data/approved/portrait-assets.json`; the public manifest and role restrictions are in `docs/assets-manifest.json`. Normalize/check hashes after any asset replacement.
 
 ## 7. CI and GitHub Pages
 
@@ -171,7 +173,7 @@ Automation does not close these checks:
 - Thai at 130% zoom and page at 200% zoom;
 - keyboard, visible focus, screen-reader labels, reduced motion, and dialog focus containment;
 - final human review of institution/program canonicalization and product naming against the same CityMETER release;
-- individual confirmation of placeholder bios;
+- profile-owner copy or confirmation for blank bios;
 - evidence, consent, and rights review for every newly published social link or person image.
 
 Until those are checked on the released bytes, report them as open manual gates rather than passed.

@@ -126,9 +126,10 @@ const peopleRows = site.people.map((person) => {
     card_education_en: person.educationDisplay.card.en,
     detail_education_th: person.educationDisplay.detail.th,
     detail_education_en: person.educationDisplay.detail.en,
-    bio_placeholder_th: person.bio.th,
-    bio_placeholder_en: person.bio.en,
+    bio_th: person.bio.th,
+    bio_en: person.bio.en,
     bio_status: person.bio.status,
+    bio_verification_status: person.bio.verificationStatus,
     consent_public: person.publication.consentStatus,
     profile_status: person.publication.profileStatus,
     verification_status: person.dataQuality.profileVerificationStatus,
@@ -210,7 +211,13 @@ const workRows = site.works.map((work) => ({
   scope_layer: work.scopeLayer,
   authority_status: work.authorityStatus,
   source_aliases: joined(work.sourceAliases),
-  evidence_note: work.evidenceNote
+  evidence_note: work.evidenceNote,
+  catalog_url_th: work.catalogUrl?.th,
+  catalog_url_en: work.catalogUrl?.en,
+  destination_url: work.destinationUrl,
+  link_scope: work.linkEvidence?.linkScope,
+  url_source_ref: work.linkEvidence?.sourceRef,
+  link_evidence_url: work.linkEvidence?.evidenceUrl
 }));
 
 const contributionRows = site.contributions.map((contribution) => ({
@@ -278,6 +285,11 @@ const socialRows = site.socialProfiles.map((social) => {
     candidate_status: social.candidateStatus,
     verification_status: social.verificationStatus,
     consent_status: social.consentStatus,
+    publication_basis: social.publicationBasis,
+    owner_approval_status: social.ownerApproval?.status,
+    owner_approved_at: social.ownerApproval?.approvedAt,
+    owner_approval_scope: social.ownerApproval?.scope,
+    owner_approval_source_ref: social.ownerApproval?.sourceRef,
     publication_status: social.publicationStatus,
     source_note: privateSource.source_note ?? social.dataBoundary
   };
@@ -297,8 +309,16 @@ const assetRows = site.assets.map((asset) => {
     verification_status: asset.verificationStatus,
     consent_status: asset.consentStatus,
     rights_status: asset.rightsStatus,
+    publication_basis: asset.publicationBasis,
+    owner_approval_status: asset.ownerApproval?.status,
+    owner_approved_at: asset.ownerApproval?.approvedAt,
+    owner_approval_scope: asset.ownerApproval?.scope,
+    owner_approval_source_ref: asset.ownerApproval?.sourceRef,
     publication_status: asset.publicationStatus,
-    sha256: privateSource.sha256 ?? '',
+    sha256: privateSource.sha256 ?? asset.sha256 ?? '',
+    media_type: asset.mediaType ?? '',
+    bytes: asset.bytes ?? '',
+    identity_verification_evidence: asset.identityVerificationEvidence ?? '',
     permission_record_id: privateSource.permission_record_id ?? '',
     crop_focal_point: privateSource.crop_focal_point ?? '',
     credit: privateSource.credit ?? ''
@@ -351,6 +371,11 @@ const enumRows = [
   ['candidate.social', 'candidate_missing', 'ยังไม่มี candidate', 'Candidate missing'],
   ['candidate.asset', 'candidate_present', 'มี asset candidate ใน private source', 'Private asset candidate present'],
   ['candidate.asset', 'source_needed', 'ต้องหา asset source', 'Asset source needed'],
+  ['publication_basis.social', 'individual_consent', 'ได้รับความยินยอมจากเจ้าตัว', 'Individual consent'],
+  ['publication_basis.social', 'owner_authorized_public_profile_link', 'เจ้าของ directory อนุมัติลิงก์ public profile', 'Owner-authorized public profile link'],
+  ['publication_basis.asset', 'individual_consent', 'ได้รับความยินยอมจากเจ้าตัว', 'Individual consent'],
+  ['publication_basis.asset', 'owner_authorized_public_profile_portrait', 'เจ้าของ directory อนุมัติ portrait จาก public profile', 'Owner-authorized public profile portrait'],
+  ['owner_approval.status', 'granted', 'เจ้าของ directory อนุมัติขอบเขตนี้', 'Owner approval granted for this scope'],
   ['publication.social', 'publishable', 'ผ่าน gate และเผยแพร่ได้', 'Publishable'],
   ['publication.social', 'withheld_pending_candidate', 'ยังไม่มี candidate สำหรับเผยแพร่', 'Withheld pending candidate'],
   ['publication.social', 'withheld_pending_consent', 'รอความยินยอม', 'Withheld pending consent'],
@@ -359,7 +384,7 @@ const enumRows = [
   ['publication.asset', 'publishable', 'ผ่านทุก gate และเผยแพร่ได้', 'Publishable'],
   ['publication.asset', 'withheld_pending_rights_consent_and_verification', 'รอสิทธิ ความยินยอม หรือการยืนยัน', 'Withheld pending rights, consent, or verification'],
   ['publication.asset', 'withdrawn', 'ถอนออกจากการเผยแพร่', 'Withdrawn'],
-  ['bio.status', 'placeholder', 'ข้อความตั้งต้นที่ระบบสร้าง', 'Generated placeholder'],
+  ['bio.status', 'owner_pending', 'เว้นว่างรอเจ้าตัวส่งหรือยืนยันข้อความ', 'Blank pending profile-owner copy'],
   ['bio.status', 'owner_approved', 'เจ้าตัวยืนยันแล้ว', 'Owner approved']
 ].map(([enum_group, value, label_th, label_en]) => ({ enum_group, value, label_th, label_en }));
 
@@ -370,8 +395,8 @@ const qaRows = [
   { metric: 'orphan_engagement_person_ids', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((engagements!B2:B<>"")*(COUNTIF(people_registry!A2:A,engagements!B2:B)=0))))', review_rule: 'ต้องเป็น 0' },
   { metric: 'invalid_person_id_format', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((people_registry!A2:A<>"")*(REGEXMATCH(people_registry!A2:A,"^[SPI][0-9]{4}$")=FALSE))))', review_rule: 'ต้องเป็น 0' },
   { metric: 'oat_land_portfolio_and_lead2loan', expected: 2, formula_value: '=COUNTUNIQUE(FILTER(contributions!C2:C,contributions!B2:B="S0001",REGEXMATCH(contributions!C2:C,"work-(land-portfolio|lead2loan)")))', review_rule: 'ต้องเป็น 2 work IDs แยกกัน' },
-  { metric: 'pending_profile_consent', expected: 0, formula_value: '=COUNTIF(people_registry!R2:R,"pending")', review_rule: 'REVIEW จนกว่าเจ้าตัวจะยืนยัน; ไม่บังคับให้เป็น 0 ก่อนงานภายใน' },
-  { metric: 'publishable_portraits', expected: 48, formula_value: '=COUNTIF(assets!L2:L,"publishable")', review_rule: 'รูปที่ยังไม่ publishable ต้องใช้ initials avatar' }
+  { metric: 'pending_profile_consent', expected: 0, formula_value: '=COUNTIF(people_registry!S2:S,"pending")', review_rule: 'REVIEW จนกว่าเจ้าตัวจะยืนยัน; ไม่บังคับให้เป็น 0 ก่อนงานภายใน' },
+  { metric: 'publishable_portraits', expected: 48, formula_value: '=COUNTIF(assets!Q2:Q,"publishable")', review_rule: 'รูปที่ยังไม่ publishable ต้องใช้ชื่อเล่นเต็มเป็น avatar fallback' }
 ];
 
 const readmeRows = [
@@ -382,8 +407,9 @@ const readmeRows = [
   { topic: 'การศึกษา', detail: 'Card ใช้ชื่อย่อ program + institution; detail ใช้ชื่อทางการ; full-time ใช้ qualification view, intern ใช้ program view' },
   { topic: 'ผลงาน', detail: 'Land Portfolio และ Lead2Loan เป็นคนละ work_id; ทุกคนมี contribution อย่างน้อย 1 รายการ' },
   { topic: 'รางวัล', detail: 'Hack Land Value / CityCell อยู่ใน achievements และเชื่อมผู้รับรางวัลผ่าน person_achievements' },
-  { topic: 'bio', detail: 'bio_placeholder_th/en เป็นข้อความตั้งต้น; bio_status=placeholder จนกว่าเจ้าตัวจะส่งข้อความมาแทน' },
-  { topic: 'social/photo', detail: 'เก็บ candidate ใน Sheet ได้ แต่เว็บเผยแพร่เมื่อยืนยันตัวบุคคล + consent + rights ครบเท่านั้น' },
+  { topic: 'bio', detail: 'bio_th/en เว้นว่างและ bio_status=owner_pending จนกว่าเจ้าตัวจะส่งหรือยืนยันข้อความ; ห้ามสร้างบุคลิกจากคะแนนหรือผลงาน' },
+  { topic: 'social', detail: 'ลิงก์ public profile ที่ตรวจ identity แล้วเผยแพร่ได้ด้วย individual_consent หรือ owner_authorized_public_profile_link; basis หลังไม่ใช่ consent ของเจ้าตัว' },
+  { topic: 'photo', detail: 'portrait ต้องผ่าน identity verification + rights และมี individual consent หรือ owner_authorized_public_profile_portrait พร้อมไฟล์ local ที่อนุมัติแล้ว; ห้ามเผย CDN source URL' },
   { topic: 'CityMETER', detail: 'ชื่อ module อ้าง release ปัจจุบัน; CityScan, CityCell, GISTDA/DWR deliverables ไม่ถูกยกเป็น canonical module โดยไม่มีหลักฐาน' },
   { topic: 'Locale Insight', detail: 'shared methodology ใช้เอกพจน์ Locale Insight; module ชื่อ Locale Insights อยู่ใน product-specific CityMETER layer' },
   { topic: 'Landom', detail: 'Landometer คือแบรนด์ · Landom คือด้อม · สมาชิกเรียก ชาว Landom / ชาวแลนด้อม' },
@@ -393,7 +419,7 @@ const readmeRows = [
 const tabs = {
   README: tab(['topic', 'detail'], readmeRows, { filter: false, columnWidths: { A: 180, B: 720 } }),
   people_registry: tab(
-    ['person_id', 'full_name_th', 'full_name_en', 'nickname_th', 'nickname_en', 'current_status', 'migration_classification', 'first_joined', 'education_record_id', 'education_display_mode', 'card_education_th', 'card_education_en', 'detail_education_th', 'detail_education_en', 'bio_placeholder_th', 'bio_placeholder_en', 'bio_status', 'consent_public', 'profile_status', 'verification_status', 'source_note'],
+    ['person_id', 'full_name_th', 'full_name_en', 'nickname_th', 'nickname_en', 'current_status', 'migration_classification', 'first_joined', 'education_record_id', 'education_display_mode', 'card_education_th', 'card_education_en', 'detail_education_th', 'detail_education_en', 'bio_th', 'bio_en', 'bio_status', 'bio_verification_status', 'consent_public', 'profile_status', 'verification_status', 'source_note'],
     peopleRows,
     {
       columnWidths: { A: 88, B: 180, C: 240, D: 110, E: 110, O: 420, P: 420, U: 480 },
@@ -401,8 +427,9 @@ const tabs = {
         F: ['active', 'alumni'],
         G: ['full_time', 'part_time', 'intern_or_program_participant'],
         J: ['qualification', 'program', 'neutral'],
-        Q: ['placeholder', 'owner_approved'],
-        R: ['granted', 'pending', 'denied']
+        Q: ['owner_pending', 'owner_approved'],
+        R: ['owner_pending', 'owner_approved'],
+        S: ['granted', 'pending', 'denied']
       }
     }
   ),
@@ -414,25 +441,31 @@ const tabs = {
   institutions: tab(['institution_id', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'aliases', 'verification_status'], institutionRows),
   programs: tab(['program_id', 'institution_ids', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'qualification_level', 'verification_status'], programRows),
   education: tab(['education_record_id', 'person_id', 'institution_id', 'program_id', 'record_type', 'is_primary', 'qualification_th', 'qualification_en', 'source_label', 'verification_status', 'evidence_note'], educationRows),
-  works: tab(['work_id', 'parent_product', 'module_slug', 'canonical_name_th', 'canonical_name_en', 'short_name_th', 'short_name_en', 'type', 'scope_layer', 'authority_status', 'source_aliases', 'evidence_note'], workRows),
+  works: tab(['work_id', 'parent_product', 'module_slug', 'canonical_name_th', 'canonical_name_en', 'short_name_th', 'short_name_en', 'type', 'scope_layer', 'authority_status', 'source_aliases', 'evidence_note', 'catalog_url_th', 'catalog_url_en', 'destination_url', 'link_scope', 'url_source_ref', 'link_evidence_url'], workRows, {
+    validations: { P: ['exact_module', 'exact_product', 'evidence_only', 'broader_catalog', 'unverified_no_link'] }
+  }),
   contributions: tab(['contribution_id', 'person_id', 'work_id', 'engagement_id', 'role_th', 'role_en', 'period_start', 'period_end', 'period_label', 'evidence_status', 'source_ref', 'evidence_note'], contributionRows),
   achievements: tab(['achievement_id', 'title_th', 'title_en', 'result_th', 'result_en', 'organizer_th', 'organizer_en', 'awarded_on', 'date_verification_status', 'work_id', 'evidence_status', 'evidence_url', 'evidence_note'], achievementRows),
   person_achievements: tab(['person_achievement_id', 'achievement_id', 'person_id'], personAchievementRows),
-  social_profiles: tab(['social_profile_id', 'person_id', 'platform', 'candidate_url_or_handle', 'public_url', 'candidate_status', 'verification_status', 'consent_status', 'publication_status', 'source_note'], socialRows, {
+  social_profiles: tab(['social_profile_id', 'person_id', 'platform', 'candidate_url_or_handle', 'public_url', 'candidate_status', 'verification_status', 'consent_status', 'publication_basis', 'owner_approval_status', 'owner_approved_at', 'owner_approval_scope', 'owner_approval_source_ref', 'publication_status', 'source_note'], socialRows, {
     validations: {
       F: ['candidate_present', 'candidate_missing'],
       G: ['owner_review_required', 'verified', 'rejected', 'missing'],
       H: ['granted', 'pending', 'denied'],
-      I: ['publishable', 'withheld_pending_candidate', 'withheld_pending_consent', 'withheld_pending_verification', 'withdrawn']
+      I: ['individual_consent', 'owner_authorized_public_profile_link'],
+      J: ['granted'],
+      N: ['publishable', 'withheld_pending_candidate', 'withheld_pending_consent', 'withheld_pending_verification', 'withdrawn']
     }
   }),
-  assets: tab(['asset_id', 'person_id', 'kind', 'public_path', 'source_url', 'alt_th', 'alt_en', 'candidate_status', 'verification_status', 'consent_status', 'rights_status', 'publication_status', 'sha256', 'permission_record_id', 'crop_focal_point', 'credit'], assetRows, {
+  assets: tab(['asset_id', 'person_id', 'kind', 'public_path', 'source_url', 'alt_th', 'alt_en', 'candidate_status', 'verification_status', 'consent_status', 'rights_status', 'publication_basis', 'owner_approval_status', 'owner_approved_at', 'owner_approval_scope', 'owner_approval_source_ref', 'publication_status', 'sha256', 'media_type', 'bytes', 'identity_verification_evidence', 'permission_record_id', 'crop_focal_point', 'credit'], assetRows, {
     validations: {
       H: ['candidate_present', 'source_needed'],
       I: ['owner_review_required', 'verified', 'rejected', 'missing'],
       J: ['granted', 'pending', 'denied'],
       K: ['cleared', 'pending', 'denied', 'revoked'],
-      L: ['publishable', 'withheld_pending_rights_consent_and_verification', 'withdrawn']
+      L: ['individual_consent', 'owner_authorized_public_profile_portrait'],
+      M: ['granted'],
+      Q: ['publishable', 'withheld_pending_rights_consent_and_verification', 'withdrawn']
     }
   }),
   aliases: tab(['alias_type', 'canonical_id', 'alias', 'note'], aliasRows),
@@ -446,6 +479,6 @@ if (requestedTab && !Object.hasOwn(tabs, requestedTab)) {
 }
 
 const selectedTabs = requestedTab ? { [requestedTab]: tabs[requestedTab] } : tabs;
-const exportPayload = JSON.stringify({ schemaVersion: '3.0.0', spreadsheetId: site.meta.source.spreadsheetId, tabs: selectedTabs });
+const exportPayload = JSON.stringify({ schemaVersion: '3.1.0', spreadsheetId: site.meta.source.spreadsheetId, tabs: selectedTabs });
 if (/LDM-P-\d+/.test(exportPayload)) throw new Error('Legacy person ID escaped the sheet exporter canonicalization boundary.');
 process.stdout.write(exportPayload);

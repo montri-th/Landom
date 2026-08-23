@@ -27,7 +27,7 @@
     "educationDisplay": {
       "mode": "qualification",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -37,9 +37,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "โอ๊ต มีส่วนร่วมกับ Land Portfolio และ Lead2Loan ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Oat contributed to Land Portfolio and Lead2Loan while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -79,7 +79,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -89,9 +89,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ปุ๊กกี้ มีส่วนร่วมกับ โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล และ โรงงาน แรงงาน และการลงทุน ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pookkie contributed to Hotel Supply, Rates & Seasonality and Factories, Workers & Investment while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -131,7 +131,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -141,9 +141,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "อาม มีส่วนร่วมกับ โรงงาน แรงงาน และการลงทุน ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Arm contributed to Factories, Workers & Investment while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -193,9 +193,9 @@
       "verificationStatus": "owner_detail_required"
     },
     "bio": {
-      "th": "เสก มีส่วนร่วมกับ CityChat และ โมเดล CityCell ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Sek contributed to CityChat and CityCell Model while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -245,9 +245,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เรเน่ มีส่วนร่วมกับ ijji และ CityMETER: QuakeSafe ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Renee contributed to ijji and CityMETER: QuakeSafe while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -287,7 +287,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -297,9 +297,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "แพรวา มีส่วนร่วมกับ ราคาประเมินที่ดินและโฉนด และ เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่) ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Praewa contributed to Land Appraisal & Title Deeds and Agriculture: Crop Area & Output (10,000 Rai) while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -339,7 +339,7 @@
     "educationDisplay": {
       "mode": "qualification",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -349,9 +349,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "พัทธ์ มีส่วนร่วมกับ การดูแลผลิตภัณฑ์ CityMETER และ CityMETER: Apartment ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pat contributed to CityMETER Product Stewardship and CityMETER: Apartment while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -401,9 +401,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "หมิง มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Ming contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -453,9 +453,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เดย์ มีส่วนร่วมกับ CityMETER: Road Traffic และ ContentCompass ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Day contributed to CityMETER: Road Traffic and ContentCompass while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -505,9 +505,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ทีโน่ มีส่วนร่วมกับ โรงเรียน นักเรียน และครู และ Walkidio ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Teno contributed to Schools, Students & Teachers and Walkidio while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -557,9 +557,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ดาวเหนือ มีส่วนร่วมกับ CityMETER: Townhouse และ SafeStreet ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Daonua contributed to CityMETER: Townhouse and SafeStreet while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -609,9 +609,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "กาย มีส่วนร่วมกับ CityMETER: Land Offer และ ContentCompass ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Guy contributed to CityMETER: Land Offer and ContentCompass while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -661,9 +661,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "แฮม มีส่วนร่วมกับ โรงงาน แรงงาน และการลงทุน และ KinNow ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Ham contributed to Factories, Workers & Investment and KinNow while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -713,9 +713,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ว่าน มีส่วนร่วมกับ CityMETER: Condo Rental และ Walkidio ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Wan contributed to CityMETER: Condo Rental and Walkidio while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -765,9 +765,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "อิ๋ง มีส่วนร่วมกับ CityMETER: Condo Offer และ Walkidio ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Ing contributed to CityMETER: Condo Offer and Walkidio while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -817,9 +817,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "พิงกี้ มีส่วนร่วมกับ KinNow ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pingy contributed to KinNow while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -859,7 +859,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · จุฬาฯ",
+        "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
         "en": "CPE · CU"
       },
       "detail": {
@@ -869,9 +869,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ปอน มีส่วนร่วมกับ CityMETER: Detached House และ ContentCompass ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pond contributed to CityMETER: Detached House and ContentCompass while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -911,7 +911,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · จุฬาฯ",
+        "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
         "en": "CPE · CU"
       },
       "detail": {
@@ -921,9 +921,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Mos มีส่วนร่วมกับ CityMETER: Office และ KinNow ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Mos contributed to CityMETER: Office and KinNow while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -963,7 +963,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · จุฬาฯ",
+        "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
         "en": "CPE · CU"
       },
       "detail": {
@@ -973,9 +973,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เฟซ มีส่วนร่วมกับ บริษัทจดทะเบียน: สถานะและทุน และ SafeStreet ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Faze contributed to Registered Companies: Status & Capital and SafeStreet while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1025,9 +1025,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "มุก มีส่วนร่วมกับ Walkidio และ โมเดล CityCell ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Mook contributed to Walkidio and CityCell Model while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1077,9 +1077,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "มาย มีส่วนร่วมกับ ContentCompass และ Landometer: Brand Visual Guidelines 2025 ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Mind contributed to ContentCompass and Landometer: Brand Visual Guidelines 2025 while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1129,9 +1129,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Grace มีส่วนร่วมกับ SafeStreet และ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Grace contributed to SafeStreet and ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1181,9 +1181,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Jamie มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Jamie contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1233,9 +1233,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Tieam มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Tieam contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1285,9 +1285,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Pleng มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pleng contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1337,9 +1337,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เพลง มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pleng contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1389,9 +1389,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Tim มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Tim contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1441,9 +1441,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เฟย มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Feuy contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1493,9 +1493,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "Pang มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Pang contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1545,9 +1545,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ฮาน่า มีส่วนร่วมกับ ijji และ งานวิจัยแบบจำลองคาดการณ์ประชากร ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Hana contributed to ijji and Research: Population Forecasting Model while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1597,9 +1597,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "โนนิ มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Noni contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1649,9 +1649,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ฟรัง มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "France contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1701,9 +1701,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ดาด้า มีส่วนร่วมกับ Vote69 และ CityChat ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Dada contributed to Vote69 and CityChat while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1753,9 +1753,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ฟิล์ม มีส่วนร่วมกับ CityChat ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Film contributed to CityChat while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1795,7 +1795,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -1805,9 +1805,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เคน มีส่วนร่วมกับ อาคาร: ขอบเขต พื้นที่อาคารรวม และความสูง และ CityMETER Playbook สำหรับ FDI ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Ken contributed to Buildings: Footprint, GFA & Height and CityMETER Playbook for FDI while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1847,7 +1847,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -1857,9 +1857,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "บิว มีส่วนร่วมกับ โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล และ CityChat ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Bill contributed to Hotel Supply, Rates & Seasonality and CityChat while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1899,7 +1899,7 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "วศ.คอมพิวเตอร์ · สจล.",
+        "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
         "en": "CPE · KMITL"
       },
       "detail": {
@@ -1909,9 +1909,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ยิ้ว มีส่วนร่วมกับ น้ำท่วมที่ตรวจพบล่าสุด และ แผนที่น้ำท่วม DWR ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Yew contributed to Flood: Latest Observed and DWR Flood Map while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -1961,9 +1961,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ทีม มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Team contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2013,9 +2013,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เอิร์ธ มีส่วนร่วมกับ CityMETER: การคาดการณ์น้ำท่วม (รอระบุโมดูล) และ Locale Insight Intelligence Layer ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Earth contributed to CityMETER: Flood Forecasting (Module Pending) and Locale Insight Intelligence Layer while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2065,9 +2065,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "แทน มีส่วนร่วมกับ บริษัทจดทะเบียน: สถานะและทุน ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Tan contributed to Registered Companies: Status & Capital while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2117,9 +2117,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "โต๋ มีส่วนร่วมกับ รายได้องค์กรปกครองส่วนท้องถิ่น และ CityChat ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Toh contributed to Municipal Revenue and CityChat while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2169,9 +2169,9 @@
       "verificationStatus": "source_conflict_unresolved"
     },
     "bio": {
-      "th": "ณิชา มีส่วนร่วมกับ ศูนย์การค้า: จำนวน พื้นที่เช่า และกลุ่มตลาด ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Nicha contributed to Shopping Centers: Supply, GLA & Market Segment while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2221,9 +2221,9 @@
       "verificationStatus": "source_conflict_unresolved"
     },
     "bio": {
-      "th": "ไนน์ มีส่วนร่วมกับ หน่วยงานรัฐและบุคลากร และ DWR Runoff ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Nine contributed to Government Agencies & Workforce and DWR Runoff while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2273,9 +2273,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "จอมใจ มีส่วนร่วมกับ รูปแบบโครงข่ายถนน และ CityWiki ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Jomjai contributed to Road Network Archetypes and CityWiki while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2325,9 +2325,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "แดน มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Dan contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2377,9 +2377,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "มุก มีส่วนร่วมกับ ijji ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Mook contributed to ijji while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2429,9 +2429,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "เมย์ มีส่วนร่วมกับ CityWiki ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "May contributed to CityWiki while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {
@@ -2481,9 +2481,9 @@
       "verificationStatus": "owner_review_required"
     },
     "bio": {
-      "th": "ดราฟ มีส่วนร่วมกับ ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย และ สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน",
-      "en": "Draf contributed to Tourism Demand: Visitors & Spending and Fuel Stations: Count, Density & Fuel Types while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.",
-      "status": "placeholder",
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
       "verificationStatus": "owner_pending"
     },
     "publication": {

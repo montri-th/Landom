@@ -1,3 +1,85 @@
+@font-face {
+  font-family: "Arvo";
+  src: url("../public/assets/fonts/arvo-latin-700-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Thai Looped";
+  src: url("../public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0E00-0E7F;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Thai Looped";
+  src: url("../public/assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF;
+}
+
+@font-face {
+  font-family: "Bai Jamjuree";
+  src: url("../public/assets/fonts/bai-jamjuree-thai-400-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0E00-0E7F;
+}
+
+@font-face {
+  font-family: "Bai Jamjuree";
+  src: url("../public/assets/fonts/bai-jamjuree-latin-400-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF;
+}
+
+@font-face {
+  font-family: "Bai Jamjuree";
+  src: url("../public/assets/fonts/bai-jamjuree-thai-600-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0E00-0E7F;
+}
+
+@font-face {
+  font-family: "Bai Jamjuree";
+  src: url("../public/assets/fonts/bai-jamjuree-latin-600-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Thai";
+  src: url("../public/assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  size-adjust: 102%;
+  unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../public/assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-024F, U+1E00-1EFF;
+}
+
 @layer tokens, reset, base, components, utilities, responsive;
 
 @layer tokens {
@@ -79,10 +161,22 @@
     --type-h2: clamp(2rem, 4vw, 3.25rem);
     --type-h1-en: clamp(2.8rem, 7vw, 6.2rem);
     --type-h1-th: clamp(2.5rem, 6vw, 5rem);
-    --font-display-en: Georgia, Cambria, "Times New Roman", serif;
-    --font-display-th: "Noto Sans Thai Looped", "Leelawadee UI", Tahoma, sans-serif;
-    --font-body: "Bai Jamjuree", "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
-    --font-technical: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --font-display-en-fallback: Georgia, Cambria, "Times New Roman", serif;
+    --font-display-th-fallback: "Noto Sans Thai Looped", "Leelawadee UI", Tahoma, sans-serif;
+    --font-body-fallback: "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
+    --font-number-fallback: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --font-display-en: "Arvo", var(--font-display-en-fallback);
+    --font-display-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
+    --font-ui-heading-en: "Arvo", var(--font-display-en-fallback);
+    --font-ui-heading-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
+    --font-body: "Bai Jamjuree", var(--font-body-fallback);
+    --font-technical-latin: "JetBrains Mono", var(--font-number-fallback);
+    --font-technical-th: "IBM Plex Sans Thai", var(--font-body-fallback);
+    --font-technical: "JetBrains Mono", "IBM Plex Sans Thai", "SFMono-Regular", Consolas, monospace;
+    --leading-display-en: 1.02;
+    --leading-display-th: 1.16;
+    --leading-ui-heading-en: 1.22;
+    --leading-ui-heading-th: 1.32;
     --leading-body: 1.6;
     --leading-compact: 1.42;
     --elevation-xs: 0 1px 2px rgba(30, 34, 48, 0.08);
@@ -94,6 +188,7 @@
     --motion-duration-reveal: 640ms;
     --motion-ease-state: cubic-bezier(0.2, 0, 0, 1);
     --motion-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+    font-synthesis: none;
   }
 
   [data-theme="dark"] {
@@ -206,7 +301,7 @@
   h2,
   h3,
   h4 {
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 1.18;
     text-wrap: balance;
@@ -217,7 +312,8 @@
   html[lang="th"] h3,
   html[lang="th"] h4 {
     font-family: var(--font-display-th);
-    line-height: 1.28;
+    letter-spacing: -0.01em;
+    line-height: var(--leading-display-th);
   }
 
   html[lang="en"] h1,
@@ -225,6 +321,7 @@
   html[lang="en"] h3,
   html[lang="en"] h4 {
     font-family: var(--font-display-en);
+    line-height: var(--leading-display-en);
   }
 
   button,
@@ -258,7 +355,7 @@
     background: var(--surface-raised);
     box-shadow: var(--elevation-md);
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
   }
 
@@ -330,7 +427,7 @@
     background: var(--surface-raised);
     box-shadow: var(--elevation-xs);
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 600;
     transition: transform var(--motion-duration-feedback) var(--motion-ease-state), border-color var(--motion-duration-state) var(--motion-ease-state), background-color var(--motion-duration-state) var(--motion-ease-state);
   }
 
@@ -405,7 +502,7 @@
   .section-kicker {
     font-family: var(--font-technical);
     font-size: var(--type-caption);
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
@@ -446,14 +543,14 @@
   .hero-summary strong {
     font-family: var(--font-technical);
     font-size: clamp(3.25rem, 7vw, 6rem);
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: -0.08em;
     line-height: 0.95;
   }
 
   .hero-summary > span:not(.data-note) {
     margin-top: var(--space-3);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .data-note {
@@ -570,7 +667,7 @@
     gap: var(--space-2);
     padding: 9px var(--space-4);
     border-radius: var(--radius-pill);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.2;
     text-decoration: none;
     transition: transform var(--motion-duration-feedback) var(--motion-ease-state), border-color var(--motion-duration-state) var(--motion-ease-state), background-color var(--motion-duration-state) var(--motion-ease-state);
@@ -661,7 +758,7 @@
     gap: var(--space-2);
     color: var(--text-metadata);
     font-size: var(--type-label);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .filter-field select {
@@ -754,20 +851,30 @@
     opacity: 1;
   }
 
-  .avatar-initials {
+  .avatar-name {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
+    padding: var(--space-5);
     color: var(--fg-on-light-primary);
-    font-family: var(--font-display-en);
-    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 700;
-    letter-spacing: -0.08em;
-    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+    text-align: center;
   }
 
-  .has-photo .avatar-initials {
+  html[lang="th"] .avatar-name {
+    font-family: var(--font-display-th);
+  }
+
+  html[lang="en"] .avatar-name {
+    font-family: var(--font-display-en);
+  }
+
+  .has-photo .avatar-name {
     visibility: hidden;
   }
 
@@ -801,7 +908,7 @@
     background: var(--semantic-info-fill);
     color: var(--semantic-info-ink);
     font-size: var(--type-caption);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.2;
   }
 
@@ -819,9 +926,20 @@
     display: block;
     overflow-wrap: anywhere;
     font-size: var(--type-h3);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 1.28;
+  }
+
+  html[lang="th"] .card-name {
+    font-family: var(--font-ui-heading-th);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-ui-heading-th);
+  }
+
+  html[lang="en"] .card-name {
+    font-family: var(--font-ui-heading-en);
+    line-height: var(--leading-ui-heading-en);
   }
 
   .card-official-name {
@@ -843,7 +961,7 @@
   .education-label {
     color: var(--text-metadata);
     font-size: var(--type-caption);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -882,7 +1000,7 @@
     background: var(--surface-blue-tint);
     color: var(--interaction-accent);
     font-size: var(--type-caption);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.25;
   }
 
@@ -899,7 +1017,7 @@
     margin-top: var(--space-5);
     color: var(--interaction-accent);
     font-size: var(--type-label);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .card-open-cue::after {
@@ -1022,8 +1140,8 @@
     border-radius: var(--radius-lg);
   }
 
-  .detail-avatar .avatar-initials {
-    font-size: clamp(3rem, 9vw, 5.2rem);
+  .detail-avatar .avatar-name {
+    font-size: clamp(2.2rem, 7vw, 4.6rem);
   }
 
   .detail-heading {
@@ -1080,27 +1198,29 @@
 
   .education-detail {
     display: grid;
-    gap: var(--space-1);
+    gap: var(--space-2);
   }
 
-  .education-detail dt,
+  .education-context,
   .timeline-meta,
   .contribution-meta {
     color: var(--text-metadata);
     font-size: var(--type-caption);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
 
-  .education-detail dd {
+  .education-program,
+  .education-institution {
     color: var(--text-primary);
     font-size: var(--type-body-lg);
-    font-weight: 650;
+    font-weight: 600;
+    line-height: var(--leading-compact);
   }
 
-  .education-detail dd + dt {
-    margin-top: var(--space-4);
+  .education-institution {
+    color: var(--text-secondary);
   }
 
   .timeline,
@@ -1124,8 +1244,49 @@
   .timeline-heading,
   .contribution-name,
   .achievement-name {
-    font-weight: 700;
+    font-weight: 600;
     line-height: var(--leading-compact);
+  }
+
+  .contribution-link {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    color: var(--interaction-accent);
+    font-weight: 600;
+    line-height: var(--leading-compact);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .profile-icon-links {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .profile-icon-link {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: border-color var(--motion-duration-state) var(--motion-ease-state), color var(--motion-duration-state) var(--motion-ease-state), transform var(--motion-duration-feedback) var(--motion-ease-state);
+  }
+
+  .profile-icon-link:hover {
+    border-color: var(--interaction-accent);
+    color: var(--interaction-accent);
+    transform: translateY(-1px);
+  }
+
+  .profile-icon-link svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
   }
 
   .timeline-meta,
@@ -1158,9 +1319,9 @@
 
   .footer-label {
     color: var(--text-primary);
-    font-family: var(--font-display);
-    font-size: var(--type-title-sm);
-    font-weight: 750;
+    font-family: var(--font-body);
+    font-size: var(--type-body-lg);
+    font-weight: 600;
     letter-spacing: -0.02em;
   }
 

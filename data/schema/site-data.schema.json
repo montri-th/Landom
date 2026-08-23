@@ -34,6 +34,7 @@
   },
   "$defs": {
     "nullableString": { "type": ["string", "null"] },
+    "nullableUri": { "type": ["string", "null"], "format": "uri" },
     "personId": { "type": "string", "pattern": "^[SPI]\\d{4}$" },
     "localized": {
       "type": "object",
@@ -85,7 +86,7 @@
       "type": "object",
       "required": ["schemaVersion", "source", "personIdPolicy", "evidenceBoundary", "counts"],
       "properties": {
-        "schemaVersion": { "const": "1.0.0" },
+        "schemaVersion": { "const": "1.1.0" },
         "source": {
           "type": "object",
           "required": ["spreadsheetId", "publicSheetsUsed", "privateContactSourcesExcluded"],
@@ -179,9 +180,9 @@
           "type": "object",
           "required": ["th", "en", "status", "verificationStatus"],
           "properties": {
-            "th": { "type": "string" },
-            "en": { "type": "string" },
-            "status": { "const": "placeholder" },
+            "th": { "$ref": "#/$defs/nullableString" },
+            "en": { "$ref": "#/$defs/nullableString" },
+            "status": { "enum": ["owner_pending", "owner_approved"] },
             "verificationStatus": { "enum": ["owner_pending", "owner_approved"] }
           }
         },
@@ -217,7 +218,7 @@
     },
     "work": {
       "type": "object",
-      "required": ["workId", "parentProduct", "moduleSlug", "names", "shortNames", "type", "scopeLayer", "authorityStatus"],
+      "required": ["workId", "parentProduct", "moduleSlug", "names", "shortNames", "type", "scopeLayer", "authorityStatus", "catalogUrl", "destinationUrl", "linkEvidence"],
       "properties": {
         "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" },
         "parentProduct": { "type": "string" },
@@ -226,7 +227,19 @@
         "shortNames": { "$ref": "#/$defs/localizedRequired" },
         "type": { "type": "string" },
         "scopeLayer": { "enum": ["shared_landometer", "product_specific", "partner_specific"] },
-        "authorityStatus": { "type": "string" }
+        "authorityStatus": { "type": "string" },
+        "catalogUrl": { "$ref": "#/$defs/localized" },
+        "destinationUrl": { "$ref": "#/$defs/nullableUri" },
+        "linkEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["linkScope", "sourceRef", "evidenceUrl"],
+          "properties": {
+            "linkScope": { "enum": ["exact_module", "exact_product", "evidence_only", "broader_catalog", "unverified_no_link"] },
+            "sourceRef": { "$ref": "#/$defs/nullableString" },
+            "evidenceUrl": { "$ref": "#/$defs/nullableUri" }
+          }
+        }
       }
     },
     "contribution": {
@@ -256,7 +269,7 @@
     },
     "socialProfile": {
       "type": "object",
-      "required": ["socialProfileId", "personId", "platform", "publicUrl", "candidateStatus", "verificationStatus", "consentStatus", "publicationStatus", "dataBoundary"],
+      "required": ["socialProfileId", "personId", "platform", "publicUrl", "candidateStatus", "verificationStatus", "consentStatus", "publicationBasis", "ownerApproval", "publicationStatus", "dataBoundary"],
       "properties": {
         "socialProfileId": { "type": "string", "pattern": "^SOC-[SPI]\\d{4}-[A-Z]+$" },
         "personId": { "$ref": "#/$defs/personId" },
@@ -265,24 +278,50 @@
         "candidateStatus": { "enum": ["candidate_present", "candidate_missing"] },
         "verificationStatus": { "enum": ["owner_review_required", "verified", "rejected", "missing"] },
         "consentStatus": { "enum": ["pending", "granted", "denied"] },
+        "publicationBasis": { "enum": [null, "individual_consent", "owner_authorized_public_profile_link"] },
+        "ownerApproval": { "$ref": "#/$defs/ownerApprovalNullable" },
         "publicationStatus": { "enum": ["publishable", "withheld_pending_candidate", "withheld_pending_consent", "withheld_pending_verification", "withdrawn"] },
         "dataBoundary": { "const": "private_candidates_not_emitted" }
       }
     },
     "asset": {
       "type": "object",
-      "required": ["assetId", "personId", "kind", "publicPath", "candidateStatus", "verificationStatus", "consentStatus", "rightsStatus", "publicationStatus"],
+      "required": ["assetId", "personId", "kind", "publicPath", "sourceUrl", "alt", "candidateStatus", "verificationStatus", "consentStatus", "rightsStatus", "publicationBasis", "ownerApproval", "publicationStatus", "sha256", "mediaType", "bytes", "identityVerificationEvidence"],
       "properties": {
         "assetId": { "type": "string", "pattern": "^PORTRAIT-[SPI]\\d{4}$" },
         "personId": { "$ref": "#/$defs/personId" },
         "kind": { "const": "profile_portrait" },
         "publicPath": { "type": ["string", "null"] },
+        "sourceUrl": { "$ref": "#/$defs/nullableUri" },
+        "alt": { "$ref": "#/$defs/localizedRequired" },
         "candidateStatus": { "enum": ["candidate_present", "source_needed"] },
         "verificationStatus": { "enum": ["owner_review_required", "verified", "rejected", "missing"] },
         "consentStatus": { "enum": ["pending", "granted", "denied"] },
         "rightsStatus": { "enum": ["pending", "cleared", "denied", "revoked"] },
-        "publicationStatus": { "enum": ["publishable", "withheld_pending_rights_consent_and_verification", "withdrawn"] }
+        "publicationBasis": { "enum": [null, "individual_consent", "owner_authorized_public_profile_portrait"] },
+        "ownerApproval": { "$ref": "#/$defs/ownerApprovalNullable" },
+        "publicationStatus": { "enum": ["publishable", "withheld_pending_rights_consent_and_verification", "withdrawn"] },
+        "sha256": { "$ref": "#/$defs/nullableString" },
+        "mediaType": { "$ref": "#/$defs/nullableString" },
+        "bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "identityVerificationEvidence": { "$ref": "#/$defs/nullableString" }
       }
+    },
+    "ownerApprovalNullable": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "approvedAt", "scope", "sourceRef"],
+          "properties": {
+            "status": { "const": "granted" },
+            "approvedAt": { "$ref": "#/$defs/nullableString" },
+            "scope": { "$ref": "#/$defs/nullableString" },
+            "sourceRef": { "$ref": "#/$defs/nullableString" }
+          }
+        }
+      ]
     }
   }
 }

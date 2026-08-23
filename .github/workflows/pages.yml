@@ -69,6 +69,9 @@ jobs:
           script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-app.js --write-out '%{content_type}' "$base_url/src/app.js")"
           style_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-styles.css --write-out '%{content_type}' "$base_url/src/styles.css")"
           logo_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo.png --write-out '%{content_type}' "$base_url/public/assets/brand/landometer-horizontal.png")"
+          font_manifest_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-font-manifest.json --write-out '%{content_type}' "$base_url/public/assets/fonts/font-assets.manifest.json")"
+          font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-body-thai.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/bai-jamjuree-thai-400-normal.woff2")"
+          portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-s0001.jpg --write-out '%{content_type}' "$base_url/public/assets/people/S0001.jpg")"
           robots_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-robots.txt --write-out '%{content_type}' "$base_url/robots.txt")"
           sitemap_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-sitemap.xml --write-out '%{content_type}' "$base_url/sitemap.xml")"
           case "$html_type" in text/html*) ;; *) echo "Unexpected HTML content type: $html_type"; exit 1;; esac
@@ -77,6 +80,9 @@ jobs:
           case "$script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected JavaScript content type: $script_type"; exit 1;; esac
           case "$style_type" in text/css*) ;; *) echo "Unexpected CSS content type: $style_type"; exit 1;; esac
           case "$logo_type" in image/png*) ;; *) echo "Unexpected logo content type: $logo_type"; exit 1;; esac
+          case "$font_manifest_type" in application/json*|text/json*) ;; *) echo "Unexpected font manifest content type: $font_manifest_type"; exit 1;; esac
+          case "$font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected WOFF2 content type: $font_type"; exit 1;; esac
+          case "$portrait_type" in image/jpeg*) ;; *) echo "Unexpected portrait content type: $portrait_type"; exit 1;; esac
           case "$robots_type" in text/plain*) ;; *) echo "Unexpected robots content type: $robots_type"; exit 1;; esac
           case "$sitemap_type" in application/xml*|text/xml*) ;; *) echo "Unexpected sitemap content type: $sitemap_type"; exit 1;; esac
           node --input-type=module -e '
@@ -94,6 +100,9 @@ jobs:
               ["src/app.js", "/tmp/landom-app.js"],
               ["src/styles.css", "/tmp/landom-styles.css"],
               ["public/assets/brand/landometer-horizontal.png", "/tmp/landom-logo.png"],
+              ["public/assets/fonts/font-assets.manifest.json", "/tmp/landom-font-manifest.json"],
+              ["public/assets/fonts/bai-jamjuree-thai-400-normal.woff2", "/tmp/landom-body-thai.woff2"],
+              ["public/assets/people/S0001.jpg", "/tmp/landom-portrait-s0001.jpg"],
               ["robots.txt", "/tmp/landom-robots.txt"],
               ["sitemap.xml", "/tmp/landom-sitemap.xml"]
             ];

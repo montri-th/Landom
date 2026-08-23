@@ -51,7 +51,9 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.deepEqual(exported.tabs.social_profiles.validations.G, ['owner_review_required', 'verified', 'rejected', 'missing']);
   assert.deepEqual(exported.tabs.assets.validations.I, ['owner_review_required', 'verified', 'rejected', 'missing']);
   assert.deepEqual(exported.tabs.assets.validations.K, ['cleared', 'pending', 'denied', 'revoked']);
-  assert.deepEqual(exported.tabs.assets.validations.L, ['publishable', 'withheld_pending_rights_consent_and_verification', 'withdrawn']);
+  assert.deepEqual(exported.tabs.assets.validations.L, ['individual_consent', 'owner_authorized_public_profile_portrait']);
+  assert.deepEqual(exported.tabs.assets.validations.Q, ['publishable', 'withheld_pending_rights_consent_and_verification', 'withdrawn']);
+  assert.deepEqual(exported.tabs.social_profiles.validations.I, ['individual_consent', 'owner_authorized_public_profile_link']);
   const qaMetricIndex = exported.tabs.qa.headers.indexOf('metric');
   const qaFormulaIndex = exported.tabs.qa.headers.indexOf('formula_value');
   const portraitQa = exported.tabs.qa.rows.find((row) => row[qaMetricIndex] === 'publishable_portraits');
@@ -117,6 +119,15 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 45);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 12);
+    assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
+      row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
+    ));
+    assert.equal(imported.assets.filter((row) => row.publicPath).length, 35);
+    assert.ok(imported.assets.filter((row) => row.publicPath).every((row) =>
+      row.publicationBasis === 'owner_authorized_public_profile_portrait' && row.ownerApproval?.status === 'granted'
+    ));
     assert.doesNotMatch(JSON.stringify(imported), /private_ig_candidate_roundtrip|Private identity evidence roundtrip|private\.example|PRIVATE-PERMISSION-PENDING/);
 
     const socialRoundtrip = JSON.parse(execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs'), '--snapshot', snapshotPath, '--site-data', path.join(outputDir, 'site-data.json'), 'social_profiles'], { cwd: root, encoding: 'utf8' }));
@@ -243,13 +254,22 @@ test('education uses normalized dimensions, appropriate display modes and preser
   }
 });
 
-test('bios are stored as bilingual owner-pending placeholders', () => {
+test('bios remain blank and owner-pending without public first-person evidence', () => {
   const data = loadGenerated();
-  assert.ok(data.people.every((person) => person.bio.th && person.bio.en));
-  assert.ok(data.people.every((person) => person.bio.status === 'placeholder' && person.bio.verificationStatus === 'owner_pending'));
-  const oat = data.people.find((person) => person.personId === 'S0001');
-  assert.match(oat.bio.th, /Land Portfolio/);
-  assert.match(oat.bio.th, /Lead2Loan/);
+  assert.ok(data.people.every((person) => person.bio.th === null && person.bio.en === null));
+  assert.ok(data.people.every((person) => person.bio.status === 'owner_pending' && person.bio.verificationStatus === 'owner_pending'));
+  assert.doesNotMatch(JSON.stringify(data.people.map((person) => person.bio)), /placeholder|contributed to|มีส่วนร่วมกับ/i);
+});
+
+test('FDI and computer-engineering display labels use the approved exact copy', () => {
+  const data = loadGenerated();
+  const fdi = data.engagements.filter((engagement) => engagement.program.code === 'FDI');
+  assert.ok(fdi.length > 0);
+  assert.ok(fdi.every((engagement) => engagement.program.names.th === 'Full-stack Developer Intern, FDI'));
+  assert.ok(fdi.every((engagement) => engagement.program.names.en === 'Full-stack Developer Intern, FDI'));
+  for (const programId of ['program-kmitl-computer-engineering', 'program-cu-computer-engineering']) {
+    assert.equal(data.programs.find((program) => program.programId === programId).names.th.short, 'วิศวกรรมคอมพิวเตอร์');
+  }
 });
 
 test('CityMETER works use release-aligned canonical mappings without promoting unresolved names', () => {
@@ -268,6 +288,18 @@ test('CityMETER works use release-aligned canonical mappings without promoting u
   assert.equal(floodForecast.authorityStatus, 'unresolved_between_official_forecast_modules');
   const shopping = data.works.find((work) => work.workId === 'work-citymeter-shopping-centers');
   assert.doesNotMatch(shopping.names.en, /venues/i);
+  const companies = data.works.find((work) => work.workId === 'work-citymeter-companies');
+  assert.equal(companies.catalogUrl.th, 'https://montri-th.github.io/CityMETER/?lang=th#dataset-registered-companies-status-capital');
+  assert.equal(companies.catalogUrl.en, 'https://montri-th.github.io/CityMETER/en/?lang=en#dataset-registered-companies-status-capital');
+  assert.equal(companies.destinationUrl, null);
+  assert.equal(companies.linkEvidence.linkScope, 'exact_module');
+  const cityCell = data.works.find((work) => work.workId === 'work-citycell-model');
+  assert.equal(cityCell.catalogUrl.th, null);
+  assert.equal(cityCell.linkEvidence.linkScope, 'evidence_only');
+  assert.match(cityCell.linkEvidence.evidenceUrl, /TREASURYTHAI/);
+  const contentCompass = data.works.find((work) => work.workId === 'work-content-compass');
+  assert.deepEqual(contentCompass.catalogUrl, { th: null, en: null });
+  assert.equal(contentCompass.linkEvidence.linkScope, 'unverified_no_link');
 });
 
 test('private contact values and unapproved social/portrait candidates do not leak', () => {
@@ -284,15 +316,62 @@ test('private contact values and unapproved social/portrait candidates do not le
     const sensitiveValues = contacts.slice(1)
       .flatMap((row) => sensitiveIndexes.map((index) => String(row[index] || '').trim()))
       .filter((value) => value.length >= 6);
-    for (const value of sensitiveValues) assert.ok(!serialized.includes(value), 'private value leaked');
+    const authorizedPublicUrls = data.socialProfiles
+      .filter((profile) => profile.publicationStatus === 'publishable')
+      .map((profile) => profile.publicUrl)
+      .filter(Boolean);
+    for (const value of sensitiveValues) {
+      const reusedByApprovedPublicProfile = authorizedPublicUrls.some((url) => url.includes(value));
+      if (!reusedByApprovedPublicProfile) assert.ok(!serialized.includes(value), 'private value leaked');
+    }
   }
 
   assert.ok(data.socialProfiles.every((profile) => profile.publicUrl === null || (
-    profile.consentStatus === 'granted' && profile.verificationStatus === 'verified' && profile.publicationStatus === 'publishable'
+    profile.verificationStatus === 'verified' && profile.publicationStatus === 'publishable' && (
+      profile.consentStatus === 'granted' || (
+        profile.publicationBasis === 'owner_authorized_public_profile_link' && profile.ownerApproval?.status === 'granted'
+      )
+    )
   )));
   assert.ok(data.assets.every((asset) => asset.publicPath === null || (
-    asset.consentStatus === 'granted' && asset.verificationStatus === 'verified' && asset.rightsStatus === 'cleared' && asset.publicationStatus === 'publishable'
+    asset.verificationStatus === 'verified' && asset.rightsStatus === 'cleared' && asset.publicationStatus === 'publishable' && (
+      asset.consentStatus === 'granted' || (
+        asset.publicationBasis === 'owner_authorized_public_profile_portrait' && asset.ownerApproval?.status === 'granted'
+      )
+    )
   )));
+});
+
+test('only exact owner-authorized public profiles and governed local portraits are emitted', () => {
+  const data = loadGenerated();
+  assert.equal(
+    data.meta.evidenceBoundary.socialAndPortraits,
+    'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.'
+  );
+  const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
+  const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
+  assert.equal(linkedIn.length, 45);
+  assert.equal(github.length, 12);
+  for (const profile of [...linkedIn, ...github]) {
+    assert.equal(profile.verificationStatus, 'verified');
+    assert.equal(profile.consentStatus, 'pending');
+    assert.equal(profile.publicationBasis, 'owner_authorized_public_profile_link');
+    assert.equal(profile.ownerApproval.status, 'granted');
+    assert.equal(profile.ownerApproval.scope, 'public_profile_link_only');
+  }
+
+  const portraits = data.assets.filter((asset) => asset.publicPath);
+  assert.equal(portraits.length, 35);
+  for (const portrait of portraits) {
+    assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
+    assert.equal(portrait.sourceUrl, null);
+    assert.equal(portrait.consentStatus, 'pending');
+    assert.equal(portrait.publicationBasis, 'owner_authorized_public_profile_portrait');
+    assert.equal(portrait.ownerApproval.status, 'granted');
+    assert.equal(portrait.rightsStatus, 'cleared');
+    assert.match(portrait.sha256, /^[a-f0-9]{64}$/);
+    assert.ok(fs.existsSync(path.join(root, portrait.publicPath)));
+  }
 });
 
 test('brand and community copy uses the owner-approved distinction', () => {

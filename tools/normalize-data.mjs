@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { importNormalizedSheetSnapshot, isNormalizedSheetSnapshot } from './normalized-sheet-roundtrip.mjs';
 
@@ -184,9 +185,9 @@ const institutions = [
 ];
 
 const programs = [
-  ['program-kmitl-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วศ.คอมพิวเตอร์', 'Computer Engineering', 'CPE'],
+  ['program-kmitl-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CPE'],
   ['program-cu-cedt', 'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล', 'CEDT', 'Computer Engineering and Digital Technology', 'CEDT'],
-  ['program-cu-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วศ.คอมพิวเตอร์', 'Computer Engineering', 'CPE'],
+  ['program-cu-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CPE'],
   ['program-cu-public-relations', 'การประชาสัมพันธ์', 'PR', 'Public Relations', 'PR'],
   ['program-cu-chinese', 'ภาษาจีน คณะอักษรศาสตร์', 'ภาษาจีน', 'Chinese, Faculty of Arts', 'Chinese'],
   ['program-tu-marketing', 'การตลาด', 'การตลาด', 'Marketing', 'Marketing'],
@@ -275,7 +276,7 @@ const people = peopleRows.map((row) => {
         ? 'neutral'
         : 'program',
     educationDisplay: null,
-    bio: { th: null, en: null, status: 'placeholder', verificationStatus: 'owner_pending' },
+    bio: { th: null, en: null, status: 'owner_pending', verificationStatus: 'owner_pending' },
     publication: { consentStatus, profileStatus: consentStatus === 'granted' ? 'eligible' : 'withheld_pending_consent' },
     dataQuality: {
       profileVerificationStatus: 'owner_review_required',
@@ -339,7 +340,7 @@ for (const person of people) {
 }
 
 const engagementProgramNames = {
-  FDI: { th: 'โครงการฝึกงาน Full-Stack Developer', en: 'Full-Stack Developer Internship' },
+  FDI: { th: 'Full-stack Developer Intern, FDI', en: 'Full-stack Developer Intern, FDI' },
   MSI: { th: 'โครงการฝึกงาน Marketing Strategy', en: 'Marketing Strategy Internship' },
   PDI: { th: 'โครงการฝึกงาน Product Developer', en: 'Product Developer Internship' },
   PMI: { th: 'โครงการฝึกงาน Partnership Maker', en: 'Partnership Maker Internship' },
@@ -421,6 +422,104 @@ engagements.sort((left, right) => {
 
 const workMap = new Map();
 const workAliasMap = new Map();
+
+const citymeterCatalogSlugs = new Map([
+  ['work-citymeter-companies', 'dataset-registered-companies-status-capital'],
+  ['work-citymeter-hotels', 'dataset-hotel-market'],
+  ['work-citymeter-factories', 'dataset-factories-workers-investment'],
+  ['work-citymeter-schools', 'dataset-schools-students-teachers'],
+  ['work-citymeter-registered-cars', 'dataset-registered-cars'],
+  ['work-citymeter-flood-recurrent', 'dataset-flood-recurrent'],
+  ['work-citymeter-land-appraisal', 'dataset-land-appraisal'],
+  ['work-citymeter-crop-area-output', 'dataset-crop-area-output'],
+  ['work-citymeter-eia', 'dataset-eia-projects'],
+  ['work-citymeter-municipal-revenue', 'dataset-municipal-revenue'],
+  ['work-citymeter-roaddna', 'dataset-road-network-archetypes'],
+  ['work-citymeter-tourism', 'dataset-tourism-demand-spending'],
+  ['work-citymeter-fuel-stations', 'dataset-fuel-stations'],
+  ['work-citymeter-flood-latest', 'dataset-flood-latest-observed'],
+  ['work-citymeter-shopping-centers', 'dataset-shopping-centers'],
+  ['work-citymeter-locale-insights', 'dataset-locale-insights'],
+  ['work-citymeter-government-workforce', 'dataset-government-agencies-workforce'],
+  ['work-citymeter-buildings', 'dataset-buildings'],
+  ['work-citymeter-apartment-unresolved', 'dataset-apartment-rent'],
+  ['work-citymeter-condo-offer-unresolved', 'dataset-condo-listing-prices'],
+  ['work-citymeter-condo-rental-unresolved', 'dataset-condo-rent-yield'],
+  ['work-citymeter-detached-house-unresolved', 'dataset-detached-listing-prices'],
+  ['work-citymeter-land-offer-unresolved', 'dataset-land-listing-prices'],
+  ['work-citymeter-office-unresolved', 'dataset-office-buildings-rent'],
+  ['work-citymeter-quakesafe-unresolved', 'dataset-events-quake-building-inspection'],
+  ['work-citymeter-road-traffic-unresolved', 'dataset-traffic-congestion-speed'],
+  ['work-citymeter-townhouse-unresolved', 'dataset-townhouse-listing-prices']
+]);
+
+const productCatalogLinks = new Map([
+  ['work-ijji', ['https://ijji.landometer.com/', 'exact_product']],
+  ['work-safestreet', ['https://landometer.com/citystory/safestreet', 'exact_product']],
+  ['work-citychat', ['https://montri-th.github.io/CityChat/', 'exact_product']],
+  ['work-citywiki', ['https://landometer.com/v3/citywiki', 'exact_product']],
+  ['work-citymeter-product-stewardship', ['https://montri-th.github.io/CityMETER/', 'exact_product']],
+  ['work-brand-visual-guidelines-2025', ['https://montri-th.github.io/Landometer/', 'broader_catalog']],
+  ['work-vote69', ['https://landometer.com/v3/vote69', 'exact_product']],
+  ['work-landom-community', ['https://montri-th.github.io/Landom/', 'exact_product']],
+  ['work-citymeter-fdi-playbook', ['https://montri-th.github.io/CityMETER/', 'broader_catalog']],
+  ['work-citymeter-flood-forecasting-unresolved', ['https://montri-th.github.io/CityMETER/', 'broader_catalog']],
+  ['work-locale-insight-intelligence-layer', ['https://montri-th.github.io/Landometer/#align', 'exact_product']],
+  ['work-land-portfolio', ['https://landometer.com/intro/products#product-portfolio', 'exact_product']],
+  ['work-lead2loan', ['https://landometer.com/intro/products#product-l2l', 'exact_product']]
+]);
+
+function workLinkFields(workId) {
+  const citymeterSlug = citymeterCatalogSlugs.get(workId);
+  if (citymeterSlug) {
+    return {
+      catalogUrl: {
+        th: 'https://montri-th.github.io/CityMETER/?lang=th#' + citymeterSlug,
+        en: 'https://montri-th.github.io/CityMETER/en/?lang=en#' + citymeterSlug
+      },
+      destinationUrl: null,
+      linkEvidence: {
+        linkScope: 'exact_module',
+        sourceRef: 'official_citymeter_catalog_2026-08-23',
+        evidenceUrl: null
+      }
+    };
+  }
+  const productLink = productCatalogLinks.get(workId);
+  if (productLink) {
+    const [url, linkScope] = productLink;
+    return {
+      catalogUrl: { th: url, en: url },
+      destinationUrl: null,
+      linkEvidence: {
+        linkScope,
+        sourceRef: 'owner_official_product_routes_2026-08-23',
+        evidenceUrl: null
+      }
+    };
+  }
+  if (workId === 'work-citycell-model') {
+    return {
+      catalogUrl: { th: null, en: null },
+      destinationUrl: null,
+      linkEvidence: {
+        linkScope: 'evidence_only',
+        sourceRef: 'owner_official_product_routes_2026-08-23',
+        evidenceUrl: 'https://www.facebook.com/TREASURYTHAI/posts/1089323533318360/'
+      }
+    };
+  }
+  return {
+    catalogUrl: { th: null, en: null },
+    destinationUrl: null,
+    linkEvidence: {
+      linkScope: 'unverified_no_link',
+      sourceRef: null,
+      evidenceUrl: null
+    }
+  };
+}
+
 function addWork(definition) {
   const work = {
     workId: definition.workId,
@@ -432,7 +531,8 @@ function addWork(definition) {
     scopeLayer: definition.scopeLayer,
     authorityStatus: definition.authorityStatus,
     evidenceNote: definition.evidenceNote || null,
-    sourceAliases: definition.aliases || []
+    sourceAliases: definition.aliases || [],
+    ...workLinkFields(definition.workId)
   };
   workMap.set(work.workId, work);
   for (const alias of work.sourceAliases) workAliasMap.set(alias, work.workId);
@@ -744,30 +844,21 @@ for (const person of people) {
 }
 
 const works = [...workMap.values()];
-const workById = new Map(works.map((work) => [work.workId, work]));
+// Recruitment messages in the supplied evidence only establish application intent.
+// They are not public bios and do not support personality claims. Keep the public
+// bio blank until the profile owner supplies or approves exact copy.
 for (const person of people) {
-  const currentResponsibilityWorkIds = engagements
-    .filter((item) => item.personId === person.personId && item.status === 'ongoing')
-    .flatMap((item) => item.responsibilityWorkIds);
-  const contributedWorkIds = contributions
-    .filter((item) => item.personId === person.personId && item.workId !== 'work-contribution-details-pending')
-    .map((item) => item.workId);
-  const prioritizedWorkIds = [...new Set([...currentResponsibilityWorkIds, ...contributedWorkIds])];
-  const uniqueWorks = prioritizedWorkIds.map((workId) => workById.get(workId)).filter(Boolean).slice(0, 2);
-  const nicknameTh = person.names.nickname.th || person.names.full.th || 'สมาชิกทีมคนนี้';
-  const nicknameEn = person.names.nickname.en || person.names.full.en || 'This team member';
-  if (uniqueWorks.length) {
-    const thList = uniqueWorks.map((work) => work.shortNames.th).join(' และ ');
-    const enList = uniqueWorks.map((work) => work.shortNames.en).join(' and ');
-    person.bio.th = nicknameTh + ' มีส่วนร่วมกับ ' + thList + ' ระหว่างทำงานกับ Landometer ข้อความนี้เป็นข้อมูลตั้งต้นและรอเจ้าตัวยืนยัน';
-    person.bio.en = nicknameEn + ' contributed to ' + enList + ' while working with Landometer. This placeholder is awaiting the profile owner’s confirmation.';
-  } else {
-    person.bio.th = nicknameTh + ' เคยร่วมงานกับ Landometer โดยรายละเอียดผลงานกำลังรอเจ้าตัวยืนยัน';
-    person.bio.en = nicknameEn + ' worked with Landometer; contribution details are awaiting the profile owner’s confirmation.';
-  }
+  person.bio = { th: null, en: null, status: 'owner_pending', verificationStatus: 'owner_pending' };
 }
 
 const socialPlatforms = ['linkedin', 'github', 'gitlab', 'website', 'facebook', 'instagram', 'tiktok'];
+const ownerAuthorizedSocialPlatforms = new Set(['linkedin', 'github']);
+const socialOwnerApproval = {
+  status: 'granted',
+  approvedAt: '2026-08-23',
+  scope: 'public_profile_link_only',
+  sourceRef: 'owner_instruction_2026-08-23'
+};
 const socialProfiles = [];
 for (const row of peopleRows) {
   const personId = sourceIdToPersonId.get(row.person_id);
@@ -783,13 +874,14 @@ for (const row of peopleRows) {
   };
   for (const platform of socialPlatforms) {
     const candidate = publicCandidates[platform];
-    const verificationStatus = platform === 'linkedin' && candidate && clean(row.linkedin_verified)
-      ? 'owner_review_required'
-      : candidate
-        ? 'owner_review_required'
-        : 'missing';
+    const ownerAuthorized = Boolean(candidate) && ownerAuthorizedSocialPlatforms.has(platform);
+    const verificationStatus = ownerAuthorized ? 'verified' : candidate ? 'owner_review_required' : 'missing';
     const consentStatus = person.publication.consentStatus;
-    const publishable = Boolean(candidate) && consentStatus === 'granted' && verificationStatus === 'verified';
+    const publicationBasis = ownerAuthorized ? 'owner_authorized_public_profile_link' : null;
+    const ownerApproval = ownerAuthorized ? socialOwnerApproval : null;
+    const publishable = Boolean(candidate) && verificationStatus === 'verified' && (
+      consentStatus === 'granted' || publicationBasis === 'owner_authorized_public_profile_link'
+    );
     socialProfiles.push({
       socialProfileId: 'SOC-' + personId + '-' + platform.toUpperCase(),
       personId,
@@ -799,11 +891,13 @@ for (const row of peopleRows) {
       candidateValueEmitted: false,
       verificationStatus,
       consentStatus,
+      publicationBasis,
+      ownerApproval,
       publicationStatus: publishable
         ? 'publishable'
         : !candidate
           ? 'withheld_pending_candidate'
-          : consentStatus !== 'granted'
+          : consentStatus !== 'granted' && publicationBasis !== 'owner_authorized_public_profile_link'
             ? 'withheld_pending_consent'
             : 'withheld_pending_verification',
       dataBoundary: 'private_candidates_not_emitted'
@@ -811,22 +905,51 @@ for (const row of peopleRows) {
   }
 }
 
-const assets = people.map((person) => ({
-  assetId: 'PORTRAIT-' + person.personId,
-  personId: person.personId,
-  kind: 'profile_portrait',
-  publicPath: null,
-  sourceUrl: null,
-  alt: {
-    th: 'ภาพโปรไฟล์ของ' + (person.names.card.th || person.personId),
-    en: 'Profile portrait of ' + (person.names.card.en || person.personId)
-  },
-  candidateStatus: 'source_needed',
-  verificationStatus: 'missing',
-  consentStatus: person.publication.consentStatus,
-  rightsStatus: 'pending',
-  publicationStatus: 'withheld_pending_rights_consent_and_verification'
-}));
+const portraitInventoryPath = path.join(root, 'data/approved/portrait-assets.json');
+const portraitInventory = fs.existsSync(portraitInventoryPath)
+  ? JSON.parse(fs.readFileSync(portraitInventoryPath, 'utf8'))
+  : { assets: [] };
+const portraitByPersonId = new Map();
+for (const portrait of portraitInventory.assets ?? []) {
+  if (!people.some((person) => person.personId === portrait.personId)) {
+    throw new Error('Approved portrait references unknown person: ' + portrait.personId);
+  }
+  if (portraitByPersonId.has(portrait.personId)) throw new Error('Duplicate approved portrait for ' + portrait.personId);
+  if (!/^public\/assets\/people\/[SPI]\d{4}\.(?:jpe?g|png|webp)$/i.test(portrait.publicPath)) {
+    throw new Error('Approved portrait path is outside the governed people asset directory: ' + portrait.publicPath);
+  }
+  const portraitPath = path.join(root, portrait.publicPath);
+  if (!fs.existsSync(portraitPath)) throw new Error('Approved portrait file is missing: ' + portrait.publicPath);
+  const digest = createHash('sha256').update(fs.readFileSync(portraitPath)).digest('hex');
+  if (digest !== portrait.sha256) throw new Error('Approved portrait hash mismatch: ' + portrait.publicPath);
+  portraitByPersonId.set(portrait.personId, portrait);
+}
+
+const assets = people.map((person) => {
+  const approved = portraitByPersonId.get(person.personId);
+  return {
+    assetId: 'PORTRAIT-' + person.personId,
+    personId: person.personId,
+    kind: 'profile_portrait',
+    publicPath: approved?.publicPath ?? null,
+    sourceUrl: null,
+    alt: {
+      th: 'ภาพโปรไฟล์ของ' + (person.names.card.th || person.personId),
+      en: 'Profile portrait of ' + (person.names.card.en || person.personId)
+    },
+    candidateStatus: approved ? 'candidate_present' : 'source_needed',
+    verificationStatus: approved ? 'verified' : 'missing',
+    consentStatus: person.publication.consentStatus,
+    rightsStatus: approved ? 'cleared' : 'pending',
+    publicationBasis: approved?.publicationBasis ?? null,
+    ownerApproval: approved?.ownerApproval ?? null,
+    publicationStatus: approved ? 'publishable' : 'withheld_pending_rights_consent_and_verification',
+    sha256: approved?.sha256 ?? null,
+    mediaType: approved?.mime ?? null,
+    bytes: approved?.bytes ?? null,
+    identityVerificationEvidence: approved?.identityVerification ?? null
+  };
+});
 
 const achievements = [
   {
@@ -861,7 +984,7 @@ const copy = {
 };
 
 const meta = {
-  schemaVersion: '1.0.0',
+  schemaVersion: '1.1.0',
   generatedAt: '2026-08-23T00:00:00+07:00',
   source: {
     spreadsheetId: snapshot.source.spreadsheetId,
@@ -880,7 +1003,7 @@ const meta = {
   evidenceBoundary: {
     localeInsight: 'Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.',
     crossProductComparison: 'Compare only records produced under the same schema/release, otherwise state incompatibility.',
-    socialAndPortraits: 'No social URL or portrait may be published without consent, verification and asset rights approval.'
+    socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.'
   },
   counts: {
     people: people.length,

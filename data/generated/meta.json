@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "generatedAt": "2026-08-23T00:00:00+07:00",
   "source": {
     "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
@@ -26,7 +26,7 @@
   "evidenceBoundary": {
     "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
     "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
-    "socialAndPortraits": "No social URL or portrait may be published without consent, verification and asset rights approval."
+    "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent."
   },
   "counts": {
     "people": 48,

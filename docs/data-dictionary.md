@@ -17,7 +17,7 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 2. ชื่อมหาวิทยาลัยและหลักสูตรเก็บเป็น dimension กลาง ไม่พิมพ์ชื่อซ้ำในแต่ละคน
 3. ผลงานเป็น work dimension; ความสัมพันธ์คน–ผลงานอยู่ใน contribution ดังนั้นงานเดียวผูกหลายคนได้ และคนเดียวผูกงานเดียวข้ามหลาย engagement ได้
 4. รางวัล/ความสำเร็จแยกจาก contribution เพื่อไม่ทำให้ “ทำผลงาน” กับ “ได้รับรางวัล” เป็นข้อเท็จจริงชนิดเดียวกัน
-5. ข้อมูลโซเชียลและภาพมี 3 gate ก่อนเผยแพร่: consent, verification และสิทธิการใช้ asset
+5. ข้อมูลโซเชียลและภาพต้องมี identity verification, publication status และ publication basis ที่บันทึกชัดเจน โดยแยก `individual_consent` ออกจากการอนุมัติแบบจำกัดขอบเขตของเจ้าของ directory; ภาพต้องมีสิทธิการใช้ asset เพิ่มเติม
 6. ข้อมูลจากผลิตภัณฑ์หนึ่งไม่ถูกยกเป็นข้อเท็จจริงของ Landometer ทุกผลิตภัณฑ์ การเทียบข้ามผลิตภัณฑ์/เมืองต้องใช้ schema และ release เดียวกัน หรือระบุ incompatibility
 
 ## Brand และ community copy
@@ -74,14 +74,12 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `educationDisplayMode` | enum | Full-time=`qualification`, Intern=`program`, Part-time=`neutral` |
 | `educationDisplay.card` | localized | หลักสูตร/field + ชื่อย่อสถาบัน |
 | `educationDisplay.detail` | localized | หลักสูตร/field + ชื่อเต็มสถาบัน |
-| `bio.th/en` | string | placeholder ที่เก็บจริงใน data เพื่อให้เจ้าตัวแก้ภายหลัง |
-| `bio.status` | enum | ปัจจุบันเป็น `placeholder` |
+| `bio.th/en` | string/null | เว้นเป็น null เมื่อยังไม่มีข้อความสาธารณะที่เจ้าตัวส่งหรือยืนยัน |
+| `bio.status` | enum | `owner_pending`, `owner_approved` |
 | `bio.verificationStatus` | enum | ปัจจุบันเป็น `owner_pending` |
 | `publication.consentStatus` | enum | `pending`, `granted`, `denied` |
 
-สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บยังแสดง core profile ทั้ง 48 คน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลัก แต่ใช้ gate ลิงก์ social และ portrait โดยตรง ข้อความ bio ยังเป็น `owner_pending` และไม่ควรถูกสื่อว่าเจ้าตัวยืนยันแล้ว หากนโยบายเปลี่ยนให้ core registry ต้อง opt-in รายบุคคล ต้องแก้ schema, validator และ UI พร้อมกัน
-
-ข้อความ bio ที่ generate ใช้เฉพาะชื่อเล่นและชื่อผลงานที่มีใน contribution ไม่อนุมานบุคลิก ความชอบ หรือระดับความรับผิดชอบ
+สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บยังแสดง core profile ทั้ง 48 คน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลัก และไม่ถูกเปลี่ยนเป็น `granted` เพียงเพราะเจ้าของ directory อนุมัติลิงก์หรือภาพเฉพาะรายการ Bio ทั้ง 48 คนเป็น `null/null` และ `owner_pending`: ข้อความสมัครงาน คำประเมินของผู้สัมภาษณ์ คะแนน และผลงานไม่ใช่หลักฐานเพียงพอสำหรับสร้างข้อความ first-person หรือบุคลิกภาพสาธารณะ
 
 ## institutions, programs และ educationRecords
 
@@ -123,6 +121,7 @@ Engagement คือช่วงบทบาท ไม่ใช่ตัวค�
 | `personId` | FK → people |
 | `category` | `internship`, `part_time`, `full_time`, `program_participant` |
 | `program.code` | เช่น FDI, MSI, PDI, PMI, IMP, Full-time, Part-time |
+| `program.names.th/en` | สำหรับ FDI ใช้ข้อความ UI exact `Full-stack Developer Intern, FDI` |
 | `cohortLabel` | label จาก source; ไม่ใช้เป็น key |
 | `roleTitle.th/en` | ชื่อบทบาทในช่วงนั้น |
 | `start`, `end` | ISO date หรือ null เมื่อไม่ทราบ |
@@ -154,6 +153,11 @@ Land Portfolio กับ Lead2Loan เป็นคนละ `workId`; Land Portf
 | `scopeLayer` | `shared_landometer`, `product_specific`, `partner_specific` |
 | `authorityStatus` | ความสอดคล้องกับ release/หลักฐาน |
 | `evidenceNote` | incompatibility หรือข้อจำกัดที่ต้องแสดง/เก็บไว้ |
+| `catalogUrl.th/en` | URL catalog ที่ยืนยันแล้วแยกภาษา; null หากยังไม่มี exact route |
+| `destinationUrl` | URL ปลายทางเฉพาะงานเมื่อมีหลักฐาน exact; ปัจจุบัน null เมื่อมีเพียง catalog route |
+| `linkEvidence.linkScope` | `exact_module`, `exact_product`, `evidence_only`, `broader_catalog`, `unverified_no_link` |
+| `linkEvidence.sourceRef` | แหล่งยืนยัน route โดยไม่อ้างว่าลิงก์กว้างคือหน้ารายละเอียดเฉพาะงาน |
+| `linkEvidence.evidenceUrl` | URL หลักฐานที่ไม่ใช่ catalog/destination เช่นหลักฐานรางวัล CityCell |
 
 Locale Insight Intelligence Layer อยู่ใน `shared_landometer` แต่ attribution ของบุคคลใน capability นี้ไม่พิสูจน์ว่า implementation เดียวกันถูกใช้ในทุกผลิตภัณฑ์ ส่วน CityMETER dataset module อยู่ใน `product_specific`
 
@@ -235,26 +239,26 @@ Enum สำหรับ workflow ของ social/asset candidate ต้อง�
 | `verification_status` | `owner_review_required`, `verified`, `rejected`, `missing` |
 | `consent_status` | `granted`, `pending`, `denied` |
 | `rights_status` | `cleared`, `pending`, `denied`, `revoked` |
+| `publication_basis` (social) | `individual_consent`, `owner_authorized_public_profile_link`, null |
+| `publication_basis` (portrait) | `individual_consent`, `owner_authorized_public_profile_portrait`, null |
+| `owner_approval_status` | `granted` หรือว่างเมื่อไม่มี owner basis |
 | `publication_status` | `publishable`, `withheld_pending_*`, `withdrawn` |
 
 `withheld_pending_*` คือ family ของสถานะที่ระบุเหตุผลว่ารอ gate ใด เช่น `withheld_pending_consent` หรือสถานะรวมที่ schema รองรับ ไม่ใช่ wildcard value ที่ผู้ใช้พิมพ์ลง cell และทุกค่ากลุ่มนี้ต้องถูก withheld ส่วน `withdrawn` หมายถึงเคยมี record แต่ถอนออกจากการเผยแพร่แล้ว
 
-Social URL เผยแพร่ได้เมื่อ:
+Social URL เผยแพร่ได้เมื่อ `verificationStatus=verified`, `publicationStatus=publishable` และผ่านอย่างใดอย่างหนึ่ง:
 
-1. `consentStatus=granted`
-2. `verificationStatus=verified`
-3. `publicationStatus=publishable`
+1. `consentStatus=granted` และ `publicationBasis=individual_consent`; หรือ
+2. `publicationBasis=owner_authorized_public_profile_link` พร้อม `ownerApproval.status=granted` และ scope `public_profile_link_only`
 
-Portrait เผยแพร่ได้เมื่อ:
+Portrait เผยแพร่ได้เมื่อ `verificationStatus=verified`, `rightsStatus=cleared`, `publicationStatus=publishable`, มี local `publicPath`/SHA-256 ที่ตรวจได้ และผ่านอย่างใดอย่างหนึ่ง:
 
-1. `consentStatus=granted`
-2. `verificationStatus=verified`
-3. `rightsStatus=cleared`
-4. `publicationStatus=publishable`
+1. `consentStatus=granted` และ `publicationBasis=individual_consent`; หรือ
+2. `publicationBasis=owner_authorized_public_profile_portrait` พร้อม `ownerApproval.status=granted` และ scope `public_profile_portrait`
 
-Candidate ที่ยังไม่ผ่าน gate ต้องมี `publicUrl=null` หรือ `publicPath=null` เพื่อป้องกันข้อมูลหลุดใน static JSON การเห็น profile จาก follower/following ไม่เท่ากับ consent และไม่ยืนยันว่าเป็นคนเดียวกัน
+Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent ปัจจุบันมี LinkedIn 45 ราย, GitHub 12 ราย และ local portrait 35 รายที่ผ่าน exact identity + owner basis; รายการอื่นต้องเป็น null/fallback
 
-Candidate URL/handle, portrait source URL, evidence, permission record และ review note เก็บเฉพาะใน ignored raw snapshot เท่านั้น Normalizer อาจอ่านเพื่อประเมิน gate แต่ไม่ emit ค่า private candidate เข้า `data/generated/` ส่วน exporter อ่านทั้ง raw snapshot และ reviewed `site-data.json` แล้ว merge public canonical rows กลับเข้ากับ candidate/review fields เดิม เพื่อให้ roundtrip ไม่ทำข้อมูล private สูญหาย
+Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait source/CDN URL, evidence, permission record และ review noteเก็บเฉพาะใน ignored raw snapshot/private report เท่านั้น URL ที่ผ่าน gate ถูก copy เป็น `publicUrl`; portrait ถูก normalize เป็น local JPEG ภายใต้ `public/assets/people/<personId>.jpg` และ public JSON เก็บ local path/hash โดย `sourceUrl=null` เสมอ Exporter merge candidate/review fields เดิมกลับเฉพาะ private workbook เพื่อให้ roundtrip ไม่ทำข้อมูลสูญหาย
 
 ข้อมูล email, phone, chat handle, private CV/file ID และค่าจาก private contact source ไม่ถูก ingest หรือ emit ใน generated/public data
 
@@ -264,28 +268,28 @@ Candidate URL/handle, portrait source URL, evidence, permission record และ
 
 | Tab | หนึ่งแถวหมายถึง | Primary key |
 |---|---|---|
-| `people` | คนหนึ่งคน | `person_id` |
+| `people_registry` | คนหนึ่งคน | `person_id` |
 | `engagements` | หนึ่งช่วงบทบาท | `engagement_id` |
 | `institutions` | หนึ่งสถาบัน | `institution_id` |
 | `programs` | หนึ่งหลักสูตร/field | `program_id` |
-| `education_records` | คน–สถาบัน–หลักสูตรหนึ่งความสัมพันธ์ | `education_record_id` |
+| `education` | คน–สถาบัน–หลักสูตรหนึ่งความสัมพันธ์ | `education_record_id` |
 | `works` | หนึ่ง work/module/project | `work_id` |
 | `contributions` | คน–ผลงาน–engagement หนึ่งความสัมพันธ์ | `contribution_id` |
 | `achievements` | หนึ่งรางวัล/ความสำเร็จ | `achievement_id` |
-| `achievement_recipients` | หนึ่งผู้รับต่อ achievement | composite `achievement_id + person_id` |
-| `social_candidates_private` | หนึ่ง platform ต่อคน | composite `person_id + platform` |
-| `assets_private` | หนึ่ง asset candidate ต่อคน | `asset_id` |
-| `lists` | enum และ data validation | list key |
+| `person_achievements` | หนึ่งผู้รับต่อ achievement | `person_achievement_id` |
+| `social_profiles` | หนึ่ง platform ต่อคน | `social_profile_id` |
+| `assets` | หนึ่ง portrait asset ต่อคน | `asset_id` |
+| `enums` | enum และ data validation | `enum_group + value` |
 
 ### คอลัมน์สำคัญที่ต้องเพิ่ม/รักษา
 
-- `people`: `person_id`, names, `current_status`, `consent_public`, `bio_th`, `bio_en`, `bio_status`, `bio_verification_status`
+- `people_registry`: `person_id`, names, `current_status`, `consent_public`, `bio_th`, `bio_en`, `bio_status`, `bio_verification_status`
 - `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`
-- `education_records`: FK 3 ตัว, `is_primary`, `verification_status`, `evidence_note`
-- `works`: localized names, `parent_product`, `module_slug`, `type`, `scope_layer`, `authority_status`
+- `education`: FK 3 ตัว, `is_primary`, `verification_status`, `evidence_note`
+- `works`: localized names, `parent_product`, `module_slug`, `type`, `scope_layer`, `authority_status`, `catalog_url_th/en`, `destination_url`, `link_scope`, `url_source_ref`, `link_evidence_url`
 - `contributions`: FK person/work/engagement, role, period, evidence status/source/note
-- `social_candidates_private`: candidate URL, identity verification, consent, publication status, verified by/date
-- `assets_private`: source, local public path, consent, identity verification, rights/license, approver/date
+- `social_profiles`: private candidate, approved `public_url`, identity verification, consent, `publication_basis`, owner approval fields, publication status, source note
+- `assets`: private source URL, governed local path, identity verification, consent, rights, `publication_basis`, owner approval, hash/media metadata, publication status
 
 ### Data validation
 

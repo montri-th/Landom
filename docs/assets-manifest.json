@@ -1,14 +1,15 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "policy": {
     "defaultDecision": "deny",
     "requiredForPersonImages": [
-      "verified source",
-      "recorded public consent",
+      "verified exact identity",
+      "recorded publication basis (individual consent or owner-authorized public-profile portrait)",
       "confirmed publication rights",
       "approved publication status"
     ],
-    "fallback": "Render initials when any approval is absent, pending, revoked, or invalid."
+    "fallback": "Render the full nickname when any approval is absent, pending, revoked, or invalid.",
+    "publicationBasisNote": "Owner-authorized public-profile portrait is a scoped directory-owner publication decision and must not be represented as individual consent."
   },
   "assets": [
     {
@@ -36,6 +37,881 @@
         "person-avatar"
       ],
       "notes": "Official horizontal lockup. Do not crop or repurpose it as a compact mark."
+    },
+    {
+      "assetId": "PORTRAIT-S0001",
+      "path": "public/assets/people/S0001.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 170259,
+      "sha256": "157773940636aad2737bf69e12ffcd18834d88bdb3c78f93df1937eaf4ecc108",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-S0002",
+      "path": "public/assets/people/S0002.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 75489,
+      "sha256": "7048d4bb61a971ccf6ec23355c5b93927a665ab2f27a86b130c62a55cda77b6f",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0003",
+      "path": "public/assets/people/I0003.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 123135,
+      "sha256": "6214dff6a699ea27d802da183952518081751e8158f4adc69b77d1c0b156350f",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0005",
+      "path": "public/assets/people/I0005.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 117958,
+      "sha256": "59b0734c912df2b2fbd51988c034462845ba7506647e6378d34f57a9528dbf14",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0006",
+      "path": "public/assets/people/I0006.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 84779,
+      "sha256": "fb74b9e3d78096e7380706cadb72a46a810ff88709d69484c4b06e7c5aa62768",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0008",
+      "path": "public/assets/people/I0008.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 56317,
+      "sha256": "71bb8a8a7e7d1413235e222091cdd27aa6526e580948630e0dbc84190803fa96",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0010",
+      "path": "public/assets/people/I0010.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 63486,
+      "sha256": "ce53d58516f51ca852ff8fa50ac45ee858b38bb6bbfa0ce9e581a237fe8085c7",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0012",
+      "path": "public/assets/people/I0012.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 51275,
+      "sha256": "924c096cf99d49a99fcfb90c1ce30892cd520565f949636e547998cb05258654",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0014",
+      "path": "public/assets/people/I0014.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 78551,
+      "sha256": "ac843319c494b7a258a8cb3a2da257405e3f39c65e51045dbd45052d0bdf08b1",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0015",
+      "path": "public/assets/people/I0015.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 172211,
+      "sha256": "bc1e3b051c3e89863aa99e52da4275074401411855aeb8d739369b30d69a39db",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0016",
+      "path": "public/assets/people/I0016.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 102684,
+      "sha256": "e053da644247add9b408711a12fbd57f3e34485975567ef80f2521e91f8c5daa",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0017",
+      "path": "public/assets/people/I0017.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 84987,
+      "sha256": "43dfaec66f8faeca1e0486d8cc211613424c191edb0754e26065459778dd7d0d",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0018",
+      "path": "public/assets/people/I0018.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 71359,
+      "sha256": "1a98046eeaff92fb4e63ab8cd76417202c0af16eb02e572b9d5339b2ac0ab17a",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0019",
+      "path": "public/assets/people/I0019.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 83561,
+      "sha256": "4ec6dd561cac59d5db6a2ed87efa8d2b4ffa85a3099903d4eacb33b621ee21a2",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0020",
+      "path": "public/assets/people/I0020.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 114317,
+      "sha256": "af84f956fec25b72f6687a0c45514d1006e81fa705d4f625f727b6ee279f67a1",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0021",
+      "path": "public/assets/people/I0021.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 62266,
+      "sha256": "ecca05b93dffb587167c19b6775002b2fab4fb6de81f08974cc49cd83bd86c1f",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0022",
+      "path": "public/assets/people/I0022.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 93791,
+      "sha256": "600401e2023461cccf506bbe0398ead2f33acdc42e80a1eb6f250be58b6b2154",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0023",
+      "path": "public/assets/people/I0023.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 47758,
+      "sha256": "77bbce6da199b6a21e96af33f7135db5a7dfa77cf2e008cef647e85af12208a1",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0024",
+      "path": "public/assets/people/I0024.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 92801,
+      "sha256": "61f217250e501a694453e39a8025d20650991c31ac1554f6e774d2fda477f3ca",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0025",
+      "path": "public/assets/people/I0025.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 70424,
+      "sha256": "fa1621269992c5bc85af09fdb4c61dd79609ddee0a9cabc7fdae3678bde3609e",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0026",
+      "path": "public/assets/people/I0026.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 162191,
+      "sha256": "d45efefc9c3b2e472fa1c71fcb89a94700e5f08cae7b63af2bd493d618423070",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0027",
+      "path": "public/assets/people/I0027.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 146239,
+      "sha256": "dfc758e73b38d4701e2e2acc4595761fc4300102fb1b9204610bff6e9080cf0c",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0028",
+      "path": "public/assets/people/I0028.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 72435,
+      "sha256": "d697d57dd35a4a9f5a125da286d61ff3f79c97c743418ae5a4d9f8b19026a550",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0029",
+      "path": "public/assets/people/I0029.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 192483,
+      "sha256": "1158c49f8d8475365429f07f201d5e87b4dd15b067855b087044db3f53f3967e",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0030",
+      "path": "public/assets/people/I0030.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 148708,
+      "sha256": "786f96e99948ca46ccdec336a0dedc436332ef605064c8f395d4b7462565f28c",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0031",
+      "path": "public/assets/people/I0031.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 90827,
+      "sha256": "4587c8757cf82e33ad78a6d5f4420e6dbf3f38dfdd1ee9944b26d2730b94ae91",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0033",
+      "path": "public/assets/people/I0033.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 89891,
+      "sha256": "19ea5c7f31a8cd6180ab1afcdfdc0e53de90ec41d8a318275ba7560219824dc6",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0035",
+      "path": "public/assets/people/I0035.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 42555,
+      "sha256": "c6bb94646b9c7dccdce26a67dc55fb2e9558fab28eef5b602ded0a59eb2fb85f",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0036",
+      "path": "public/assets/people/I0036.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 216046,
+      "sha256": "6b86ffefe6b6c9973caef7bce03ab65b401b2713084ce73db4193761f0e446c5",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0039",
+      "path": "public/assets/people/I0039.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 89054,
+      "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0040",
+      "path": "public/assets/people/I0040.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 80214,
+      "sha256": "cedd074e0f0096fd949fc42f0515f6e77046ad3969fb31946df940dbc9fd2fa4",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0041",
+      "path": "public/assets/people/I0041.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 130082,
+      "sha256": "633a43baf5bd7c379e4a29301558416ddb7663a58b1c215d5ec69bfac6f065e8",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0042",
+      "path": "public/assets/people/I0042.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 235470,
+      "sha256": "b676d8bec1b200f432959f43f78b1d964f6bb5e66beb43e31cb5854b78f82464",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0043",
+      "path": "public/assets/people/I0043.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 89584,
+      "sha256": "125e00474d0db2f6e38f6de8a7fa6b60da5d079e43ae0fc0bc97f86e2fb895ef",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0032",
+      "path": "public/assets/people/I0032.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 119082,
+      "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-23"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
     }
   ]
 }

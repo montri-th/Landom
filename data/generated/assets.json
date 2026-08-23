@@ -3,17 +3,28 @@
     "assetId": "PORTRAIT-S0001",
     "personId": "S0001",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/S0001.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของโอ๊ต",
       "en": "Profile portrait of Oat"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "157773940636aad2737bf69e12ffcd18834d88bdb3c78f93df1937eaf4ecc108",
+    "mediaType": "image/jpeg",
+    "bytes": 170259,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0001",
@@ -29,7 +40,13 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0002",
@@ -45,7 +62,13 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-P0001",
@@ -61,39 +84,67 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-S0002",
     "personId": "S0002",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/S0002.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเรเน่",
       "en": "Profile portrait of Renee"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "7048d4bb61a971ccf6ec23355c5b93927a665ab2f27a86b130c62a55cda77b6f",
+    "mediaType": "image/jpeg",
+    "bytes": 75489,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0003",
     "personId": "I0003",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0003.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของแพรวา",
       "en": "Profile portrait of Praewa"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "6214dff6a699ea27d802da183952518081751e8158f4adc69b77d1c0b156350f",
+    "mediaType": "image/jpeg",
+    "bytes": 123135,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-S0003",
@@ -109,7 +160,13 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0004",
@@ -125,39 +182,67 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0005",
     "personId": "I0005",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0005.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเดย์",
       "en": "Profile portrait of Day"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "59b0734c912df2b2fbd51988c034462845ba7506647e6378d34f57a9528dbf14",
+    "mediaType": "image/jpeg",
+    "bytes": 117958,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0006",
     "personId": "I0006",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0006.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของทีโน่",
       "en": "Profile portrait of Teno"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "fb74b9e3d78096e7380706cadb72a46a810ff88709d69484c4b06e7c5aa62768",
+    "mediaType": "image/jpeg",
+    "bytes": 84779,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0007",
@@ -173,23 +258,40 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0008",
     "personId": "I0008",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0008.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของกาย",
       "en": "Profile portrait of Guy"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "71bb8a8a7e7d1413235e222091cdd27aa6526e580948630e0dbc84190803fa96",
+    "mediaType": "image/jpeg",
+    "bytes": 56317,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0009",
@@ -205,23 +307,40 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0010",
     "personId": "I0010",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0010.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของว่าน",
       "en": "Profile portrait of Wan"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "ce53d58516f51ca852ff8fa50ac45ee858b38bb6bbfa0ce9e581a237fe8085c7",
+    "mediaType": "image/jpeg",
+    "bytes": 63486,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0011",
@@ -237,23 +356,40 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0012",
     "personId": "I0012",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0012.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของพิงกี้",
       "en": "Profile portrait of Pingy"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "924c096cf99d49a99fcfb90c1ce30892cd520565f949636e547998cb05258654",
+    "mediaType": "image/jpeg",
+    "bytes": 51275,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0013",
@@ -269,263 +405,445 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0014",
     "personId": "I0014",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0014.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของMos",
       "en": "Profile portrait of Mos"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "ac843319c494b7a258a8cb3a2da257405e3f39c65e51045dbd45052d0bdf08b1",
+    "mediaType": "image/jpeg",
+    "bytes": 78551,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0015",
     "personId": "I0015",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0015.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเฟซ",
       "en": "Profile portrait of Faze"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "bc1e3b051c3e89863aa99e52da4275074401411855aeb8d739369b30d69a39db",
+    "mediaType": "image/jpeg",
+    "bytes": 172211,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0016",
     "personId": "I0016",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0016.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของมุก",
       "en": "Profile portrait of Mook"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "e053da644247add9b408711a12fbd57f3e34485975567ef80f2521e91f8c5daa",
+    "mediaType": "image/jpeg",
+    "bytes": 102684,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0017",
     "personId": "I0017",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0017.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของมาย",
       "en": "Profile portrait of Mind"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "43dfaec66f8faeca1e0486d8cc211613424c191edb0754e26065459778dd7d0d",
+    "mediaType": "image/jpeg",
+    "bytes": 84987,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0018",
     "personId": "I0018",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0018.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของGrace",
       "en": "Profile portrait of Grace"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "1a98046eeaff92fb4e63ab8cd76417202c0af16eb02e572b9d5339b2ac0ab17a",
+    "mediaType": "image/jpeg",
+    "bytes": 71359,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0019",
     "personId": "I0019",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0019.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของJamie",
       "en": "Profile portrait of Jamie"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "4ec6dd561cac59d5db6a2ed87efa8d2b4ffa85a3099903d4eacb33b621ee21a2",
+    "mediaType": "image/jpeg",
+    "bytes": 83561,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0020",
     "personId": "I0020",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0020.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของTieam",
       "en": "Profile portrait of Tieam"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "af84f956fec25b72f6687a0c45514d1006e81fa705d4f625f727b6ee279f67a1",
+    "mediaType": "image/jpeg",
+    "bytes": 114317,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0021",
     "personId": "I0021",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0021.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของPleng",
       "en": "Profile portrait of Pleng"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "ecca05b93dffb587167c19b6775002b2fab4fb6de81f08974cc49cd83bd86c1f",
+    "mediaType": "image/jpeg",
+    "bytes": 62266,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0022",
     "personId": "I0022",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0022.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเพลง",
       "en": "Profile portrait of Pleng"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "600401e2023461cccf506bbe0398ead2f33acdc42e80a1eb6f250be58b6b2154",
+    "mediaType": "image/jpeg",
+    "bytes": 93791,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0023",
     "personId": "I0023",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0023.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของTim",
       "en": "Profile portrait of Tim"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "77bbce6da199b6a21e96af33f7135db5a7dfa77cf2e008cef647e85af12208a1",
+    "mediaType": "image/jpeg",
+    "bytes": 47758,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0024",
     "personId": "I0024",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0024.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเฟย",
       "en": "Profile portrait of Feuy"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "61f217250e501a694453e39a8025d20650991c31ac1554f6e774d2fda477f3ca",
+    "mediaType": "image/jpeg",
+    "bytes": 92801,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0025",
     "personId": "I0025",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0025.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของPang",
       "en": "Profile portrait of Pang"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "fa1621269992c5bc85af09fdb4c61dd79609ddee0a9cabc7fdae3678bde3609e",
+    "mediaType": "image/jpeg",
+    "bytes": 70424,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0026",
     "personId": "I0026",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0026.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของฮาน่า",
       "en": "Profile portrait of Hana"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "d45efefc9c3b2e472fa1c71fcb89a94700e5f08cae7b63af2bd493d618423070",
+    "mediaType": "image/jpeg",
+    "bytes": 162191,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0027",
     "personId": "I0027",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0027.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของโนนิ",
       "en": "Profile portrait of Noni"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "dfc758e73b38d4701e2e2acc4595761fc4300102fb1b9204610bff6e9080cf0c",
+    "mediaType": "image/jpeg",
+    "bytes": 146239,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0028",
     "personId": "I0028",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0028.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของฟรัง",
       "en": "Profile portrait of France"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "d697d57dd35a4a9f5a125da286d61ff3f79c97c743418ae5a4d9f8b19026a550",
+    "mediaType": "image/jpeg",
+    "bytes": 72435,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0029",
     "personId": "I0029",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0029.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของดาด้า",
       "en": "Profile portrait of Dada"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "1158c49f8d8475365429f07f201d5e87b4dd15b067855b087044db3f53f3967e",
+    "mediaType": "image/jpeg",
+    "bytes": 192483,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-S0004",
@@ -541,71 +859,121 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0030",
     "personId": "I0030",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0030.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเคน",
       "en": "Profile portrait of Ken"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "786f96e99948ca46ccdec336a0dedc436332ef605064c8f395d4b7462565f28c",
+    "mediaType": "image/jpeg",
+    "bytes": 148708,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0031",
     "personId": "I0031",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0031.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของบิว",
       "en": "Profile portrait of Bill"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "4587c8757cf82e33ad78a6d5f4420e6dbf3f38dfdd1ee9944b26d2730b94ae91",
+    "mediaType": "image/jpeg",
+    "bytes": 90827,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0032",
     "personId": "I0032",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0032.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของยิ้ว",
       "en": "Profile portrait of Yew"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
+    "mediaType": "image/jpeg",
+    "bytes": 119082,
+    "identityVerificationEvidence": "sheet_github_url_cross_checked_against_exact_linkedin_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0033",
     "personId": "I0033",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0033.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของทีม",
       "en": "Profile portrait of Team"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "19ea5c7f31a8cd6180ab1afcdfdc0e53de90ec41d8a318275ba7560219824dc6",
+    "mediaType": "image/jpeg",
+    "bytes": 89891,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0034",
@@ -621,39 +989,67 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0035",
     "personId": "I0035",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0035.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของแทน",
       "en": "Profile portrait of Tan"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "c6bb94646b9c7dccdce26a67dc55fb2e9558fab28eef5b602ded0a59eb2fb85f",
+    "mediaType": "image/jpeg",
+    "bytes": 42555,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0036",
     "personId": "I0036",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0036.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของโต๋",
       "en": "Profile portrait of Toh"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "6b86ffefe6b6c9973caef7bce03ab65b401b2713084ce73db4193761f0e446c5",
+    "mediaType": "image/jpeg",
+    "bytes": 216046,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0037",
@@ -669,7 +1065,13 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0038",
@@ -685,86 +1087,147 @@
     "verificationStatus": "missing",
     "consentStatus": "pending",
     "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   },
   {
     "assetId": "PORTRAIT-I0039",
     "personId": "I0039",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0039.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของจอมใจ",
       "en": "Profile portrait of Jomjai"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
+    "mediaType": "image/jpeg",
+    "bytes": 89054,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0040",
     "personId": "I0040",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0040.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของแดน",
       "en": "Profile portrait of Dan"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "cedd074e0f0096fd949fc42f0515f6e77046ad3969fb31946df940dbc9fd2fa4",
+    "mediaType": "image/jpeg",
+    "bytes": 80214,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0041",
     "personId": "I0041",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0041.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของมุก",
       "en": "Profile portrait of Mook"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "633a43baf5bd7c379e4a29301558416ddb7663a58b1c215d5ec69bfac6f065e8",
+    "mediaType": "image/jpeg",
+    "bytes": 130082,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0042",
     "personId": "I0042",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0042.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเมย์",
       "en": "Profile portrait of May"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "b676d8bec1b200f432959f43f78b1d964f6bb5e66beb43e31cb5854b78f82464",
+    "mediaType": "image/jpeg",
+    "bytes": 235470,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   },
   {
     "assetId": "PORTRAIT-I0043",
     "personId": "I0043",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0043.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของดราฟ",
       "en": "Profile portrait of Draf"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-23",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-23"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "125e00474d0db2f6e38f6de8a7fa6b60da5d079e43ae0fc0bc97f86e2fb895ef",
+    "mediaType": "image/jpeg",
+    "bytes": 89584,
+    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
   }
 ]

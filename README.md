@@ -69,16 +69,18 @@ A person who changes role keeps one person record and one canonical ID; role per
 
 Every public person must resolve to at least one contribution. `Land Portfolio` and `Lead2Loan` are separate work records and separate contributions, including for Oat.
 
+Works expose localized `catalogUrl.th/en` only where the route was verified, keep `destinationUrl` null when no exact work destination is known, and record `linkEvidence.linkScope` so a broad product catalog is never misrepresented as a work-specific page. FDI uses the exact UI label `Full-stack Developer Intern, FDI`; the Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์`.
+
 Developer references: [data dictionary](docs/data-dictionary.md), [JSON Schema](data/schema/site-data.schema.json), and [implementation handoff](docs/implementation-handoff.md).
 
 ## Privacy and assets
 
-- Current release behavior follows the owner instruction to render all 48 core registry profiles. A pending `people.publication.consentStatus` is not a UI filter for the core name/role/education/contribution card; it gates direct social links and portrait assets. This does not claim individual approval of placeholder bio copy, which remains `owner_pending` until confirmed.
+- Current release behavior follows the owner instruction to render all 48 core registry profiles. A pending `people.publication.consentStatus` is not a UI filter for the core name/role/education/contribution card. Bios are blank and `owner_pending`; no generic copy or personality is inferred from recruitment text, scores, work, or reviewer comments.
 - `contacts_internal`, email, phone, Line, Discord, CV file IDs, raw sheet rows, credentials, and private notes must never enter source-facing UI files or `dist/`.
-- A social URL is public only when its record is verified, consented, and explicitly marked for public publication. A person's publication consent must also pass.
-- A person image renders only through an `assets[]` record whose source, consent, rights, and publication gates all pass. Otherwise the UI renders initials.
+- A social URL is public only when identity is verified, publication is `publishable`, and its basis is either recorded individual consent or scoped `owner_authorized_public_profile_link`. Owner authorization is recorded separately and must not be described as individual consent.
+- A person image renders only through an `assets[]` record with exact identity, cleared rights, publishable status, a governed local path/hash, and either individual consent or scoped `owner_authorized_public_profile_portrait`. Expiring CDN/source URLs remain private; otherwise the UI renders the full nickname fallback.
 - Private social and asset workflow fields use these exact value sets: verification `owner_review_required | verified | rejected | missing`; consent `granted | pending | denied`; rights `cleared | pending | denied | revoked`; publication `publishable | withheld_pending_* | withdrawn`. `withheld_pending_*` is the reserved family of explicit pending-reason statuses, not a publishable state.
-- The horizontal Landometer logo is approved only as the header lockup. Its checksum and role restrictions are in `docs/assets-manifest.json`; it is not a favicon or person avatar.
+- Approved portrait metadata lives in `data/approved/portrait-assets.json`; public hashes and role restrictions are also recorded in `docs/assets-manifest.json`. The horizontal Landometer logo remains approved only as the header lockup and is not a favicon or person avatar.
 - `robots.txt`, `sitemap.xml`, and the HTML canonical link all resolve to the single public `/Landom/` route. No favicon or social preview image is claimed until a separate compact asset is explicitly approved.
 
 ## Interface contract

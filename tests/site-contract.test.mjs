@@ -91,7 +91,7 @@ test('Oat has distinct Land Portfolio and Lead2Loan work records', () => {
   assert.match(validateDataContract(data).join('\n'), /must have a Lead2Loan contribution/);
 });
 
-test('public social profiles require verification and consent', () => {
+test('public social profiles require verification and an approved publication basis', () => {
   const data = fixture();
   data.socialProfiles.push({
     socialProfileId: 'SOC-0001',
@@ -101,7 +101,23 @@ test('public social profiles require verification and consent', () => {
     verificationStatus: 'pending',
     consentStatus: 'granted'
   });
-  assert.match(validateDataContract(data).join('\n'), /public without verified source and consent/);
+  assert.match(validateDataContract(data).join('\n'), /public without verified source and an approved publication basis/);
+});
+
+test('owner-authorized public profile links do not masquerade as individual consent', () => {
+  const data = fixture();
+  data.people[0].publication.consentStatus = 'pending';
+  data.socialProfiles.push({
+    socialProfileId: 'SOC-0002',
+    personId: 'S0001',
+    publicUrl: 'https://www.linkedin.com/in/example/',
+    publicationStatus: 'publishable',
+    verificationStatus: 'verified',
+    consentStatus: 'pending',
+    publicationBasis: 'owner_authorized_public_profile_link',
+    ownerApproval: { status: 'granted' }
+  });
+  assert.deepEqual(validateDataContract(data), []);
 });
 
 test('person images require a fully approved asset record', () => {

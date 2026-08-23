@@ -64,6 +64,17 @@ export function normalizedRights(value) {
   return 'pending';
 }
 
+function ownerApprovalFromRow(row) {
+  const status = text(row.owner_approval_status).toLowerCase();
+  if (status !== 'granted') return null;
+  return {
+    status: 'granted',
+    approvedAt: nullable(row.owner_approved_at),
+    scope: nullable(row.owner_approval_scope),
+    sourceRef: nullable(row.owner_approval_source_ref)
+  };
+}
+
 function candidateStatus(value, hasCandidate, kind) {
   if (hasCandidate) return 'candidate_present';
   const normalized = text(value).toLowerCase();
@@ -76,7 +87,7 @@ function sourceMeta(snapshot, baseline) {
     ...baseline.meta.source,
     spreadsheetId: snapshot.spreadsheetId ?? snapshot.source?.spreadsheetId ?? baseline.meta.source.spreadsheetId,
     snapshotFetchedAt: snapshot.fetchedAt ?? snapshot.source?.fetchedAt ?? baseline.meta.source.snapshotFetchedAt,
-    inputSchema: 'normalized_sheet_v3',
+    inputSchema: 'normalized_sheet_v3_1',
     publicSheetsUsed: ['people_registry', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'social_profiles', 'assets'],
     privateContactSourcesExcluded: true
   };
@@ -120,10 +131,12 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
         verificationStatus: text(row.verification_status) || existing.educationDisplay?.verificationStatus || 'owner_review_required'
       },
       bio: {
-        th: text(row.bio_placeholder_th),
-        en: text(row.bio_placeholder_en),
-        status: text(row.bio_status) || 'placeholder',
-        verificationStatus: text(row.bio_status) === 'owner_approved' ? 'owner_approved' : 'owner_pending'
+        th: nullable(row.bio_th ?? row.bio_placeholder_th),
+        en: nullable(row.bio_en ?? row.bio_placeholder_en),
+        status: text(row.bio_status) === 'owner_approved' ? 'owner_approved' : 'owner_pending',
+        verificationStatus: text(row.bio_verification_status) === 'owner_approved' || text(row.bio_status) === 'owner_approved'
+          ? 'owner_approved'
+          : 'owner_pending'
       },
       publication: {
         consentStatus,
@@ -199,7 +212,17 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     scopeLayer: text(row.scope_layer),
     authorityStatus: text(row.authority_status),
     evidenceNote: nullable(row.evidence_note),
-    sourceAliases: split(row.source_aliases)
+    sourceAliases: split(row.source_aliases),
+    catalogUrl: localized(
+      row.catalog_url_th ?? baseWorks.get(text(row.work_id))?.catalogUrl?.th,
+      row.catalog_url_en ?? baseWorks.get(text(row.work_id))?.catalogUrl?.en
+    ),
+    destinationUrl: nullable(row.destination_url ?? baseWorks.get(text(row.work_id))?.destinationUrl),
+    linkEvidence: {
+      linkScope: text(row.link_scope ?? baseWorks.get(text(row.work_id))?.linkEvidence?.linkScope) || 'unverified_no_link',
+      sourceRef: nullable(row.url_source_ref ?? baseWorks.get(text(row.work_id))?.linkEvidence?.sourceRef),
+      evidenceUrl: nullable(row.link_evidence_url ?? baseWorks.get(text(row.work_id))?.linkEvidence?.evidenceUrl)
+    }
   }));
 
   const contributions = sheetRows(snapshot, 'contributions').map((row) => ({
@@ -241,15 +264,19 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     const verificationStatus = normalizedVerification(row.verification_status, candidate ? 'owner_review_required' : 'missing');
     const consentStatus = normalizedConsent(row.consent_status);
     const requestedPublication = text(row.publication_status).toLowerCase();
-    const canPublish = Boolean(requestedPublicUrl) && verificationStatus === 'verified' && consentStatus === 'granted' &&
-      person?.publication.consentStatus === 'granted' && requestedPublication === 'publishable';
+    const publicationBasis = text(row.publication_basis) || null;
+    const ownerApproval = ownerApprovalFromRow(row);
+    const individuallyConsented = consentStatus === 'granted' && person?.publication.consentStatus === 'granted';
+    const ownerAuthorized = publicationBasis === 'owner_authorized_public_profile_link' && ownerApproval?.status === 'granted';
+    const canPublish = Boolean(requestedPublicUrl) && verificationStatus === 'verified' &&
+      (individuallyConsented || ownerAuthorized) && requestedPublication === 'publishable';
     const publicationStatus = requestedPublication === 'withdrawn'
       ? 'withdrawn'
       : canPublish
         ? 'publishable'
         : !candidate && !requestedPublicUrl
           ? 'withheld_pending_candidate'
-          : consentStatus !== 'granted' || person?.publication.consentStatus !== 'granted'
+          : !individuallyConsented && !ownerAuthorized
             ? 'withheld_pending_consent'
             : 'withheld_pending_verification';
     return {
@@ -261,6 +288,8 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       candidateValueEmitted: false,
       verificationStatus,
       consentStatus,
+      publicationBasis,
+      ownerApproval,
       publicationStatus,
       dataBoundary: 'private_candidates_not_emitted'
     };
@@ -272,8 +301,11 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     const consentStatus = normalizedConsent(row.consent_status);
     const rightsStatus = normalizedRights(row.rights_status);
     const requestedPublication = text(row.publication_status).toLowerCase();
-    const canPublish = Boolean(nullable(row.public_path)) && verificationStatus === 'verified' && consentStatus === 'granted' &&
-      rightsStatus === 'cleared' && requestedPublication === 'publishable';
+    const publicationBasis = text(row.publication_basis) || null;
+    const ownerApproval = ownerApprovalFromRow(row);
+    const ownerAuthorized = publicationBasis === 'owner_authorized_public_profile_portrait' && ownerApproval?.status === 'granted';
+    const canPublish = Boolean(nullable(row.public_path)) && verificationStatus === 'verified' &&
+      (consentStatus === 'granted' || ownerAuthorized) && rightsStatus === 'cleared' && requestedPublication === 'publishable';
     return {
       assetId: text(row.asset_id),
       personId: text(row.person_id),
@@ -285,9 +317,15 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       verificationStatus,
       consentStatus,
       rightsStatus,
+      publicationBasis,
+      ownerApproval,
       publicationStatus: requestedPublication === 'withdrawn'
         ? 'withdrawn'
-        : canPublish ? 'publishable' : 'withheld_pending_rights_consent_and_verification'
+        : canPublish ? 'publishable' : 'withheld_pending_rights_consent_and_verification',
+      sha256: nullable(row.sha256),
+      mediaType: nullable(row.media_type),
+      bytes: row.bytes === '' || row.bytes == null ? null : Number(row.bytes),
+      identityVerificationEvidence: nullable(row.identity_verification_evidence)
     };
   });
 

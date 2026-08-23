@@ -50,29 +50,32 @@
       })();
     </script>
 
-    <title>Landom — ชาว Landom ผู้ร่วมสร้าง Landometer</title>
+    <title>Landom — คนที่ร่วมสร้าง Landometer</title>
     <meta
       name="description"
-      content="เรื่องเล่า บทบาท การศึกษา และผลงานของชาว Landom จากทะเบียนข้อมูลที่เผยแพร่ได้"
+      content="รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer"
     >
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://montri-th.github.io/Landom/">
     <meta property="og:site_name" content="Landometer">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Landom — ชาว Landom ผู้ร่วมสร้าง Landometer">
+    <meta property="og:title" content="Landom — คนที่ร่วมสร้าง Landometer">
     <meta
       property="og:description"
-      content="เรื่องเล่า บทบาท การศึกษา และผลงานของชาว Landom จากทะเบียนข้อมูลที่เผยแพร่ได้"
+      content="รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer"
     >
     <meta property="og:url" content="https://montri-th.github.io/Landom/">
     <meta property="og:locale" content="th_TH">
     <meta property="og:locale:alternate" content="en_US">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Landom — ชาว Landom ผู้ร่วมสร้าง Landometer">
+    <meta name="twitter:title" content="Landom — คนที่ร่วมสร้าง Landometer">
     <meta
       name="twitter:description"
-      content="เรื่องเล่า บทบาท การศึกษา และผลงานของชาว Landom จากทะเบียนข้อมูลที่เผยแพร่ได้"
+      content="รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer"
     >
+    <link rel="preload" href="./public/assets/fonts/bai-jamjuree-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./public/assets/fonts/bai-jamjuree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./src/styles.css">
 
@@ -130,31 +133,31 @@
     <main id="main-content">
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow" id="hero-eyebrow">LANDOMETER คือแบรนด์ · LANDOM คือด้อม</p>
-          <h1 id="page-title">ยินดีต้อนรับชาว Landom</h1>
+          <p class="eyebrow" id="hero-eyebrow">LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER</p>
+          <h1 id="page-title">คนที่ร่วมสร้าง Landometer</h1>
           <p class="hero-intro" id="hero-intro">
             Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น
           </p>
         </div>
         <div class="hero-summary" aria-live="polite">
           <strong id="people-total">—</strong>
-          <span id="people-total-label">ชาว Landom</span>
-          <span class="data-note" id="data-note">กำลังอ่านข้อมูลชุดเผยแพร่ล่าสุด</span>
+          <span id="people-total-label">คนใน Landom</span>
+          <span class="data-note" id="data-note">กำลังโหลดข้อมูลล่าสุด</span>
         </div>
       </section>
 
       <section class="directory" aria-labelledby="directory-heading">
         <div class="directory-heading-row">
           <div>
-            <p class="section-kicker" id="directory-kicker">เรื่องเล่าจากชาวแลนด้อม</p>
-            <h2 id="directory-heading">ใครทำเรื่องอะไรไว้บ้าง</h2>
+            <p class="section-kicker" id="directory-kicker">ชาว Landom</p>
+            <h2 id="directory-heading">รู้จักคนเบื้องหลังแต่ละผลงาน</h2>
           </div>
           <p class="results-count" id="results-count" role="status" aria-live="polite">กำลังโหลด…</p>
         </div>
 
         <div class="search-row">
           <label class="search-field" for="search-input">
-            <span class="sr-only" id="search-label">ค้นหาชื่อ มหาวิทยาลัย หลักสูตร หรือผลงาน</span>
+            <span class="sr-only" id="search-label">ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน</span>
             <span class="search-symbol" aria-hidden="true"></span>
             <input
               id="search-input"
@@ -162,7 +165,7 @@
               name="q"
               inputmode="search"
               autocomplete="off"
-              placeholder="ค้นหาชื่อ มหาวิทยาลัย หลักสูตร หรือผลงาน"
+              placeholder="ค้นหาคนหรือผลงาน"
               aria-labelledby="search-label"
             >
           </label>
@@ -176,7 +179,7 @@
           <form class="filter-form" id="filter-form" method="dialog">
             <div class="filter-sheet-header">
               <div>
-                <p class="section-kicker" id="filter-kicker">REFINE</p>
+                <p class="section-kicker" id="filter-kicker">เลือกดูให้ตรงความสนใจ</p>
                 <h3 id="filter-title">ตัวกรอง</h3>
               </div>
               <button class="icon-button filter-close" id="filter-close" type="button" aria-label="ปิดตัวกรอง">
@@ -190,7 +193,7 @@
                 <option value="">ทุกบทบาท</option>
                 <option value="fulltime">พนักงานประจำ</option>
                 <option value="parttime">พนักงานพาร์ตไทม์</option>
-                <option value="intern">นักศึกษาฝึกงาน</option>
+                <option value="intern">Intern</option>
               </select>
             </label>
 
@@ -205,8 +208,8 @@
               <span id="filter-status-label">สถานะ</span>
               <select id="filter-status" name="status">
                 <option value="">ทุกสถานะ</option>
-                <option value="active">ปัจจุบัน</option>
-                <option value="alumni">ศิษย์เก่าทีม</option>
+                <option value="active">ร่วมงานอยู่</option>
+                <option value="alumni">เคยร่วมงาน</option>
               </select>
             </label>
 
@@ -234,15 +237,15 @@
 
         <div class="empty-state" id="empty-state" hidden>
           <p class="empty-mark" aria-hidden="true">⌕</p>
-          <h3 id="empty-title">ยังไม่เจอชาว Landom คนนี้</h3>
-          <p id="empty-copy">ลองใช้คำค้นสั้นลง หรือชวนทุกคนกลับมารวมวงด้วยการล้างตัวกรอง</p>
+          <h3 id="empty-title">ไม่พบข้อมูลที่ค้นหา</h3>
+          <p id="empty-copy">ลองใช้คำค้นสั้นลง หรือล้างตัวกรองแล้วค้นหาอีกครั้ง</p>
           <button class="secondary-button" id="empty-clear" type="button">ล้างการค้นหาและตัวกรอง</button>
         </div>
 
         <div class="error-state" id="error-state" hidden role="alert">
           <p class="empty-mark" aria-hidden="true">!</p>
-          <h3 id="error-title">ประตูด้อมยังเปิดทะเบียนไม่ได้</h3>
-          <p id="error-copy">โปรดลองอีกครั้ง หน้านี้จะไม่เดาข้อมูลบุคคลจากแหล่งอื่นมาแทน</p>
+          <h3 id="error-title">โหลดข้อมูลไม่สำเร็จ</h3>
+          <p id="error-copy">โปรดลองอีกครั้ง ข้อมูลบุคคลจะไม่ถูกแทนที่ด้วยข้อมูลที่ยังไม่ได้ยืนยัน</p>
           <button class="secondary-button" id="retry-button" type="button">ลองอีกครั้ง</button>
         </div>
       </section>
@@ -251,9 +254,9 @@
     <footer class="site-footer">
       <div>
         <p class="footer-label" aria-hidden="true">Landometer × Landom</p>
-        <p id="footer-copy">มาเข้าด้อม Landometer กัน · Let us cultivate our city with data.</p>
+        <p id="footer-copy">มาเป็นชาว Landom กัน · Let us cultivate our city with data.</p>
       </div>
-      <p class="footer-meta" id="footer-meta">ทะเบียนชาว Landom</p>
+      <p class="footer-meta" id="footer-meta">รายชื่อชาว Landom</p>
     </footer>
 
     <dialog class="person-dialog" id="person-dialog" aria-labelledby="modal-title">

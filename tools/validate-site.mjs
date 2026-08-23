@@ -111,6 +111,20 @@ function hasRights(record) {
   return getStatus(record, 'rightsStatus') === 'cleared';
 }
 
+function hasOwnerAuthorizedBasis(record, basis) {
+  return normalizeText(record?.publicationBasis) === normalizeText(basis) &&
+    normalizeText(valueAt(record, ['ownerApproval.status', 'owner_approval.status'])) === 'granted';
+}
+
+function hasSocialPublicationAuthority(profile, person) {
+  if (hasOwnerAuthorizedBasis(profile, 'owner_authorized_public_profile_link')) return true;
+  return hasConsent(profile) && (!person || hasConsent(person.publication ?? person));
+}
+
+function hasAssetPublicationAuthority(asset) {
+  return hasConsent(asset) || hasOwnerAuthorizedBasis(asset, 'owner_authorized_public_profile_portrait');
+}
+
 function hasPublicUrl(record) {
   return Boolean(valueAt(record, ['url', 'profileUrl', 'publicUrl', 'publicPath', 'src', 'path']));
 }
@@ -326,12 +340,9 @@ export function validateDataContract(data) {
     if (hasPublicUrl(profile) && !profileIsPublic) {
       errors.push(`Social profile ${profile.socialProfileId} exposes a URL without public publication status.`);
     }
-    if (profileIsPublic && (!isVerified(profile) || !hasConsent(profile))) {
-      errors.push(`Social profile ${profile.socialProfileId} is public without verified source and consent.`);
-    }
     const person = peopleById.get(profile.personId);
-    if (profileIsPublic && person && !hasConsent(person.publication ?? person)) {
-      errors.push(`Social profile ${profile.socialProfileId} is public while person ${profile.personId} lacks public consent.`);
+    if (profileIsPublic && (!isVerified(profile) || !hasSocialPublicationAuthority(profile, person))) {
+      errors.push(`Social profile ${profile.socialProfileId} is public without verified source and an approved publication basis.`);
     }
   }
 
@@ -339,8 +350,8 @@ export function validateDataContract(data) {
     if (hasPublicUrl(asset) && !isPublic(asset)) {
       errors.push(`Asset ${asset.assetId} exposes a path or URL without public publication status.`);
     }
-    if (isPublic(asset) && (!isVerified(asset) || !hasConsent(asset) || !hasRights(asset))) {
-      errors.push(`Asset ${asset.assetId} is public without verification, consent, and publication rights.`);
+    if (isPublic(asset) && (!isVerified(asset) || !hasAssetPublicationAuthority(asset) || !hasRights(asset))) {
+      errors.push(`Asset ${asset.assetId} is public without verification, an approved publication basis, and publication rights.`);
     }
   }
 
@@ -353,7 +364,7 @@ export function validateDataContract(data) {
       if (!assetIds.has(imageAssetId)) errors.push(`Person ${person.personId} references missing image asset ${imageAssetId}.`);
       else {
         const asset = assetsById.get(imageAssetId);
-        if (!isPublic(asset) || !isVerified(asset) || !hasConsent(asset) || !hasRights(asset)) {
+        if (!isPublic(asset) || !isVerified(asset) || !hasAssetPublicationAuthority(asset) || !hasRights(asset)) {
           errors.push(`Person ${person.personId} references image asset ${imageAssetId} before all approvals pass.`);
         }
       }
@@ -425,13 +436,14 @@ async function validateUi(publishRoot, errors) {
     errors.push('The UI must load ./data/generated/site-data.json.');
   }
   if (!/person-card/.test(sourceText)) errors.push('The UI must render person-card buttons on the masonry board.');
-  if (!/avatar(?:--|-)initials/.test(sourceText)) errors.push('The UI must include the initials fallback for unapproved images.');
+  if (!/avatar-name/.test(sourceText)) errors.push('The UI must include the full nickname fallback for unavailable or unapproved images.');
+  if (/avatar(?:--|-)initials/.test(sourceText)) errors.push('Person-image fallback must use the full nickname, not initials.');
   const assetGate = sourceText.match(/function approvedAssetFor\b[\s\S]*?(?=function socialIsPublishable\b)/)?.[0] ?? '';
-  for (const field of ['verificationStatus', 'consentStatus', 'rightsStatus', 'publicationStatus']) {
+  for (const field of ['verificationStatus', 'consentStatus', 'rightsStatus', 'publicationBasis', 'ownerApproval', 'publicationStatus']) {
     if (!assetGate.includes(field)) errors.push(`Image rendering must gate on assets[].${field}.`);
   }
   const socialGate = sourceText.match(/function socialIsPublishable\b[\s\S]*?(?=function safeExternalUrl\b)/)?.[0] ?? '';
-  for (const field of ['verificationStatus', 'consentStatus', 'publicationStatus']) {
+  for (const field of ['verificationStatus', 'consentStatus', 'publicationBasis', 'ownerApproval', 'publicationStatus']) {
     if (!socialGate.includes(field)) errors.push(`Social rendering must gate on socialProfiles[].${field}.`);
   }
   for (const field of [
@@ -545,7 +557,7 @@ async function validateAssetManifest(publishRoot, siteData, errors) {
   const peopleAssetFiles = await walkFiles(peopleAssetRoot);
   const declaredPaths = new Set(
     siteData.assets
-      .filter((asset) => isPublic(asset) && isVerified(asset) && hasConsent(asset) && hasRights(asset))
+      .filter((asset) => isPublic(asset) && isVerified(asset) && hasAssetPublicationAuthority(asset) && hasRights(asset))
       .map((asset) => String(valueAt(asset, ['publicPath', 'path', 'src', 'publicUrl']) ?? '').replace(/^\.\//, ''))
   );
   for (const file of peopleAssetFiles) {

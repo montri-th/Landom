@@ -1,0 +1,19 @@
+{
+  "manifestVersion": "1.0",
+  "authority": "Landometer Design System v0.9.0-r7",
+  "sourceManifest": "https://montri-th.github.io/Landometer/machine/v0.9.0/font-assets.manifest.json",
+  "packageSource": "Fontsource npm packages 5.3.0",
+  "license": "SIL Open Font License 1.1",
+  "fontSynthesis": false,
+  "faces": [
+    { "family": "Arvo", "subset": "latin", "weight": 700, "file": "arvo-latin-700-normal.woff2", "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37", "licenseFile": "licenses/arvo-OFL.txt" },
+    { "family": "IBM Plex Sans Thai Looped", "subset": "latin", "weight": 700, "file": "ibm-plex-sans-thai-looped-latin-700-normal.woff2", "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526", "licenseFile": "licenses/ibm-plex-sans-thai-looped-OFL.txt" },
+    { "family": "IBM Plex Sans Thai Looped", "subset": "thai", "weight": 700, "file": "ibm-plex-sans-thai-looped-thai-700-normal.woff2", "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c", "licenseFile": "licenses/ibm-plex-sans-thai-looped-OFL.txt" },
+    { "family": "Bai Jamjuree", "subset": "latin", "weight": 400, "file": "bai-jamjuree-latin-400-normal.woff2", "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
+    { "family": "Bai Jamjuree", "subset": "latin", "weight": 600, "file": "bai-jamjuree-latin-600-normal.woff2", "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
+    { "family": "Bai Jamjuree", "subset": "thai", "weight": 400, "file": "bai-jamjuree-thai-400-normal.woff2", "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
+    { "family": "Bai Jamjuree", "subset": "thai", "weight": 600, "file": "bai-jamjuree-thai-600-normal.woff2", "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
+    { "family": "IBM Plex Sans Thai", "subset": "thai", "weight": 400, "file": "ibm-plex-sans-thai-thai-400-normal.woff2", "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056", "licenseFile": "licenses/ibm-plex-sans-thai-OFL.txt" },
+    { "family": "JetBrains Mono", "subset": "latin", "weight": 400, "file": "jetbrains-mono-latin-400-normal.woff2", "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb", "licenseFile": "licenses/jetbrains-mono-OFL.txt" }
+  ]
+}

@@ -18,7 +18,17 @@
     "sourceAliases": [
       "CityMETER : Company",
       "CityMETER: Company"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-registered-companies-status-capital",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-registered-companies-status-capital"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-hotels",
@@ -38,7 +48,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Hotel"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-hotel-market",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-hotel-market"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-factories",
@@ -59,7 +79,17 @@
     "sourceAliases": [
       "CityMETER : Factory",
       "CityMETER: Factory"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-factories-workers-investment",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-factories-workers-investment"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-schools",
@@ -80,7 +110,17 @@
     "sourceAliases": [
       "CityMETER : School",
       "CityMETER: School"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-schools-students-teachers",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-schools-students-teachers"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-registered-cars",
@@ -100,7 +140,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Cars"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-registered-cars",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-registered-cars"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-flood-recurrent",
@@ -120,7 +170,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: พื้นที่น้ำท่วมซ้ำซาก"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-flood-recurrent",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-flood-recurrent"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-land-appraisal",
@@ -141,7 +201,17 @@
     "sourceAliases": [
       "CityMETER : Land Appraisal",
       "CityMETER: Land Appraisal"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-land-appraisal",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-land-appraisal"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-crop-area-output",
@@ -161,7 +231,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: หมื่นไร่"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-crop-area-output",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-crop-area-output"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-eia",
@@ -181,7 +261,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: EIA"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-eia-projects",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-eia-projects"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-municipal-revenue",
@@ -201,7 +291,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Municipal revenue"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-municipal-revenue",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-municipal-revenue"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-roaddna",
@@ -221,7 +321,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: RoadDNA"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-road-network-archetypes",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-road-network-archetypes"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-tourism",
@@ -241,7 +351,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Tourism"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-tourism-demand-spending",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-tourism-demand-spending"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-fuel-stations",
@@ -261,7 +381,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Gas station"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-fuel-stations",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-fuel-stations"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-flood-latest",
@@ -281,7 +411,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Flood Recent"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-flood-latest-observed",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-flood-latest-observed"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-shopping-centers",
@@ -301,7 +441,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Shopping centers"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-shopping-centers",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-shopping-centers"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-locale-insights",
@@ -321,7 +471,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Locale insights"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-locale-insights",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-locale-insights"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-government-workforce",
@@ -341,7 +501,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: Government agencies and workforces"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-government-agencies-workforce",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-government-agencies-workforce"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-buildings",
@@ -361,7 +531,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityMETER: 3D Buildings"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-buildings",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-buildings"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-apartment-unresolved",
@@ -381,7 +561,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Apartment"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-apartment-rent",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-apartment-rent"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-condo-offer-unresolved",
@@ -401,7 +591,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Condo Offer"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-condo-listing-prices",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-condo-listing-prices"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-condo-rental-unresolved",
@@ -421,7 +621,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Condo Rental"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-condo-rent-yield",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-condo-rent-yield"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-detached-house-unresolved",
@@ -441,7 +651,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Detached House"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-detached-listing-prices",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-detached-listing-prices"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-land-offer-unresolved",
@@ -461,7 +681,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Land Offer"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-land-listing-prices",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-land-listing-prices"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-office-unresolved",
@@ -481,7 +711,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Office"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-office-buildings-rent",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-office-buildings-rent"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-quakesafe-unresolved",
@@ -501,7 +741,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : QuakeSafe"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-events-quake-building-inspection",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-events-quake-building-inspection"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-road-traffic-unresolved",
@@ -521,7 +771,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Road Traffic"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-traffic-congestion-speed",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-traffic-congestion-speed"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-townhouse-unresolved",
@@ -541,7 +801,17 @@
     "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
     "sourceAliases": [
       "CityMETER : Townhouse"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-townhouse-listing-prices",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-townhouse-listing-prices"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-ijji",
@@ -561,7 +831,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "ijji"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://ijji.landometer.com/",
+      "en": "https://ijji.landometer.com/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-content-compass",
@@ -581,7 +861,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "ContentCompass"
-    ]
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-kinnow",
@@ -601,7 +891,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "KinNow"
-    ]
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-safestreet",
@@ -621,7 +921,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "SafeStreet"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://landometer.com/citystory/safestreet",
+      "en": "https://landometer.com/citystory/safestreet"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-walkidio",
@@ -641,7 +951,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "Walkidio"
-    ]
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citychat",
@@ -661,7 +981,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "CityChat"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityChat/",
+      "en": "https://montri-th.github.io/CityChat/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-gistda-flood-near-me",
@@ -679,7 +1009,17 @@
     "scopeLayer": "partner_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citywiki",
@@ -697,7 +1037,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://landometer.com/v3/citywiki",
+      "en": "https://landometer.com/v3/citywiki"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-product-stewardship",
@@ -715,7 +1065,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/",
+      "en": "https://montri-th.github.io/CityMETER/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-brand-visual-guidelines-2025",
@@ -735,7 +1095,17 @@
     "evidenceNote": null,
     "sourceAliases": [
       "Landometer Visual Guidlines (2025)"
-    ]
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/Landometer/",
+      "en": "https://montri-th.github.io/Landometer/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "broader_catalog",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-vote69",
@@ -753,7 +1123,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://landometer.com/v3/vote69",
+      "en": "https://landometer.com/v3/vote69"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-landom-community",
@@ -771,7 +1151,17 @@
     "scopeLayer": "shared_landometer",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/Landom/",
+      "en": "https://montri-th.github.io/Landom/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-dwr-flood-map",
@@ -789,7 +1179,17 @@
     "scopeLayer": "partner_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-population-forecasting-research",
@@ -807,7 +1207,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-dwr-runoff",
@@ -825,7 +1235,17 @@
     "scopeLayer": "partner_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citycell-model",
@@ -843,7 +1263,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "evidence_only",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": "https://www.facebook.com/TREASURYTHAI/posts/1089323533318360/"
+    }
   },
   {
     "workId": "work-cityscan",
@@ -861,7 +1291,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-fdi-playbook",
@@ -879,7 +1319,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/",
+      "en": "https://montri-th.github.io/CityMETER/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "broader_catalog",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-citymeter-flood-forecasting-unresolved",
@@ -897,7 +1347,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "unresolved_between_official_forecast_modules",
     "evidenceNote": "ยังไม่ map ไป DWR forecast-depth หรือ Google flash-flood risk เพราะหลักฐานไม่พอระบุว่าเป็นโมดูลใด",
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/",
+      "en": "https://montri-th.github.io/CityMETER/"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "broader_catalog",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-locale-insight-intelligence-layer",
@@ -915,7 +1375,17 @@
     "scopeLayer": "shared_landometer",
     "authorityStatus": "owner_supplied_shared_layer_claim_product_implementations_not_implied",
     "evidenceNote": "เป็น capability ใน shared Landometer layer; attribution รายบุคคลนี้ไม่ทำให้สมมติฐานของผลิตภัณฑ์หนึ่งเป็นข้อเท็จจริงของทุกผลิตภัณฑ์",
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/Landometer/#align",
+      "en": "https://montri-th.github.io/Landometer/#align"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-land-portfolio",
@@ -933,7 +1403,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://landometer.com/intro/products#product-portfolio",
+      "en": "https://landometer.com/intro/products#product-portfolio"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-lead2loan",
@@ -951,7 +1431,17 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": "https://landometer.com/intro/products#product-l2l",
+      "en": "https://landometer.com/intro/products#product-l2l"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_product",
+      "sourceRef": "owner_official_product_routes_2026-08-23",
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-fdi-mentoring",
@@ -969,7 +1459,17 @@
     "scopeLayer": "shared_landometer",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   },
   {
     "workId": "work-contribution-details-pending",
@@ -987,6 +1487,16 @@
     "scopeLayer": "shared_landometer",
     "authorityStatus": "owner_detail_required",
     "evidenceNote": "ใช้เพื่อยืนยันว่าไม่มีบุคคลใดมีผลงานเป็นศูนย์ โดยไม่แต่งชื่อโครงการ; เจ้าของข้อมูลต้องเติมรายละเอียดภายหลัง",
-    "sourceAliases": []
+    "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
   }
 ]
