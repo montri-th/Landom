@@ -11,6 +11,24 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": {
+      "abbreviation": {
+        "th": "วศ.บ.",
+        "en": "B.Eng."
+      },
+      "title": {
+        "th": "วิศวกรรมศาสตรบัณฑิต",
+        "en": "Bachelor of Engineering"
+      },
+      "field": {
+        "th": "วิศวกรรมคอมพิวเตอร์",
+        "en": "Computer Engineering"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
+      "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+    },
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -26,6 +44,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -41,6 +60,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -55,6 +75,24 @@
     "qualification": {
       "th": "การประชาสัมพันธ์",
       "en": "Public Relations"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "นศ.บ.",
+        "en": "B.A."
+      },
+      "title": {
+        "th": "นิเทศศาสตรบัณฑิต",
+        "en": "Bachelor of Arts (Communication Arts)"
+      },
+      "field": {
+        "th": "การประชาสัมพันธ์",
+        "en": "Public Relations"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://www.commarts.chula.ac.th/_docs/bca-curriculum-2566%2868%29.pdf",
+      "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
     },
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
@@ -71,6 +109,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -85,6 +124,24 @@
     "qualification": {
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "วศ.บ.",
+        "en": "B.Eng."
+      },
+      "title": {
+        "th": "วิศวกรรมศาสตรบัณฑิต",
+        "en": "Bachelor of Engineering"
+      },
+      "field": {
+        "th": "วิศวกรรมคอมพิวเตอร์",
+        "en": "Computer Engineering"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
+      "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
     },
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
@@ -101,6 +158,7 @@
       "th": "ภาษาจีน คณะอักษรศาสตร์",
       "en": "Chinese, Faculty of Arts"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -116,6 +174,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -131,6 +190,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -146,6 +206,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -161,6 +222,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -176,6 +238,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -191,6 +254,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -206,6 +270,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -221,6 +286,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -236,6 +302,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -251,6 +318,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -266,6 +334,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -281,6 +350,7 @@
       "th": "การตลาด",
       "en": "Marketing"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -296,6 +366,7 @@
       "th": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
       "en": "Bachelor of Arts and Science in Integrated Innovation"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -311,6 +382,7 @@
       "th": "การจัดการการออกแบบ ธุรกิจ และเทคโนโลยี",
       "en": "Design, Business & Technology Management"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -326,6 +398,7 @@
       "th": "เศรษฐศาสตร์",
       "en": "Economics"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -341,6 +414,7 @@
       "th": null,
       "en": null
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -356,6 +430,7 @@
       "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
       "en": "Economics, International Program"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -371,6 +446,7 @@
       "th": "การเงิน",
       "en": "Finance"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -386,6 +462,7 @@
       "th": "เศรษฐศาสตร์",
       "en": "Economics"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -401,6 +478,7 @@
       "th": "เศรษฐศาสตร์",
       "en": "Economics"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -416,6 +494,7 @@
       "th": "การเงิน",
       "en": "Finance"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -431,6 +510,7 @@
       "th": "วิศวกรรมการบินและอวกาศ และการจัดการเทคโนโลยีธุรกิจ",
       "en": "Aerospace Engineering & Business Technology Management"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -446,6 +526,7 @@
       "th": "บริหารธุรกิจ สาขาการตลาด",
       "en": "BBA in Marketing"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -461,6 +542,7 @@
       "th": "บริหารธุรกิจ สาขาการตลาด",
       "en": "BBA in Marketing"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -476,6 +558,7 @@
       "th": "การเมืองและโลกสัมพันธ์ศึกษา",
       "en": "Politics & Global Studies"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -491,6 +574,7 @@
       "th": "สังคมศาสตร์",
       "en": "Social Science"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -505,6 +589,24 @@
     "qualification": {
       "th": "การบริหารและจัดการเมือง",
       "en": "Urban Administration and Management"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "ศศ.บ.",
+        "en": "B.A."
+      },
+      "title": {
+        "th": "ศิลปศาสตรบัณฑิต",
+        "en": "Bachelor of Arts"
+      },
+      "field": {
+        "th": "การบริหารจัดการเมือง",
+        "en": "Urban Administration and Management"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://imd.nmu.ac.th/wp-content/uploads/2022/07/IMD-CityPASS-2022.pdf",
+      "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
     },
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
@@ -521,6 +623,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -536,6 +639,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -551,6 +655,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์",
       "en": "Computer Engineering"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -566,6 +671,7 @@
       "th": null,
       "en": null
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -581,6 +687,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -596,6 +703,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -611,6 +719,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -626,6 +735,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "source_conflict_unresolved",
     "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
   },
@@ -641,6 +751,7 @@
       "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
       "en": "Computer Engineering and Digital Technology"
     },
+    "degree": null,
     "verificationStatus": "source_conflict_unresolved",
     "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
   },
@@ -656,6 +767,7 @@
       "th": null,
       "en": null
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -671,6 +783,7 @@
       "th": "IBMP",
       "en": "IBMP"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -686,6 +799,7 @@
       "th": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
       "en": "Bachelor of Arts and Science in Integrated Innovation"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   },
@@ -701,6 +815,7 @@
       "th": null,
       "en": null
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": "ชีตระบุเพียงปีแลกเปลี่ยน ไม่ระบุหลักสูตรหรือวุฒิ จึงไม่เติมข้อมูลที่อนุมานเอง"
   },
@@ -716,6 +831,7 @@
       "th": "คณิตศาสตร์เชิงคำนวณ",
       "en": "Mathematical Computation"
     },
+    "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
   }

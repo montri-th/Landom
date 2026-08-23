@@ -74,12 +74,26 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `educationDisplayMode` | enum | Full-time=`qualification`, Intern=`program`, Part-time=`neutral` |
 | `educationDisplay.card` | localized | หลักสูตร/field + ชื่อย่อสถาบัน |
 | `educationDisplay.detail` | localized | หลักสูตร/field + ชื่อเต็มสถาบัน |
-| `bio.th/en` | string/null | เว้นเป็น null เมื่อยังไม่มีข้อความสาธารณะที่เจ้าตัวส่งหรือยืนยัน |
-| `bio.status` | enum | `owner_pending`, `owner_approved` |
-| `bio.verificationStatus` | enum | ปัจจุบันเป็น `owner_pending` |
+| `bio.th/en` | string/null | current materialized copy; null เมื่อยังไม่มีข้อความที่ผ่าน publication basis |
+| `bio.status` | enum | `owner_pending`, `source_backed_placeholder`, `owner_approved` |
+| `bio.verificationStatus` | enum | `owner_pending`, `owner_authorized_placeholder`, `owner_approved` |
+| `bio.publicationBasis` | enum/null | `owner_authorized_paraphrase_from_first_person_application` หรือ `owner_authorized_synthesis_from_roster_evidence` |
+| `bio.sourceBasis` | enum/null | แยก `first_person_application_exact_roster_match` จาก `factual_role_education_and_work_evidence` |
+| `bio.sourceType` | enum/null | ปัจจุบันใช้ `first_person_application` หรือ `factual_fallback`; future version อาจใช้ transcript/owner copy ที่มี provenance ใหม่ |
+| `bio.sourceRef` | string/null | public-safe evidence reference เท่านั้น ห้ามเป็น Sheet ID/range, URL ของ private source หรือ contact |
+| `bio.authorRole` | enum/null | ผู้ให้ข้อมูลต้นทาง/ผู้เรียบเรียง เช่น `profile_subject`, `assistant_paraphrase_from_owner_and_sheet_records` |
+| `bio.derivationMethod` | enum/null | `concise_paraphrase` หรือ `bounded_inference` สำหรับ release นี้ |
+| `bio.evidenceScope` | string/null | ขอบเขตข้ออ้างที่หลักฐานรองรับ ห้ามขยายเป็น personality claim ที่ไม่มีหลักฐาน |
+| `bio.evidenceConfidence` | enum/null | `exact_roster_match`, `medium_high`, `medium`, `medium_low` สำหรับ release นี้ |
+| `bio.reviewStatus` | enum | `pending_owner_copy`, `pending_candidate_video_review`, `owner_approved` |
+| `bio.ownerApproval` | object/null | owner authorization ที่มีวัน ขอบเขต และ source reference; ไม่ใช่ individual consent |
 | `publication.consentStatus` | enum | `pending`, `granted`, `denied` |
 
-สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บยังแสดง core profile ทั้ง 48 คน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลัก และไม่ถูกเปลี่ยนเป็น `granted` เพียงเพราะเจ้าของ directory อนุมัติลิงก์หรือภาพเฉพาะรายการ Bio ทั้ง 48 คนเป็น `null/null` และ `owner_pending`: ข้อความสมัครงาน คำประเมินของผู้สัมภาษณ์ คะแนน และผลงานไม่ใช่หลักฐานเพียงพอสำหรับสร้างข้อความ first-person หรือบุคลิกภาพสาธารณะ
+สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บแสดง core profile ทั้ง 48 คนพร้อมข้อความสองภาษาแบบ `source_backed_placeholder` โดย 25 คนเป็น paraphrase จากคำตอบ first-person ที่จับคู่ full name กับ roster ได้ exact และ 23 คนเป็น `factual_fallback` ที่สังเคราะห์อย่างจำกัดจาก role, education และ verified work ที่ reconcile แล้ว ทั้งสองกลุ่มยังรอวิดีโอ/เจ้าตัวทบทวน (`pending_candidate_video_review`) และต้องเก็บ provenance แยกกัน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลักและไม่ถูกเปลี่ยนเป็น `granted` เพราะ owner authorization ห้ามเผย raw application, Sheet ID/range, contact, คะแนน หรือ reviewer data และห้ามทำ inference เกิน `evidenceScope`
+
+### profile_statements ใน Google Sheet
+
+ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Release v3.3 ต้องมี current statement ครบ 48 คน: first-person 25 และ factual fallback 23
 
 ## institutions, programs และ educationRecords
 
@@ -93,7 +107,7 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 
 ### programs
 
-ชื่อหลักสูตร/field ใช้โครงสร้าง formal/short แบบเดียวกับสถาบัน `qualificationLevel` เป็น `null` เมื่อ source ไม่ระบุระดับวุฒิ ห้ามเดา B.Eng., B.A. หรือวุฒิอื่นจากชื่อสาขาเพียงอย่างเดียว
+ชื่อหลักสูตร/field ใช้โครงสร้าง formal/short แบบเดียวกับสถาบัน `qualificationLevel` เป็น `null` เมื่อ source ไม่ระบุระดับวุฒิ ห้ามเดา B.Eng., B.A. หรือวุฒิอื่นจากชื่อสาขาเพียงอย่างเดียว ชื่อปริญญาที่ใช้ต้องอ้าง official curriculum ของ program ที่จับคู่สถาบันและ field ได้แล้ว
 
 ### educationRecords
 
@@ -107,6 +121,13 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `isPrimary` | record หลักที่ใช้แสดงบน card/detail |
 | `sourceLabel` | ค่าเดิมจาก source เพื่อ audit normalization |
 | `qualification.th/en` | field/discipline เท่าที่ source รองรับ; ไม่เติม degree ที่เดาเอง |
+| `degree.abbreviation.th/en` | ชื่อย่อ degree program เช่น `วศ.บ.` / `B.Eng.` |
+| `degree.title.th/en` | ชื่อเต็ม degree program |
+| `degree.field.th/en` | field ที่บุคคลเรียนและใช้ร่วมกับ official program evidence |
+| `degree.awardStatus` | `under_review`, `in_progress`, `completed` แยกจากชื่อหลักสูตร |
+| `degree.personalAwardVerified` | true เมื่อมี person-level evidence ที่บันทึกชัดเจน; release นี้เจ้าของ directory ยืนยันครบ 4 staff และ official curriculum ใช้ยืนยัน nomenclature |
+| `degree.programEvidenceUrl` | primary official program source; ไม่ใช่หลักฐาน personal award |
+| `degree.evidenceScope` | ขอบเขตว่าหลักฐานรองรับ program หรือสถานะบุคคลระดับใด |
 | `verificationStatus` | `owner_review_required` หรือสถานะ conflict |
 
 ณัฏฐณิชา (`I0037`) และนรภัทร (`I0038`) ยังเก็บค่าจากชีตเป็น CU CEDT พร้อม `source_conflict_unresolved` การปรากฏชื่อในเอกสารรับเข้าศึกษาของอีกมหาวิทยาลัยไม่พิสูจน์การลงทะเบียนหรือสถานะปัจจุบัน จึงไม่ overwrite
@@ -123,6 +144,7 @@ Engagement คือช่วงบทบาท ไม่ใช่ตัวค�
 | `program.code` | เช่น FDI, MSI, PDI, PMI, IMP, Full-time, Part-time |
 | `program.names.th/en` | สำหรับ FDI ใช้ข้อความ UI exact `Full-stack Developer Intern, FDI` |
 | `cohortLabel` | label จาก source; ไม่ใช้เป็น key |
+| `academicPlacementType` | `internship`, `cooperative_education`, `not_applicable`; ห้าม parse จาก cohort label |
 | `roleTitle.th/en` | ชื่อบทบาทในช่วงนั้น |
 | `start`, `end` | ISO date หรือ null เมื่อไม่ทราบ |
 | `status` | `ongoing`, `completed` |
@@ -137,6 +159,8 @@ Engagement คือช่วงบทบาท ไม่ใช่ตัวค�
 3. Full-time — ดูแลทีม FDI, Land Portfolio และ Lead2Loan
 
 Land Portfolio กับ Lead2Loan เป็นคนละ `workId`; Land Portfolio ผูกได้ทั้ง engagement Part-time และ Full-time
+
+สหกิจศึกษาใน public core มีเพียง `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, `I0039` ส่วนผู้เข้าร่วมรายที่ 7 ตาม owner instruction ยังอยู่ใน private Shortlisted recruitment เพราะยังไม่มี started engagement และ contribution ที่ยืนยัน ห้ามสร้าง public person/work เพื่อให้จำนวนครบ
 
 ## works และ contributions
 
@@ -269,6 +293,7 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 | Tab | หนึ่งแถวหมายถึง | Primary key |
 |---|---|---|
 | `people_registry` | คนหนึ่งคน | `person_id` |
+| `profile_statements` | ข้อความ objective/work style หนึ่ง version | `statement_id` |
 | `engagements` | หนึ่งช่วงบทบาท | `engagement_id` |
 | `institutions` | หนึ่งสถาบัน | `institution_id` |
 | `programs` | หนึ่งหลักสูตร/field | `program_id` |
@@ -283,9 +308,10 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 
 ### คอลัมน์สำคัญที่ต้องเพิ่ม/รักษา
 
-- `people_registry`: `person_id`, names, `current_status`, `consent_public`, `bio_th`, `bio_en`, `bio_status`, `bio_verification_status`
-- `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`
-- `education`: FK 3 ตัว, `is_primary`, `verification_status`, `evidence_note`
+- `people_registry`: `person_id`, names, `current_status`, `consent_public`, materialized bio fields, provenance/approval/review fields, `current_statement_id`
+- `profile_statements`: versioned TH/EN text, publication/source basis, source type/ref, author/derivation/evidence scope and confidence, approval/review/consent/publication status, `supersedes_statement_id`
+- `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`, `academic_placement_type`
+- `education`: FK 3 ตัว, `is_primary`, qualification, structured degree program, separate award status/verification, evidence scope
 - `works`: localized names, `parent_product`, `module_slug`, `type`, `scope_layer`, `authority_status`, `catalog_url_th/en`, `destination_url`, `link_scope`, `url_source_ref`, `link_evidence_url`
 - `contributions`: FK person/work/engagement, role, period, evidence status/source/note
 - `social_profiles`: private candidate, approved `public_url`, identity verification, consent, `publication_basis`, owner approval fields, publication status, source note
@@ -310,9 +336,11 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 3. social/asset ที่ขอเผยแพร่แต่ gate ไม่ครบ
 4. institution/program alias ที่ยัง map ไม่ได้
 5. work ที่ `authorityStatus` ยัง unresolved
-6. bio ที่ยัง `owner_pending`
-7. engagement ongoing แต่มี end date ผ่านแล้ว หรือ completed แต่ไม่มีเหตุผล/ช่วงเวลา
-8. nickname ซ้ำ โดยแสดง `personId` คู่กันเสมอ
+6. bio ที่ยัง `owner_pending`, ไม่มี current statement, หรือ provenance ไม่ระบุว่า first-person/factual fallback
+7. exact co-op set ต่างจาก public 6 IDs หรือมี candidate-only person หลุดเข้า core
+8. degree ที่ UI จะสื่อว่าได้รับแล้วแต่ `awardStatus/personalAwardVerified` ไม่รองรับ
+9. engagement ongoing แต่มี end dateผ่านแล้ว หรือ completed แต่ไม่มีเหตุผล/ช่วงเวลา
+10. nickname ซ้ำ โดยแสดง `personId` คู่กันเสมอ
 
 ## Build และ verification
 
@@ -329,10 +357,11 @@ node tools/normalize-data.mjs \
 ```sh
 node tools/export-sheet-tabs.mjs \
   --snapshot data/raw/google-sheet-snapshot.json \
-  --site-data data/generated/site-data.json
+  --site-data data/generated/site-data.json \
+  --output /private/tmp/landom-sheet-tabs-v3.3.0.json
 ```
 
-เพิ่ม `<tab-name>` ต่อท้ายคำสั่ง exporter เมื่อต้องการเพียง tab เดียว Payload เต็มอาจมี private social/asset candidates และ internal contacts จึงห้ามบันทึกลง repository, CI log หรือ public artifact การนำ payload ไปเขียน Google Sheet ต้องทำใน authorized local session หลังตรวจ spreadsheet เป้าหมายแล้วเท่านั้น; CI ต้องไม่เรียก Google Sheet remote ไม่ว่าทางอ่านหรือเขียน
+เพิ่ม `<tab-name>` ต่อท้ายคำสั่ง exporter เมื่อต้องการเพียง tab เดียว และใช้ `--output` ไปยัง private path เสมอสำหรับ payload เต็ม Payload อาจมี private social/asset candidates และ internal contacts จึงห้ามบันทึกลง repository, terminal/CI log หรือ public artifact การนำ payload ไปเขียน Google Sheet ต้องทำใน authorized local session หลังตรวจ spreadsheet เป้าหมายแล้วเท่านั้น; CI ต้องไม่เรียก Google Sheet remote ไม่ว่าทางอ่านหรือเขียน
 
 รัน data QA:
 

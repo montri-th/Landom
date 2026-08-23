@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schemaVersion": "1.1.0",
+    "schemaVersion": "1.3.0",
     "generatedAt": "2026-08-23T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
@@ -27,7 +27,10 @@
     "evidenceBoundary": {
       "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
       "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
-      "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent."
+      "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
+      "profileCopy": "All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.",
+      "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
+      "staffDegrees": "The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release."
     },
     "counts": {
       "people": 48,
@@ -35,7 +38,13 @@
       "educationRecords": 48,
       "works": 51,
       "contributions": 95,
-      "achievements": 1
+      "achievements": 1,
+      "sourceBackedProfilePlaceholders": 48,
+      "ownerPendingProfiles": 0,
+      "firstPersonProfilePlaceholders": 25,
+      "factualFallbackProfilePlaceholders": 23,
+      "verifiedCompletedStaffDegrees": 4,
+      "cooperativeEducationPeople": 6
     }
   },
   "copy": {
@@ -500,6 +509,24 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": {
+        "abbreviation": {
+          "th": "วศ.บ.",
+          "en": "B.Eng."
+        },
+        "title": {
+          "th": "วิศวกรรมศาสตรบัณฑิต",
+          "en": "Bachelor of Engineering"
+        },
+        "field": {
+          "th": "วิศวกรรมคอมพิวเตอร์",
+          "en": "Computer Engineering"
+        },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      },
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -515,6 +542,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -530,6 +558,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -544,6 +573,24 @@
       "qualification": {
         "th": "การประชาสัมพันธ์",
         "en": "Public Relations"
+      },
+      "degree": {
+        "abbreviation": {
+          "th": "นศ.บ.",
+          "en": "B.A."
+        },
+        "title": {
+          "th": "นิเทศศาสตรบัณฑิต",
+          "en": "Bachelor of Arts (Communication Arts)"
+        },
+        "field": {
+          "th": "การประชาสัมพันธ์",
+          "en": "Public Relations"
+        },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.commarts.chula.ac.th/_docs/bca-curriculum-2566%2868%29.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
@@ -560,6 +607,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -574,6 +622,24 @@
       "qualification": {
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
+      },
+      "degree": {
+        "abbreviation": {
+          "th": "วศ.บ.",
+          "en": "B.Eng."
+        },
+        "title": {
+          "th": "วิศวกรรมศาสตรบัณฑิต",
+          "en": "Bachelor of Engineering"
+        },
+        "field": {
+          "th": "วิศวกรรมคอมพิวเตอร์",
+          "en": "Computer Engineering"
+        },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
@@ -590,6 +656,7 @@
         "th": "ภาษาจีน คณะอักษรศาสตร์",
         "en": "Chinese, Faculty of Arts"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -605,6 +672,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -620,6 +688,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -635,6 +704,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -650,6 +720,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -665,6 +736,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -680,6 +752,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -695,6 +768,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -710,6 +784,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -725,6 +800,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -740,6 +816,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -755,6 +832,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -770,6 +848,7 @@
         "th": "การตลาด",
         "en": "Marketing"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -785,6 +864,7 @@
         "th": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
         "en": "Bachelor of Arts and Science in Integrated Innovation"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -800,6 +880,7 @@
         "th": "การจัดการการออกแบบ ธุรกิจ และเทคโนโลยี",
         "en": "Design, Business & Technology Management"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -815,6 +896,7 @@
         "th": "เศรษฐศาสตร์",
         "en": "Economics"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -830,6 +912,7 @@
         "th": null,
         "en": null
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -845,6 +928,7 @@
         "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
         "en": "Economics, International Program"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -860,6 +944,7 @@
         "th": "การเงิน",
         "en": "Finance"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -875,6 +960,7 @@
         "th": "เศรษฐศาสตร์",
         "en": "Economics"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -890,6 +976,7 @@
         "th": "เศรษฐศาสตร์",
         "en": "Economics"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -905,6 +992,7 @@
         "th": "การเงิน",
         "en": "Finance"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -920,6 +1008,7 @@
         "th": "วิศวกรรมการบินและอวกาศ และการจัดการเทคโนโลยีธุรกิจ",
         "en": "Aerospace Engineering & Business Technology Management"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -935,6 +1024,7 @@
         "th": "บริหารธุรกิจ สาขาการตลาด",
         "en": "BBA in Marketing"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -950,6 +1040,7 @@
         "th": "บริหารธุรกิจ สาขาการตลาด",
         "en": "BBA in Marketing"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -965,6 +1056,7 @@
         "th": "การเมืองและโลกสัมพันธ์ศึกษา",
         "en": "Politics & Global Studies"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -980,6 +1072,7 @@
         "th": "สังคมศาสตร์",
         "en": "Social Science"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -994,6 +1087,24 @@
       "qualification": {
         "th": "การบริหารและจัดการเมือง",
         "en": "Urban Administration and Management"
+      },
+      "degree": {
+        "abbreviation": {
+          "th": "ศศ.บ.",
+          "en": "B.A."
+        },
+        "title": {
+          "th": "ศิลปศาสตรบัณฑิต",
+          "en": "Bachelor of Arts"
+        },
+        "field": {
+          "th": "การบริหารจัดการเมือง",
+          "en": "Urban Administration and Management"
+        },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://imd.nmu.ac.th/wp-content/uploads/2022/07/IMD-CityPASS-2022.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
@@ -1010,6 +1121,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1025,6 +1137,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1040,6 +1153,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์",
         "en": "Computer Engineering"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1055,6 +1169,7 @@
         "th": null,
         "en": null
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1070,6 +1185,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1085,6 +1201,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1100,6 +1217,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1115,6 +1233,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "source_conflict_unresolved",
       "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
     },
@@ -1130,6 +1249,7 @@
         "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
         "en": "Computer Engineering and Digital Technology"
       },
+      "degree": null,
       "verificationStatus": "source_conflict_unresolved",
       "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
     },
@@ -1145,6 +1265,7 @@
         "th": null,
         "en": null
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1160,6 +1281,7 @@
         "th": "IBMP",
         "en": "IBMP"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1175,6 +1297,7 @@
         "th": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
         "en": "Bachelor of Arts and Science in Integrated Innovation"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1190,6 +1313,7 @@
         "th": null,
         "en": null
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": "ชีตระบุเพียงปีแลกเปลี่ยน ไม่ระบุหลักสูตรหรือวุฒิ จึงไม่เติมข้อมูลที่อนุมานเอง"
     },
@@ -1205,6 +1329,7 @@
         "th": "คณิตศาสตร์เชิงคำนวณ",
         "en": "Mathematical Computation"
       },
+      "degree": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     }
@@ -1238,20 +1363,35 @@
       "educationDisplay": {
         "mode": "qualification",
         "card": {
-          "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "th": "วศ.บ. วิศวกรรมคอมพิวเตอร์ · สจล.",
+          "en": "B.Eng., Computer Engineering · KMITL"
         },
         "detail": {
-          "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
-          "en": "Computer Engineering — King Mongkut's Institute of Technology Ladkrabang"
+          "th": "วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์) — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
+          "en": "Bachelor of Engineering (Computer Engineering) — King Mongkut's Institute of Technology Ladkrabang"
         },
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "โอ๊ตเติบโตมากับ Landometer ตั้งแต่ FDI สู่พาร์ตไทม์และทีมประจำ วันนี้เชื่อมงาน CityCell, Land Portfolio และ Lead2Loan พร้อมช่วยน้องๆ FDI พาไอเดียเดินต่อ",
+        "en": "Oat has grown with Landometer from FDI to part-time and full-time work, now connecting CityCell, Land Portfolio, and Lead2Loan while helping younger FDI teammates move ideas forward.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1300,10 +1440,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ปุ๊กกี้ได้มองเมืองผ่านข้อมูลสองโลกที่ต่างกันมาก ทั้งโรงแรมและโรงงาน แล้วช่วยทำให้เรื่องห้องพัก ราคา ฤดูกาล แรงงาน และการลงทุนอ่านต่อได้ง่ายขึ้น",
+        "en": "Pookkie worked across two very different urban datasets—hotels and factories—helping make rooms, rates, seasonality, labor, and investment easier to explore.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1352,10 +1507,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "อามช่วยจัดระเบียบข้อมูลโรงงาน แรงงาน และการลงทุน ให้กลายเป็นมุมมองที่ใช้ทำความเข้าใจฐานเศรษฐกิจของพื้นที่ได้ชัดขึ้น",
+        "en": "Arm helped organize factory, workforce, and investment data into a clearer view of an area’s economic base.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1404,10 +1574,25 @@
         "verificationStatus": "owner_detail_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เสกเชื่อมสองด้านของการทำความเข้าใจเมือง ผ่าน CityCell ที่มองพื้นที่เป็นระบบ และ CityChat ที่พาคำถามของคนกลับเข้าสู่ข้อมูล",
+        "en": "Sek connects two ways of understanding cities: CityCell’s spatial model and CityChat’s conversation with data.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1446,20 +1631,35 @@
       "educationDisplay": {
         "mode": "qualification",
         "card": {
-          "th": "PR · จุฬาฯ",
-          "en": "PR · CU"
+          "th": "นศ.บ. การประชาสัมพันธ์ · จุฬาฯ",
+          "en": "B.A., Public Relations · CU"
         },
         "detail": {
-          "th": "การประชาสัมพันธ์ — จุฬาลงกรณ์มหาวิทยาลัย",
-          "en": "Public Relations — Chulalongkorn University"
+          "th": "นิเทศศาสตรบัณฑิต (การประชาสัมพันธ์) — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Bachelor of Arts (Communication Arts) (Public Relations) — Chulalongkorn University"
         },
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เรเน่อยากเชื่อมความสนใจด้านการตลาดกับอสังหาริมทรัพย์ โดยนำพื้นฐานประชาสัมพันธ์ คอนเทนต์ และการสื่อสารมาช่วยพัฒนางานการตลาดพร้อมเรียนรู้ต่อเนื่อง",
+        "en": "Renee wants to connect her interests in marketing and real estate, bringing a public-relations, content, and communication perspective while continuing to learn.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1508,10 +1708,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "แพรวาสนใจเรียนรู้การทำแผนที่และการแสดงข้อมูล และให้ความสำคัญกับการเข้าใจโค้ดและเหตุผลเบื้องหลังสิ่งที่ทำอย่างถ่องแท้",
+        "en": "Praewa is interested in learning mapping and data visualization, and values understanding the code and reasoning behind what she builds.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1550,20 +1765,35 @@
       "educationDisplay": {
         "mode": "qualification",
         "card": {
-          "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "th": "วศ.บ. วิศวกรรมคอมพิวเตอร์ · สจล.",
+          "en": "B.Eng., Computer Engineering · KMITL"
         },
         "detail": {
-          "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
-          "en": "Computer Engineering — King Mongkut's Institute of Technology Ladkrabang"
+          "th": "วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์) — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
+          "en": "Bachelor of Engineering (Computer Engineering) — King Mongkut's Institute of Technology Ladkrabang"
         },
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "พัทธ์สนุกกับการสร้างประสบการณ์ใช้งานและแอปที่ใช้จริง และอยากช่วยพัฒนาผลิตภัณฑ์ที่ใช้งานง่ายผ่านงาน frontend และ UX/UI พร้อมเรียนรู้จากทีม",
+        "en": "Pat enjoys building real-world applications and user experiences, and wants to help create approachable products through frontend and UX/UI work while learning from the team.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1612,10 +1842,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "หมิงอยากนำประสบการณ์ด้านคอนเทนต์ การตลาด การสื่อสาร และภาษามาช่วยสร้างเรื่องราวที่เข้าถึงผู้คน พร้อมลงมือหาทางแก้ปัญหาและเรียนรู้ไปกับทีม",
+        "en": "Ming wants to bring content, marketing, communication, and language experience to stories that reach people, while taking initiative and learning with the team.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1664,10 +1909,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เดย์ทำงานตรงรอยต่อระหว่างการเดินทางกับการสื่อสารข้อมูล ผ่าน CityMETER: Road Traffic และ ContentCompass—จากความเคลื่อนไหวบนถนนสู่เรื่องราวที่คนอ่านเข้าใจได้",
+        "en": "Day worked at the intersection of mobility and data communication through CityMETER: Road Traffic and ContentCompass—from movement on the road to information people can follow.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1716,10 +1976,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ทีโน่ช่วยพาข้อมูลการศึกษาออกจากตาราง ผ่าน CityMETER: School และ Walkidio ให้เรื่องโรงเรียน นักเรียน และครูไปต่อเป็นเครื่องมือที่คนเปิดใช้ได้",
+        "en": "Teno helped move education data beyond the spreadsheet through CityMETER: School and Walkidio, turning information about schools, students, and teachers into tools people can use.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1768,10 +2043,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ดาวเหนือเชื่อมโจทย์ที่อยู่อาศัยกับความปลอดภัย ผ่าน CityMETER: Townhouse และ SafeStreet ทำให้ข้อมูลบ้านกับสภาพแวดล้อมมาอยู่ในภาพเดียวกัน",
+        "en": "Daonua connected housing and safety through CityMETER: Townhouse and SafeStreet, bringing information about homes and their surroundings into the same view.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1820,10 +2110,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "กายทำงานกับการตัดสินใจเรื่องที่ดินหลายมุม ตั้งแต่ Land Offer และ EIA ถึง ContentCompass ช่วยจัดข้อมูลให้คนเห็นทั้งโอกาสและเงื่อนไขของพื้นที่",
+        "en": "Guy worked across several sides of land decisions—from Land Offer and EIA to ContentCompass—helping surface both opportunities and constraints.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1872,10 +2177,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "แฮมขยับระหว่างข้อมูลโรงงาน แรงงาน และการลงทุน กับ KinNow งานสองสเกลที่ต่างกันแต่ต่างก็ช่วยให้เราเห็นบริบทของพื้นที่ชัดขึ้น",
+        "en": "Ham worked across factory, workforce, and investment data as well as KinNow—two different scales that both add context to how a place works.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1924,10 +2244,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ว่านร่วมทำ CityMETER: Condo Rental และ Walkidio เชื่อมข้อมูลที่อยู่อาศัยกับอีกมุมหนึ่งของประสบการณ์เมืองในชุดงานเดียวกัน",
+        "en": "Wan contributed to CityMETER: Condo Rental and Walkidio, connecting housing data with another side of the urban experience.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -1976,10 +2311,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "อิ๋งทำงานข้ามหลายชั้นของเมือง ตั้งแต่ Condo Offer และ Walkidio ไปถึง ijji และ Locale Insights ช่วยเชื่อมข้อมูลทำเลกับคำถามที่ใกล้การตัดสินใจจริงขึ้น",
+        "en": "Ing worked across several layers of the city—from Condo Offer and Walkidio to ijji and Locale Insights—bringing location data closer to real decision questions.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_high",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2028,10 +2378,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "พิงกี้นำพื้นฐานสายเทคนิคมาอยู่ในบทบาท Marketing Strategy และลงมือกับ KinNow เป็นจุดตัดระหว่างการสร้างผลิตภัณฑ์กับการทำให้คนเข้าใจมัน",
+        "en": "Pingy brought a technical study background into Marketing Strategy and KinNow, working at the meeting point between building a product and helping people understand it.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2080,10 +2445,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ปอนอยากใช้ทักษะ full-stack กับการแสดงข้อมูลเมืองใน CityMETER พร้อมพัฒนาการแก้ปัญหาและเรียนรู้ Kotlin กับ Spring ให้ลึกขึ้น",
+        "en": "Pond wants to apply full-stack skills to urban-data visualization in CityMETER while strengthening problem-solving and learning Kotlin and Spring more deeply.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2132,10 +2512,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Mos อยากมีส่วนร่วมสร้างผลิตภัณฑ์ที่เกิดผลจริง และให้ความสำคัญกับการตรงต่อเวลา ความซื่อสัตย์ การพัฒนาตัวเอง และความทุ่มเทต่อทีม",
+        "en": "Mos wants to help build products with real-world impact, bringing time, honesty, a willingness to improve, and dedication to the team.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2184,10 +2579,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เฟซสนใจประสบการณ์ใช้งานของผลิตภัณฑ์อสังหาริมทรัพย์ และอยากใช้ทักษะ full-stack เพื่อพัฒนาฟีเจอร์จากความคิดเห็นของผู้ใช้พร้อมเรียนรู้ต่อเนื่อง",
+        "en": "Faze is interested in the user experience of real-estate products and wants to apply full-stack skills to improve features from user feedback while continuing to learn.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2236,10 +2646,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "มุก (Pitcha) สนใจเทคโนโลยีที่ช่วยยกระดับชีวิตในเมือง และอยากใช้ความเข้าใจเทรนด์ดิจิทัลกับความต้องการผู้ใช้เพื่อสร้างการมีส่วนร่วมและการรับรู้",
+        "en": "Mook (Pitcha) is interested in technology that improves urban life and wants to use an understanding of digital trends and user needs to build engagement and awareness.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2288,10 +2713,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "มายสนใจนวัตกรรมเมืองและอยากนำความรู้ด้านเมืองอัจฉริยะกับประสบการณ์การตลาดดิจิทัลมาพัฒนากลยุทธ์ที่เชื่อมกับผู้คน โดยทดลอง เรียนรู้จากผลลัพธ์ และปรับปรุงต่อเนื่อง",
+        "en": "Mind is interested in urban innovation and wants to combine smart-city knowledge with digital-marketing experience to shape people-centered strategies through testing, learning, and iteration.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2340,10 +2780,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Grace สนใจจุดตัดของข้อมูล เทคโนโลยี และความยั่งยืน และอยากเชื่อมมุมมองธุรกิจ งานวิจัย และประสบการณ์ผู้ใช้เพื่อทำให้ข้อมูลเข้าถึงและนำไปใช้ได้ง่ายขึ้น",
+        "en": "Grace is interested in the intersection of data, technology, and sustainability, and wants to connect business, research, and user-experience perspectives to make insights more accessible and useful.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2392,10 +2847,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Jamie นำมุมมองเศรษฐศาสตร์มาเจอกับบทบาท Consulting Partner ใน ijji ช่วยให้คำถามของผลิตภัณฑ์มีกรอบเรื่องทางเลือกและผลกระทบที่ชัดขึ้น",
+        "en": "Jamie brought an economics perspective to the Consulting Partner role in ijji, adding a clearer frame for choices and their effects.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_low",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2444,10 +2914,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Tieam ร่วมทำ ijji ในบทบาท Consulting Partner อยู่ตรงช่วงที่ข้อมูล โจทย์ธุรกิจ และการตัดสินใจต้องคุยกันให้รู้เรื่อง",
+        "en": "Tieam joined ijji as a Consulting Partner, working where data, business questions, and decisions need to speak the same language.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_low",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2496,10 +2981,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Pleng นำพื้นฐานเศรษฐศาสตร์นานาชาติมาเจอกับ ijji มองโจทย์ธุรกิจผ่านทั้งแรงจูงใจ บริบท และทางเลือกที่เป็นไปได้",
+        "en": "Pleng brought an international-economics background to ijji, viewing business questions through incentives, context, and possible choices.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_low",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2548,10 +3048,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เพลงอยากช่วยให้ ijji เติบโตอย่างมีทิศทาง ด้วยการค้นหาความต้องการผู้ใช้ แปลง insight เป็นขั้นตอนของผลิตภัณฑ์ และตั้งคำถามกับสมมติฐานอย่างเป็นระบบ",
+        "en": "Pleng wants to help ijji grow with direction by uncovering user needs, turning insights into product steps, and questioning assumptions systematically.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2600,10 +3115,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Tim ทำ ijji ในฐานะ Consulting Partner พร้อมพื้นฐานเศรษฐศาสตร์ ช่วยตั้งกรอบให้โจทย์ที่ยังกว้างค่อยๆ กลายเป็นคำถามที่ทีมตัดสินใจต่อได้",
+        "en": "Tim worked on ijji as a Consulting Partner with an economics background, helping broad questions take shape as decisions the team could continue with.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_low",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2652,10 +3182,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เฟยอยากต่อยอดประสบการณ์กับ ijji จากงานวิเคราะห์และจัดกรอบปัญหาไปสู่การทำงานจริงที่ช่วยให้ทีมตัดสินใจชัดและเร็วขึ้น",
+        "en": "Feuy wants to extend his experience with ijji from analysis and problem framing into practical work that helps the team make clearer, faster decisions.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2704,10 +3249,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "Pang เชื่อมพื้นฐานการเงินกับงาน ijji ในบทบาท Consulting Partner มองไอเดียผลิตภัณฑ์ควบคู่กับความเป็นไปได้และการใช้ทรัพยากรอย่างมีเหตุผล",
+        "en": "Pang connected a finance background with the Consulting Partner role in ijji, considering product ideas alongside feasibility and thoughtful use of resources.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium_low",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2756,10 +3316,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ฮาน่าสนใจการเปลี่ยนข้อมูลให้เป็นสารสนเทศที่นำไปลงมือใช้ได้ และอยากผสานมุมมองวิศวกรรม ธุรกิจ และการสื่อสารเพื่อช่วยทีมคิดและทำงานร่วมกัน",
+        "en": "Hana is interested in turning data into actionable information and wants to combine engineering, business, and communication perspectives to support ideas and collaboration.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2808,10 +3383,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "โนนิอยากเรียนรู้โลกอสังหาริมทรัพย์ผ่านงานการตลาด และนำความสนใจด้านการวิเคราะห์ตลาด พฤติกรรมลูกค้า และการเล่าเรื่องมาช่วยสร้างแคมเปญที่มีความหมาย",
+        "en": "Noni wants to explore real estate through marketing and bring her interests in market analysis, customer behavior, and storytelling to meaningful campaigns.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2860,10 +3450,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ฟรังสนุกกับการมองปัญหาการตลาดหลายมุมและหาทางออกที่เรียบง่ายแต่มีผล และอยากเรียนรู้มุมใหม่ของอสังหาริมทรัพย์ พร้อมเรียนรู้และทำงานร่วมกับทีมอย่างสร้างสรรค์",
+        "en": "France enjoys viewing marketing problems from different angles and finding simple, useful solutions, while exploring real estate and bringing positive energy to the team.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2912,10 +3517,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ดาด้าอยากใช้ข้อมูลเพื่อเข้าใจเมืองและชุมชนให้ลึกขึ้น โดยเชื่อมการวิจัยเชิงปริมาณและคุณภาพกับมุมมองนโยบายและการเล่าเรื่อง",
+        "en": "Dada wants to use data to understand cities and communities more deeply, connecting quantitative and qualitative research with policy analysis and storytelling.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -2954,20 +3574,35 @@
       "educationDisplay": {
         "mode": "qualification",
         "card": {
-          "th": "Urban Administration · มว.",
-          "en": "Urban Administration · NMU"
+          "th": "ศศ.บ. การบริหารจัดการเมือง · มว.",
+          "en": "B.A., Urban Administration and Management · NMU"
         },
         "detail": {
-          "th": "การบริหารและจัดการเมือง — มหาวิทยาลัยนวมินทราธิราช",
-          "en": "Urban Administration and Management — Navamindradhiraj University"
+          "th": "ศิลปศาสตรบัณฑิต (การบริหารจัดการเมือง) — มหาวิทยาลัยนวมินทราธิราช",
+          "en": "Bachelor of Arts (Urban Administration and Management) — Navamindradhiraj University"
         },
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ฟิล์มสนใจทำให้ข้อมูลเมืองและที่ดินที่ซับซ้อนเข้าใจและนำไปใช้ได้ และให้ความสำคัญกับความรับผิดชอบ ความละเอียด และผลกระทบของผลิตภัณฑ์ต่อผู้คนกับเมือง",
+        "en": "Film is interested in making complex urban and land data understandable and usable, and values responsibility, attention to detail, and how products affect people and cities.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3016,10 +3651,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เคนสนใจ GIS และซอฟต์แวร์แผนที่ โดยอยากเปลี่ยนข้อมูลตำแหน่งให้เป็นประสบการณ์โต้ตอบที่ผู้ใช้เปิดใช้ได้ พร้อมเติบโตไปกับทีม",
+        "en": "Ken is interested in GIS and map software, and wants to turn geolocation data into interactive experiences people can use while growing with the team.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3068,10 +3718,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "บิวอยากพัฒนาทักษะการเชื่อม API กับ AI backend และตั้งใจพัฒนาความสามารถด้านการเขียนโค้ดอย่างต่อเนื่อง",
+        "en": "Bill wants to develop API integration with AI backends and keep improving his coding skills.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3120,10 +3785,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ยิ้วอยากนำความรู้จากมหาวิทยาลัยมาสร้างซอฟต์แวร์ที่ช่วยผู้คนและธุรกิจในไทย พร้อมพัฒนาทักษะผ่านการลงมือทำจริง",
+        "en": "Yew wants to apply university learning to software that helps people and businesses in Thailand while developing skills through real work.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3172,10 +3852,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ทีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
+        "en": "Team aims to learn PropTech and make complex data easier to understand and visualize, bringing a combined product, design, and development perspective.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3224,10 +3919,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เอิร์ธทำงานในพื้นที่ที่ข้อมูลต้องรับมือกับความไม่แน่นอน ตั้งแต่การคาดการณ์น้ำท่วมและ Locale Insight Intelligence Layer ไปจนถึง ijji",
+        "en": "Earth works where data meets uncertainty—from flood forecasting and the Locale Insight Intelligence Layer to ijji.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3276,10 +3986,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "แทนช่วยทำให้ข้อมูลบริษัทจดทะเบียน ทั้งสถานะและทุน กลายเป็นภาพรวมที่คนใช้มองโครงสร้างเศรษฐกิจของพื้นที่ได้เร็วขึ้น",
+        "en": "Tan helped turn registered-company status and capital data into a quicker view of an area’s economic structure.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3328,10 +4053,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "โต๋ทำงานข้ามตัวเลข บทสนทนา และภาพเมือง ผ่าน Municipal Revenue, CityChat และ CityScan ทำให้คำถามเมืองเดียวกันมองได้จากหลายทาง",
+        "en": "Toh worked across numbers, conversations, and city views through Municipal Revenue, CityChat, and CityScan—three ways into the same urban question.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3380,10 +4120,25 @@
         "verificationStatus": "source_conflict_unresolved"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ณิชาช่วยเปิดภาพของศูนย์การค้าผ่านข้อมูลจำนวน พื้นที่เช่า และกลุ่มตลาด เพื่อให้คนเห็นว่าพื้นที่พาณิชย์แต่ละแห่งต่างกันอย่างไร",
+        "en": "Nicha helped map the shopping-center landscape through supply, leasable area, and market segments, making differences between commercial places easier to see.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3432,10 +4187,25 @@
         "verificationStatus": "source_conflict_unresolved"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ไนน์ทำงานกับระบบเมืองสองแบบที่มองไม่เห็นง่ายๆ ทั้งโครงสร้างหน่วยงานรัฐและบุคลากร กับการไหลบ่าของน้ำ ผ่าน CityMETER และ DWR Runoff",
+        "en": "Nine worked on two urban systems that are easy to overlook: government organizations and workforces, and the movement of runoff through DWR Runoff.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3484,10 +4254,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "จอมใจเชื่อมรูปแบบโครงข่ายถนนกับความรู้ร่วมของเมือง ผ่าน RoadDNA และ CityWiki ให้ทั้งโครงสร้างและเรื่องราวของพื้นที่มีที่อยู่ในชุดเครื่องมือของทีม",
+        "en": "Jomjai connected road-network patterns with shared city knowledge through RoadDNA and CityWiki, giving both urban structure and local stories a place in the team’s toolkit.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+        "sourceBasis": "factual_role_education_and_work_evidence",
+        "sourceType": "factual_fallback",
+        "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+        "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+        "derivationMethod": "bounded_inference",
+        "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+        "evidenceConfidence": "medium",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3536,10 +4321,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "แดนชอบเปลี่ยนข้อมูลให้เป็นสิ่งที่ชัดเจนและนำไปใช้ได้ และอยากช่วยวิเคราะห์รูปแบบเพื่อให้ทีมตัดสินใจได้ง่ายขึ้น พร้อมรับผิดชอบและหาคำตอบด้วยตัวเอง",
+        "en": "Dan likes turning data into clear, actionable information and wants to help spot patterns that support decisions, while taking ownership and finding answers independently.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3588,10 +4388,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "มุก (Pattareeya) ชอบเริ่มจากโจทย์ที่ยังไม่ชัด ค่อยๆ แยกส่วนและทำให้เป็นต้นแบบที่ใช้งานได้ โดยเน้นความเรียบง่าย ความสม่ำเสมอ และความรับผิดชอบ",
+        "en": "Mook (Pattareeya) enjoys starting with unclear problems, breaking them down, and turning them into practical prototypes with simplicity, consistency, and responsibility.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3640,10 +4455,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "เมย์สนใจใช้ AI เพื่อยกระดับประสบการณ์ผู้ใช้ และตั้งใจเรียนรู้เทคนิคใหม่ ทำงานร่วมกับผู้อื่น และพยายามต่อเมื่อเจอโจทย์ยาก",
+        "en": "May is interested in using AI to improve user experience and sees herself as driven to learn new techniques, work with others, and keep trying through challenges.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3692,10 +4522,25 @@
         "verificationStatus": "owner_review_required"
       },
       "bio": {
-        "th": null,
-        "en": null,
-        "status": "owner_pending",
-        "verificationStatus": "owner_pending"
+        "th": "ดราฟสนใจสร้างระบบที่เปลี่ยนข้อมูลเมืองและธุรกิจให้ช่วยการตัดสินใจได้ และอยากพัฒนางานแผนที่ ข้อมูลเชิงพื้นที่ และผลิตภัณฑ์ที่คำนึงถึงบริบทของผู้ใช้",
+        "en": "Draf is interested in systems that turn urban and business data into decision support, and wants to develop mapping, spatial-data, and context-aware product work.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
       },
       "publication": {
         "consentStatus": "pending",
@@ -3712,6 +4557,7 @@
       "engagementId": "E0001",
       "personId": "S0001",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -3738,6 +4584,7 @@
       "engagementId": "E0054",
       "personId": "S0001",
       "category": "part_time",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "Part-time",
         "names": {
@@ -3764,6 +4611,7 @@
       "engagementId": "E0031",
       "personId": "S0001",
       "category": "full_time",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "Full-time",
         "names": {
@@ -3792,6 +4640,7 @@
       "engagementId": "E0002",
       "personId": "I0001",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -3816,6 +4665,7 @@
       "engagementId": "E0003",
       "personId": "I0002",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -3840,6 +4690,7 @@
       "engagementId": "E0004",
       "personId": "P0001",
       "category": "part_time",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "Part-time",
         "names": {
@@ -3866,6 +4717,7 @@
       "engagementId": "E0005",
       "personId": "S0002",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -3890,6 +4742,7 @@
       "engagementId": "E0032",
       "personId": "S0002",
       "category": "full_time",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "Full-time",
         "names": {
@@ -3916,6 +4769,7 @@
       "engagementId": "E0006",
       "personId": "I0003",
       "category": "internship",
+      "academicPlacementType": "cooperative_education",
       "program": {
         "code": "FDI",
         "names": {
@@ -3940,6 +4794,7 @@
       "engagementId": "E0007",
       "personId": "S0003",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -3964,6 +4819,7 @@
       "engagementId": "E0033",
       "personId": "S0003",
       "category": "full_time",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "Full-time",
         "names": {
@@ -3990,6 +4846,7 @@
       "engagementId": "E0008",
       "personId": "I0004",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4014,6 +4871,7 @@
       "engagementId": "E0009",
       "personId": "I0005",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4038,6 +4896,7 @@
       "engagementId": "E0010",
       "personId": "I0006",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4062,6 +4921,7 @@
       "engagementId": "E0011",
       "personId": "I0007",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4086,6 +4946,7 @@
       "engagementId": "E0012",
       "personId": "I0008",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4110,6 +4971,7 @@
       "engagementId": "E0013",
       "personId": "I0009",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4134,6 +4996,7 @@
       "engagementId": "E0014",
       "personId": "I0010",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4158,6 +5021,7 @@
       "engagementId": "E0015",
       "personId": "I0011",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4182,6 +5046,7 @@
       "engagementId": "E0016",
       "personId": "I0012",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4206,6 +5071,7 @@
       "engagementId": "E0017",
       "personId": "I0013",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4230,6 +5096,7 @@
       "engagementId": "E0018",
       "personId": "I0014",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4254,6 +5121,7 @@
       "engagementId": "E0019",
       "personId": "I0015",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4278,6 +5146,7 @@
       "engagementId": "E0020",
       "personId": "I0016",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4302,6 +5171,7 @@
       "engagementId": "E0021",
       "personId": "I0017",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4326,6 +5196,7 @@
       "engagementId": "E0022",
       "personId": "I0018",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4350,6 +5221,7 @@
       "engagementId": "E0023",
       "personId": "I0019",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4374,6 +5246,7 @@
       "engagementId": "E0024",
       "personId": "I0020",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4398,6 +5271,7 @@
       "engagementId": "E0025",
       "personId": "I0021",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4422,6 +5296,7 @@
       "engagementId": "E0035",
       "personId": "I0022",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "PMI",
         "names": {
@@ -4446,6 +5321,7 @@
       "engagementId": "E0026",
       "personId": "I0022",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4470,6 +5346,7 @@
       "engagementId": "E0027",
       "personId": "I0023",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4494,6 +5371,7 @@
       "engagementId": "E0036",
       "personId": "I0024",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "PMI",
         "names": {
@@ -4518,6 +5396,7 @@
       "engagementId": "E0028",
       "personId": "I0024",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4542,6 +5421,7 @@
       "engagementId": "E0029",
       "personId": "I0025",
       "category": "program_participant",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "IMP",
         "names": {
@@ -4566,6 +5446,7 @@
       "engagementId": "E0030",
       "personId": "I0026",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "PDI",
         "names": {
@@ -4590,6 +5471,7 @@
       "engagementId": "E0034",
       "personId": "I0027",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4614,6 +5496,7 @@
       "engagementId": "E0037",
       "personId": "I0028",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4638,6 +5521,7 @@
       "engagementId": "E0038",
       "personId": "I0029",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4662,6 +5546,7 @@
       "engagementId": "E0039",
       "personId": "S0004",
       "category": "full_time",
+      "academicPlacementType": "not_applicable",
       "program": {
         "code": "Full-time",
         "names": {
@@ -4688,6 +5573,7 @@
       "engagementId": "E0040",
       "personId": "I0030",
       "category": "internship",
+      "academicPlacementType": "cooperative_education",
       "program": {
         "code": "FDI",
         "names": {
@@ -4712,6 +5598,7 @@
       "engagementId": "E0041",
       "personId": "I0031",
       "category": "internship",
+      "academicPlacementType": "cooperative_education",
       "program": {
         "code": "FDI",
         "names": {
@@ -4736,6 +5623,7 @@
       "engagementId": "E0042",
       "personId": "I0032",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4760,6 +5648,7 @@
       "engagementId": "E0043",
       "personId": "I0033",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "PDI",
         "names": {
@@ -4784,6 +5673,7 @@
       "engagementId": "E0044",
       "personId": "I0034",
       "category": "internship",
+      "academicPlacementType": "cooperative_education",
       "program": {
         "code": "FDI",
         "names": {
@@ -4808,6 +5698,7 @@
       "engagementId": "E0045",
       "personId": "I0035",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4815,7 +5706,7 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT107 + Co-op / start May 19",
+      "cohortLabel": "CEDT107 / start May 19",
       "roleTitle": {
         "th": "นักพัฒนา Full-Stack ฝึกงาน",
         "en": "Full-Stack Developer Intern"
@@ -4832,6 +5723,7 @@
       "engagementId": "E0046",
       "personId": "I0036",
       "category": "internship",
+      "academicPlacementType": "cooperative_education",
       "program": {
         "code": "FDI",
         "names": {
@@ -4856,6 +5748,7 @@
       "engagementId": "E0047",
       "personId": "I0037",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4880,6 +5773,7 @@
       "engagementId": "E0048",
       "personId": "I0038",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {
@@ -4904,6 +5798,7 @@
       "engagementId": "E0049",
       "personId": "I0039",
       "category": "internship",
+      "academicPlacementType": "cooperative_education",
       "program": {
         "code": "FDI",
         "names": {
@@ -4928,6 +5823,7 @@
       "engagementId": "E0050",
       "personId": "I0040",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -4952,6 +5848,7 @@
       "engagementId": "E0051",
       "personId": "I0041",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "PDI",
         "names": {
@@ -4976,6 +5873,7 @@
       "engagementId": "E0052",
       "personId": "I0042",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "MSI",
         "names": {
@@ -5000,6 +5898,7 @@
       "engagementId": "E0053",
       "personId": "I0043",
       "category": "internship",
+      "academicPlacementType": "internship",
       "program": {
         "code": "FDI",
         "names": {

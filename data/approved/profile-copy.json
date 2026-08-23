@@ -1,0 +1,316 @@
+{
+  "contractVersion": "1.1",
+  "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+  "sourceBasis": "first_person_application_exact_roster_match",
+  "sourceType": "first_person_application",
+  "sourceRef": "authorized_application_roster_match_2025_2026",
+  "authorRole": "profile_subject",
+  "derivationMethod": "concise_paraphrase",
+  "evidenceScope": "personal_objective_and_self_described_work_style",
+  "evidenceConfidence": "exact_roster_match",
+  "reviewStatus": "pending_candidate_video_review",
+  "ownerApproval": {
+    "status": "granted",
+    "approvedAt": "2026-08-23",
+    "scope": "source_backed_placeholder_profile_copy",
+    "sourceRef": "owner_instruction_2026-08-23"
+  },
+  "factualFallbackContract": {
+    "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+    "sourceBasis": "factual_role_education_and_work_evidence",
+    "sourceType": "factual_fallback",
+    "sourceRef": "alumni_sheet_and_registry_reconciliation_2026-08-23",
+    "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+    "derivationMethod": "bounded_inference",
+    "evidenceScope": "interest_and_work_style_from_role_education_and_verified_work",
+    "reviewStatus": "pending_candidate_video_review"
+  },
+  "profiles": [
+    {
+      "personId": "I0015",
+      "th": "เฟซสนใจประสบการณ์ใช้งานของผลิตภัณฑ์อสังหาริมทรัพย์ และอยากใช้ทักษะ full-stack เพื่อพัฒนาฟีเจอร์จากความคิดเห็นของผู้ใช้พร้อมเรียนรู้ต่อเนื่อง",
+      "en": "Faze is interested in the user experience of real-estate products and wants to apply full-stack skills to improve features from user feedback while continuing to learn."
+    },
+    {
+      "personId": "I0018",
+      "th": "Grace สนใจจุดตัดของข้อมูล เทคโนโลยี และความยั่งยืน และอยากเชื่อมมุมมองธุรกิจ งานวิจัย และประสบการณ์ผู้ใช้เพื่อทำให้ข้อมูลเข้าถึงและนำไปใช้ได้ง่ายขึ้น",
+      "en": "Grace is interested in the intersection of data, technology, and sustainability, and wants to connect business, research, and user-experience perspectives to make insights more accessible and useful."
+    },
+    {
+      "personId": "S0002",
+      "th": "เรเน่อยากเชื่อมความสนใจด้านการตลาดกับอสังหาริมทรัพย์ โดยนำพื้นฐานประชาสัมพันธ์ คอนเทนต์ และการสื่อสารมาช่วยพัฒนางานการตลาดพร้อมเรียนรู้ต่อเนื่อง",
+      "en": "Renee wants to connect her interests in marketing and real estate, bringing a public-relations, content, and communication perspective while continuing to learn."
+    },
+    {
+      "personId": "S0003",
+      "th": "พัทธ์สนุกกับการสร้างประสบการณ์ใช้งานและแอปที่ใช้จริง และอยากช่วยพัฒนาผลิตภัณฑ์ที่ใช้งานง่ายผ่านงาน frontend และ UX/UI พร้อมเรียนรู้จากทีม",
+      "en": "Pat enjoys building real-world applications and user experiences, and wants to help create approachable products through frontend and UX/UI work while learning from the team."
+    },
+    {
+      "personId": "I0013",
+      "th": "ปอนอยากใช้ทักษะ full-stack กับการแสดงข้อมูลเมืองใน CityMETER พร้อมพัฒนาการแก้ปัญหาและเรียนรู้ Kotlin กับ Spring ให้ลึกขึ้น",
+      "en": "Pond wants to apply full-stack skills to urban-data visualization in CityMETER while strengthening problem-solving and learning Kotlin and Spring more deeply."
+    },
+    {
+      "personId": "I0014",
+      "th": "Mos อยากมีส่วนร่วมสร้างผลิตภัณฑ์ที่เกิดผลจริง และให้ความสำคัญกับการตรงต่อเวลา ความซื่อสัตย์ การพัฒนาตัวเอง และความทุ่มเทต่อทีม",
+      "en": "Mos wants to help build products with real-world impact, bringing time, honesty, a willingness to improve, and dedication to the team."
+    },
+    {
+      "personId": "I0003",
+      "th": "แพรวาสนใจเรียนรู้การทำแผนที่และการแสดงข้อมูล และให้ความสำคัญกับการเข้าใจโค้ดและเหตุผลเบื้องหลังสิ่งที่ทำอย่างถ่องแท้",
+      "en": "Praewa is interested in learning mapping and data visualization, and values understanding the code and reasoning behind what she builds."
+    },
+    {
+      "personId": "I0016",
+      "th": "มุก (Pitcha) สนใจเทคโนโลยีที่ช่วยยกระดับชีวิตในเมือง และอยากใช้ความเข้าใจเทรนด์ดิจิทัลกับความต้องการผู้ใช้เพื่อสร้างการมีส่วนร่วมและการรับรู้",
+      "en": "Mook (Pitcha) is interested in technology that improves urban life and wants to use an understanding of digital trends and user needs to build engagement and awareness."
+    },
+    {
+      "personId": "I0004",
+      "th": "หมิงอยากนำประสบการณ์ด้านคอนเทนต์ การตลาด การสื่อสาร และภาษามาช่วยสร้างเรื่องราวที่เข้าถึงผู้คน พร้อมลงมือหาทางแก้ปัญหาและเรียนรู้ไปกับทีม",
+      "en": "Ming wants to bring content, marketing, communication, and language experience to stories that reach people, while taking initiative and learning with the team."
+    },
+    {
+      "personId": "I0017",
+      "th": "มายสนใจนวัตกรรมเมืองและอยากนำความรู้ด้านเมืองอัจฉริยะกับประสบการณ์การตลาดดิจิทัลมาพัฒนากลยุทธ์ที่เชื่อมกับผู้คน โดยทดลอง เรียนรู้จากผลลัพธ์ และปรับปรุงต่อเนื่อง",
+      "en": "Mind is interested in urban innovation and wants to combine smart-city knowledge with digital-marketing experience to shape people-centered strategies through testing, learning, and iteration."
+    },
+    {
+      "personId": "I0026",
+      "th": "ฮาน่าสนใจการเปลี่ยนข้อมูลให้เป็นสารสนเทศที่นำไปลงมือใช้ได้ และอยากผสานมุมมองวิศวกรรม ธุรกิจ และการสื่อสารเพื่อช่วยทีมคิดและทำงานร่วมกัน",
+      "en": "Hana is interested in turning data into actionable information and wants to combine engineering, business, and communication perspectives to support ideas and collaboration."
+    },
+    {
+      "personId": "I0027",
+      "th": "โนนิอยากเรียนรู้โลกอสังหาริมทรัพย์ผ่านงานการตลาด และนำความสนใจด้านการวิเคราะห์ตลาด พฤติกรรมลูกค้า และการเล่าเรื่องมาช่วยสร้างแคมเปญที่มีความหมาย",
+      "en": "Noni wants to explore real estate through marketing and bring her interests in market analysis, customer behavior, and storytelling to meaningful campaigns."
+    },
+    {
+      "personId": "I0028",
+      "th": "ฟรังสนุกกับการมองปัญหาการตลาดหลายมุมและหาทางออกที่เรียบง่ายแต่มีผล และอยากเรียนรู้มุมใหม่ของอสังหาริมทรัพย์ พร้อมเรียนรู้และทำงานร่วมกับทีมอย่างสร้างสรรค์",
+      "en": "France enjoys viewing marketing problems from different angles and finding simple, useful solutions, while exploring real estate and bringing positive energy to the team."
+    },
+    {
+      "personId": "I0022",
+      "th": "เพลงอยากช่วยให้ ijji เติบโตอย่างมีทิศทาง ด้วยการค้นหาความต้องการผู้ใช้ แปลง insight เป็นขั้นตอนของผลิตภัณฑ์ และตั้งคำถามกับสมมติฐานอย่างเป็นระบบ",
+      "en": "Pleng wants to help ijji grow with direction by uncovering user needs, turning insights into product steps, and questioning assumptions systematically."
+    },
+    {
+      "personId": "I0031",
+      "th": "บิวอยากพัฒนาทักษะการเชื่อม API กับ AI backend และตั้งใจพัฒนาความสามารถด้านการเขียนโค้ดอย่างต่อเนื่อง",
+      "en": "Bill wants to develop API integration with AI backends and keep improving his coding skills."
+    },
+    {
+      "personId": "I0030",
+      "th": "เคนสนใจ GIS และซอฟต์แวร์แผนที่ โดยอยากเปลี่ยนข้อมูลตำแหน่งให้เป็นประสบการณ์โต้ตอบที่ผู้ใช้เปิดใช้ได้ พร้อมเติบโตไปกับทีม",
+      "en": "Ken is interested in GIS and map software, and wants to turn geolocation data into interactive experiences people can use while growing with the team."
+    },
+    {
+      "personId": "I0024",
+      "th": "เฟยอยากต่อยอดประสบการณ์กับ ijji จากงานวิเคราะห์และจัดกรอบปัญหาไปสู่การทำงานจริงที่ช่วยให้ทีมตัดสินใจชัดและเร็วขึ้น",
+      "en": "Feuy wants to extend his experience with ijji from analysis and problem framing into practical work that helps the team make clearer, faster decisions."
+    },
+    {
+      "personId": "I0032",
+      "th": "ยิ้วอยากนำความรู้จากมหาวิทยาลัยมาสร้างซอฟต์แวร์ที่ช่วยผู้คนและธุรกิจในไทย พร้อมพัฒนาทักษะผ่านการลงมือทำจริง",
+      "en": "Yew wants to apply university learning to software that helps people and businesses in Thailand while developing skills through real work."
+    },
+    {
+      "personId": "I0033",
+      "th": "ทีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
+      "en": "Team aims to learn PropTech and make complex data easier to understand and visualize, bringing a combined product, design, and development perspective."
+    },
+    {
+      "personId": "I0029",
+      "th": "ดาด้าอยากใช้ข้อมูลเพื่อเข้าใจเมืองและชุมชนให้ลึกขึ้น โดยเชื่อมการวิจัยเชิงปริมาณและคุณภาพกับมุมมองนโยบายและการเล่าเรื่อง",
+      "en": "Dada wants to use data to understand cities and communities more deeply, connecting quantitative and qualitative research with policy analysis and storytelling."
+    },
+    {
+      "personId": "I0043",
+      "th": "ดราฟสนใจสร้างระบบที่เปลี่ยนข้อมูลเมืองและธุรกิจให้ช่วยการตัดสินใจได้ และอยากพัฒนางานแผนที่ ข้อมูลเชิงพื้นที่ และผลิตภัณฑ์ที่คำนึงถึงบริบทของผู้ใช้",
+      "en": "Draf is interested in systems that turn urban and business data into decision support, and wants to develop mapping, spatial-data, and context-aware product work."
+    },
+    {
+      "personId": "S0004",
+      "th": "ฟิล์มสนใจทำให้ข้อมูลเมืองและที่ดินที่ซับซ้อนเข้าใจและนำไปใช้ได้ และให้ความสำคัญกับความรับผิดชอบ ความละเอียด และผลกระทบของผลิตภัณฑ์ต่อผู้คนกับเมือง",
+      "en": "Film is interested in making complex urban and land data understandable and usable, and values responsibility, attention to detail, and how products affect people and cities."
+    },
+    {
+      "personId": "I0040",
+      "th": "แดนชอบเปลี่ยนข้อมูลให้เป็นสิ่งที่ชัดเจนและนำไปใช้ได้ และอยากช่วยวิเคราะห์รูปแบบเพื่อให้ทีมตัดสินใจได้ง่ายขึ้น พร้อมรับผิดชอบและหาคำตอบด้วยตัวเอง",
+      "en": "Dan likes turning data into clear, actionable information and wants to help spot patterns that support decisions, while taking ownership and finding answers independently."
+    },
+    {
+      "personId": "I0041",
+      "th": "มุก (Pattareeya) ชอบเริ่มจากโจทย์ที่ยังไม่ชัด ค่อยๆ แยกส่วนและทำให้เป็นต้นแบบที่ใช้งานได้ โดยเน้นความเรียบง่าย ความสม่ำเสมอ และความรับผิดชอบ",
+      "en": "Mook (Pattareeya) enjoys starting with unclear problems, breaking them down, and turning them into practical prototypes with simplicity, consistency, and responsibility."
+    },
+    {
+      "personId": "I0042",
+      "th": "เมย์สนใจใช้ AI เพื่อยกระดับประสบการณ์ผู้ใช้ และตั้งใจเรียนรู้เทคนิคใหม่ ทำงานร่วมกับผู้อื่น และพยายามต่อเมื่อเจอโจทย์ยาก",
+      "en": "May is interested in using AI to improve user experience and sees herself as driven to learn new techniques, work with others, and keep trying through challenges."
+    },
+    {
+      "personId": "S0001",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "โอ๊ตเติบโตมากับ Landometer ตั้งแต่ FDI สู่พาร์ตไทม์และทีมประจำ วันนี้เชื่อมงาน CityCell, Land Portfolio และ Lead2Loan พร้อมช่วยน้องๆ FDI พาไอเดียเดินต่อ",
+      "en": "Oat has grown with Landometer from FDI to part-time and full-time work, now connecting CityCell, Land Portfolio, and Lead2Loan while helping younger FDI teammates move ideas forward."
+    },
+    {
+      "personId": "I0001",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "ปุ๊กกี้ได้มองเมืองผ่านข้อมูลสองโลกที่ต่างกันมาก ทั้งโรงแรมและโรงงาน แล้วช่วยทำให้เรื่องห้องพัก ราคา ฤดูกาล แรงงาน และการลงทุนอ่านต่อได้ง่ายขึ้น",
+      "en": "Pookkie worked across two very different urban datasets—hotels and factories—helping make rooms, rates, seasonality, labor, and investment easier to explore."
+    },
+    {
+      "personId": "I0002",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "อามช่วยจัดระเบียบข้อมูลโรงงาน แรงงาน และการลงทุน ให้กลายเป็นมุมมองที่ใช้ทำความเข้าใจฐานเศรษฐกิจของพื้นที่ได้ชัดขึ้น",
+      "en": "Arm helped organize factory, workforce, and investment data into a clearer view of an area’s economic base."
+    },
+    {
+      "personId": "P0001",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "เสกเชื่อมสองด้านของการทำความเข้าใจเมือง ผ่าน CityCell ที่มองพื้นที่เป็นระบบ และ CityChat ที่พาคำถามของคนกลับเข้าสู่ข้อมูล",
+      "en": "Sek connects two ways of understanding cities: CityCell’s spatial model and CityChat’s conversation with data."
+    },
+    {
+      "personId": "I0005",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "เดย์ทำงานตรงรอยต่อระหว่างการเดินทางกับการสื่อสารข้อมูล ผ่าน CityMETER: Road Traffic และ ContentCompass—จากความเคลื่อนไหวบนถนนสู่เรื่องราวที่คนอ่านเข้าใจได้",
+      "en": "Day worked at the intersection of mobility and data communication through CityMETER: Road Traffic and ContentCompass—from movement on the road to information people can follow."
+    },
+    {
+      "personId": "I0006",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "ทีโน่ช่วยพาข้อมูลการศึกษาออกจากตาราง ผ่าน CityMETER: School และ Walkidio ให้เรื่องโรงเรียน นักเรียน และครูไปต่อเป็นเครื่องมือที่คนเปิดใช้ได้",
+      "en": "Teno helped move education data beyond the spreadsheet through CityMETER: School and Walkidio, turning information about schools, students, and teachers into tools people can use."
+    },
+    {
+      "personId": "I0007",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "ดาวเหนือเชื่อมโจทย์ที่อยู่อาศัยกับความปลอดภัย ผ่าน CityMETER: Townhouse และ SafeStreet ทำให้ข้อมูลบ้านกับสภาพแวดล้อมมาอยู่ในภาพเดียวกัน",
+      "en": "Daonua connected housing and safety through CityMETER: Townhouse and SafeStreet, bringing information about homes and their surroundings into the same view."
+    },
+    {
+      "personId": "I0008",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "กายทำงานกับการตัดสินใจเรื่องที่ดินหลายมุม ตั้งแต่ Land Offer และ EIA ถึง ContentCompass ช่วยจัดข้อมูลให้คนเห็นทั้งโอกาสและเงื่อนไขของพื้นที่",
+      "en": "Guy worked across several sides of land decisions—from Land Offer and EIA to ContentCompass—helping surface both opportunities and constraints."
+    },
+    {
+      "personId": "I0009",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "แฮมขยับระหว่างข้อมูลโรงงาน แรงงาน และการลงทุน กับ KinNow งานสองสเกลที่ต่างกันแต่ต่างก็ช่วยให้เราเห็นบริบทของพื้นที่ชัดขึ้น",
+      "en": "Ham worked across factory, workforce, and investment data as well as KinNow—two different scales that both add context to how a place works."
+    },
+    {
+      "personId": "I0010",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "ว่านร่วมทำ CityMETER: Condo Rental และ Walkidio เชื่อมข้อมูลที่อยู่อาศัยกับอีกมุมหนึ่งของประสบการณ์เมืองในชุดงานเดียวกัน",
+      "en": "Wan contributed to CityMETER: Condo Rental and Walkidio, connecting housing data with another side of the urban experience."
+    },
+    {
+      "personId": "I0011",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_high",
+      "th": "อิ๋งทำงานข้ามหลายชั้นของเมือง ตั้งแต่ Condo Offer และ Walkidio ไปถึง ijji และ Locale Insights ช่วยเชื่อมข้อมูลทำเลกับคำถามที่ใกล้การตัดสินใจจริงขึ้น",
+      "en": "Ing worked across several layers of the city—from Condo Offer and Walkidio to ijji and Locale Insights—bringing location data closer to real decision questions."
+    },
+    {
+      "personId": "I0012",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "พิงกี้นำพื้นฐานสายเทคนิคมาอยู่ในบทบาท Marketing Strategy และลงมือกับ KinNow เป็นจุดตัดระหว่างการสร้างผลิตภัณฑ์กับการทำให้คนเข้าใจมัน",
+      "en": "Pingy brought a technical study background into Marketing Strategy and KinNow, working at the meeting point between building a product and helping people understand it."
+    },
+    {
+      "personId": "I0019",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_low",
+      "th": "Jamie นำมุมมองเศรษฐศาสตร์มาเจอกับบทบาท Consulting Partner ใน ijji ช่วยให้คำถามของผลิตภัณฑ์มีกรอบเรื่องทางเลือกและผลกระทบที่ชัดขึ้น",
+      "en": "Jamie brought an economics perspective to the Consulting Partner role in ijji, adding a clearer frame for choices and their effects."
+    },
+    {
+      "personId": "I0020",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_low",
+      "th": "Tieam ร่วมทำ ijji ในบทบาท Consulting Partner อยู่ตรงช่วงที่ข้อมูล โจทย์ธุรกิจ และการตัดสินใจต้องคุยกันให้รู้เรื่อง",
+      "en": "Tieam joined ijji as a Consulting Partner, working where data, business questions, and decisions need to speak the same language."
+    },
+    {
+      "personId": "I0021",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_low",
+      "th": "Pleng นำพื้นฐานเศรษฐศาสตร์นานาชาติมาเจอกับ ijji มองโจทย์ธุรกิจผ่านทั้งแรงจูงใจ บริบท และทางเลือกที่เป็นไปได้",
+      "en": "Pleng brought an international-economics background to ijji, viewing business questions through incentives, context, and possible choices."
+    },
+    {
+      "personId": "I0023",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_low",
+      "th": "Tim ทำ ijji ในฐานะ Consulting Partner พร้อมพื้นฐานเศรษฐศาสตร์ ช่วยตั้งกรอบให้โจทย์ที่ยังกว้างค่อยๆ กลายเป็นคำถามที่ทีมตัดสินใจต่อได้",
+      "en": "Tim worked on ijji as a Consulting Partner with an economics background, helping broad questions take shape as decisions the team could continue with."
+    },
+    {
+      "personId": "I0025",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium_low",
+      "th": "Pang เชื่อมพื้นฐานการเงินกับงาน ijji ในบทบาท Consulting Partner มองไอเดียผลิตภัณฑ์ควบคู่กับความเป็นไปได้และการใช้ทรัพยากรอย่างมีเหตุผล",
+      "en": "Pang connected a finance background with the Consulting Partner role in ijji, considering product ideas alongside feasibility and thoughtful use of resources."
+    },
+    {
+      "personId": "I0034",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "เอิร์ธทำงานในพื้นที่ที่ข้อมูลต้องรับมือกับความไม่แน่นอน ตั้งแต่การคาดการณ์น้ำท่วมและ Locale Insight Intelligence Layer ไปจนถึง ijji",
+      "en": "Earth works where data meets uncertainty—from flood forecasting and the Locale Insight Intelligence Layer to ijji."
+    },
+    {
+      "personId": "I0035",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "แทนช่วยทำให้ข้อมูลบริษัทจดทะเบียน ทั้งสถานะและทุน กลายเป็นภาพรวมที่คนใช้มองโครงสร้างเศรษฐกิจของพื้นที่ได้เร็วขึ้น",
+      "en": "Tan helped turn registered-company status and capital data into a quicker view of an area’s economic structure."
+    },
+    {
+      "personId": "I0036",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "โต๋ทำงานข้ามตัวเลข บทสนทนา และภาพเมือง ผ่าน Municipal Revenue, CityChat และ CityScan ทำให้คำถามเมืองเดียวกันมองได้จากหลายทาง",
+      "en": "Toh worked across numbers, conversations, and city views through Municipal Revenue, CityChat, and CityScan—three ways into the same urban question."
+    },
+    {
+      "personId": "I0037",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "ณิชาช่วยเปิดภาพของศูนย์การค้าผ่านข้อมูลจำนวน พื้นที่เช่า และกลุ่มตลาด เพื่อให้คนเห็นว่าพื้นที่พาณิชย์แต่ละแห่งต่างกันอย่างไร",
+      "en": "Nicha helped map the shopping-center landscape through supply, leasable area, and market segments, making differences between commercial places easier to see."
+    },
+    {
+      "personId": "I0038",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "ไนน์ทำงานกับระบบเมืองสองแบบที่มองไม่เห็นง่ายๆ ทั้งโครงสร้างหน่วยงานรัฐและบุคลากร กับการไหลบ่าของน้ำ ผ่าน CityMETER และ DWR Runoff",
+      "en": "Nine worked on two urban systems that are easy to overlook: government organizations and workforces, and the movement of runoff through DWR Runoff."
+    },
+    {
+      "personId": "I0039",
+      "basis": "factual_fallback",
+      "evidenceConfidence": "medium",
+      "th": "จอมใจเชื่อมรูปแบบโครงข่ายถนนกับความรู้ร่วมของเมือง ผ่าน RoadDNA และ CityWiki ให้ทั้งโครงสร้างและเรื่องราวของพื้นที่มีที่อยู่ในชุดเครื่องมือของทีม",
+      "en": "Jomjai connected road-network patterns with shared city knowledge through RoadDNA and CityWiki, giving both urban structure and local stories a place in the team’s toolkit."
+    }
+  ]
+}

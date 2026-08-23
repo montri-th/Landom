@@ -1,0 +1,68 @@
+{
+  "contractVersion": "1.0",
+  "academicPlacement": {
+    "cooperativeEducationPersonIds": [
+      "I0003",
+      "I0030",
+      "I0031",
+      "I0034",
+      "I0036",
+      "I0039"
+    ],
+    "explicitInternshipPersonIds": [
+      "I0035"
+    ],
+    "nonCoreCandidatesExcluded": true,
+    "sourceBasis": "owner_instruction_with_exact_roster_reconciliation"
+  },
+  "staffDegrees": [
+    {
+      "personId": "S0001",
+      "degree": {
+        "abbreviation": { "th": "วศ.บ.", "en": "B.Eng." },
+        "title": { "th": "วิศวกรรมศาสตรบัณฑิต", "en": "Bachelor of Engineering" },
+        "field": { "th": "วิศวกรรมคอมพิวเตอร์", "en": "Computer Engineering" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      }
+    },
+    {
+      "personId": "S0002",
+      "degree": {
+        "abbreviation": { "th": "นศ.บ.", "en": "B.A." },
+        "title": { "th": "นิเทศศาสตรบัณฑิต", "en": "Bachelor of Arts (Communication Arts)" },
+        "field": { "th": "การประชาสัมพันธ์", "en": "Public Relations" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.commarts.chula.ac.th/_docs/bca-curriculum-2566%2868%29.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      }
+    },
+    {
+      "personId": "S0003",
+      "degree": {
+        "abbreviation": { "th": "วศ.บ.", "en": "B.Eng." },
+        "title": { "th": "วิศวกรรมศาสตรบัณฑิต", "en": "Bachelor of Engineering" },
+        "field": { "th": "วิศวกรรมคอมพิวเตอร์", "en": "Computer Engineering" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      }
+    },
+    {
+      "personId": "S0004",
+      "degree": {
+        "abbreviation": { "th": "ศศ.บ.", "en": "B.A." },
+        "title": { "th": "ศิลปศาสตรบัณฑิต", "en": "Bachelor of Arts" },
+        "field": { "th": "การบริหารจัดการเมือง", "en": "Urban Administration and Management" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://imd.nmu.ac.th/wp-content/uploads/2022/07/IMD-CityPASS-2022.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      }
+    }
+  ]
+}

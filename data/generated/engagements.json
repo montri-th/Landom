@@ -3,6 +3,7 @@
     "engagementId": "E0001",
     "personId": "S0001",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -29,6 +30,7 @@
     "engagementId": "E0054",
     "personId": "S0001",
     "category": "part_time",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "Part-time",
       "names": {
@@ -55,6 +57,7 @@
     "engagementId": "E0031",
     "personId": "S0001",
     "category": "full_time",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "Full-time",
       "names": {
@@ -83,6 +86,7 @@
     "engagementId": "E0002",
     "personId": "I0001",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -107,6 +111,7 @@
     "engagementId": "E0003",
     "personId": "I0002",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -131,6 +136,7 @@
     "engagementId": "E0004",
     "personId": "P0001",
     "category": "part_time",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "Part-time",
       "names": {
@@ -157,6 +163,7 @@
     "engagementId": "E0005",
     "personId": "S0002",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -181,6 +188,7 @@
     "engagementId": "E0032",
     "personId": "S0002",
     "category": "full_time",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "Full-time",
       "names": {
@@ -207,6 +215,7 @@
     "engagementId": "E0006",
     "personId": "I0003",
     "category": "internship",
+    "academicPlacementType": "cooperative_education",
     "program": {
       "code": "FDI",
       "names": {
@@ -231,6 +240,7 @@
     "engagementId": "E0007",
     "personId": "S0003",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -255,6 +265,7 @@
     "engagementId": "E0033",
     "personId": "S0003",
     "category": "full_time",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "Full-time",
       "names": {
@@ -281,6 +292,7 @@
     "engagementId": "E0008",
     "personId": "I0004",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -305,6 +317,7 @@
     "engagementId": "E0009",
     "personId": "I0005",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -329,6 +342,7 @@
     "engagementId": "E0010",
     "personId": "I0006",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -353,6 +367,7 @@
     "engagementId": "E0011",
     "personId": "I0007",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -377,6 +392,7 @@
     "engagementId": "E0012",
     "personId": "I0008",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -401,6 +417,7 @@
     "engagementId": "E0013",
     "personId": "I0009",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -425,6 +442,7 @@
     "engagementId": "E0014",
     "personId": "I0010",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -449,6 +467,7 @@
     "engagementId": "E0015",
     "personId": "I0011",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -473,6 +492,7 @@
     "engagementId": "E0016",
     "personId": "I0012",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -497,6 +517,7 @@
     "engagementId": "E0017",
     "personId": "I0013",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -521,6 +542,7 @@
     "engagementId": "E0018",
     "personId": "I0014",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -545,6 +567,7 @@
     "engagementId": "E0019",
     "personId": "I0015",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -569,6 +592,7 @@
     "engagementId": "E0020",
     "personId": "I0016",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -593,6 +617,7 @@
     "engagementId": "E0021",
     "personId": "I0017",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -617,6 +642,7 @@
     "engagementId": "E0022",
     "personId": "I0018",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -641,6 +667,7 @@
     "engagementId": "E0023",
     "personId": "I0019",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -665,6 +692,7 @@
     "engagementId": "E0024",
     "personId": "I0020",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -689,6 +717,7 @@
     "engagementId": "E0025",
     "personId": "I0021",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -713,6 +742,7 @@
     "engagementId": "E0035",
     "personId": "I0022",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "PMI",
       "names": {
@@ -737,6 +767,7 @@
     "engagementId": "E0026",
     "personId": "I0022",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -761,6 +792,7 @@
     "engagementId": "E0027",
     "personId": "I0023",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -785,6 +817,7 @@
     "engagementId": "E0036",
     "personId": "I0024",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "PMI",
       "names": {
@@ -809,6 +842,7 @@
     "engagementId": "E0028",
     "personId": "I0024",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -833,6 +867,7 @@
     "engagementId": "E0029",
     "personId": "I0025",
     "category": "program_participant",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "IMP",
       "names": {
@@ -857,6 +892,7 @@
     "engagementId": "E0030",
     "personId": "I0026",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "PDI",
       "names": {
@@ -881,6 +917,7 @@
     "engagementId": "E0034",
     "personId": "I0027",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -905,6 +942,7 @@
     "engagementId": "E0037",
     "personId": "I0028",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -929,6 +967,7 @@
     "engagementId": "E0038",
     "personId": "I0029",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -953,6 +992,7 @@
     "engagementId": "E0039",
     "personId": "S0004",
     "category": "full_time",
+    "academicPlacementType": "not_applicable",
     "program": {
       "code": "Full-time",
       "names": {
@@ -979,6 +1019,7 @@
     "engagementId": "E0040",
     "personId": "I0030",
     "category": "internship",
+    "academicPlacementType": "cooperative_education",
     "program": {
       "code": "FDI",
       "names": {
@@ -1003,6 +1044,7 @@
     "engagementId": "E0041",
     "personId": "I0031",
     "category": "internship",
+    "academicPlacementType": "cooperative_education",
     "program": {
       "code": "FDI",
       "names": {
@@ -1027,6 +1069,7 @@
     "engagementId": "E0042",
     "personId": "I0032",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -1051,6 +1094,7 @@
     "engagementId": "E0043",
     "personId": "I0033",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "PDI",
       "names": {
@@ -1075,6 +1119,7 @@
     "engagementId": "E0044",
     "personId": "I0034",
     "category": "internship",
+    "academicPlacementType": "cooperative_education",
     "program": {
       "code": "FDI",
       "names": {
@@ -1099,6 +1144,7 @@
     "engagementId": "E0045",
     "personId": "I0035",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -1106,7 +1152,7 @@
         "en": "Full-stack Developer Intern, FDI"
       }
     },
-    "cohortLabel": "CEDT107 + Co-op / start May 19",
+    "cohortLabel": "CEDT107 / start May 19",
     "roleTitle": {
       "th": "นักพัฒนา Full-Stack ฝึกงาน",
       "en": "Full-Stack Developer Intern"
@@ -1123,6 +1169,7 @@
     "engagementId": "E0046",
     "personId": "I0036",
     "category": "internship",
+    "academicPlacementType": "cooperative_education",
     "program": {
       "code": "FDI",
       "names": {
@@ -1147,6 +1194,7 @@
     "engagementId": "E0047",
     "personId": "I0037",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -1171,6 +1219,7 @@
     "engagementId": "E0048",
     "personId": "I0038",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {
@@ -1195,6 +1244,7 @@
     "engagementId": "E0049",
     "personId": "I0039",
     "category": "internship",
+    "academicPlacementType": "cooperative_education",
     "program": {
       "code": "FDI",
       "names": {
@@ -1219,6 +1269,7 @@
     "engagementId": "E0050",
     "personId": "I0040",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -1243,6 +1294,7 @@
     "engagementId": "E0051",
     "personId": "I0041",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "PDI",
       "names": {
@@ -1267,6 +1319,7 @@
     "engagementId": "E0052",
     "personId": "I0042",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "MSI",
       "names": {
@@ -1291,6 +1344,7 @@
     "engagementId": "E0053",
     "personId": "I0043",
     "category": "internship",
+    "academicPlacementType": "internship",
     "program": {
       "code": "FDI",
       "names": {

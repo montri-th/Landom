@@ -86,7 +86,7 @@
       "type": "object",
       "required": ["schemaVersion", "source", "personIdPolicy", "evidenceBoundary", "counts"],
       "properties": {
-        "schemaVersion": { "const": "1.1.0" },
+        "schemaVersion": { "const": "1.3.0" },
         "source": {
           "type": "object",
           "required": ["spreadsheetId", "publicSheetsUsed", "privateContactSourcesExcluded"],
@@ -134,7 +134,7 @@
     },
     "educationRecord": {
       "type": "object",
-      "required": ["educationRecordId", "personId", "institutionId", "programId", "isPrimary", "qualification", "verificationStatus"],
+      "required": ["educationRecordId", "personId", "institutionId", "programId", "isPrimary", "qualification", "degree", "verificationStatus"],
       "properties": {
         "educationRecordId": { "type": "string", "pattern": "^EDU\\d{4}$" },
         "personId": { "$ref": "#/$defs/personId" },
@@ -142,6 +142,25 @@
         "programId": { "type": ["string", "null"] },
         "isPrimary": { "type": "boolean" },
         "qualification": { "$ref": "#/$defs/localized" },
+        "degree": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["abbreviation", "title", "field", "awardStatus", "personalAwardVerified", "programEvidenceUrl", "evidenceScope"],
+              "properties": {
+                "abbreviation": { "$ref": "#/$defs/localized" },
+                "title": { "$ref": "#/$defs/localized" },
+                "field": { "$ref": "#/$defs/localized" },
+                "awardStatus": { "enum": ["under_review", "in_progress", "completed"] },
+                "personalAwardVerified": { "type": "boolean" },
+                "programEvidenceUrl": { "$ref": "#/$defs/nullableUri" },
+                "evidenceScope": { "type": "string", "minLength": 1 }
+              }
+            }
+          ]
+        },
         "verificationStatus": { "type": "string" }
       }
     },
@@ -178,12 +197,23 @@
         },
         "bio": {
           "type": "object",
-          "required": ["th", "en", "status", "verificationStatus"],
+          "additionalProperties": false,
+          "required": ["th", "en", "status", "verificationStatus", "publicationBasis", "sourceBasis", "sourceType", "sourceRef", "authorRole", "derivationMethod", "evidenceScope", "evidenceConfidence", "reviewStatus", "ownerApproval"],
           "properties": {
             "th": { "$ref": "#/$defs/nullableString" },
             "en": { "$ref": "#/$defs/nullableString" },
-            "status": { "enum": ["owner_pending", "owner_approved"] },
-            "verificationStatus": { "enum": ["owner_pending", "owner_approved"] }
+            "status": { "enum": ["owner_pending", "source_backed_placeholder", "owner_approved"] },
+            "verificationStatus": { "enum": ["owner_pending", "owner_authorized_placeholder", "owner_approved"] },
+            "publicationBasis": { "enum": [null, "owner_authorized_paraphrase_from_first_person_application", "owner_authorized_synthesis_from_roster_evidence"] },
+            "sourceBasis": { "enum": [null, "first_person_application_exact_roster_match", "factual_role_education_and_work_evidence"] },
+            "sourceType": { "enum": [null, "first_person_application", "factual_fallback", "candidate_video_transcript", "owner_supplied_copy"] },
+            "sourceRef": { "$ref": "#/$defs/nullableString" },
+            "authorRole": { "enum": [null, "profile_subject", "assistant_paraphrase_from_owner_and_sheet_records", "directory_owner"] },
+            "derivationMethod": { "enum": [null, "concise_paraphrase", "bounded_inference", "video_transcript_synthesis", "verbatim_owner_copy"] },
+            "evidenceScope": { "$ref": "#/$defs/nullableString" },
+            "evidenceConfidence": { "enum": [null, "exact_roster_match", "owner_confirmed", "high", "medium_high", "medium", "medium_low"] },
+            "reviewStatus": { "enum": ["pending_owner_copy", "pending_candidate_video_review", "owner_approved"] },
+            "ownerApproval": { "$ref": "#/$defs/ownerApprovalNullable" }
           }
         },
         "publication": {
@@ -198,11 +228,12 @@
     },
     "engagement": {
       "type": "object",
-      "required": ["engagementId", "personId", "category", "program", "roleTitle", "status", "responsibilityWorkIds"],
+      "required": ["engagementId", "personId", "category", "academicPlacementType", "program", "roleTitle", "status", "responsibilityWorkIds"],
       "properties": {
         "engagementId": { "type": "string", "pattern": "^E\\d{4}$" },
         "personId": { "$ref": "#/$defs/personId" },
         "category": { "enum": ["full_time", "part_time", "internship", "program_participant"] },
+        "academicPlacementType": { "enum": ["cooperative_education", "internship", "not_applicable"] },
         "program": {
           "type": "object",
           "required": ["code", "names"],

@@ -33,7 +33,7 @@ const COPY = {
     allRoles: "ทุกบทบาท",
     fulltime: "พนักงานประจำ",
     parttime: "พนักงานพาร์ตไทม์",
-    intern: "Intern",
+    intern: "ผู้ฝึกงาน",
     member: "ผู้ร่วมสร้าง",
     cohort: "รุ่น / ปี",
     allCohorts: "ทุกรุ่น",
@@ -58,7 +58,11 @@ const COPY = {
     readStory: "ดูโปรไฟล์",
     educationSection: "การศึกษา",
     educationQualification: "วุฒิการศึกษา",
-    educationProgram: "นิสิตฝึกงานและสหกิจศึกษาจาก",
+    educationProgram: "การศึกษาจาก",
+    educationInternship: "นักศึกษาฝึกงานจาก",
+    educationCooperative: "นักศึกษาสหกิจศึกษาจาก",
+    educationDegreeInProgress: "กำลังศึกษา",
+    educationDegreeUnderReview: "การศึกษา",
     educationNeutral: "การศึกษา",
     educationProgramPending: "รอยืนยันสาขาที่เรียน",
     educationQualificationPending: "รอยืนยันวุฒิ",
@@ -66,6 +70,10 @@ const COPY = {
     voice: "มุมมองและเป้าหมาย",
     contributions: "ผลงานที่ร่วมทำ",
     roleHistory: "ช่วงเวลาที่ร่วมงานกับ Landometer",
+    engagementHistory: "ช่วงที่ร่วมทีม",
+    engagementSequence: "ช่วงที่ {count}",
+    placementInternshipShort: "ฝึกงาน",
+    placementCooperativeShort: "สหกิจศึกษา",
     achievements: "รางวัลและความสำเร็จ",
     publicProfiles: "ช่องทางออนไลน์",
     closeDetails: "ปิดรายละเอียด",
@@ -74,13 +82,15 @@ const COPY = {
     noStory: "",
     contributionRole: "หน้าที่: {role}",
     openWork: "เปิดผลงาน {name}",
+    awardEvidence: "ดูหลักฐานรางวัล",
+    openAwardEvidence: "เปิดหลักฐานรางวัลของ {name}",
     theme: {
       system: "ธีม: ตามระบบ กดเพื่อใช้ธีมสว่าง",
       light: "ธีม: สว่าง กดเพื่อใช้ธีมมืด",
       dark: "ธีม: มืด กดเพื่อใช้ธีมตามระบบ"
     },
     themeNames: { system: "ตามระบบ", light: "สว่าง", dark: "มืด" },
-    themeChanged: "เปลี่ยนธีมเป็น {theme}แล้ว",
+    themeChanged: "เปลี่ยนเป็นธีม{theme}แล้ว",
     languageChanged: "เปลี่ยนภาษาเป็นไทยแล้ว"
   },
   en: {
@@ -136,7 +146,11 @@ const COPY = {
     readStory: "View profile",
     educationSection: "Education",
     educationQualification: "Qualification",
-    educationProgram: "Internship and cooperative education from",
+    educationProgram: "Education from",
+    educationInternship: "Intern from",
+    educationCooperative: "Cooperative education from",
+    educationDegreeInProgress: "Degree in progress",
+    educationDegreeUnderReview: "Education",
     educationNeutral: "Education",
     educationProgramPending: "Program pending confirmation",
     educationQualificationPending: "Qualification pending confirmation",
@@ -144,6 +158,10 @@ const COPY = {
     voice: "Perspective and goals",
     contributions: "Work they contributed to",
     roleHistory: "Time with Landometer",
+    engagementHistory: "Engagement history",
+    engagementSequence: "Period {count}",
+    placementInternshipShort: "Internship",
+    placementCooperativeShort: "Co-op",
     achievements: "Awards and achievements",
     publicProfiles: "Online profiles",
     closeDetails: "Close details",
@@ -152,6 +170,8 @@ const COPY = {
     noStory: "",
     contributionRole: "Role: {role}",
     openWork: "Open {name}",
+    awardEvidence: "View award evidence",
+    openAwardEvidence: "View award evidence for {name}",
     theme: {
       system: "Theme: system. Press to use light theme",
       light: "Theme: light. Press to use dark theme",
@@ -541,6 +561,49 @@ function canonicalNameVariant(record, variant, language = state.language) {
   ]), language);
 }
 
+function normalizedEnum(value) {
+  return String(value ?? "").trim().toLowerCase().replace(/[\s-]+/g, "_");
+}
+
+function academicPlacementTypeFor(engagement) {
+  const value = normalizedEnum(firstValue(engagement, ["academicPlacementType", "academic_placement_type"]));
+  return ["internship", "cooperative_education", "not_applicable"].includes(value) ? value : "";
+}
+
+function normalizedLabel(value) {
+  return String(value || "").normalize("NFKC").toLocaleLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function uniqueLabels(values) {
+  const seen = new Set();
+  return values.filter((value) => {
+    const key = normalizedLabel(value);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function degreeDisplayValue({ abbreviation, title, field, compact = false }) {
+  if (compact) return uniqueLabels([abbreviation || title, field]).join(", ");
+  return uniqueLabels([title || abbreviation, field]).join(" · ");
+}
+
+function educationLabelKey(mode, placementType, awardStatus, personalAwardVerified) {
+  if (mode === "qualification") {
+    if (awardStatus === "in_progress") return "educationDegreeInProgress";
+    if (awardStatus === "completed" && personalAwardVerified) return "educationQualification";
+    if (awardStatus) return "educationDegreeUnderReview";
+    return "educationQualification";
+  }
+  if (mode === "program") {
+    if (placementType === "cooperative_education") return "educationCooperative";
+    if (placementType === "internship") return "educationInternship";
+    return "educationProgram";
+  }
+  return "educationNeutral";
+}
+
 function educationFor(person, engagement, linkedEducationRecord, programIndex, institutionIndex, educationMode) {
   const personEducation = firstValue(person, ["education", "qualification"]);
   const embeddedEducation = personEducation && typeof personEducation === "object" ? personEducation : {};
@@ -564,7 +627,17 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
   const canonicalInstitutionShort = canonicalNameVariant(institution || {}, "short");
   const canonicalInstitutionFull = canonicalNameVariant(institution || {}, "formal");
   const qualification = localizedField(linkedEducation, ["qualification"]);
-  const hasProgramOrQualification = Boolean(program || qualification);
+  const degreeAbbreviation = localizedField(linkedEducation, ["degree.abbreviation"]);
+  const degreeTitle = localizedField(linkedEducation, ["degree.title"]);
+  const degreeField = localizedField(linkedEducation, ["degree.field"]);
+  const degreeShort = degreeDisplayValue({ abbreviation: degreeAbbreviation, title: degreeTitle, field: degreeField, compact: true });
+  const degreeDetail = degreeDisplayValue({ abbreviation: degreeAbbreviation, title: degreeTitle, field: degreeField });
+  const awardStatus = normalizedEnum(firstValue(linkedEducation, ["degree.awardStatus", "degree.award_status"]));
+  const personalAwardVerified = normalizedBoolean(firstValue(linkedEducation, ["degree.personalAwardVerified", "degree.personal_award_verified"]));
+  const verificationStatus = String(firstValue(linkedEducation, ["verificationStatus", "verification_status"]) || firstValue(person, ["educationDisplay.verificationStatus", "education_display.verification_status"]) || "");
+  const effectiveAwardStatus = awardStatus || (/pending|review|required/i.test(verificationStatus) ? "under_review" : "");
+  const placementType = academicPlacementTypeFor(engagement);
+  const hasProgramOrQualification = Boolean(program || qualification || degreeShort || degreeDetail);
   const cardHasProgramAndInstitution = cardParts.length > 1;
   const detailHasProgramAndInstitution = detailParts.length > 1;
   const pendingAcademicLabel = !hasProgramOrQualification && educationMode === "program"
@@ -573,12 +646,12 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
       ? message("educationQualificationPending")
       : "";
 
-  const shortProgram = canonicalProgramShort ||
+  const shortProgram = degreeShort || canonicalProgramShort ||
     localizedField(program || {}, ["shortName", "short_name", "abbreviation", "abbr", "code"]) ||
     localizedField(embeddedEducation, ["programShort", "program_short", "degreeShort", "degree_short"]) ||
     (cardHasProgramAndInstitution || hasProgramOrQualification ? cardParts[0] : "") ||
     pendingAcademicLabel;
-  const fullProgram = qualification || canonicalProgramFull ||
+  const fullProgram = degreeDetail || qualification || canonicalProgramFull ||
     localizedField(program || {}, ["officialName", "official_name", "fullName", "full_name", "name", "degreeName", "degree_name"]) ||
     localizedField(embeddedEducation, ["programOfficial", "program_official", "programName", "program_name", "degree", "qualification"]) ||
     (detailHasProgramAndInstitution || hasProgramOrQualification ? detailParts[0] : "") ||
@@ -593,9 +666,12 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     (detailHasProgramAndInstitution ? detailParts.slice(1).join(" — ") : !hasProgramOrQualification ? detailDisplay : "");
 
   return {
-    labelKey: educationMode === "qualification" ? "educationQualification" : educationMode === "program" ? "educationProgram" : "educationNeutral",
+    labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified),
     mode: educationMode,
-    verificationStatus: String(firstValue(linkedEducation, ["verificationStatus", "verification_status"]) || firstValue(person, ["educationDisplay.verificationStatus", "education_display.verification_status"]) || ""),
+    placementType,
+    awardStatus: effectiveAwardStatus,
+    personalAwardVerified,
+    verificationStatus,
     shortProgram: shortProgram || fullProgram,
     fullProgram: fullProgram || shortProgram,
     shortInstitution: shortInstitution || fullInstitution,
@@ -729,6 +805,10 @@ function contributionRecordsForPerson(id, contributions, workIndex) {
       const workId = relationId(contribution, "work") || recordId(contribution, "work");
       const work = workIndex.get(workId) || {};
       const publicUrl = safeExternalUrl(localizedField(work, ["publicUrls", "catalogUrls", "publicUrl", "catalogUrl", "destinationUrl"]));
+      const evidenceLinkScope = normalizedEnum(firstValue(work, ["linkEvidence.linkScope", "linkEvidence.link_scope"]));
+      const evidenceOnlyUrl = evidenceLinkScope === "evidence_only"
+        ? safeExternalUrl(firstValue(work, ["linkEvidence.evidenceUrl", "linkEvidence.evidence_url"]))
+        : "";
       return {
         raw: contribution,
         workId,
@@ -736,6 +816,7 @@ function contributionRecordsForPerson(id, contributions, workIndex) {
         nameTh: workNameForContribution(contribution, workIndex, "th"),
         nameEn: workNameForContribution(contribution, workIndex, "en"),
         publicUrl,
+        evidenceOnlyUrl,
         role: localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"]),
         period: localizedField(contribution, ["period.label", "period", "year", "date", "cohort"])
       };
@@ -759,6 +840,37 @@ function achievementRecordsForPerson(id, achievements, personAchievements) {
     seen.add(key);
     return true;
   });
+}
+
+function governedBioIsVisible(personRecord, bioTh, bioEn) {
+  const status = normalizedEnum(firstValue(personRecord, ["bio.status"]));
+  const verificationStatus = normalizedEnum(firstValue(personRecord, ["bio.verificationStatus", "bio.verification_status"]));
+  const publicationBasis = normalizedEnum(firstValue(personRecord, ["bio.publicationBasis", "bio.publication_basis"]));
+  const sourceBasis = normalizedEnum(firstValue(personRecord, ["bio.sourceBasis", "bio.source_basis"]));
+  const sourceType = normalizedEnum(firstValue(personRecord, ["bio.sourceType", "bio.source_type"]));
+  const authorRole = normalizedEnum(firstValue(personRecord, ["bio.authorRole", "bio.author_role"]));
+  const derivationMethod = normalizedEnum(firstValue(personRecord, ["bio.derivationMethod", "bio.derivation_method"]));
+  const reviewStatus = normalizedEnum(firstValue(personRecord, ["bio.reviewStatus", "bio.review_status"]));
+  const firstPersonPlaceholder = status === "source_backed_placeholder" &&
+    verificationStatus === "owner_authorized_placeholder" &&
+    publicationBasis === "owner_authorized_paraphrase_from_first_person_application" &&
+    sourceBasis === "first_person_application_exact_roster_match" &&
+    sourceType === "first_person_application" &&
+    authorRole === "profile_subject" &&
+    derivationMethod === "concise_paraphrase" &&
+    reviewStatus === "pending_candidate_video_review";
+  const factualFallbackPlaceholder = status === "source_backed_placeholder" &&
+    verificationStatus === "owner_authorized_placeholder" &&
+    publicationBasis === "owner_authorized_synthesis_from_roster_evidence" &&
+    sourceBasis === "factual_role_education_and_work_evidence" &&
+    sourceType === "factual_fallback" &&
+    authorRole === "assistant_paraphrase_from_owner_and_sheet_records" &&
+    derivationMethod === "bounded_inference" &&
+    reviewStatus === "pending_candidate_video_review";
+  const ownerApproved = status === "owner_approved" &&
+    verificationStatus === "owner_approved" &&
+    reviewStatus === "owner_approved";
+  return Boolean(bioTh || bioEn) && (firstPersonPlaceholder || factualFallbackPlaceholder || ownerApproved);
 }
 
 function buildModels(data) {
@@ -795,11 +907,9 @@ function buildModels(data) {
     const fullNameEn = localizedField(personRecord, ["names.full", "officialName", "official_name", "fullName", "full_name", "name"], "en");
     const nickname = state.language === "th" ? (nicknameTh || nicknameEn || fullNameTh || fullNameEn || id) : (nicknameEn || nicknameTh || fullNameEn || fullNameTh || id);
     const officialName = state.language === "th" ? (fullNameTh || fullNameEn || nickname) : (fullNameEn || fullNameTh || nickname);
-    const bioTh = localizedField(personRecord, ["profileText", "profile_text", "story", "bio", "about", "summary"], "th");
-    const bioEn = localizedField(personRecord, ["profileText", "profile_text", "story", "bio", "about", "summary"], "en");
-    const bioStatus = String(firstValue(personRecord, ["bio.status", "profileText.status", "profile_text.status", "story.status"]) || "").toLowerCase();
-    const bioVerification = String(firstValue(personRecord, ["bio.verificationStatus", "profileText.verificationStatus", "profile_text.verification_status"]) || "").toLowerCase();
-    const bioVisible = Boolean(bioTh || bioEn) && !/placeholder|pending|generated|draft/.test(`${bioStatus} ${bioVerification}`);
+    const bioTh = localizedValue(getPath(personRecord, "bio.th"), "th");
+    const bioEn = localizedValue(getPath(personRecord, "bio.en"), "en");
+    const bioVisible = governedBioIsVisible(personRecord, bioTh, bioEn);
     const cohort = String(firstValue(primaryEngagement, ["cohort", "year", "firstJoined", "first_joined"]) || firstValue(personRecord, ["cohort", "firstJoined", "first_joined", "year"]) || "").slice(0, 4);
     const image = approvedAssetFor(personRecord, assets);
     const achievementRecords = achievementRecordsForPerson(id, achievements, personAchievements);
@@ -959,6 +1069,127 @@ function localizedContributionName(contribution) {
   return state.language === "th" ? (contribution.nameTh || contribution.nameEn || contribution.name) : (contribution.nameEn || contribution.nameTh || contribution.name);
 }
 
+function engagementCategoryForHistory(engagement) {
+  return normalizedEnum(firstValue(engagement, ["category", "roleCategory", "role_category", "employmentType", "employment_type"]));
+}
+
+function engagementSequenceForHistory(engagement) {
+  const raw = firstValue(engagement, ["sequenceHint", "sequence_hint"]);
+  const sequence = Number(raw);
+  return Number.isInteger(sequence) && sequence > 0 ? sequence : null;
+}
+
+function fourDigitYears(value) {
+  return [...new Set(String(value || "").match(/(?:19|20)\d{2}/g) || [])];
+}
+
+function engagementPeriodForHistory(engagement) {
+  const cohort = localizedField(engagement, ["cohortLabel", "cohort_label", "cohort"]);
+  const cohortYears = fourDigitYears(cohort);
+  const batchMatch = cohort.match(/\bbatch\s*(\d+)/i) || cohort.match(/รุ่น\s*(\d+)/i);
+  if (batchMatch && cohortYears.length) {
+    const batch = state.language === "th" ? `รุ่น ${batchMatch[1]}` : `Batch ${batchMatch[1]}`;
+    return `${batch} · ${cohortYears.join("–")}`;
+  }
+  if (cohortYears.length) return cohortYears.join("–");
+
+  const startYears = fourDigitYears(firstValue(engagement, ["start", "startDate", "start_date"]));
+  const endYears = fourDigitYears(firstValue(engagement, ["end", "endDate", "end_date"]));
+  const startYear = startYears[0] || "";
+  const endYear = endYears[0] || "";
+  if (startYear && engagementIsCurrent(engagement)) return `${startYear}–${message("present")}`;
+  if (startYear && endYear) return startYear === endYear ? startYear : `${startYear}–${endYear}`;
+  if (startYear || endYear) return startYear || endYear;
+  if (engagementIsCurrent(engagement)) return message("present");
+  const sequence = engagementSequenceForHistory(engagement);
+  return sequence ? message("engagementSequence", { count: sequence }) : "";
+}
+
+function engagementChronologyYear(engagement) {
+  const candidates = [
+    firstValue(engagement, ["start", "startDate", "start_date"]),
+    firstValue(engagement, ["cohortLabel", "cohort_label", "cohort"]),
+    firstValue(engagement, ["end", "endDate", "end_date"])
+  ];
+  for (const candidate of candidates) {
+    const year = fourDigitYears(candidate)[0];
+    if (year) return Number(year);
+  }
+  return null;
+}
+
+function distinctEngagementsForHistory(engagements) {
+  const seen = new Set();
+  const distinct = engagements.filter((engagement) => {
+    const id = recordId(engagement, "engagement");
+    const fallbackKey = [
+      engagementCategoryForHistory(engagement),
+      programCode(engagement),
+      localizedField(engagement, ["program.names"], "th"),
+      localizedField(engagement, ["program.names"], "en"),
+      firstValue(engagement, ["cohortLabel", "cohort_label", "cohort"]),
+      firstValue(engagement, ["start", "startDate", "start_date"]),
+      firstValue(engagement, ["end", "endDate", "end_date"]),
+      firstValue(engagement, ["status"]),
+      engagementSequenceForHistory(engagement)
+    ].map((value) => String(value ?? "")).join("|");
+    const key = id || fallbackKey;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  const everyRecordHasSequence = distinct.length > 0 && distinct.every((engagement) => engagementSequenceForHistory(engagement));
+  return distinct.map((engagement, index) => ({ engagement, index })).sort((a, b) => {
+    if (everyRecordHasSequence) {
+      return engagementSequenceForHistory(a.engagement) - engagementSequenceForHistory(b.engagement);
+    }
+    const aYear = engagementChronologyYear(a.engagement);
+    const bYear = engagementChronologyYear(b.engagement);
+    const aRank = aYear ?? (engagementIsCurrent(a.engagement) ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY);
+    const bRank = bYear ?? (engagementIsCurrent(b.engagement) ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY);
+    return aRank - bRank || a.index - b.index;
+  }).map(({ engagement }) => engagement);
+}
+
+function engagementChipName(engagement) {
+  const category = engagementCategoryForHistory(engagement);
+  if (category === "full_time") return message("fulltime");
+  if (category === "part_time") return message("parttime");
+  if (category === "internship") return programCode(engagement) || localizedField(engagement, ["program.names", "roleTitle", "role_title"]);
+  return localizedField(engagement, ["program.names", "roleTitle", "role_title"]) || programCode(engagement) || message("member");
+}
+
+function engagementChipLabel(engagement) {
+  const category = engagementCategoryForHistory(engagement);
+  const placementType = academicPlacementTypeFor(engagement);
+  const placement = category === "internship"
+    ? placementType === "cooperative_education"
+      ? message("placementCooperativeShort")
+      : placementType === "internship"
+        ? message("placementInternshipShort")
+        : ""
+    : "";
+  return uniqueLabels([engagementChipName(engagement), placement, engagementPeriodForHistory(engagement)]).join(" · ");
+}
+
+function engagementHistoryMarkup(model) {
+  const engagements = distinctEngagementsForHistory(model.engagements);
+  if (engagements.length < 2) return "";
+  const labels = engagements.map(engagementChipLabel);
+  const labelCounts = labels.reduce((counts, label) => counts.set(label, (counts.get(label) || 0) + 1), new Map());
+  const chips = engagements.map((engagement, index) => {
+    const sequence = engagementSequenceForHistory(engagement) || index + 1;
+    const label = labelCounts.get(labels[index]) > 1
+      ? `${labels[index]} · ${message("engagementSequence", { count: sequence })}`
+      : labels[index];
+    const fullProgram = localizedField(engagement, ["program.names", "roleTitle", "role_title"]);
+    const title = uniqueLabels([fullProgram, engagementPeriodForHistory(engagement)]).join(" · ") || label;
+    return `<span class="engagement-chip" data-engagement-id="${escapeHtml(recordId(engagement, "engagement"))}" title="${escapeHtml(title)}">${escapeHtml(label)}</span>`;
+  }).join("");
+  return `<span class="engagement-history"><span class="engagement-history-label">${escapeHtml(message("engagementHistory"))}</span><span class="engagement-chip-list">${chips}</span></span>`;
+}
+
 function renderCard(model) {
   const nickname = currentNickname(model);
   const officialName = currentOfficialName(model);
@@ -992,6 +1223,7 @@ function renderCard(model) {
       </span>
       <span class="card-name">${escapeHtml(nickname)}</span>
       ${officialName && officialName !== nickname ? `<span class="card-official-name">${escapeHtml(officialName)}</span>` : ""}
+      ${engagementHistoryMarkup(model)}
       ${educationMarkup}
       ${storyMarkup}
       ${workMarkup}
@@ -1126,7 +1358,10 @@ function contributionsMarkup(model) {
           const nameMarkup = contribution.publicUrl
             ? `<a class="contribution-link" href="${escapeHtml(contribution.publicUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openWork", { name }))}"><span>${escapeHtml(name)}</span><span aria-hidden="true">↗</span></a>`
             : `<p class="contribution-name">${escapeHtml(name)}</p>`;
-          return `<li class="contribution-item" data-work-id="${escapeHtml(contribution.workId)}">${nameMarkup}${meta ? `<p class="contribution-meta">${escapeHtml(meta)}</p>` : ""}</li>`;
+          const evidenceMarkup = contribution.evidenceOnlyUrl
+            ? `<a class="contribution-evidence-link" href="${escapeHtml(contribution.evidenceOnlyUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openAwardEvidence", { name }))}"><span>${escapeHtml(message("awardEvidence"))}</span><span aria-hidden="true">↗</span></a>`
+            : "";
+          return `<li class="contribution-item" data-work-id="${escapeHtml(contribution.workId)}">${nameMarkup}${evidenceMarkup}${meta ? `<p class="contribution-meta">${escapeHtml(meta)}</p>` : ""}</li>`;
         }).join("")}
       </ul>
     </section>

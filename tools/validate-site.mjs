@@ -438,6 +438,40 @@ async function validateUi(publishRoot, errors) {
   if (!/person-card/.test(sourceText)) errors.push('The UI must render person-card buttons on the masonry board.');
   if (!/avatar-name/.test(sourceText)) errors.push('The UI must include the full nickname fallback for unavailable or unapproved images.');
   if (/avatar(?:--|-)initials/.test(sourceText)) errors.push('Person-image fallback must use the full nickname, not initials.');
+  const engagementHistoryRenderer = sourceText.match(/function engagementCategoryForHistory\b[\s\S]*?(?=function renderCard\b)/)?.[0] ?? '';
+  for (const field of ['model.engagements', 'recordId(engagement, "engagement")', 'program.names', 'cohortLabel', 'academicPlacementTypeFor']) {
+    if (!engagementHistoryRenderer.includes(field)) {
+      errors.push(`Repeat-engagement chips must consume ${field} from the complete engagement history.`);
+    }
+  }
+  if (!/engagements\.length\s*<\s*2/.test(engagementHistoryRenderer)) {
+    errors.push('Engagement-history chips must be reserved for people with more than one distinct engagement.');
+  }
+  if (!/data-engagement-id/.test(engagementHistoryRenderer)) {
+    errors.push('Each engagement-history chip must retain its canonical engagementId.');
+  }
+  if (/role-badge/.test(engagementHistoryRenderer)) {
+    errors.push('Engagement-history chips must stay flat and separate from the current-role badge.');
+  }
+  const cardRenderer = sourceText.match(/function renderCard\b[\s\S]*?(?=function filteredModels\b)/)?.[0] ?? '';
+  if ((cardRenderer.match(/role-badge/g) ?? []).length !== 1 || !cardRenderer.includes('engagementHistoryMarkup(model)')) {
+    errors.push('Each person card must keep one current-role badge and a separate repeat-engagement history row.');
+  }
+  const bioGate = sourceText.match(/function governedBioIsVisible\b[\s\S]*?(?=function buildModels\b)/)?.[0] ?? '';
+  for (const field of [
+    'owner_authorized_paraphrase_from_first_person_application',
+    'first_person_application_exact_roster_match',
+    'owner_authorized_synthesis_from_roster_evidence',
+    'factual_role_education_and_work_evidence',
+    'factual_fallback',
+    'bounded_inference'
+  ]) {
+    if (!bioGate.includes(field)) errors.push(`Profile-copy rendering must recognize governed bio contract: ${field}.`);
+  }
+  if (!/\.engagement-chip-list\s*\{[^}]*flex-wrap:\s*wrap/s.test(sourceText) ||
+      !/\.engagement-chip\s*\{[^}]*max-width:\s*100%/s.test(sourceText)) {
+    errors.push('Engagement-history chips must wrap within the card at compact widths.');
+  }
   const assetGate = sourceText.match(/function approvedAssetFor\b[\s\S]*?(?=function socialIsPublishable\b)/)?.[0] ?? '';
   for (const field of ['verificationStatus', 'consentStatus', 'rightsStatus', 'publicationBasis', 'ownerApproval', 'publicationStatus']) {
     if (!assetGate.includes(field)) errors.push(`Image rendering must gate on assets[].${field}.`);

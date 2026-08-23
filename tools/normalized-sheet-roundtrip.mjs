@@ -20,6 +20,14 @@ function localized(th, en) {
   return { th: nullable(th), en: nullable(en) };
 }
 
+function safeProfileSourceRef(value, fallback = null) {
+  const normalized = nullable(value) ?? fallback;
+  if (normalized && /https?:\/\/|docs\.google\.com|(?:2025|2026)![A-Z]+\d+|[A-Z]+\d+:[A-Z]+\d+|@/i.test(normalized)) {
+    throw new Error('Profile statement source_ref must be a bounded public-safe reference, not a URL, Sheet range, or contact value.');
+  }
+  return normalized;
+}
+
 export function sheetRows(snapshot, name) {
   const source = snapshot?.tabs?.[name] ?? snapshot?.sheets?.[name];
   if (!source) return [];
@@ -87,8 +95,8 @@ function sourceMeta(snapshot, baseline) {
     ...baseline.meta.source,
     spreadsheetId: snapshot.spreadsheetId ?? snapshot.source?.spreadsheetId ?? baseline.meta.source.spreadsheetId,
     snapshotFetchedAt: snapshot.fetchedAt ?? snapshot.source?.fetchedAt ?? baseline.meta.source.snapshotFetchedAt,
-    inputSchema: 'normalized_sheet_v3_1',
-    publicSheetsUsed: ['people_registry', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'social_profiles', 'assets'],
+    inputSchema: 'normalized_sheet_v3_3',
+    publicSheetsUsed: ['people_registry', 'profile_statements', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'social_profiles', 'assets'],
     privateContactSourcesExcluded: true
   };
 }
@@ -99,12 +107,20 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
   const basePeople = new Map(baseline.people.map((item) => [item.personId, item]));
   const baseInstitutions = new Map(baseline.institutions.map((item) => [item.institutionId, item]));
   const basePrograms = new Map(baseline.programs.map((item) => [item.programId, item]));
+  const baseEducation = new Map(baseline.educationRecords.map((item) => [item.educationRecordId, item]));
+  const baseEngagements = new Map(baseline.engagements.map((item) => [item.engagementId, item]));
   const baseWorks = new Map(baseline.works.map((item) => [item.workId, item]));
+  const profileStatementById = new Map(sheetRows(snapshot, 'profile_statements').map((row) => [text(row.statement_id), row]));
 
   const people = sheetRows(snapshot, 'people_registry').map((row) => {
     const personId = text(row.person_id);
     if (!/^[SPI]\d{4}$/.test(personId)) throw new Error('Invalid canonical person_id in normalized snapshot: ' + personId);
     const existing = basePeople.get(personId) ?? {};
+    const currentStatementId = nullable(row.current_statement_id);
+    const currentStatement = currentStatementId ? profileStatementById.get(currentStatementId) : null;
+    if (currentStatement && text(currentStatement.person_id) !== personId) {
+      throw new Error('Profile statement owner does not match people_registry: ' + currentStatementId);
+    }
     const migrationClassification = text(row.migration_classification) || existing.migrationClassification;
     const consentStatus = normalizedConsent(row.consent_public);
     return {
@@ -130,14 +146,47 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
         detail: localized(row.detail_education_th, row.detail_education_en),
         verificationStatus: text(row.verification_status) || existing.educationDisplay?.verificationStatus || 'owner_review_required'
       },
-      bio: {
-        th: nullable(row.bio_th ?? row.bio_placeholder_th),
-        en: nullable(row.bio_en ?? row.bio_placeholder_en),
-        status: text(row.bio_status) === 'owner_approved' ? 'owner_approved' : 'owner_pending',
-        verificationStatus: text(row.bio_verification_status) === 'owner_approved' || text(row.bio_status) === 'owner_approved'
-          ? 'owner_approved'
-          : 'owner_pending'
-      },
+      bio: (() => {
+        const currentStatus = text(currentStatement?.publication_status);
+        const status = ['owner_pending', 'source_backed_placeholder', 'owner_approved'].includes(currentStatus || text(row.bio_status))
+          ? currentStatus || text(row.bio_status)
+          : existing.bio?.status ?? 'owner_pending';
+        const verificationStatus = ['owner_pending', 'owner_authorized_placeholder', 'owner_approved'].includes(text(row.bio_verification_status))
+          ? text(row.bio_verification_status)
+          : existing.bio?.verificationStatus ?? 'owner_pending';
+        const ownerApprovalStatus = text(currentStatement?.owner_approval_status ?? row.bio_owner_approval_status);
+        const ownerApproval = ownerApprovalStatus === 'granted'
+          ? {
+              status: 'granted',
+              approvedAt: nullable(currentStatement?.effective_from ?? row.bio_owner_approved_at),
+              scope: nullable(currentStatement?.owner_approval_scope ?? row.bio_owner_approval_scope),
+              sourceRef: safeProfileSourceRef(currentStatement?.owner_approval_source_ref ?? row.bio_owner_approval_source_ref)
+            }
+          : existing.bio?.ownerApproval ?? null;
+        const publicationBasis = nullable(currentStatement?.publication_basis ?? row.bio_publication_basis) ?? existing.bio?.publicationBasis ?? null;
+        const sourceBasis = nullable(currentStatement?.source_basis ?? row.bio_source_basis) ?? existing.bio?.sourceBasis ?? null;
+        const sourceType = nullable(currentStatement?.source_type ?? row.bio_source_type) ?? existing.bio?.sourceType ?? null;
+        const sourceRef = safeProfileSourceRef(
+          currentStatement?.source_ref ?? row.bio_source_ref,
+          existing.bio?.sourceRef ?? null
+        );
+        return {
+          th: nullable(currentStatement?.text_th ?? row.bio_th ?? row.bio_placeholder_th),
+          en: nullable(currentStatement?.text_en ?? row.bio_en ?? row.bio_placeholder_en),
+          status,
+          verificationStatus,
+          publicationBasis,
+          sourceBasis,
+          sourceType,
+          sourceRef,
+          authorRole: nullable(currentStatement?.author_role ?? row.bio_author_role) ?? existing.bio?.authorRole ?? null,
+          derivationMethod: nullable(currentStatement?.derivation_method ?? row.bio_derivation_method) ?? existing.bio?.derivationMethod ?? null,
+          evidenceScope: nullable(currentStatement?.evidence_scope ?? row.bio_evidence_scope) ?? existing.bio?.evidenceScope ?? null,
+          evidenceConfidence: nullable(currentStatement?.evidence_confidence ?? row.bio_evidence_confidence) ?? existing.bio?.evidenceConfidence ?? null,
+          reviewStatus: nullable(currentStatement?.person_review_status ?? row.bio_review_status) ?? existing.bio?.reviewStatus ?? 'pending_owner_copy',
+          ownerApproval
+        };
+      })(),
       publication: {
         consentStatus,
         profileStatus: consentStatus === 'granted' ? 'eligible' : 'withheld_pending_consent'
@@ -172,20 +221,48 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     verificationStatus: text(row.verification_status) || 'owner_review_required'
   }));
 
-  const educationRecords = sheetRows(snapshot, 'education').map((row) => ({
-    educationRecordId: text(row.education_record_id),
-    personId: text(row.person_id),
-    institutionId: text(row.institution_id),
-    programId: nullable(row.program_id),
-    recordType: text(row.record_type) || 'education',
-    isPrimary: boolean(row.is_primary),
-    sourceLabel: text(row.source_label),
-    qualification: localized(row.qualification_th, row.qualification_en),
-    verificationStatus: text(row.verification_status) || 'owner_review_required',
-    evidenceNote: nullable(row.evidence_note)
-  }));
+  const educationRecords = sheetRows(snapshot, 'education').map((row) => {
+    const educationRecordId = text(row.education_record_id);
+    const existing = baseEducation.get(educationRecordId) ?? {};
+    const hasDegreeColumns = [
+      row.degree_abbreviation_th,
+      row.degree_abbreviation_en,
+      row.degree_title_th,
+      row.degree_title_en,
+      row.degree_field_th,
+      row.degree_field_en,
+      row.degree_award_status,
+      row.degree_program_evidence_url,
+      row.degree_evidence_scope
+    ].some((value) => text(value));
+    return {
+      ...existing,
+      educationRecordId,
+      personId: text(row.person_id),
+      institutionId: text(row.institution_id),
+      programId: nullable(row.program_id),
+      recordType: text(row.record_type) || 'education',
+      isPrimary: boolean(row.is_primary),
+      sourceLabel: text(row.source_label),
+      qualification: localized(row.qualification_th, row.qualification_en),
+      degree: hasDegreeColumns
+        ? {
+            abbreviation: localized(row.degree_abbreviation_th, row.degree_abbreviation_en),
+            title: localized(row.degree_title_th, row.degree_title_en),
+            field: localized(row.degree_field_th, row.degree_field_en),
+            awardStatus: text(row.degree_award_status) || 'under_review',
+            personalAwardVerified: boolean(row.degree_personal_award_verified),
+            programEvidenceUrl: nullable(row.degree_program_evidence_url),
+            evidenceScope: text(row.degree_evidence_scope) || 'program_level_only'
+          }
+        : existing.degree ?? null,
+      verificationStatus: text(row.verification_status) || 'owner_review_required',
+      evidenceNote: nullable(row.evidence_note)
+    };
+  });
 
   const engagements = sheetRows(snapshot, 'engagements').map((row) => ({
+    ...(baseEngagements.get(text(row.engagement_id)) ?? {}),
     engagementId: text(row.engagement_id),
     personId: text(row.person_id),
     category: text(row.category),
@@ -198,7 +275,10 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     responsibilityWorkIds: split(row.responsibility_work_ids),
     evidenceStatus: text(row.evidence_status),
     verificationStatus: text(row.verification_status),
-    sequenceHint: row.sequence_hint === '' || row.sequence_hint == null ? null : Number(row.sequence_hint)
+    sequenceHint: row.sequence_hint === '' || row.sequence_hint == null ? null : Number(row.sequence_hint),
+    academicPlacementType: ['cooperative_education', 'internship', 'not_applicable'].includes(text(row.academic_placement_type))
+      ? text(row.academic_placement_type)
+      : baseEngagements.get(text(row.engagement_id))?.academicPlacementType ?? 'not_applicable'
   }));
 
   const works = sheetRows(snapshot, 'works').map((row) => ({

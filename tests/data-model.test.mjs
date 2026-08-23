@@ -34,6 +34,7 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const output = execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs')], { cwd: root, encoding: 'utf8' });
   assert.doesNotMatch(output, /LDM-P-/);
   const exported = JSON.parse(output);
+  assert.equal(exported.schemaVersion, '3.3.0');
   const peopleTab = exported.tabs.people_registry;
   const personIdIndex = peopleTab.headers.indexOf('person_id');
   const sourceNoteIndex = peopleTab.headers.indexOf('source_note');
@@ -44,6 +45,23 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.ok(pattareeyaRow, 'missing Pattareeya export row');
   assert.match(pattareeyaRow[sourceNoteIndex], /Pitcha \(I0016\)/);
   assert.doesNotMatch(pattareeyaRow[sourceNoteIndex], /Pitcha \(I0015\)/);
+  const currentStatementIndex = peopleTab.headers.indexOf('current_statement_id');
+  assert.ok(currentStatementIndex >= 0);
+  assert.equal(peopleTab.rows.filter((row) => row[currentStatementIndex]).length, 48);
+  const statements = exported.tabs.profile_statements;
+  assert.equal(statements.rows.length, 48);
+  const statementIdIndex = statements.headers.indexOf('statement_id');
+  const statementPersonIndex = statements.headers.indexOf('person_id');
+  assertUnique(statements.rows.map((row) => ({ statementId: row[statementIdIndex] })), 'statementId');
+  assert.ok(statements.rows.every((row) => /^[SPI]\d{4}$/.test(row[statementPersonIndex])));
+  const statementSourceTypeIndex = statements.headers.indexOf('source_type');
+  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'first_person_application').length, 25);
+  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'factual_fallback').length, 23);
+  assert.deepEqual(peopleTab.validations.W, ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence']);
+  assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence']);
+  assert.deepEqual(statements.validations.G, ['first_person_application', 'factual_fallback', 'candidate_video_transcript', 'owner_supplied_copy']);
+  assert.deepEqual(exported.tabs.engagements.validations.Q, ['cooperative_education', 'internship', 'not_applicable']);
+  assert.deepEqual(exported.tabs.education.validations.R, ['under_review', 'in_progress', 'completed']);
   const isPrimaryIndex = exported.tabs.education.headers.indexOf('is_primary');
   const qaExpectedIndex = exported.tabs.qa.headers.indexOf('expected');
   assert.equal(typeof exported.tabs.education.rows[0][isPrimaryIndex], 'boolean');
@@ -102,6 +120,12 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     portrait[assetVerification] = 'owner_review_required';
     portrait[assetPermission] = 'PRIVATE-PERMISSION-PENDING';
 
+    const statements = workbook.tabs.profile_statements;
+    const statementId = statements.headers.indexOf('statement_id');
+    const statementTh = statements.headers.indexOf('text_th');
+    const fazeStatement = statements.rows.find((row) => row[statementId] === 'STAT-I0015-001');
+    fazeStatement[statementTh] = 'ข้อความตั้งต้นที่แก้ผ่าน normalized Sheet roundtrip';
+
     const snapshotPath = path.join(tempRoot, 'normalized-snapshot.json');
     const outputDir = path.join(tempRoot, 'generated');
     fs.writeFileSync(snapshotPath, JSON.stringify(workbook));
@@ -113,6 +137,10 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     }
     const importedInstagram = imported.socialProfiles.find((row) => row.socialProfileId === 'SOC-I0001-INSTAGRAM');
     const importedPortrait = imported.assets.find((row) => row.assetId === 'PORTRAIT-I0001');
+    assert.equal(imported.people.find((person) => person.personId === 'I0015').bio.th, 'ข้อความตั้งต้นที่แก้ผ่าน normalized Sheet roundtrip');
+    assert.equal(imported.people.find((person) => person.personId === 'I0015').bio.sourceType, 'first_person_application');
+    assert.equal(imported.people.find((person) => person.personId === 'I0001').bio.sourceType, 'factual_fallback');
+    assert.equal(imported.people.find((person) => person.personId === 'I0001').bio.derivationMethod, 'bounded_inference');
     assert.equal(importedInstagram.candidateStatus, 'candidate_present');
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'instagram' && row.candidateStatus === 'candidate_present').length, 12);
     assert.equal(importedInstagram.publicUrl, null);
@@ -231,6 +259,33 @@ test('Oat has one person record and the required three-part role history', () =>
   assert.notEqual(landPortfolio[0].workId, lead2Loan[0].workId);
 });
 
+test('repeat participants retain one complete record per join period for UI chips', () => {
+  const data = loadGenerated();
+  const histories = new Map();
+  for (const engagement of data.engagements) {
+    const records = histories.get(engagement.personId) || [];
+    records.push(engagement);
+    histories.set(engagement.personId, records);
+  }
+  const repeated = [...histories.entries()]
+    .filter(([, records]) => records.length > 1)
+    .sort(([a], [b]) => a.localeCompare(b, 'en'));
+  assert.deepEqual(
+    repeated.map(([personId, records]) => [personId, records.length]),
+    [['I0022', 2], ['I0024', 2], ['S0001', 3], ['S0002', 2], ['S0003', 2]]
+  );
+  for (const [personId, records] of repeated) {
+    assert.equal(new Set(records.map((engagement) => engagement.engagementId)).size, records.length, `${personId} repeats an engagementId`);
+    assert.ok(records.every((engagement) =>
+      engagement.category && engagement.academicPlacementType &&
+      engagement.program?.code && engagement.program?.names?.th && engagement.program?.names?.en
+    ), `${personId} has an engagement that cannot produce a bilingual chip`);
+    assert.ok(records.every((engagement) =>
+      engagement.cohortLabel || engagement.start || engagement.end || engagement.status === 'ongoing' || engagement.sequenceHint
+    ), `${personId} has an engagement without a period discriminator`);
+  }
+});
+
 test('Hack Land Value achievement is separate from contribution records', () => {
   const data = loadGenerated();
   const achievement = data.achievements.find((item) => item.achievementId === 'A0001');
@@ -254,11 +309,78 @@ test('education uses normalized dimensions, appropriate display modes and preser
   }
 });
 
-test('bios remain blank and owner-pending without public first-person evidence', () => {
+test('all core people receive provenance-distinct owner-authorized source-backed placeholder bios', () => {
   const data = loadGenerated();
-  assert.ok(data.people.every((person) => person.bio.th === null && person.bio.en === null));
-  assert.ok(data.people.every((person) => person.bio.status === 'owner_pending' && person.bio.verificationStatus === 'owner_pending'));
-  assert.doesNotMatch(JSON.stringify(data.people.map((person) => person.bio)), /placeholder|contributed to|มีส่วนร่วมกับ/i);
+  const firstPersonIds = [
+    'I0003', 'I0004', 'I0013', 'I0014', 'I0015', 'I0016', 'I0017', 'I0018',
+    'I0022', 'I0024', 'I0026', 'I0027', 'I0028', 'I0029', 'I0030', 'I0031',
+    'I0032', 'I0033', 'I0040', 'I0041', 'I0042', 'I0043', 'S0002', 'S0003', 'S0004'
+  ];
+  const factualFallbackIds = [
+    'I0001', 'I0002', 'I0005', 'I0006', 'I0007', 'I0008', 'I0009', 'I0010',
+    'I0011', 'I0012', 'I0019', 'I0020', 'I0021', 'I0023', 'I0025', 'I0034',
+    'I0035', 'I0036', 'I0037', 'I0038', 'I0039', 'P0001', 'S0001'
+  ];
+  const sourceBacked = data.people.filter((person) => person.bio.status === 'source_backed_placeholder');
+  assert.equal(sourceBacked.length, 48);
+  assert.ok(sourceBacked.every((person) => person.bio.th && person.bio.en));
+  assert.ok(sourceBacked.every((person) =>
+    person.bio.verificationStatus === 'owner_authorized_placeholder' &&
+    person.bio.reviewStatus === 'pending_candidate_video_review' &&
+    person.bio.ownerApproval?.status === 'granted' &&
+    person.bio.ownerApproval?.scope === 'source_backed_placeholder_profile_copy'
+  ));
+
+  const firstPerson = sourceBacked.filter((person) => person.bio.sourceType === 'first_person_application');
+  assert.deepEqual(firstPerson.map((person) => person.personId).sort(), firstPersonIds);
+  assert.ok(firstPerson.every((person) =>
+    person.bio.publicationBasis === 'owner_authorized_paraphrase_from_first_person_application' &&
+    person.bio.sourceBasis === 'first_person_application_exact_roster_match' &&
+    person.bio.sourceRef === 'authorized_application_roster_match_2025_2026' &&
+    person.bio.authorRole === 'profile_subject' &&
+    person.bio.derivationMethod === 'concise_paraphrase' &&
+    person.bio.evidenceScope === 'personal_objective_and_self_described_work_style' &&
+    person.bio.evidenceConfidence === 'exact_roster_match'
+  ));
+
+  const factualFallback = sourceBacked.filter((person) => person.bio.sourceType === 'factual_fallback');
+  assert.deepEqual(factualFallback.map((person) => person.personId).sort(), factualFallbackIds);
+  assert.ok(factualFallback.every((person) =>
+    person.bio.publicationBasis === 'owner_authorized_synthesis_from_roster_evidence' &&
+    person.bio.sourceBasis === 'factual_role_education_and_work_evidence' &&
+    person.bio.sourceRef === 'alumni_sheet_and_registry_reconciliation_2026-08-23' &&
+    person.bio.authorRole === 'assistant_paraphrase_from_owner_and_sheet_records' &&
+    person.bio.derivationMethod === 'bounded_inference' &&
+    person.bio.evidenceScope === 'interest_and_work_style_from_role_education_and_verified_work' &&
+    ['medium_high', 'medium', 'medium_low'].includes(person.bio.evidenceConfidence)
+  ));
+  assert.match(data.people.find((person) => person.personId === 'I0015').bio.th, /ความคิดเห็นของผู้ใช้/);
+  assert.doesNotMatch(data.people.find((person) => person.personId === 'I0028').bio.th, /พลังบวก/);
+  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 48);
+  assert.equal(data.meta.counts.ownerPendingProfiles, 0);
+  assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 25);
+  assert.equal(data.meta.counts.factualFallbackProfilePlaceholders, 23);
+});
+
+test('cooperative education is limited to the exact owner-confirmed public core set', () => {
+  const data = loadGenerated();
+  const cooperativeEducation = data.engagements.filter((engagement) => engagement.academicPlacementType === 'cooperative_education');
+  assert.deepEqual(
+    cooperativeEducation.map((engagement) => engagement.personId).sort(),
+    ['I0003', 'I0030', 'I0031', 'I0034', 'I0036', 'I0039']
+  );
+  assert.ok(cooperativeEducation.every((engagement) => engagement.category === 'internship'));
+  assert.ok(data.engagements.filter((engagement) => engagement.category === 'internship').every((engagement) =>
+    ['cooperative_education', 'internship'].includes(engagement.academicPlacementType)
+  ));
+  assert.ok(data.engagements.filter((engagement) => engagement.category !== 'internship').every((engagement) =>
+    engagement.academicPlacementType === 'not_applicable'
+  ));
+  const tan = data.engagements.find((engagement) => engagement.personId === 'I0035' && engagement.category === 'internship');
+  assert.equal(tan.academicPlacementType, 'internship');
+  assert.doesNotMatch(tan.cohortLabel, /co-?op|สหกิจ/i);
+  assert.equal(data.meta.counts.cooperativeEducationPeople, 6);
+  assert.equal(data.people.length, 48);
 });
 
 test('FDI and computer-engineering display labels use the approved exact copy', () => {
@@ -270,6 +392,46 @@ test('FDI and computer-engineering display labels use the approved exact copy', 
   for (const programId of ['program-kmitl-computer-engineering', 'program-cu-computer-engineering']) {
     assert.equal(data.programs.find((program) => program.programId === programId).names.th.short, 'วิศวกรรมคอมพิวเตอร์');
   }
+});
+
+test('staff degree programs separate official program names from personal award status', () => {
+  const data = loadGenerated();
+  const primaryEducation = (personId) => data.educationRecords.find((record) => record.personId === personId && record.isPrimary);
+  const oat = primaryEducation('S0001').degree;
+  assert.equal(oat.abbreviation.en, 'B.Eng.');
+  assert.equal(oat.field.en, 'Computer Engineering');
+  assert.equal(oat.awardStatus, 'completed');
+  assert.equal(oat.personalAwardVerified, true);
+
+  const renee = primaryEducation('S0002').degree;
+  assert.deepEqual(renee.abbreviation, { th: 'นศ.บ.', en: 'B.A.' });
+  assert.equal(renee.title.en, 'Bachelor of Arts (Communication Arts)');
+  assert.equal(renee.field.en, 'Public Relations');
+  assert.equal(renee.awardStatus, 'completed');
+  assert.equal(renee.personalAwardVerified, true);
+  assert.match(renee.programEvidenceUrl, /^https:\/\/www\.commarts\.chula\.ac\.th\//);
+
+  const pat = primaryEducation('S0003').degree;
+  assert.deepEqual(pat.abbreviation, { th: 'วศ.บ.', en: 'B.Eng.' });
+  assert.equal(pat.field.en, 'Computer Engineering');
+  assert.equal(pat.awardStatus, 'completed');
+  assert.equal(pat.personalAwardVerified, true);
+  assert.match(pat.programEvidenceUrl, /^https:\/\/www\.ce\.kmitl\.ac\.th\//);
+
+  const film = primaryEducation('S0004').degree;
+  assert.deepEqual(film.abbreviation, { th: 'ศศ.บ.', en: 'B.A.' });
+  assert.equal(film.field.en, 'Urban Administration and Management');
+  assert.equal(film.awardStatus, 'completed');
+  assert.equal(film.personalAwardVerified, true);
+  assert.match(film.programEvidenceUrl, /^https:\/\/imd\.nmu\.ac\.th\//);
+
+  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 4);
+  assert.equal(data.educationRecords.filter((record) => record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 4);
+  assert.equal(data.meta.counts.verifiedCompletedStaffDegrees, 4);
+  assert.ok(data.educationRecords.filter((record) => record.personId.startsWith('S')).every((record) =>
+    record.degree.evidenceScope === 'owner_confirmed_completed_degree_with_official_program_definition'
+  ));
+  assert.match(data.people.find((person) => person.personId === 'S0003').educationDisplay.card.en, /B\.Eng\., Computer Engineering/);
 });
 
 test('CityMETER works use release-aligned canonical mappings without promoting unresolved names', () => {
@@ -306,6 +468,21 @@ test('private contact values and unapproved social/portrait candidates do not le
   const data = loadGenerated();
   const serialized = JSON.stringify(data);
   assert.doesNotMatch(serialized, /contacts_internal/);
+  assert.doesNotMatch(serialized, /docs\.google\.com\/spreadsheets\/d\//);
+  assert.doesNotMatch(serialized, /(?:2025|2026)![A-Z]+\d+(?::[A-Z]+\d+)?/);
+  assert.ok(data.people.every((person) => !/https?:\/\/|@|(?:2025|2026)![A-Z]+\d+|[A-Z]+\d+:[A-Z]+\d+/i.test(person.bio.sourceRef ?? '')));
+  const emittedKeys = new Set();
+  const collectKeys = (value) => {
+    if (!value || typeof value !== 'object') return;
+    for (const [key, child] of Object.entries(value)) {
+      emittedKeys.add(key.toLowerCase());
+      collectKeys(child);
+    }
+  };
+  collectKeys(data);
+  for (const forbiddenKey of ['email', 'phone', 'line_id', 'discord', 'cv_file_ids', 'reviewer_note', 'raw_answer']) {
+    assert.ok(!emittedKeys.has(forbiddenKey), 'private field emitted: ' + forbiddenKey);
+  }
   if (rawAvailable) {
     const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
     const contacts = raw.sheets.contacts_internal;

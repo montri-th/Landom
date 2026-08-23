@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.3.0",
   "generatedAt": "2026-08-23T00:00:00+07:00",
   "source": {
     "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
@@ -26,7 +26,10 @@
   "evidenceBoundary": {
     "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
     "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
-    "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent."
+    "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
+    "profileCopy": "All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.",
+    "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
+    "staffDegrees": "The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release."
   },
   "counts": {
     "people": 48,
@@ -34,6 +37,12 @@
     "educationRecords": 48,
     "works": 51,
     "contributions": 95,
-    "achievements": 1
+    "achievements": 1,
+    "sourceBackedProfilePlaceholders": 48,
+    "ownerPendingProfiles": 0,
+    "firstPersonProfilePlaceholders": 25,
+    "factualFallbackProfilePlaceholders": 23,
+    "verifiedCompletedStaffDegrees": 4,
+    "cooperativeEducationPeople": 6
   }
 }

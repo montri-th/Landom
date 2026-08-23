@@ -84,6 +84,21 @@ const peopleRows = rowsToObjects(snapshot.sheets.people_registry);
 const engagementRows = rowsToObjects(snapshot.sheets.engagements);
 const contributionRows = rowsToObjects(snapshot.sheets.contributions);
 
+function readApprovedJson(fileName) {
+  const approvedPath = path.join(root, 'data/approved', fileName);
+  if (!fs.existsSync(approvedPath)) throw new Error('Required approved data is missing: ' + fileName);
+  return JSON.parse(fs.readFileSync(approvedPath, 'utf8'));
+}
+
+const profileCopy = readApprovedJson('profile-copy.json');
+const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
+const cooperativeEducationPersonIds = new Set(
+  educationPlacementOverrides.academicPlacement?.cooperativeEducationPersonIds ?? []
+);
+const explicitInternshipPersonIds = new Set(
+  educationPlacementOverrides.academicPlacement?.explicitInternshipPersonIds ?? []
+);
+
 const migrationDate = '2026-08-23';
 const staffSourceIds = new Set(['LDM-P-001', 'LDM-P-005', 'LDM-P-007', 'LDM-P-034']);
 const partTimeSourceIds = new Set(['LDM-P-004']);
@@ -276,7 +291,22 @@ const people = peopleRows.map((row) => {
         ? 'neutral'
         : 'program',
     educationDisplay: null,
-    bio: { th: null, en: null, status: 'owner_pending', verificationStatus: 'owner_pending' },
+    bio: {
+      th: null,
+      en: null,
+      status: 'owner_pending',
+      verificationStatus: 'owner_pending',
+      publicationBasis: null,
+      sourceBasis: null,
+      sourceType: null,
+      sourceRef: null,
+      authorRole: null,
+      derivationMethod: null,
+      evidenceScope: null,
+      evidenceConfidence: null,
+      reviewStatus: 'pending_owner_copy',
+      ownerApproval: null
+    },
     publication: { consentStatus, profileStatus: consentStatus === 'granted' ? 'eligible' : 'withheld_pending_consent' },
     dataQuality: {
       profileVerificationStatus: 'owner_review_required',
@@ -302,6 +332,7 @@ for (const row of peopleRows) {
       qualification: programId
         ? { th: programs.find((program) => program.programId === programId).names.th.formal, en: programs.find((program) => program.programId === programId).names.en.formal }
         : { th: null, en: null },
+      degree: null,
       verificationStatus: sourceConflict ? 'source_conflict_unresolved' : 'owner_review_required',
       evidenceNote: sourceConflict
         ? 'คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ'
@@ -310,6 +341,20 @@ for (const row of peopleRows) {
           : null
     });
   });
+}
+
+const personById = new Map(people.map((person) => [person.personId, person]));
+for (const personId of [...cooperativeEducationPersonIds, ...explicitInternshipPersonIds]) {
+  if (!personById.has(personId)) throw new Error('Academic placement override references a non-core person: ' + personId);
+}
+for (const override of educationPlacementOverrides.staffDegrees ?? []) {
+  const person = personById.get(override.personId);
+  if (!person || person.migrationClassification !== 'full_time') {
+    throw new Error('Staff degree override references a non-staff person: ' + override.personId);
+  }
+  const record = educationRecords.find((item) => item.personId === override.personId && item.isPrimary);
+  if (!record) throw new Error('Staff degree override has no primary education record: ' + override.personId);
+  record.degree = structuredClone(override.degree);
 }
 
 const institutionById = new Map(institutions.map((item) => [item.institutionId, item]));
@@ -327,10 +372,19 @@ for (const person of people) {
   }
   const institution = institutionById.get(record.institutionId);
   const program = record.programId ? programById.get(record.programId) : null;
-  const cardTh = [program?.names.th.short, institution.names.th.short].filter(Boolean).join(' · ');
-  const cardEn = [program?.names.en.short, institution.names.en.short].filter(Boolean).join(' · ');
-  const detailTh = [program?.names.th.formal, institution.names.th.formal].filter(Boolean).join(' — ');
-  const detailEn = [program?.names.en.formal, institution.names.en.formal].filter(Boolean).join(' — ');
+  const degree = person.educationDisplayMode === 'qualification' ? record.degree : null;
+  const cardTh = degree
+    ? [[degree.abbreviation.th, degree.field.th].filter(Boolean).join(' '), institution.names.th.short].filter(Boolean).join(' · ')
+    : [program?.names.th.short, institution.names.th.short].filter(Boolean).join(' · ');
+  const cardEn = degree
+    ? [[degree.abbreviation.en, degree.field.en].filter(Boolean).join(', '), institution.names.en.short].filter(Boolean).join(' · ')
+    : [program?.names.en.short, institution.names.en.short].filter(Boolean).join(' · ');
+  const detailTh = degree
+    ? [[degree.title.th, degree.field.th ? '(' + degree.field.th + ')' : null].filter(Boolean).join(' '), institution.names.th.formal].filter(Boolean).join(' — ')
+    : [program?.names.th.formal, institution.names.th.formal].filter(Boolean).join(' — ');
+  const detailEn = degree
+    ? [[degree.title.en, degree.field.en ? '(' + degree.field.en + ')' : null].filter(Boolean).join(' '), institution.names.en.formal].filter(Boolean).join(' — ')
+    : [program?.names.en.formal, institution.names.en.formal].filter(Boolean).join(' — ');
   person.educationDisplay = {
     mode: person.educationDisplayMode,
     card: { th: cardTh || null, en: cardEn || null },
@@ -373,6 +427,17 @@ const engagements = engagementRows.map((row, index) => {
         ? 'internship'
         : 'program_participant';
   const personId = sourceIdToPersonId.get(row.person_id);
+  const academicPlacementType = category === 'internship'
+    ? cooperativeEducationPersonIds.has(personId)
+      ? 'cooperative_education'
+      : 'internship'
+    : 'not_applicable';
+  if (explicitInternshipPersonIds.has(personId) && academicPlacementType !== 'internship') {
+    throw new Error('Explicit internship placement conflicts with a cooperative-education override: ' + personId);
+  }
+  const cohortLabel = academicPlacementType === 'cooperative_education'
+    ? clean(row.cohort)
+    : clean(row.cohort)?.replace(/\s*\+\s*Co-op(?:\s*\(สหกิจ\))?/gi, '').replace(/\s{2,}/g, ' ').trim() || null;
   const responsibilityWorkIds = [];
   if (row.person_id === 'LDM-P-001' && row.program === 'FDI') responsibilityWorkIds.push('work-citymeter-schools');
   if (row.person_id === 'LDM-P-001' && row.program === 'Full-time') responsibilityWorkIds.push('work-land-portfolio', 'work-lead2loan', 'work-fdi-mentoring');
@@ -380,8 +445,9 @@ const engagements = engagementRows.map((row, index) => {
     engagementId,
     personId,
     category,
+    academicPlacementType,
     program: { code: row.program, names: engagementProgramNames[row.program] || { th: row.program, en: row.program } },
-    cohortLabel: clean(row.cohort),
+    cohortLabel,
     roleTitle: engagementRoleNames[row.role] || { th: clean(row.role), en: clean(row.role) },
     start: parseDate(row.start),
     end: parseDate(row.end),
@@ -398,6 +464,7 @@ engagements.push({
   engagementId: oatPartTimeEngagementId,
   personId: 'S0001',
   category: 'part_time',
+  academicPlacementType: 'not_applicable',
   program: { code: 'Part-time', names: engagementProgramNames['Part-time'] },
   cohortLabel: 'Part-time (ช่วงหลัง FDI และก่อน Full-time; วันเริ่ม–สิ้นสุดรอยืนยัน)',
   roleTitle: { th: 'ผู้ดูแล Land Portfolio', en: 'Land Portfolio contributor' },
@@ -844,11 +911,56 @@ for (const person of people) {
 }
 
 const works = [...workMap.values()];
-// Recruitment messages in the supplied evidence only establish application intent.
-// They are not public bios and do not support personality claims. Keep the public
-// bio blank until the profile owner supplies or approves exact copy.
+const approvedProfileByPersonId = new Map();
+const approvedProfileJson = JSON.stringify(profileCopy);
+if (/docs\.google\.com\/spreadsheets\/d\/|(?:2025|2026)![A-Z]+\d+(?::[A-Z]+\d+)?/i.test(approvedProfileJson)) {
+  throw new Error('Approved profile copy contains a private Sheet identifier or cell range.');
+}
+for (const approvedProfile of profileCopy.profiles ?? []) {
+  if (!personById.has(approvedProfile.personId)) {
+    throw new Error('Approved profile copy references a non-core person: ' + approvedProfile.personId);
+  }
+  if (approvedProfileByPersonId.has(approvedProfile.personId)) {
+    throw new Error('Duplicate approved profile copy for ' + approvedProfile.personId);
+  }
+  if (!clean(approvedProfile.th) || !clean(approvedProfile.en)) {
+    throw new Error('Approved profile copy must contain both languages: ' + approvedProfile.personId);
+  }
+  approvedProfileByPersonId.set(approvedProfile.personId, approvedProfile);
+}
+if (approvedProfileByPersonId.size !== people.length || approvedProfileByPersonId.size !== 48) {
+  throw new Error('Approved profile copy must contain exactly one safe placeholder for all 48 core people.');
+}
+const firstPersonProfiles = [...approvedProfileByPersonId.values()].filter((profile) => !profile.basis || profile.basis === 'first_person');
+const factualFallbackProfiles = [...approvedProfileByPersonId.values()].filter((profile) => profile.basis === 'factual_fallback');
+if (firstPersonProfiles.length !== 25 || factualFallbackProfiles.length !== 23) {
+  throw new Error('Approved profile provenance must remain 25 first-person paraphrases and 23 factual fallbacks.');
+}
 for (const person of people) {
-  person.bio = { th: null, en: null, status: 'owner_pending', verificationStatus: 'owner_pending' };
+  const approvedProfile = approvedProfileByPersonId.get(person.personId);
+  const factualFallback = approvedProfile.basis === 'factual_fallback';
+  const sourceContract = factualFallback ? profileCopy.factualFallbackContract : profileCopy;
+  if (!sourceContract?.publicationBasis || !sourceContract?.sourceBasis || !sourceContract?.sourceType ||
+      !sourceContract?.sourceRef || !sourceContract?.authorRole || !sourceContract?.derivationMethod ||
+      !sourceContract?.evidenceScope || !(approvedProfile.evidenceConfidence || sourceContract.evidenceConfidence)) {
+    throw new Error('Approved profile provenance contract is incomplete: ' + person.personId);
+  }
+  person.bio = {
+    th: approvedProfile.th,
+    en: approvedProfile.en,
+    status: 'source_backed_placeholder',
+    verificationStatus: 'owner_authorized_placeholder',
+    publicationBasis: sourceContract.publicationBasis,
+    sourceBasis: sourceContract.sourceBasis,
+    sourceType: sourceContract.sourceType,
+    sourceRef: sourceContract.sourceRef,
+    authorRole: sourceContract.authorRole,
+    derivationMethod: sourceContract.derivationMethod,
+    evidenceScope: sourceContract.evidenceScope,
+    evidenceConfidence: approvedProfile.evidenceConfidence || sourceContract.evidenceConfidence,
+    reviewStatus: sourceContract.reviewStatus,
+    ownerApproval: structuredClone(profileCopy.ownerApproval)
+  };
 }
 
 const socialPlatforms = ['linkedin', 'github', 'gitlab', 'website', 'facebook', 'instagram', 'tiktok'];
@@ -984,7 +1096,7 @@ const copy = {
 };
 
 const meta = {
-  schemaVersion: '1.1.0',
+  schemaVersion: '1.3.0',
   generatedAt: '2026-08-23T00:00:00+07:00',
   source: {
     spreadsheetId: snapshot.source.spreadsheetId,
@@ -1003,7 +1115,10 @@ const meta = {
   evidenceBoundary: {
     localeInsight: 'Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.',
     crossProductComparison: 'Compare only records produced under the same schema/release, otherwise state incompatibility.',
-    socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.'
+    socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
+    profileCopy: 'All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.',
+    academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
+    staffDegrees: 'The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release.'
   },
   counts: {
     people: people.length,
@@ -1011,7 +1126,15 @@ const meta = {
     educationRecords: educationRecords.length,
     works: works.length,
     contributions: contributions.length,
-    achievements: achievements.length
+    achievements: achievements.length,
+    sourceBackedProfilePlaceholders: approvedProfileByPersonId.size,
+    ownerPendingProfiles: people.length - approvedProfileByPersonId.size,
+    firstPersonProfilePlaceholders: firstPersonProfiles.length,
+    factualFallbackProfilePlaceholders: factualFallbackProfiles.length,
+    verifiedCompletedStaffDegrees: educationRecords.filter((record) =>
+      record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified === true
+    ).length,
+    cooperativeEducationPeople: cooperativeEducationPersonIds.size
   }
 };
 

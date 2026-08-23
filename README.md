@@ -38,10 +38,11 @@ node tools/normalize-data.mjs \
 
 node tools/export-sheet-tabs.mjs \
   --snapshot data/raw/google-sheet-snapshot.json \
-  --site-data data/generated/site-data.json
+  --site-data data/generated/site-data.json \
+  --output /private/tmp/landom-sheet-tabs-v3.3.0.json
 ```
 
-The exporter performs the return half of the controlled Sheet roundtrip: it combines the reviewed normalized records with private social and asset candidates preserved in the ignored raw snapshot. Those candidates remain raw-only; they must not be copied into `data/generated/`, repository source, logs, or build artifacts. A positional tab name may be appended to export only that tab.
+The exporter performs the return half of the controlled Sheet roundtrip: it combines the reviewed normalized records with private social and asset candidates preserved in the ignored raw snapshot. Those candidates remain raw-only; they must not be copied into `data/generated/`, repository source, logs, or build artifacts. Use `--output` with a private path so a full payload is not printed to a terminal log. A positional tab name may be appended to export only that tab.
 
 CI builds the reviewed, committed `data/generated/` projection only. It never reads or writes the ignored raw snapshot, contacts Google Sheets, or uses Google credentials; remote import and writeback are authorized local operations only.
 
@@ -65,7 +66,9 @@ Person IDs have one canonical version only:
 - `P0001` — part-time staff
 - `I0001` — intern
 
-A person who changes role keeps one person record and one canonical ID; role periods live in `engagements`. Cards use standardized short institution/program labels. Profile details use standardized official names. Full-time profiles prioritize degree and institution; intern profiles prioritize program and institution. Missing academic fields are labelled as pending confirmation instead of repeating a university name as a program.
+A person who changes role keeps one person record and one canonical ID; role periods live in `engagements`. Cards use standardized short institution/program labels. Profile details use standardized official names. Full-time profiles prioritize degree, field, and institution; intern profiles prioritize program and institution. `degree.awardStatus` and `degree.personalAwardVerified` keep program nomenclature separate from person-level completion evidence. For this release, the directory owner explicitly confirmed `completed` and `personalAwardVerified: true` for all four staff records; official program sources standardize the degree names. Missing academic fields are labelled as pending confirmation instead of repeating a university name as a program.
+
+Internship and cooperative education are stored per engagement in `academicPlacementType`; the UI never infers them from cohort text. The current public co-op set is exactly `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, and `I0039`. A seventh owner-confirmed participant remains in the private Shortlisted recruitment registry until a started engagement and at least one contribution can be verified.
 
 Every public person must resolve to at least one contribution. `Land Portfolio` and `Lead2Loan` are separate work records and separate contributions, including for Oat.
 
@@ -75,7 +78,8 @@ Developer references: [data dictionary](docs/data-dictionary.md), [JSON Schema](
 
 ## Privacy and assets
 
-- Current release behavior follows the owner instruction to render all 48 core registry profiles. A pending `people.publication.consentStatus` is not a UI filter for the core name/role/education/contribution card. Bios are blank and `owner_pending`; no generic copy or personality is inferred from recruitment text, scores, work, or reviewer comments.
+- Current release behavior follows the owner instruction to render all 48 core registry profiles with bilingual `source_backed_placeholder` copy. Twenty-five are concise paraphrases of first-person application answers matched exactly to the core roster. The other 23 are explicitly labelled `factual_fallback` and use bounded synthesis from reconciled role, education, and verified-work evidence. Both groups remain `pending_candidate_video_review`; provenance fields keep the two bases distinct. No raw application text, source Sheet ID/range, contact, score, or reviewer note is emitted. A pending `people.publication.consentStatus` is not a UI filter for the core name/role/education/contribution card and does not become individual consent through owner authorization.
+- Versioned profile text lives in the normalized `profile_statements` Sheet tab; `people_registry.current_statement_id` selects the current materialized copy. Unmatched applicants and all recruitment contacts, CV/video links, and reviewer notes stay in the separate private **Shortlisted recruitment** workbook.
 - `contacts_internal`, email, phone, Line, Discord, CV file IDs, raw sheet rows, credentials, and private notes must never enter source-facing UI files or `dist/`.
 - A social URL is public only when identity is verified, publication is `publishable`, and its basis is either recorded individual consent or scoped `owner_authorized_public_profile_link`. Owner authorization is recorded separately and must not be described as individual consent.
 - A person image renders only through an `assets[]` record with exact identity, cleared rights, publishable status, a governed local path/hash, and either individual consent or scoped `owner_authorized_public_profile_portrait`. Expiring CDN/source URLs remain private; otherwise the UI renders the full nickname fallback.

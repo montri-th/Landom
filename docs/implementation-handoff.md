@@ -37,11 +37,12 @@ Recommended sheet tabs and keys:
 
 | Tab | Primary key | Important relations / controls |
 |---|---|---|
-| `people_registry` | `person_id` | One ID only; names, core publication state, blank owner-pending bio |
-| `engagements` | `engagement_id` | `person_id`, role type, start/end/cohort |
+| `people_registry` | `person_id` | One ID only; names, core publication state, materialized current bio, `current_statement_id` |
+| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; v3.3 has 48 current statements |
+| `engagements` | `engagement_id` | `person_id`, role type, start/end/cohort, explicit academic placement type |
 | `institutions` | `institution_id` | Official TH/EN names and approved short labels |
 | `programs` | `program_id` | `institution_id`, official TH/EN names and approved short labels |
-| `education` | `education_record_id` | `person_id`, `institution_id`, optional `program_id`, degree |
+| `education` | `education_record_id` | `person_id`, `institution_id`, optional `program_id`, degree program and separate personal award status |
 | `works` | `work_id` | Canonical work/product name plus localized catalog route and link evidence scope |
 | `contributions` | `contribution_id` | `person_id`, `work_id`, optional matching `engagement_id` |
 | `achievements` | `achievement_id` | Recipient person IDs, optional related work, public evidence URL |
@@ -61,7 +62,7 @@ Refresh sequence:
      --output-dir data/generated
    ```
 
-3. Review changes in `data/generated/`, especially IDs, renamed dimensions, contributions, work routes, approved public social URLs, governed image assets, and blank/approved bios.
+3. Review changes in `data/generated/`, especially IDs, academic placement, degree program versus personal award status, contributions, work routes, approved public social URLs, governed image assets, and governed profile statements.
 4. Run `npm run build`. This repeats validation and tests, creates the allowlisted artifact, and validates `dist/`.
 5. Commit public source/generated files only. Never add the raw snapshot, contact columns, downloaded CVs, cookies, or credentials.
 
@@ -70,10 +71,11 @@ For the controlled return trip to Google Sheet, run the exporter against both si
 ```sh
 node tools/export-sheet-tabs.mjs \
   --snapshot data/raw/google-sheet-snapshot.json \
-  --site-data data/generated/site-data.json
+  --site-data data/generated/site-data.json \
+  --output /private/tmp/landom-sheet-tabs-v3.3.0.json
 ```
 
-Append a positional `<tab-name>` to emit only one structured tab payload. The exporter merges the reviewed normalized records with private social/asset candidates and their review fields from the ignored raw snapshot, preserving those candidates across a roundtrip. The normalizer never promotes a candidate merely because it exists: private candidate URLs, handles, source URLs, evidence, permission records, and review notes remain raw-only unless the public gates explicitly produce an approved public field.
+Append a positional `<tab-name>` to emit only one structured tab payload. Always use `--output` with a private path for a full workbook so private candidates are not written to terminal/CI logs. The exporter merges the reviewed normalized records with private social/asset candidates and their review fields from the ignored raw snapshot, preserving those candidates across a roundtrip. The normalizer never promotes a candidate merely because it exists: private candidate URLs, handles, source URLs, evidence, permission records, and review notes remain raw-only unless the public gates explicitly produce an approved public field.
 
 Apply an exported payload only through an authorized local Sheet session and verify the target spreadsheet before writing. A complete workbook payload can contain private social/asset candidates and internal contacts; never save it in the repository, attach it to CI logs, or publish it as an artifact. GitHub Actions must never fetch from or write to Google Sheets, and must never receive a raw snapshot or Google credentials. The detailed tab/enum contract is in `docs/data-dictionary.md`, and the public JSON contract is in `data/schema/site-data.schema.json`.
 
@@ -86,6 +88,8 @@ For role-aware education display:
 - Detail dialog: official full institution/program labels.
 - FDI program display copy is exact: `Full-stack Developer Intern, FDI` in both UI locales.
 - The Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์`, not `วศ.คอมพิวเตอร์`.
+- A degree label such as `B.Eng., Computer Engineering` requires both standardized official-program nomenclature and recorded person-level status. The current release carries explicit directory-owner confirmation for `degree.awardStatus=completed` and `degree.personalAwardVerified=true` on all four staff records. Future changes must preserve this separation and may not infer an earned award from a curriculum title alone.
+- `academicPlacementType` is required on every engagement: `internship`, `cooperative_education`, or `not_applicable`. It is never parsed from `cohortLabel`. The public co-op set is exactly `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, and `I0039`; Q stays private until a started engagement and contribution are verified.
 - If a required program or qualification is still unknown, show an explicit pending-confirmation label beside the verified institution; never repeat an institution name as though it were the program.
 
 ## 4. Public IDs and relationships
@@ -126,7 +130,9 @@ Discovery uses one canonical URL, `https://montri-th.github.io/Landom/`, shared 
 
 ## 6. Social and image approval gate
 
-Current release behavior, following the owner instruction for this directory, renders all 48 core profile records. `people.publication.consentStatus=pending` does not suppress the core card or detail record. Bio fields remain `null/null` with `owner_pending` until the profile owner supplies or approves exact public copy; recruitment intent, interviewer comments, scores, and project records are not converted into personality text.
+Current release behavior, following the owner instruction for this directory, renders all 48 core profile records with bilingual `source_backed_placeholder` copy. Twenty-five records use concise paraphrases of first-person application answers with exact roster matches. Twenty-three use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. This is not individual approval of final copy. Raw application text, source Sheet IDs/ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection.
+
+Keep profile copy versioned in `profile_statements`; do not overwrite an old statement when a person's video transcript is reviewed. Add a new statement, link `supersedes_statement_id`, then move `people_registry.current_statement_id` after review. The separate private **Shortlisted recruitment** workbook owns unmatched applicants, contacts, CV/video URLs, screening stages, and reviewer notes; none of those fields belong in the repository or public projection.
 
 Private social and asset review columns use only these enums:
 
@@ -173,7 +179,7 @@ Automation does not close these checks:
 - Thai at 130% zoom and page at 200% zoom;
 - keyboard, visible focus, screen-reader labels, reduced motion, and dialog focus containment;
 - final human review of institution/program canonicalization and product naming against the same CityMETER release;
-- profile-owner copy or confirmation for blank bios;
+- candidate-video/profile-owner review of all current placeholder bios, preserving statement version history;
 - evidence, consent, and rights review for every newly published social link or person image.
 
 Until those are checked on the released bytes, report them as open manual gates rather than passed.
