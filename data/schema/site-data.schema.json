@@ -16,7 +16,8 @@
     "contributions",
     "achievements",
     "socialProfiles",
-    "assets"
+    "assets",
+    "certificates"
   ],
   "properties": {
     "meta": { "$ref": "#/$defs/meta" },
@@ -30,7 +31,35 @@
     "contributions": { "type": "array", "items": { "$ref": "#/$defs/contribution" } },
     "achievements": { "type": "array", "items": { "$ref": "#/$defs/achievement" } },
     "socialProfiles": { "type": "array", "items": { "$ref": "#/$defs/socialProfile" } },
-    "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } }
+    "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } },
+    "certificates": {
+      "type": "array",
+      "minItems": 26,
+      "maxItems": 26,
+      "items": { "$ref": "#/$defs/certificate" },
+      "allOf": [
+        {
+          "contains": { "type": "object", "required": ["programCode"], "properties": { "programCode": { "const": "FDI" } } },
+          "minContains": 12,
+          "maxContains": 12
+        },
+        {
+          "contains": { "type": "object", "required": ["programCode"], "properties": { "programCode": { "const": "MSI" } } },
+          "minContains": 5,
+          "maxContains": 5
+        },
+        {
+          "contains": { "type": "object", "required": ["programCode"], "properties": { "programCode": { "const": "IMP" } } },
+          "minContains": 8,
+          "maxContains": 8
+        },
+        {
+          "contains": { "type": "object", "required": ["programCode"], "properties": { "programCode": { "const": "PDI" } } },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
   },
   "$defs": {
     "nullableString": { "type": ["string", "null"] },
@@ -86,7 +115,7 @@
       "type": "object",
       "required": ["schemaVersion", "source", "personIdPolicy", "evidenceBoundary", "counts"],
       "properties": {
-        "schemaVersion": { "const": "1.3.0" },
+        "schemaVersion": { "const": "1.4.0" },
         "source": {
           "type": "object",
           "required": ["spreadsheetId", "publicSheetsUsed", "privateContactSourcesExcluded"],
@@ -336,6 +365,74 @@
         "mediaType": { "$ref": "#/$defs/nullableString" },
         "bytes": { "type": ["integer", "null"], "minimum": 0 },
         "identityVerificationEvidence": { "$ref": "#/$defs/nullableString" }
+      }
+    },
+    "certificate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "certificateId",
+        "personId",
+        "credentialId",
+        "programCode",
+        "title",
+        "roleLabel",
+        "awardedOn",
+        "printedWorkTitle",
+        "workIds",
+        "publicPath",
+        "downloadFilename",
+        "sha256",
+        "bytes",
+        "mimeType",
+        "verificationStatus",
+        "publicationStatus",
+        "rightsStatus",
+        "consentStatus",
+        "publicationBasis",
+        "ownerApproval",
+        "nameSpellingStatus",
+        "credentialIdCollisionStatus",
+        "dateEvidenceStatus",
+        "evidenceNotes",
+        "evidenceBoundary"
+      ],
+      "properties": {
+        "certificateId": { "type": "string", "pattern": "^CERT-[SPI]\\d{4}-[A-Z0-9]+$" },
+        "personId": { "$ref": "#/$defs/personId" },
+        "credentialId": { "type": "string", "pattern": "^[A-Z]{3}\\d{5}$" },
+        "programCode": { "enum": ["FDI", "PDI", "MSI", "IMP"] },
+        "title": { "$ref": "#/$defs/localizedRequired" },
+        "roleLabel": { "$ref": "#/$defs/localizedRequired" },
+        "awardedOn": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "printedWorkTitle": { "type": "string", "minLength": 1 },
+        "workIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "publicPath": { "type": "string", "pattern": "^public/assets/certificates/[SPI]\\d{4}-[A-Z0-9]+\\.png$" },
+        "downloadFilename": { "type": "string", "pattern": "^landometer-certificate-[SPI]\\d{4}-[A-Z0-9]+\\.png$" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "mimeType": { "const": "image/png" },
+        "verificationStatus": { "const": "verified" },
+        "publicationStatus": { "const": "publishable" },
+        "rightsStatus": { "const": "cleared" },
+        "consentStatus": { "const": "pending" },
+        "publicationBasis": { "const": "owner_authorized_public_certificate" },
+        "ownerApproval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "approvedAt", "scope", "sourceRef"],
+          "properties": {
+            "status": { "const": "granted" },
+            "approvedAt": { "type": "string", "minLength": 1 },
+            "scope": { "const": "public_certificate_image_and_printed_profile_facts" },
+            "sourceRef": { "type": "string", "minLength": 1 }
+          }
+        },
+        "nameSpellingStatus": { "enum": ["matched", "owner_review_required"] },
+        "credentialIdCollisionStatus": { "enum": ["unique_in_printed_source", "duplicate_in_printed_source"] },
+        "dateEvidenceStatus": { "enum": ["printed_date_only", "printed_date_conflicts_with_program_code"] },
+        "evidenceNotes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "evidenceBoundary": { "const": "printed_certificate_facts_only_qr_destinations_excluded" }
       }
     },
     "ownerApprovalNullable": {

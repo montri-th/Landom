@@ -49,6 +49,8 @@ Recommended sheet tabs and keys:
 | `social_profiles` | `social_profile_id` | Platform, private candidate, public URL, verification, consent, publication basis, scoped owner approval |
 | `assets` | `asset_id` | Person, governed local path, verification, consent, rights, publication basis, owner approval, hash |
 
+Certificates are governed in the repository rather than edited through the current Sheet roundtrip. `data/approved/certificate-assets.json` is the reviewed source inventory; normalization emits `certificates[]` plus `data/generated/certificates.json`, and normalized-Sheet import preserves that reviewed baseline dimension. Do not convert a certificate QR destination into a contribution or work record.
+
 Use protected lookup ranges and dropdown validation for IDs, roles, statuses, institutions, programs, works, verification, consent, rights, and publication states. Do not use display names as foreign keys. Keep audit/evidence columns beside the status they support. Prefer append-only engagement/contribution history over changing a person's canonical ID when their role changes.
 
 Refresh sequence:
@@ -85,7 +87,7 @@ For role-aware education display:
 - Intern: show standardized program plus the institution.
 - Part-time or mixed history: use the engagement relevant to the selected period and avoid implying a current role from an old education record.
 - Masonry card: short institution/program labels.
-- Detail dialog: official full institution/program labels.
+- Inline expanded card: official full institution/program labels.
 - FDI program display copy is exact: `Full-stack Developer Intern, FDI` in both UI locales.
 - The Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์`, not `วศ.คอมพิวเตอร์`.
 - A degree label such as `B.Eng., Computer Engineering` requires both standardized official-program nomenclature and recorded person-level status. The current release carries explicit directory-owner confirmation for `degree.awardStatus=completed` and `degree.personalAwardVerified=true` on all four staff records. Future changes must preserve this separation and may not infer an earned award from a curriculum title alone.
@@ -119,10 +121,11 @@ The static shell owns these required IDs; changes require updating the validator
 | `#filter-dialog`, `#filter-form` | accessible filter dialog and form |
 | `#filter-role`, `#filter-cohort`, `#filter-status`, `#filter-work` | filter dimensions |
 | `#filter-clear` | reset filters without page reload |
-| `#people-board` | masonry result board |
-| `#person-dialog`, `#modal-close` | complete person detail dialog |
+| `#people-board` | masonry result board and one-at-a-time inline profile expansion |
+| `.person-card-shell`, `.person-inline-detail` | accessible inline detail state and cascading masonry reflow |
+| `#certificate-dialog`, `#certificate-close`, `#certificate-download` | governed high-resolution certificate preview and download |
 
-Cards must be keyboard-operable `.person-card` buttons. Small screens keep search compact and move secondary filters into `#filter-dialog`. Unapproved or broken person images fall back to the full nickname in `.avatar-name`; do not derive initials.
+Cards must be keyboard-operable `.person-card` buttons. Profile details expand inside the selected masonry card rather than opening a person modal; only one profile is expanded at a time, and reduced-motion preferences disable decorative cascade motion. Small screens keep search compact and move secondary filters into `#filter-dialog`. Unapproved or broken person images fall back to the full nickname in `.avatar-name`; do not derive initials.
 
 The app fetches `./data/generated/site-data.json`; keep URLs relative so project Pages works under `/Landom/`.
 
@@ -158,6 +161,8 @@ Person-image records additionally require `rightsStatus: cleared`, exact identit
 
 The approved portrait inventory is `data/approved/portrait-assets.json`; the public manifest and role restrictions are in `docs/assets-manifest.json`. Normalize/check hashes after any asset replacement.
 
+Certificate images use a separate deny-by-default inventory at `data/approved/certificate-assets.json`. Only filled, owner-authorized images may be copied byte-for-byte to `public/assets/certificates/<personId>-<credentialId>.png`. Public `certificates[]` records require `verificationStatus: verified`, `rightsStatus: cleared`, `publicationStatus: publishable`, `publicationBasis: owner_authorized_public_certificate`, and `ownerApproval.scope: public_certificate_image_and_printed_profile_facts`; keep `consentStatus: pending` unless individual consent is separately recorded. The governed 26-image release is exactly 12 FDI + 5 MSI + 8 IMP + 1 PDI. The eight Impvest certificates remain `programCode: IMP` with `Consulting Partner`; only Hana's `PDI26101` uses `programCode: PDI` with `Product development`. Credential ID is not unique (`IMP25007` appears twice), QR targets are excluded, Dada's spelling mismatch remains owner-review-required without changing the canonical registry name, and Hana's printed 2025 date may not define the 2026 PDI timeline.
+
 ## 7. CI and GitHub Pages
 
 The Pages workflow has two phases and is intentionally public-data-only. It must not make remote Google Sheet calls in either phase:
@@ -177,7 +182,7 @@ Automation does not close these checks:
 - responsive review at narrow mobile, tablet, and desktop widths;
 - native iOS/Android bottom-sheet, scroll, focus return, and virtual-keyboard behavior;
 - Thai at 130% zoom and page at 200% zoom;
-- keyboard, visible focus, screen-reader labels, reduced motion, and dialog focus containment;
+- keyboard, visible focus, screen-reader labels, reduced motion, inline-detail focus return, and filter/certificate dialog focus containment;
 - final human review of institution/program canonicalization and product naming against the same CityMETER release;
 - candidate-video/profile-owner review of all current placeholder bios, preserving statement version history;
 - evidence, consent, and rights review for every newly published social link or person image.

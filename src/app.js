@@ -14,7 +14,7 @@ const COPY = {
     controlsLabel: "การตั้งค่าการแสดงผล",
     switchLanguage: "Switch to English",
     heroEyebrow: "LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER",
-    heroTitle: "คนที่ร่วมสร้าง Landometer",
+    heroTitle: "รู้จักคนที่ร่วมสร้าง Landometer",
     heroIntro: "Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น",
     peopleUnit: "คนใน Landom",
     loadingData: "กำลังโหลดข้อมูลล่าสุด",
@@ -56,6 +56,7 @@ const COPY = {
     registry: "รายชื่อชาว Landom",
     openProfile: "ดูโปรไฟล์ของ {name}",
     readStory: "ดูโปรไฟล์",
+    collapseProfile: "ย่อรายละเอียด",
     educationSection: "การศึกษา",
     educationQualification: "วุฒิการศึกษา",
     educationProgram: "การศึกษาจาก",
@@ -77,6 +78,14 @@ const COPY = {
     achievements: "รางวัลและความสำเร็จ",
     publicProfiles: "ช่องทางออนไลน์",
     closeDetails: "ปิดรายละเอียด",
+    certificates: "ประกาศนียบัตร",
+    certificateFallback: "ประกาศนียบัตรจาก Landometer",
+    openCertificate: "ดูประกาศนียบัตรของ {name}",
+    closeCertificate: "ปิดประกาศนียบัตร",
+    certificateCredential: "รหัส {id}",
+    certificateAwarded: "มอบเมื่อ {date}",
+    certificateOpenOriginal: "เปิดภาพต้นฉบับ",
+    certificateDownload: "บันทึกภาพความละเอียดสูง",
     present: "ปัจจุบัน",
     moreWorks: "+{count} งาน",
     noStory: "",
@@ -94,15 +103,15 @@ const COPY = {
     languageChanged: "เปลี่ยนภาษาเป็นไทยแล้ว"
   },
   en: {
-    pageTitle: "Landom — people who build with Landometer",
+    pageTitle: "Landom — meet the people shaping Landometer",
     pageDescription: "Meet the people, interests and work shaped through time with Landometer.",
     skip: "Skip to main content",
     headerLabel: "Site header",
     homeLabel: "Landom — home",
     controlsLabel: "Display preferences",
     switchLanguage: "เปลี่ยนเป็นภาษาไทย",
-    heroEyebrow: "LANDOM · THE PEOPLE BUILDING WITH LANDOMETER",
-    heroTitle: "People who build with Landometer",
+    heroEyebrow: "LANDOM · THE PEOPLE SHAPING LANDOMETER",
+    heroTitle: "Meet the people shaping Landometer",
     heroIntro: "Landom is for people who want to understand cities and make them better, together.",
     peopleUnit: "people in Landom",
     loadingData: "Loading the latest data",
@@ -122,7 +131,7 @@ const COPY = {
     fulltime: "Full-time staff",
     parttime: "Part-time staff",
     intern: "Intern",
-    member: "Contributor",
+    member: "Team member",
     cohort: "Cohort / year",
     allCohorts: "All cohorts",
     status: "Status",
@@ -144,6 +153,7 @@ const COPY = {
     registry: "People of Landom",
     openProfile: "View {name}’s profile",
     readStory: "View profile",
+    collapseProfile: "Collapse profile",
     educationSection: "Education",
     educationQualification: "Qualification",
     educationProgram: "Education from",
@@ -165,6 +175,14 @@ const COPY = {
     achievements: "Awards and achievements",
     publicProfiles: "Online profiles",
     closeDetails: "Close details",
+    certificates: "Certificates",
+    certificateFallback: "Landometer certificate",
+    openCertificate: "View {name}’s certificate",
+    closeCertificate: "Close certificate",
+    certificateCredential: "Credential {id}",
+    certificateAwarded: "Awarded {date}",
+    certificateOpenOriginal: "Open original image",
+    certificateDownload: "Save high-resolution image",
     present: "Present",
     moreWorks: "+{count} more",
     noStory: "",
@@ -197,7 +215,9 @@ const state = {
     work: new URLSearchParams(window.location.search).get("work") || ""
   },
   currentPersonId: new URLSearchParams(window.location.search).get("person") || null,
-  lastProfileTrigger: null
+  lastProfileTrigger: null,
+  currentCertificate: null,
+  lastCertificateTrigger: null
 };
 
 const elements = {
@@ -259,13 +279,19 @@ const elements = {
   retry: document.querySelector("#retry-button"),
   footerCopy: document.querySelector("#footer-copy"),
   footerMeta: document.querySelector("#footer-meta"),
-  personDialog: document.querySelector("#person-dialog"),
-  personDetail: document.querySelector("#person-detail"),
-  modalClose: document.querySelector("#modal-close")
+  certificateDialog: document.querySelector("#certificate-dialog"),
+  certificateDialogKicker: document.querySelector("#certificate-dialog-kicker"),
+  certificateDialogTitle: document.querySelector("#certificate-dialog-title"),
+  certificateDialogMeta: document.querySelector("#certificate-dialog-meta"),
+  certificateDialogImage: document.querySelector("#certificate-dialog-image"),
+  certificateOpenOriginal: document.querySelector("#certificate-open-original"),
+  certificateDownload: document.querySelector("#certificate-download"),
+  certificateClose: document.querySelector("#certificate-close")
 };
 
 const systemThemeQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
 const desktopFilterQuery = window.matchMedia?.("(min-width: 760px)");
+const reducedMotionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
 
 function message(key, values = {}) {
   const keys = key.split(".");
@@ -367,13 +393,16 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   setText(elements.retry, copy.retry);
   setText(elements.footerCopy, copy.footerCopy);
   setText(elements.footerMeta, copy.registry);
-  elements.modalClose?.setAttribute("aria-label", copy.closeDetails);
+  setText(elements.certificateDialogKicker, copy.certificates);
+  elements.certificateClose?.setAttribute("aria-label", copy.closeCertificate);
+  setText(elements.certificateOpenOriginal, copy.certificateOpenOriginal);
+  setText(elements.certificateDownload, copy.certificateDownload);
   updateStaticOptions();
   updateDynamicOptions();
   updateDataNote();
   applyTheme();
   if (state.raw) renderDirectory();
-  if (elements.personDialog?.open && state.currentPersonId) renderPersonDetail(state.currentPersonId);
+  if (elements.certificateDialog?.open && state.currentCertificate) renderCertificateDialog(state.currentCertificate);
   if (persist) safelyStore(LANGUAGE_KEY, state.language);
   if (updateQuery) updateUrl({ lang: state.language });
   if (announce) setText(elements.preferenceStatus, copy.languageChanged);
@@ -646,24 +675,26 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
       ? message("educationQualificationPending")
       : "";
 
-  const shortProgram = degreeShort || canonicalProgramShort ||
+  const shortProgram = degreeShort ||
+    (cardHasProgramAndInstitution ? cardParts[0] : "") || canonicalProgramShort ||
     localizedField(program || {}, ["shortName", "short_name", "abbreviation", "abbr", "code"]) ||
     localizedField(embeddedEducation, ["programShort", "program_short", "degreeShort", "degree_short"]) ||
-    (cardHasProgramAndInstitution || hasProgramOrQualification ? cardParts[0] : "") ||
+    (hasProgramOrQualification ? cardParts[0] : "") ||
     pendingAcademicLabel;
-  const fullProgram = degreeDetail || qualification || canonicalProgramFull ||
+  const fullProgram = degreeDetail || qualification ||
+    (detailHasProgramAndInstitution ? detailParts[0] : "") || canonicalProgramFull ||
     localizedField(program || {}, ["officialName", "official_name", "fullName", "full_name", "name", "degreeName", "degree_name"]) ||
     localizedField(embeddedEducation, ["programOfficial", "program_official", "programName", "program_name", "degree", "qualification"]) ||
-    (detailHasProgramAndInstitution || hasProgramOrQualification ? detailParts[0] : "") ||
+    (hasProgramOrQualification ? detailParts[0] : "") ||
     pendingAcademicLabel;
-  const shortInstitution = canonicalInstitutionShort ||
+  const shortInstitution = (cardHasProgramAndInstitution ? cardParts.slice(1).join(" · ") : "") || canonicalInstitutionShort ||
     localizedField(institution || {}, ["shortName", "short_name", "abbreviation", "abbr", "code"]) ||
     localizedField(embeddedEducation, ["institutionShort", "institution_short", "universityShort", "university_short"]) ||
-    (cardHasProgramAndInstitution ? cardParts.slice(1).join(" · ") : !hasProgramOrQualification ? cardDisplay : "");
-  const fullInstitution = canonicalInstitutionFull ||
+    (!hasProgramOrQualification ? cardDisplay : "");
+  const fullInstitution = (detailHasProgramAndInstitution ? detailParts.slice(1).join(" — ") : "") || canonicalInstitutionFull ||
     localizedField(institution || {}, ["officialName", "official_name", "fullName", "full_name", "name"]) ||
     localizedField(embeddedEducation, ["institutionOfficial", "institution_official", "institutionName", "institution_name", "university"]) ||
-    (detailHasProgramAndInstitution ? detailParts.slice(1).join(" — ") : !hasProgramOrQualification ? detailDisplay : "");
+    (!hasProgramOrQualification ? detailDisplay : "");
 
   return {
     labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified),
@@ -672,6 +703,7 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     awardStatus: effectiveAwardStatus,
     personalAwardVerified,
     verificationStatus,
+    cardDisplay,
     shortProgram: shortProgram || fullProgram,
     fullProgram: fullProgram || shortProgram,
     shortInstitution: shortInstitution || fullInstitution,
@@ -752,6 +784,53 @@ function safeAssetUrl(value, expectedPersonId) {
   return `./${normalized}`;
 }
 
+function safeCertificateUrl(value) {
+  const normalized = String(value || "").replace(/^\.\//, "");
+  if (!/^public\/assets\/certificates\/[A-Za-z0-9][A-Za-z0-9._-]*\.(?:jpe?g|png|webp)$/i.test(normalized)) return "";
+  return `./${normalized}`;
+}
+
+function certificateIsPublishable(certificate) {
+  const verificationStatus = normalizedEnum(firstValue(certificate, ["verificationStatus", "verification_status"]));
+  const publicationStatus = normalizedEnum(firstValue(certificate, ["publicationStatus", "publication_status"]));
+  const rightsStatus = normalizedEnum(firstValue(certificate, ["rightsStatus", "rights_status"]));
+  const consentStatus = normalizedEnum(firstValue(certificate, ["consentStatus", "consent_status"]));
+  const publicationBasis = normalizedEnum(firstValue(certificate, ["publicationBasis", "publication_basis"]));
+  const ownerApprovalStatus = normalizedEnum(firstValue(certificate, ["ownerApproval.status", "owner_approval.status"]));
+  const ownerAuthorized = publicationBasis === "owner_authorized_public_certificate" && ownerApprovalStatus === "granted";
+  return verificationStatus === "verified" && publicationStatus === "publishable" && rightsStatus === "cleared" &&
+    (consentStatus === "granted" || ownerAuthorized);
+}
+
+function certificateRecordsForPerson(personRecord, certificates) {
+  const id = recordId(personRecord, "person");
+  const embedded = asRecords(firstValue(personRecord, ["certificates"]));
+  const seen = new Set();
+  return [...certificates.filter((certificate) => personId(certificate) === id), ...embedded]
+    .flatMap((certificate) => {
+      if (!certificateIsPublishable(certificate)) return [];
+      const publicUrl = safeCertificateUrl(firstValue(certificate, ["publicPath", "public_path", "path", "src"]));
+      const certificateId = recordId(certificate, "certificate");
+      if (!publicUrl || !certificateId || seen.has(certificateId)) return [];
+      seen.add(certificateId);
+      const fallbackFilename = `${certificateId}.${publicUrl.split(".").pop() || "png"}`;
+      const requestedFilename = String(firstValue(certificate, ["downloadFilename", "download_filename"]) || fallbackFilename);
+      const downloadFilename = /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(requestedFilename) ? requestedFilename : fallbackFilename;
+      return [{
+        id: certificateId,
+        personId: id,
+        publicUrl,
+        downloadFilename,
+        titleTh: localizedField(certificate, ["title"], "th"),
+        titleEn: localizedField(certificate, ["title"], "en"),
+        credentialId: String(firstValue(certificate, ["credentialId", "credential_id"]) || ""),
+        programCode: String(firstValue(certificate, ["programCode", "program_code"]) || ""),
+        awardedOn: String(firstValue(certificate, ["awardedOn", "awarded_on"]) || ""),
+        raw: certificate
+      }];
+    });
+}
+
 function socialPlatform(profile) {
   const platform = String(firstValue(profile, ["platform", "network", "type", "service"]) || "website").toLowerCase();
   if (platform.includes("linkedin")) return { key: "linkedin", label: "LinkedIn" };
@@ -818,7 +897,7 @@ function contributionRecordsForPerson(id, contributions, workIndex) {
         publicUrl,
         evidenceOnlyUrl,
         role: localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"]),
-        period: localizedField(contribution, ["period.label", "period", "year", "date", "cohort"])
+        period: periodForContribution(contribution)
       };
     })
     .filter((contribution) => contribution.name);
@@ -885,6 +964,7 @@ function buildModels(data) {
   const personAchievements = asRecords(data.personAchievements || data.person_achievements);
   const socialProfiles = asRecords(data.socialProfiles || data.social_profiles);
   const assets = asRecords(data.assets?.people || data.assets);
+  const certificates = asRecords(data.certificates);
   const institutionIndex = new Map(institutions.map((record) => [recordId(record, "institution"), record]));
   const programIndex = new Map(programs.map((record) => [recordId(record, "program"), record]));
   const workIndex = new Map(works.map((record) => [recordId(record, "work"), record]));
@@ -914,6 +994,7 @@ function buildModels(data) {
     const image = approvedAssetFor(personRecord, assets);
     const achievementRecords = achievementRecordsForPerson(id, achievements, personAchievements);
     const socials = normalizeSocials(personRecord, socialProfiles);
+    const certificateRecords = certificateRecordsForPerson(personRecord, certificates);
     const model = {
       id,
       raw: personRecord,
@@ -937,6 +1018,7 @@ function buildModels(data) {
       contributions: contributionsForPerson,
       achievements: achievementRecords,
       socials,
+      certificates: certificateRecords,
       image,
       avatarName: nickname
     };
@@ -1022,6 +1104,7 @@ function hydrateImages(scope) {
 }
 
 function educationSummary(model) {
+  if (model.education.cardDisplay) return model.education.cardDisplay;
   const rawProgram = model.education.shortProgram;
   const program = state.language === "th" && /^วศ\.?\s*คอมพิวเตอร์$/i.test(rawProgram)
     ? "วิศวกรรมคอมพิวเตอร์"
@@ -1208,11 +1291,17 @@ function renderCard(model) {
     </span>
   ` : "";
 
+  const detailId = `person-detail-${model.id}`;
+  const shell = document.createElement("article");
+  shell.className = "person-card-shell";
+  shell.dataset.personId = model.id;
+
   const button = document.createElement("button");
   button.className = "person-card";
   button.type = "button";
   button.dataset.personId = model.id;
-  button.setAttribute("aria-haspopup", "dialog");
+  button.setAttribute("aria-expanded", "false");
+  button.setAttribute("aria-controls", detailId);
   button.setAttribute("aria-label", message("openProfile", { name: nickname }));
   button.innerHTML = `
     ${avatarMarkup({ ...model, nickname, officialName })}
@@ -1230,8 +1319,17 @@ function renderCard(model) {
       <span class="card-open-cue">${escapeHtml(message("readStory"))}</span>
     </span>
   `;
-  button.addEventListener("click", () => openPerson(model.id, button));
-  return button;
+  const detail = document.createElement("div");
+  detail.className = "person-inline-detail";
+  detail.id = detailId;
+  detail.hidden = true;
+
+  button.addEventListener("click", () => {
+    if (state.currentPersonId === model.id) closePerson({ trigger: button });
+    else openPerson(model.id, button);
+  });
+  shell.append(button, detail);
+  return shell;
 }
 
 function filteredModels() {
@@ -1249,6 +1347,11 @@ function filteredModels() {
 function renderDirectory() {
   refreshLocalizedModels();
   const models = filteredModels();
+  const expandedPersonIsVisible = models.some((model) => model.id === state.currentPersonId);
+  if (state.currentPersonId && !expandedPersonIsVisible) {
+    state.currentPersonId = null;
+    updateUrl({ person: null });
+  }
   const fragment = document.createDocumentFragment();
   models.forEach((model) => fragment.append(renderCard(model)));
   elements.board.replaceChildren(fragment);
@@ -1262,6 +1365,7 @@ function renderDirectory() {
   setText(elements.peopleTotal, formatNumber(state.models.length));
   setText(elements.resultsCount, message("results", { shown: formatNumber(models.length), total: formatNumber(state.models.length) }));
   updateFilterCount();
+  if (state.currentPersonId) openPerson(state.currentPersonId, null, { fromUrl: true, animate: false, scroll: true });
 }
 
 function formatNumber(value) {
@@ -1304,12 +1408,76 @@ function clearFilters() {
   elements.searchInput.focus({ preventScroll: true });
 }
 
+function monthYearParts(value) {
+  const text = String(localizedValue(value, "en") || "").trim();
+  if (!text) return null;
+  if (/^(?:19|20)\d{2}$/.test(text)) return { year: Number(text), month: null };
+  const monthNames = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  const namedDate = text.match(/^(?:\d{1,2}\s+)?([A-Za-z]{3,9})[,.]?\s+((?:19|20)\d{2})$/);
+  if (namedDate) {
+    const month = monthNames.findIndex((name) => namedDate[1].toLowerCase().startsWith(name));
+    if (month >= 0) return { year: Number(namedDate[2]), month };
+  }
+  const isoDate = text.match(/^((?:19|20)\d{2})-(\d{1,2})(?:-\d{1,2})?$/);
+  if (isoDate && Number(isoDate[2]) >= 1 && Number(isoDate[2]) <= 12) {
+    return { year: Number(isoDate[1]), month: Number(isoDate[2]) - 1 };
+  }
+  const parsed = new Date(text);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return { year: parsed.getUTCFullYear(), month: parsed.getUTCMonth() };
+}
+
+function monthYearLabel(parts) {
+  if (!parts) return "";
+  if (parts.month === null) return String(parts.year);
+  const month = new Intl.DateTimeFormat("en-US", { month: "short", timeZone: "UTC" })
+    .format(new Date(Date.UTC(parts.year, parts.month, 1)));
+  return `${month} ${parts.year}`;
+}
+
+function monthYearRange(start, end, current = false) {
+  if (!start && !end) return "";
+  if (start && current) return `${monthYearLabel(start)}–${message("present")}`;
+  if (!start) return monthYearLabel(end);
+  if (!end) return monthYearLabel(start);
+  if (start.month !== null && end.month !== null && start.year === end.year) {
+    const startMonth = monthYearLabel(start).replace(` ${start.year}`, "");
+    return start.month === end.month ? monthYearLabel(start) : `${startMonth}–${monthYearLabel(end)}`;
+  }
+  return monthYearLabel(start) === monthYearLabel(end) ? monthYearLabel(start) : `${monthYearLabel(start)}–${monthYearLabel(end)}`;
+}
+
 function periodForEngagement(engagement) {
-  const start = localizedValue(firstValue(engagement, ["start", "startDate", "start_date", "cohort", "year"]));
-  const end = localizedValue(firstValue(engagement, ["end", "endDate", "end_date"]));
-  if (start && end) return `${start}–${end}`;
-  if (start) return `${start}–${engagementIsCurrent(engagement) ? message("present") : ""}`.replace(/–$/, "");
-  return localizedValue(firstValue(engagement, ["period", "cohortLabel", "cohort_label", "cohort"])) || "";
+  const startRaw = firstValue(engagement, ["start", "startDate", "start_date"]);
+  const endRaw = firstValue(engagement, ["end", "endDate", "end_date"]);
+  const normalizedRange = monthYearRange(monthYearParts(startRaw), monthYearParts(endRaw), engagementIsCurrent(engagement));
+  if (normalizedRange) return normalizedRange;
+  const cohort = localizedValue(firstValue(engagement, ["period", "cohortLabel", "cohort_label", "cohort", "year"]), "en");
+  return fourDigitYears(cohort).join("–") || cohort;
+}
+
+function periodForContribution(contribution) {
+  const startRaw = firstValue(contribution, ["period.start", "start", "startDate", "start_date"]);
+  const endRaw = firstValue(contribution, ["period.end", "end", "endDate", "end_date"]);
+  const normalizedRange = monthYearRange(monthYearParts(startRaw), monthYearParts(endRaw));
+  if (normalizedRange) return normalizedRange;
+  const label = localizedField(contribution, ["period.label", "period", "year", "date", "cohort"]);
+  return fourDigitYears(label).join("–") || label;
+}
+
+function roleTitleForHistory(engagement) {
+  if (engagementCategoryForHistory(engagement) === "internship") {
+    const titles = {
+      FDI: "Full-stack Developer Intern, FDI",
+      PDI: "Product Developer Intern, PDI",
+      MSI: "Marketing Strategy Intern, MSI",
+      PMI: "Partnership Maker Intern, PMI"
+    };
+    const code = programCode(engagement);
+    return titles[code] || localizedField(engagement, ["program.names", "roleTitle", "role_title"], "en") || code || message("intern");
+  }
+  const key = engagementRoleKey(engagement);
+  return engagementRoleName(engagement, key) || message(key);
 }
 
 function educationDetailMarkup(model) {
@@ -1317,8 +1485,8 @@ function educationDetailMarkup(model) {
   const institution = model.education.fullInstitution;
   if (!program && !institution) return "";
   return `
-    <section class="detail-section" aria-labelledby="detail-education-title">
-      <h3 id="detail-education-title">${escapeHtml(message("educationSection"))}</h3>
+    <section class="detail-section" aria-labelledby="detail-education-title-${escapeHtml(model.id)}">
+      <h3 id="detail-education-title-${escapeHtml(model.id)}">${escapeHtml(message("educationSection"))}</h3>
       <div class="education-detail">
         <p class="education-context">${escapeHtml(message(model.education.labelKey))}</p>
         ${program ? `<p class="education-program">${escapeHtml(program)}</p>` : ""}
@@ -1331,12 +1499,11 @@ function educationDetailMarkup(model) {
 function roleHistoryMarkup(model) {
   if (!model.engagements.length) return "";
   return `
-    <section class="detail-section" aria-labelledby="detail-role-title">
-      <h3 id="detail-role-title">${escapeHtml(message("roleHistory"))}</h3>
+    <section class="detail-section" aria-labelledby="detail-role-title-${escapeHtml(model.id)}">
+      <h3 id="detail-role-title-${escapeHtml(model.id)}">${escapeHtml(message("roleHistory"))}</h3>
       <ol class="timeline">
         ${model.engagements.map((engagement) => {
-          const key = engagementRoleKey(engagement);
-          const role = engagementRoleName(engagement, key) || message(key);
+          const role = roleTitleForHistory(engagement);
           const product = localizedField(engagement, ["productOwned", "product_owned", "product", "area", "team"]);
           const meta = [periodForEngagement(engagement), product].filter(Boolean).join(" · ");
           return `<li class="timeline-item"><p class="timeline-heading">${escapeHtml(role)}</p>${meta ? `<p class="timeline-meta">${escapeHtml(meta)}</p>` : ""}</li>`;
@@ -1349,8 +1516,8 @@ function roleHistoryMarkup(model) {
 function contributionsMarkup(model) {
   if (!model.contributions.length) return "";
   return `
-    <section class="detail-section" aria-labelledby="detail-contribution-title">
-      <h3 id="detail-contribution-title">${escapeHtml(message("contributions"))}</h3>
+    <section class="detail-section" aria-labelledby="detail-contribution-title-${escapeHtml(model.id)}">
+      <h3 id="detail-contribution-title-${escapeHtml(model.id)}">${escapeHtml(message("contributions"))}</h3>
       <ul class="contribution-list">
         ${model.contributions.map((contribution) => {
           const meta = [contribution.role ? message("contributionRole", { role: contribution.role }) : "", contribution.period].filter(Boolean).join(" · ");
@@ -1371,8 +1538,8 @@ function contributionsMarkup(model) {
 function achievementsMarkup(model) {
   if (!model.achievements.length) return "";
   return `
-    <section class="detail-section" aria-labelledby="detail-achievement-title">
-      <h3 id="detail-achievement-title">${escapeHtml(message("achievements"))}</h3>
+    <section class="detail-section" aria-labelledby="detail-achievement-title-${escapeHtml(model.id)}">
+      <h3 id="detail-achievement-title-${escapeHtml(model.id)}">${escapeHtml(message("achievements"))}</h3>
       <ul class="achievement-list">
         ${model.achievements.map((achievement) => {
           const name = localizedField(achievement, ["displayName", "display_name", "officialName", "official_name", "name", "title"]);
@@ -1407,8 +1574,8 @@ function socialsMarkup(model) {
   const profiles = model.socials.filter((social) => !["linkedin", "github"].includes(social.key));
   if (!profiles.length) return "";
   return `
-    <section class="detail-section" aria-labelledby="detail-social-title">
-      <h3 id="detail-social-title">${escapeHtml(message("publicProfiles"))}</h3>
+    <section class="detail-section" aria-labelledby="detail-social-title-${escapeHtml(model.id)}">
+      <h3 id="detail-social-title-${escapeHtml(model.id)}">${escapeHtml(message("publicProfiles"))}</h3>
       <div class="social-list">
         ${profiles.map((social) => `<a class="social-link" href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer" data-platform="${escapeHtml(social.key)}">${escapeHtml(social.label)}</a>`).join("")}
       </div>
@@ -1416,56 +1583,225 @@ function socialsMarkup(model) {
   `;
 }
 
-function renderPersonDetail(id) {
-  const model = state.models.find((person) => person.id === id);
-  if (!model) return false;
+function certificateTitle(certificate) {
+  return state.language === "th"
+    ? (certificate.titleTh || certificate.titleEn || message("certificateFallback"))
+    : (certificate.titleEn || certificate.titleTh || message("certificateFallback"));
+}
+
+function certificateAwardedLabel(value) {
+  const parsed = new Date(String(value || ""));
+  if (Number.isNaN(parsed.getTime())) return String(value || "");
+  return new Intl.DateTimeFormat(state.language === "th" ? "th-TH" : "en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(parsed);
+}
+
+function certificatesMarkup(model) {
+  if (!model.certificates.length) return "";
+  return `
+    <section class="detail-section" aria-labelledby="detail-certificate-title-${escapeHtml(model.id)}">
+      <h3 id="detail-certificate-title-${escapeHtml(model.id)}">${escapeHtml(message("certificates"))}</h3>
+      <div class="certificate-list">
+        ${model.certificates.map((certificate) => {
+          const title = certificateTitle(certificate);
+          const meta = [
+            certificate.programCode,
+            certificate.credentialId ? message("certificateCredential", { id: certificate.credentialId }) : "",
+            certificate.awardedOn ? message("certificateAwarded", { date: certificateAwardedLabel(certificate.awardedOn) }) : ""
+          ].filter(Boolean).join(" · ");
+          return `<button class="certificate-preview" type="button" data-certificate-id="${escapeHtml(certificate.id)}" aria-label="${escapeHtml(message("openCertificate", { name: currentNickname(model) }))}">
+            <span class="certificate-thumbnail"><img src="${escapeHtml(certificate.publicUrl)}" alt="" loading="lazy" decoding="async"></span>
+            <span class="certificate-preview-copy"><strong>${escapeHtml(title)}</strong>${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</span>
+            <span class="certificate-preview-cue" aria-hidden="true">↗</span>
+          </button>`;
+        }).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function personDetailMarkup(model) {
   const nickname = currentNickname(model);
   const officialName = currentOfficialName(model);
   const story = currentBio(model);
-  elements.personDetail.innerHTML = `
-    <header class="detail-hero">
-      ${avatarMarkup({ ...model, nickname, officialName }, "detail-avatar")}
-      <div class="detail-heading">
+  return `
+    <article class="person-detail" aria-labelledby="person-profile-title-${escapeHtml(model.id)}">
+      <div class="inline-detail-toolbar">
+        <span class="section-kicker">${escapeHtml(message("registry"))}</span>
+        <button class="icon-button inline-detail-close" type="button" data-inline-close aria-label="${escapeHtml(message("closeDetails"))}"><span aria-hidden="true">×</span></button>
+      </div>
+      <header class="detail-hero detail-hero--inline">
+        <div class="detail-heading">
         <span class="role-badge" data-role="${escapeHtml(model.roleKey)}">${escapeHtml(roleDisplay(model))}</span>
-        <h2 id="modal-title">${escapeHtml(nickname)}</h2>
+        <h2 id="person-profile-title-${escapeHtml(model.id)}">${escapeHtml(nickname)}</h2>
         ${officialName && officialName !== nickname ? `<p class="detail-full-name">${escapeHtml(officialName)}</p>` : ""}
         ${profileSocialIconsMarkup(model)}
         <p class="detail-id">${escapeHtml(model.id)}</p>
+        </div>
+      </header>
+      <div class="detail-content">
+        ${story ? `<section class="detail-section" aria-labelledby="detail-story-title-${escapeHtml(model.id)}">
+          <h3 id="detail-story-title-${escapeHtml(model.id)}">${escapeHtml(message("voice"))}</h3>
+          <p class="detail-story">${escapeHtml(story)}</p>
+        </section>` : ""}
+        ${educationDetailMarkup(model)}
+        ${roleHistoryMarkup(model)}
+        ${contributionsMarkup(model)}
+        ${achievementsMarkup(model)}
+        ${certificatesMarkup(model)}
+        ${socialsMarkup(model)}
       </div>
-    </header>
-    <div class="detail-content">
-      ${story ? `<section class="detail-section" aria-labelledby="detail-story-title">
-        <h3 id="detail-story-title">${escapeHtml(message("voice"))}</h3>
-        <p class="detail-story">${escapeHtml(story)}</p>
-      </section>` : ""}
-      ${educationDetailMarkup(model)}
-      ${roleHistoryMarkup(model)}
-      ${contributionsMarkup(model)}
-      ${achievementsMarkup(model)}
-      ${socialsMarkup(model)}
-    </div>
+    </article>
   `;
-  hydrateImages(elements.personDetail);
+}
+
+function cardShellFor(id) {
+  return Array.from(elements.board.querySelectorAll(".person-card-shell"))
+    .find((shell) => shell.dataset.personId === id) || null;
+}
+
+function cardPositionSnapshot() {
+  return new Map(Array.from(elements.board.querySelectorAll(".person-card-shell"))
+    .map((shell) => [shell.dataset.personId, shell.getBoundingClientRect()]));
+}
+
+function animateCardReflow(before, originId) {
+  if (reducedMotionQuery?.matches) return;
+  const shells = Array.from(elements.board.querySelectorAll(".person-card-shell"));
+  const originIndex = Math.max(0, shells.findIndex((shell) => shell.dataset.personId === originId));
+  shells.forEach((shell, index) => {
+    const previous = before.get(shell.dataset.personId);
+    const current = shell.getBoundingClientRect();
+    if (!previous) return;
+    const deltaX = previous.left - current.left;
+    const deltaY = previous.top - current.top;
+    if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) return;
+    const distance = Math.min(Math.abs(index - originIndex), 8);
+    shell.classList.remove("is-reflowing");
+    shell.style.setProperty("--reflow-x", `${deltaX}px`);
+    shell.style.setProperty("--reflow-y", `${deltaY}px`);
+    shell.style.setProperty("--reflow-delay", `${distance * 22}ms`);
+    const reflowToken = `${performance.now()}-${index}`;
+    shell.dataset.reflowToken = reflowToken;
+    void shell.offsetWidth;
+    shell.classList.add("is-reflowing");
+    window.setTimeout(() => {
+      if (shell.dataset.reflowToken !== reflowToken) return;
+      shell.classList.remove("is-reflowing");
+      delete shell.dataset.reflowToken;
+      shell.style.removeProperty("--reflow-x");
+      shell.style.removeProperty("--reflow-y");
+      shell.style.removeProperty("--reflow-delay");
+    }, 460);
+  });
+}
+
+function setCardExpanded(shell, expanded) {
+  if (!shell) return;
+  const button = shell.querySelector(":scope > .person-card");
+  const detail = shell.querySelector(":scope > .person-inline-detail");
+  const cue = button?.querySelector(".card-open-cue");
+  shell.classList.toggle("is-expanded", expanded);
+  if (button) {
+    button.setAttribute("aria-expanded", String(expanded));
+    button.setAttribute("aria-label", expanded
+      ? message("collapseProfile")
+      : message("openProfile", { name: currentNickname(state.models.find((model) => model.id === shell.dataset.personId) || {}) }));
+  }
+  if (detail) detail.hidden = !expanded;
+  if (cue) cue.textContent = expanded ? message("collapseProfile") : message("readStory");
+}
+
+function renderPersonDetail(id, detail) {
+  const model = state.models.find((person) => person.id === id);
+  if (!model || !detail) return false;
+  detail.innerHTML = personDetailMarkup(model);
+  detail.querySelector("[data-inline-close]")?.addEventListener("click", () => closePerson({ trigger: detail.closest(".person-card-shell")?.querySelector(".person-card") }));
+  detail.querySelectorAll("[data-certificate-id]").forEach((button) => {
+    const certificate = model.certificates.find((item) => item.id === button.dataset.certificateId);
+    if (certificate) button.addEventListener("click", () => openCertificate(certificate, model, button));
+  });
   return true;
 }
 
-function openPerson(id, trigger = null, { fromUrl = false } = {}) {
-  if (!renderPersonDetail(id)) return;
+function openPerson(id, trigger = null, { fromUrl = false, animate = true, scroll = true } = {}) {
+  const shell = cardShellFor(id);
+  const detail = shell?.querySelector(":scope > .person-inline-detail");
+  if (!shell || !renderPersonDetail(id, detail)) return false;
   if (elements.filterDialog.open && !desktopFilterQuery?.matches) elements.filterDialog.close();
+  const before = animate ? cardPositionSnapshot() : null;
+  if (state.currentPersonId && state.currentPersonId !== id) setCardExpanded(cardShellFor(state.currentPersonId), false);
+  setCardExpanded(shell, true);
   state.currentPersonId = id;
-  state.lastProfileTrigger = trigger;
+  state.lastProfileTrigger = trigger || shell.querySelector(".person-card");
   if (!fromUrl) updateUrl({ person: id }, { replace: false });
-  if (!elements.personDialog.open) elements.personDialog.showModal();
-  document.body.classList.add("modal-open");
-  requestAnimationFrame(() => elements.modalClose.focus({ preventScroll: true }));
+  void elements.board.offsetHeight;
+  if (before) animateCardReflow(before, id);
+  if (!reducedMotionQuery?.matches) {
+    detail.classList.remove("is-revealing");
+    void detail.offsetWidth;
+    detail.classList.add("is-revealing");
+  }
+  if (scroll && fromUrl) requestAnimationFrame(() => shell.scrollIntoView({ block: "nearest" }));
+  return true;
 }
 
-function closePerson({ updateQuery = true } = {}) {
-  if (elements.personDialog.open) elements.personDialog.close();
-  if (updateQuery) updateUrl({ person: null });
+function closePerson({ updateQuery = true, trigger = null, animate = true } = {}) {
+  const shell = cardShellFor(state.currentPersonId);
+  if (!shell) {
+    state.currentPersonId = null;
+    if (updateQuery) updateUrl({ person: null });
+    return;
+  }
+  const before = animate ? cardPositionSnapshot() : null;
+  const originId = state.currentPersonId;
+  setCardExpanded(shell, false);
   state.currentPersonId = null;
+  if (updateQuery) updateUrl({ person: null });
+  void elements.board.offsetHeight;
+  if (before) animateCardReflow(before, originId);
+  (trigger || state.lastProfileTrigger)?.focus({ preventScroll: true });
+}
+
+function renderCertificateDialog(context) {
+  const { certificate, personName } = context;
+  const title = certificateTitle(certificate);
+  const meta = [
+    personName,
+    certificate.programCode,
+    certificate.credentialId ? message("certificateCredential", { id: certificate.credentialId }) : "",
+    certificate.awardedOn ? message("certificateAwarded", { date: certificateAwardedLabel(certificate.awardedOn) }) : ""
+  ].filter(Boolean).join(" · ");
+  setText(elements.certificateDialogKicker, message("certificates"));
+  setText(elements.certificateDialogTitle, title);
+  setText(elements.certificateDialogMeta, meta);
+  elements.certificateDialogImage.src = certificate.publicUrl;
+  elements.certificateDialogImage.alt = `${title} — ${personName}`;
+  elements.certificateOpenOriginal.href = certificate.publicUrl;
+  elements.certificateDownload.href = certificate.publicUrl;
+  elements.certificateDownload.download = certificate.downloadFilename;
+  setText(elements.certificateOpenOriginal, message("certificateOpenOriginal"));
+  setText(elements.certificateDownload, message("certificateDownload"));
+}
+
+function openCertificate(certificate, model, trigger) {
+  state.currentCertificate = { certificate, personName: currentOfficialName(model) };
+  state.lastCertificateTrigger = trigger;
+  renderCertificateDialog(state.currentCertificate);
+  if (!elements.certificateDialog.open) elements.certificateDialog.showModal();
+  document.body.classList.add("modal-open");
+  requestAnimationFrame(() => elements.certificateClose.focus({ preventScroll: true }));
+}
+
+function closeCertificate() {
+  if (elements.certificateDialog.open) elements.certificateDialog.close();
+  state.currentCertificate = null;
   document.body.classList.remove("modal-open");
-  state.lastProfileTrigger?.focus({ preventScroll: true });
+  state.lastCertificateTrigger?.focus({ preventScroll: true });
 }
 
 function syncFilterDialogMode() {
@@ -1473,10 +1809,10 @@ function syncFilterDialogMode() {
   if (desktopFilterQuery.matches) {
     if (elements.filterDialog.open) elements.filterDialog.close();
     elements.filterDialog.show();
-    document.body.classList.remove("modal-open");
+    if (!elements.certificateDialog.open) document.body.classList.remove("modal-open");
   } else if (elements.filterDialog.open) {
     elements.filterDialog.close();
-    document.body.classList.remove("modal-open");
+    if (!elements.certificateDialog.open) document.body.classList.remove("modal-open");
   }
 }
 
@@ -1489,7 +1825,7 @@ function openFilters() {
 
 function closeFilters() {
   if (elements.filterDialog.open && !desktopFilterQuery?.matches) elements.filterDialog.close();
-  document.body.classList.remove("modal-open");
+  if (!elements.certificateDialog.open) document.body.classList.remove("modal-open");
   elements.filterOpen.focus({ preventScroll: true });
 }
 
@@ -1536,7 +1872,6 @@ async function loadData() {
     elements.filterWork.value = state.filters.work;
     updateDataNote();
     renderDirectory();
-    if (state.currentPersonId) openPerson(state.currentPersonId, null, { fromUrl: true });
   } catch (error) {
     console.error("Unable to load the public people register", error);
     state.raw = null;
@@ -1561,27 +1896,24 @@ function bindEvents() {
   elements.filterClear.addEventListener("click", clearFilters);
   elements.emptyClear.addEventListener("click", clearFilters);
   elements.retry.addEventListener("click", loadData);
-  elements.modalClose.addEventListener("click", () => closePerson());
+  elements.certificateClose.addEventListener("click", closeCertificate);
 
   elements.filterDialog.addEventListener("click", (event) => {
     if (event.target === elements.filterDialog && !desktopFilterQuery?.matches) closeFilters();
   });
-  elements.personDialog.addEventListener("click", (event) => {
-    if (event.target === elements.personDialog) closePerson();
+  elements.certificateDialog.addEventListener("click", (event) => {
+    if (event.target === elements.certificateDialog) closeCertificate();
   });
   elements.filterDialog.addEventListener("close", () => {
-    if (!elements.personDialog.open) document.body.classList.remove("modal-open");
+    if (!elements.certificateDialog.open) document.body.classList.remove("modal-open");
   });
-  elements.personDialog.addEventListener("close", () => {
-    if (state.currentPersonId) {
-      updateUrl({ person: null });
-      state.currentPersonId = null;
-    }
+  elements.certificateDialog.addEventListener("close", () => {
+    state.currentCertificate = null;
     document.body.classList.remove("modal-open");
   });
-  elements.personDialog.addEventListener("cancel", (event) => {
+  elements.certificateDialog.addEventListener("cancel", (event) => {
     event.preventDefault();
-    closePerson();
+    closeCertificate();
   });
   elements.filterDialog.addEventListener("cancel", (event) => {
     if (!desktopFilterQuery?.matches) {
@@ -1597,7 +1929,7 @@ function bindEvents() {
     const params = new URLSearchParams(window.location.search);
     const person = params.get("person");
     if (person && person !== state.currentPersonId && state.raw) openPerson(person, null, { fromUrl: true });
-    else if (!person && elements.personDialog.open) closePerson({ updateQuery: false });
+    else if (!person && state.currentPersonId) closePerson({ updateQuery: false });
   });
 }
 

@@ -95,7 +95,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-        "en": "CPE · KMITL"
+        "en": "CP · KMITL"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -162,7 +162,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-        "en": "CPE · KMITL"
+        "en": "CP · KMITL"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -363,7 +363,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-        "en": "CPE · KMITL"
+        "en": "CP · KMITL"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -496,14 +496,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "ภาษาจีน · จุฬาฯ",
-        "en": "Chinese · CU"
+        "th": "อักษร จุฬา",
+        "en": "Arts · CU"
       },
       "detail": {
         "th": "ภาษาจีน คณะอักษรศาสตร์ — จุฬาลงกรณ์มหาวิทยาลัย",
         "en": "Chinese, Faculty of Arts — Chulalongkorn University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_supplied_card_label_official_detail_preserved"
     },
     "bio": {
       "th": "หมิงอยากนำประสบการณ์ด้านคอนเทนต์ การตลาด การสื่อสาร และภาษามาช่วยสร้างเรื่องราวที่เข้าถึงผู้คน พร้อมลงมือหาทางแก้ปัญหาและเรียนรู้ไปกับทีม",
@@ -1100,7 +1100,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
-        "en": "CPE · CU"
+        "en": "CP · CU"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — จุฬาลงกรณ์มหาวิทยาลัย",
@@ -1167,7 +1167,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
-        "en": "CPE · CU"
+        "en": "CP · CU"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — จุฬาลงกรณ์มหาวิทยาลัย",
@@ -1234,7 +1234,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
-        "en": "CPE · CU"
+        "en": "CP · CU"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — จุฬาลงกรณ์มหาวิทยาลัย",
@@ -1568,14 +1568,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "จุฬาฯ",
-        "en": "CU"
+        "th": "EBA · จุฬาฯ",
+        "en": "EBA · CU"
       },
       "detail": {
-        "th": "จุฬาลงกรณ์มหาวิทยาลัย",
-        "en": "Chulalongkorn University"
+        "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Economics, International Program — Chulalongkorn University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     "bio": {
       "th": "Tieam ร่วมทำ ijji ในบทบาท Consulting Partner อยู่ตรงช่วงที่ข้อมูล โจทย์ธุรกิจ และการตัดสินใจต้องคุยกันให้รู้เรื่อง",
@@ -1642,7 +1642,7 @@
         "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
         "en": "Economics, International Program — Chulalongkorn University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     "bio": {
       "th": "Pleng นำพื้นฐานเศรษฐศาสตร์นานาชาติมาเจอกับ ijji มองโจทย์ธุรกิจผ่านทั้งแรงจูงใจ บริบท และทางเลือกที่เป็นไปได้",
@@ -1702,12 +1702,12 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "การเงิน · จุฬาฯ",
-        "en": "Finance · CU"
+        "th": "BBA Finance · จุฬาฯ",
+        "en": "BBA Finance · CU"
       },
       "detail": {
-        "th": "การเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
-        "en": "Finance — Chulalongkorn University"
+        "th": "บริหารธุรกิจ สาขาการเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Bachelor of Business Administration in Finance — Chulalongkorn University"
       },
       "verificationStatus": "owner_review_required"
     },
@@ -1769,14 +1769,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "เศรษฐศาสตร์ · จุฬาฯ",
-        "en": "Economics · CU"
+        "th": "EBA · จุฬาฯ",
+        "en": "EBA · CU"
       },
       "detail": {
-        "th": "เศรษฐศาสตร์ — จุฬาลงกรณ์มหาวิทยาลัย",
-        "en": "Economics — Chulalongkorn University"
+        "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Economics, International Program — Chulalongkorn University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     "bio": {
       "th": "Tim ทำ ijji ในฐานะ Consulting Partner พร้อมพื้นฐานเศรษฐศาสตร์ ช่วยตั้งกรอบให้โจทย์ที่ยังกว้างค่อยๆ กลายเป็นคำถามที่ทีมตัดสินใจต่อได้",
@@ -1836,14 +1836,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "เศรษฐศาสตร์ · จุฬาฯ",
-        "en": "Economics · CU"
+        "th": "EBA · จุฬาฯ",
+        "en": "EBA · CU"
       },
       "detail": {
-        "th": "เศรษฐศาสตร์ — จุฬาลงกรณ์มหาวิทยาลัย",
-        "en": "Economics — Chulalongkorn University"
+        "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Economics, International Program — Chulalongkorn University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     "bio": {
       "th": "เฟยอยากต่อยอดประสบการณ์กับ ijji จากงานวิเคราะห์และจัดกรอบปัญหาไปสู่การทำงานจริงที่ช่วยให้ทีมตัดสินใจชัดและเร็วขึ้น",
@@ -1903,12 +1903,12 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "การเงิน · จุฬาฯ",
-        "en": "Finance · CU"
+        "th": "BBA Finance · จุฬาฯ",
+        "en": "BBA Finance · CU"
       },
       "detail": {
-        "th": "การเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
-        "en": "Finance — Chulalongkorn University"
+        "th": "บริหารธุรกิจ สาขาการเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Bachelor of Business Administration in Finance — Chulalongkorn University"
       },
       "verificationStatus": "owner_review_required"
     },
@@ -2306,7 +2306,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-        "en": "CPE · KMITL"
+        "en": "CP · KMITL"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -2373,7 +2373,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-        "en": "CPE · KMITL"
+        "en": "CP · KMITL"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -2440,7 +2440,7 @@
       "mode": "program",
       "card": {
         "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-        "en": "CPE · KMITL"
+        "en": "CP · KMITL"
       },
       "detail": {
         "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",

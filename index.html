@@ -259,11 +259,26 @@
       <p class="footer-meta" id="footer-meta">รายชื่อชาว Landom</p>
     </footer>
 
-    <dialog class="person-dialog" id="person-dialog" aria-labelledby="modal-title">
-      <article class="person-detail" id="person-detail"></article>
-      <button class="icon-button modal-close" id="modal-close" type="button" aria-label="ปิดรายละเอียด">
-        <span aria-hidden="true">×</span>
-      </button>
+    <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">
+      <div class="certificate-dialog-shell">
+        <header class="certificate-dialog-header">
+          <div>
+            <p class="section-kicker" id="certificate-dialog-kicker">ประกาศนียบัตร</p>
+            <h2 id="certificate-dialog-title">ประกาศนียบัตร</h2>
+            <p class="certificate-dialog-meta" id="certificate-dialog-meta"></p>
+          </div>
+          <button class="icon-button certificate-close" id="certificate-close" type="button" aria-label="ปิดประกาศนียบัตร">
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="certificate-image-stage">
+          <img id="certificate-dialog-image" alt="">
+        </div>
+        <div class="certificate-dialog-actions">
+          <a class="secondary-button" id="certificate-open-original" href="#" target="_blank" rel="noopener noreferrer">เปิดภาพต้นฉบับ</a>
+          <a class="primary-button" id="certificate-download" href="#" download>บันทึกภาพความละเอียดสูง</a>
+        </div>
+      </div>
     </dialog>
 
     <noscript>

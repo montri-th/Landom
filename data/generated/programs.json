@@ -8,11 +8,11 @@
       },
       "en": {
         "formal": "Computer Engineering",
-        "short": "CPE"
+        "short": "CP"
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "owner_supplied_detail_refinement"
   },
   {
     "programId": "program-cu-cedt",
@@ -38,11 +38,11 @@
       },
       "en": {
         "formal": "Computer Engineering",
-        "short": "CPE"
+        "short": "CP"
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "owner_supplied_detail_refinement"
   },
   {
     "programId": "program-cu-public-relations",
@@ -153,16 +153,16 @@
     "programId": "program-cu-finance",
     "names": {
       "th": {
-        "formal": "การเงิน",
-        "short": "การเงิน"
+        "formal": "บริหารธุรกิจ สาขาการเงิน",
+        "short": "BBA Finance"
       },
       "en": {
-        "formal": "Finance",
-        "short": "Finance"
+        "formal": "Bachelor of Business Administration in Finance",
+        "short": "BBA Finance"
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "owner_supplied_detail_refinement"
   },
   {
     "programId": "program-kaist-aerospace-btm",

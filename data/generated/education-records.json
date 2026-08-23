@@ -406,17 +406,17 @@
     "educationRecordId": "EDU0023",
     "personId": "I0020",
     "institutionId": "inst-chula",
-    "programId": null,
+    "programId": "program-cu-eba",
     "recordType": "education",
     "isPrimary": true,
     "sourceLabel": "Chulalongkorn",
     "qualification": {
-      "th": null,
-      "en": null
+      "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+      "en": "Economics, International Program"
     },
     "degree": null,
-    "verificationStatus": "owner_review_required",
-    "evidenceNote": null
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
   },
   {
     "educationRecordId": "EDU0024",
@@ -431,8 +431,8 @@
       "en": "Economics, International Program"
     },
     "degree": null,
-    "verificationStatus": "owner_review_required",
-    "evidenceNote": null
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
   },
   {
     "educationRecordId": "EDU0025",
@@ -443,8 +443,8 @@
     "isPrimary": true,
     "sourceLabel": "Finance, Chulalongkorn",
     "qualification": {
-      "th": "การเงิน",
-      "en": "Finance"
+      "th": "บริหารธุรกิจ สาขาการเงิน",
+      "en": "Bachelor of Business Administration in Finance"
     },
     "degree": null,
     "verificationStatus": "owner_review_required",
@@ -454,33 +454,33 @@
     "educationRecordId": "EDU0026",
     "personId": "I0023",
     "institutionId": "inst-chula",
-    "programId": "program-cu-economics",
+    "programId": "program-cu-eba",
     "recordType": "education",
     "isPrimary": true,
     "sourceLabel": "Economics, Chulalongkorn",
     "qualification": {
-      "th": "เศรษฐศาสตร์",
-      "en": "Economics"
+      "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+      "en": "Economics, International Program"
     },
     "degree": null,
-    "verificationStatus": "owner_review_required",
-    "evidenceNote": null
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
   },
   {
     "educationRecordId": "EDU0027",
     "personId": "I0024",
     "institutionId": "inst-chula",
-    "programId": "program-cu-economics",
+    "programId": "program-cu-eba",
     "recordType": "education",
     "isPrimary": true,
     "sourceLabel": "Economics, Chulalongkorn",
     "qualification": {
-      "th": "เศรษฐศาสตร์",
-      "en": "Economics"
+      "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+      "en": "Economics, International Program"
     },
     "degree": null,
-    "verificationStatus": "owner_review_required",
-    "evidenceNote": null
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
   },
   {
     "educationRecordId": "EDU0028",
@@ -491,8 +491,8 @@
     "isPrimary": true,
     "sourceLabel": "Finance, Chulalongkorn",
     "qualification": {
-      "th": "การเงิน",
-      "en": "Finance"
+      "th": "บริหารธุรกิจ สาขาการเงิน",
+      "en": "Bachelor of Business Administration in Finance"
     },
     "degree": null,
     "verificationStatus": "owner_review_required",

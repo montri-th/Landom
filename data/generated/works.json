@@ -1252,16 +1252,16 @@
     "parentProduct": "CityCell",
     "moduleSlug": null,
     "names": {
-      "th": "โมเดล CityCell",
-      "en": "CityCell Model"
+      "th": "CityCell: Machine learning model for nationwide land appraisal",
+      "en": "CityCell: Machine learning model for nationwide land appraisal"
     },
     "shortNames": {
-      "th": "โมเดล CityCell",
-      "en": "CityCell Model"
+      "th": "CityCell: Machine learning model for nationwide land appraisal",
+      "en": "CityCell: Machine learning model for nationwide land appraisal"
     },
     "type": "hackathon_deliverable",
     "scopeLayer": "product_specific",
-    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "authorityStatus": "owner_supplied_exact_name",
     "evidenceNote": null,
     "sourceAliases": [],
     "catalogUrl": {
@@ -1488,6 +1488,36 @@
     "authorityStatus": "owner_detail_required",
     "evidenceNote": "ใช้เพื่อยืนยันว่าไม่มีบุคคลใดมีผลงานเป็นศูนย์ โดยไม่แต่งชื่อโครงการ; เจ้าของข้อมูลต้องเติมรายละเอียดภายหลัง",
     "sourceAliases": [],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-rugon",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: RUGON",
+      "en": "CityMETER: RUGON"
+    },
+    "shortNames": {
+      "th": "CityMETER: RUGON",
+      "en": "CityMETER: RUGON"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+    "evidenceNote": "Owner-supplied product-specific contribution; no exact current CityMETER catalog route is asserted.",
+    "sourceAliases": [
+      "CityMETER: RUGON"
+    ],
     "catalogUrl": {
       "th": null,
       "en": null

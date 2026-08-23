@@ -67,6 +67,7 @@ function writeSiteDataFiles(siteData) {
   writeJson('achievements.json', siteData.achievements);
   writeJson('social-profiles.json', siteData.socialProfiles);
   writeJson('assets.json', siteData.assets);
+  writeJson('certificates.json', siteData.certificates);
   writeJson('site-data.json', siteData);
 }
 
@@ -76,7 +77,7 @@ if (isNormalizedSheetSnapshot(snapshot)) {
   const baseline = JSON.parse(fs.readFileSync(baselinePath, 'utf8'));
   const imported = importNormalizedSheetSnapshot(snapshot, baseline);
   writeSiteDataFiles(imported);
-  console.log('Imported normalized Sheet snapshot: ' + imported.people.length + ' people, ' + imported.socialProfiles.length + ' social rows, ' + imported.assets.length + ' assets.');
+  console.log('Imported normalized Sheet snapshot: ' + imported.people.length + ' people, ' + imported.socialProfiles.length + ' social rows, ' + imported.assets.length + ' assets, ' + imported.certificates.length + ' certificates.');
   process.exit(0);
 }
 
@@ -92,6 +93,10 @@ function readApprovedJson(fileName) {
 
 const profileCopy = readApprovedJson('profile-copy.json');
 const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
+const profileDetailOverrides = readApprovedJson('profile-detail-overrides.json');
+if (profileDetailOverrides.contractVersion !== '1.0') {
+  throw new Error('Unsupported profile-detail override contract: ' + profileDetailOverrides.contractVersion);
+}
 const cooperativeEducationPersonIds = new Set(
   educationPlacementOverrides.academicPlacement?.cooperativeEducationPersonIds ?? []
 );
@@ -200,9 +205,9 @@ const institutions = [
 ];
 
 const programs = [
-  ['program-kmitl-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CPE'],
+  ['program-kmitl-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CP'],
   ['program-cu-cedt', 'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล', 'CEDT', 'Computer Engineering and Digital Technology', 'CEDT'],
-  ['program-cu-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CPE'],
+  ['program-cu-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CP'],
   ['program-cu-public-relations', 'การประชาสัมพันธ์', 'PR', 'Public Relations', 'PR'],
   ['program-cu-chinese', 'ภาษาจีน คณะอักษรศาสตร์', 'ภาษาจีน', 'Chinese, Faculty of Arts', 'Chinese'],
   ['program-tu-marketing', 'การตลาด', 'การตลาด', 'Marketing', 'Marketing'],
@@ -224,6 +229,14 @@ const programs = [
   qualificationLevel: null,
   verificationStatus: 'normalized_from_sheet_owner_review_required'
 }));
+
+const programByIdForOverrides = new Map(programs.map((program) => [program.programId, program]));
+for (const override of profileDetailOverrides.programOverrides ?? []) {
+  const program = programByIdForOverrides.get(override.programId);
+  if (!program) throw new Error('Program override references an unknown program: ' + override.programId);
+  program.names = structuredClone(override.names);
+  program.verificationStatus = 'owner_supplied_detail_refinement';
+}
 
 const educationMap = {
   'KMITL, Computer Engineering': [['inst-kmitl', 'program-kmitl-computer-engineering']],
@@ -357,6 +370,18 @@ for (const override of educationPlacementOverrides.staffDegrees ?? []) {
   record.degree = structuredClone(override.degree);
 }
 
+for (const override of profileDetailOverrides.educationProgramOverrides ?? []) {
+  if (!personById.has(override.personId)) throw new Error('Education override references an unknown person: ' + override.personId);
+  const program = programs.find((item) => item.programId === override.programId);
+  if (!program) throw new Error('Education override references an unknown program: ' + override.programId);
+  const record = educationRecords.find((item) => item.personId === override.personId && item.isPrimary);
+  if (!record) throw new Error('Education override has no primary education record: ' + override.personId);
+  record.programId = override.programId;
+  record.qualification = { th: program.names.th.formal, en: program.names.en.formal };
+  record.verificationStatus = 'owner_supplied_detail_refinement';
+  record.evidenceNote = 'Owner standardized this person’s program label in the 2026-08-23 detail refinement.';
+}
+
 const institutionById = new Map(institutions.map((item) => [item.institutionId, item]));
 const programById = new Map(programs.map((item) => [item.programId, item]));
 for (const person of people) {
@@ -393,6 +418,16 @@ for (const person of people) {
   };
 }
 
+for (const override of profileDetailOverrides.educationCardOverrides ?? []) {
+  const person = personById.get(override.personId);
+  if (!person) throw new Error('Education card override references an unknown person: ' + override.personId);
+  if (!person.educationDisplay?.detail?.th || !person.educationDisplay?.detail?.en) {
+    throw new Error('Education card override would replace a record without official detail: ' + override.personId);
+  }
+  person.educationDisplay.card = structuredClone(override.card);
+  person.educationDisplay.verificationStatus = 'owner_supplied_card_label_official_detail_preserved';
+}
+
 const engagementProgramNames = {
   FDI: { th: 'Full-stack Developer Intern, FDI', en: 'Full-stack Developer Intern, FDI' },
   MSI: { th: 'โครงการฝึกงาน Marketing Strategy', en: 'Marketing Strategy Internship' },
@@ -402,6 +437,7 @@ const engagementProgramNames = {
   'Full-time': { th: 'พนักงานประจำ', en: 'Full-time staff' },
   'Part-time': { th: 'พนักงานพาร์ตไทม์', en: 'Part-time staff' }
 };
+Object.assign(engagementProgramNames, structuredClone(profileDetailOverrides.engagementProgramNames ?? {}));
 
 const engagementRoleNames = {
   'Full-Stack Developer Intern': { th: 'นักพัฒนา Full-Stack ฝึกงาน', en: 'Full-Stack Developer Intern' },
@@ -414,6 +450,17 @@ const engagementRoleNames = {
   'Product manager': { th: 'ผู้จัดการผลิตภัณฑ์', en: 'Product Manager' },
   'Platform manager': { th: 'ผู้จัดการแพลตฟอร์ม', en: 'Platform Manager' }
 };
+Object.assign(engagementRoleNames, structuredClone(profileDetailOverrides.engagementRoleNames ?? {}));
+
+function sanitizeCohortLabel(value, programCode, start, end) {
+  const label = clean(value);
+  if (!label || !profileDetailOverrides.cohortLabelSanitization?.removeRawAvailabilityNotes) return label;
+  const hasRawAvailabilityOrExactDay = /เริ่มได้|\bstart\b|\(\s*\d{1,2}[A-Za-z]{3}\s*[-–]\s*\d{1,2}[A-Za-z]{3}\s*\)/i.test(label);
+  if (!hasRawAvailabilityOrExactDay) return label;
+  const year = String(start || end || label).match(/(?:19|20)\d{2}/)?.[0] ?? null;
+  const batch = label.match(/\bbatch\s*(\d+)/i)?.[1] ?? null;
+  return [programCode, batch ? 'batch ' + batch : null, year].filter(Boolean).join(' ') || programCode;
+}
 
 const sourceEngagementIdToEngagementId = new Map();
 const engagements = engagementRows.map((row, index) => {
@@ -435,9 +482,12 @@ const engagements = engagementRows.map((row, index) => {
   if (explicitInternshipPersonIds.has(personId) && academicPlacementType !== 'internship') {
     throw new Error('Explicit internship placement conflicts with a cooperative-education override: ' + personId);
   }
-  const cohortLabel = academicPlacementType === 'cooperative_education'
+  const rawCohortLabel = academicPlacementType === 'cooperative_education'
     ? clean(row.cohort)
     : clean(row.cohort)?.replace(/\s*\+\s*Co-op(?:\s*\(สหกิจ\))?/gi, '').replace(/\s{2,}/g, ' ').trim() || null;
+  const start = parseDate(row.start);
+  const end = parseDate(row.end);
+  const cohortLabel = sanitizeCohortLabel(rawCohortLabel, row.program, start, end);
   const responsibilityWorkIds = [];
   if (row.person_id === 'LDM-P-001' && row.program === 'FDI') responsibilityWorkIds.push('work-citymeter-schools');
   if (row.person_id === 'LDM-P-001' && row.program === 'Full-time') responsibilityWorkIds.push('work-land-portfolio', 'work-lead2loan', 'work-fdi-mentoring');
@@ -449,8 +499,8 @@ const engagements = engagementRows.map((row, index) => {
     program: { code: row.program, names: engagementProgramNames[row.program] || { th: row.program, en: row.program } },
     cohortLabel,
     roleTitle: engagementRoleNames[row.role] || { th: clean(row.role), en: clean(row.role) },
-    start: parseDate(row.start),
-    end: parseDate(row.end),
+    start,
+    end,
     status: String(row.status || '').toLowerCase() === 'ongoing' ? 'ongoing' : 'completed',
     responsibilityWorkIds,
     evidenceStatus: 'sheet_recorded',
@@ -476,6 +526,45 @@ engagements.push({
   verificationStatus: 'dates_owner_detail_required',
   sequenceHint: 2
 });
+
+for (const override of profileDetailOverrides.existingEngagementOverrides ?? []) {
+  const engagement = engagements.find((item) => item.engagementId === override.engagementId);
+  if (!engagement) throw new Error('Engagement override references an unknown engagement: ' + override.engagementId);
+  engagement.sequenceHint = override.sequenceHint;
+  if (Object.hasOwn(override, 'start')) engagement.start = override.start;
+  if (Object.hasOwn(override, 'end')) engagement.end = override.end;
+  if (override.verificationStatus) engagement.verificationStatus = override.verificationStatus;
+  if (override.evidenceNote) engagement.evidenceNote = override.evidenceNote;
+  if (engagement.start && engagement.end && engagement.start > engagement.end) {
+    throw new Error('Engagement override leaves an impossible date range: ' + override.engagementId);
+  }
+}
+
+for (const override of profileDetailOverrides.addedEngagements ?? []) {
+  if (engagements.some((item) => item.engagementId === override.engagementId)) {
+    throw new Error('Added engagement duplicates an engagement ID: ' + override.engagementId);
+  }
+  if (!personById.has(override.personId)) throw new Error('Added engagement references an unknown person: ' + override.personId);
+  const programNames = engagementProgramNames[override.programCode];
+  if (!programNames) throw new Error('Added engagement references an unknown program code: ' + override.programCode);
+  engagements.push({
+    engagementId: override.engagementId,
+    personId: override.personId,
+    category: override.category,
+    academicPlacementType: override.academicPlacementType,
+    program: { code: override.programCode, names: structuredClone(programNames) },
+    cohortLabel: override.cohortLabel,
+    roleTitle: structuredClone(override.roleTitle),
+    start: override.start,
+    end: override.end,
+    status: override.status,
+    responsibilityWorkIds: [...override.responsibilityWorkIds],
+    evidenceStatus: override.evidenceStatus,
+    verificationStatus: override.verificationStatus,
+    evidenceNote: override.evidenceNote ?? null,
+    sequenceHint: override.sequenceHint
+  });
+}
 
 const personSortIndex = new Map(people.map((person, index) => [person.personId, index]));
 engagements.sort((left, right) => {
@@ -708,6 +797,19 @@ for (const [workId, parentProduct, names, type, scopeLayer, aliases] of addition
   addWork({ workId, parentProduct, names, type, scopeLayer, authorityStatus, evidenceNote, aliases });
 }
 
+for (const definition of profileDetailOverrides.addedWorks ?? []) {
+  if (workMap.has(definition.workId)) throw new Error('Added work duplicates a work ID: ' + definition.workId);
+  addWork(structuredClone(definition));
+}
+
+for (const override of profileDetailOverrides.workOverrides ?? []) {
+  const work = workMap.get(override.workId);
+  if (!work) throw new Error('Work override references an unknown work: ' + override.workId);
+  work.names = structuredClone(override.names);
+  work.shortNames = structuredClone(override.names);
+  work.authorityStatus = 'owner_supplied_exact_name';
+}
+
 for (const engagement of engagements) {
   if (engagement.personId === 'P0001') engagement.responsibilityWorkIds = ['work-citychat'];
   if (engagement.personId === 'S0002' && engagement.category === 'full_time') engagement.responsibilityWorkIds = ['work-ijji'];
@@ -737,7 +839,7 @@ function addContribution(definition) {
     personId: definition.personId,
     workId: definition.workId,
     engagementId: definition.engagementId ?? null,
-    role: definition.role || { th: 'ผู้มีส่วนร่วม', en: 'Contributor' },
+    role: definition.role || { th: 'Team member', en: 'Team member' },
     period: definition.period || { start: null, end: null, label: null },
     evidenceStatus: definition.evidenceStatus,
     sourceRef: definition.sourceRef,
@@ -750,13 +852,13 @@ function addContribution(definition) {
 for (const row of contributionRows) {
   const workId = workAliasMap.get(row.work_name);
   if (!workId) throw new Error('Unmapped raw contribution work: ' + row.work_name);
-  const sourceRole = clean(row.role_in_work) || 'Contributor';
+  const sourceRole = clean(row.role_in_work) || 'Team member';
   addContribution({
     personId: sourceIdToPersonId.get(row.person_id),
     workId,
     engagementId: sourceEngagementIdToEngagementId.get(row.engagement_id) || null,
     role: sourceRole.toLowerCase() === 'contributor'
-      ? { th: 'ผู้มีส่วนร่วม', en: 'Contributor' }
+      ? { th: 'Team member', en: 'Team member' }
       : { th: sourceRole, en: sourceRole },
     period: parsePeriod(row.period),
     evidenceStatus: 'sheet_recorded',
@@ -769,10 +871,17 @@ function findEngagementId(sourcePersonId, year, strictYear = false) {
   const personId = sourceIdToPersonId.get(sourcePersonId);
   const matches = engagements.filter((engagement) => engagement.personId === personId && engagement.engagementId !== oatPartTimeEngagementId);
   if (year) {
-    const yearMatch = [...matches].reverse().find((engagement) =>
-      engagement.start?.startsWith(String(year)) || engagement.cohortLabel?.includes(String(year))
+    const sourceEngagementIds = new Set(sourceEngagementIdToEngagementId.values());
+    const sourceYearMatch = [...matches].reverse().find((engagement) =>
+      sourceEngagementIds.has(engagement.engagementId) &&
+      (engagement.start?.startsWith(String(year)) || engagement.cohortLabel?.includes(String(year)))
     );
-    if (yearMatch) return yearMatch.engagementId;
+    if (sourceYearMatch) return sourceYearMatch.engagementId;
+    const addedYearMatch = [...matches].reverse().find((engagement) =>
+      !sourceEngagementIds.has(engagement.engagementId) &&
+      (engagement.start?.startsWith(String(year)) || engagement.cohortLabel?.includes(String(year)))
+    );
+    if (addedYearMatch) return addedYearMatch.engagementId;
     if (strictYear) return null;
   }
   return matches.at(-1)?.engagementId || null;
@@ -896,6 +1005,15 @@ addContribution({
   sourceRef: 'owner_instruction_2026-08-23'
 });
 
+for (const definition of profileDetailOverrides.addedContributions ?? []) {
+  addContribution({
+    ...structuredClone(definition),
+    evidenceStatus: 'owner_supplied',
+    sourceRef: profileDetailOverrides.sourceBasis,
+    evidenceNote: null
+  });
+}
+
 for (const person of people) {
   if (contributions.some((item) => item.personId === person.personId)) continue;
   const latestEngagement = engagements.filter((item) => item.personId === person.personId).at(-1);
@@ -908,6 +1026,20 @@ for (const person of people) {
     sourceRef: 'owner_instruction_2026-08-23',
     evidenceNote: 'เจ้าของข้อมูลยืนยันว่าทุกคนมีอย่างน้อยหนึ่งผลงาน แต่ยังไม่มีหลักฐานพอระบุชื่อโครงการของบุคคลนี้'
   });
+}
+
+const engagementById = new Map(engagements.map((engagement) => [engagement.engagementId, engagement]));
+for (const contribution of contributions) {
+  const exactRoleOverride = (profileDetailOverrides.contributionRoleOverrides ?? []).find((override) =>
+    override.workId === contribution.workId
+  );
+  if (exactRoleOverride) {
+    contribution.role = structuredClone(exactRoleOverride.role);
+    continue;
+  }
+  const programCode = engagementById.get(contribution.engagementId)?.program?.code;
+  const programRole = profileDetailOverrides.contributionRolesByProgram?.[programCode];
+  if (programRole) contribution.role = structuredClone(programRole);
 }
 
 const works = [...workMap.values()];
@@ -1063,6 +1195,126 @@ const assets = people.map((person) => {
   };
 });
 
+const certificateInventoryPath = path.join(root, 'data/approved/certificate-assets.json');
+if (!fs.existsSync(certificateInventoryPath)) {
+  throw new Error('Required approved certificate inventory is missing: data/approved/certificate-assets.json');
+}
+const certificateInventory = JSON.parse(fs.readFileSync(certificateInventoryPath, 'utf8'));
+if (certificateInventory.schemaVersion !== '1.0.0') {
+  throw new Error('Unsupported certificate approval inventory: ' + String(certificateInventory.schemaVersion));
+}
+const certificatePolicy = certificateInventory.policy ?? {};
+if (
+  certificatePolicy.defaultDecision !== 'deny' ||
+  certificatePolicy.publicationBasis !== 'owner_authorized_public_certificate' ||
+  certificatePolicy.ownerApprovalStatus !== 'granted' ||
+  certificatePolicy.ownerApprovalScope !== 'public_certificate_image_and_printed_profile_facts' ||
+  certificatePolicy.rightsStatus !== 'cleared' ||
+  certificatePolicy.consentStatus !== 'pending' ||
+  certificatePolicy.publicationStatus !== 'publishable'
+) {
+  throw new Error('Certificate approval inventory does not satisfy the governed owner-authorization policy.');
+}
+
+const certificateProgramCopy = {
+  FDI: {
+    title: { th: 'เกียรติบัตรแห่งความสำเร็จ', en: 'Certificate of Achievement' },
+    roleLabel: { th: 'Software development', en: 'Software development' }
+  },
+  MSI: {
+    title: { th: 'เกียรติบัตรแห่งความสำเร็จ', en: 'Certificate of Achievement' },
+    roleLabel: { th: 'Go-to-market', en: 'Go-to-market' }
+  },
+  IMP: {
+    title: { th: 'เกียรติบัตรแสดงความขอบคุณ', en: 'Certificate of Appreciation' },
+    roleLabel: { th: 'Consulting Partner', en: 'Consulting Partner' }
+  },
+  PDI: {
+    title: { th: 'เกียรติบัตรแสดงความขอบคุณ', en: 'Certificate of Appreciation' },
+    roleLabel: { th: 'Product development', en: 'Product development' }
+  }
+};
+const publicPersonIds = new Set(people.map((person) => person.personId));
+const publicWorkIds = new Set(works.map((work) => work.workId));
+const certificateIds = new Set();
+const certificatePaths = new Set();
+const credentialOwners = new Map();
+const certificates = (certificateInventory.certificates ?? []).map((approved) => {
+  if (!/^CERT-[SPI]\d{4}-[A-Z0-9]+$/.test(approved.certificateId)) {
+    throw new Error('Invalid governed certificateId: ' + String(approved.certificateId));
+  }
+  if (certificateIds.has(approved.certificateId)) throw new Error('Duplicate certificateId: ' + approved.certificateId);
+  certificateIds.add(approved.certificateId);
+  if (!publicPersonIds.has(approved.personId)) throw new Error('Certificate references unknown person: ' + approved.personId);
+  if (!/^[A-Z]{3}\d{5}$/.test(approved.credentialId)) {
+    throw new Error('Invalid printed certificate credentialId: ' + String(approved.credentialId));
+  }
+  const programCopy = certificateProgramCopy[approved.programCode];
+  if (!programCopy) throw new Error('Unsupported certificate program code: ' + String(approved.programCode));
+  if (!Array.isArray(approved.workIds) || approved.workIds.length === 0) {
+    throw new Error('Certificate must link at least one reviewed canonical work: ' + approved.certificateId);
+  }
+  for (const workId of approved.workIds) {
+    if (!publicWorkIds.has(workId)) throw new Error('Certificate references unknown work: ' + approved.certificateId + ' -> ' + workId);
+  }
+  if (!/^public\/assets\/certificates\/[SPI]\d{4}-[A-Z0-9]+\.png$/.test(approved.publicPath)) {
+    throw new Error('Certificate path is outside the governed certificate asset directory: ' + approved.publicPath);
+  }
+  if (certificatePaths.has(approved.publicPath)) throw new Error('Duplicate certificate publicPath: ' + approved.publicPath);
+  certificatePaths.add(approved.publicPath);
+  const certificatePath = path.join(root, approved.publicPath);
+  if (!fs.existsSync(certificatePath)) throw new Error('Approved certificate file is missing: ' + approved.publicPath);
+  if (fs.lstatSync(certificatePath).isSymbolicLink()) throw new Error('Certificate files may not be symbolic links: ' + approved.publicPath);
+  const certificateBytes = fs.readFileSync(certificatePath);
+  const digest = createHash('sha256').update(certificateBytes).digest('hex');
+  if (digest !== approved.sha256) throw new Error('Approved certificate hash mismatch: ' + approved.publicPath);
+  if (certificateBytes.byteLength !== approved.bytes) throw new Error('Approved certificate byte count mismatch: ' + approved.publicPath);
+
+  const owners = credentialOwners.get(approved.credentialId) ?? [];
+  owners.push(approved);
+  credentialOwners.set(approved.credentialId, owners);
+
+  return {
+    certificateId: approved.certificateId,
+    personId: approved.personId,
+    credentialId: approved.credentialId,
+    programCode: approved.programCode,
+    title: structuredClone(programCopy.title),
+    roleLabel: structuredClone(programCopy.roleLabel),
+    awardedOn: approved.awardedOn,
+    printedWorkTitle: approved.printedWorkTitle,
+    workIds: [...approved.workIds],
+    publicPath: approved.publicPath,
+    downloadFilename: 'landometer-certificate-' + approved.personId + '-' + approved.credentialId + '.png',
+    sha256: approved.sha256,
+    bytes: approved.bytes,
+    mimeType: 'image/png',
+    verificationStatus: 'verified',
+    publicationStatus: certificatePolicy.publicationStatus,
+    rightsStatus: certificatePolicy.rightsStatus,
+    consentStatus: certificatePolicy.consentStatus,
+    publicationBasis: certificatePolicy.publicationBasis,
+    ownerApproval: {
+      status: certificatePolicy.ownerApprovalStatus,
+      approvedAt: certificatePolicy.ownerApprovedAt,
+      scope: certificatePolicy.ownerApprovalScope,
+      sourceRef: certificatePolicy.ownerApprovalSourceRef
+    },
+    nameSpellingStatus: approved.nameSpellingStatus ?? 'matched',
+    credentialIdCollisionStatus: approved.credentialIdCollisionStatus ?? 'unique_in_printed_source',
+    dateEvidenceStatus: approved.dateEvidenceStatus ?? 'printed_date_only',
+    evidenceNotes: [...(approved.evidenceNotes ?? [])],
+    evidenceBoundary: 'printed_certificate_facts_only_qr_destinations_excluded'
+  };
+});
+
+for (const [credentialId, owners] of credentialOwners) {
+  if (owners.length < 2) continue;
+  if (owners.some((record) => record.credentialIdCollisionStatus !== 'duplicate_in_printed_source')) {
+    throw new Error('Duplicate printed credentialId lacks an explicit collision note: ' + credentialId);
+  }
+}
+
 const achievements = [
   {
     achievementId: 'A0001',
@@ -1096,7 +1348,7 @@ const copy = {
 };
 
 const meta = {
-  schemaVersion: '1.3.0',
+  schemaVersion: '1.4.0',
   generatedAt: '2026-08-23T00:00:00+07:00',
   source: {
     spreadsheetId: snapshot.source.spreadsheetId,
@@ -1116,6 +1368,7 @@ const meta = {
     localeInsight: 'Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.',
     crossProductComparison: 'Compare only records produced under the same schema/release, otherwise state incompatibility.',
     socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
+    certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
     profileCopy: 'All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.',
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
     staffDegrees: 'The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release.'
@@ -1127,6 +1380,7 @@ const meta = {
     works: works.length,
     contributions: contributions.length,
     achievements: achievements.length,
+    certificates: certificates.length,
     sourceBackedProfilePlaceholders: approvedProfileByPersonId.size,
     ownerPendingProfiles: people.length - approvedProfileByPersonId.size,
     firstPersonProfilePlaceholders: firstPersonProfiles.length,
@@ -1150,7 +1404,8 @@ const siteData = {
   contributions,
   achievements,
   socialProfiles,
-  assets
+  assets,
+  certificates
 };
 
 writeSiteDataFiles(siteData);

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schemaVersion": "1.3.0",
+    "schemaVersion": "1.4.0",
     "generatedAt": "2026-08-23T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
@@ -28,17 +28,19 @@
       "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
       "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
       "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
+      "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
       "profileCopy": "All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.",
       "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
       "staffDegrees": "The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release."
     },
     "counts": {
       "people": 48,
-      "engagements": 54,
+      "engagements": 60,
       "educationRecords": 48,
-      "works": 51,
-      "contributions": 95,
+      "works": 52,
+      "contributions": 99,
       "achievements": 1,
+      "certificates": 26,
       "sourceBackedProfilePlaceholders": 48,
       "ownerPendingProfiles": 0,
       "firstPersonProfilePlaceholders": 25,
@@ -234,11 +236,11 @@
         },
         "en": {
           "formal": "Computer Engineering",
-          "short": "CPE"
+          "short": "CP"
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     {
       "programId": "program-cu-cedt",
@@ -264,11 +266,11 @@
         },
         "en": {
           "formal": "Computer Engineering",
-          "short": "CPE"
+          "short": "CP"
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     {
       "programId": "program-cu-public-relations",
@@ -379,16 +381,16 @@
       "programId": "program-cu-finance",
       "names": {
         "th": {
-          "formal": "การเงิน",
-          "short": "การเงิน"
+          "formal": "บริหารธุรกิจ สาขาการเงิน",
+          "short": "BBA Finance"
         },
         "en": {
-          "formal": "Finance",
-          "short": "Finance"
+          "formal": "Bachelor of Business Administration in Finance",
+          "short": "BBA Finance"
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "owner_supplied_detail_refinement"
     },
     {
       "programId": "program-kaist-aerospace-btm",
@@ -904,17 +906,17 @@
       "educationRecordId": "EDU0023",
       "personId": "I0020",
       "institutionId": "inst-chula",
-      "programId": null,
+      "programId": "program-cu-eba",
       "recordType": "education",
       "isPrimary": true,
       "sourceLabel": "Chulalongkorn",
       "qualification": {
-        "th": null,
-        "en": null
+        "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+        "en": "Economics, International Program"
       },
       "degree": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
     {
       "educationRecordId": "EDU0024",
@@ -929,8 +931,8 @@
         "en": "Economics, International Program"
       },
       "degree": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
     {
       "educationRecordId": "EDU0025",
@@ -941,8 +943,8 @@
       "isPrimary": true,
       "sourceLabel": "Finance, Chulalongkorn",
       "qualification": {
-        "th": "การเงิน",
-        "en": "Finance"
+        "th": "บริหารธุรกิจ สาขาการเงิน",
+        "en": "Bachelor of Business Administration in Finance"
       },
       "degree": null,
       "verificationStatus": "owner_review_required",
@@ -952,33 +954,33 @@
       "educationRecordId": "EDU0026",
       "personId": "I0023",
       "institutionId": "inst-chula",
-      "programId": "program-cu-economics",
+      "programId": "program-cu-eba",
       "recordType": "education",
       "isPrimary": true,
       "sourceLabel": "Economics, Chulalongkorn",
       "qualification": {
-        "th": "เศรษฐศาสตร์",
-        "en": "Economics"
+        "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+        "en": "Economics, International Program"
       },
       "degree": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
     {
       "educationRecordId": "EDU0027",
       "personId": "I0024",
       "institutionId": "inst-chula",
-      "programId": "program-cu-economics",
+      "programId": "program-cu-eba",
       "recordType": "education",
       "isPrimary": true,
       "sourceLabel": "Economics, Chulalongkorn",
       "qualification": {
-        "th": "เศรษฐศาสตร์",
-        "en": "Economics"
+        "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+        "en": "Economics, International Program"
       },
       "degree": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
     {
       "educationRecordId": "EDU0028",
@@ -989,8 +991,8 @@
       "isPrimary": true,
       "sourceLabel": "Finance, Chulalongkorn",
       "qualification": {
-        "th": "การเงิน",
-        "en": "Finance"
+        "th": "บริหารธุรกิจ สาขาการเงิน",
+        "en": "Bachelor of Business Administration in Finance"
       },
       "degree": null,
       "verificationStatus": "owner_review_required",
@@ -1431,7 +1433,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "en": "CP · KMITL"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -1498,7 +1500,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "en": "CP · KMITL"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -1699,7 +1701,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "en": "CP · KMITL"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -1832,14 +1834,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "ภาษาจีน · จุฬาฯ",
-          "en": "Chinese · CU"
+          "th": "อักษร จุฬา",
+          "en": "Arts · CU"
         },
         "detail": {
           "th": "ภาษาจีน คณะอักษรศาสตร์ — จุฬาลงกรณ์มหาวิทยาลัย",
           "en": "Chinese, Faculty of Arts — Chulalongkorn University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_supplied_card_label_official_detail_preserved"
       },
       "bio": {
         "th": "หมิงอยากนำประสบการณ์ด้านคอนเทนต์ การตลาด การสื่อสาร และภาษามาช่วยสร้างเรื่องราวที่เข้าถึงผู้คน พร้อมลงมือหาทางแก้ปัญหาและเรียนรู้ไปกับทีม",
@@ -2436,7 +2438,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
-          "en": "CPE · CU"
+          "en": "CP · CU"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — จุฬาลงกรณ์มหาวิทยาลัย",
@@ -2503,7 +2505,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
-          "en": "CPE · CU"
+          "en": "CP · CU"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — จุฬาลงกรณ์มหาวิทยาลัย",
@@ -2570,7 +2572,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
-          "en": "CPE · CU"
+          "en": "CP · CU"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — จุฬาลงกรณ์มหาวิทยาลัย",
@@ -2904,14 +2906,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "จุฬาฯ",
-          "en": "CU"
+          "th": "EBA · จุฬาฯ",
+          "en": "EBA · CU"
         },
         "detail": {
-          "th": "จุฬาลงกรณ์มหาวิทยาลัย",
-          "en": "Chulalongkorn University"
+          "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Economics, International Program — Chulalongkorn University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_supplied_detail_refinement"
       },
       "bio": {
         "th": "Tieam ร่วมทำ ijji ในบทบาท Consulting Partner อยู่ตรงช่วงที่ข้อมูล โจทย์ธุรกิจ และการตัดสินใจต้องคุยกันให้รู้เรื่อง",
@@ -2978,7 +2980,7 @@
           "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
           "en": "Economics, International Program — Chulalongkorn University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_supplied_detail_refinement"
       },
       "bio": {
         "th": "Pleng นำพื้นฐานเศรษฐศาสตร์นานาชาติมาเจอกับ ijji มองโจทย์ธุรกิจผ่านทั้งแรงจูงใจ บริบท และทางเลือกที่เป็นไปได้",
@@ -3038,12 +3040,12 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "การเงิน · จุฬาฯ",
-          "en": "Finance · CU"
+          "th": "BBA Finance · จุฬาฯ",
+          "en": "BBA Finance · CU"
         },
         "detail": {
-          "th": "การเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
-          "en": "Finance — Chulalongkorn University"
+          "th": "บริหารธุรกิจ สาขาการเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Bachelor of Business Administration in Finance — Chulalongkorn University"
         },
         "verificationStatus": "owner_review_required"
       },
@@ -3105,14 +3107,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "เศรษฐศาสตร์ · จุฬาฯ",
-          "en": "Economics · CU"
+          "th": "EBA · จุฬาฯ",
+          "en": "EBA · CU"
         },
         "detail": {
-          "th": "เศรษฐศาสตร์ — จุฬาลงกรณ์มหาวิทยาลัย",
-          "en": "Economics — Chulalongkorn University"
+          "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Economics, International Program — Chulalongkorn University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_supplied_detail_refinement"
       },
       "bio": {
         "th": "Tim ทำ ijji ในฐานะ Consulting Partner พร้อมพื้นฐานเศรษฐศาสตร์ ช่วยตั้งกรอบให้โจทย์ที่ยังกว้างค่อยๆ กลายเป็นคำถามที่ทีมตัดสินใจต่อได้",
@@ -3172,14 +3174,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "เศรษฐศาสตร์ · จุฬาฯ",
-          "en": "Economics · CU"
+          "th": "EBA · จุฬาฯ",
+          "en": "EBA · CU"
         },
         "detail": {
-          "th": "เศรษฐศาสตร์ — จุฬาลงกรณ์มหาวิทยาลัย",
-          "en": "Economics — Chulalongkorn University"
+          "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Economics, International Program — Chulalongkorn University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_supplied_detail_refinement"
       },
       "bio": {
         "th": "เฟยอยากต่อยอดประสบการณ์กับ ijji จากงานวิเคราะห์และจัดกรอบปัญหาไปสู่การทำงานจริงที่ช่วยให้ทีมตัดสินใจชัดและเร็วขึ้น",
@@ -3239,12 +3241,12 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "การเงิน · จุฬาฯ",
-          "en": "Finance · CU"
+          "th": "BBA Finance · จุฬาฯ",
+          "en": "BBA Finance · CU"
         },
         "detail": {
-          "th": "การเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
-          "en": "Finance — Chulalongkorn University"
+          "th": "บริหารธุรกิจ สาขาการเงิน — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Bachelor of Business Administration in Finance — Chulalongkorn University"
         },
         "verificationStatus": "owner_review_required"
       },
@@ -3642,7 +3644,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "en": "CP · KMITL"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -3709,7 +3711,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "en": "CP · KMITL"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -3776,7 +3778,7 @@
         "mode": "program",
         "card": {
           "th": "วิศวกรรมคอมพิวเตอร์ · สจล.",
-          "en": "CPE · KMITL"
+          "en": "CP · KMITL"
         },
         "detail": {
           "th": "วิศวกรรมคอมพิวเตอร์ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
@@ -4567,7 +4569,7 @@
       },
       "cohortLabel": "FDI 2024",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": null,
@@ -4650,7 +4652,7 @@
       },
       "cohortLabel": "FDI 2024 (รุ่นเดียวกับ โอ๊ต)",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": null,
@@ -4675,7 +4677,7 @@
       },
       "cohortLabel": "FDI 2024 (รุ่นเดียวกับ โอ๊ต)",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": null,
@@ -4721,13 +4723,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
       "cohortLabel": "MSI batch 1 / 2025",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": "2025-02-17",
@@ -4779,7 +4781,7 @@
       },
       "cohortLabel": "FDI batch 1 / 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-04-21",
@@ -4788,7 +4790,33 @@
       "responsibilityWorkIds": [],
       "evidenceStatus": "sheet_recorded",
       "verificationStatus": "sheet_recorded",
-      "sequenceHint": null
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0055",
+      "personId": "I0003",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "program": {
+        "code": "Part-time",
+        "names": {
+          "th": "พนักงานพาร์ตไทม์",
+          "en": "Part-time staff"
+        }
+      },
+      "cohortLabel": "Following FDI 2025",
+      "roleTitle": {
+        "th": "Part-time",
+        "en": "Part-time"
+      },
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "evidenceNote": null,
+      "sequenceHint": 2
     },
     {
       "engagementId": "E0007",
@@ -4804,7 +4832,7 @@
       },
       "cohortLabel": "FDI batch 1 / 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-04-28",
@@ -4813,7 +4841,33 @@
       "responsibilityWorkIds": [],
       "evidenceStatus": "sheet_recorded",
       "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0056",
+      "personId": "S0003",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "program": {
+        "code": "Part-time",
+        "names": {
+          "th": "พนักงานพาร์ตไทม์",
+          "en": "Part-time staff"
+        }
+      },
+      "cohortLabel": "Following FDI 2025",
+      "roleTitle": {
+        "th": "Part-time",
+        "en": "Part-time"
+      },
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "evidenceNote": null,
+      "sequenceHint": 2
     },
     {
       "engagementId": "E0033",
@@ -4840,7 +4894,7 @@
       ],
       "evidenceStatus": "sheet_recorded",
       "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "sequenceHint": 3
     },
     {
       "engagementId": "E0008",
@@ -4850,13 +4904,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
       "cohortLabel": null,
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": "2025-05-02",
@@ -4879,9 +4933,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -4904,9 +4958,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -4929,9 +4983,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -4954,9 +5008,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -4979,9 +5033,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -5004,9 +5058,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -5029,9 +5083,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-19",
@@ -5050,13 +5104,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+      "cohortLabel": "MSI batch 2 2025",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": "2025-05-19",
@@ -5079,9 +5133,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-26",
@@ -5104,9 +5158,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "batch 2 (19MAY-31JUL)",
+      "cohortLabel": "FDI batch 2 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-05-26",
@@ -5115,7 +5169,35 @@
       "responsibilityWorkIds": [],
       "evidenceStatus": "sheet_recorded",
       "verificationStatus": "sheet_recorded",
-      "sequenceHint": null
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0057",
+      "personId": "I0014",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "program": {
+        "code": "Part-time",
+        "names": {
+          "th": "พนักงานพาร์ตไทม์",
+          "en": "Part-time staff"
+        }
+      },
+      "cohortLabel": "Following FDI 2025",
+      "roleTitle": {
+        "th": "Part-time",
+        "en": "Part-time"
+      },
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [
+        "work-ijji"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "evidenceNote": null,
+      "sequenceHint": 2
     },
     {
       "engagementId": "E0019",
@@ -5131,7 +5213,7 @@
       },
       "cohortLabel": "FDI batch 2 / 2025",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2025-06-01",
@@ -5140,7 +5222,33 @@
       "responsibilityWorkIds": [],
       "evidenceStatus": "sheet_recorded",
       "verificationStatus": "sheet_recorded",
-      "sequenceHint": null
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0058",
+      "personId": "I0015",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "program": {
+        "code": "Part-time",
+        "names": {
+          "th": "พนักงานพาร์ตไทม์",
+          "en": "Part-time staff"
+        }
+      },
+      "cohortLabel": "Following FDI 2025",
+      "roleTitle": {
+        "th": "Part-time",
+        "en": "Part-time"
+      },
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "evidenceNote": null,
+      "sequenceHint": 2
     },
     {
       "engagementId": "E0020",
@@ -5150,13 +5258,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
       "cohortLabel": "MSI batch 3 / 2025",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": "2025-06-02",
@@ -5175,13 +5283,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
       "cohortLabel": "MSI batch 3 / 2025",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": "2025-06-12",
@@ -5200,22 +5308,51 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "batch 2 (19MAY-31JUL)",
+      "cohortLabel": "MSI batch 2 2025",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": "2025-08-26",
+      "start": "2025-05-19",
       "end": "2025-07-31",
       "status": "completed",
       "responsibilityWorkIds": [],
       "evidenceStatus": "sheet_recorded",
-      "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "verificationStatus": "owner_source_reconciled",
+      "sequenceHint": 1,
+      "evidenceNote": "The governed cohort label states 19 May–31 Jul 2025 and the certificate confirms completion on 31 Jul 2025; this replaces the contradictory roster start date that fell after the recorded end."
+    },
+    {
+      "engagementId": "E0059",
+      "personId": "I0018",
+      "category": "internship",
+      "academicPlacementType": "internship",
+      "program": {
+        "code": "PDI",
+        "names": {
+          "th": "Product Developer Intern, PDI",
+          "en": "Product Developer Intern, PDI"
+        }
+      },
+      "cohortLabel": "PDI 2026",
+      "roleTitle": {
+        "th": "Product Developer Intern",
+        "en": "Product Developer Intern"
+      },
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [
+        "work-ijji"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "evidenceNote": null,
+      "sequenceHint": 2
     },
     {
       "engagementId": "E0023",
@@ -5300,13 +5437,13 @@
       "program": {
         "code": "PMI",
         "names": {
-          "th": "โครงการฝึกงาน Partnership Maker",
-          "en": "Partnership Maker Internship"
+          "th": "Partnership Maker Intern, PMI",
+          "en": "Partnership Maker Intern, PMI"
         }
       },
       "cohortLabel": "PMI batch 1 / 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านการสร้างพันธมิตร",
+        "th": "Partnership Maker Intern",
         "en": "Partnership Maker Intern"
       },
       "start": "2026-01-05",
@@ -5375,13 +5512,13 @@
       "program": {
         "code": "PMI",
         "names": {
-          "th": "โครงการฝึกงาน Partnership Maker",
-          "en": "Partnership Maker Internship"
+          "th": "Partnership Maker Intern, PMI",
+          "en": "Partnership Maker Intern, PMI"
         }
       },
       "cohortLabel": "PMI batch 1 / 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านการสร้างพันธมิตร",
+        "th": "Partnership Maker Intern",
         "en": "Partnership Maker Intern"
       },
       "start": "2026-01-05",
@@ -5450,13 +5587,13 @@
       "program": {
         "code": "PDI",
         "names": {
-          "th": "โครงการฝึกงาน Product Developer",
-          "en": "Product Developer Internship"
+          "th": "Product Developer Intern, PDI",
+          "en": "Product Developer Intern, PDI"
         }
       },
       "cohortLabel": "PDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนาผลิตภัณฑ์ฝึกงาน",
+        "th": "Product Developer Intern",
         "en": "Product Developer Intern"
       },
       "start": null,
@@ -5475,13 +5612,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "เริ่มได้ 1 Jan 2026 / 10 weeks",
+      "cohortLabel": "MSI 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": null,
@@ -5500,13 +5637,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "เริ่มได้ 12 Jan 2026 / 10 weeks",
+      "cohortLabel": "MSI 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": null,
@@ -5518,6 +5655,34 @@
       "sequenceHint": null
     },
     {
+      "engagementId": "E0060",
+      "personId": "I0029",
+      "category": "program_participant",
+      "academicPlacementType": "not_applicable",
+      "program": {
+        "code": "IMP",
+        "names": {
+          "th": "Impvest",
+          "en": "Impvest"
+        }
+      },
+      "cohortLabel": "Impvest 2025",
+      "roleTitle": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "start": null,
+      "end": "2025-11-13",
+      "status": "completed",
+      "responsibilityWorkIds": [
+        "work-ijji"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_review_required_name_spelling_variation",
+      "evidenceNote": "Certificate spells the full name Panida Chantacharoenpong; retain canonical registry spelling Panida Chantacharoonpong pending owner review.",
+      "sequenceHint": 1
+    },
+    {
       "engagementId": "E0038",
       "personId": "I0029",
       "category": "internship",
@@ -5525,13 +5690,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "เริ่มได้ 12 Jan 2026 / 5 weeks",
+      "cohortLabel": "MSI 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": null,
@@ -5540,7 +5705,7 @@
       "responsibilityWorkIds": [],
       "evidenceStatus": "sheet_recorded",
       "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "sequenceHint": 2
     },
     {
       "engagementId": "E0039",
@@ -5581,9 +5746,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "KMITL + Co-op (สหกิจ) / start Apr 7",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-04-07",
@@ -5606,9 +5771,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "KMITL + Co-op (สหกิจ) / start Apr 7",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-04-07",
@@ -5631,9 +5796,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "KMITL / start Apr 20",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-04-20",
@@ -5652,13 +5817,13 @@
       "program": {
         "code": "PDI",
         "names": {
-          "th": "โครงการฝึกงาน Product Developer",
-          "en": "Product Developer Internship"
+          "th": "Product Developer Intern, PDI",
+          "en": "Product Developer Intern, PDI"
         }
       },
-      "cohortLabel": "KMITL / start Apr 28 (PDI ในสรุปยอด)",
+      "cohortLabel": "PDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนาผลิตภัณฑ์ฝึกงาน",
+        "th": "Product Developer Intern",
         "en": "Product Developer Intern"
       },
       "start": "2026-04-28",
@@ -5681,9 +5846,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT107 + Co-op / start May 19",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-05-19",
@@ -5706,9 +5871,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT107 / start May 19",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-05-19",
@@ -5731,9 +5896,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT107 + Co-op / start May 19",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-05-19",
@@ -5756,9 +5921,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT109 / start May 19",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-05-19",
@@ -5781,9 +5946,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "CEDT109 / start May 19",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-05-19",
@@ -5806,9 +5971,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "Mahidol + Co-op / start May 19",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-05-19",
@@ -5827,13 +5992,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "เริ่มได้ 20 May 2026 / 10 weeks",
+      "cohortLabel": "MSI 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": null,
@@ -5852,13 +6017,13 @@
       "program": {
         "code": "PDI",
         "names": {
-          "th": "โครงการฝึกงาน Product Developer",
-          "en": "Product Developer Internship"
+          "th": "Product Developer Intern, PDI",
+          "en": "Product Developer Intern, PDI"
         }
       },
-      "cohortLabel": "เริ่มได้ 25 May 2026",
+      "cohortLabel": "PDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนาผลิตภัณฑ์ฝึกงาน",
+        "th": "Product Developer Intern",
         "en": "Product Developer Intern"
       },
       "start": null,
@@ -5877,13 +6042,13 @@
       "program": {
         "code": "MSI",
         "names": {
-          "th": "โครงการฝึกงาน Marketing Strategy",
-          "en": "Marketing Strategy Internship"
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
         }
       },
-      "cohortLabel": "เริ่มได้ 25 May 2026 / 10 weeks",
+      "cohortLabel": "MSI 2026",
       "roleTitle": {
-        "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+        "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
       "start": null,
@@ -5906,9 +6071,9 @@
           "en": "Full-stack Developer Intern, FDI"
         }
       },
-      "cohortLabel": "UCL / start Jun 16",
+      "cohortLabel": "FDI 2026",
       "roleTitle": {
-        "th": "นักพัฒนา Full-Stack ฝึกงาน",
+        "th": "Full-Stack Developer Intern",
         "en": "Full-Stack Developer Intern"
       },
       "start": "2026-06-16",
@@ -7174,16 +7339,16 @@
       "parentProduct": "CityCell",
       "moduleSlug": null,
       "names": {
-        "th": "โมเดล CityCell",
-        "en": "CityCell Model"
+        "th": "CityCell: Machine learning model for nationwide land appraisal",
+        "en": "CityCell: Machine learning model for nationwide land appraisal"
       },
       "shortNames": {
-        "th": "โมเดล CityCell",
-        "en": "CityCell Model"
+        "th": "CityCell: Machine learning model for nationwide land appraisal",
+        "en": "CityCell: Machine learning model for nationwide land appraisal"
       },
       "type": "hackathon_deliverable",
       "scopeLayer": "product_specific",
-      "authorityStatus": "owner_or_sheet_supplied_product_specific",
+      "authorityStatus": "owner_supplied_exact_name",
       "evidenceNote": null,
       "sourceAliases": [],
       "catalogUrl": {
@@ -7420,6 +7585,36 @@
         "sourceRef": null,
         "evidenceUrl": null
       }
+    },
+    {
+      "workId": "work-citymeter-rugon",
+      "parentProduct": "CityMETER",
+      "moduleSlug": null,
+      "names": {
+        "th": "CityMETER: RUGON",
+        "en": "CityMETER: RUGON"
+      },
+      "shortNames": {
+        "th": "CityMETER: RUGON",
+        "en": "CityMETER: RUGON"
+      },
+      "type": "product_specific_deliverable",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+      "evidenceNote": "Owner-supplied product-specific contribution; no exact current CityMETER catalog route is asserted.",
+      "sourceAliases": [
+        "CityMETER: RUGON"
+      ],
+      "catalogUrl": {
+        "th": null,
+        "en": null
+      },
+      "destinationUrl": null,
+      "linkEvidence": {
+        "linkScope": "unverified_no_link",
+        "sourceRef": null,
+        "evidenceUrl": null
+      }
     }
   ],
   "contributions": [
@@ -7429,8 +7624,8 @@
       "workId": "work-citymeter-apartment-unresolved",
       "engagementId": "E0007",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7447,8 +7642,8 @@
       "workId": "work-citymeter-companies",
       "engagementId": "E0019",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7465,8 +7660,8 @@
       "workId": "work-citymeter-condo-offer-unresolved",
       "engagementId": "E0015",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7483,8 +7678,8 @@
       "workId": "work-citymeter-condo-rental-unresolved",
       "engagementId": "E0014",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7501,8 +7696,8 @@
       "workId": "work-citymeter-detached-house-unresolved",
       "engagementId": "E0017",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7519,8 +7714,8 @@
       "workId": "work-citymeter-factories",
       "engagementId": "E0013",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7537,8 +7732,8 @@
       "workId": "work-citymeter-land-appraisal",
       "engagementId": "E0006",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7555,8 +7750,8 @@
       "workId": "work-citymeter-land-offer-unresolved",
       "engagementId": "E0012",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7573,8 +7768,8 @@
       "workId": "work-citymeter-office-unresolved",
       "engagementId": "E0018",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7591,8 +7786,8 @@
       "workId": "work-citymeter-quakesafe-unresolved",
       "engagementId": "E0005",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -7609,8 +7804,8 @@
       "workId": "work-citymeter-road-traffic-unresolved",
       "engagementId": "E0009",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7627,8 +7822,8 @@
       "workId": "work-citymeter-schools",
       "engagementId": "E0010",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7645,8 +7840,8 @@
       "workId": "work-citymeter-townhouse-unresolved",
       "engagementId": "E0011",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -7663,8 +7858,8 @@
       "workId": "work-ijji",
       "engagementId": "E0030",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Product development",
+        "en": "Product development"
       },
       "period": {
         "start": null,
@@ -7681,8 +7876,8 @@
       "workId": "work-ijji",
       "engagementId": "E0026",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7699,8 +7894,8 @@
       "workId": "work-ijji",
       "engagementId": "E0028",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7717,8 +7912,8 @@
       "workId": "work-ijji",
       "engagementId": "E0023",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7735,8 +7930,8 @@
       "workId": "work-ijji",
       "engagementId": "E0024",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7753,8 +7948,8 @@
       "workId": "work-ijji",
       "engagementId": "E0025",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7771,8 +7966,8 @@
       "workId": "work-ijji",
       "engagementId": "E0027",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7789,8 +7984,8 @@
       "workId": "work-ijji",
       "engagementId": "E0029",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
       },
       "period": {
         "start": null,
@@ -7807,8 +8002,8 @@
       "workId": "work-content-compass",
       "engagementId": "E0009",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-07-01",
@@ -7825,8 +8020,8 @@
       "workId": "work-content-compass",
       "engagementId": "E0012",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-07-01",
@@ -7843,8 +8038,8 @@
       "workId": "work-content-compass",
       "engagementId": "E0017",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-07-01",
@@ -7861,8 +8056,8 @@
       "workId": "work-content-compass",
       "engagementId": "E0021",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": "2025-07-01",
@@ -7879,8 +8074,8 @@
       "workId": "work-kinnow",
       "engagementId": "E0013",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-06-23",
@@ -7897,8 +8092,8 @@
       "workId": "work-kinnow",
       "engagementId": "E0016",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": "2025-06-23",
@@ -7915,8 +8110,8 @@
       "workId": "work-kinnow",
       "engagementId": "E0018",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-06-23",
@@ -7933,8 +8128,8 @@
       "workId": "work-safestreet",
       "engagementId": "E0007",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-06-23",
@@ -7951,8 +8146,8 @@
       "workId": "work-safestreet",
       "engagementId": "E0019",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-06-23",
@@ -7969,8 +8164,8 @@
       "workId": "work-safestreet",
       "engagementId": "E0011",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-06-23",
@@ -7987,8 +8182,8 @@
       "workId": "work-safestreet",
       "engagementId": "E0022",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": "2025-06-23",
@@ -8005,8 +8200,8 @@
       "workId": "work-walkidio",
       "engagementId": "E0010",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-07-01",
@@ -8023,8 +8218,8 @@
       "workId": "work-walkidio",
       "engagementId": "E0014",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-07-01",
@@ -8041,8 +8236,8 @@
       "workId": "work-walkidio",
       "engagementId": "E0015",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": "2025-07-01",
@@ -8059,8 +8254,8 @@
       "workId": "work-walkidio",
       "engagementId": "E0020",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": "2025-07-01",
@@ -8077,8 +8272,8 @@
       "workId": "work-citymeter-companies",
       "engagementId": "E0045",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8095,8 +8290,8 @@
       "workId": "work-citymeter-hotels",
       "engagementId": "E0041",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8113,8 +8308,8 @@
       "workId": "work-citymeter-hotels",
       "engagementId": "E0002",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8131,8 +8326,8 @@
       "workId": "work-citymeter-factories",
       "engagementId": "E0003",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8149,8 +8344,8 @@
       "workId": "work-citymeter-factories",
       "engagementId": "E0002",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8167,8 +8362,8 @@
       "workId": "work-citymeter-registered-cars",
       "engagementId": "E0019",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8185,8 +8380,8 @@
       "workId": "work-citychat",
       "engagementId": "E0019",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8203,8 +8398,8 @@
       "workId": "work-gistda-flood-near-me",
       "engagementId": "E0019",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8221,8 +8416,8 @@
       "workId": "work-citymeter-flood-recurrent",
       "engagementId": "E0019",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8239,8 +8434,8 @@
       "workId": "work-citymeter-crop-area-output",
       "engagementId": "E0006",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8257,8 +8452,8 @@
       "workId": "work-gistda-flood-near-me",
       "engagementId": "E0006",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8275,8 +8470,8 @@
       "workId": "work-citymeter-eia",
       "engagementId": "E0006",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8293,8 +8488,8 @@
       "workId": "work-citymeter-eia",
       "engagementId": "E0012",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8311,8 +8506,8 @@
       "workId": "work-citymeter-municipal-revenue",
       "engagementId": "E0046",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8329,8 +8524,8 @@
       "workId": "work-citychat",
       "engagementId": "E0046",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8347,8 +8542,8 @@
       "workId": "work-ijji",
       "engagementId": "E0034",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8365,8 +8560,8 @@
       "workId": "work-ijji",
       "engagementId": "E0037",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8381,10 +8576,10 @@
       "contributionId": "C0054",
       "personId": "I0018",
       "workId": "work-ijji",
-      "engagementId": null,
+      "engagementId": "E0059",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Product development",
+        "en": "Product development"
       },
       "period": {
         "start": null,
@@ -8401,8 +8596,8 @@
       "workId": "work-citymeter-roaddna",
       "engagementId": "E0049",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8419,8 +8614,8 @@
       "workId": "work-citymeter-product-stewardship",
       "engagementId": null,
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8437,8 +8632,8 @@
       "workId": "work-citywiki",
       "engagementId": null,
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8455,8 +8650,8 @@
       "workId": "work-citywiki",
       "engagementId": "E0052",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8473,8 +8668,8 @@
       "workId": "work-citywiki",
       "engagementId": "E0049",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8491,8 +8686,8 @@
       "workId": "work-brand-visual-guidelines-2025",
       "engagementId": "E0021",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8509,8 +8704,8 @@
       "workId": "work-vote69",
       "engagementId": "E0038",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8527,8 +8722,8 @@
       "workId": "work-citychat",
       "engagementId": "E0038",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8545,8 +8740,8 @@
       "workId": "work-citymeter-tourism",
       "engagementId": "E0053",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8563,8 +8758,8 @@
       "workId": "work-citymeter-fuel-stations",
       "engagementId": "E0053",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8581,8 +8776,8 @@
       "workId": "work-landom-community",
       "engagementId": "E0053",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8599,8 +8794,8 @@
       "workId": "work-citymeter-flood-latest",
       "engagementId": "E0042",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8617,8 +8812,8 @@
       "workId": "work-dwr-flood-map",
       "engagementId": "E0042",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8635,8 +8830,8 @@
       "workId": "work-population-forecasting-research",
       "engagementId": "E0030",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Product development",
+        "en": "Product development"
       },
       "period": {
         "start": null,
@@ -8653,8 +8848,8 @@
       "workId": "work-citymeter-shopping-centers",
       "engagementId": "E0047",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8671,8 +8866,8 @@
       "workId": "work-ijji",
       "engagementId": null,
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8689,8 +8884,8 @@
       "workId": "work-citymeter-locale-insights",
       "engagementId": "E0015",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8707,8 +8902,8 @@
       "workId": "work-citymeter-government-workforce",
       "engagementId": "E0048",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8725,8 +8920,8 @@
       "workId": "work-dwr-runoff",
       "engagementId": "E0048",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8743,8 +8938,8 @@
       "workId": "work-citycell-model",
       "engagementId": "E0031",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8761,8 +8956,8 @@
       "workId": "work-citycell-model",
       "engagementId": "E0004",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8779,8 +8974,8 @@
       "workId": "work-citycell-model",
       "engagementId": "E0020",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8797,8 +8992,8 @@
       "workId": "work-ijji",
       "engagementId": null,
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -8815,8 +9010,8 @@
       "workId": "work-ijji",
       "engagementId": "E0043",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Product development",
+        "en": "Product development"
       },
       "period": {
         "start": null,
@@ -8833,8 +9028,8 @@
       "workId": "work-ijji",
       "engagementId": "E0051",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Product development",
+        "en": "Product development"
       },
       "period": {
         "start": null,
@@ -8851,8 +9046,8 @@
       "workId": "work-ijji",
       "engagementId": "E0050",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Go-to-market",
+        "en": "Go-to-market"
       },
       "period": {
         "start": null,
@@ -8869,8 +9064,8 @@
       "workId": "work-citychat",
       "engagementId": "E0041",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8887,8 +9082,8 @@
       "workId": "work-cityscan",
       "engagementId": "E0046",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8905,8 +9100,8 @@
       "workId": "work-citymeter-buildings",
       "engagementId": "E0040",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8923,8 +9118,8 @@
       "workId": "work-citymeter-fdi-playbook",
       "engagementId": "E0040",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8941,8 +9136,8 @@
       "workId": "work-citymeter-flood-forecasting-unresolved",
       "engagementId": "E0044",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8959,8 +9154,8 @@
       "workId": "work-locale-insight-intelligence-layer",
       "engagementId": "E0044",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8977,8 +9172,8 @@
       "workId": "work-ijji",
       "engagementId": "E0044",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -8995,8 +9190,8 @@
       "workId": "work-citychat",
       "engagementId": "E0004",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9013,8 +9208,8 @@
       "workId": "work-ijji",
       "engagementId": "E0032",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9031,8 +9226,8 @@
       "workId": "work-citychat",
       "engagementId": "E0039",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9049,8 +9244,8 @@
       "workId": "work-citymeter-schools",
       "engagementId": "E0001",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Software development",
+        "en": "Software development"
       },
       "period": {
         "start": null,
@@ -9067,8 +9262,8 @@
       "workId": "work-land-portfolio",
       "engagementId": "E0054",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9085,8 +9280,8 @@
       "workId": "work-land-portfolio",
       "engagementId": "E0031",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9103,8 +9298,8 @@
       "workId": "work-lead2loan",
       "engagementId": "E0031",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9121,8 +9316,8 @@
       "workId": "work-fdi-mentoring",
       "engagementId": "E0031",
       "role": {
-        "th": "ผู้มีส่วนร่วม",
-        "en": "Contributor"
+        "th": "Team member",
+        "en": "Team member"
       },
       "period": {
         "start": null,
@@ -9131,6 +9326,78 @@
       },
       "evidenceStatus": "owner_supplied",
       "sourceRef": "owner_instruction_2026-08-23",
+      "evidenceNote": null
+    },
+    {
+      "contributionId": "C0096",
+      "personId": "S0003",
+      "workId": "work-citymeter-rugon",
+      "engagementId": "E0033",
+      "role": {
+        "th": "Product management",
+        "en": "Product management"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": "2026"
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+      "evidenceNote": null
+    },
+    {
+      "contributionId": "C0097",
+      "personId": "I0014",
+      "workId": "work-ijji",
+      "engagementId": "E0057",
+      "role": {
+        "th": "Team member",
+        "en": "Team member"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": null
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+      "evidenceNote": null
+    },
+    {
+      "contributionId": "C0098",
+      "personId": "I0009",
+      "workId": "work-gistda-flood-near-me",
+      "engagementId": "E0013",
+      "role": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": "2025"
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+      "evidenceNote": null
+    },
+    {
+      "contributionId": "C0099",
+      "personId": "I0029",
+      "workId": "work-ijji",
+      "engagementId": "E0060",
+      "role": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": "2025"
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
       "evidenceNote": null
     }
   ],
@@ -14185,67 +14452,82 @@
       "assetId": "PORTRAIT-I0001",
       "personId": "I0001",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0001.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของปุ๊กกี้",
         "en": "Profile portrait of Pookkie"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "2060dc92da367c36bbd3efbce154741d764cc67c182eaf6d2ae164a67e9bf68c",
+      "mediaType": "image/jpeg",
+      "bytes": 89822,
+      "identityVerificationEvidence": "exact_linkedin_profile_url_and_visible_profile_title"
     },
     {
       "assetId": "PORTRAIT-I0002",
       "personId": "I0002",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0002.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของอาม",
         "en": "Profile portrait of Arm"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "87479792816fdd3cd70572dfacad7ce9c2bdf28a3af1b1ddc401cb9e0de3f1c6",
+      "mediaType": "image/jpeg",
+      "bytes": 183177,
+      "identityVerificationEvidence": "exact_linkedin_profile_url_and_visible_profile_title"
     },
     {
       "assetId": "PORTRAIT-P0001",
       "personId": "P0001",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/P0001.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของเสก",
         "en": "Profile portrait of Sek"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "6598388246c803679b26c4963f268c5c656e071ed895b3a410fb51a96809ac55",
+      "mediaType": "image/jpeg",
+      "bytes": 112036,
+      "identityVerificationEvidence": "exact_linkedin_profile_url_and_visible_profile_title"
     },
     {
       "assetId": "PORTRAIT-S0002",
@@ -14305,45 +14587,55 @@
       "assetId": "PORTRAIT-S0003",
       "personId": "S0003",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/S0003.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของพัทธ์",
         "en": "Profile portrait of Pat"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "e797832329c27e42af8cfa4251578cd40dce37f2c969a59311f738ed6de42198",
+      "mediaType": "image/jpeg",
+      "bytes": 109243,
+      "identityVerificationEvidence": "exact_linkedin_profile_url_and_visible_profile_title"
     },
     {
       "assetId": "PORTRAIT-I0004",
       "personId": "I0004",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0004.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของหมิง",
         "en": "Profile portrait of Ming"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "582a35ef4a5119f015777540b13218bc8b149086c6a243aa0d01870cd6556bce",
+      "mediaType": "image/jpeg",
+      "bytes": 99029,
+      "identityVerificationEvidence": "exact_linkedin_profile_url_and_visible_profile_title"
     },
     {
       "assetId": "PORTRAIT-I0005",
@@ -15210,23 +15502,28 @@
       "assetId": "PORTRAIT-I0037",
       "personId": "I0037",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0037.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของณิชา",
         "en": "Profile portrait of Nicha"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "e0c005bf8b2210c9d444ddf6f0abf361a8952a243b81a000b7f92998c8823093",
+      "mediaType": "image/jpeg",
+      "bytes": 87815,
+      "identityVerificationEvidence": "exact_instagram_candidate_cross_checked_by_first_name_nickname_cedt_and_chulalongkorn"
     },
     {
       "assetId": "PORTRAIT-I0038",
@@ -15384,6 +15681,1057 @@
       "mediaType": "image/jpeg",
       "bytes": 89584,
       "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+    }
+  ],
+  "certificates": [
+    {
+      "certificateId": "CERT-S0003-FDI25101",
+      "personId": "S0003",
+      "credentialId": "FDI25101",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Apartment",
+      "workIds": [
+        "work-citymeter-apartment-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/S0003-FDI25101.png",
+      "downloadFilename": "landometer-certificate-S0003-FDI25101.png",
+      "sha256": "1409c8a5ced78b31ea9800c027659852cc96d70c8f597dd7f74c6aa5978c3582",
+      "bytes": 2095172,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0003-FDI25102",
+      "personId": "I0003",
+      "credentialId": "FDI25102",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Land Appraisal",
+      "workIds": [
+        "work-citymeter-land-appraisal"
+      ],
+      "publicPath": "public/assets/certificates/I0003-FDI25102.png",
+      "downloadFilename": "landometer-certificate-I0003-FDI25102.png",
+      "sha256": "f3b4d9bca5c963b6ea781b75fcced24a0346a8e2e08dc1841d9f5dbd18c218aa",
+      "bytes": 2147497,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0014-FDI25201",
+      "personId": "I0014",
+      "credentialId": "FDI25201",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Office",
+      "workIds": [
+        "work-citymeter-office-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0014-FDI25201.png",
+      "downloadFilename": "landometer-certificate-I0014-FDI25201.png",
+      "sha256": "19ba09449d95df421c65a270fc1284e6431a70ee956ec441005c7c799401d9bb",
+      "bytes": 2095451,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0013-FDI25202",
+      "personId": "I0013",
+      "credentialId": "FDI25202",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Detached House",
+      "workIds": [
+        "work-citymeter-detached-house-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0013-FDI25202.png",
+      "downloadFilename": "landometer-certificate-I0013-FDI25202.png",
+      "sha256": "70da15b12a3b59f1894fa6f1d51284297d8d5061c5d5cc694a8f9a6240ef3026",
+      "bytes": 2076956,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0015-FDI25203",
+      "personId": "I0015",
+      "credentialId": "FDI25203",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Company",
+      "workIds": [
+        "work-citymeter-companies"
+      ],
+      "publicPath": "public/assets/certificates/I0015-FDI25203.png",
+      "downloadFilename": "landometer-certificate-I0015-FDI25203.png",
+      "sha256": "3a7ebaf431a14d371be54f5f4a85c18693959e611b3b267df6288f5736a88c11",
+      "bytes": 2095641,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0011-FDI25204",
+      "personId": "I0011",
+      "credentialId": "FDI25204",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Condo Offer",
+      "workIds": [
+        "work-citymeter-condo-offer-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0011-FDI25204.png",
+      "downloadFilename": "landometer-certificate-I0011-FDI25204.png",
+      "sha256": "a4d002fd26c5db6016bdaa5d237b180bc99633ee9644853248d5ebd5cae30220",
+      "bytes": 2098236,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0010-FDI25205",
+      "personId": "I0010",
+      "credentialId": "FDI25205",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Condo Rental",
+      "workIds": [
+        "work-citymeter-condo-rental-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0010-FDI25205.png",
+      "downloadFilename": "landometer-certificate-I0010-FDI25205.png",
+      "sha256": "ce6e30590c407b00bb0b45cdabc155ed0cd2703ef903c6a8f02093753209abc5",
+      "bytes": 2097808,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0009-FDI25206",
+      "personId": "I0009",
+      "credentialId": "FDI25206",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Factory",
+      "workIds": [
+        "work-citymeter-factories"
+      ],
+      "publicPath": "public/assets/certificates/I0009-FDI25206.png",
+      "downloadFilename": "landometer-certificate-I0009-FDI25206.png",
+      "sha256": "2a8ae9cea6005a82a7addc4b2b73fdfcaa36eac824d81915ebb7a7d89b7af8a0",
+      "bytes": 2100088,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0005-FDI25207",
+      "personId": "I0005",
+      "credentialId": "FDI25207",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Road Traffic",
+      "workIds": [
+        "work-citymeter-road-traffic-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0005-FDI25207.png",
+      "downloadFilename": "landometer-certificate-I0005-FDI25207.png",
+      "sha256": "a69495078ba2eb841c8f65e5ade2b28b80e988fcee74cbc88ac98b70c539bdda",
+      "bytes": 2078439,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0008-FDI25208",
+      "personId": "I0008",
+      "credentialId": "FDI25208",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Land Offer",
+      "workIds": [
+        "work-citymeter-land-offer-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0008-FDI25208.png",
+      "downloadFilename": "landometer-certificate-I0008-FDI25208.png",
+      "sha256": "cbf3a9225dfddd5397eee758620f3b57e5a91127b64bff0b58436d0fa7134950",
+      "bytes": 2077273,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0007-FDI25209",
+      "personId": "I0007",
+      "credentialId": "FDI25209",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: Townhouse",
+      "workIds": [
+        "work-citymeter-townhouse-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/I0007-FDI25209.png",
+      "downloadFilename": "landometer-certificate-I0007-FDI25209.png",
+      "sha256": "3f708df8ff2c810285a4b4ada0f0d908b6b9adfb4b1a3f8c8f761b916eee9598",
+      "bytes": 2099877,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0006-FDI25210",
+      "personId": "I0006",
+      "credentialId": "FDI25210",
+      "programCode": "FDI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: School",
+      "workIds": [
+        "work-citymeter-schools"
+      ],
+      "publicPath": "public/assets/certificates/I0006-FDI25210.png",
+      "downloadFilename": "landometer-certificate-I0006-FDI25210.png",
+      "sha256": "a7ced191d8142c2d251c1cd09b420dd38c25a4a4b75fee9c328c8a62d81a3dd7",
+      "bytes": 2096695,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-S0002-MSI25101",
+      "personId": "S0002",
+      "credentialId": "MSI25101",
+      "programCode": "MSI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Go-to-market",
+        "en": "Go-to-market"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityMETER: QuakeSafe",
+      "workIds": [
+        "work-citymeter-quakesafe-unresolved"
+      ],
+      "publicPath": "public/assets/certificates/S0002-MSI25101.png",
+      "downloadFilename": "landometer-certificate-S0002-MSI25101.png",
+      "sha256": "9b0b84e0adf302dfb6f1ff2461e988704997339443e758bb2de542240f01c237",
+      "bytes": 2020897,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0012-MSI25201",
+      "personId": "I0012",
+      "credentialId": "MSI25201",
+      "programCode": "MSI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Go-to-market",
+        "en": "Go-to-market"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityStory: KinNow",
+      "workIds": [
+        "work-kinnow"
+      ],
+      "publicPath": "public/assets/certificates/I0012-MSI25201.png",
+      "downloadFilename": "landometer-certificate-I0012-MSI25201.png",
+      "sha256": "bb151530c68e6caa430be9c6feed35cb51991a934b78d23cce9e6e8a4fc935c1",
+      "bytes": 2108529,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0018-MSI25202",
+      "personId": "I0018",
+      "credentialId": "MSI25202",
+      "programCode": "MSI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Go-to-market",
+        "en": "Go-to-market"
+      },
+      "awardedOn": "2025-07-31",
+      "printedWorkTitle": "CityStory: SafeStreet",
+      "workIds": [
+        "work-safestreet"
+      ],
+      "publicPath": "public/assets/certificates/I0018-MSI25202.png",
+      "downloadFilename": "landometer-certificate-I0018-MSI25202.png",
+      "sha256": "34add1dd27eb7c6d49720ae9d307f6f70e1d4e9cc9732a55d431b0e1dec3e15c",
+      "bytes": 2072262,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [
+        "This MSI certificate documents the 2025 engagement only; Grace's separate 2026 engagement is PDI and is not inferred from this image."
+      ],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0017-MSI25301",
+      "personId": "I0017",
+      "credentialId": "MSI25301",
+      "programCode": "MSI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Go-to-market",
+        "en": "Go-to-market"
+      },
+      "awardedOn": "2025-08-08",
+      "printedWorkTitle": "CityStory: ContentCompass",
+      "workIds": [
+        "work-content-compass"
+      ],
+      "publicPath": "public/assets/certificates/I0017-MSI25301.png",
+      "downloadFilename": "landometer-certificate-I0017-MSI25301.png",
+      "sha256": "2021a95b2370fbd721bb5031ade198b23e2c74de071a8c4e8c4ceda1d6b40091",
+      "bytes": 2012504,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0016-MSI25302",
+      "personId": "I0016",
+      "credentialId": "MSI25302",
+      "programCode": "MSI",
+      "title": {
+        "th": "เกียรติบัตรแห่งความสำเร็จ",
+        "en": "Certificate of Achievement"
+      },
+      "roleLabel": {
+        "th": "Go-to-market",
+        "en": "Go-to-market"
+      },
+      "awardedOn": "2025-08-08",
+      "printedWorkTitle": "CityStory: Walkidio",
+      "workIds": [
+        "work-walkidio"
+      ],
+      "publicPath": "public/assets/certificates/I0016-MSI25302.png",
+      "downloadFilename": "landometer-certificate-I0016-MSI25302.png",
+      "sha256": "ebc02a1e9499e76c5747fc2f2ce296caec1c1e2dfcac0491b63d3cee2a44a4fe",
+      "bytes": 1879680,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0019-IMP25001",
+      "personId": "I0019",
+      "credentialId": "IMP25001",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0019-IMP25001.png",
+      "downloadFilename": "landometer-certificate-I0019-IMP25001.png",
+      "sha256": "35c6d859bb1983ef984b6c69c80de0351d59e9a5259d8d0bdc7d66dab459f1f4",
+      "bytes": 2015672,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0020-IMP25002",
+      "personId": "I0020",
+      "credentialId": "IMP25002",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0020-IMP25002.png",
+      "downloadFilename": "landometer-certificate-I0020-IMP25002.png",
+      "sha256": "c6270bcacab2b4d6217c4e5cbfccae4f1da6c0e639e266ee7d0c9f8048a7e367",
+      "bytes": 2016757,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0021-IMP25003",
+      "personId": "I0021",
+      "credentialId": "IMP25003",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0021-IMP25003.png",
+      "downloadFilename": "landometer-certificate-I0021-IMP25003.png",
+      "sha256": "dc06ae2c6e34b5b80635f2cba171fa4e52de7fd29e213698bce8356306bfb572",
+      "bytes": 2011423,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0022-IMP25004",
+      "personId": "I0022",
+      "credentialId": "IMP25004",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0022-IMP25004.png",
+      "downloadFilename": "landometer-certificate-I0022-IMP25004.png",
+      "sha256": "70e846d73c99260e0299fc15ea1e8f0312517b15695bb54435deb7ed85ee9c96",
+      "bytes": 2011553,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0023-IMP25005",
+      "personId": "I0023",
+      "credentialId": "IMP25005",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0023-IMP25005.png",
+      "downloadFilename": "landometer-certificate-I0023-IMP25005.png",
+      "sha256": "c72b4c435220b1775514876f79a36eef70d7fabd9f8c78193687d92d80334a27",
+      "bytes": 2012954,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0024-IMP25006",
+      "personId": "I0024",
+      "credentialId": "IMP25006",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0024-IMP25006.png",
+      "downloadFilename": "landometer-certificate-I0024-IMP25006.png",
+      "sha256": "208c3e60fc936b1846ab62f5dcac65c644ac9839d1da50f03cd6a7f2b4dae482",
+      "bytes": 2015765,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0025-IMP25007",
+      "personId": "I0025",
+      "credentialId": "IMP25007",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0025-IMP25007.png",
+      "downloadFilename": "landometer-certificate-I0025-IMP25007.png",
+      "sha256": "6a8484f9a777b8f6711b3f7c1d145d026bc54f59e4a9020061c337610c845afa",
+      "bytes": 2015264,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "duplicate_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [
+        "Credential ID IMP25007 is also printed on Dada's certificate; certificateId remains unique by person and credential."
+      ],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0029-IMP25007",
+      "personId": "I0029",
+      "credentialId": "IMP25007",
+      "programCode": "IMP",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Consulting Partner",
+        "en": "Consulting Partner"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0029-IMP25007.png",
+      "downloadFilename": "landometer-certificate-I0029-IMP25007.png",
+      "sha256": "8335ea04270635fda0bee92c6299859c0e024a976e507a14e7142c475c6bfbfc",
+      "bytes": 2017065,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "owner_review_required",
+      "credentialIdCollisionStatus": "duplicate_in_printed_source",
+      "dateEvidenceStatus": "printed_date_only",
+      "evidenceNotes": [
+        "The printed surname Chantacharoongpong differs from the canonical registry spelling Chantacharoonpong; the registry name is preserved pending owner review.",
+        "Credential ID IMP25007 is also printed on Pang's certificate; certificateId remains unique by person and credential."
+      ],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+    },
+    {
+      "certificateId": "CERT-I0026-PDI26101",
+      "personId": "I0026",
+      "credentialId": "PDI26101",
+      "programCode": "PDI",
+      "title": {
+        "th": "เกียรติบัตรแสดงความขอบคุณ",
+        "en": "Certificate of Appreciation"
+      },
+      "roleLabel": {
+        "th": "Product development",
+        "en": "Product development"
+      },
+      "awardedOn": "2025-11-13",
+      "printedWorkTitle": "ijji",
+      "workIds": [
+        "work-ijji"
+      ],
+      "publicPath": "public/assets/certificates/I0026-PDI26101.png",
+      "downloadFilename": "landometer-certificate-I0026-PDI26101.png",
+      "sha256": "23ad36005aefa676c61bb70b91bc4fd61468f64cf18d959bca5d3bece26fe836",
+      "bytes": 2017328,
+      "mimeType": "image/png",
+      "verificationStatus": "verified",
+      "publicationStatus": "publishable",
+      "rightsStatus": "cleared",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_certificate",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_certificate_image_and_printed_profile_facts",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "nameSpellingStatus": "matched",
+      "credentialIdCollisionStatus": "unique_in_printed_source",
+      "dateEvidenceStatus": "printed_date_conflicts_with_program_code",
+      "evidenceNotes": [
+        "The printed award date is retained as image evidence only and must not be used to infer a 2026 engagement timeline."
+      ],
+      "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
     }
   ]
 }

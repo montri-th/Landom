@@ -5,8 +5,8 @@
     "workId": "work-citymeter-apartment-unresolved",
     "engagementId": "E0007",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -23,8 +23,8 @@
     "workId": "work-citymeter-companies",
     "engagementId": "E0019",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -41,8 +41,8 @@
     "workId": "work-citymeter-condo-offer-unresolved",
     "engagementId": "E0015",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -59,8 +59,8 @@
     "workId": "work-citymeter-condo-rental-unresolved",
     "engagementId": "E0014",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -77,8 +77,8 @@
     "workId": "work-citymeter-detached-house-unresolved",
     "engagementId": "E0017",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -95,8 +95,8 @@
     "workId": "work-citymeter-factories",
     "engagementId": "E0013",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -113,8 +113,8 @@
     "workId": "work-citymeter-land-appraisal",
     "engagementId": "E0006",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -131,8 +131,8 @@
     "workId": "work-citymeter-land-offer-unresolved",
     "engagementId": "E0012",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -149,8 +149,8 @@
     "workId": "work-citymeter-office-unresolved",
     "engagementId": "E0018",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -167,8 +167,8 @@
     "workId": "work-citymeter-quakesafe-unresolved",
     "engagementId": "E0005",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -185,8 +185,8 @@
     "workId": "work-citymeter-road-traffic-unresolved",
     "engagementId": "E0009",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -203,8 +203,8 @@
     "workId": "work-citymeter-schools",
     "engagementId": "E0010",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -221,8 +221,8 @@
     "workId": "work-citymeter-townhouse-unresolved",
     "engagementId": "E0011",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -239,8 +239,8 @@
     "workId": "work-ijji",
     "engagementId": "E0030",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Product development",
+      "en": "Product development"
     },
     "period": {
       "start": null,
@@ -257,8 +257,8 @@
     "workId": "work-ijji",
     "engagementId": "E0026",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -275,8 +275,8 @@
     "workId": "work-ijji",
     "engagementId": "E0028",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -293,8 +293,8 @@
     "workId": "work-ijji",
     "engagementId": "E0023",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -311,8 +311,8 @@
     "workId": "work-ijji",
     "engagementId": "E0024",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -329,8 +329,8 @@
     "workId": "work-ijji",
     "engagementId": "E0025",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -347,8 +347,8 @@
     "workId": "work-ijji",
     "engagementId": "E0027",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -365,8 +365,8 @@
     "workId": "work-ijji",
     "engagementId": "E0029",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
     },
     "period": {
       "start": null,
@@ -383,8 +383,8 @@
     "workId": "work-content-compass",
     "engagementId": "E0009",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-07-01",
@@ -401,8 +401,8 @@
     "workId": "work-content-compass",
     "engagementId": "E0012",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-07-01",
@@ -419,8 +419,8 @@
     "workId": "work-content-compass",
     "engagementId": "E0017",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-07-01",
@@ -437,8 +437,8 @@
     "workId": "work-content-compass",
     "engagementId": "E0021",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": "2025-07-01",
@@ -455,8 +455,8 @@
     "workId": "work-kinnow",
     "engagementId": "E0013",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-06-23",
@@ -473,8 +473,8 @@
     "workId": "work-kinnow",
     "engagementId": "E0016",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": "2025-06-23",
@@ -491,8 +491,8 @@
     "workId": "work-kinnow",
     "engagementId": "E0018",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-06-23",
@@ -509,8 +509,8 @@
     "workId": "work-safestreet",
     "engagementId": "E0007",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-06-23",
@@ -527,8 +527,8 @@
     "workId": "work-safestreet",
     "engagementId": "E0019",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-06-23",
@@ -545,8 +545,8 @@
     "workId": "work-safestreet",
     "engagementId": "E0011",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-06-23",
@@ -563,8 +563,8 @@
     "workId": "work-safestreet",
     "engagementId": "E0022",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": "2025-06-23",
@@ -581,8 +581,8 @@
     "workId": "work-walkidio",
     "engagementId": "E0010",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-07-01",
@@ -599,8 +599,8 @@
     "workId": "work-walkidio",
     "engagementId": "E0014",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-07-01",
@@ -617,8 +617,8 @@
     "workId": "work-walkidio",
     "engagementId": "E0015",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": "2025-07-01",
@@ -635,8 +635,8 @@
     "workId": "work-walkidio",
     "engagementId": "E0020",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": "2025-07-01",
@@ -653,8 +653,8 @@
     "workId": "work-citymeter-companies",
     "engagementId": "E0045",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -671,8 +671,8 @@
     "workId": "work-citymeter-hotels",
     "engagementId": "E0041",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -689,8 +689,8 @@
     "workId": "work-citymeter-hotels",
     "engagementId": "E0002",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -707,8 +707,8 @@
     "workId": "work-citymeter-factories",
     "engagementId": "E0003",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -725,8 +725,8 @@
     "workId": "work-citymeter-factories",
     "engagementId": "E0002",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -743,8 +743,8 @@
     "workId": "work-citymeter-registered-cars",
     "engagementId": "E0019",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -761,8 +761,8 @@
     "workId": "work-citychat",
     "engagementId": "E0019",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -779,8 +779,8 @@
     "workId": "work-gistda-flood-near-me",
     "engagementId": "E0019",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -797,8 +797,8 @@
     "workId": "work-citymeter-flood-recurrent",
     "engagementId": "E0019",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -815,8 +815,8 @@
     "workId": "work-citymeter-crop-area-output",
     "engagementId": "E0006",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -833,8 +833,8 @@
     "workId": "work-gistda-flood-near-me",
     "engagementId": "E0006",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -851,8 +851,8 @@
     "workId": "work-citymeter-eia",
     "engagementId": "E0006",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -869,8 +869,8 @@
     "workId": "work-citymeter-eia",
     "engagementId": "E0012",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -887,8 +887,8 @@
     "workId": "work-citymeter-municipal-revenue",
     "engagementId": "E0046",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -905,8 +905,8 @@
     "workId": "work-citychat",
     "engagementId": "E0046",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -923,8 +923,8 @@
     "workId": "work-ijji",
     "engagementId": "E0034",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -941,8 +941,8 @@
     "workId": "work-ijji",
     "engagementId": "E0037",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -957,10 +957,10 @@
     "contributionId": "C0054",
     "personId": "I0018",
     "workId": "work-ijji",
-    "engagementId": null,
+    "engagementId": "E0059",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Product development",
+      "en": "Product development"
     },
     "period": {
       "start": null,
@@ -977,8 +977,8 @@
     "workId": "work-citymeter-roaddna",
     "engagementId": "E0049",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -995,8 +995,8 @@
     "workId": "work-citymeter-product-stewardship",
     "engagementId": null,
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1013,8 +1013,8 @@
     "workId": "work-citywiki",
     "engagementId": null,
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1031,8 +1031,8 @@
     "workId": "work-citywiki",
     "engagementId": "E0052",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -1049,8 +1049,8 @@
     "workId": "work-citywiki",
     "engagementId": "E0049",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1067,8 +1067,8 @@
     "workId": "work-brand-visual-guidelines-2025",
     "engagementId": "E0021",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -1085,8 +1085,8 @@
     "workId": "work-vote69",
     "engagementId": "E0038",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -1103,8 +1103,8 @@
     "workId": "work-citychat",
     "engagementId": "E0038",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -1121,8 +1121,8 @@
     "workId": "work-citymeter-tourism",
     "engagementId": "E0053",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1139,8 +1139,8 @@
     "workId": "work-citymeter-fuel-stations",
     "engagementId": "E0053",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1157,8 +1157,8 @@
     "workId": "work-landom-community",
     "engagementId": "E0053",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1175,8 +1175,8 @@
     "workId": "work-citymeter-flood-latest",
     "engagementId": "E0042",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1193,8 +1193,8 @@
     "workId": "work-dwr-flood-map",
     "engagementId": "E0042",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1211,8 +1211,8 @@
     "workId": "work-population-forecasting-research",
     "engagementId": "E0030",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Product development",
+      "en": "Product development"
     },
     "period": {
       "start": null,
@@ -1229,8 +1229,8 @@
     "workId": "work-citymeter-shopping-centers",
     "engagementId": "E0047",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1247,8 +1247,8 @@
     "workId": "work-ijji",
     "engagementId": null,
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1265,8 +1265,8 @@
     "workId": "work-citymeter-locale-insights",
     "engagementId": "E0015",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1283,8 +1283,8 @@
     "workId": "work-citymeter-government-workforce",
     "engagementId": "E0048",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1301,8 +1301,8 @@
     "workId": "work-dwr-runoff",
     "engagementId": "E0048",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1319,8 +1319,8 @@
     "workId": "work-citycell-model",
     "engagementId": "E0031",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1337,8 +1337,8 @@
     "workId": "work-citycell-model",
     "engagementId": "E0004",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1355,8 +1355,8 @@
     "workId": "work-citycell-model",
     "engagementId": "E0020",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1373,8 +1373,8 @@
     "workId": "work-ijji",
     "engagementId": null,
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1391,8 +1391,8 @@
     "workId": "work-ijji",
     "engagementId": "E0043",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Product development",
+      "en": "Product development"
     },
     "period": {
       "start": null,
@@ -1409,8 +1409,8 @@
     "workId": "work-ijji",
     "engagementId": "E0051",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Product development",
+      "en": "Product development"
     },
     "period": {
       "start": null,
@@ -1427,8 +1427,8 @@
     "workId": "work-ijji",
     "engagementId": "E0050",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Go-to-market",
+      "en": "Go-to-market"
     },
     "period": {
       "start": null,
@@ -1445,8 +1445,8 @@
     "workId": "work-citychat",
     "engagementId": "E0041",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1463,8 +1463,8 @@
     "workId": "work-cityscan",
     "engagementId": "E0046",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1481,8 +1481,8 @@
     "workId": "work-citymeter-buildings",
     "engagementId": "E0040",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1499,8 +1499,8 @@
     "workId": "work-citymeter-fdi-playbook",
     "engagementId": "E0040",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1517,8 +1517,8 @@
     "workId": "work-citymeter-flood-forecasting-unresolved",
     "engagementId": "E0044",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1535,8 +1535,8 @@
     "workId": "work-locale-insight-intelligence-layer",
     "engagementId": "E0044",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1553,8 +1553,8 @@
     "workId": "work-ijji",
     "engagementId": "E0044",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1571,8 +1571,8 @@
     "workId": "work-citychat",
     "engagementId": "E0004",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1589,8 +1589,8 @@
     "workId": "work-ijji",
     "engagementId": "E0032",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1607,8 +1607,8 @@
     "workId": "work-citychat",
     "engagementId": "E0039",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1625,8 +1625,8 @@
     "workId": "work-citymeter-schools",
     "engagementId": "E0001",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Software development",
+      "en": "Software development"
     },
     "period": {
       "start": null,
@@ -1643,8 +1643,8 @@
     "workId": "work-land-portfolio",
     "engagementId": "E0054",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1661,8 +1661,8 @@
     "workId": "work-land-portfolio",
     "engagementId": "E0031",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1679,8 +1679,8 @@
     "workId": "work-lead2loan",
     "engagementId": "E0031",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1697,8 +1697,8 @@
     "workId": "work-fdi-mentoring",
     "engagementId": "E0031",
     "role": {
-      "th": "ผู้มีส่วนร่วม",
-      "en": "Contributor"
+      "th": "Team member",
+      "en": "Team member"
     },
     "period": {
       "start": null,
@@ -1707,6 +1707,78 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0096",
+    "personId": "S0003",
+    "workId": "work-citymeter-rugon",
+    "engagementId": "E0033",
+    "role": {
+      "th": "Product management",
+      "en": "Product management"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0097",
+    "personId": "I0014",
+    "workId": "work-ijji",
+    "engagementId": "E0057",
+    "role": {
+      "th": "Team member",
+      "en": "Team member"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0098",
+    "personId": "I0009",
+    "workId": "work-gistda-flood-near-me",
+    "engagementId": "E0013",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0099",
+    "personId": "I0029",
+    "workId": "work-ijji",
+    "engagementId": "E0060",
+    "role": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
     "evidenceNote": null
   }
 ]

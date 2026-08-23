@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landom.example/schema/profile-detail-overrides.schema.json",
+  "title": "Owner-approved Landom profile detail overrides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "sourceBasis",
+    "programOverrides",
+    "educationProgramOverrides",
+    "educationCardOverrides",
+    "engagementProgramNames",
+    "engagementRoleNames",
+    "existingEngagementOverrides",
+    "addedEngagements",
+    "cohortLabelSanitization",
+    "workOverrides",
+    "addedWorks",
+    "addedContributions",
+    "contributionRolesByProgram",
+    "contributionRoleOverrides"
+  ],
+  "properties": {
+    "contractVersion": { "const": "1.0" },
+    "sourceBasis": { "type": "string", "minLength": 1 },
+    "programOverrides": { "type": "array", "items": { "$ref": "#/$defs/programOverride" } },
+    "educationProgramOverrides": { "type": "array", "items": { "$ref": "#/$defs/educationProgramOverride" } },
+    "educationCardOverrides": { "type": "array", "items": { "$ref": "#/$defs/educationCardOverride" } },
+    "engagementProgramNames": { "$ref": "#/$defs/localizedMap" },
+    "engagementRoleNames": { "$ref": "#/$defs/localizedMap" },
+    "existingEngagementOverrides": { "type": "array", "items": { "$ref": "#/$defs/existingEngagementOverride" } },
+    "addedEngagements": { "type": "array", "items": { "$ref": "#/$defs/addedEngagement" } },
+    "cohortLabelSanitization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["removeRawAvailabilityNotes", "fallbackToProgramAndYear"],
+      "properties": {
+        "removeRawAvailabilityNotes": { "const": true },
+        "fallbackToProgramAndYear": { "const": true }
+      }
+    },
+    "workOverrides": { "type": "array", "items": { "$ref": "#/$defs/workOverride" } },
+    "addedWorks": { "type": "array", "items": { "$ref": "#/$defs/addedWork" } },
+    "addedContributions": { "type": "array", "items": { "$ref": "#/$defs/addedContribution" } },
+    "contributionRolesByProgram": { "$ref": "#/$defs/localizedMap" },
+    "contributionRoleOverrides": { "type": "array", "items": { "$ref": "#/$defs/contributionRoleOverride" } }
+  },
+  "$defs": {
+    "personId": { "type": "string", "pattern": "^[SPI]\\d{4}$" },
+    "localized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["th", "en"],
+      "properties": { "th": { "type": "string", "minLength": 1 }, "en": { "type": "string", "minLength": 1 } }
+    },
+    "formalShort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["formal", "short"],
+      "properties": { "formal": { "type": "string", "minLength": 1 }, "short": { "type": "string", "minLength": 1 } }
+    },
+    "formalShortLocalized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["th", "en"],
+      "properties": { "th": { "$ref": "#/$defs/formalShort" }, "en": { "$ref": "#/$defs/formalShort" } }
+    },
+    "localizedMap": { "type": "object", "additionalProperties": { "$ref": "#/$defs/localized" } },
+    "nullableDate": { "type": ["string", "null"], "pattern": "^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$" },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "label"],
+      "properties": { "start": { "type": ["string", "null"] }, "end": { "type": ["string", "null"] }, "label": { "type": ["string", "null"] } }
+    },
+    "programOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["programId", "names"],
+      "properties": { "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" }, "names": { "$ref": "#/$defs/formalShortLocalized" } }
+    },
+    "educationProgramOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "programId"],
+      "properties": { "personId": { "$ref": "#/$defs/personId" }, "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" } }
+    },
+    "educationCardOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "card", "detailMustRemainOfficial"],
+      "properties": { "personId": { "$ref": "#/$defs/personId" }, "card": { "$ref": "#/$defs/localized" }, "detailMustRemainOfficial": { "const": true } }
+    },
+    "existingEngagementOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engagementId", "sequenceHint"],
+      "properties": {
+        "engagementId": { "type": "string", "pattern": "^E\\d{4}$" },
+        "sequenceHint": { "type": "integer", "minimum": 1 },
+        "start": { "type": ["string", "null"], "format": "date" },
+        "end": { "type": ["string", "null"], "format": "date" },
+        "verificationStatus": { "type": "string", "minLength": 1 },
+        "evidenceNote": { "type": "string", "minLength": 1 }
+      }
+    },
+    "addedEngagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engagementId", "personId", "category", "academicPlacementType", "programCode", "roleTitle", "cohortLabel", "start", "end", "status", "responsibilityWorkIds", "evidenceStatus", "verificationStatus", "sequenceHint"],
+      "properties": {
+        "engagementId": { "type": "string", "pattern": "^E\\d{4}$" },
+        "personId": { "$ref": "#/$defs/personId" },
+        "category": { "enum": ["full_time", "part_time", "internship", "program_participant"] },
+        "academicPlacementType": { "enum": ["cooperative_education", "internship", "not_applicable"] },
+        "programCode": { "type": "string", "minLength": 1 },
+        "roleTitle": { "$ref": "#/$defs/localized" },
+        "cohortLabel": { "type": ["string", "null"] },
+        "start": { "$ref": "#/$defs/nullableDate" },
+        "end": { "$ref": "#/$defs/nullableDate" },
+        "status": { "enum": ["ongoing", "completed"] },
+        "responsibilityWorkIds": { "type": "array", "items": { "type": "string", "pattern": "^work-[a-z0-9-]+$" } },
+        "evidenceStatus": { "const": "owner_supplied" },
+        "verificationStatus": { "type": "string", "minLength": 1 },
+        "evidenceNote": { "type": "string", "minLength": 1 },
+        "sequenceHint": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "workOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workId", "names"],
+      "properties": { "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" }, "names": { "$ref": "#/$defs/localized" } }
+    },
+    "addedWork": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workId", "parentProduct", "names", "type", "scopeLayer", "authorityStatus", "evidenceNote", "aliases"],
+      "properties": {
+        "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" },
+        "parentProduct": { "type": "string", "minLength": 1 },
+        "names": { "$ref": "#/$defs/localized" },
+        "type": { "type": "string", "minLength": 1 },
+        "scopeLayer": { "enum": ["shared_landometer", "product_specific", "partner_specific"] },
+        "authorityStatus": { "type": "string", "minLength": 1 },
+        "evidenceNote": { "type": "string", "minLength": 1 },
+        "aliases": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "addedContribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "workId", "engagementId", "role", "period"],
+      "properties": {
+        "personId": { "$ref": "#/$defs/personId" },
+        "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" },
+        "engagementId": { "type": "string", "pattern": "^E\\d{4}$" },
+        "role": { "$ref": "#/$defs/localized" },
+        "period": { "$ref": "#/$defs/period" }
+      }
+    },
+    "contributionRoleOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workId", "role"],
+      "properties": { "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" }, "role": { "$ref": "#/$defs/localized" } }
+    }
+  }
+}

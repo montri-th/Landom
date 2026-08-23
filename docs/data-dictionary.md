@@ -1,8 +1,10 @@
 # Landom people data dictionary
 
-เอกสารนี้กำหนดโครงสร้างข้อมูลกลางสำหรับหน้า people ของ Landom และเป็นสัญญาระหว่าง Google Sheet, ตัว normalize และหน้าเว็บจริง ข้อมูลที่ generate แล้วอยู่ใน `data/generated/site-data.json`; ไฟล์ย่อยแต่ละ dimension อยู่ในโฟลเดอร์เดียวกัน และ schema อยู่ที่ `data/schema/site-data.schema.json`
+เอกสารนี้กำหนดโครงสร้างข้อมูลกลางสำหรับหน้า people ของ Landom และเป็นสัญญาระหว่าง Google Sheet, ตัว normalize และหน้าเว็บจริง Public data schema ปัจจุบันคือ `1.4.0` ซึ่งเพิ่ม dimension `certificates`; ข้อมูลที่ generate แล้วอยู่ใน `data/generated/site-data.json` ไฟล์ย่อยแต่ละ dimension อยู่ในโฟลเดอร์เดียวกัน และ schema อยู่ที่ `data/schema/site-data.schema.json`
 
 Raw snapshot เป็นข้อมูลปฏิบัติการที่อาจมี private contact fields จึงต้องอยู่เฉพาะในเครื่องของผู้มีสิทธิ์และถูก ignore จาก Git/public build ส่วน `data/generated/` ผ่าน privacy gate และเป็นชุดที่ Dev ใช้ได้ ตัว normalize รับ authorized snapshot ผ่าน `--input` และเลือกปลายทางผ่าน `--output-dir`; public CI ตรวจ generated contract โดยไม่มี raw input และห้ามอ่าน/เขียน Google Sheet แบบ remote
+
+การแก้รายละเอียดที่เจ้าของยืนยันหลัง snapshot อยู่ใน `data/approved/profile-detail-overrides.json` และมี contract ที่ `data/schema/profile-detail-overrides.schema.json` เพื่อไม่แก้ generated output ด้วยมือ ไฟล์นี้ใช้เฉพาะ canonical person/work/engagement IDs และไม่เก็บ contact หรือ private Sheet locator
 
 Snapshot รองรับ 2 schema โดย normalizer ตรวจรูปแบบให้อัตโนมัติ:
 
@@ -59,6 +61,7 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `achievements` | รางวัลหรือความสำเร็จที่มีผู้รับหนึ่งคนหรือหลายคน |
 | `socialProfiles` | ช่องทางสังคมพร้อม publication gate |
 | `assets` | ภาพ profile พร้อม consent/verification/rights gate |
+| `certificates` | ใบประกาศที่ยืนยันแล้ว พร้อม local path/hash, printed facts, work linkage และ owner-authorization gate |
 
 ## people
 
@@ -109,6 +112,11 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 
 ชื่อหลักสูตร/field ใช้โครงสร้าง formal/short แบบเดียวกับสถาบัน `qualificationLevel` เป็น `null` เมื่อ source ไม่ระบุระดับวุฒิ ห้ามเดา B.Eng., B.A. หรือวุฒิอื่นจากชื่อสาขาเพียงอย่างเดียว ชื่อปริญญาที่ใช้ต้องอ้าง official curriculum ของ program ที่จับคู่สถาบันและ field ได้แล้ว
 
+- Computer Engineering ใช้ short label อังกฤษ `CP`
+- `I0022` และ `I0025` ใช้ `BBA Finance`
+- `I0020`, `I0021`, `I0023`, `I0024` ใช้ `EBA`
+- Ming (`I0004`) ใช้ card label `อักษร จุฬา` / `Arts · CU` แต่ detail ยังคงชื่อหลักสูตรและมหาวิทยาลัยทางการ
+
 ### educationRecords
 
 | Field | หน้าที่ |
@@ -142,8 +150,8 @@ Engagement คือช่วงบทบาท ไม่ใช่ตัวค�
 | `personId` | FK → people |
 | `category` | `internship`, `part_time`, `full_time`, `program_participant` |
 | `program.code` | เช่น FDI, MSI, PDI, PMI, IMP, Full-time, Part-time |
-| `program.names.th/en` | สำหรับ FDI ใช้ข้อความ UI exact `Full-stack Developer Intern, FDI` |
-| `cohortLabel` | label จาก source; ไม่ใช้เป็น key |
+| `program.names.th/en` | ชื่อโปรแกรมฝึกงานเป็นอังกฤษทั้งสองโหมด; FDI ใช้ข้อความ exact `Full-stack Developer Intern, FDI` |
+| `cohortLabel` | label สำหรับ cohort; availability note และวัน exact จาก response ถูก sanitize ก่อนออก public และไม่ใช้เป็น key |
 | `academicPlacementType` | `internship`, `cooperative_education`, `not_applicable`; ห้าม parse จาก cohort label |
 | `roleTitle.th/en` | ชื่อบทบาทในช่วงนั้น |
 | `start`, `end` | ISO date หรือ null เมื่อไม่ทราบ |
@@ -159,6 +167,14 @@ Engagement คือช่วงบทบาท ไม่ใช่ตัวค�
 3. Full-time — ดูแลทีม FDI, Land Portfolio และ Lead2Loan
 
 Land Portfolio กับ Lead2Loan เป็นคนละ `workId`; Land Portfolio ผูกได้ทั้ง engagement Part-time และ Full-time
+
+ช่วงบทบาทที่เพิ่มจาก owner-approved detail refinement:
+
+- Praewa (`I0003`) และ Faze (`I0015`): FDI → Part-time
+- Mos (`I0014`): FDI → Part-time พร้อม ijji
+- Pat (`S0003`): FDI → Part-time → Full-time
+- Grace (`I0018`): MSI 2025 → PDI 2026
+- Dada (`I0029`): Impvest 2025 → MSI 2026; ใบ certificate สะกดนามสกุลต่างจาก registry เล็กน้อยจึงคง canonical registry spelling และติด owner-review note
 
 สหกิจศึกษาใน public core มีเพียง `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, `I0039` ส่วนผู้เข้าร่วมรายที่ 7 ตาม owner instruction ยังอยู่ใน private Shortlisted recruitment เพราะยังไม่มี started engagement และ contribution ที่ยืนยัน ห้ามสร้าง public person/work เพื่อให้จำนวนครบ
 
@@ -193,7 +209,7 @@ Locale Insight Intelligence Layer อยู่ใน `shared_landometer` แต�
 | `personId` | FK → people |
 | `workId` | FK → works |
 | `engagementId` | FK → engagements หรือ null เมื่อผูกช่วงบทบาทไม่ได้อย่างปลอดภัย |
-| `role.th/en` | ใช้ `Contributor` เมื่อ source ไม่ระบุ lead/owner; ห้ามยกระดับเอง |
+| `role.th/en` | FDI=`Software development`, PDI=`Product development`, MSI=`Go-to-market`; CityCell=`Team member`; program อื่นคง role ตามหลักฐานและห้ามยกระดับเอง |
 | `period` | start/end/label ตาม precision ของหลักฐาน |
 | `evidenceStatus` | ดูตารางด้านล่าง |
 | `sourceRef` | แหล่งข้อมูลระดับ record |
@@ -238,7 +254,8 @@ Evidence status:
 
 - “Shopping centers and venues” ถูก map เฉพาะ Shopping Centers; ไม่รวม venues จนกว่าจะมีขอบเขตแยก
 - Flood forecasting ยังไม่ map เพราะ official modules แยก DWR forecast-depth กับ Google flash-flood risk
-- CityScan, CityMETER Playbook for FDI, DWR Runoff, GISTDA Urban Flood และ CityCell เป็น product/partner-specific deliverable ไม่ใช่ canonical CityMETER dataset module
+- CityScan, CityMETER Playbook for FDI, DWR Runoff, GISTDA Urban Flood, `CityMETER: RUGON` และ CityCell เป็น product/partner-specific deliverable ไม่ใช่ canonical CityMETER dataset module
+- ชื่อ work ของ CityCell ใช้ exact `CityCell: Machine learning model for nationwide land appraisal`; evidence link ยังชี้ไปหลักฐานรางวัลเท่านั้น
 - ชื่อ CityMETER รุ่นเก่าใน snapshot ที่ยังเทียบ release ไม่ได้ใช้ `sheet_recorded_not_current_release_authority`
 
 ## achievements
@@ -251,6 +268,30 @@ Hack Land Value Hackathon:
 - ผู้รับ: `S0001` โอ๊ต, `P0001` เสก, `I0016` มุก (Pitcha)
 - `workId`: `work-citycell-model`
 - วันที่เป็น null และ `dateVerificationStatus=owner_detail_required` จนกว่าจะยืนยัน
+
+## certificates
+
+`certificates` เป็น public projection จาก inventory ที่ผ่าน review ใน `data/approved/certificate-assets.json` ไม่ได้อนุมานจาก QR code หรือชื่อไฟล์ และยังไม่ใช่ tab ที่แก้ผ่าน normalized Sheet exporter ใน release นี้ เมื่อ import Sheet roundtrip ตัว normalizer จึง preserve dimension นี้จาก reviewed baseline เดิม
+
+Governed inventory ชุดนี้มี 26 ใบเท่านั้น: FDI 12 ใบ, MSI 5 ใบ, IMP 8 ใบ และ PDI 1 ใบ การเปลี่ยนจำนวนหรือ program distribution ต้องผ่านการแก้ inventory, schema และ validator พร้อมกัน
+
+| Field | กติกา |
+|---|---|
+| `certificateId` | unique ID ที่รวม `personId` และ printed credential ID; credential ID อย่างเดียวไม่ใช่ key เพราะ `IMP25007` ซ้ำใน source |
+| `personId` | FK → people |
+| `credentialId` | รหัสที่พิมพ์บน certificate เก็บตามภาพ ห้ามแก้เพื่อบังคับ unique |
+| `programCode` | `FDI`, `PDI`, `MSI`, `IMP`; ใช้กำหนด role label exact: Software development, Product development, Go-to-market, Consulting Partner |
+| `title.th/en` | ชื่อ certificate สองภาษา |
+| `roleLabel.th/en` | role label exact ตาม program และเป็นภาษาอังกฤษทั้งสอง UI locale |
+| `awardedOn` | วันที่ที่พิมพ์บนภาพ เป็น certificate fact ไม่ใช่ engagement timeline โดยอัตโนมัติ |
+| `printedWorkTitle` | ชื่อ work ที่พิมพ์บนภาพ เก็บเพื่ออธิบาย evidence เท่านั้น |
+| `workIds` | reviewed FK → works; QR “Try …” label ไม่สร้าง contribution ใหม่ |
+| `publicPath`, `downloadFilename` | local PNG และชื่อไฟล์ดาวน์โหลดที่ปลอดภัย |
+| `sha256`, `bytes`, `mimeType` | integrity/media contract ของภาพ hi-res ต้นฉบับ |
+| publication gate | `verificationStatus=verified`, `rightsStatus=cleared`, `publicationStatus=publishable`, `publicationBasis=owner_authorized_public_certificate`, scoped owner approval; `consentStatus=pending` ไม่ถูกอ้างเป็น individual consent |
+| review flags | เก็บ printed credential collision, name-spelling review และ date-evidence conflict โดยไม่แก้ canonical person name/timeline |
+
+ไฟล์ต้นฉบับที่กรอกแล้ว 26 ใบถูก copy byte-for-byte ไป `public/assets/certificates/`; automation template ที่ยังไม่กรอกถูก exclude ชัดเจน Dada ใช้ canonical registry spelling ต่อไปพร้อม `nameSpellingStatus=owner_review_required` ส่วน Hana เก็บ printed date `2025-11-13` พร้อม `printed_date_conflicts_with_program_code` และห้ามใช้วันนั้นอนุมานช่วง PDI 2026
 
 ## socialProfiles และ assets
 
@@ -280,7 +321,7 @@ Portrait เผยแพร่ได้เมื่อ `verificationStatus=verif
 1. `consentStatus=granted` และ `publicationBasis=individual_consent`; หรือ
 2. `publicationBasis=owner_authorized_public_profile_portrait` พร้อม `ownerApproval.status=granted` และ scope `public_profile_portrait`
 
-Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent ปัจจุบันมี LinkedIn 45 ราย, GitHub 12 ราย และ local portrait 35 รายที่ผ่าน exact identity + owner basis; รายการอื่นต้องเป็น null/fallback
+Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent ปัจจุบันมี LinkedIn 45 ราย, GitHub 12 ราย และ local portrait 41 รายที่ผ่าน exact identity + owner basis; รายการอื่นต้องเป็น null/fallback
 
 Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait source/CDN URL, evidence, permission record และ review noteเก็บเฉพาะใน ignored raw snapshot/private report เท่านั้น URL ที่ผ่าน gate ถูก copy เป็น `publicUrl`; portrait ถูก normalize เป็น local JPEG ภายใต้ `public/assets/people/<personId>.jpg` และ public JSON เก็บ local path/hash โดย `sourceUrl=null` เสมอ Exporter merge candidate/review fields เดิมกลับเฉพาะ private workbook เพื่อให้ roundtrip ไม่ทำข้อมูลสูญหาย
 

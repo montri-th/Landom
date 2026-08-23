@@ -15,7 +15,8 @@ const REQUIRED_DATASETS = [
   'contributions',
   'achievements',
   'socialProfiles',
-  'assets'
+  'assets',
+  'certificates'
 ];
 
 export const PUBLIC_BUILD_INPUTS = Object.freeze([
@@ -40,8 +41,9 @@ export const REQUIRED_UI_IDS = [
   'filter-work',
   'filter-clear',
   'people-board',
-  'person-dialog',
-  'modal-close'
+  'certificate-dialog',
+  'certificate-close',
+  'certificate-download'
 ];
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -123,6 +125,10 @@ function hasSocialPublicationAuthority(profile, person) {
 
 function hasAssetPublicationAuthority(asset) {
   return hasConsent(asset) || hasOwnerAuthorizedBasis(asset, 'owner_authorized_public_profile_portrait');
+}
+
+function hasCertificatePublicationAuthority(certificate) {
+  return hasOwnerAuthorizedBasis(certificate, 'owner_authorized_public_certificate');
 }
 
 function hasPublicUrl(record) {
@@ -215,7 +221,7 @@ export function validateDataContract(data) {
   if (errors.length > 0) return errors;
 
   if (data.meta?.counts && typeof data.meta.counts === 'object') {
-    for (const key of ['people', 'engagements', 'educationRecords', 'works', 'contributions', 'achievements']) {
+    for (const key of ['people', 'engagements', 'educationRecords', 'works', 'contributions', 'achievements', 'certificates']) {
       if (data.meta.counts[key] !== data[key].length) {
         errors.push(`meta.counts.${key} is ${String(data.meta.counts[key])}, but the dataset contains ${data[key].length}.`);
       }
@@ -232,6 +238,7 @@ export function validateDataContract(data) {
   uniqueIds(data.achievements, 'achievementId', 'Achievement', errors);
   uniqueIds(data.socialProfiles, 'socialProfileId', 'Social profile', errors);
   const assetIds = uniqueIds(data.assets, 'assetId', 'Asset', errors);
+  uniqueIds(data.certificates, 'certificateId', 'Certificate', errors);
 
   const peopleById = new Map(data.people.map((person) => [person.personId, person]));
   const engagementsById = new Map(data.engagements.map((engagement) => [engagement.engagementId, engagement]));
@@ -312,6 +319,8 @@ export function validateDataContract(data) {
   requireFk(data.achievements, 'workId', workIds, 'Achievement', errors, { optional: true });
   requireFk(data.socialProfiles, 'personId', personIds, 'Social profile', errors);
   requireFk(data.assets, 'personId', personIds, 'Asset', errors, { optional: true });
+  requireFk(data.certificates, 'personId', personIds, 'Certificate', errors);
+  requireFk(data.certificates, 'workIds', workIds, 'Certificate', errors, { many: true });
 
   for (const program of data.programs) {
     if (program.institutionId !== undefined && !institutionIds.has(program.institutionId)) {
@@ -352,6 +361,65 @@ export function validateDataContract(data) {
     }
     if (isPublic(asset) && (!isVerified(asset) || !hasAssetPublicationAuthority(asset) || !hasRights(asset))) {
       errors.push(`Asset ${asset.assetId} is public without verification, an approved publication basis, and publication rights.`);
+    }
+  }
+
+  const certificateRoleByProgram = new Map([
+    ['FDI', 'software development'],
+    ['PDI', 'product development'],
+    ['MSI', 'go-to-market'],
+    ['IMP', 'consulting partner']
+  ]);
+  const expectedCertificateCountByProgram = new Map([
+    ['FDI', 12],
+    ['MSI', 5],
+    ['IMP', 8],
+    ['PDI', 1]
+  ]);
+  if (data.certificates.length > 0) {
+    for (const [programCode, expectedCount] of expectedCertificateCountByProgram) {
+      const actualCount = data.certificates.filter((certificate) => certificate.programCode === programCode).length;
+      if (actualCount !== expectedCount) {
+        errors.push(`Governed certificate inventory must contain exactly ${expectedCount} ${programCode} record${expectedCount === 1 ? '' : 's'}; found ${actualCount}.`);
+      }
+    }
+  }
+  const credentialOwners = new Map();
+  for (const certificate of data.certificates) {
+    for (const privateKey of ['sourceFile', 'sourcePath', 'sourceUrl', 'qrUrl', 'qrUrls', 'qrTargets']) {
+      if (certificate[privateKey] !== undefined) {
+        errors.push(`Certificate ${certificate.certificateId} exposes forbidden source field ${privateKey}.`);
+      }
+    }
+    if (hasPublicUrl(certificate) && !isPublic(certificate)) {
+      errors.push(`Certificate ${certificate.certificateId} exposes a path without public publication status.`);
+    }
+    if (isPublic(certificate) && (!isVerified(certificate) || !hasCertificatePublicationAuthority(certificate) || !hasRights(certificate))) {
+      errors.push(`Certificate ${certificate.certificateId} is public without verification, scoped owner authorization, and cleared rights.`);
+    }
+    if (certificate.consentStatus !== 'pending') {
+      errors.push(`Certificate ${certificate.certificateId} must not represent owner authorization as individual consent.`);
+    }
+    if (certificate.ownerApproval?.scope !== 'public_certificate_image_and_printed_profile_facts') {
+      errors.push(`Certificate ${certificate.certificateId} has an invalid owner-approval scope.`);
+    }
+    if (!/^public\/assets\/certificates\/[SPI]\d{4}-[A-Z0-9]+\.png$/.test(String(certificate.publicPath ?? ''))) {
+      errors.push(`Certificate ${certificate.certificateId} has an unsafe governed publicPath.`);
+    }
+    const expectedRole = certificateRoleByProgram.get(certificate.programCode);
+    if (!expectedRole || normalizeText(certificate.roleLabel?.th) !== expectedRole || normalizeText(certificate.roleLabel?.en) !== expectedRole) {
+      errors.push(`Certificate ${certificate.certificateId} does not use the exact ${String(certificate.programCode)} certificate role label.`);
+    }
+    if (certificate.evidenceBoundary !== 'printed_certificate_facts_only_qr_destinations_excluded') {
+      errors.push(`Certificate ${certificate.certificateId} does not preserve the QR/contribution evidence boundary.`);
+    }
+    const owners = credentialOwners.get(certificate.credentialId) ?? [];
+    owners.push(certificate);
+    credentialOwners.set(certificate.credentialId, owners);
+  }
+  for (const [credentialId, owners] of credentialOwners) {
+    if (owners.length > 1 && owners.some((certificate) => certificate.credentialIdCollisionStatus !== 'duplicate_in_printed_source')) {
+      errors.push(`Duplicate printed credentialId ${credentialId} is not explicitly represented as a source collision.`);
     }
   }
 
@@ -436,8 +504,21 @@ async function validateUi(publishRoot, errors) {
     errors.push('The UI must load ./data/generated/site-data.json.');
   }
   if (!/person-card/.test(sourceText)) errors.push('The UI must render person-card buttons on the masonry board.');
+  if (!/person-card-shell/.test(sourceText) || !/person-inline-detail/.test(sourceText) || !/aria-expanded/.test(sourceText)) {
+    errors.push('Person details must expand accessibly inside each masonry card.');
+  }
+  if (/person-dialog/.test(allUiText)) errors.push('Person profiles must expand inline rather than opening in a dialog.');
+  if (!/function animateCardReflow\b/.test(sourceText) || !/reducedMotionQuery/.test(sourceText)) {
+    errors.push('Inline profile expansion must preserve orientation with reduced-motion-aware reflow behavior.');
+  }
+  if (!/owner_authorized_public_certificate/.test(sourceText) || !/safeCertificateUrl/.test(sourceText) || !/certificate-download/.test(allUiText)) {
+    errors.push('Certificate previews must use the governed local-asset contract and offer a high-resolution download.');
+  }
   if (!/avatar-name/.test(sourceText)) errors.push('The UI must include the full nickname fallback for unavailable or unapproved images.');
   if (/avatar(?:--|-)initials/.test(sourceText)) errors.push('Person-image fallback must use the full nickname, not initials.');
+  if (!/\.card-avatar\s*\{[^}]*aspect-ratio:\s*1\s*;/s.test(sourceText) || !/\.detail-avatar\s*\{[^}]*aspect-ratio:\s*1\s*;/s.test(sourceText)) {
+    errors.push('Person portraits must remain square in both collapsed and expanded cards.');
+  }
   const engagementHistoryRenderer = sourceText.match(/function engagementCategoryForHistory\b[\s\S]*?(?=function renderCard\b)/)?.[0] ?? '';
   for (const field of ['model.engagements', 'recordId(engagement, "engagement")', 'program.names', 'cohortLabel', 'academicPlacementTypeFor']) {
     if (!engagementHistoryRenderer.includes(field)) {
@@ -456,6 +537,15 @@ async function validateUi(publishRoot, errors) {
   const cardRenderer = sourceText.match(/function renderCard\b[\s\S]*?(?=function filteredModels\b)/)?.[0] ?? '';
   if ((cardRenderer.match(/role-badge/g) ?? []).length !== 1 || !cardRenderer.includes('engagementHistoryMarkup(model)')) {
     errors.push('Each person card must keep one current-role badge and a separate repeat-engagement history row.');
+  }
+  const educationRenderer = sourceText.match(/function educationFor\b[\s\S]*?(?=function normalizedBoolean\b)/)?.[0] ?? '';
+  const educationSummaryRenderer = sourceText.match(/function educationSummary\b[\s\S]*?(?=function programCode\b)/)?.[0] ?? '';
+  if (!/shortProgram\s*=\s*degreeShort\s*\|\|\s*\(cardHasProgramAndInstitution\s*\?\s*cardParts\[0\]/s.test(educationRenderer) ||
+      !/shortInstitution\s*=\s*\(cardHasProgramAndInstitution\s*\?\s*cardParts\.slice/s.test(educationRenderer)) {
+    errors.push('Governed educationDisplay.card labels must take priority over canonical dimension abbreviations at runtime.');
+  }
+  if (!educationRenderer.includes('cardDisplay,') || !educationSummaryRenderer.includes('model.education.cardDisplay')) {
+    errors.push('Person-specific governed education card labels must render intact, including labels without a middle-dot separator.');
   }
   const bioGate = sourceText.match(/function governedBioIsVisible\b[\s\S]*?(?=function buildModels\b)/)?.[0] ?? '';
   for (const field of [
@@ -502,6 +592,15 @@ async function validateUi(publishRoot, errors) {
   }
   if (!allUiText.includes('แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น')) {
     errors.push('The exact approved Thai Landom tagline is missing from the UI.');
+  }
+  if (/member:\s*["']Contributor["']/.test(allUiText)) {
+    errors.push('The public UI must use “Team member” instead of the generic “Contributor” fallback.');
+  }
+  if (!sourceText.includes('period: periodForContribution(contribution)')) {
+    errors.push('Contribution periods must use the governed month-and-year formatter instead of exposing exact response dates.');
+  }
+  if (!/fromUrl:\s*true,\s*animate:\s*false,\s*scroll:\s*true/.test(sourceText)) {
+    errors.push('Deep-linked inline profiles must scroll into view on compact screens.');
   }
   if (/LanDOM/.test(allUiText)) errors.push('Use exact casing “Landom”; “LanDOM” is not allowed.');
 }
@@ -598,6 +697,33 @@ async function validateAssetManifest(publishRoot, siteData, errors) {
     const relativePath = path.relative(publishRoot, file).split(path.sep).join('/');
     if (!declaredPaths.has(relativePath)) errors.push(`Person image ${relativePath} has no fully approved public assets[] record.`);
   }
+
+  const certificateAssetRoot = path.join(publishRoot, 'public', 'assets', 'certificates');
+  const certificateAssetFiles = await walkFiles(certificateAssetRoot);
+  const declaredCertificates = new Map(
+    siteData.certificates
+      .filter((certificate) => isPublic(certificate) && isVerified(certificate) && hasCertificatePublicationAuthority(certificate) && hasRights(certificate))
+      .map((certificate) => [String(certificate.publicPath ?? '').replace(/^\.\//, ''), certificate])
+  );
+  for (const file of certificateAssetFiles) {
+    const relativePath = path.relative(publishRoot, file).split(path.sep).join('/');
+    const certificate = declaredCertificates.get(relativePath);
+    if (!certificate) {
+      errors.push(`Certificate image ${relativePath} has no fully governed public certificates[] record.`);
+      continue;
+    }
+    const bytes = await readFile(file);
+    if (bytes.byteLength !== certificate.bytes) errors.push(`Certificate byte count does not match for ${certificate.certificateId}.`);
+    const digest = createHash('sha256').update(bytes).digest('hex');
+    if (digest !== certificate.sha256) errors.push(`Certificate SHA-256 does not match for ${certificate.certificateId}.`);
+  }
+  for (const [relativePath, certificate] of declaredCertificates) {
+    try {
+      await stat(path.join(publishRoot, relativePath));
+    } catch (error) {
+      errors.push(`Governed certificate ${certificate.certificateId} is missing from the build at ${relativePath}.`);
+    }
+  }
 }
 
 async function validateGeneratedParity(publishRoot, siteData, errors) {
@@ -613,7 +739,8 @@ async function validateGeneratedParity(publishRoot, siteData, errors) {
     contributions: 'contributions.json',
     achievements: 'achievements.json',
     socialProfiles: 'social-profiles.json',
-    assets: 'assets.json'
+    assets: 'assets.json',
+    certificates: 'certificates.json'
   };
   for (const [key, filename] of Object.entries(fileMap)) {
     const filePath = path.join(publishRoot, 'data', 'generated', filename);

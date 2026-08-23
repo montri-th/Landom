@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -11,6 +12,9 @@ const root = path.resolve(here, '..');
 const generatedPath = path.join(root, 'data/generated/site-data.json');
 const rawPath = path.join(root, 'data/raw/google-sheet-snapshot.json');
 const schemaPath = path.join(root, 'data/schema/site-data.schema.json');
+const profileDetailOverridePath = path.join(root, 'data/approved/profile-detail-overrides.json');
+const profileDetailOverrideSchemaPath = path.join(root, 'data/schema/profile-detail-overrides.schema.json');
+const certificateApprovalPath = path.join(root, 'data/approved/certificate-assets.json');
 const rawAvailable = fs.existsSync(rawPath);
 
 function loadGenerated() {
@@ -132,7 +136,7 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     execFileSync(process.execPath, [path.join(root, 'tools/normalize-data.mjs'), '--input', snapshotPath, '--output-dir', outputDir], { cwd: root });
     const imported = JSON.parse(fs.readFileSync(path.join(outputDir, 'site-data.json'), 'utf8'));
     const baseline = loadGenerated();
-    for (const dimension of ['people', 'engagements', 'institutions', 'programs', 'educationRecords', 'works', 'contributions', 'achievements', 'socialProfiles', 'assets']) {
+    for (const dimension of ['people', 'engagements', 'institutions', 'programs', 'educationRecords', 'works', 'contributions', 'achievements', 'socialProfiles', 'assets', 'certificates']) {
       assert.equal(imported[dimension].length, baseline[dimension].length, 'roundtrip changed ' + dimension + ' row count');
     }
     const importedInstagram = imported.socialProfiles.find((row) => row.socialProfileId === 'SOC-I0001-INSTAGRAM');
@@ -152,7 +156,11 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
     ));
-    assert.equal(imported.assets.filter((row) => row.publicPath).length, 35);
+    assert.equal(
+      imported.assets.filter((row) => row.publicPath).length,
+      baseline.assets.filter((row) => row.publicPath).length - 1,
+      'withholding the I0001 portrait should remove exactly one public asset during roundtrip'
+    );
     assert.ok(imported.assets.filter((row) => row.publicPath).every((row) =>
       row.publicationBasis === 'owner_authorized_public_profile_portrait' && row.ownerApproval?.status === 'granted'
     ));
@@ -178,6 +186,11 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
 
 test('schema and all generated dimensions are valid JSON', () => {
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(schemaPath, 'utf8')));
+  assert.doesNotThrow(() => JSON.parse(fs.readFileSync(profileDetailOverrideSchemaPath, 'utf8')));
+  const detailOverrides = JSON.parse(fs.readFileSync(profileDetailOverridePath, 'utf8'));
+  assert.equal(detailOverrides.contractVersion, '1.0');
+  assert.ok(detailOverrides.addedEngagements.every((engagement) => /^[SPI]\d{4}$/.test(engagement.personId)));
+  assert.ok(detailOverrides.addedEngagements.every((engagement) => /^E\d{4}$/.test(engagement.engagementId)));
   for (const fileName of fs.readdirSync(path.join(root, 'data/generated')).filter((name) => name.endsWith('.json'))) {
     assert.doesNotThrow(() => JSON.parse(fs.readFileSync(path.join(root, 'data/generated', fileName), 'utf8')), fileName);
   }
@@ -208,7 +221,8 @@ test('all dimension IDs are unique and foreign keys have no orphans', () => {
     ['contributions', 'contributionId'],
     ['achievements', 'achievementId'],
     ['socialProfiles', 'socialProfileId'],
-    ['assets', 'assetId']
+    ['assets', 'assetId'],
+    ['certificates', 'certificateId']
   ]) assertUnique(data[dimension], key);
 
   const personIds = new Set(data.people.map((item) => item.personId));
@@ -224,6 +238,7 @@ test('all dimension IDs are unique and foreign keys have no orphans', () => {
   assert.ok(data.achievements.every((item) => item.recipientPersonIds.every((personId) => personIds.has(personId)) && (item.workId === null || workIds.has(item.workId))));
   assert.ok(data.socialProfiles.every((item) => personIds.has(item.personId)));
   assert.ok(data.assets.every((item) => personIds.has(item.personId)));
+  assert.ok(data.certificates.every((item) => personIds.has(item.personId) && item.workIds.every((workId) => workIds.has(workId))));
 });
 
 test('every person has at least one contribution without invented fallback projects', () => {
@@ -272,7 +287,10 @@ test('repeat participants retain one complete record per join period for UI chip
     .sort(([a], [b]) => a.localeCompare(b, 'en'));
   assert.deepEqual(
     repeated.map(([personId, records]) => [personId, records.length]),
-    [['I0022', 2], ['I0024', 2], ['S0001', 3], ['S0002', 2], ['S0003', 2]]
+    [
+      ['I0003', 2], ['I0014', 2], ['I0015', 2], ['I0018', 2], ['I0022', 2],
+      ['I0024', 2], ['I0029', 2], ['S0001', 3], ['S0002', 2], ['S0003', 3]
+    ]
   );
   for (const [personId, records] of repeated) {
     assert.equal(new Set(records.map((engagement) => engagement.engagementId)).size, records.length, `${personId} repeats an engagementId`);
@@ -284,6 +302,17 @@ test('repeat participants retain one complete record per join period for UI chip
       engagement.cohortLabel || engagement.start || engagement.end || engagement.status === 'ongoing' || engagement.sequenceHint
     ), `${personId} has an engagement without a period discriminator`);
   }
+});
+
+test('Grace MSI 2025 uses the reconciled cohort range before her PDI return', () => {
+  const data = loadGenerated();
+  const msi = data.engagements.find((item) => item.engagementId === 'E0022');
+  assert.equal(msi.personId, 'I0018');
+  assert.equal(msi.program.code, 'MSI');
+  assert.equal(msi.start, '2025-05-19');
+  assert.equal(msi.end, '2025-07-31');
+  assert.ok(msi.start <= msi.end);
+  assert.equal(msi.verificationStatus, 'owner_source_reconciled');
 });
 
 test('Hack Land Value achievement is separate from contribution records', () => {
@@ -391,7 +420,89 @@ test('FDI and computer-engineering display labels use the approved exact copy', 
   assert.ok(fdi.every((engagement) => engagement.program.names.en === 'Full-stack Developer Intern, FDI'));
   for (const programId of ['program-kmitl-computer-engineering', 'program-cu-computer-engineering']) {
     assert.equal(data.programs.find((program) => program.programId === programId).names.th.short, 'วิศวกรรมคอมพิวเตอร์');
+    assert.equal(data.programs.find((program) => program.programId === programId).names.en.short, 'CP');
   }
+  assert.doesNotMatch(JSON.stringify(data), /C[P]E/);
+});
+
+test('owner-approved detail refinements preserve identity while adding complete role histories', () => {
+  const data = loadGenerated();
+  const history = (personId) => data.engagements.filter((engagement) => engagement.personId === personId);
+  assert.deepEqual(history('I0003').map((engagement) => engagement.category), ['internship', 'part_time']);
+  assert.deepEqual(history('I0014').map((engagement) => engagement.category), ['internship', 'part_time']);
+  assert.deepEqual(history('I0015').map((engagement) => engagement.category), ['internship', 'part_time']);
+  assert.deepEqual(history('S0003').map((engagement) => engagement.category), ['internship', 'part_time', 'full_time']);
+  assert.deepEqual(history('I0018').map((engagement) => engagement.program.code), ['MSI', 'PDI']);
+  assert.deepEqual(history('I0029').map((engagement) => engagement.program.code), ['IMP', 'MSI']);
+  assert.equal(history('I0029')[0].evidenceNote.includes('retain canonical registry spelling'), true);
+  assert.equal(data.people.find((person) => person.personId === 'I0014').migrationClassification, 'intern_or_program_participant');
+  assert.equal(data.people.find((person) => person.personId === 'S0003').personId, 'S0003');
+});
+
+test('education detail refinements distinguish BBA Finance, EBA and Ming card copy without flattening official detail', () => {
+  const data = loadGenerated();
+  for (const personId of ['I0022', 'I0025']) {
+    const person = data.people.find((item) => item.personId === personId);
+    assert.equal(person.educationDisplay.card.en, 'BBA Finance · CU');
+    assert.match(person.educationDisplay.detail.en, /^Bachelor of Business Administration in Finance/);
+  }
+  for (const personId of ['I0020', 'I0021', 'I0023', 'I0024']) {
+    const record = data.educationRecords.find((item) => item.personId === personId && item.isPrimary);
+    assert.equal(record.programId, 'program-cu-eba');
+    assert.equal(data.people.find((item) => item.personId === personId).educationDisplay.card.en, 'EBA · CU');
+  }
+  const ming = data.people.find((person) => person.personId === 'I0004');
+  assert.deepEqual(ming.educationDisplay.card, { th: 'อักษร จุฬา', en: 'Arts · CU' });
+  assert.equal(ming.educationDisplay.detail.en, 'Chinese, Faculty of Arts — Chulalongkorn University');
+});
+
+test('program-specific contribution roles and exact owner-supplied works replace generic contributor copy', () => {
+  const data = loadGenerated();
+  const engagementById = new Map(data.engagements.map((engagement) => [engagement.engagementId, engagement]));
+  const expectedRoleByProgram = new Map([
+    ['FDI', 'Software development'],
+    ['PDI', 'Product development'],
+    ['MSI', 'Go-to-market'],
+    ['IMP', 'Consulting Partner']
+  ]);
+  for (const contribution of data.contributions) {
+    if (contribution.workId === 'work-citycell-model') continue;
+    const programCode = engagementById.get(contribution.engagementId)?.program.code;
+    if (!expectedRoleByProgram.has(programCode)) continue;
+    assert.deepEqual(contribution.role, {
+      th: expectedRoleByProgram.get(programCode),
+      en: expectedRoleByProgram.get(programCode)
+    });
+  }
+
+  const cityCell = data.works.find((work) => work.workId === 'work-citycell-model');
+  assert.ok(data.contributions.every((item) => item.role.th !== 'ผู้มีส่วนร่วม' && item.role.en !== 'Contributor'));
+  assert.equal(cityCell.names.en, 'CityCell: Machine learning model for nationwide land appraisal');
+  assert.ok(data.contributions.filter((item) => item.workId === cityCell.workId).every((item) => item.role.en === 'Team member'));
+  assert.ok(data.contributions.some((item) => item.personId === 'S0003' && item.workId === 'work-citymeter-rugon' && item.role.en === 'Product management'));
+  assert.ok(data.contributions.some((item) => item.personId === 'I0014' && item.workId === 'work-ijji' && item.engagementId === 'E0057'));
+  assert.ok(data.contributions.some((item) => item.personId === 'I0009' && item.workId === 'work-gistda-flood-near-me' && item.role.en === 'Software development'));
+  assert.ok(data.contributions.some((item) => item.personId === 'I0029' && item.workId === 'work-ijji' && item.engagementId === 'E0060' && item.role.en === 'Consulting Partner'));
+});
+
+test('internship timeline copy is English in both locales and raw availability notes are not public', () => {
+  const data = loadGenerated();
+  const internshipCodes = new Set(['FDI', 'MSI', 'PDI', 'PMI']);
+  const internshipEngagements = data.engagements.filter((engagement) => internshipCodes.has(engagement.program.code));
+  assert.ok(internshipEngagements.every((engagement) => engagement.program.names.th === engagement.program.names.en));
+  assert.ok(internshipEngagements.every((engagement) => engagement.roleTitle.th === engagement.roleTitle.en));
+  assert.ok(data.engagements.every((engagement) => !/เริ่มได้|\bstart\b|\d{1,2}[A-Za-z]{3}\s*[-–]\s*\d{1,2}[A-Za-z]{3}/i.test(engagement.cohortLabel ?? '')));
+});
+
+test('all 48 bio objects remain byte-equivalent to the v3.3 approved release baseline', () => {
+  const stableSort = (value) => Array.isArray(value)
+    ? value.map(stableSort)
+    : value && typeof value === 'object'
+      ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableSort(value[key])]))
+      : value;
+  const projection = loadGenerated().people.map((person) => ({ personId: person.personId, bio: person.bio }));
+  const digest = createHash('sha256').update(JSON.stringify(stableSort(projection))).digest('hex');
+  assert.equal(digest, 'bbed839fd986c9c0e28f7562fec707df0e1a3a1410b9248200c75c5fd0420f71');
 });
 
 test('staff degree programs separate official program names from personal award status', () => {
@@ -538,7 +649,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 35);
+  assert.equal(portraits.length, 41);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);
@@ -549,6 +660,77 @@ test('only exact owner-authorized public profiles and governed local portraits a
     assert.match(portrait.sha256, /^[a-f0-9]{64}$/);
     assert.ok(fs.existsSync(path.join(root, portrait.publicPath)));
   }
+});
+
+test('26 filled certificates are copied byte-for-byte and exposed only through the governed owner-authorized contract', () => {
+  const data = loadGenerated();
+  const inventory = JSON.parse(fs.readFileSync(certificateApprovalPath, 'utf8'));
+  assert.equal(inventory.certificates.length, 26);
+  assert.deepEqual(
+    inventory.excludedSourceFiles,
+    [{ sourceFile: 'Internship Certificate 250731 - FDI Template for Automate.PNG', reason: 'unfilled_automation_template' }]
+  );
+  assert.equal(data.certificates.length, 26);
+  assert.equal(data.meta.counts.certificates, 26);
+  assert.equal(fs.readdirSync(path.join(root, 'public/assets/certificates')).filter((name) => name.endsWith('.png')).length, 26);
+
+  const roleByProgram = new Map([
+    ['FDI', 'Software development'],
+    ['PDI', 'Product development'],
+    ['MSI', 'Go-to-market'],
+    ['IMP', 'Consulting Partner']
+  ]);
+  assert.deepEqual(
+    Object.fromEntries(['FDI', 'PDI', 'MSI', 'IMP'].map((code) => [code, data.certificates.filter((certificate) => certificate.programCode === code).length])),
+    { FDI: 12, PDI: 1, MSI: 5, IMP: 8 }
+  );
+  for (const certificate of data.certificates) {
+    assert.equal(certificate.verificationStatus, 'verified');
+    assert.equal(certificate.publicationStatus, 'publishable');
+    assert.equal(certificate.rightsStatus, 'cleared');
+    assert.equal(certificate.consentStatus, 'pending');
+    assert.equal(certificate.publicationBasis, 'owner_authorized_public_certificate');
+    assert.deepEqual(certificate.ownerApproval, {
+      status: 'granted',
+      approvedAt: '2026-08-24',
+      scope: 'public_certificate_image_and_printed_profile_facts',
+      sourceRef: 'owner_instruction_2026-08-24'
+    });
+    assert.deepEqual(certificate.roleLabel, {
+      th: roleByProgram.get(certificate.programCode),
+      en: roleByProgram.get(certificate.programCode)
+    });
+    assert.match(certificate.publicPath, /^public\/assets\/certificates\/[SPI]\d{4}-[A-Z0-9]+\.png$/);
+    assert.match(certificate.downloadFilename, /^landometer-certificate-[SPI]\d{4}-[A-Z0-9]+\.png$/);
+    assert.equal(certificate.mimeType, 'image/png');
+    assert.equal(certificate.evidenceBoundary, 'printed_certificate_facts_only_qr_destinations_excluded');
+    const bytes = fs.readFileSync(path.join(root, certificate.publicPath));
+    assert.equal(bytes.byteLength, certificate.bytes);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), certificate.sha256);
+    assert.ok(
+      certificate.workIds.every((workId) => data.contributions.some((contribution) =>
+        contribution.personId === certificate.personId && contribution.workId === workId
+      )),
+      `${certificate.certificateId} must not introduce a work claim that is absent from the governed profile`
+    );
+  }
+
+  const credentialCollisions = data.certificates.filter((certificate) => certificate.credentialId === 'IMP25007');
+  assert.deepEqual(credentialCollisions.map((certificate) => certificate.personId).sort(), ['I0025', 'I0029']);
+  assert.ok(credentialCollisions.every((certificate) => certificate.credentialIdCollisionStatus === 'duplicate_in_printed_source'));
+  const dada = data.certificates.find((certificate) => certificate.personId === 'I0029');
+  assert.equal(dada.nameSpellingStatus, 'owner_review_required');
+  assert.equal(data.people.find((person) => person.personId === 'I0029').names.full.en, 'Panida Chantacharoonpong');
+  const hana = data.certificates.find((certificate) => certificate.personId === 'I0026');
+  assert.equal(hana.awardedOn, '2025-11-13');
+  assert.equal(hana.dateEvidenceStatus, 'printed_date_conflicts_with_program_code');
+  assert.match(hana.evidenceNotes.join(' '), /must not be used to infer a 2026 engagement timeline/);
+  const grace = data.certificates.find((certificate) => certificate.personId === 'I0018');
+  assert.equal(grace.programCode, 'MSI');
+  assert.equal(grace.awardedOn, '2025-07-31');
+
+  const serialized = JSON.stringify(data.certificates);
+  assert.doesNotMatch(serialized, /sourceFile|sourcePath|sourceUrl|qrUrl|qrTargets|Try CityMETER|Try SafeStreet/i);
 });
 
 test('brand and community copy uses the owner-approved distinction', () => {

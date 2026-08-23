@@ -1,0 +1,231 @@
+{
+  "contractVersion": "1.0",
+  "sourceBasis": "owner_instruction_2026-08-23_detail_refinement",
+  "programOverrides": [
+    {
+      "programId": "program-kmitl-computer-engineering",
+      "names": {
+        "th": { "formal": "วิศวกรรมคอมพิวเตอร์", "short": "วิศวกรรมคอมพิวเตอร์" },
+        "en": { "formal": "Computer Engineering", "short": "CP" }
+      }
+    },
+    {
+      "programId": "program-cu-computer-engineering",
+      "names": {
+        "th": { "formal": "วิศวกรรมคอมพิวเตอร์", "short": "วิศวกรรมคอมพิวเตอร์" },
+        "en": { "formal": "Computer Engineering", "short": "CP" }
+      }
+    },
+    {
+      "programId": "program-cu-finance",
+      "names": {
+        "th": { "formal": "บริหารธุรกิจ สาขาการเงิน", "short": "BBA Finance" },
+        "en": { "formal": "Bachelor of Business Administration in Finance", "short": "BBA Finance" }
+      }
+    }
+  ],
+  "educationProgramOverrides": [
+    { "personId": "I0020", "programId": "program-cu-eba" },
+    { "personId": "I0021", "programId": "program-cu-eba" },
+    { "personId": "I0023", "programId": "program-cu-eba" },
+    { "personId": "I0024", "programId": "program-cu-eba" }
+  ],
+  "educationCardOverrides": [
+    {
+      "personId": "I0004",
+      "card": { "th": "อักษร จุฬา", "en": "Arts · CU" },
+      "detailMustRemainOfficial": true
+    }
+  ],
+  "engagementProgramNames": {
+    "FDI": { "th": "Full-stack Developer Intern, FDI", "en": "Full-stack Developer Intern, FDI" },
+    "MSI": { "th": "Marketing Strategy Intern, MSI", "en": "Marketing Strategy Intern, MSI" },
+    "PDI": { "th": "Product Developer Intern, PDI", "en": "Product Developer Intern, PDI" },
+    "PMI": { "th": "Partnership Maker Intern, PMI", "en": "Partnership Maker Intern, PMI" }
+  },
+  "engagementRoleNames": {
+    "Full-Stack Developer Intern": { "th": "Full-Stack Developer Intern", "en": "Full-Stack Developer Intern" },
+    "Marketing Strategy Intern": { "th": "Marketing Strategy Intern", "en": "Marketing Strategy Intern" },
+    "Product Developer Intern": { "th": "Product Developer Intern", "en": "Product Developer Intern" },
+    "Partnership Maker Intern": { "th": "Partnership Maker Intern", "en": "Partnership Maker Intern" }
+  },
+  "existingEngagementOverrides": [
+    { "engagementId": "E0006", "sequenceHint": 1 },
+    { "engagementId": "E0007", "sequenceHint": 1 },
+    { "engagementId": "E0018", "sequenceHint": 1 },
+    { "engagementId": "E0019", "sequenceHint": 1 },
+    {
+      "engagementId": "E0022",
+      "sequenceHint": 1,
+      "start": "2025-05-19",
+      "end": "2025-07-31",
+      "verificationStatus": "owner_source_reconciled",
+      "evidenceNote": "The governed cohort label states 19 May–31 Jul 2025 and the certificate confirms completion on 31 Jul 2025; this replaces the contradictory roster start date that fell after the recorded end."
+    },
+    { "engagementId": "E0038", "sequenceHint": 2 },
+    { "engagementId": "E0033", "sequenceHint": 3 }
+  ],
+  "addedEngagements": [
+    {
+      "engagementId": "E0055",
+      "personId": "I0003",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Part-time",
+      "roleTitle": { "th": "Part-time", "en": "Part-time" },
+      "cohortLabel": "Following FDI 2025",
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "sequenceHint": 2
+    },
+    {
+      "engagementId": "E0056",
+      "personId": "S0003",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Part-time",
+      "roleTitle": { "th": "Part-time", "en": "Part-time" },
+      "cohortLabel": "Following FDI 2025",
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "sequenceHint": 2
+    },
+    {
+      "engagementId": "E0057",
+      "personId": "I0014",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Part-time",
+      "roleTitle": { "th": "Part-time", "en": "Part-time" },
+      "cohortLabel": "Following FDI 2025",
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": ["work-ijji"],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "sequenceHint": 2
+    },
+    {
+      "engagementId": "E0058",
+      "personId": "I0015",
+      "category": "part_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Part-time",
+      "roleTitle": { "th": "Part-time", "en": "Part-time" },
+      "cohortLabel": "Following FDI 2025",
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "sequenceHint": 2
+    },
+    {
+      "engagementId": "E0059",
+      "personId": "I0018",
+      "category": "internship",
+      "academicPlacementType": "internship",
+      "programCode": "PDI",
+      "roleTitle": { "th": "Product Developer Intern", "en": "Product Developer Intern" },
+      "cohortLabel": "PDI 2026",
+      "start": null,
+      "end": null,
+      "status": "completed",
+      "responsibilityWorkIds": ["work-ijji"],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "dates_owner_detail_required",
+      "sequenceHint": 2
+    },
+    {
+      "engagementId": "E0060",
+      "personId": "I0029",
+      "category": "program_participant",
+      "academicPlacementType": "not_applicable",
+      "programCode": "IMP",
+      "roleTitle": { "th": "Consulting Partner", "en": "Consulting Partner" },
+      "cohortLabel": "Impvest 2025",
+      "start": null,
+      "end": "2025-11-13",
+      "status": "completed",
+      "responsibilityWorkIds": ["work-ijji"],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_review_required_name_spelling_variation",
+      "evidenceNote": "Certificate spells the full name Panida Chantacharoenpong; retain canonical registry spelling Panida Chantacharoonpong pending owner review.",
+      "sequenceHint": 1
+    }
+  ],
+  "cohortLabelSanitization": {
+    "removeRawAvailabilityNotes": true,
+    "fallbackToProgramAndYear": true
+  },
+  "workOverrides": [
+    {
+      "workId": "work-citycell-model",
+      "names": {
+        "th": "CityCell: Machine learning model for nationwide land appraisal",
+        "en": "CityCell: Machine learning model for nationwide land appraisal"
+      }
+    }
+  ],
+  "addedWorks": [
+    {
+      "workId": "work-citymeter-rugon",
+      "parentProduct": "CityMETER",
+      "names": { "th": "CityMETER: RUGON", "en": "CityMETER: RUGON" },
+      "type": "product_specific_deliverable",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+      "evidenceNote": "Owner-supplied product-specific contribution; no exact current CityMETER catalog route is asserted.",
+      "aliases": ["CityMETER: RUGON"]
+    }
+  ],
+  "addedContributions": [
+    {
+      "personId": "S0003",
+      "workId": "work-citymeter-rugon",
+      "engagementId": "E0033",
+      "role": { "th": "Product management", "en": "Product management" },
+      "period": { "start": null, "end": null, "label": "2026" }
+    },
+    {
+      "personId": "I0014",
+      "workId": "work-ijji",
+      "engagementId": "E0057",
+      "role": { "th": "Team member", "en": "Team member" },
+      "period": { "start": null, "end": null, "label": null }
+    },
+    {
+      "personId": "I0009",
+      "workId": "work-gistda-flood-near-me",
+      "engagementId": "E0013",
+      "role": { "th": "Software development", "en": "Software development" },
+      "period": { "start": null, "end": null, "label": "2025" }
+    },
+    {
+      "personId": "I0029",
+      "workId": "work-ijji",
+      "engagementId": "E0060",
+      "role": { "th": "Team member", "en": "Team member" },
+      "period": { "start": null, "end": null, "label": "2025" }
+    }
+  ],
+  "contributionRolesByProgram": {
+    "FDI": { "th": "Software development", "en": "Software development" },
+    "PDI": { "th": "Product development", "en": "Product development" },
+    "MSI": { "th": "Go-to-market", "en": "Go-to-market" },
+    "IMP": { "th": "Consulting Partner", "en": "Consulting Partner" }
+  },
+  "contributionRoleOverrides": [
+    { "workId": "work-citycell-model", "role": { "th": "Team member", "en": "Team member" } }
+  ]
+}

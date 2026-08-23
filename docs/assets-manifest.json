@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "policy": {
     "defaultDecision": "deny",
     "requiredForPersonImages": [
@@ -9,7 +9,9 @@
       "approved publication status"
     ],
     "fallback": "Render the full nickname when any approval is absent, pending, revoked, or invalid.",
-    "publicationBasisNote": "Owner-authorized public-profile portrait is a scoped directory-owner publication decision and must not be represented as individual consent."
+    "publicationBasisNote": "Owner-authorized public-profile portrait is a scoped directory-owner publication decision and must not be represented as individual consent.",
+    "certificateInventory": "data/approved/certificate-assets.json",
+    "certificatePublicationBasisNote": "Filled certificate images use the separate owner_authorized_public_certificate gate. QR targets are excluded from public data and contribution evidence."
   },
   "assets": [
     {
@@ -912,6 +914,132 @@
         "brand-mark"
       ],
       "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0001",
+      "path": "public/assets/people/I0001.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 89822,
+      "sha256": "2060dc92da367c36bbd3efbce154741d764cc67c182eaf6d2ae164a67e9bf68c",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "approvedRoles": ["person-avatar"],
+      "prohibitedRoles": ["brand-mark"],
+      "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0002",
+      "path": "public/assets/people/I0002.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 183177,
+      "sha256": "87479792816fdd3cd70572dfacad7ce9c2bdf28a3af1b1ddc401cb9e0de3f1c6",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "approvedRoles": ["person-avatar"],
+      "prohibitedRoles": ["brand-mark"],
+      "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-P0001",
+      "path": "public/assets/people/P0001.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 112036,
+      "sha256": "6598388246c803679b26c4963f268c5c656e071ed895b3a410fb51a96809ac55",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "approvedRoles": ["person-avatar"],
+      "prohibitedRoles": ["brand-mark"],
+      "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-S0003",
+      "path": "public/assets/people/S0003.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 109243,
+      "sha256": "e797832329c27e42af8cfa4251578cd40dce37f2c969a59311f738ed6de42198",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "approvedRoles": ["person-avatar"],
+      "prohibitedRoles": ["brand-mark"],
+      "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0004",
+      "path": "public/assets/people/I0004.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 99029,
+      "sha256": "582a35ef4a5119f015777540b13218bc8b149086c6a243aa0d01870cd6556bce",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "approvedRoles": ["person-avatar"],
+      "prohibitedRoles": ["brand-mark"],
+      "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0037",
+      "path": "public/assets/people/I0037.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 87815,
+      "sha256": "e0c005bf8b2210c9d444ddf6f0abf361a8952a243b81a000b7f92998c8823093",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "approvedRoles": ["person-avatar"],
+      "prohibitedRoles": ["brand-mark"],
+      "notes": "Exact Instagram candidate cross-checked by first name, nickname, CEDT, and Chulalongkorn; source URL retained only in private evidence; individual consent is not asserted."
     }
   ]
 }

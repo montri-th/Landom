@@ -24,7 +24,7 @@ npm test
 npm run build
 ```
 
-- `normalize` reads an authorized local file at `data/raw/google-sheet-snapshot.json` and deterministically rewrites public files in `data/generated/`. The private `data/raw/` directory is ignored by Git. The normalizer detects either a Sheet-style `sheets` map whose values are row arrays (header row first), or an exporter-shaped `tabs` map whose values contain `headers` and `rows`.
+- `normalize` reads an authorized local file at `data/raw/google-sheet-snapshot.json`, applies the reviewed contracts in `data/approved/` (including `profile-detail-overrides.json`), and deterministically rewrites public files in `data/generated/`. The private `data/raw/` directory is ignored by Git. The normalizer detects either a Sheet-style `sheets` map whose values are row arrays (header row first), or an exporter-shaped `tabs` map whose values contain `headers` and `rows`.
 - `validate` checks IDs, foreign keys, at least one contribution per person, Oat's two separate works, public-consent gates, asset approvals, canonical naming, privacy leaks, and required UI controls.
 - `test` exercises positive and negative data/privacy contracts plus the integrated source.
 - `build` validates and copies only `index.html`, `robots.txt`, `sitemap.xml`, `src/`, `public/`, and `data/generated/` into `dist/`. It writes a timestamp-free SHA-256 manifest for reproducibility, then validates the finished artifact.
@@ -58,7 +58,7 @@ Then open `http://localhost:4173/`.
 
 The UI reads `./data/generated/site-data.json`. Its public dimensions are:
 
-`institutions`, `programs`, `educationRecords`, `people`, `engagements`, `works`, `contributions`, `achievements`, `socialProfiles`, and `assets`.
+Public data schema `1.4.0` includes `institutions`, `programs`, `educationRecords`, `people`, `engagements`, `works`, `contributions`, `achievements`, `socialProfiles`, `assets`, and governed `certificates`.
 
 Person IDs have one canonical version only:
 
@@ -66,15 +66,15 @@ Person IDs have one canonical version only:
 - `P0001` — part-time staff
 - `I0001` — intern
 
-A person who changes role keeps one person record and one canonical ID; role periods live in `engagements`. Cards use standardized short institution/program labels. Profile details use standardized official names. Full-time profiles prioritize degree, field, and institution; intern profiles prioritize program and institution. `degree.awardStatus` and `degree.personalAwardVerified` keep program nomenclature separate from person-level completion evidence. For this release, the directory owner explicitly confirmed `completed` and `personalAwardVerified: true` for all four staff records; official program sources standardize the degree names. Missing academic fields are labelled as pending confirmation instead of repeating a university name as a program.
+A person who changes role keeps one person record and one canonical ID; role periods live in `engagements`. Praewa (`I0003`), Pat (`S0003`), Mos (`I0014`) and Faze (`I0015`) now retain their post-internship Part-time periods, while Pat continues to Full-time; Grace (`I0018`) keeps MSI 2025 and a separate PDI 2026 period. Cards use standardized short institution/program labels. Profile details use standardized official names. Full-time profiles prioritize degree, field, and institution; intern profiles prioritize program and institution. `degree.awardStatus` and `degree.personalAwardVerified` keep program nomenclature separate from person-level completion evidence. For this release, the directory owner explicitly confirmed `completed` and `personalAwardVerified: true` for all four staff records; official program sources standardize the degree names. Missing academic fields are labelled as pending confirmation instead of repeating a university name as a program.
 
 Internship and cooperative education are stored per engagement in `academicPlacementType`; the UI never infers them from cohort text. The current public co-op set is exactly `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, and `I0039`. A seventh owner-confirmed participant remains in the private Shortlisted recruitment registry until a started engagement and at least one contribution can be verified.
 
 Every public person must resolve to at least one contribution. `Land Portfolio` and `Lead2Loan` are separate work records and separate contributions, including for Oat.
 
-Works expose localized `catalogUrl.th/en` only where the route was verified, keep `destinationUrl` null when no exact work destination is known, and record `linkEvidence.linkScope` so a broad product catalog is never misrepresented as a work-specific page. FDI uses the exact UI label `Full-stack Developer Intern, FDI`; the Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์`.
+Works expose localized `catalogUrl.th/en` only where the route was verified, keep `destinationUrl` null when no exact work destination is known, and record `linkEvidence.linkScope` so a broad product catalog is never misrepresented as a work-specific page. FDI uses the exact UI label `Full-stack Developer Intern, FDI`; the Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์` and the English short label is `CP`. FDI/PDI/MSI contributions use `Software development` / `Product development` / `Go-to-market`; CityCell award-team contributions use `Team member`.
 
-Developer references: [data dictionary](docs/data-dictionary.md), [JSON Schema](data/schema/site-data.schema.json), and [implementation handoff](docs/implementation-handoff.md).
+Developer references: [data dictionary](docs/data-dictionary.md), [public JSON Schema](data/schema/site-data.schema.json), [approved detail-override schema](data/schema/profile-detail-overrides.schema.json), and [implementation handoff](docs/implementation-handoff.md).
 
 ## Privacy and assets
 
@@ -85,13 +85,14 @@ Developer references: [data dictionary](docs/data-dictionary.md), [JSON Schema](
 - A person image renders only through an `assets[]` record with exact identity, cleared rights, publishable status, a governed local path/hash, and either individual consent or scoped `owner_authorized_public_profile_portrait`. Expiring CDN/source URLs remain private; otherwise the UI renders the full nickname fallback.
 - Private social and asset workflow fields use these exact value sets: verification `owner_review_required | verified | rejected | missing`; consent `granted | pending | denied`; rights `cleared | pending | denied | revoked`; publication `publishable | withheld_pending_* | withdrawn`. `withheld_pending_*` is the reserved family of explicit pending-reason statuses, not a publishable state.
 - Approved portrait metadata lives in `data/approved/portrait-assets.json`; public hashes and role restrictions are also recorded in `docs/assets-manifest.json`. The horizontal Landometer logo remains approved only as the header lockup and is not a favicon or person avatar.
+- Filled certificate images are governed separately by `data/approved/certificate-assets.json`, copied byte-for-byte under `public/assets/certificates/`, and emitted only through owner-authorized `certificates[]` records. QR destinations never become contribution evidence, and printed spelling/date conflicts remain explicit review flags.
 - `robots.txt`, `sitemap.xml`, and the HTML canonical link all resolve to the single public `/Landom/` route. No favicon or social preview image is claimed until a separate compact asset is explicitly approved.
 
 ## Interface contract
 
 Language and theme controls follow the interaction pattern of the Landometer reference site. The source-of-truth hooks are listed in `docs/implementation-handoff.md` and enforced by validation.
 
-On small screens, search remains compact and the filters open in a bottom-sheet dialog instead of permanently occupying the viewport. Cards are keyboard-operable buttons; full records open in an accessible detail dialog.
+On small screens, search remains compact and the filters open in a bottom-sheet dialog instead of permanently occupying the viewport. Cards are keyboard-operable buttons; full records expand accessibly inside the masonry board, while certificate images use a dedicated high-resolution preview dialog.
 
 ## Publishing
 

@@ -38,7 +38,8 @@ function fixture() {
     ],
     achievements: [],
     socialProfiles: [],
-    assets: []
+    assets: [],
+    certificates: []
   };
 }
 
@@ -141,7 +142,7 @@ test('the build allowlist excludes private raw sheets and runtime secrets', () =
 });
 
 test('source satisfies the integrated data, privacy, asset, naming, and UI contract', async () => {
-  assert.equal(REQUIRED_UI_IDS.length, 14);
+  assert.equal(REQUIRED_UI_IDS.length, 15);
   const errors = await validateSite();
   assert.deepEqual(errors, [], errors.join('\n'));
 });

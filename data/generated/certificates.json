@@ -1,0 +1,1051 @@
+[
+  {
+    "certificateId": "CERT-S0003-FDI25101",
+    "personId": "S0003",
+    "credentialId": "FDI25101",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Apartment",
+    "workIds": [
+      "work-citymeter-apartment-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/S0003-FDI25101.png",
+    "downloadFilename": "landometer-certificate-S0003-FDI25101.png",
+    "sha256": "1409c8a5ced78b31ea9800c027659852cc96d70c8f597dd7f74c6aa5978c3582",
+    "bytes": 2095172,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0003-FDI25102",
+    "personId": "I0003",
+    "credentialId": "FDI25102",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Land Appraisal",
+    "workIds": [
+      "work-citymeter-land-appraisal"
+    ],
+    "publicPath": "public/assets/certificates/I0003-FDI25102.png",
+    "downloadFilename": "landometer-certificate-I0003-FDI25102.png",
+    "sha256": "f3b4d9bca5c963b6ea781b75fcced24a0346a8e2e08dc1841d9f5dbd18c218aa",
+    "bytes": 2147497,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0014-FDI25201",
+    "personId": "I0014",
+    "credentialId": "FDI25201",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Office",
+    "workIds": [
+      "work-citymeter-office-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0014-FDI25201.png",
+    "downloadFilename": "landometer-certificate-I0014-FDI25201.png",
+    "sha256": "19ba09449d95df421c65a270fc1284e6431a70ee956ec441005c7c799401d9bb",
+    "bytes": 2095451,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0013-FDI25202",
+    "personId": "I0013",
+    "credentialId": "FDI25202",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Detached House",
+    "workIds": [
+      "work-citymeter-detached-house-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0013-FDI25202.png",
+    "downloadFilename": "landometer-certificate-I0013-FDI25202.png",
+    "sha256": "70da15b12a3b59f1894fa6f1d51284297d8d5061c5d5cc694a8f9a6240ef3026",
+    "bytes": 2076956,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0015-FDI25203",
+    "personId": "I0015",
+    "credentialId": "FDI25203",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Company",
+    "workIds": [
+      "work-citymeter-companies"
+    ],
+    "publicPath": "public/assets/certificates/I0015-FDI25203.png",
+    "downloadFilename": "landometer-certificate-I0015-FDI25203.png",
+    "sha256": "3a7ebaf431a14d371be54f5f4a85c18693959e611b3b267df6288f5736a88c11",
+    "bytes": 2095641,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0011-FDI25204",
+    "personId": "I0011",
+    "credentialId": "FDI25204",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Condo Offer",
+    "workIds": [
+      "work-citymeter-condo-offer-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0011-FDI25204.png",
+    "downloadFilename": "landometer-certificate-I0011-FDI25204.png",
+    "sha256": "a4d002fd26c5db6016bdaa5d237b180bc99633ee9644853248d5ebd5cae30220",
+    "bytes": 2098236,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0010-FDI25205",
+    "personId": "I0010",
+    "credentialId": "FDI25205",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Condo Rental",
+    "workIds": [
+      "work-citymeter-condo-rental-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0010-FDI25205.png",
+    "downloadFilename": "landometer-certificate-I0010-FDI25205.png",
+    "sha256": "ce6e30590c407b00bb0b45cdabc155ed0cd2703ef903c6a8f02093753209abc5",
+    "bytes": 2097808,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0009-FDI25206",
+    "personId": "I0009",
+    "credentialId": "FDI25206",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Factory",
+    "workIds": [
+      "work-citymeter-factories"
+    ],
+    "publicPath": "public/assets/certificates/I0009-FDI25206.png",
+    "downloadFilename": "landometer-certificate-I0009-FDI25206.png",
+    "sha256": "2a8ae9cea6005a82a7addc4b2b73fdfcaa36eac824d81915ebb7a7d89b7af8a0",
+    "bytes": 2100088,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0005-FDI25207",
+    "personId": "I0005",
+    "credentialId": "FDI25207",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Road Traffic",
+    "workIds": [
+      "work-citymeter-road-traffic-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0005-FDI25207.png",
+    "downloadFilename": "landometer-certificate-I0005-FDI25207.png",
+    "sha256": "a69495078ba2eb841c8f65e5ade2b28b80e988fcee74cbc88ac98b70c539bdda",
+    "bytes": 2078439,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0008-FDI25208",
+    "personId": "I0008",
+    "credentialId": "FDI25208",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Land Offer",
+    "workIds": [
+      "work-citymeter-land-offer-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0008-FDI25208.png",
+    "downloadFilename": "landometer-certificate-I0008-FDI25208.png",
+    "sha256": "cbf3a9225dfddd5397eee758620f3b57e5a91127b64bff0b58436d0fa7134950",
+    "bytes": 2077273,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0007-FDI25209",
+    "personId": "I0007",
+    "credentialId": "FDI25209",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: Townhouse",
+    "workIds": [
+      "work-citymeter-townhouse-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/I0007-FDI25209.png",
+    "downloadFilename": "landometer-certificate-I0007-FDI25209.png",
+    "sha256": "3f708df8ff2c810285a4b4ada0f0d908b6b9adfb4b1a3f8c8f761b916eee9598",
+    "bytes": 2099877,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0006-FDI25210",
+    "personId": "I0006",
+    "credentialId": "FDI25210",
+    "programCode": "FDI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: School",
+    "workIds": [
+      "work-citymeter-schools"
+    ],
+    "publicPath": "public/assets/certificates/I0006-FDI25210.png",
+    "downloadFilename": "landometer-certificate-I0006-FDI25210.png",
+    "sha256": "a7ced191d8142c2d251c1cd09b420dd38c25a4a4b75fee9c328c8a62d81a3dd7",
+    "bytes": 2096695,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-S0002-MSI25101",
+    "personId": "S0002",
+    "credentialId": "MSI25101",
+    "programCode": "MSI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Go-to-market",
+      "en": "Go-to-market"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityMETER: QuakeSafe",
+    "workIds": [
+      "work-citymeter-quakesafe-unresolved"
+    ],
+    "publicPath": "public/assets/certificates/S0002-MSI25101.png",
+    "downloadFilename": "landometer-certificate-S0002-MSI25101.png",
+    "sha256": "9b0b84e0adf302dfb6f1ff2461e988704997339443e758bb2de542240f01c237",
+    "bytes": 2020897,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0012-MSI25201",
+    "personId": "I0012",
+    "credentialId": "MSI25201",
+    "programCode": "MSI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Go-to-market",
+      "en": "Go-to-market"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityStory: KinNow",
+    "workIds": [
+      "work-kinnow"
+    ],
+    "publicPath": "public/assets/certificates/I0012-MSI25201.png",
+    "downloadFilename": "landometer-certificate-I0012-MSI25201.png",
+    "sha256": "bb151530c68e6caa430be9c6feed35cb51991a934b78d23cce9e6e8a4fc935c1",
+    "bytes": 2108529,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0018-MSI25202",
+    "personId": "I0018",
+    "credentialId": "MSI25202",
+    "programCode": "MSI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Go-to-market",
+      "en": "Go-to-market"
+    },
+    "awardedOn": "2025-07-31",
+    "printedWorkTitle": "CityStory: SafeStreet",
+    "workIds": [
+      "work-safestreet"
+    ],
+    "publicPath": "public/assets/certificates/I0018-MSI25202.png",
+    "downloadFilename": "landometer-certificate-I0018-MSI25202.png",
+    "sha256": "34add1dd27eb7c6d49720ae9d307f6f70e1d4e9cc9732a55d431b0e1dec3e15c",
+    "bytes": 2072262,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [
+      "This MSI certificate documents the 2025 engagement only; Grace's separate 2026 engagement is PDI and is not inferred from this image."
+    ],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0017-MSI25301",
+    "personId": "I0017",
+    "credentialId": "MSI25301",
+    "programCode": "MSI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Go-to-market",
+      "en": "Go-to-market"
+    },
+    "awardedOn": "2025-08-08",
+    "printedWorkTitle": "CityStory: ContentCompass",
+    "workIds": [
+      "work-content-compass"
+    ],
+    "publicPath": "public/assets/certificates/I0017-MSI25301.png",
+    "downloadFilename": "landometer-certificate-I0017-MSI25301.png",
+    "sha256": "2021a95b2370fbd721bb5031ade198b23e2c74de071a8c4e8c4ceda1d6b40091",
+    "bytes": 2012504,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0016-MSI25302",
+    "personId": "I0016",
+    "credentialId": "MSI25302",
+    "programCode": "MSI",
+    "title": {
+      "th": "เกียรติบัตรแห่งความสำเร็จ",
+      "en": "Certificate of Achievement"
+    },
+    "roleLabel": {
+      "th": "Go-to-market",
+      "en": "Go-to-market"
+    },
+    "awardedOn": "2025-08-08",
+    "printedWorkTitle": "CityStory: Walkidio",
+    "workIds": [
+      "work-walkidio"
+    ],
+    "publicPath": "public/assets/certificates/I0016-MSI25302.png",
+    "downloadFilename": "landometer-certificate-I0016-MSI25302.png",
+    "sha256": "ebc02a1e9499e76c5747fc2f2ce296caec1c1e2dfcac0491b63d3cee2a44a4fe",
+    "bytes": 1879680,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0019-IMP25001",
+    "personId": "I0019",
+    "credentialId": "IMP25001",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0019-IMP25001.png",
+    "downloadFilename": "landometer-certificate-I0019-IMP25001.png",
+    "sha256": "35c6d859bb1983ef984b6c69c80de0351d59e9a5259d8d0bdc7d66dab459f1f4",
+    "bytes": 2015672,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0020-IMP25002",
+    "personId": "I0020",
+    "credentialId": "IMP25002",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0020-IMP25002.png",
+    "downloadFilename": "landometer-certificate-I0020-IMP25002.png",
+    "sha256": "c6270bcacab2b4d6217c4e5cbfccae4f1da6c0e639e266ee7d0c9f8048a7e367",
+    "bytes": 2016757,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0021-IMP25003",
+    "personId": "I0021",
+    "credentialId": "IMP25003",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0021-IMP25003.png",
+    "downloadFilename": "landometer-certificate-I0021-IMP25003.png",
+    "sha256": "dc06ae2c6e34b5b80635f2cba171fa4e52de7fd29e213698bce8356306bfb572",
+    "bytes": 2011423,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0022-IMP25004",
+    "personId": "I0022",
+    "credentialId": "IMP25004",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0022-IMP25004.png",
+    "downloadFilename": "landometer-certificate-I0022-IMP25004.png",
+    "sha256": "70e846d73c99260e0299fc15ea1e8f0312517b15695bb54435deb7ed85ee9c96",
+    "bytes": 2011553,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0023-IMP25005",
+    "personId": "I0023",
+    "credentialId": "IMP25005",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0023-IMP25005.png",
+    "downloadFilename": "landometer-certificate-I0023-IMP25005.png",
+    "sha256": "c72b4c435220b1775514876f79a36eef70d7fabd9f8c78193687d92d80334a27",
+    "bytes": 2012954,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0024-IMP25006",
+    "personId": "I0024",
+    "credentialId": "IMP25006",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0024-IMP25006.png",
+    "downloadFilename": "landometer-certificate-I0024-IMP25006.png",
+    "sha256": "208c3e60fc936b1846ab62f5dcac65c644ac9839d1da50f03cd6a7f2b4dae482",
+    "bytes": 2015765,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0025-IMP25007",
+    "personId": "I0025",
+    "credentialId": "IMP25007",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0025-IMP25007.png",
+    "downloadFilename": "landometer-certificate-I0025-IMP25007.png",
+    "sha256": "6a8484f9a777b8f6711b3f7c1d145d026bc54f59e4a9020061c337610c845afa",
+    "bytes": 2015264,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "duplicate_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [
+      "Credential ID IMP25007 is also printed on Dada's certificate; certificateId remains unique by person and credential."
+    ],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0029-IMP25007",
+    "personId": "I0029",
+    "credentialId": "IMP25007",
+    "programCode": "IMP",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Consulting Partner",
+      "en": "Consulting Partner"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0029-IMP25007.png",
+    "downloadFilename": "landometer-certificate-I0029-IMP25007.png",
+    "sha256": "8335ea04270635fda0bee92c6299859c0e024a976e507a14e7142c475c6bfbfc",
+    "bytes": 2017065,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "owner_review_required",
+    "credentialIdCollisionStatus": "duplicate_in_printed_source",
+    "dateEvidenceStatus": "printed_date_only",
+    "evidenceNotes": [
+      "The printed surname Chantacharoongpong differs from the canonical registry spelling Chantacharoonpong; the registry name is preserved pending owner review.",
+      "Credential ID IMP25007 is also printed on Pang's certificate; certificateId remains unique by person and credential."
+    ],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  },
+  {
+    "certificateId": "CERT-I0026-PDI26101",
+    "personId": "I0026",
+    "credentialId": "PDI26101",
+    "programCode": "PDI",
+    "title": {
+      "th": "เกียรติบัตรแสดงความขอบคุณ",
+      "en": "Certificate of Appreciation"
+    },
+    "roleLabel": {
+      "th": "Product development",
+      "en": "Product development"
+    },
+    "awardedOn": "2025-11-13",
+    "printedWorkTitle": "ijji",
+    "workIds": [
+      "work-ijji"
+    ],
+    "publicPath": "public/assets/certificates/I0026-PDI26101.png",
+    "downloadFilename": "landometer-certificate-I0026-PDI26101.png",
+    "sha256": "23ad36005aefa676c61bb70b91bc4fd61468f64cf18d959bca5d3bece26fe836",
+    "bytes": 2017328,
+    "mimeType": "image/png",
+    "verificationStatus": "verified",
+    "publicationStatus": "publishable",
+    "rightsStatus": "cleared",
+    "consentStatus": "pending",
+    "publicationBasis": "owner_authorized_public_certificate",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_certificate_image_and_printed_profile_facts",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "nameSpellingStatus": "matched",
+    "credentialIdCollisionStatus": "unique_in_printed_source",
+    "dateEvidenceStatus": "printed_date_conflicts_with_program_code",
+    "evidenceNotes": [
+      "The printed award date is retained as image evidence only and must not be used to infer a 2026 engagement timeline."
+    ],
+    "evidenceBoundary": "printed_certificate_facts_only_qr_destinations_excluded"
+  }
+]

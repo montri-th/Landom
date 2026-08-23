@@ -418,7 +418,8 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       educationRecords: educationRecords.length,
       works: works.length,
       contributions: contributions.length,
-      achievements: achievements.length
+      achievements: achievements.length,
+      certificates: baseline.certificates.length
     }
   };
 
@@ -434,6 +435,7 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     contributions,
     achievements,
     socialProfiles,
-    assets
+    assets,
+    certificates: structuredClone(baseline.certificates)
   };
 }
