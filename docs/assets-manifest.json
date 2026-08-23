@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "policy": {
+    "defaultDecision": "deny",
+    "requiredForPersonImages": [
+      "verified source",
+      "recorded public consent",
+      "confirmed publication rights",
+      "approved publication status"
+    ],
+    "fallback": "Render initials when any approval is absent, pending, revoked, or invalid."
+  },
+  "assets": [
+    {
+      "assetId": "brand-landometer-horizontal",
+      "path": "public/assets/brand/landometer-horizontal.png",
+      "variant": "official-horizontal-lockup-optimized",
+      "approvalScope": "header-brand-lockup",
+      "mediaType": "image/png",
+      "width": 1600,
+      "height": 439,
+      "bytes": 59473,
+      "sha256": "6c71c10505ca5bb0b267f4b7efeac58ff33e6aad1f84dcf232b6177e0e4d5731",
+      "transparentCanvas": true,
+      "themeStrategy": "Preserve the transparent logo and use the header-owned surface for contrast.",
+      "sourceVersion": "sources/Landometer-Logo-TransparentBG.png sha256:8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92",
+      "cacheRevision": "6c71c10505ca",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "approvedRoles": [
+        "header-brand-lockup"
+      ],
+      "prohibitedRoles": [
+        "favicon",
+        "compact-icon",
+        "person-avatar"
+      ],
+      "notes": "Official horizontal lockup. Do not crop or repurpose it as a compact mark."
+    }
+  ]
+}

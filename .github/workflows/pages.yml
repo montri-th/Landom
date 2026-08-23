@@ -1,0 +1,106 @@
+name: Validate and deploy GitHub Pages
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate, test, and build
+        run: npm run build
+
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Smoke-test deployed HTML and public data
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          base_url="${PAGE_URL%/}"
+          html_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-index.html --write-out '%{content_type}' "$base_url/")"
+          data_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-site-data.json --write-out '%{content_type}' "$base_url/data/generated/site-data.json")"
+          manifest_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-build-manifest.json --write-out '%{content_type}' "$base_url/build-manifest.json")"
+          script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-app.js --write-out '%{content_type}' "$base_url/src/app.js")"
+          style_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-styles.css --write-out '%{content_type}' "$base_url/src/styles.css")"
+          logo_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo.png --write-out '%{content_type}' "$base_url/public/assets/brand/landometer-horizontal.png")"
+          robots_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-robots.txt --write-out '%{content_type}' "$base_url/robots.txt")"
+          sitemap_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-sitemap.xml --write-out '%{content_type}' "$base_url/sitemap.xml")"
+          case "$html_type" in text/html*) ;; *) echo "Unexpected HTML content type: $html_type"; exit 1;; esac
+          case "$data_type" in application/json*|text/json*) ;; *) echo "Unexpected JSON content type: $data_type"; exit 1;; esac
+          case "$manifest_type" in application/json*|text/json*) ;; *) echo "Unexpected manifest content type: $manifest_type"; exit 1;; esac
+          case "$script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected JavaScript content type: $script_type"; exit 1;; esac
+          case "$style_type" in text/css*) ;; *) echo "Unexpected CSS content type: $style_type"; exit 1;; esac
+          case "$logo_type" in image/png*) ;; *) echo "Unexpected logo content type: $logo_type"; exit 1;; esac
+          case "$robots_type" in text/plain*) ;; *) echo "Unexpected robots content type: $robots_type"; exit 1;; esac
+          case "$sitemap_type" in application/xml*|text/xml*) ;; *) echo "Unexpected sitemap content type: $sitemap_type"; exit 1;; esac
+          node --input-type=module -e '
+            import { createHash } from "node:crypto";
+            import { readFileSync } from "node:fs";
+            const html = readFileSync("/tmp/landom-index.html", "utf8");
+            const data = JSON.parse(readFileSync("/tmp/landom-site-data.json", "utf8"));
+            const manifest = JSON.parse(readFileSync("/tmp/landom-build-manifest.json", "utf8"));
+            if (!html.includes("id=\"people-board\"")) throw Error("people board missing from deployed HTML");
+            if (!Array.isArray(data.people) || data.people.length === 0) throw Error("deployed people dataset is empty");
+            const expected = new Map(manifest.files.map((record) => [record.path, record.sha256]));
+            const critical = [
+              ["index.html", "/tmp/landom-index.html"],
+              ["data/generated/site-data.json", "/tmp/landom-site-data.json"],
+              ["src/app.js", "/tmp/landom-app.js"],
+              ["src/styles.css", "/tmp/landom-styles.css"],
+              ["public/assets/brand/landometer-horizontal.png", "/tmp/landom-logo.png"],
+              ["robots.txt", "/tmp/landom-robots.txt"],
+              ["sitemap.xml", "/tmp/landom-sitemap.xml"]
+            ];
+            for (const [publishedPath, localPath] of critical) {
+              const digest = createHash("sha256").update(readFileSync(localPath)).digest("hex");
+              if (!expected.has(publishedPath) || expected.get(publishedPath) !== digest) {
+                throw Error(`live bytes do not match build manifest for ${publishedPath}`);
+              }
+            }
+          '

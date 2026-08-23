@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-08-23T00:00:00+07:00",
+  "source": {
+    "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
+    "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
+    "publicSheetsUsed": [
+      "people_registry",
+      "engagements",
+      "contributions"
+    ],
+    "privateContactSourcesExcluded": true,
+    "exclusionReason": "Private contact input must never be ingested into or emitted by public builds."
+  },
+  "personIdPolicy": {
+    "version": "1.0",
+    "migrationDate": "2026-08-23",
+    "patterns": {
+      "fullTimeAtMigration": "^S\\d{4}$",
+      "partTimeAtMigration": "^P\\d{4}$",
+      "otherAtMigration": "^I\\d{4}$"
+    },
+    "frozenAfterMigration": true,
+    "futureRoleChangesNeverChangePersonId": true
+  },
+  "evidenceBoundary": {
+    "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
+    "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
+    "socialAndPortraits": "No social URL or portrait may be published without consent, verification and asset rights approval."
+  },
+  "counts": {
+    "people": 48,
+    "engagements": 54,
+    "educationRecords": 48,
+    "works": 51,
+    "contributions": 95,
+    "achievements": 1
+  }
+}

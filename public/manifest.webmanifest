@@ -1,0 +1,12 @@
+{
+  "name": "Landom by Landometer",
+  "short_name": "Landom",
+  "description": "Stories and contributions from the Landom community.",
+  "lang": "th",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F6F7F3",
+  "theme_color": "#F6F7F3",
+  "categories": ["business", "education", "productivity"]
+}

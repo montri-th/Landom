@@ -1,0 +1,16 @@
+{
+  "name": "landom-people-registry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Privacy-aware static people and contribution registry for the Landom community.",
+  "scripts": {
+    "normalize": "node tools/normalize-data.mjs",
+    "validate": "node tools/validate-site.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "npm run validate && npm test && node tools/build.mjs && node tools/validate-site.mjs --dist"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

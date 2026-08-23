@@ -1,0 +1,1712 @@
+[
+  {
+    "contributionId": "C0001",
+    "personId": "S0003",
+    "workId": "work-citymeter-apartment-unresolved",
+    "engagementId": "E0007",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0002",
+    "personId": "I0015",
+    "workId": "work-citymeter-companies",
+    "engagementId": "E0019",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0003",
+    "personId": "I0011",
+    "workId": "work-citymeter-condo-offer-unresolved",
+    "engagementId": "E0015",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0004",
+    "personId": "I0010",
+    "workId": "work-citymeter-condo-rental-unresolved",
+    "engagementId": "E0014",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0005",
+    "personId": "I0013",
+    "workId": "work-citymeter-detached-house-unresolved",
+    "engagementId": "E0017",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0006",
+    "personId": "I0009",
+    "workId": "work-citymeter-factories",
+    "engagementId": "E0013",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "google_sheet_snapshot_2026-08-23+owner_instruction_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0007",
+    "personId": "I0003",
+    "workId": "work-citymeter-land-appraisal",
+    "engagementId": "E0006",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "google_sheet_snapshot_2026-08-23+owner_instruction_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0008",
+    "personId": "I0008",
+    "workId": "work-citymeter-land-offer-unresolved",
+    "engagementId": "E0012",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0009",
+    "personId": "I0014",
+    "workId": "work-citymeter-office-unresolved",
+    "engagementId": "E0018",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0010",
+    "personId": "S0002",
+    "workId": "work-citymeter-quakesafe-unresolved",
+    "engagementId": "E0005",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0011",
+    "personId": "I0005",
+    "workId": "work-citymeter-road-traffic-unresolved",
+    "engagementId": "E0009",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0012",
+    "personId": "I0006",
+    "workId": "work-citymeter-schools",
+    "engagementId": "E0010",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "google_sheet_snapshot_2026-08-23+owner_instruction_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0013",
+    "personId": "I0007",
+    "workId": "work-citymeter-townhouse-unresolved",
+    "engagementId": "E0011",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0014",
+    "personId": "I0026",
+    "workId": "work-ijji",
+    "engagementId": "E0030",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "google_sheet_snapshot_2026-08-23+owner_instruction_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0015",
+    "personId": "I0022",
+    "workId": "work-ijji",
+    "engagementId": "E0026",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0016",
+    "personId": "I0024",
+    "workId": "work-ijji",
+    "engagementId": "E0028",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0017",
+    "personId": "I0019",
+    "workId": "work-ijji",
+    "engagementId": "E0023",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0018",
+    "personId": "I0020",
+    "workId": "work-ijji",
+    "engagementId": "E0024",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0019",
+    "personId": "I0021",
+    "workId": "work-ijji",
+    "engagementId": "E0025",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0020",
+    "personId": "I0023",
+    "workId": "work-ijji",
+    "engagementId": "E0027",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0021",
+    "personId": "I0025",
+    "workId": "work-ijji",
+    "engagementId": "E0029",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0022",
+    "personId": "I0005",
+    "workId": "work-content-compass",
+    "engagementId": "E0009",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0023",
+    "personId": "I0008",
+    "workId": "work-content-compass",
+    "engagementId": "E0012",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0024",
+    "personId": "I0013",
+    "workId": "work-content-compass",
+    "engagementId": "E0017",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0025",
+    "personId": "I0017",
+    "workId": "work-content-compass",
+    "engagementId": "E0021",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0026",
+    "personId": "I0009",
+    "workId": "work-kinnow",
+    "engagementId": "E0013",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0027",
+    "personId": "I0012",
+    "workId": "work-kinnow",
+    "engagementId": "E0016",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0028",
+    "personId": "I0014",
+    "workId": "work-kinnow",
+    "engagementId": "E0018",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0029",
+    "personId": "S0003",
+    "workId": "work-safestreet",
+    "engagementId": "E0007",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0030",
+    "personId": "I0015",
+    "workId": "work-safestreet",
+    "engagementId": "E0019",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0031",
+    "personId": "I0007",
+    "workId": "work-safestreet",
+    "engagementId": "E0011",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0032",
+    "personId": "I0018",
+    "workId": "work-safestreet",
+    "engagementId": "E0022",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-06-23",
+      "end": "2025-07-31",
+      "label": "2025-06-23 – 2025-07-31"
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "google_sheet_snapshot_2026-08-23+owner_instruction_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0033",
+    "personId": "I0006",
+    "workId": "work-walkidio",
+    "engagementId": "E0010",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0034",
+    "personId": "I0010",
+    "workId": "work-walkidio",
+    "engagementId": "E0014",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0035",
+    "personId": "I0011",
+    "workId": "work-walkidio",
+    "engagementId": "E0015",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0036",
+    "personId": "I0016",
+    "workId": "work-walkidio",
+    "engagementId": "E0020",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": "2025-07-01",
+      "end": "2025-07-31",
+      "label": "2025-07-01 – 2025-07-31"
+    },
+    "evidenceStatus": "sheet_recorded",
+    "sourceRef": "google_sheet_snapshot_2026-08-23",
+    "evidenceNote": "จากชีต certificate · role_in_work = Contributor ทุกแถว ชีตไม่ได้บอกว่าใครเป็น lead"
+  },
+  {
+    "contributionId": "C0037",
+    "personId": "I0035",
+    "workId": "work-citymeter-companies",
+    "engagementId": "E0045",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0038",
+    "personId": "I0031",
+    "workId": "work-citymeter-hotels",
+    "engagementId": "E0041",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0039",
+    "personId": "I0001",
+    "workId": "work-citymeter-hotels",
+    "engagementId": "E0002",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2024"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0040",
+    "personId": "I0002",
+    "workId": "work-citymeter-factories",
+    "engagementId": "E0003",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2024"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0041",
+    "personId": "I0001",
+    "workId": "work-citymeter-factories",
+    "engagementId": "E0002",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2024"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0042",
+    "personId": "I0015",
+    "workId": "work-citymeter-registered-cars",
+    "engagementId": "E0019",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0043",
+    "personId": "I0015",
+    "workId": "work-citychat",
+    "engagementId": "E0019",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0044",
+    "personId": "I0015",
+    "workId": "work-gistda-flood-near-me",
+    "engagementId": "E0019",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0045",
+    "personId": "I0015",
+    "workId": "work-citymeter-flood-recurrent",
+    "engagementId": "E0019",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0046",
+    "personId": "I0003",
+    "workId": "work-citymeter-crop-area-output",
+    "engagementId": "E0006",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0047",
+    "personId": "I0003",
+    "workId": "work-gistda-flood-near-me",
+    "engagementId": "E0006",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0048",
+    "personId": "I0003",
+    "workId": "work-citymeter-eia",
+    "engagementId": "E0006",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0049",
+    "personId": "I0008",
+    "workId": "work-citymeter-eia",
+    "engagementId": "E0012",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0050",
+    "personId": "I0036",
+    "workId": "work-citymeter-municipal-revenue",
+    "engagementId": "E0046",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0051",
+    "personId": "I0036",
+    "workId": "work-citychat",
+    "engagementId": "E0046",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0052",
+    "personId": "I0027",
+    "workId": "work-ijji",
+    "engagementId": "E0034",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0053",
+    "personId": "I0028",
+    "workId": "work-ijji",
+    "engagementId": "E0037",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0054",
+    "personId": "I0018",
+    "workId": "work-ijji",
+    "engagementId": null,
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0055",
+    "personId": "I0039",
+    "workId": "work-citymeter-roaddna",
+    "engagementId": "E0049",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0056",
+    "personId": "S0003",
+    "workId": "work-citymeter-product-stewardship",
+    "engagementId": null,
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0057",
+    "personId": "S0003",
+    "workId": "work-citywiki",
+    "engagementId": null,
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0058",
+    "personId": "I0042",
+    "workId": "work-citywiki",
+    "engagementId": "E0052",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0059",
+    "personId": "I0039",
+    "workId": "work-citywiki",
+    "engagementId": "E0049",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0060",
+    "personId": "I0017",
+    "workId": "work-brand-visual-guidelines-2025",
+    "engagementId": "E0021",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0061",
+    "personId": "I0029",
+    "workId": "work-vote69",
+    "engagementId": "E0038",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0062",
+    "personId": "I0029",
+    "workId": "work-citychat",
+    "engagementId": "E0038",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0063",
+    "personId": "I0043",
+    "workId": "work-citymeter-tourism",
+    "engagementId": "E0053",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0064",
+    "personId": "I0043",
+    "workId": "work-citymeter-fuel-stations",
+    "engagementId": "E0053",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0065",
+    "personId": "I0043",
+    "workId": "work-landom-community",
+    "engagementId": "E0053",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0066",
+    "personId": "I0032",
+    "workId": "work-citymeter-flood-latest",
+    "engagementId": "E0042",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0067",
+    "personId": "I0032",
+    "workId": "work-dwr-flood-map",
+    "engagementId": "E0042",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0068",
+    "personId": "I0026",
+    "workId": "work-population-forecasting-research",
+    "engagementId": "E0030",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0069",
+    "personId": "I0037",
+    "workId": "work-citymeter-shopping-centers",
+    "engagementId": "E0047",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": "คำสั่งต้นทางรวม “shopping centers and venues”; canonical authority รองรับเฉพาะ Shopping Centers จึงไม่รวม venues และรอแยกขอบเขตภายหลัง"
+  },
+  {
+    "contributionId": "C0070",
+    "personId": "I0011",
+    "workId": "work-ijji",
+    "engagementId": null,
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0071",
+    "personId": "I0011",
+    "workId": "work-citymeter-locale-insights",
+    "engagementId": "E0015",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2025"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0072",
+    "personId": "I0038",
+    "workId": "work-citymeter-government-workforce",
+    "engagementId": "E0048",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0073",
+    "personId": "I0038",
+    "workId": "work-dwr-runoff",
+    "engagementId": "E0048",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0074",
+    "personId": "S0001",
+    "workId": "work-citycell-model",
+    "engagementId": "E0031",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0075",
+    "personId": "P0001",
+    "workId": "work-citycell-model",
+    "engagementId": "E0004",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0076",
+    "personId": "I0016",
+    "workId": "work-citycell-model",
+    "engagementId": "E0020",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0077",
+    "personId": "I0004",
+    "workId": "work-ijji",
+    "engagementId": null,
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0078",
+    "personId": "I0033",
+    "workId": "work-ijji",
+    "engagementId": "E0043",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0079",
+    "personId": "I0041",
+    "workId": "work-ijji",
+    "engagementId": "E0051",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0080",
+    "personId": "I0040",
+    "workId": "work-ijji",
+    "engagementId": "E0050",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0081",
+    "personId": "I0031",
+    "workId": "work-citychat",
+    "engagementId": "E0041",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0082",
+    "personId": "I0036",
+    "workId": "work-cityscan",
+    "engagementId": "E0046",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0083",
+    "personId": "I0030",
+    "workId": "work-citymeter-buildings",
+    "engagementId": "E0040",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0084",
+    "personId": "I0030",
+    "workId": "work-citymeter-fdi-playbook",
+    "engagementId": "E0040",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0085",
+    "personId": "I0034",
+    "workId": "work-citymeter-flood-forecasting-unresolved",
+    "engagementId": "E0044",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0086",
+    "personId": "I0034",
+    "workId": "work-locale-insight-intelligence-layer",
+    "engagementId": "E0044",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0087",
+    "personId": "I0034",
+    "workId": "work-ijji",
+    "engagementId": "E0044",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0088",
+    "personId": "P0001",
+    "workId": "work-citychat",
+    "engagementId": "E0004",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0089",
+    "personId": "S0002",
+    "workId": "work-ijji",
+    "engagementId": "E0032",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0090",
+    "personId": "S0004",
+    "workId": "work-citychat",
+    "engagementId": "E0039",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0091",
+    "personId": "S0001",
+    "workId": "work-citymeter-schools",
+    "engagementId": "E0001",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "FDI 2024"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0092",
+    "personId": "S0001",
+    "workId": "work-land-portfolio",
+    "engagementId": "E0054",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Part-time; dates pending"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0093",
+    "personId": "S0001",
+    "workId": "work-land-portfolio",
+    "engagementId": "E0031",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time; dates pending"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0094",
+    "personId": "S0001",
+    "workId": "work-lead2loan",
+    "engagementId": "E0031",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time; dates pending"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0095",
+    "personId": "S0001",
+    "workId": "work-fdi-mentoring",
+    "engagementId": "E0031",
+    "role": {
+      "th": "ผู้มีส่วนร่วม",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time; dates pending"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-08-23",
+    "evidenceNote": null
+  }
+]

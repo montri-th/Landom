@@ -1,0 +1,722 @@
+[
+  {
+    "educationRecordId": "EDU0001",
+    "personId": "S0001",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL, Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0002",
+    "personId": "I0001",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL, Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0003",
+    "personId": "I0002",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL, Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0004",
+    "personId": "S0002",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-public-relations",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Public Relations, Chulalongkorn",
+    "qualification": {
+      "th": "การประชาสัมพันธ์",
+      "en": "Public Relations"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0005",
+    "personId": "I0003",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0006",
+    "personId": "S0003",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0007",
+    "personId": "I0004",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-chinese",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Faculty of Arts (Chinese), Chulalongkorn",
+    "qualification": {
+      "th": "ภาษาจีน คณะอักษรศาสตร์",
+      "en": "Chinese, Faculty of Arts"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0008",
+    "personId": "I0005",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0009",
+    "personId": "I0006",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0010",
+    "personId": "I0007",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0011",
+    "personId": "I0008",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0012",
+    "personId": "I0009",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0013",
+    "personId": "I0010",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0014",
+    "personId": "I0011",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0015",
+    "personId": "I0012",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0016",
+    "personId": "I0013",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Computer Engineering, Chulalongkorn",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0017",
+    "personId": "I0014",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Computer Engineering, Chulalongkorn",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0018",
+    "personId": "I0015",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Computer Engineering, Chulalongkorn",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0019",
+    "personId": "I0016",
+    "institutionId": "inst-thammasat",
+    "programId": "program-tu-marketing",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Marketing, Thammasat",
+    "qualification": {
+      "th": "การตลาด",
+      "en": "Marketing"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0020",
+    "personId": "I0017",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-bascii",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "BAScii, Chulalongkorn",
+    "qualification": {
+      "th": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
+      "en": "Bachelor of Arts and Science in Integrated Innovation"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0021",
+    "personId": "I0018",
+    "institutionId": "inst-thammasat",
+    "programId": "program-tu-dbtm",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Design, Business & Technology Management, Thammasat",
+    "qualification": {
+      "th": "การจัดการการออกแบบ ธุรกิจ และเทคโนโลยี",
+      "en": "Design, Business & Technology Management"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0022",
+    "personId": "I0019",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-economics",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Economics, Chulalongkorn",
+    "qualification": {
+      "th": "เศรษฐศาสตร์",
+      "en": "Economics"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0023",
+    "personId": "I0020",
+    "institutionId": "inst-chula",
+    "programId": null,
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Chulalongkorn",
+    "qualification": {
+      "th": null,
+      "en": null
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0024",
+    "personId": "I0021",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-eba",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Economics (EBA), Faculty of Arts, Chulalongkorn",
+    "qualification": {
+      "th": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+      "en": "Economics, International Program"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0025",
+    "personId": "I0022",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-finance",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Finance, Chulalongkorn",
+    "qualification": {
+      "th": "การเงิน",
+      "en": "Finance"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0026",
+    "personId": "I0023",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-economics",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Economics, Chulalongkorn",
+    "qualification": {
+      "th": "เศรษฐศาสตร์",
+      "en": "Economics"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0027",
+    "personId": "I0024",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-economics",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Economics, Chulalongkorn",
+    "qualification": {
+      "th": "เศรษฐศาสตร์",
+      "en": "Economics"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0028",
+    "personId": "I0025",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-finance",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Finance, Chulalongkorn",
+    "qualification": {
+      "th": "การเงิน",
+      "en": "Finance"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0029",
+    "personId": "I0026",
+    "institutionId": "inst-kaist",
+    "programId": "program-kaist-aerospace-btm",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Aerospace Engineering & Business Technology Management, KAIST",
+    "qualification": {
+      "th": "วิศวกรรมการบินและอวกาศ และการจัดการเทคโนโลยีธุรกิจ",
+      "en": "Aerospace Engineering & Business Technology Management"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0030",
+    "personId": "I0027",
+    "institutionId": "inst-thammasat",
+    "programId": "program-tu-bba-marketing",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "BBA (Marketing), Thammasat",
+    "qualification": {
+      "th": "บริหารธุรกิจ สาขาการตลาด",
+      "en": "BBA in Marketing"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0031",
+    "personId": "I0028",
+    "institutionId": "inst-thammasat",
+    "programId": "program-tu-bba-marketing",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "BBA (Marketing), Thammasat",
+    "qualification": {
+      "th": "บริหารธุรกิจ สาขาการตลาด",
+      "en": "BBA in Marketing"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0032",
+    "personId": "I0029",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-politics-global-studies",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Politics & Global Studies, Chulalongkorn / Social Science, UQ",
+    "qualification": {
+      "th": "การเมืองและโลกสัมพันธ์ศึกษา",
+      "en": "Politics & Global Studies"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0033",
+    "personId": "I0029",
+    "institutionId": "inst-uq",
+    "programId": "program-uq-social-science",
+    "recordType": "education",
+    "isPrimary": false,
+    "sourceLabel": "Politics & Global Studies, Chulalongkorn / Social Science, UQ",
+    "qualification": {
+      "th": "สังคมศาสตร์",
+      "en": "Social Science"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0034",
+    "personId": "S0004",
+    "institutionId": "inst-nmu",
+    "programId": "program-nmu-urban-administration",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Urban Administration and Management, Navamindradhiraj",
+    "qualification": {
+      "th": "การบริหารและจัดการเมือง",
+      "en": "Urban Administration and Management"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0035",
+    "personId": "I0030",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0036",
+    "personId": "I0031",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0037",
+    "personId": "I0032",
+    "institutionId": "inst-kmitl",
+    "programId": "program-kmitl-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL Computer Engineering",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0038",
+    "personId": "I0033",
+    "institutionId": "inst-kmitl",
+    "programId": null,
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "KMITL",
+    "qualification": {
+      "th": null,
+      "en": null
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0039",
+    "personId": "I0034",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0040",
+    "personId": "I0035",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0041",
+    "personId": "I0036",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0042",
+    "personId": "I0037",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "source_conflict_unresolved",
+    "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
+  },
+  {
+    "educationRecordId": "EDU0043",
+    "personId": "I0038",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "CU CEDT",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "verificationStatus": "source_conflict_unresolved",
+    "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
+  },
+  {
+    "educationRecordId": "EDU0044",
+    "personId": "I0039",
+    "institutionId": "inst-mahidol",
+    "programId": null,
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Mahidol",
+    "qualification": {
+      "th": null,
+      "en": null
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0045",
+    "personId": "I0040",
+    "institutionId": "inst-thammasat",
+    "programId": "program-tu-ibmp",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "IBMP, Thammasat Business School",
+    "qualification": {
+      "th": "IBMP",
+      "en": "IBMP"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0046",
+    "personId": "I0041",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-bascii",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "BAScii (Integrated Innovation), Chulalongkorn",
+    "qualification": {
+      "th": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
+      "en": "Bachelor of Arts and Science in Integrated Innovation"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0047",
+    "personId": "I0042",
+    "institutionId": "inst-southampton",
+    "programId": null,
+    "recordType": "study_abroad",
+    "isPrimary": true,
+    "sourceLabel": "University of Southampton (study year abroad)",
+    "qualification": {
+      "th": null,
+      "en": null
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": "ชีตระบุเพียงปีแลกเปลี่ยน ไม่ระบุหลักสูตรหรือวุฒิ จึงไม่เติมข้อมูลที่อนุมานเอง"
+  },
+  {
+    "educationRecordId": "EDU0048",
+    "personId": "I0043",
+    "institutionId": "inst-ucl",
+    "programId": "program-ucl-mathematical-computation",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "Mathematical Computation, UCL",
+    "qualification": {
+      "th": "คณิตศาสตร์เชิงคำนวณ",
+      "en": "Mathematical Computation"
+    },
+    "verificationStatus": "owner_review_required",
+    "evidenceNote": null
+  }
+]

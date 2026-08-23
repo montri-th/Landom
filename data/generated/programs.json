@@ -1,0 +1,272 @@
+[
+  {
+    "programId": "program-kmitl-computer-engineering",
+    "names": {
+      "th": {
+        "formal": "วิศวกรรมคอมพิวเตอร์",
+        "short": "วศ.คอมพิวเตอร์"
+      },
+      "en": {
+        "formal": "Computer Engineering",
+        "short": "CPE"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-cedt",
+    "names": {
+      "th": {
+        "formal": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+        "short": "CEDT"
+      },
+      "en": {
+        "formal": "Computer Engineering and Digital Technology",
+        "short": "CEDT"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-computer-engineering",
+    "names": {
+      "th": {
+        "formal": "วิศวกรรมคอมพิวเตอร์",
+        "short": "วศ.คอมพิวเตอร์"
+      },
+      "en": {
+        "formal": "Computer Engineering",
+        "short": "CPE"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-public-relations",
+    "names": {
+      "th": {
+        "formal": "การประชาสัมพันธ์",
+        "short": "PR"
+      },
+      "en": {
+        "formal": "Public Relations",
+        "short": "PR"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-chinese",
+    "names": {
+      "th": {
+        "formal": "ภาษาจีน คณะอักษรศาสตร์",
+        "short": "ภาษาจีน"
+      },
+      "en": {
+        "formal": "Chinese, Faculty of Arts",
+        "short": "Chinese"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-tu-marketing",
+    "names": {
+      "th": {
+        "formal": "การตลาด",
+        "short": "การตลาด"
+      },
+      "en": {
+        "formal": "Marketing",
+        "short": "Marketing"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-bascii",
+    "names": {
+      "th": {
+        "formal": "ศิลปศาสตรและวิทยาศาสตรบัณฑิต สาขานวัตกรรมบูรณาการ",
+        "short": "BAScii"
+      },
+      "en": {
+        "formal": "Bachelor of Arts and Science in Integrated Innovation",
+        "short": "BAScii"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-tu-dbtm",
+    "names": {
+      "th": {
+        "formal": "การจัดการการออกแบบ ธุรกิจ และเทคโนโลยี",
+        "short": "DBTM"
+      },
+      "en": {
+        "formal": "Design, Business & Technology Management",
+        "short": "DBTM"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-economics",
+    "names": {
+      "th": {
+        "formal": "เศรษฐศาสตร์",
+        "short": "เศรษฐศาสตร์"
+      },
+      "en": {
+        "formal": "Economics",
+        "short": "Economics"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-eba",
+    "names": {
+      "th": {
+        "formal": "เศรษฐศาสตร์ หลักสูตรนานาชาติ",
+        "short": "EBA"
+      },
+      "en": {
+        "formal": "Economics, International Program",
+        "short": "EBA"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-finance",
+    "names": {
+      "th": {
+        "formal": "การเงิน",
+        "short": "การเงิน"
+      },
+      "en": {
+        "formal": "Finance",
+        "short": "Finance"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-kaist-aerospace-btm",
+    "names": {
+      "th": {
+        "formal": "วิศวกรรมการบินและอวกาศ และการจัดการเทคโนโลยีธุรกิจ",
+        "short": "Aerospace & BTM"
+      },
+      "en": {
+        "formal": "Aerospace Engineering & Business Technology Management",
+        "short": "Aerospace & BTM"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-tu-bba-marketing",
+    "names": {
+      "th": {
+        "formal": "บริหารธุรกิจ สาขาการตลาด",
+        "short": "BBA Marketing"
+      },
+      "en": {
+        "formal": "BBA in Marketing",
+        "short": "BBA Marketing"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-cu-politics-global-studies",
+    "names": {
+      "th": {
+        "formal": "การเมืองและโลกสัมพันธ์ศึกษา",
+        "short": "PGS"
+      },
+      "en": {
+        "formal": "Politics & Global Studies",
+        "short": "PGS"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-uq-social-science",
+    "names": {
+      "th": {
+        "formal": "สังคมศาสตร์",
+        "short": "Social Science"
+      },
+      "en": {
+        "formal": "Social Science",
+        "short": "Social Science"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-nmu-urban-administration",
+    "names": {
+      "th": {
+        "formal": "การบริหารและจัดการเมือง",
+        "short": "Urban Administration"
+      },
+      "en": {
+        "formal": "Urban Administration and Management",
+        "short": "Urban Administration"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-tu-ibmp",
+    "names": {
+      "th": {
+        "formal": "IBMP",
+        "short": "IBMP"
+      },
+      "en": {
+        "formal": "IBMP",
+        "short": "IBMP"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  },
+  {
+    "programId": "program-ucl-mathematical-computation",
+    "names": {
+      "th": {
+        "formal": "คณิตศาสตร์เชิงคำนวณ",
+        "short": "Mathematical Computation"
+      },
+      "en": {
+        "formal": "Mathematical Computation",
+        "short": "Mathematical Computation"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "normalized_from_sheet_owner_review_required"
+  }
+]

@@ -1,0 +1,770 @@
+[
+  {
+    "assetId": "PORTRAIT-S0001",
+    "personId": "S0001",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของโอ๊ต",
+      "en": "Profile portrait of Oat"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0001",
+    "personId": "I0001",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของปุ๊กกี้",
+      "en": "Profile portrait of Pookkie"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0002",
+    "personId": "I0002",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของอาม",
+      "en": "Profile portrait of Arm"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-P0001",
+    "personId": "P0001",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเสก",
+      "en": "Profile portrait of Sek"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-S0002",
+    "personId": "S0002",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเรเน่",
+      "en": "Profile portrait of Renee"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0003",
+    "personId": "I0003",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของแพรวา",
+      "en": "Profile portrait of Praewa"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-S0003",
+    "personId": "S0003",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของพัทธ์",
+      "en": "Profile portrait of Pat"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0004",
+    "personId": "I0004",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของหมิง",
+      "en": "Profile portrait of Ming"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0005",
+    "personId": "I0005",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเดย์",
+      "en": "Profile portrait of Day"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0006",
+    "personId": "I0006",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของทีโน่",
+      "en": "Profile portrait of Teno"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0007",
+    "personId": "I0007",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของดาวเหนือ",
+      "en": "Profile portrait of Daonua"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0008",
+    "personId": "I0008",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของกาย",
+      "en": "Profile portrait of Guy"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0009",
+    "personId": "I0009",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของแฮม",
+      "en": "Profile portrait of Ham"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0010",
+    "personId": "I0010",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของว่าน",
+      "en": "Profile portrait of Wan"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0011",
+    "personId": "I0011",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของอิ๋ง",
+      "en": "Profile portrait of Ing"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0012",
+    "personId": "I0012",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของพิงกี้",
+      "en": "Profile portrait of Pingy"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0013",
+    "personId": "I0013",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของปอน",
+      "en": "Profile portrait of Pond"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0014",
+    "personId": "I0014",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของMos",
+      "en": "Profile portrait of Mos"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0015",
+    "personId": "I0015",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเฟซ",
+      "en": "Profile portrait of Faze"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0016",
+    "personId": "I0016",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของมุก",
+      "en": "Profile portrait of Mook"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0017",
+    "personId": "I0017",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของมาย",
+      "en": "Profile portrait of Mind"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0018",
+    "personId": "I0018",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของGrace",
+      "en": "Profile portrait of Grace"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0019",
+    "personId": "I0019",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของJamie",
+      "en": "Profile portrait of Jamie"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0020",
+    "personId": "I0020",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของTieam",
+      "en": "Profile portrait of Tieam"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0021",
+    "personId": "I0021",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของPleng",
+      "en": "Profile portrait of Pleng"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0022",
+    "personId": "I0022",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเพลง",
+      "en": "Profile portrait of Pleng"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0023",
+    "personId": "I0023",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของTim",
+      "en": "Profile portrait of Tim"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0024",
+    "personId": "I0024",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเฟย",
+      "en": "Profile portrait of Feuy"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0025",
+    "personId": "I0025",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของPang",
+      "en": "Profile portrait of Pang"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0026",
+    "personId": "I0026",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของฮาน่า",
+      "en": "Profile portrait of Hana"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0027",
+    "personId": "I0027",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของโนนิ",
+      "en": "Profile portrait of Noni"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0028",
+    "personId": "I0028",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของฟรัง",
+      "en": "Profile portrait of France"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0029",
+    "personId": "I0029",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของดาด้า",
+      "en": "Profile portrait of Dada"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-S0004",
+    "personId": "S0004",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของฟิล์ม",
+      "en": "Profile portrait of Film"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0030",
+    "personId": "I0030",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเคน",
+      "en": "Profile portrait of Ken"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0031",
+    "personId": "I0031",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของบิว",
+      "en": "Profile portrait of Bill"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0032",
+    "personId": "I0032",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของยิ้ว",
+      "en": "Profile portrait of Yew"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0033",
+    "personId": "I0033",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของทีม",
+      "en": "Profile portrait of Team"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0034",
+    "personId": "I0034",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเอิร์ธ",
+      "en": "Profile portrait of Earth"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0035",
+    "personId": "I0035",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของแทน",
+      "en": "Profile portrait of Tan"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0036",
+    "personId": "I0036",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของโต๋",
+      "en": "Profile portrait of Toh"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0037",
+    "personId": "I0037",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของณิชา",
+      "en": "Profile portrait of Nicha"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0038",
+    "personId": "I0038",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของไนน์",
+      "en": "Profile portrait of Nine"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0039",
+    "personId": "I0039",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของจอมใจ",
+      "en": "Profile portrait of Jomjai"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0040",
+    "personId": "I0040",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของแดน",
+      "en": "Profile portrait of Dan"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0041",
+    "personId": "I0041",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของมุก",
+      "en": "Profile portrait of Mook"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0042",
+    "personId": "I0042",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของเมย์",
+      "en": "Profile portrait of May"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  },
+  {
+    "assetId": "PORTRAIT-I0043",
+    "personId": "I0043",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของดราฟ",
+      "en": "Profile portrait of Draf"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationStatus": "withheld_pending_rights_consent_and_verification"
+  }
+]

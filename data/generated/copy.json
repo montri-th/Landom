@@ -1,0 +1,20 @@
+{
+  "brand": {
+    "brandName": "Landometer",
+    "communityName": "Landom",
+    "communityMemberNames": {
+      "th": [
+        "ชาว Landom",
+        "ชาวแลนด้อม"
+      ],
+      "en": [
+        "Landom community members"
+      ]
+    },
+    "tagline": {
+      "th": "แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น",
+      "en": "A community for people who want to understand cities and help make them better."
+    },
+    "status": "owner_approved_current_truth"
+  }
+}

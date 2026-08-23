@@ -1,0 +1,992 @@
+[
+  {
+    "workId": "work-citymeter-companies",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-registered-companies-status-capital",
+    "names": {
+      "th": "บริษัทจดทะเบียน: สถานะและทุน",
+      "en": "Registered Companies: Status & Capital"
+    },
+    "shortNames": {
+      "th": "บริษัทจดทะเบียน: สถานะและทุน",
+      "en": "Registered Companies: Status & Capital"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER : Company",
+      "CityMETER: Company"
+    ]
+  },
+  {
+    "workId": "work-citymeter-hotels",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-hotel-market",
+    "names": {
+      "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+      "en": "Hotel Supply, Rates & Seasonality"
+    },
+    "shortNames": {
+      "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+      "en": "Hotel Supply, Rates & Seasonality"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Hotel"
+    ]
+  },
+  {
+    "workId": "work-citymeter-factories",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-factories-workers-investment",
+    "names": {
+      "th": "โรงงาน แรงงาน และการลงทุน",
+      "en": "Factories, Workers & Investment"
+    },
+    "shortNames": {
+      "th": "โรงงาน แรงงาน และการลงทุน",
+      "en": "Factories, Workers & Investment"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER : Factory",
+      "CityMETER: Factory"
+    ]
+  },
+  {
+    "workId": "work-citymeter-schools",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-schools-students-teachers",
+    "names": {
+      "th": "โรงเรียน นักเรียน และครู",
+      "en": "Schools, Students & Teachers"
+    },
+    "shortNames": {
+      "th": "โรงเรียน นักเรียน และครู",
+      "en": "Schools, Students & Teachers"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER : School",
+      "CityMETER: School"
+    ]
+  },
+  {
+    "workId": "work-citymeter-registered-cars",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-registered-cars",
+    "names": {
+      "th": "รถยนต์จดทะเบียน",
+      "en": "Registered Cars"
+    },
+    "shortNames": {
+      "th": "รถยนต์จดทะเบียน",
+      "en": "Registered Cars"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Cars"
+    ]
+  },
+  {
+    "workId": "work-citymeter-flood-recurrent",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-flood-recurrent",
+    "names": {
+      "th": "น้ำท่วมซ้ำซาก",
+      "en": "Flood: Recurrent"
+    },
+    "shortNames": {
+      "th": "น้ำท่วมซ้ำซาก",
+      "en": "Flood: Recurrent"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: พื้นที่น้ำท่วมซ้ำซาก"
+    ]
+  },
+  {
+    "workId": "work-citymeter-land-appraisal",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-land-appraisal",
+    "names": {
+      "th": "ราคาประเมินที่ดินและโฉนด",
+      "en": "Land Appraisal & Title Deeds"
+    },
+    "shortNames": {
+      "th": "ราคาประเมินที่ดินและโฉนด",
+      "en": "Land Appraisal & Title Deeds"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER : Land Appraisal",
+      "CityMETER: Land Appraisal"
+    ]
+  },
+  {
+    "workId": "work-citymeter-crop-area-output",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-crop-area-output",
+    "names": {
+      "th": "เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่)",
+      "en": "Agriculture: Crop Area & Output (10,000 Rai)"
+    },
+    "shortNames": {
+      "th": "เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่)",
+      "en": "Agriculture: Crop Area & Output (10,000 Rai)"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: หมื่นไร่"
+    ]
+  },
+  {
+    "workId": "work-citymeter-eia",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-eia-projects",
+    "names": {
+      "th": "โครงการและรายงาน EIA",
+      "en": "EIA Projects & Reports"
+    },
+    "shortNames": {
+      "th": "โครงการและรายงาน EIA",
+      "en": "EIA Projects & Reports"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: EIA"
+    ]
+  },
+  {
+    "workId": "work-citymeter-municipal-revenue",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-municipal-revenue",
+    "names": {
+      "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
+      "en": "Municipal Revenue"
+    },
+    "shortNames": {
+      "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
+      "en": "Municipal Revenue"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Municipal revenue"
+    ]
+  },
+  {
+    "workId": "work-citymeter-roaddna",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-road-network-archetypes",
+    "names": {
+      "th": "รูปแบบโครงข่ายถนน",
+      "en": "Road Network Archetypes"
+    },
+    "shortNames": {
+      "th": "รูปแบบโครงข่ายถนน",
+      "en": "Road Network Archetypes"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: RoadDNA"
+    ]
+  },
+  {
+    "workId": "work-citymeter-tourism",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-tourism-demand-spending",
+    "names": {
+      "th": "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
+      "en": "Tourism Demand: Visitors & Spending"
+    },
+    "shortNames": {
+      "th": "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
+      "en": "Tourism Demand: Visitors & Spending"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Tourism"
+    ]
+  },
+  {
+    "workId": "work-citymeter-fuel-stations",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-fuel-stations",
+    "names": {
+      "th": "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
+      "en": "Fuel Stations: Count, Density & Fuel Types"
+    },
+    "shortNames": {
+      "th": "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
+      "en": "Fuel Stations: Count, Density & Fuel Types"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Gas station"
+    ]
+  },
+  {
+    "workId": "work-citymeter-flood-latest",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-flood-latest-observed",
+    "names": {
+      "th": "น้ำท่วมที่ตรวจพบล่าสุด",
+      "en": "Flood: Latest Observed"
+    },
+    "shortNames": {
+      "th": "น้ำท่วมที่ตรวจพบล่าสุด",
+      "en": "Flood: Latest Observed"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Flood Recent"
+    ]
+  },
+  {
+    "workId": "work-citymeter-shopping-centers",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-shopping-centers",
+    "names": {
+      "th": "ศูนย์การค้า: จำนวน พื้นที่เช่า และกลุ่มตลาด",
+      "en": "Shopping Centers: Supply, GLA & Market Segment"
+    },
+    "shortNames": {
+      "th": "ศูนย์การค้า: จำนวน พื้นที่เช่า และกลุ่มตลาด",
+      "en": "Shopping Centers: Supply, GLA & Market Segment"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Shopping centers"
+    ]
+  },
+  {
+    "workId": "work-citymeter-locale-insights",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-locale-insights",
+    "names": {
+      "th": "Locale Insights: บริบทย่าน",
+      "en": "Locale Insights"
+    },
+    "shortNames": {
+      "th": "Locale Insights: บริบทย่าน",
+      "en": "Locale Insights"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Locale insights"
+    ]
+  },
+  {
+    "workId": "work-citymeter-government-workforce",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-government-agencies-workforce",
+    "names": {
+      "th": "หน่วยงานรัฐและบุคลากร",
+      "en": "Government Agencies & Workforce"
+    },
+    "shortNames": {
+      "th": "หน่วยงานรัฐและบุคลากร",
+      "en": "Government Agencies & Workforce"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Government agencies and workforces"
+    ]
+  },
+  {
+    "workId": "work-citymeter-buildings",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-buildings",
+    "names": {
+      "th": "อาคาร: ขอบเขต พื้นที่อาคารรวม และความสูง",
+      "en": "Buildings: Footprint, GFA & Height"
+    },
+    "shortNames": {
+      "th": "อาคาร: ขอบเขต พื้นที่อาคารรวม และความสูง",
+      "en": "Buildings: Footprint, GFA & Height"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: 3D Buildings"
+    ]
+  },
+  {
+    "workId": "work-citymeter-apartment-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Apartment",
+      "en": "CityMETER: Apartment"
+    },
+    "shortNames": {
+      "th": "CityMETER: Apartment",
+      "en": "CityMETER: Apartment"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Apartment"
+    ]
+  },
+  {
+    "workId": "work-citymeter-condo-offer-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Condo Offer",
+      "en": "CityMETER: Condo Offer"
+    },
+    "shortNames": {
+      "th": "CityMETER: Condo Offer",
+      "en": "CityMETER: Condo Offer"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Condo Offer"
+    ]
+  },
+  {
+    "workId": "work-citymeter-condo-rental-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Condo Rental",
+      "en": "CityMETER: Condo Rental"
+    },
+    "shortNames": {
+      "th": "CityMETER: Condo Rental",
+      "en": "CityMETER: Condo Rental"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Condo Rental"
+    ]
+  },
+  {
+    "workId": "work-citymeter-detached-house-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Detached House",
+      "en": "CityMETER: Detached House"
+    },
+    "shortNames": {
+      "th": "CityMETER: Detached House",
+      "en": "CityMETER: Detached House"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Detached House"
+    ]
+  },
+  {
+    "workId": "work-citymeter-land-offer-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Land Offer",
+      "en": "CityMETER: Land Offer"
+    },
+    "shortNames": {
+      "th": "CityMETER: Land Offer",
+      "en": "CityMETER: Land Offer"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Land Offer"
+    ]
+  },
+  {
+    "workId": "work-citymeter-office-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Office",
+      "en": "CityMETER: Office"
+    },
+    "shortNames": {
+      "th": "CityMETER: Office",
+      "en": "CityMETER: Office"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Office"
+    ]
+  },
+  {
+    "workId": "work-citymeter-quakesafe-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: QuakeSafe",
+      "en": "CityMETER: QuakeSafe"
+    },
+    "shortNames": {
+      "th": "CityMETER: QuakeSafe",
+      "en": "CityMETER: QuakeSafe"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : QuakeSafe"
+    ]
+  },
+  {
+    "workId": "work-citymeter-road-traffic-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Road Traffic",
+      "en": "CityMETER: Road Traffic"
+    },
+    "shortNames": {
+      "th": "CityMETER: Road Traffic",
+      "en": "CityMETER: Road Traffic"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Road Traffic"
+    ]
+  },
+  {
+    "workId": "work-citymeter-townhouse-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Townhouse",
+      "en": "CityMETER: Townhouse"
+    },
+    "shortNames": {
+      "th": "CityMETER: Townhouse",
+      "en": "CityMETER: Townhouse"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "sheet_recorded_not_current_release_authority",
+    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
+    "sourceAliases": [
+      "CityMETER : Townhouse"
+    ]
+  },
+  {
+    "workId": "work-ijji",
+    "parentProduct": "ijji",
+    "moduleSlug": null,
+    "names": {
+      "th": "ijji",
+      "en": "ijji"
+    },
+    "shortNames": {
+      "th": "ijji",
+      "en": "ijji"
+    },
+    "type": "product",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "ijji"
+    ]
+  },
+  {
+    "workId": "work-content-compass",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "ContentCompass",
+      "en": "ContentCompass"
+    },
+    "shortNames": {
+      "th": "ContentCompass",
+      "en": "ContentCompass"
+    },
+    "type": "internal_project",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "ContentCompass"
+    ]
+  },
+  {
+    "workId": "work-kinnow",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "KinNow",
+      "en": "KinNow"
+    },
+    "shortNames": {
+      "th": "KinNow",
+      "en": "KinNow"
+    },
+    "type": "internal_project",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "KinNow"
+    ]
+  },
+  {
+    "workId": "work-safestreet",
+    "parentProduct": "SafeStreet",
+    "moduleSlug": null,
+    "names": {
+      "th": "SafeStreet",
+      "en": "SafeStreet"
+    },
+    "shortNames": {
+      "th": "SafeStreet",
+      "en": "SafeStreet"
+    },
+    "type": "product",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "SafeStreet"
+    ]
+  },
+  {
+    "workId": "work-walkidio",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "Walkidio",
+      "en": "Walkidio"
+    },
+    "shortNames": {
+      "th": "Walkidio",
+      "en": "Walkidio"
+    },
+    "type": "internal_project",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "Walkidio"
+    ]
+  },
+  {
+    "workId": "work-citychat",
+    "parentProduct": "CityChat",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityChat",
+      "en": "CityChat"
+    },
+    "shortNames": {
+      "th": "CityChat",
+      "en": "CityChat"
+    },
+    "type": "product",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityChat"
+    ]
+  },
+  {
+    "workId": "work-gistda-flood-near-me",
+    "parentProduct": "GISTDA Urban Flood",
+    "moduleSlug": null,
+    "names": {
+      "th": "GISTDA Urban Flood: น้ำท่วมใกล้ฉัน",
+      "en": "GISTDA Urban Flood: Flood Near Me"
+    },
+    "shortNames": {
+      "th": "GISTDA Urban Flood: น้ำท่วมใกล้ฉัน",
+      "en": "GISTDA Urban Flood: Flood Near Me"
+    },
+    "type": "partner_deliverable",
+    "scopeLayer": "partner_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-citywiki",
+    "parentProduct": "CityWiki",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityWiki",
+      "en": "CityWiki"
+    },
+    "shortNames": {
+      "th": "CityWiki",
+      "en": "CityWiki"
+    },
+    "type": "product",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-citymeter-product-stewardship",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "การดูแลผลิตภัณฑ์ CityMETER",
+      "en": "CityMETER Product Stewardship"
+    },
+    "shortNames": {
+      "th": "การดูแลผลิตภัณฑ์ CityMETER",
+      "en": "CityMETER Product Stewardship"
+    },
+    "type": "product_stewardship",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-brand-visual-guidelines-2025",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "Landometer: Brand Visual Guidelines 2025",
+      "en": "Landometer: Brand Visual Guidelines 2025"
+    },
+    "shortNames": {
+      "th": "Landometer: Brand Visual Guidelines 2025",
+      "en": "Landometer: Brand Visual Guidelines 2025"
+    },
+    "type": "brand_system",
+    "scopeLayer": "shared_landometer",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "Landometer Visual Guidlines (2025)"
+    ]
+  },
+  {
+    "workId": "work-vote69",
+    "parentProduct": "Vote69",
+    "moduleSlug": null,
+    "names": {
+      "th": "Vote69",
+      "en": "Vote69"
+    },
+    "shortNames": {
+      "th": "Vote69",
+      "en": "Vote69"
+    },
+    "type": "product",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-landom-community",
+    "parentProduct": "Landom",
+    "moduleSlug": null,
+    "names": {
+      "th": "Landom: ด้อมผู้สร้าง Landometer",
+      "en": "Landom: the Landometer community"
+    },
+    "shortNames": {
+      "th": "Landom: ด้อมผู้สร้าง Landometer",
+      "en": "Landom: the Landometer community"
+    },
+    "type": "community",
+    "scopeLayer": "shared_landometer",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-dwr-flood-map",
+    "parentProduct": "DWR",
+    "moduleSlug": null,
+    "names": {
+      "th": "แผนที่น้ำท่วม DWR",
+      "en": "DWR Flood Map"
+    },
+    "shortNames": {
+      "th": "แผนที่น้ำท่วม DWR",
+      "en": "DWR Flood Map"
+    },
+    "type": "partner_deliverable",
+    "scopeLayer": "partner_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-population-forecasting-research",
+    "parentProduct": "Research",
+    "moduleSlug": null,
+    "names": {
+      "th": "งานวิจัยแบบจำลองคาดการณ์ประชากร",
+      "en": "Research: Population Forecasting Model"
+    },
+    "shortNames": {
+      "th": "งานวิจัยแบบจำลองคาดการณ์ประชากร",
+      "en": "Research: Population Forecasting Model"
+    },
+    "type": "research",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-dwr-runoff",
+    "parentProduct": "DWR",
+    "moduleSlug": null,
+    "names": {
+      "th": "DWR Runoff",
+      "en": "DWR Runoff"
+    },
+    "shortNames": {
+      "th": "DWR Runoff",
+      "en": "DWR Runoff"
+    },
+    "type": "partner_deliverable",
+    "scopeLayer": "partner_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-citycell-model",
+    "parentProduct": "CityCell",
+    "moduleSlug": null,
+    "names": {
+      "th": "โมเดล CityCell",
+      "en": "CityCell Model"
+    },
+    "shortNames": {
+      "th": "โมเดล CityCell",
+      "en": "CityCell Model"
+    },
+    "type": "hackathon_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-cityscan",
+    "parentProduct": "CityScan",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityScan",
+      "en": "CityScan"
+    },
+    "shortNames": {
+      "th": "CityScan",
+      "en": "CityScan"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-citymeter-fdi-playbook",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER Playbook สำหรับ FDI",
+      "en": "CityMETER Playbook for FDI"
+    },
+    "shortNames": {
+      "th": "CityMETER Playbook สำหรับ FDI",
+      "en": "CityMETER Playbook for FDI"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-citymeter-flood-forecasting-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: การคาดการณ์น้ำท่วม (รอระบุโมดูล)",
+      "en": "CityMETER: Flood Forecasting (Module Pending)"
+    },
+    "shortNames": {
+      "th": "CityMETER: การคาดการณ์น้ำท่วม (รอระบุโมดูล)",
+      "en": "CityMETER: Flood Forecasting (Module Pending)"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "unresolved_between_official_forecast_modules",
+    "evidenceNote": "ยังไม่ map ไป DWR forecast-depth หรือ Google flash-flood risk เพราะหลักฐานไม่พอระบุว่าเป็นโมดูลใด",
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-locale-insight-intelligence-layer",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "Locale Insight Intelligence Layer",
+      "en": "Locale Insight Intelligence Layer"
+    },
+    "shortNames": {
+      "th": "Locale Insight Intelligence Layer",
+      "en": "Locale Insight Intelligence Layer"
+    },
+    "type": "shared_capability",
+    "scopeLayer": "shared_landometer",
+    "authorityStatus": "owner_supplied_shared_layer_claim_product_implementations_not_implied",
+    "evidenceNote": "เป็น capability ใน shared Landometer layer; attribution รายบุคคลนี้ไม่ทำให้สมมติฐานของผลิตภัณฑ์หนึ่งเป็นข้อเท็จจริงของทุกผลิตภัณฑ์",
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-land-portfolio",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "Land Portfolio",
+      "en": "Land Portfolio"
+    },
+    "shortNames": {
+      "th": "Land Portfolio",
+      "en": "Land Portfolio"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-lead2loan",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "Lead2Loan",
+      "en": "Lead2Loan"
+    },
+    "shortNames": {
+      "th": "Lead2Loan",
+      "en": "Lead2Loan"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-fdi-mentoring",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "การดูแลทีม FDI",
+      "en": "FDI Team Mentoring"
+    },
+    "shortNames": {
+      "th": "การดูแลทีม FDI",
+      "en": "FDI Team Mentoring"
+    },
+    "type": "staff_responsibility",
+    "scopeLayer": "shared_landometer",
+    "authorityStatus": "owner_or_sheet_supplied_product_specific",
+    "evidenceNote": null,
+    "sourceAliases": []
+  },
+  {
+    "workId": "work-contribution-details-pending",
+    "parentProduct": "Landometer",
+    "moduleSlug": null,
+    "names": {
+      "th": "มีส่วนร่วมกับทีม — รอระบุรายละเอียดผลงาน",
+      "en": "Team contribution — project details pending"
+    },
+    "shortNames": {
+      "th": "มีส่วนร่วมกับทีม — รอระบุรายละเอียดผลงาน",
+      "en": "Team contribution — project details pending"
+    },
+    "type": "administrative_placeholder",
+    "scopeLayer": "shared_landometer",
+    "authorityStatus": "owner_detail_required",
+    "evidenceNote": "ใช้เพื่อยืนยันว่าไม่มีบุคคลใดมีผลงานเป็นศูนย์ โดยไม่แต่งชื่อโครงการ; เจ้าของข้อมูลต้องเติมรายละเอียดภายหลัง",
+    "sourceAliases": []
+  }
+]

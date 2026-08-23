@@ -1,0 +1,1314 @@
+[
+  {
+    "engagementId": "E0001",
+    "personId": "S0001",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "FDI 2024",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [
+      "work-citymeter-schools"
+    ],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": 1
+  },
+  {
+    "engagementId": "E0054",
+    "personId": "S0001",
+    "category": "part_time",
+    "program": {
+      "code": "Part-time",
+      "names": {
+        "th": "พนักงานพาร์ตไทม์",
+        "en": "Part-time staff"
+      }
+    },
+    "cohortLabel": "Part-time (ช่วงหลัง FDI และก่อน Full-time; วันเริ่ม–สิ้นสุดรอยืนยัน)",
+    "roleTitle": {
+      "th": "ผู้ดูแล Land Portfolio",
+      "en": "Land Portfolio contributor"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [
+      "work-land-portfolio"
+    ],
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "dates_owner_detail_required",
+    "sequenceHint": 2
+  },
+  {
+    "engagementId": "E0031",
+    "personId": "S0001",
+    "category": "full_time",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "Full-time",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack",
+      "en": "Full-Stack Developer"
+    },
+    "start": null,
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-land-portfolio",
+      "work-lead2loan",
+      "work-fdi-mentoring"
+    ],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": 3
+  },
+  {
+    "engagementId": "E0002",
+    "personId": "I0001",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "FDI 2024 (รุ่นเดียวกับ โอ๊ต)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0003",
+    "personId": "I0002",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "FDI 2024 (รุ่นเดียวกับ โอ๊ต)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0004",
+    "personId": "P0001",
+    "category": "part_time",
+    "program": {
+      "code": "Part-time",
+      "names": {
+        "th": "พนักงานพาร์ตไทม์",
+        "en": "Part-time staff"
+      }
+    },
+    "cohortLabel": "Part-time",
+    "roleTitle": {
+      "th": "ผู้จัดการแพลตฟอร์ม",
+      "en": "Platform Manager"
+    },
+    "start": null,
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-citychat"
+    ],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0005",
+    "personId": "S0002",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "MSI batch 1 / 2025",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2025-02-17",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0032",
+    "personId": "S0002",
+    "category": "full_time",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "Full-time",
+    "roleTitle": {
+      "th": "กลยุทธ์การตลาด",
+      "en": "Marketing Strategy"
+    },
+    "start": null,
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-ijji"
+    ],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0006",
+    "personId": "I0003",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "FDI batch 1 / 2025",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-04-21",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0007",
+    "personId": "S0003",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "FDI batch 1 / 2025",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-04-28",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0033",
+    "personId": "S0003",
+    "category": "full_time",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "Full-time",
+    "roleTitle": {
+      "th": "ผู้จัดการผลิตภัณฑ์",
+      "en": "Product Manager"
+    },
+    "start": null,
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-citymeter-product-stewardship"
+    ],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0008",
+    "personId": "I0004",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": null,
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2025-05-02",
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0009",
+    "personId": "I0005",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0010",
+    "personId": "I0006",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0011",
+    "personId": "I0007",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0012",
+    "personId": "I0008",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr1 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0013",
+    "personId": "I0009",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0014",
+    "personId": "I0010",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0015",
+    "personId": "I0011",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0016",
+    "personId": "I0012",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "CEDT yr2 / batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2025-05-19",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0017",
+    "personId": "I0013",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-26",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0018",
+    "personId": "I0014",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-05-26",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0019",
+    "personId": "I0015",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "FDI batch 2 / 2025",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2025-06-01",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0020",
+    "personId": "I0016",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "MSI batch 3 / 2025",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2025-06-02",
+    "end": "2025-08-08",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0021",
+    "personId": "I0017",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "MSI batch 3 / 2025",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2025-06-12",
+    "end": "2025-08-08",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0022",
+    "personId": "I0018",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "batch 2 (19MAY-31JUL)",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2025-08-26",
+    "end": "2025-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0023",
+    "personId": "I0019",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0024",
+    "personId": "I0020",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0025",
+    "personId": "I0021",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0035",
+    "personId": "I0022",
+    "category": "internship",
+    "program": {
+      "code": "PMI",
+      "names": {
+        "th": "โครงการฝึกงาน Partnership Maker",
+        "en": "Partnership Maker Internship"
+      }
+    },
+    "cohortLabel": "PMI batch 1 / 2026",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านการสร้างพันธมิตร",
+      "en": "Partnership Maker Intern"
+    },
+    "start": "2026-01-05",
+    "end": "2026-03-27",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0026",
+    "personId": "I0022",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0027",
+    "personId": "I0023",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0036",
+    "personId": "I0024",
+    "category": "internship",
+    "program": {
+      "code": "PMI",
+      "names": {
+        "th": "โครงการฝึกงาน Partnership Maker",
+        "en": "Partnership Maker Internship"
+      }
+    },
+    "cohortLabel": "PMI batch 1 / 2026",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านการสร้างพันธมิตร",
+      "en": "Partnership Maker Intern"
+    },
+    "start": "2026-01-05",
+    "end": "2026-03-27",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0028",
+    "personId": "I0024",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0029",
+    "personId": "I0025",
+    "category": "program_participant",
+    "program": {
+      "code": "IMP",
+      "names": {
+        "th": "Impvest",
+        "en": "Impvest"
+      }
+    },
+    "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
+    "roleTitle": {
+      "th": "ที่ปรึกษาพันธมิตร",
+      "en": "Consulting Partner"
+    },
+    "start": null,
+    "end": "2025-11-13",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0030",
+    "personId": "I0026",
+    "category": "internship",
+    "program": {
+      "code": "PDI",
+      "names": {
+        "th": "โครงการฝึกงาน Product Developer",
+        "en": "Product Developer Internship"
+      }
+    },
+    "cohortLabel": "PDI 2026",
+    "roleTitle": {
+      "th": "นักพัฒนาผลิตภัณฑ์ฝึกงาน",
+      "en": "Product Developer Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0034",
+    "personId": "I0027",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "เริ่มได้ 1 Jan 2026 / 10 weeks",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0037",
+    "personId": "I0028",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "เริ่มได้ 12 Jan 2026 / 10 weeks",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0038",
+    "personId": "I0029",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "เริ่มได้ 12 Jan 2026 / 5 weeks",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0039",
+    "personId": "S0004",
+    "category": "full_time",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "Full Time (เข้าปี 2026)",
+    "roleTitle": {
+      "th": "ผู้จัดการผลิตภัณฑ์",
+      "en": "Product Manager"
+    },
+    "start": null,
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-citychat"
+    ],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0040",
+    "personId": "I0030",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "KMITL + Co-op (สหกิจ) / start Apr 7",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-04-07",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0041",
+    "personId": "I0031",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "KMITL + Co-op (สหกิจ) / start Apr 7",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-04-07",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0042",
+    "personId": "I0032",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "KMITL / start Apr 20",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-04-20",
+    "end": "2026-06-30",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0043",
+    "personId": "I0033",
+    "category": "internship",
+    "program": {
+      "code": "PDI",
+      "names": {
+        "th": "โครงการฝึกงาน Product Developer",
+        "en": "Product Developer Internship"
+      }
+    },
+    "cohortLabel": "KMITL / start Apr 28 (PDI ในสรุปยอด)",
+    "roleTitle": {
+      "th": "นักพัฒนาผลิตภัณฑ์ฝึกงาน",
+      "en": "Product Developer Intern"
+    },
+    "start": "2026-04-28",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0044",
+    "personId": "I0034",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT107 + Co-op / start May 19",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-05-19",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0045",
+    "personId": "I0035",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT107 + Co-op / start May 19",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-05-19",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0046",
+    "personId": "I0036",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT107 + Co-op / start May 19",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-05-19",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0047",
+    "personId": "I0037",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT109 / start May 19",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-05-19",
+    "end": "2026-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0048",
+    "personId": "I0038",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "CEDT109 / start May 19",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-05-19",
+    "end": "2026-07-31",
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0049",
+    "personId": "I0039",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "Mahidol + Co-op / start May 19",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-05-19",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0050",
+    "personId": "I0040",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "เริ่มได้ 20 May 2026 / 10 weeks",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0051",
+    "personId": "I0041",
+    "category": "internship",
+    "program": {
+      "code": "PDI",
+      "names": {
+        "th": "โครงการฝึกงาน Product Developer",
+        "en": "Product Developer Internship"
+      }
+    },
+    "cohortLabel": "เริ่มได้ 25 May 2026",
+    "roleTitle": {
+      "th": "นักพัฒนาผลิตภัณฑ์ฝึกงาน",
+      "en": "Product Developer Intern"
+    },
+    "start": null,
+    "end": null,
+    "status": "completed",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0052",
+    "personId": "I0042",
+    "category": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "โครงการฝึกงาน Marketing Strategy",
+        "en": "Marketing Strategy Internship"
+      }
+    },
+    "cohortLabel": "เริ่มได้ 25 May 2026 / 10 weeks",
+    "roleTitle": {
+      "th": "นักศึกษาฝึกงานด้านกลยุทธ์การตลาด",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": null,
+    "end": "2026-08-27",
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "owner_review_required",
+    "sequenceHint": null
+  },
+  {
+    "engagementId": "E0053",
+    "personId": "I0043",
+    "category": "internship",
+    "program": {
+      "code": "FDI",
+      "names": {
+        "th": "โครงการฝึกงาน Full-Stack Developer",
+        "en": "Full-Stack Developer Internship"
+      }
+    },
+    "cohortLabel": "UCL / start Jun 16",
+    "roleTitle": {
+      "th": "นักพัฒนา Full-Stack ฝึกงาน",
+      "en": "Full-Stack Developer Intern"
+    },
+    "start": "2026-06-16",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "sheet_recorded",
+    "verificationStatus": "sheet_recorded",
+    "sequenceHint": null
+  }
+]

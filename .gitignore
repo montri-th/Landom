@@ -1,0 +1,25 @@
+# Local dependencies and reproducible output
+node_modules/
+dist/
+coverage/
+
+# Private normalization inputs. Generated public records belong in data/generated/.
+data/raw/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor and operating-system files
+.DS_Store
+*.swp
+*.swo
+
+# Package-manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

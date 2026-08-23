@@ -1,0 +1,339 @@
+# Landom people data dictionary
+
+เอกสารนี้กำหนดโครงสร้างข้อมูลกลางสำหรับหน้า people ของ Landom และเป็นสัญญาระหว่าง Google Sheet, ตัว normalize และหน้าเว็บจริง ข้อมูลที่ generate แล้วอยู่ใน `data/generated/site-data.json`; ไฟล์ย่อยแต่ละ dimension อยู่ในโฟลเดอร์เดียวกัน และ schema อยู่ที่ `data/schema/site-data.schema.json`
+
+Raw snapshot เป็นข้อมูลปฏิบัติการที่อาจมี private contact fields จึงต้องอยู่เฉพาะในเครื่องของผู้มีสิทธิ์และถูก ignore จาก Git/public build ส่วน `data/generated/` ผ่าน privacy gate และเป็นชุดที่ Dev ใช้ได้ ตัว normalize รับ authorized snapshot ผ่าน `--input` และเลือกปลายทางผ่าน `--output-dir`; public CI ตรวจ generated contract โดยไม่มี raw input และห้ามอ่าน/เขียน Google Sheet แบบ remote
+
+Snapshot รองรับ 2 schema โดย normalizer ตรวจรูปแบบให้อัตโนมัติ:
+
+1. Sheet-style `{"sheets":{"<tab>":[["header"],["row value"]]}}` — แต่ละ tab เป็น array โดยแถวแรกคือ header
+2. Exporter-style `{"tabs":{"<tab>":{"headers":["header"],"rows":[["row value"]]}}}` — แยก `headers` และ `rows`
+
+ทั้งสองแบบเป็น private raw artifact เหมือนกัน ไม่ใช่ public contract และห้าม commit
+
+## หลักการสำคัญ
+
+1. คนหนึ่งคนมี `personId` เดียวตลอดอายุข้อมูล บทบาทและสถานะที่เปลี่ยนไปเก็บเป็นหลาย engagement
+2. ชื่อมหาวิทยาลัยและหลักสูตรเก็บเป็น dimension กลาง ไม่พิมพ์ชื่อซ้ำในแต่ละคน
+3. ผลงานเป็น work dimension; ความสัมพันธ์คน–ผลงานอยู่ใน contribution ดังนั้นงานเดียวผูกหลายคนได้ และคนเดียวผูกงานเดียวข้ามหลาย engagement ได้
+4. รางวัล/ความสำเร็จแยกจาก contribution เพื่อไม่ทำให้ “ทำผลงาน” กับ “ได้รับรางวัล” เป็นข้อเท็จจริงชนิดเดียวกัน
+5. ข้อมูลโซเชียลและภาพมี 3 gate ก่อนเผยแพร่: consent, verification และสิทธิการใช้ asset
+6. ข้อมูลจากผลิตภัณฑ์หนึ่งไม่ถูกยกเป็นข้อเท็จจริงของ Landometer ทุกผลิตภัณฑ์ การเทียบข้ามผลิตภัณฑ์/เมืองต้องใช้ schema และ release เดียวกัน หรือระบุ incompatibility
+
+## Brand และ community copy
+
+- `Landometer` คือชื่อแบรนด์
+- `Landom` คือชื่อ community หรือ “ด้อม”
+- สมาชิกเรียก `ชาว Landom` หรือ `ชาวแลนด้อม`
+- Tagline ภาษาไทย: `แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น`
+
+ค่าชุดนี้อยู่ใน `copy.brand` และมีสถานะ `owner_approved_current_truth`
+
+## Canonical person ID
+
+รหัสถูก assign ณ migration วันที่ 2026-08-23 และ freeze หลัง migration การเปลี่ยนบทบาทในอนาคตไม่เปลี่ยนรหัส
+
+| สถานะ ณ migration | รูปแบบ | จำนวนเริ่มต้น |
+|---|---:|---:|
+| Full-time staff | `S0001` เป็นต้นไป | 4 |
+| Part-time staff | `P0001` เป็นต้นไป | 1 |
+| Intern / program participant / บุคคลอื่น | `I0001` เป็นต้นไป | 43 |
+
+ห้ามสร้างรหัสอีกเวอร์ชันหรือใช้รหัส legacy ใน generated/public data หากคนเดิมกลับมาร่วมงานในบทบาทใหม่ ให้เพิ่ม engagement โดยใช้ `personId` เดิม
+
+กรณีสำคัญ: โอ๊ตคือ `S0001` เพียง record เดียว มี 3 engagement ตามลำดับ Intern → Part-time → Full-time
+
+## Top-level contract
+
+| Key | หน้าที่ |
+|---|---|
+| `meta` | schema version, source boundary, ID policy, counts |
+| `copy` | brand/community copy ที่ได้รับอนุมัติ |
+| `institutions` | ชื่อมหาวิทยาลัย/สถาบันแบบเต็มและย่อ |
+| `programs` | ชื่อหลักสูตร/สาขาแบบเต็มและย่อ |
+| `educationRecords` | ความสัมพันธ์คน–สถาบัน–หลักสูตร |
+| `people` | ตัวตนหลัก หนึ่ง record ต่อคน |
+| `engagements` | ช่วงบทบาทหลายช่วงต่อคน |
+| `works` | ผลิตภัณฑ์ โมดูล โครงการ งานวิจัย หรือ deliverable |
+| `contributions` | ความสัมพันธ์คน–ผลงาน–ช่วงบทบาท |
+| `achievements` | รางวัลหรือความสำเร็จที่มีผู้รับหนึ่งคนหรือหลายคน |
+| `socialProfiles` | ช่องทางสังคมพร้อม publication gate |
+| `assets` | ภาพ profile พร้อม consent/verification/rights gate |
+
+## people
+
+| Field | ชนิด | กติกา |
+|---|---|---|
+| `personId` | string | `S/P/I` + เลข 4 หลัก; unique และ immutable |
+| `names.full.th/en` | string/null | ชื่อเต็มตามหลักฐาน ห้ามเติมนามสกุลด้วยการเดา |
+| `names.nickname.th/en` | string/null | ชื่อเล่น; อาจซ้ำได้ จึงห้ามใช้เป็น key |
+| `names.card.th/en` | string/null | ชื่อที่ใช้บน masonry card |
+| `currentStatus` | enum | `active`, `alumni` |
+| `firstJoined` | ISO date, year, null | เก็บ precision เท่าที่หลักฐานมี ไม่สร้างวันที่จากปี |
+| `migrationClassification` | enum | `full_time`, `part_time`, `intern_or_program_participant` |
+| `educationDisplayMode` | enum | Full-time=`qualification`, Intern=`program`, Part-time=`neutral` |
+| `educationDisplay.card` | localized | หลักสูตร/field + ชื่อย่อสถาบัน |
+| `educationDisplay.detail` | localized | หลักสูตร/field + ชื่อเต็มสถาบัน |
+| `bio.th/en` | string | placeholder ที่เก็บจริงใน data เพื่อให้เจ้าตัวแก้ภายหลัง |
+| `bio.status` | enum | ปัจจุบันเป็น `placeholder` |
+| `bio.verificationStatus` | enum | ปัจจุบันเป็น `owner_pending` |
+| `publication.consentStatus` | enum | `pending`, `granted`, `denied` |
+
+สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บยังแสดง core profile ทั้ง 48 คน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลัก แต่ใช้ gate ลิงก์ social และ portrait โดยตรง ข้อความ bio ยังเป็น `owner_pending` และไม่ควรถูกสื่อว่าเจ้าตัวยืนยันแล้ว หากนโยบายเปลี่ยนให้ core registry ต้อง opt-in รายบุคคล ต้องแก้ schema, validator และ UI พร้อมกัน
+
+ข้อความ bio ที่ generate ใช้เฉพาะชื่อเล่นและชื่อผลงานที่มีใน contribution ไม่อนุมานบุคลิก ความชอบ หรือระดับความรับผิดชอบ
+
+## institutions, programs และ educationRecords
+
+### institutions
+
+ชื่อสถาบันมีทั้ง:
+
+- `names.th.formal`, `names.en.formal` สำหรับหน้า detail
+- `names.th.short`, `names.en.short` สำหรับ masonry card
+- `aliases` สำหรับ normalize ค่าที่สะกดต่างกันใน source
+
+### programs
+
+ชื่อหลักสูตร/field ใช้โครงสร้าง formal/short แบบเดียวกับสถาบัน `qualificationLevel` เป็น `null` เมื่อ source ไม่ระบุระดับวุฒิ ห้ามเดา B.Eng., B.A. หรือวุฒิอื่นจากชื่อสาขาเพียงอย่างเดียว
+
+### educationRecords
+
+| Field | หน้าที่ |
+|---|---|
+| `educationRecordId` | unique row ID |
+| `personId` | FK → people |
+| `institutionId` | FK → institutions |
+| `programId` | FK → programs หรือ null เมื่อไม่ทราบหลักสูตร |
+| `recordType` | `education` หรือ `study_abroad` |
+| `isPrimary` | record หลักที่ใช้แสดงบน card/detail |
+| `sourceLabel` | ค่าเดิมจาก source เพื่อ audit normalization |
+| `qualification.th/en` | field/discipline เท่าที่ source รองรับ; ไม่เติม degree ที่เดาเอง |
+| `verificationStatus` | `owner_review_required` หรือสถานะ conflict |
+
+ณัฏฐณิชา (`I0037`) และนรภัทร (`I0038`) ยังเก็บค่าจากชีตเป็น CU CEDT พร้อม `source_conflict_unresolved` การปรากฏชื่อในเอกสารรับเข้าศึกษาของอีกมหาวิทยาลัยไม่พิสูจน์การลงทะเบียนหรือสถานะปัจจุบัน จึงไม่ overwrite
+
+## engagements
+
+Engagement คือช่วงบทบาท ไม่ใช่ตัวคน
+
+| Field | กติกา |
+|---|---|
+| `engagementId` | unique FK target |
+| `personId` | FK → people |
+| `category` | `internship`, `part_time`, `full_time`, `program_participant` |
+| `program.code` | เช่น FDI, MSI, PDI, PMI, IMP, Full-time, Part-time |
+| `cohortLabel` | label จาก source; ไม่ใช้เป็น key |
+| `roleTitle.th/en` | ชื่อบทบาทในช่วงนั้น |
+| `start`, `end` | ISO date หรือ null เมื่อไม่ทราบ |
+| `status` | `ongoing`, `completed` |
+| `responsibilityWorkIds` | FK ไป work ที่เป็นความรับผิดชอบหลัก |
+| `evidenceStatus` | ขอบเขตหลักฐานของ engagement |
+| `sequenceHint` | ใช้เมื่อลำดับรู้แต่วันที่ไม่ครบ |
+
+ประวัติโอ๊ต:
+
+1. FDI Intern — CityMETER: Schools, Students & Teachers
+2. Part-time — Land Portfolio
+3. Full-time — ดูแลทีม FDI, Land Portfolio และ Lead2Loan
+
+Land Portfolio กับ Lead2Loan เป็นคนละ `workId`; Land Portfolio ผูกได้ทั้ง engagement Part-time และ Full-time
+
+## works และ contributions
+
+### works
+
+| Field | หน้าที่ |
+|---|---|
+| `workId` | canonical work ID |
+| `parentProduct` | brand/product/partner ที่งานอยู่ภายใต้ขอบเขตนั้น |
+| `moduleSlug` | canonical CityMETER module slug หรือ null หากยังเทียบไม่ได้ |
+| `names.th/en` | ชื่อเต็มที่ใช้หน้า detail |
+| `shortNames.th/en` | ชื่อบน card/chip |
+| `type` | module, product, research, partner deliverable, community ฯลฯ |
+| `scopeLayer` | `shared_landometer`, `product_specific`, `partner_specific` |
+| `authorityStatus` | ความสอดคล้องกับ release/หลักฐาน |
+| `evidenceNote` | incompatibility หรือข้อจำกัดที่ต้องแสดง/เก็บไว้ |
+
+Locale Insight Intelligence Layer อยู่ใน `shared_landometer` แต่ attribution ของบุคคลใน capability นี้ไม่พิสูจน์ว่า implementation เดียวกันถูกใช้ในทุกผลิตภัณฑ์ ส่วน CityMETER dataset module อยู่ใน `product_specific`
+
+### contributions
+
+| Field | กติกา |
+|---|---|
+| `contributionId` | unique row ID |
+| `personId` | FK → people |
+| `workId` | FK → works |
+| `engagementId` | FK → engagements หรือ null เมื่อผูกช่วงบทบาทไม่ได้อย่างปลอดภัย |
+| `role.th/en` | ใช้ `Contributor` เมื่อ source ไม่ระบุ lead/owner; ห้ามยกระดับเอง |
+| `period` | start/end/label ตาม precision ของหลักฐาน |
+| `evidenceStatus` | ดูตารางด้านล่าง |
+| `sourceRef` | แหล่งข้อมูลระดับ record |
+
+Evidence status:
+
+| ค่า | ความหมาย |
+|---|---|
+| `sheet_recorded` | มีใน snapshot |
+| `owner_supplied` | เจ้าของข้อมูลระบุในคำสั่งปัจจุบัน |
+| `owner_and_sheet_confirmed` | มีทั้งในชีตและคำสั่งเจ้าของ |
+| `owner_detail_required` | เจ้าของยืนยันว่ามีผลงาน แต่หลักฐานไม่พอระบุชื่อโครงการ |
+
+ทุกคนต้องมี contribution อย่างน้อย 1 record หากยังไม่ทราบชื่อโครงการ ให้ใช้ work ชนิด `administrative_placeholder` และ `owner_detail_required` เท่านั้น ห้ามแต่งชื่อ project เพื่อให้ผ่าน QA
+
+## CityMETER canonical mapping
+
+ตารางนี้ map เฉพาะชื่อที่เทียบกับ current release ได้แล้ว
+
+| Source concept | Canonical module slug | ชื่อ canonical EN |
+|---|---|---|
+| Company | `dataset-registered-companies-status-capital` | Registered Companies: Status & Capital |
+| Hotel | `dataset-hotel-market` | Hotel Supply, Rates & Seasonality |
+| Factory | `dataset-factories-workers-investment` | Factories, Workers & Investment |
+| School | `dataset-schools-students-teachers` | Schools, Students & Teachers |
+| Cars | `dataset-registered-cars` | Registered Cars |
+| พื้นที่น้ำท่วมซ้ำซาก | `dataset-flood-recurrent` | Flood: Recurrent |
+| Land Appraisal | `dataset-land-appraisal` | Land Appraisal & Title Deeds |
+| หมื่นไร่ | `dataset-crop-area-output` | Agriculture: Crop Area & Output (10,000 Rai) |
+| EIA | `dataset-eia-projects` | EIA Projects & Reports |
+| Municipal revenue | `dataset-municipal-revenue` | Municipal Revenue |
+| RoadDNA | `dataset-road-network-archetypes` | Road Network Archetypes |
+| Tourism | `dataset-tourism-demand-spending` | Tourism Demand: Visitors & Spending |
+| Gas station | `dataset-fuel-stations` | Fuel Stations: Count, Density & Fuel Types |
+| Flood Recent | `dataset-flood-latest-observed` | Flood: Latest Observed |
+| Shopping centers | `dataset-shopping-centers` | Shopping Centers: Supply, GLA & Market Segment |
+| Locale insights | `dataset-locale-insights` | Locale Insights |
+| Government agencies and workforces | `dataset-government-agencies-workforce` | Government Agencies & Workforce |
+| 3D Buildings | `dataset-buildings` | Buildings: Footprint, GFA & Height |
+
+ข้อยกเว้น:
+
+- “Shopping centers and venues” ถูก map เฉพาะ Shopping Centers; ไม่รวม venues จนกว่าจะมีขอบเขตแยก
+- Flood forecasting ยังไม่ map เพราะ official modules แยก DWR forecast-depth กับ Google flash-flood risk
+- CityScan, CityMETER Playbook for FDI, DWR Runoff, GISTDA Urban Flood และ CityCell เป็น product/partner-specific deliverable ไม่ใช่ canonical CityMETER dataset module
+- ชื่อ CityMETER รุ่นเก่าใน snapshot ที่ยังเทียบ release ไม่ได้ใช้ `sheet_recorded_not_current_release_authority`
+
+## achievements
+
+Achievement แยกจาก contribution และรองรับผู้รับหลายคนด้วย `recipientPersonIds`
+
+Hack Land Value Hackathon:
+
+- `achievementId`: `A0001`
+- ผู้รับ: `S0001` โอ๊ต, `P0001` เสก, `I0016` มุก (Pitcha)
+- `workId`: `work-citycell-model`
+- วันที่เป็น null และ `dateVerificationStatus=owner_detail_required` จนกว่าจะยืนยัน
+
+## socialProfiles และ assets
+
+### Publication gate
+
+Enum สำหรับ workflow ของ social/asset candidate ต้องใช้ค่าชุดนี้เท่านั้น:
+
+| Gate | Allowed values |
+|---|---|
+| `verification_status` | `owner_review_required`, `verified`, `rejected`, `missing` |
+| `consent_status` | `granted`, `pending`, `denied` |
+| `rights_status` | `cleared`, `pending`, `denied`, `revoked` |
+| `publication_status` | `publishable`, `withheld_pending_*`, `withdrawn` |
+
+`withheld_pending_*` คือ family ของสถานะที่ระบุเหตุผลว่ารอ gate ใด เช่น `withheld_pending_consent` หรือสถานะรวมที่ schema รองรับ ไม่ใช่ wildcard value ที่ผู้ใช้พิมพ์ลง cell และทุกค่ากลุ่มนี้ต้องถูก withheld ส่วน `withdrawn` หมายถึงเคยมี record แต่ถอนออกจากการเผยแพร่แล้ว
+
+Social URL เผยแพร่ได้เมื่อ:
+
+1. `consentStatus=granted`
+2. `verificationStatus=verified`
+3. `publicationStatus=publishable`
+
+Portrait เผยแพร่ได้เมื่อ:
+
+1. `consentStatus=granted`
+2. `verificationStatus=verified`
+3. `rightsStatus=cleared`
+4. `publicationStatus=publishable`
+
+Candidate ที่ยังไม่ผ่าน gate ต้องมี `publicUrl=null` หรือ `publicPath=null` เพื่อป้องกันข้อมูลหลุดใน static JSON การเห็น profile จาก follower/following ไม่เท่ากับ consent และไม่ยืนยันว่าเป็นคนเดียวกัน
+
+Candidate URL/handle, portrait source URL, evidence, permission record และ review note เก็บเฉพาะใน ignored raw snapshot เท่านั้น Normalizer อาจอ่านเพื่อประเมิน gate แต่ไม่ emit ค่า private candidate เข้า `data/generated/` ส่วน exporter อ่านทั้ง raw snapshot และ reviewed `site-data.json` แล้ว merge public canonical rows กลับเข้ากับ candidate/review fields เดิม เพื่อให้ roundtrip ไม่ทำข้อมูล private สูญหาย
+
+ข้อมูล email, phone, chat handle, private CV/file ID และค่าจาก private contact source ไม่ถูก ingest หรือ emit ใน generated/public data
+
+## โครงสร้าง Google Sheet ที่แนะนำ
+
+แยก tab ตาม grain ห้ามเก็บรายการหลายค่าแบบ comma-separated ใน cell เดียว
+
+| Tab | หนึ่งแถวหมายถึง | Primary key |
+|---|---|---|
+| `people` | คนหนึ่งคน | `person_id` |
+| `engagements` | หนึ่งช่วงบทบาท | `engagement_id` |
+| `institutions` | หนึ่งสถาบัน | `institution_id` |
+| `programs` | หนึ่งหลักสูตร/field | `program_id` |
+| `education_records` | คน–สถาบัน–หลักสูตรหนึ่งความสัมพันธ์ | `education_record_id` |
+| `works` | หนึ่ง work/module/project | `work_id` |
+| `contributions` | คน–ผลงาน–engagement หนึ่งความสัมพันธ์ | `contribution_id` |
+| `achievements` | หนึ่งรางวัล/ความสำเร็จ | `achievement_id` |
+| `achievement_recipients` | หนึ่งผู้รับต่อ achievement | composite `achievement_id + person_id` |
+| `social_candidates_private` | หนึ่ง platform ต่อคน | composite `person_id + platform` |
+| `assets_private` | หนึ่ง asset candidate ต่อคน | `asset_id` |
+| `lists` | enum และ data validation | list key |
+
+### คอลัมน์สำคัญที่ต้องเพิ่ม/รักษา
+
+- `people`: `person_id`, names, `current_status`, `consent_public`, `bio_th`, `bio_en`, `bio_status`, `bio_verification_status`
+- `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`
+- `education_records`: FK 3 ตัว, `is_primary`, `verification_status`, `evidence_note`
+- `works`: localized names, `parent_product`, `module_slug`, `type`, `scope_layer`, `authority_status`
+- `contributions`: FK person/work/engagement, role, period, evidence status/source/note
+- `social_candidates_private`: candidate URL, identity verification, consent, publication status, verified by/date
+- `assets_private`: source, local public path, consent, identity verification, rights/license, approver/date
+
+### Data validation
+
+ใช้ dropdown จาก tab `lists` สำหรับ enum ทุกช่อง และใช้ protected range กับ:
+
+- canonical IDs
+- institution/program canonical names
+- work/module slug
+- consent/verification/rights status
+- formula/QA columns
+
+ห้ามแก้ ID หลัง assign หากพบคนซ้ำให้ merge relation เข้าหา canonical person record แทนการออก ID ใหม่
+
+### QA views ที่ควรมี
+
+1. คนที่ไม่มี contribution
+2. FK ที่หา parent ไม่เจอ
+3. social/asset ที่ขอเผยแพร่แต่ gate ไม่ครบ
+4. institution/program alias ที่ยัง map ไม่ได้
+5. work ที่ `authorityStatus` ยัง unresolved
+6. bio ที่ยัง `owner_pending`
+7. engagement ongoing แต่มี end date ผ่านแล้ว หรือ completed แต่ไม่มีเหตุผล/ช่วงเวลา
+8. nickname ซ้ำ โดยแสดง `personId` คู่กันเสมอ
+
+## Build และ verification
+
+รัน normalize โดยระบุขอบเขตไฟล์ชัดเจน (ค่าเหล่านี้คือ default ของ `npm run normalize`):
+
+```sh
+node tools/normalize-data.mjs \
+  --input data/raw/google-sheet-snapshot.json \
+  --output-dir data/generated
+```
+
+สร้าง payload สำหรับ authorized local Sheet writeback โดยระบุทั้ง raw snapshot และ public projection:
+
+```sh
+node tools/export-sheet-tabs.mjs \
+  --snapshot data/raw/google-sheet-snapshot.json \
+  --site-data data/generated/site-data.json
+```
+
+เพิ่ม `<tab-name>` ต่อท้ายคำสั่ง exporter เมื่อต้องการเพียง tab เดียว Payload เต็มอาจมี private social/asset candidates และ internal contacts จึงห้ามบันทึกลง repository, CI log หรือ public artifact การนำ payload ไปเขียน Google Sheet ต้องทำใน authorized local session หลังตรวจ spreadsheet เป้าหมายแล้วเท่านั้น; CI ต้องไม่เรียก Google Sheet remote ไม่ว่าทางอ่านหรือเขียน
+
+รัน data QA:
+
+```sh
+node --test tests/data-model.test.mjs
+```
+
+Generator เป็น deterministic: snapshot เดิมและกติกาเดิมต้องสร้าง JSON byte-for-byte เหมือนเดิม Tests ตรวจ unique IDs, orphan FKs, minimum contribution, Oat role history, CityMETER mapping, education conflict, achievement recipients และ privacy gates

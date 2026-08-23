@@ -1,0 +1,28 @@
+[
+  {
+    "achievementId": "A0001",
+    "title": {
+      "th": "รางวัลชนะเลิศ Hack Land Value Hackathon ด้วยโมเดล CityCell",
+      "en": "Winner, Hack Land Value Hackathon, with the CityCell model"
+    },
+    "result": {
+      "th": "ชนะเลิศ",
+      "en": "Winner"
+    },
+    "organizer": {
+      "th": "กรมธนารักษ์",
+      "en": "The Treasury Department, Thailand"
+    },
+    "awardedOn": null,
+    "dateVerificationStatus": "owner_detail_required",
+    "recipientPersonIds": [
+      "S0001",
+      "P0001",
+      "I0016"
+    ],
+    "workId": "work-citycell-model",
+    "evidenceStatus": "owner_supplied_with_public_source",
+    "evidenceUrl": "https://www.facebook.com/TREASURYTHAI/posts/1089323533318360/",
+    "evidenceNote": "คำสั่งเจ้าของข้อมูลระบุผู้รับรางวัล โอ๊ต เสก และมุก (Pitcha); วันมอบรางวัลยังไม่ยืนยันในชุดข้อมูลนี้"
+  }
+]

@@ -1,0 +1,157 @@
+[
+  {
+    "institutionId": "inst-kmitl",
+    "names": {
+      "th": {
+        "formal": "สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
+        "short": "สจล."
+      },
+      "en": {
+        "formal": "King Mongkut's Institute of Technology Ladkrabang",
+        "short": "KMITL"
+      }
+    },
+    "aliases": [
+      "KMITL"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-chula",
+    "names": {
+      "th": {
+        "formal": "จุฬาลงกรณ์มหาวิทยาลัย",
+        "short": "จุฬาฯ"
+      },
+      "en": {
+        "formal": "Chulalongkorn University",
+        "short": "CU"
+      }
+    },
+    "aliases": [
+      "Chulalongkorn",
+      "Chulalongkorn University"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-thammasat",
+    "names": {
+      "th": {
+        "formal": "มหาวิทยาลัยธรรมศาสตร์",
+        "short": "มธ."
+      },
+      "en": {
+        "formal": "Thammasat University",
+        "short": "TU"
+      }
+    },
+    "aliases": [
+      "Thammasat",
+      "Thammasat Business School"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-kaist",
+    "names": {
+      "th": {
+        "formal": "สถาบันวิทยาศาสตร์และเทคโนโลยีขั้นสูงแห่งเกาหลี",
+        "short": "KAIST"
+      },
+      "en": {
+        "formal": "Korea Advanced Institute of Science and Technology",
+        "short": "KAIST"
+      }
+    },
+    "aliases": [
+      "KAIST"
+    ],
+    "verificationStatus": "owner_review_required"
+  },
+  {
+    "institutionId": "inst-uq",
+    "names": {
+      "th": {
+        "formal": "มหาวิทยาลัยควีนส์แลนด์",
+        "short": "UQ"
+      },
+      "en": {
+        "formal": "The University of Queensland",
+        "short": "UQ"
+      }
+    },
+    "aliases": [
+      "UQ"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-nmu",
+    "names": {
+      "th": {
+        "formal": "มหาวิทยาลัยนวมินทราธิราช",
+        "short": "มว."
+      },
+      "en": {
+        "formal": "Navamindradhiraj University",
+        "short": "NMU"
+      }
+    },
+    "aliases": [
+      "Navamindradhiraj"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-mahidol",
+    "names": {
+      "th": {
+        "formal": "มหาวิทยาลัยมหิดล",
+        "short": "มหิดล"
+      },
+      "en": {
+        "formal": "Mahidol University",
+        "short": "MU"
+      }
+    },
+    "aliases": [
+      "Mahidol"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-southampton",
+    "names": {
+      "th": {
+        "formal": "มหาวิทยาลัยเซาแทมป์ตัน",
+        "short": "Southampton"
+      },
+      "en": {
+        "formal": "University of Southampton",
+        "short": "Southampton"
+      }
+    },
+    "aliases": [
+      "University of Southampton"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  },
+  {
+    "institutionId": "inst-ucl",
+    "names": {
+      "th": {
+        "formal": "ยูนิเวอร์ซิตีคอลเลจลอนดอน",
+        "short": "UCL"
+      },
+      "en": {
+        "formal": "University College London",
+        "short": "UCL"
+      }
+    },
+    "aliases": [
+      "UCL"
+    ],
+    "verificationStatus": "canonical_name_reviewed"
+  }
+]
