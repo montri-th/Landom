@@ -94,8 +94,12 @@ function readApprovedJson(fileName) {
 const profileCopy = readApprovedJson('profile-copy.json');
 const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
 const profileDetailOverrides = readApprovedJson('profile-detail-overrides.json');
+const personIdentityOverrides = readApprovedJson('person-identity-overrides.json');
 if (profileDetailOverrides.contractVersion !== '1.1') {
   throw new Error('Unsupported profile-detail override contract: ' + profileDetailOverrides.contractVersion);
+}
+if (personIdentityOverrides.contractVersion !== '1.0') {
+  throw new Error('Unsupported person-identity override contract: ' + personIdentityOverrides.contractVersion);
 }
 const cooperativeEducationPersonIds = new Set(
   educationPlacementOverrides.academicPlacement?.cooperativeEducationPersonIds ?? []
@@ -363,6 +367,53 @@ const people = peopleRows.map((row) => {
     }
   };
 });
+
+const peopleById = new Map(people.map((person) => [person.personId, person]));
+const identityOverrideIds = new Set();
+const identityOverrideKeys = new Set([
+  'personId',
+  'fullNameEn',
+  'nicknameTh',
+  'verificationStatus',
+  'evidenceBasis',
+  'sourceRef',
+  'reviewedAt'
+]);
+const identityVerificationStatuses = new Set([
+  'owner_confirmed',
+  'sheet_exact',
+  'verified_exact_linkedin_profile'
+]);
+for (const override of personIdentityOverrides.overrides ?? []) {
+  const unknownKeys = Object.keys(override).filter((key) => !identityOverrideKeys.has(key));
+  if (unknownKeys.length) throw new Error('Unknown person-identity override fields: ' + unknownKeys.join(', '));
+  if (!override.fullNameEn && !override.nicknameTh) {
+    throw new Error('Person-identity override has no governed identity field: ' + override.personId);
+  }
+  if (!identityVerificationStatuses.has(override.verificationStatus)) {
+    throw new Error('Unsupported person-identity verification status: ' + override.verificationStatus);
+  }
+  if (!clean(override.evidenceBasis) || !clean(override.sourceRef) || !/^\d{4}-\d{2}-\d{2}$/.test(override.reviewedAt ?? '')) {
+    throw new Error('Incomplete person-identity evidence contract: ' + override.personId);
+  }
+  if (override.fullNameEn && (!/[A-Za-z]/.test(override.fullNameEn) || /[ก-๙]/.test(override.fullNameEn))) {
+    throw new Error('English full-name override is not evidence-safe Latin text: ' + override.personId);
+  }
+  if (override.nicknameTh && !/[ก-๙]/.test(override.nicknameTh)) {
+    throw new Error('Thai nickname override does not contain Thai text: ' + override.personId);
+  }
+  if (identityOverrideIds.has(override.personId)) {
+    throw new Error('Duplicate person-identity override: ' + override.personId);
+  }
+  identityOverrideIds.add(override.personId);
+  const person = peopleById.get(override.personId);
+  if (!person) throw new Error('Unknown person in identity override: ' + override.personId);
+  if (override.fullNameEn) person.names.full.en = clean(override.fullNameEn);
+  if (override.nicknameTh) {
+    person.names.nickname.th = clean(override.nicknameTh);
+    person.names.card.th = clean(override.nicknameTh);
+  }
+}
 
 const educationRecords = [];
 for (const row of peopleRows) {

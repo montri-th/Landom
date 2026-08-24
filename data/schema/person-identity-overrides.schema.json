@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landom.example/schema/person-identity-overrides.schema.json",
+  "title": "Evidence-bound Landom person identity overrides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "sourceBoundary", "overrides"],
+  "properties": {
+    "contractVersion": { "const": "1.0" },
+    "sourceBoundary": { "type": "string", "minLength": 1 },
+    "overrides": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/identityOverride" }
+    }
+  },
+  "$defs": {
+    "identityOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "verificationStatus", "evidenceBasis", "sourceRef", "reviewedAt"],
+      "properties": {
+        "personId": { "type": "string", "pattern": "^[SPI]\\d{4}$" },
+        "fullNameEn": { "type": "string", "minLength": 2 },
+        "nicknameTh": { "type": "string", "pattern": "[ก-๙]", "minLength": 1 },
+        "verificationStatus": {
+          "enum": ["owner_confirmed", "sheet_exact", "verified_exact_linkedin_profile"]
+        },
+        "evidenceBasis": { "type": "string", "minLength": 1 },
+        "sourceRef": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "type": "string", "format": "date" }
+      },
+      "anyOf": [
+        { "required": ["fullNameEn"] },
+        { "required": ["nicknameTh"] }
+      ]
+    }
+  }
+}

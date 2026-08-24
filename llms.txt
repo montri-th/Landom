@@ -1,0 +1,25 @@
+# Landom
+
+> Landom is the public people-and-contribution directory for the community that builds with Landometer. It presents governed, public-safe profile fields, engagement periods, education, contributions, achievements, certificates, and approved public profile links in Thai and English.
+
+## Canonical pages
+
+- Thai and default: https://montri-th.github.io/Landom/
+- English: https://montri-th.github.io/Landom/en/
+
+## Public machine-readable sources
+
+- Current public directory: https://montri-th.github.io/Landom/data/generated/site-data.json
+- Build integrity manifest: https://montri-th.github.io/Landom/build-manifest.json
+- Sitemap: https://montri-th.github.io/Landom/sitemap.xml
+- Source repository: https://github.com/montri-th/Landom
+
+## Interpretation boundary
+
+- A person can have several engagement periods while retaining one canonical person ID.
+- Contributions, engagements, education records, achievements, certificates, and public social links are separate records joined by their published IDs.
+- Missing fields remain missing or pending; they must not be inferred from a similar person, institution, program, or product.
+- Contribution records describe work with Landometer. They do not by themselves claim sole authorship, employment status, current availability, endorsement, or ownership.
+- Public profile and portrait publication bases are scoped directory records and must not be restated as individual consent unless the public record explicitly says so.
+
+This file is a navigation aid for readers, crawlers, and AI systems. It is not an access-control rule, a license, a ranking signal, proof of accuracy, permission to contact anyone, or authority for an agent to act.

@@ -14,6 +14,8 @@ const rawPath = path.join(root, 'data/raw/google-sheet-snapshot.json');
 const schemaPath = path.join(root, 'data/schema/site-data.schema.json');
 const profileDetailOverridePath = path.join(root, 'data/approved/profile-detail-overrides.json');
 const profileDetailOverrideSchemaPath = path.join(root, 'data/schema/profile-detail-overrides.schema.json');
+const personIdentityOverridePath = path.join(root, 'data/approved/person-identity-overrides.json');
+const personIdentityOverrideSchemaPath = path.join(root, 'data/schema/person-identity-overrides.schema.json');
 const certificateApprovalPath = path.join(root, 'data/approved/certificate-assets.json');
 const rawAvailable = fs.existsSync(rawPath);
 
@@ -45,6 +47,12 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.ok(personIdIndex >= 0 && sourceNoteIndex >= 0);
   assert.ok(peopleTab.rows.every((row) => /^[SPI]\d{4}$/.test(row[personIdIndex])));
   assert.ok(peopleTab.rows.every((row) => !String(row[sourceNoteIndex]).includes('LDM-P-')));
+  const fullNameEnIndex = peopleTab.headers.indexOf('full_name_en');
+  const nicknameThIndex = peopleTab.headers.indexOf('nickname_th');
+  const identityRows = new Map(peopleTab.rows.map((row) => [row[personIdIndex], row]));
+  assert.equal(identityRows.get('I0035')[fullNameEnIndex], 'Passapol Lukthongkum');
+  assert.equal(identityRows.get('I0014')[nicknameThIndex], 'มอส');
+  assert.equal(identityRows.get('I0023')[nicknameThIndex], 'ทิม');
   const pattareeyaRow = peopleTab.rows.find((row) => row[personIdIndex] === 'I0041');
   assert.ok(pattareeyaRow, 'missing Pattareeya export row');
   assert.match(pattareeyaRow[sourceNoteIndex], /Pitcha \(I0016\)/);
@@ -200,13 +208,38 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
 test('schema and all generated dimensions are valid JSON', () => {
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(schemaPath, 'utf8')));
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(profileDetailOverrideSchemaPath, 'utf8')));
+  assert.doesNotThrow(() => JSON.parse(fs.readFileSync(personIdentityOverrideSchemaPath, 'utf8')));
   const detailOverrides = JSON.parse(fs.readFileSync(profileDetailOverridePath, 'utf8'));
+  const identityOverrides = JSON.parse(fs.readFileSync(personIdentityOverridePath, 'utf8'));
+  assert.equal(identityOverrides.contractVersion, '1.0');
+  assertUnique(identityOverrides.overrides.map((override) => ({ personId: override.personId })), 'personId');
   assert.equal(detailOverrides.contractVersion, '1.1');
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^[SPI]\d{4}$/.test(engagement.personId)));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^E\d{4}$/.test(engagement.engagementId)));
   for (const fileName of fs.readdirSync(path.join(root, 'data/generated')).filter((name) => name.endsWith('.json'))) {
     assert.doesNotThrow(() => JSON.parse(fs.readFileSync(path.join(root, 'data/generated', fileName), 'utf8')), fileName);
   }
+});
+
+test('verified English full names and exact Thai nicknames override stale registry cells without guessing', () => {
+  const data = loadGenerated();
+  const peopleById = new Map(data.people.map((person) => [person.personId, person]));
+  assert.equal(peopleById.get('I0035').names.full.en, 'Passapol Lukthongkum');
+  assert.equal(peopleById.get('I0037').names.full.en, null);
+  assert.equal(peopleById.get('I0038').names.full.en, null);
+  assert.deepEqual(
+    Object.fromEntries(['I0014', 'I0018', 'I0019', 'I0020', 'I0021', 'I0023', 'I0025'].map((personId) => [personId, peopleById.get(personId).names.nickname.th])),
+    {
+      I0014: 'มอส',
+      I0018: 'เกรซ',
+      I0019: 'เจมี่',
+      I0020: 'เตี๊ยม',
+      I0021: 'เพลง',
+      I0023: 'ทิม',
+      I0025: 'แป้ง'
+    }
+  );
+  assert.ok(data.people.every((person) => person.names.card.th === person.names.nickname.th || !person.names.nickname.th));
 });
 
 test('person IDs have one frozen canonical version', () => {

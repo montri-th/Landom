@@ -2542,11 +2542,11 @@
           "en": "Chanathip Kulsirilak"
         },
         "nickname": {
-          "th": "Mos",
+          "th": "มอส",
           "en": "Mos"
         },
         "card": {
-          "th": "Mos",
+          "th": "มอส",
           "en": "Mos"
         }
       },
@@ -2810,11 +2810,11 @@
           "en": "Rinrada Boonsupthip"
         },
         "nickname": {
-          "th": "Grace",
+          "th": "เกรซ",
           "en": "Grace"
         },
         "card": {
-          "th": "Grace",
+          "th": "เกรซ",
           "en": "Grace"
         }
       },
@@ -2877,11 +2877,11 @@
           "en": "Yada Laowattanachai"
         },
         "nickname": {
-          "th": "Jamie",
+          "th": "เจมี่",
           "en": "Jamie"
         },
         "card": {
-          "th": "Jamie",
+          "th": "เจมี่",
           "en": "Jamie"
         }
       },
@@ -2944,11 +2944,11 @@
           "en": "Naphat Wangsiripaisarn"
         },
         "nickname": {
-          "th": "Tieam",
+          "th": "เตี๊ยม",
           "en": "Tieam"
         },
         "card": {
-          "th": "Tieam",
+          "th": "เตี๊ยม",
           "en": "Tieam"
         }
       },
@@ -3011,11 +3011,11 @@
           "en": "Nichapa Wattanachai"
         },
         "nickname": {
-          "th": "Pleng",
+          "th": "เพลง",
           "en": "Pleng"
         },
         "card": {
-          "th": "Pleng",
+          "th": "เพลง",
           "en": "Pleng"
         }
       },
@@ -3145,11 +3145,11 @@
           "en": "Pawat Chirapark"
         },
         "nickname": {
-          "th": "Tim",
+          "th": "ทิม",
           "en": "Tim"
         },
         "card": {
-          "th": "Tim",
+          "th": "ทิม",
           "en": "Tim"
         }
       },
@@ -3279,11 +3279,11 @@
           "en": "Pornpawee Parsurakul"
         },
         "nickname": {
-          "th": "Pang",
+          "th": "แป้ง",
           "en": "Pang"
         },
         "card": {
-          "th": "Pang",
+          "th": "แป้ง",
           "en": "Pang"
         }
       },
@@ -4013,7 +4013,7 @@
       "names": {
         "full": {
           "th": "ภัสพล หลักทองคำ",
-          "en": null
+          "en": "Passapol Lukthongkum"
         },
         "nickname": {
           "th": "แทน",
@@ -14930,7 +14930,7 @@
       "publicPath": "public/assets/people/I0014.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของMos",
+        "th": "ภาพโปรไฟล์ของมอส",
         "en": "Profile portrait of Mos"
       },
       "candidateStatus": "candidate_present",
@@ -15038,7 +15038,7 @@
       "publicPath": "public/assets/people/I0018.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของGrace",
+        "th": "ภาพโปรไฟล์ของเกรซ",
         "en": "Profile portrait of Grace"
       },
       "candidateStatus": "candidate_present",
@@ -15065,7 +15065,7 @@
       "publicPath": "public/assets/people/I0019.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของJamie",
+        "th": "ภาพโปรไฟล์ของเจมี่",
         "en": "Profile portrait of Jamie"
       },
       "candidateStatus": "candidate_present",
@@ -15092,7 +15092,7 @@
       "publicPath": "public/assets/people/I0020.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของTieam",
+        "th": "ภาพโปรไฟล์ของเตี๊ยม",
         "en": "Profile portrait of Tieam"
       },
       "candidateStatus": "candidate_present",
@@ -15119,7 +15119,7 @@
       "publicPath": "public/assets/people/I0021.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของPleng",
+        "th": "ภาพโปรไฟล์ของเพลง",
         "en": "Profile portrait of Pleng"
       },
       "candidateStatus": "candidate_present",
@@ -15173,7 +15173,7 @@
       "publicPath": "public/assets/people/I0023.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของTim",
+        "th": "ภาพโปรไฟล์ของทิม",
         "en": "Profile portrait of Tim"
       },
       "candidateStatus": "candidate_present",
@@ -15227,7 +15227,7 @@
       "publicPath": "public/assets/people/I0025.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของPang",
+        "th": "ภาพโปรไฟล์ของแป้ง",
         "en": "Profile portrait of Pang"
       },
       "candidateStatus": "candidate_present",

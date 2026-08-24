@@ -24,10 +24,10 @@ npm test
 npm run build
 ```
 
-- `normalize` reads an authorized local file at `data/raw/google-sheet-snapshot.json`, applies the reviewed contracts in `data/approved/` (including `profile-detail-overrides.json`), and deterministically rewrites public files in `data/generated/`. The private `data/raw/` directory is ignored by Git. The normalizer detects either a Sheet-style `sheets` map whose values are row arrays (header row first), or an exporter-shaped `tabs` map whose values contain `headers` and `rows`.
+- `normalize` reads an authorized local file at `data/raw/google-sheet-snapshot.json`, applies the reviewed contracts in `data/approved/` (including `profile-detail-overrides.json` and `person-identity-overrides.json`), and deterministically rewrites public files in `data/generated/`. The private `data/raw/` directory is ignored by Git. The normalizer detects either a Sheet-style `sheets` map whose values are row arrays (header row first), or an exporter-shaped `tabs` map whose values contain `headers` and `rows`.
 - `validate` checks IDs, foreign keys, at least one contribution per person, Oat's two separate works, public-consent gates, asset approvals, canonical naming, privacy leaks, and required UI controls.
 - `test` exercises positive and negative data/privacy contracts plus the integrated source.
-- `build` validates and copies only `index.html`, `robots.txt`, `sitemap.xml`, `src/`, `public/`, and `data/generated/` into `dist/`. It writes a timestamp-free SHA-256 manifest for reproducibility, then validates the finished artifact.
+- `build` validates and copies only `index.html`, `llms.txt`, `robots.txt`, `sitemap.xml`, `src/`, `public/`, and `data/generated/` into `dist/`, then creates the reviewed crawlable English entry point at `/en/`. It writes a timestamp-free SHA-256 manifest for reproducibility, then validates the finished artifact.
 
 To use non-default local paths, pass them explicitly:
 
@@ -74,7 +74,7 @@ Every public person must resolve to at least one contribution. `Land Portfolio` 
 
 Works expose localized `catalogUrl.th/en` only where the route was verified, keep `destinationUrl` null when no exact work destination is known, and record `linkEvidence.linkScope` so a broad product catalog is never misrepresented as a work-specific page. FDI uses the exact UI label `Full-stack Developer Intern, FDI`; the Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์` and the English short label is `CP`. FDI/PDI/MSI contributions use `Software development` / `Product development` / `Go-to-market`; CityCell award-team contributions use `Team member`.
 
-Developer references: [data dictionary](docs/data-dictionary.md), [public JSON Schema](data/schema/site-data.schema.json), [approved detail-override schema](data/schema/profile-detail-overrides.schema.json), and [implementation handoff](docs/implementation-handoff.md).
+Developer references: [data dictionary](docs/data-dictionary.md), [public JSON Schema](data/schema/site-data.schema.json), [approved detail-override schema](data/schema/profile-detail-overrides.schema.json), [approved identity-override schema](data/schema/person-identity-overrides.schema.json), and [implementation handoff](docs/implementation-handoff.md).
 
 ## Privacy and assets
 
@@ -84,9 +84,9 @@ Developer references: [data dictionary](docs/data-dictionary.md), [public JSON S
 - A social URL is public only when identity is verified, publication is `publishable`, and its basis is either recorded individual consent or scoped `owner_authorized_public_profile_link`. Owner authorization is recorded separately and must not be described as individual consent.
 - A person image renders only through an `assets[]` record with exact identity, cleared rights, publishable status, a governed local path/hash, and either individual consent or scoped `owner_authorized_public_profile_portrait`. Expiring CDN/source URLs remain private; otherwise the UI renders the full nickname fallback.
 - Private social and asset workflow fields use these exact value sets: verification `owner_review_required | verified | rejected | missing`; consent `granted | pending | denied`; rights `cleared | pending | denied | revoked`; publication `publishable | withheld_pending_* | withdrawn`. `withheld_pending_*` is the reserved family of explicit pending-reason statuses, not a publishable state.
-- Approved portrait metadata lives in `data/approved/portrait-assets.json`; public hashes and role restrictions are also recorded in `docs/assets-manifest.json`. The horizontal Landometer logo remains approved only as the header lockup and is not a favicon or person avatar.
+- Approved portrait metadata lives in `data/approved/portrait-assets.json`; public hashes and role restrictions are also recorded in `docs/assets-manifest.json`. The horizontal Landometer logo remains approved only as the header lockup and is not a favicon or person avatar. Browser tabs use the exact 192×192 transparent compact symbol approved by Landometer Design System v0.9.0 for favicon duty only; its URL, hash, dimensions, alpha, source revision, and boundaries are pinned in `docs/identity-discovery.json`.
 - Filled certificate images are governed separately by `data/approved/certificate-assets.json`, copied byte-for-byte under `public/assets/certificates/`, and emitted only through owner-authorized `certificates[]` records. QR destinations never become contribution evidence, and printed spelling/date conflicts remain explicit review flags.
-- `robots.txt`, `sitemap.xml`, and the HTML canonical link all resolve to the single public `/Landom/` route. No favicon or social preview image is claimed until a separate compact asset is explicitly approved.
+- `/Landom/` is both the Thai canonical route and `x-default`; `/Landom/en/` is a crawlable English build. The two routes use reciprocal `hreflang`, localized initial HTML, text-only Open Graph/Twitter records, truthful `CollectionPage` JSON-LD, and matching sitemap entries without a duplicate Thai path. `llms.txt` is a public-safe navigation aid to the canonical pages and generated JSON; it is not permission, a ranking signal, a license, evidence, or agent authority. No apple-touch, maskable/install, or social-preview image is claimed because those roles do not yet have separate approval. Search-result favicon selection and hostname-root robots behavior remain controlled at `montri-th.github.io`, beyond an individual project subpath.
 
 ## Interface contract
 

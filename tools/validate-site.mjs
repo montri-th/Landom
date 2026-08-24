@@ -21,6 +21,7 @@ const REQUIRED_DATASETS = [
 
 export const PUBLIC_BUILD_INPUTS = Object.freeze([
   'index.html',
+  'llms.txt',
   'robots.txt',
   'sitemap.xml',
   'src',
@@ -760,9 +761,15 @@ async function validateGeneratedParity(publishRoot, siteData, errors) {
   }
 }
 
-async function validateDiscovery(publishRoot, errors) {
+async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   const canonicalUrl = 'https://montri-th.github.io/Landom/';
+  const localeUrls = {
+    th: canonicalUrl,
+    en: `${canonicalUrl}en/`
+  };
+  const faviconHref = 'https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f';
   const index = await readIfPresent(path.join(publishRoot, 'index.html'));
+  const llms = await readIfPresent(path.join(publishRoot, 'llms.txt'));
   const robots = await readIfPresent(path.join(publishRoot, 'robots.txt'));
   const sitemap = await readIfPresent(path.join(publishRoot, 'sitemap.xml'));
   if (robots === null) errors.push('robots.txt is missing.');
@@ -774,19 +781,174 @@ async function validateDiscovery(publishRoot, errors) {
       errors.push('robots.txt must reference the canonical root sitemap URL.');
     }
   }
-  if (sitemap === null) errors.push('sitemap.xml is missing.');
+  if (llms === null) errors.push('llms.txt is missing.');
   else {
-    if (!sitemap.includes(`<loc>${canonicalUrl}</loc>`)) errors.push('sitemap.xml is missing the canonical public route.');
-    if ((sitemap.match(/<loc>/g) ?? []).length !== 1) {
-      errors.push('sitemap.xml must contain the single canonical route for this one-page site.');
+    for (const requiredUrl of [canonicalUrl, localeUrls.en, `${canonicalUrl}data/generated/site-data.json`]) {
+      if (!llms.includes(requiredUrl)) errors.push(`llms.txt is missing navigation URL ${requiredUrl}.`);
+    }
+    if (!/navigation aid/i.test(llms) || !/not an access-control rule/i.test(llms) || !/authority for an agent to act/i.test(llms)) {
+      errors.push('llms.txt must remain a bounded navigation aid and deny access-control, ranking, license, and agent-action interpretations.');
     }
   }
-  if (index !== null) {
-    if (!index.includes(`<link rel="canonical" href="${canonicalUrl}">`)) {
-      errors.push('index.html canonical URL does not match the published GitHub Pages route.');
+  if (sitemap === null) errors.push('sitemap.xml is missing.');
+  else {
+    const sitemapRoutes = [canonicalUrl, localeUrls.en];
+    for (const route of sitemapRoutes) {
+      if (!sitemap.includes(`<loc>${route}</loc>`)) errors.push(`sitemap.xml is missing ${route}.`);
     }
-    if (/<link[^>]+rel=["'][^"']*(?:icon|apple-touch-icon)/i.test(index) || /property=["']og:image["']/i.test(index)) {
-      errors.push('Do not fabricate favicon or social-image roles from the horizontal header lockup.');
+    if ((sitemap.match(/<loc>/g) ?? []).length !== sitemapRoutes.length) {
+      errors.push('sitemap.xml must contain exactly the Thai canonical root and English public route.');
+    }
+    for (const [locale, route] of Object.entries({ th: localeUrls.th, en: localeUrls.en, 'x-default': canonicalUrl })) {
+      const pattern = new RegExp(`<xhtml:link\\s+rel=["']alternate["']\\s+hreflang=["']${locale}["']\\s+href=["']${route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']\\s*\\/>`, 'g');
+      if ((sitemap.match(pattern) ?? []).length !== sitemapRoutes.length) {
+        errors.push(`sitemap.xml must give every route the reciprocal ${locale} alternate.`);
+      }
+    }
+  }
+
+  function validateDiscoveryHtml(html, { fileLabel, routeUrl, locale, localized }) {
+    if (!html.includes(`<link rel="canonical" href="${routeUrl}">`)) {
+      errors.push(`${fileLabel} canonical URL does not match ${routeUrl}.`);
+    }
+    for (const [hreflang, href] of Object.entries({ th: localeUrls.th, en: localeUrls.en, 'x-default': canonicalUrl })) {
+      if (!html.includes(`<link rel="alternate" hreflang="${hreflang}" href="${href}">`)) {
+        errors.push(`${fileLabel} is missing the reciprocal ${hreflang} hreflang link.`);
+      }
+    }
+    if (!html.includes('type="application/json"') || !html.includes(`href="${canonicalUrl}data/generated/site-data.json"`)) {
+      errors.push(`${fileLabel} must expose the public directory JSON as a typed alternate representation.`);
+    }
+    if (!html.includes(`<meta property="og:url" content="${routeUrl}">`)) {
+      errors.push(`${fileLabel} Open Graph URL does not match its canonical route.`);
+    }
+    const iconLinks = html.match(/<link\b[^>]*\brel=["']icon["'][^>]*>/gi) ?? [];
+    if (
+      iconLinks.length !== 1 ||
+      !iconLinks[0].includes(`href="${faviconHref}"`) ||
+      !iconLinks[0].includes('type="image/png"') ||
+      !iconLinks[0].includes('sizes="192x192"')
+    ) {
+      errors.push(`${fileLabel} must use only the exact DS-approved 192x192 transparent browser-tab favicon.`);
+    }
+    if (/<link\b[^>]*\brel=["'][^"']*apple-touch-icon/i.test(html)) {
+      errors.push(`${fileLabel} must not claim an unapproved apple-touch icon.`);
+    }
+    if (/property=["']og:image["']/i.test(html) || /name=["']twitter:image["']/i.test(html)) {
+      errors.push(`${fileLabel} must not claim an unapproved social-preview image.`);
+    }
+    if (!html.includes('<meta name="robots" content="index,follow">')) {
+      errors.push(`${fileLabel} must explicitly declare its approved public indexability.`);
+    }
+    if (!new RegExp(`<html[\\s\\S]*?lang=["']${locale}["']`, 'i').test(html)) {
+      errors.push(`${fileLabel} does not declare ${locale} as its initial HTML language.`);
+    }
+    if (!html.includes(`data-locale-route="${locale}"`)) {
+      errors.push(`${fileLabel} is missing its stable locale-route marker.`);
+    }
+    if (localized && !html.includes('<base href="../">')) {
+      errors.push(`${fileLabel} must preserve root-relative app/data delivery through its localized base URL.`);
+    }
+    if (localized && !html.includes(`href="${routeUrl}#main-content"`)) {
+      errors.push(`${fileLabel} skip link must remain on its localized route when a base URL is present.`);
+    }
+    if (localized && !html.includes(`<a class="brand" href="${routeUrl}"`)) {
+      errors.push(`${fileLabel} home link must preserve its localized route when a base URL is present.`);
+    }
+    const expectedTitle = locale === 'th'
+      ? 'Landom — คนที่ร่วมสร้าง Landometer'
+      : 'Landom — meet the people shaping Landometer';
+    const expectedDescription = locale === 'th'
+      ? 'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer'
+      : 'Meet the people, interests and work shaped through time with Landometer.';
+    const expectedHeading = locale === 'th' ? 'คนที่ร่วมสร้าง Landometer' : 'Meet the people shaping Landometer';
+    if (!html.includes(`<title>${expectedTitle}</title>`)) errors.push(`${fileLabel} is missing its localized initial title.`);
+    if (!html.includes(`content="${expectedDescription}"`)) errors.push(`${fileLabel} is missing its localized initial description.`);
+    if (!html.includes(`id="page-title">${expectedHeading}</h1>`)) errors.push(`${fileLabel} is missing its localized initial H1.`);
+
+    const structuredMatches = [...html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi)];
+    let collectionPage = null;
+    for (const match of structuredMatches) {
+      try {
+        const record = JSON.parse(match[1]);
+        if (record?.['@type'] === 'CollectionPage') collectionPage = record;
+      } catch (error) {
+        errors.push(`${fileLabel} contains invalid JSON-LD: ${error.message}`);
+      }
+    }
+    if (!collectionPage) errors.push(`${fileLabel} is missing truthful CollectionPage JSON-LD.`);
+    else {
+      if (collectionPage.url !== routeUrl || collectionPage.inLanguage !== locale) {
+        errors.push(`${fileLabel} JSON-LD URL/language does not match its localized route.`);
+      }
+      if (collectionPage?.mainEntity?.['@type'] !== 'ItemList' || collectionPage.mainEntity.numberOfItems !== siteData.people.length) {
+        errors.push(`${fileLabel} JSON-LD ItemList count does not match the public people registry.`);
+      }
+    }
+  }
+
+  if (index !== null) validateDiscoveryHtml(index, {
+    fileLabel: 'index.html',
+    routeUrl: canonicalUrl,
+    locale: 'th',
+    localized: false
+  });
+
+  const manifestText = await readIfPresent(path.join(publishRoot, 'public', 'manifest.webmanifest'));
+  if (manifestText !== null) {
+    try {
+      const manifest = JSON.parse(manifestText);
+      if (manifest.id !== '/Landom/' || manifest.start_url !== '/Landom/' || manifest.scope !== '/Landom/') {
+        errors.push('The web manifest id, start_url, and scope must match the canonical GitHub Pages project root.');
+      }
+      if (Array.isArray(manifest.icons) && manifest.icons.length > 0) {
+        errors.push('The web manifest must not claim touch, maskable, or install icons without separate approval.');
+      }
+    } catch (error) {
+      errors.push(`public/manifest.webmanifest is invalid JSON: ${error.message}`);
+    }
+  }
+
+  if (distMode) {
+    const localizedIndex = await readIfPresent(path.join(publishRoot, 'en', 'index.html'));
+    if (localizedIndex === null) errors.push('en/index.html is missing from the localized build.');
+    else validateDiscoveryHtml(localizedIndex, {
+      fileLabel: 'en/index.html',
+      routeUrl: localeUrls.en,
+      locale: 'en',
+      localized: true
+    });
+  }
+
+  const identityRecordText = await readIfPresent(path.join(repoRoot, 'docs', 'identity-discovery.json'));
+  if (identityRecordText === null) errors.push('docs/identity-discovery.json is missing.');
+  else {
+    try {
+      const identityRecord = JSON.parse(identityRecordText);
+      const favicon = identityRecord?.identityAssets?.find((asset) => asset.role === 'browser-tab favicon');
+      const approvalRecord = favicon?.approvalRecord;
+      if (
+        favicon?.deliveryUrl !== faviconHref ||
+        favicon?.sha256 !== '35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85' ||
+        favicon?.bytes !== 11001 ||
+        favicon?.intrinsicWidth !== 192 ||
+        favicon?.intrinsicHeight !== 192 ||
+        favicon?.approvalScope !== 'browser-tab favicon only' ||
+        favicon?.sourceVersion !== 'Landometer Design System v0.9.0' ||
+        approvalRecord?.manifestPath !== 'deployment/machine/v0.9.0/identity-approvals.manifest.json' ||
+        approvalRecord?.introducedAtCommit !== '36d72ab1dd755cbad5273a7f217e1ee10aeb54a2' ||
+        approvalRecord?.gitBlob !== '7e1e084d2340486cd27fe4af5d44c8de6dcf4baa' ||
+        approvalRecord?.sha256 !== '4d9864b05fc3b95bc76e6c986aff69444245a843509d5c7cdf481719a95e7ea1' ||
+        approvalRecord?.underlyingApprovalSourceCommit !== 'ce785864e5341321e1957dce35a8326732764432'
+      ) {
+        errors.push('docs/identity-discovery.json does not pin the exact DS-approved favicon role and evidence.');
+      }
+      const omittedRoles = new Set((identityRecord?.omittedRoles ?? []).map((record) => record.role));
+      for (const role of ['apple-touch icon', 'maskable or install icon', 'social preview image']) {
+        if (!omittedRoles.has(role)) errors.push(`docs/identity-discovery.json must record the missing ${role} approval.`);
+      }
+    } catch (error) {
+      errors.push(`docs/identity-discovery.json is invalid JSON: ${error.message}`);
     }
   }
 }
@@ -872,7 +1034,7 @@ export async function validateSite({ distMode = false } = {}) {
   await validatePublishBoundary(publishRoot, errors, { distMode });
   await validateAssetManifest(publishRoot, siteData, errors);
   await validateGeneratedParity(publishRoot, siteData, errors);
-  await validateDiscovery(publishRoot, errors);
+  await validateDiscovery(publishRoot, siteData, errors, { distMode });
   if (distMode) await validateBuildManifest(publishRoot, errors);
   return errors;
 }

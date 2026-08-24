@@ -129,7 +129,9 @@ Cards must be keyboard-operable `.person-card` buttons. Profile details expand i
 
 The app fetches `./data/generated/site-data.json`; keep URLs relative so project Pages works under `/Landom/`.
 
-Discovery uses one canonical URL, `https://montri-th.github.io/Landom/`, shared by HTML, `robots.txt`, and `sitemap.xml`. The horizontal header lockup is prohibited as a favicon, compact icon, or `og:image`; leave those roles absent until separately approved assets exist.
+Discovery uses `https://montri-th.github.io/Landom/` as both the Thai canonical route and `x-default`, with a stable crawlable English route at `/Landom/en/`. The build produces localized initial HTML, self-canonical URLs, reciprocal `hreflang`, localized Open Graph text, truthful `CollectionPage` JSON-LD, and matching sitemap entries without a duplicate `/th/` page. `llms.txt` is navigation-only and must never be presented as permission, a license, evidence, a ranking signal, or authority for an agent to act.
+
+Browser tabs use the exact DS v0.9.0 transparent compact symbol at `https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f` (PNG, 192×192, 11,001 bytes, SHA-256 `35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85`). That approval is favicon-only. The horizontal header lockup remains prohibited as a favicon, compact icon, person avatar, or `og:image`; the compact symbol is likewise not approved for apple-touch, maskable/install, social preview, or horizontal header roles. Keep those absent until separately approved. Project-path code cannot independently control the hostname-level search-result favicon or `https://montri-th.github.io/robots.txt`, and third-party preview caches can remain stale after the origin is correct.
 
 ## 6. Social and image approval gate
 

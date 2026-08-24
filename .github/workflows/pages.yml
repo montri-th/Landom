@@ -64,6 +64,7 @@ jobs:
           set -euo pipefail
           base_url="${PAGE_URL%/}"
           html_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-index.html --write-out '%{content_type}' "$base_url/")"
+          english_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-en.html --write-out '%{content_type}' "$base_url/en/")"
           data_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-site-data.json --write-out '%{content_type}' "$base_url/data/generated/site-data.json")"
           manifest_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-build-manifest.json --write-out '%{content_type}' "$base_url/build-manifest.json")"
           script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-app.js --write-out '%{content_type}' "$base_url/src/app.js")"
@@ -74,7 +75,10 @@ jobs:
           portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-s0001.jpg --write-out '%{content_type}' "$base_url/public/assets/people/S0001.jpg")"
           robots_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-robots.txt --write-out '%{content_type}' "$base_url/robots.txt")"
           sitemap_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-sitemap.xml --write-out '%{content_type}' "$base_url/sitemap.xml")"
+          llms_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-llms.txt --write-out '%{content_type}' "$base_url/llms.txt")"
+          favicon_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-favicon.png --write-out '%{content_type}' 'https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f')"
           case "$html_type" in text/html*) ;; *) echo "Unexpected HTML content type: $html_type"; exit 1;; esac
+          case "$english_type" in text/html*) ;; *) echo "Unexpected English HTML content type: $english_type"; exit 1;; esac
           case "$data_type" in application/json*|text/json*) ;; *) echo "Unexpected JSON content type: $data_type"; exit 1;; esac
           case "$manifest_type" in application/json*|text/json*) ;; *) echo "Unexpected manifest content type: $manifest_type"; exit 1;; esac
           case "$script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected JavaScript content type: $script_type"; exit 1;; esac
@@ -85,17 +89,24 @@ jobs:
           case "$portrait_type" in image/jpeg*) ;; *) echo "Unexpected portrait content type: $portrait_type"; exit 1;; esac
           case "$robots_type" in text/plain*) ;; *) echo "Unexpected robots content type: $robots_type"; exit 1;; esac
           case "$sitemap_type" in application/xml*|text/xml*) ;; *) echo "Unexpected sitemap content type: $sitemap_type"; exit 1;; esac
+          case "$llms_type" in text/plain*) ;; *) echo "Unexpected llms.txt content type: $llms_type"; exit 1;; esac
+          case "$favicon_type" in image/png*) ;; *) echo "Unexpected favicon content type: $favicon_type"; exit 1;; esac
           node --input-type=module -e '
             import { createHash } from "node:crypto";
             import { readFileSync } from "node:fs";
             const html = readFileSync("/tmp/landom-index.html", "utf8");
+            const english = readFileSync("/tmp/landom-en.html", "utf8");
             const data = JSON.parse(readFileSync("/tmp/landom-site-data.json", "utf8"));
             const manifest = JSON.parse(readFileSync("/tmp/landom-build-manifest.json", "utf8"));
             if (!html.includes("id=\"people-board\"")) throw Error("people board missing from deployed HTML");
+            if (!html.includes("data-locale-route=\"th\"") || !html.includes("hreflang=\"th\" href=\"https://montri-th.github.io/Landom/\"")) throw Error("Thai canonical root metadata is missing");
+            if (!english.includes("data-locale-route=\"en\"") || !english.includes("Meet the people shaping Landometer")) throw Error("English localized route metadata/copy is missing");
+            if (!english.includes("href=\"https://montri-th.github.io/Landom/en/#main-content\"")) throw Error("English skip link leaves the localized route");
             if (!Array.isArray(data.people) || data.people.length === 0) throw Error("deployed people dataset is empty");
             const expected = new Map(manifest.files.map((record) => [record.path, record.sha256]));
             const critical = [
               ["index.html", "/tmp/landom-index.html"],
+              ["en/index.html", "/tmp/landom-en.html"],
               ["data/generated/site-data.json", "/tmp/landom-site-data.json"],
               ["src/app.js", "/tmp/landom-app.js"],
               ["src/styles.css", "/tmp/landom-styles.css"],
@@ -104,12 +115,18 @@ jobs:
               ["public/assets/fonts/bai-jamjuree-thai-400-normal.woff2", "/tmp/landom-body-thai.woff2"],
               ["public/assets/people/S0001.jpg", "/tmp/landom-portrait-s0001.jpg"],
               ["robots.txt", "/tmp/landom-robots.txt"],
-              ["sitemap.xml", "/tmp/landom-sitemap.xml"]
+              ["sitemap.xml", "/tmp/landom-sitemap.xml"],
+              ["llms.txt", "/tmp/landom-llms.txt"]
             ];
             for (const [publishedPath, localPath] of critical) {
               const digest = createHash("sha256").update(readFileSync(localPath)).digest("hex");
               if (!expected.has(publishedPath) || expected.get(publishedPath) !== digest) {
                 throw Error(`live bytes do not match build manifest for ${publishedPath}`);
               }
+            }
+            const favicon = readFileSync("/tmp/landom-favicon.png");
+            const faviconDigest = createHash("sha256").update(favicon).digest("hex");
+            if (favicon.length !== 11001 || faviconDigest !== "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85") {
+              throw Error("deployed favicon bytes do not match the exact DS approval record");
             }
           '

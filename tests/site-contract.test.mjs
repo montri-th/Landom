@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-import { PUBLISH_PATHS } from '../tools/build.mjs';
+import { PUBLISH_PATHS, renderLocalizedEntrypoint } from '../tools/build.mjs';
 import { REQUIRED_UI_IDS, validateDataContract, validateSite } from '../tools/validate-site.mjs';
 
 function fixture() {
@@ -137,8 +138,41 @@ test('person images require a fully approved asset record', () => {
 });
 
 test('the build allowlist excludes private raw sheets and runtime secrets', () => {
-  assert.deepEqual(PUBLISH_PATHS, ['index.html', 'robots.txt', 'sitemap.xml', 'src', 'public', 'data/generated']);
+  assert.deepEqual(PUBLISH_PATHS, ['index.html', 'llms.txt', 'robots.txt', 'sitemap.xml', 'src', 'public', 'data/generated']);
   assert.equal(PUBLISH_PATHS.some((entry) => entry.startsWith('data/raw')), false);
+});
+
+test('Thai root and localized English entrypoint have reciprocal metadata and crawlable initial copy', async () => {
+  const source = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const thai = renderLocalizedEntrypoint(source, 'th');
+  const english = renderLocalizedEntrypoint(source, 'en');
+
+  assert.match(thai, /<html[\s\S]*?lang="th"/);
+  assert.match(thai, /data-locale-route="th"/);
+  assert.match(thai, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/">/);
+  assert.match(thai, /id="page-title">คนที่ร่วมสร้าง Landometer<\/h1>/);
+  assert.match(thai, /validLang\(langParam\) \|\| routeLang \|\| validLang\(storedLang\)/);
+  assert.match(thai, /validLang\(root\.dataset\.localeRoute\) \|\| validLang\(root\.dataset\.defaultLanguage\) \|\| "th"/);
+  assert.doesNotMatch(thai, /<base\b/);
+
+  assert.match(english, /<html[\s\S]*?lang="en"/);
+  assert.match(english, /data-locale-route="en"/);
+  assert.match(english, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/en\/">/);
+  assert.match(english, /<title>Landom — meet the people shaping Landometer<\/title>/);
+  assert.match(english, /id="page-title">Meet the people shaping Landometer<\/h1>/);
+  assert.match(english, /"inLanguage": "en"/);
+  assert.match(english, /<base href="\.\.\/">/);
+  assert.match(english, /href="https:\/\/montri-th\.github\.io\/Landom\/en\/#main-content"/);
+  assert.match(english, /<a class="brand" href="https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
+
+  for (const html of [thai, english]) {
+    assert.match(html, /hreflang="th" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
+    assert.match(html, /hreflang="en" href="https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
+    assert.match(html, /hreflang="x-default" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
+    assert.match(html, /landometer-symbol-transparent\.png\?v=35a1496f/);
+    assert.doesNotMatch(html, /apple-touch-icon|property="og:image"|name="twitter:image"/);
+    assert.doesNotMatch(html, /montri-th\.github\.io\/Landom\/th\//);
+  }
 });
 
 test('source satisfies the integrated data, privacy, asset, naming, and UI contract', async () => {

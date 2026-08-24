@@ -7,8 +7,143 @@ import { PUBLIC_BUILD_INPUTS, validateSite } from './validate-site.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(repoRoot, 'dist');
+const canonicalRoot = 'https://montri-th.github.io/Landom/';
+
+const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
+  ['Landom — คนที่ร่วมสร้าง Landometer', 'Landom — meet the people shaping Landometer'],
+  [
+    'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer',
+    'Meet the people, interests and work shaped through time with Landometer.'
+  ],
+  ['"inLanguage": "th"', '"inLanguage": "en"'],
+  ['"name": "ชาว Landom"', '"name": "People of Landom"'],
+  ['ข้ามไปยังเนื้อหาหลัก', 'Skip to main content'],
+  ['ส่วนหัวเว็บไซต์', 'Site header'],
+  ['Landom — หน้าหลัก', 'Landom — home'],
+  ['การตั้งค่าการแสดงผล', 'Display preferences'],
+  ['ธีม: ตามระบบ กดเพื่อใช้ธีมสว่าง', 'Theme: system. Press to use light theme'],
+  ['Switch to English', 'เปลี่ยนเป็นภาษาไทย'],
+  ['<span aria-hidden="true">TH</span>', '<span aria-hidden="true">EN</span>'],
+  ['LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER', 'LANDOM · THE PEOPLE SHAPING LANDOMETER'],
+  ['คนที่ร่วมสร้าง Landometer', 'Meet the people shaping Landometer'],
+  [
+    'Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น',
+    'Landom is for people who want to understand cities and make them better, together.'
+  ],
+  ['คนใน Landom', 'people in Landom'],
+  ['กำลังโหลดข้อมูลล่าสุด', 'Loading the latest data'],
+  ['ชาว Landom', 'PEOPLE OF LANDOM'],
+  ['รู้จักคนเบื้องหลังแต่ละผลงาน', 'Meet the people behind the work'],
+  ['กำลังโหลด…', 'Loading…'],
+  ['ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน', 'Search by name, university, program or contribution'],
+  ['ค้นหาคนหรือผลงาน', 'Search people or work'],
+  ['ตัวกรอง', 'Filters'],
+  ['เลือกดูให้ตรงความสนใจ', 'NARROW THE RESULTS'],
+  ['บทบาท', 'Role'],
+  ['ทุกบทบาท', 'All roles'],
+  ['พนักงานประจำ', 'Full-time staff'],
+  ['พนักงานพาร์ตไทม์', 'Part-time staff'],
+  ['รุ่น / ปี', 'Cohort / year'],
+  ['ทุกรุ่น', 'All cohorts'],
+  ['สถานะ', 'Status'],
+  ['ทุกสถานะ', 'All statuses'],
+  ['ร่วมงานอยู่', 'Active'],
+  ['เคยร่วมงาน', 'Alumni'],
+  ['ผลงาน', 'Contribution'],
+  ['ทุกผลงาน', 'All contributions'],
+  ['ล้างตัวกรอง', 'Clear filters'],
+  ['ดูผลลัพธ์', 'Show results'],
+  ['ปิดตัวกรอง', 'Close filters'],
+  ['ไม่พบข้อมูลที่ค้นหา', 'No matching profiles'],
+  ['ลองใช้คำค้นสั้นลง หรือล้างตัวกรองแล้วค้นหาอีกครั้ง', 'Try a shorter search or clear the filters and search again.'],
+  ['ล้างการค้นหาและตัวกรอง', 'Clear search and filters'],
+  ['โหลดข้อมูลไม่สำเร็จ', 'The profiles could not be loaded'],
+  ['โปรดลองอีกครั้ง ข้อมูลบุคคลจะไม่ถูกแทนที่ด้วยข้อมูลที่ยังไม่ได้ยืนยัน', 'Please try again. Unverified information will not be substituted.'],
+  ['ลองอีกครั้ง', 'Try again'],
+  ['มาเป็นชาว Landom กัน · Let us cultivate our city with data.', 'Come be part of Landom · Let us cultivate our city with data.'],
+  ['รายชื่อชาว Landom', 'People of Landom'],
+  ['ประกาศนียบัตร', 'Certificates'],
+  ['ปิดประกาศนียบัตร', 'Close certificate'],
+  ['เปิดภาพต้นฉบับ', 'Open original image'],
+  ['บันทึกภาพความละเอียดสูง', 'Save high-resolution image'],
+  [
+    'หน้านี้ต้องใช้ JavaScript เพื่ออ่านและกรองทะเบียนบุคลากร แต่จะไม่ส่งข้อมูลการค้นหาออกจากอุปกรณ์ของคุณ',
+    'This page uses JavaScript to read and filter the public directory. Search terms stay on your device.'
+  ]
+]);
 
 export const PUBLISH_PATHS = PUBLIC_BUILD_INPUTS;
+
+function replaceRequired(source, search, replacement, label = search) {
+  if (!source.includes(search)) throw new Error(`Localized entrypoint is missing required source text: ${label}`);
+  return source.replaceAll(search, replacement);
+}
+
+export function renderLocalizedEntrypoint(source, locale) {
+  if (!['th', 'en'].includes(locale)) throw new Error(`Unsupported locale route: ${locale}`);
+  if (locale === 'th') return source;
+  const localeUrl = `${canonicalRoot}en/`;
+  let html = source;
+  html = replaceRequired(html, '  <head>\n', '  <head>\n    <base href="../">\n', '<head>');
+  html = replaceRequired(
+    html,
+    '  data-default-language="th"\n  data-locale-route="th"\n>',
+    '  data-default-language="en"\n  data-locale-route="en"\n>',
+    'root language attributes'
+  );
+  html = replaceRequired(
+    html,
+    'href="#main-content"',
+    `href="${localeUrl}#main-content"`,
+    'locale-safe skip link'
+  );
+  html = replaceRequired(
+    html,
+    '<a class="brand" href="./"',
+    `<a class="brand" href="${localeUrl}"`,
+    'locale-safe home link'
+  );
+  html = replaceRequired(
+    html,
+    `<link rel="canonical" href="${canonicalRoot}">`,
+    `<link rel="canonical" href="${localeUrl}">`,
+    'canonical link'
+  );
+  html = replaceRequired(
+    html,
+    `<meta property="og:url" content="${canonicalRoot}">`,
+    `<meta property="og:url" content="${localeUrl}">`,
+    'Open Graph URL'
+  );
+  html = replaceRequired(
+    html,
+    `"@id": "${canonicalRoot}#collection"`,
+    `"@id": "${localeUrl}#collection"`,
+    'CollectionPage @id'
+  );
+  html = replaceRequired(
+    html,
+    `"url": "${canonicalRoot}",`,
+    `"url": "${localeUrl}",`,
+    'CollectionPage URL'
+  );
+  html = replaceRequired(html, '  lang="th"', '  lang="en"', 'root lang');
+  html = replaceRequired(html, '<meta property="og:locale" content="th_TH">', '<meta property="og:locale" content="en_US">');
+  html = replaceRequired(html, '<meta property="og:locale:alternate" content="en_US">', '<meta property="og:locale:alternate" content="th_TH">');
+  for (const [search, replacement] of [...EN_INITIAL_HTML_REPLACEMENTS].sort(
+    (left, right) => right[0].length - left[0].length
+  )) {
+    html = replaceRequired(html, search, replacement);
+  }
+  return html;
+}
+
+async function createLocalizedEntrypoints() {
+  const source = await readFile(path.join(distRoot, 'index.html'), 'utf8');
+  const localeDirectory = path.join(distRoot, 'en');
+  await mkdir(localeDirectory, { recursive: true });
+  await writeFile(path.join(localeDirectory, 'index.html'), renderLocalizedEntrypoint(source, 'en'), 'utf8');
+}
 
 function assertSafeDistPath() {
   if (path.dirname(distRoot) !== repoRoot || path.basename(distRoot) !== 'dist') {
@@ -85,6 +220,7 @@ export async function buildSite() {
     }
     await copyDeterministically(path.join(repoRoot, relativePath), path.join(distRoot, relativePath));
   }
+  await createLocalizedEntrypoints();
   await writeFile(path.join(distRoot, '.nojekyll'), '', 'utf8');
   await createBuildManifest();
   const distErrors = await validateSite({ distMode: true });

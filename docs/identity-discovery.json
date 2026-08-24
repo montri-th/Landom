@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0.0",
+  "page": {
+    "owner": "Landometer",
+    "scope": "Landom public people-and-contribution directory",
+    "canonicalUrl": "https://montri-th.github.io/Landom/",
+    "localeRoutes": {
+      "th": "https://montri-th.github.io/Landom/",
+      "en": "https://montri-th.github.io/Landom/en/",
+      "x-default": "https://montri-th.github.io/Landom/"
+    },
+    "visibility": "public",
+    "indexable": true,
+    "structuredData": "CollectionPage with a truthful ItemList count derived from the published directory contract"
+  },
+  "identityAssets": [
+    {
+      "role": "browser-tab favicon",
+      "deliveryUrl": "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f",
+      "variant": "transparent_compact_symbol",
+      "approvalScope": "browser-tab favicon only",
+      "mimeType": "image/png",
+      "intrinsicWidth": 192,
+      "intrinsicHeight": 192,
+      "bytes": 11001,
+      "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85",
+      "transparentCanvas": true,
+      "themeStrategy": "Use the exact transparent RGBA bytes for light, dark, and system themes without carrier, recolor, crop, filter, mask, or reconstructed padding.",
+      "sourceVersion": "Landometer Design System v0.9.0",
+      "approvalRecord": {
+        "manifestPath": "deployment/machine/v0.9.0/identity-approvals.manifest.json",
+        "introducedAtCommit": "36d72ab1dd755cbad5273a7f217e1ee10aeb54a2",
+        "gitBlob": "7e1e084d2340486cd27fe4af5d44c8de6dcf4baa",
+        "sha256": "4d9864b05fc3b95bc76e6c986aff69444245a843509d5c7cdf481719a95e7ea1",
+        "underlyingApprovalSourceCommit": "ce785864e5341321e1957dce35a8326732764432",
+        "underlyingApprovalSource": "Use transparent Landometer symbol favicon"
+      },
+      "cacheRevision": "35a1496f",
+      "sameOrigin": true
+    },
+    {
+      "role": "header identity",
+      "path": "public/assets/brand/landometer-horizontal.png",
+      "variant": "official-horizontal-lockup-optimized",
+      "approvalScope": "header-brand-lockup only",
+      "mimeType": "image/png",
+      "intrinsicWidth": 1600,
+      "intrinsicHeight": 439,
+      "bytes": 59473,
+      "sha256": "6c71c10505ca5bb0b267f4b7efeac58ff33e6aad1f84dcf232b6177e0e4d5731",
+      "transparentCanvas": true,
+      "themeStrategy": "Preserve the transparent asset and change only the header-owned surface for contrast.",
+      "sourceVersion": "sources/Landometer-Logo-TransparentBG.png sha256:8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92",
+      "cacheRevision": "6c71c10505ca"
+    }
+  ],
+  "omittedRoles": [
+    {
+      "role": "apple-touch icon",
+      "reason": "No separately approved touch rendition exists. The favicon approval does not grant touch-icon use."
+    },
+    {
+      "role": "maskable or install icon",
+      "reason": "No separately approved maskable/application rendition exists. The web manifest therefore declares no icons."
+    },
+    {
+      "role": "social preview image",
+      "reason": "No separately approved social-preview asset exists. Open Graph and Twitter metadata remain text-only."
+    }
+  ],
+  "machineDiscovery": {
+    "robots": "index,follow at page level; the project-path robots.txt is published but is not the hostname-root robots authority",
+    "sitemap": "Thai canonical root and English route with reciprocal th, en, and x-default hreflang alternates",
+    "llmsTxt": "Optional navigation aid only; not access control, permission, a ranking signal, a license, evidence, or agent-action authority"
+  },
+  "limitations": [
+    "Search-result favicon selection and hostname-root robots behavior are controlled at montri-th.github.io host level, not independently by the /Landom/ project path.",
+    "Third-party search and social caches can remain stale after correct origin metadata is deployed.",
+    "The approved compact symbol has an open small-size browser-tab, bookmark, shortcut, and supported-theme manual review in the governing Design System record."
+  ]
+}

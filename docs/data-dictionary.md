@@ -4,7 +4,7 @@
 
 Raw snapshot เป็นข้อมูลปฏิบัติการที่อาจมี private contact fields จึงต้องอยู่เฉพาะในเครื่องของผู้มีสิทธิ์และถูก ignore จาก Git/public build ส่วน `data/generated/` ผ่าน privacy gate และเป็นชุดที่ Dev ใช้ได้ ตัว normalize รับ authorized snapshot ผ่าน `--input` และเลือกปลายทางผ่าน `--output-dir`; public CI ตรวจ generated contract โดยไม่มี raw input และห้ามอ่าน/เขียน Google Sheet แบบ remote
 
-การแก้รายละเอียดที่เจ้าของยืนยันหลัง snapshot อยู่ใน `data/approved/profile-detail-overrides.json` และมี contract ที่ `data/schema/profile-detail-overrides.schema.json` เพื่อไม่แก้ generated output ด้วยมือ ไฟล์นี้ใช้เฉพาะ canonical person/work/engagement IDs และไม่เก็บ contact หรือ private Sheet locator
+การแก้รายละเอียดที่เจ้าของยืนยันหลัง snapshot อยู่ใน `data/approved/profile-detail-overrides.json` และมี contract ที่ `data/schema/profile-detail-overrides.schema.json` เพื่อไม่แก้ generated output ด้วยมือ ส่วนชื่อบุคคลที่ยืนยันได้ภายหลังอยู่ใน `data/approved/person-identity-overrides.json` ภายใต้ `data/schema/person-identity-overrides.schema.json` โดยรับเฉพาะชื่อเล่นไทยที่เจ้าของหรือ Sheet ยืนยันตรงตัว และชื่ออังกฤษที่ตรงกับโปรไฟล์ LinkedIn ของบุคคลนั้น ห้ามถอดเสียงหรือเดาชื่อที่ยังไม่มีหลักฐาน ทั้งสองไฟล์ใช้ canonical person/work/engagement IDs และไม่เก็บ contact หรือ private Sheet locator
 
 Snapshot รองรับ 2 schema โดย normalizer ตรวจรูปแบบให้อัตโนมัติ:
 

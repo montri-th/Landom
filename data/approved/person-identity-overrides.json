@@ -1,0 +1,70 @@
+{
+  "contractVersion": "1.0",
+  "sourceBoundary": "Only exact, owner-confirmed Thai nicknames and an English full name verified on the person's exact LinkedIn profile may override the registry snapshot. Unverified transliterations stay blank.",
+  "overrides": [
+    {
+      "personId": "I0014",
+      "nicknameTh": "มอส",
+      "verificationStatus": "owner_confirmed",
+      "evidenceBasis": "owner_used_exact_thai_nickname_and_authorized_sheet_update",
+      "sourceRef": "owner_instruction_and_people_registry_update_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0018",
+      "nicknameTh": "เกรซ",
+      "verificationStatus": "sheet_exact",
+      "evidenceBasis": "current_people_registry_nickname_th",
+      "sourceRef": "people_registry_current_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0019",
+      "nicknameTh": "เจมี่",
+      "verificationStatus": "sheet_exact",
+      "evidenceBasis": "current_people_registry_nickname_th",
+      "sourceRef": "people_registry_current_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0020",
+      "nicknameTh": "เตี๊ยม",
+      "verificationStatus": "sheet_exact",
+      "evidenceBasis": "current_people_registry_nickname_th",
+      "sourceRef": "people_registry_current_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0021",
+      "nicknameTh": "เพลง",
+      "verificationStatus": "sheet_exact",
+      "evidenceBasis": "current_people_registry_nickname_th",
+      "sourceRef": "people_registry_current_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0023",
+      "nicknameTh": "ทิม",
+      "verificationStatus": "owner_confirmed",
+      "evidenceBasis": "owner_used_exact_thai_nickname_and_authorized_sheet_update",
+      "sourceRef": "owner_instruction_and_people_registry_update_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0025",
+      "nicknameTh": "แป้ง",
+      "verificationStatus": "sheet_exact",
+      "evidenceBasis": "current_people_registry_nickname_th",
+      "sourceRef": "people_registry_current_2026-08-24",
+      "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0035",
+      "fullNameEn": "Passapol Lukthongkum",
+      "verificationStatus": "verified_exact_linkedin_profile",
+      "evidenceBasis": "exact_linkedin_profile_title_headline_and_landometer_employment_match",
+      "sourceRef": "https://www.linkedin.com/in/passapol-lukthongkum/",
+      "reviewedAt": "2026-08-24"
+    }
+  ]
+}
