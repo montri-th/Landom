@@ -793,17 +793,18 @@
   }
 
   .masonry-board {
-    columns: 300px 3;
+    position: relative;
+    min-height: 1px;
     column-gap: var(--space-4);
   }
 
   .person-card-shell {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    display: block;
     overflow: hidden;
     width: 100%;
     min-height: 44px;
-    margin: 0 0 var(--space-4);
+    margin: 0;
     padding: 0;
     break-inside: avoid;
     border: 1px solid var(--border-hairline);
@@ -1073,6 +1074,18 @@
     -webkit-line-clamp: 4;
   }
 
+  .person-card-shell.is-expanded .card-story {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+
+  .person-card-shell.is-expanded .engagement-history,
+  .person-card-shell.is-expanded .education-summary,
+  .person-card-shell.is-expanded .work-preview {
+    display: none;
+  }
+
   .work-preview {
     display: flex;
     flex-wrap: wrap;
@@ -1284,10 +1297,27 @@
 
   .inline-detail-toolbar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
     padding: var(--space-4) var(--space-5) 0;
+  }
+
+  .inline-detail-toolbar .section-kicker {
+    margin: 0;
+  }
+
+  .inline-detail-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: auto;
+  }
+
+  .inline-detail-actions .profile-icon-links {
+    margin: 0;
   }
 
   .inline-detail-close {
@@ -1375,14 +1405,56 @@
   }
 
   .detail-section h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
     padding-bottom: var(--space-3);
     border-bottom: 1px solid var(--border-hairline);
     font-size: 1.15rem;
   }
 
+  .detail-section-icon {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+    color: var(--interaction-accent);
+  }
+
   .education-detail {
     display: grid;
     gap: var(--space-2);
+  }
+
+  .education-fact {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .education-profile-link {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: border-color var(--motion-duration-state) var(--motion-ease-state), color var(--motion-duration-state) var(--motion-ease-state), transform var(--motion-duration-feedback) var(--motion-ease-state);
+  }
+
+  .education-profile-link:hover {
+    border-color: var(--interaction-accent);
+    color: var(--interaction-accent);
+    transform: translateY(-1px);
+  }
+
+  .education-profile-link svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
   }
 
   .education-context,
@@ -1470,9 +1542,9 @@
     grid-template-columns: 104px minmax(0, 1fr) auto;
     align-items: center;
     gap: var(--space-3);
-    padding: 0 var(--space-4) 0 0;
+    padding: 11px var(--space-4) 11px 11px;
     border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-pill);
     background: var(--surface-alt);
     color: var(--text-primary);
     text-align: left;
@@ -1486,7 +1558,9 @@
 
   .certificate-thumbnail {
     overflow: hidden;
-    align-self: stretch;
+    height: 64px;
+    align-self: center;
+    border-radius: var(--radius-sm);
     background: var(--surface-soft);
   }
 
@@ -1811,7 +1885,7 @@
     }
 
     .person-card-shell {
-      margin-bottom: var(--space-3);
+      margin: 0;
     }
 
     .certificate-dialog {
@@ -1949,7 +2023,15 @@
     }
 
     .masonry-board {
+      height: auto !important;
       columns: 2;
+    }
+
+    .person-card-shell {
+      position: static;
+      display: inline-block;
+      width: 100% !important;
+      margin: 0 0 var(--space-4);
     }
   }
 

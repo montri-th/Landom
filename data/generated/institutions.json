@@ -14,7 +14,9 @@
     "aliases": [
       "KMITL"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/king-mongkut%27s-institute-of-technology-ladkrabang/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-chula",
@@ -32,7 +34,9 @@
       "Chulalongkorn",
       "Chulalongkorn University"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/chulalongkornuniversity/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-thammasat",
@@ -50,7 +54,9 @@
       "Thammasat",
       "Thammasat Business School"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/thammasatuniversity/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-kaist",
@@ -67,7 +73,9 @@
     "aliases": [
       "KAIST"
     ],
-    "verificationStatus": "owner_review_required"
+    "verificationStatus": "owner_review_required",
+    "linkedinUrl": "https://www.linkedin.com/company/kaist/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-uq",
@@ -84,7 +92,9 @@
     "aliases": [
       "UQ"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/university-of-queensland/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-nmu",
@@ -101,7 +111,9 @@
     "aliases": [
       "Navamindradhiraj"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "institutionId": "inst-mahidol",
@@ -118,7 +130,9 @@
     "aliases": [
       "Mahidol"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/mahidoluniversity/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-southampton",
@@ -135,7 +149,9 @@
     "aliases": [
       "University of Southampton"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/university-of-southampton/",
+    "linkedinVerificationStatus": "verified_official_page"
   },
   {
     "institutionId": "inst-ucl",
@@ -152,6 +168,8 @@
     "aliases": [
       "UCL"
     ],
-    "verificationStatus": "canonical_name_reviewed"
+    "verificationStatus": "canonical_name_reviewed",
+    "linkedinUrl": "https://www.linkedin.com/school/university-college-london/",
+    "linkedinVerificationStatus": "verified_official_page"
   }
 ]

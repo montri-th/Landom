@@ -115,7 +115,7 @@
       "type": "object",
       "required": ["schemaVersion", "source", "personIdPolicy", "evidenceBoundary", "counts"],
       "properties": {
-        "schemaVersion": { "const": "1.4.0" },
+        "schemaVersion": { "const": "1.5.0" },
         "source": {
           "type": "object",
           "required": ["spreadsheetId", "publicSheetsUsed", "privateContactSourcesExcluded"],
@@ -142,23 +142,27 @@
     "institution": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["institutionId", "names", "aliases", "verificationStatus"],
+      "required": ["institutionId", "names", "aliases", "verificationStatus", "linkedinUrl", "linkedinVerificationStatus"],
       "properties": {
         "institutionId": { "type": "string", "pattern": "^inst-[a-z0-9-]+$" },
         "names": { "$ref": "#/$defs/formalShortLocalized" },
         "aliases": { "type": "array", "items": { "type": "string" } },
-        "verificationStatus": { "type": "string" }
+        "verificationStatus": { "type": "string" },
+        "linkedinUrl": { "$ref": "#/$defs/nullableUri" },
+        "linkedinVerificationStatus": { "enum": ["verified_official_page", "not_found_exact_official_page"] }
       }
     },
     "program": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["programId", "names", "qualificationLevel", "verificationStatus"],
+      "required": ["programId", "names", "qualificationLevel", "verificationStatus", "linkedinUrl", "linkedinVerificationStatus"],
       "properties": {
         "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" },
         "names": { "$ref": "#/$defs/formalShortLocalized" },
         "qualificationLevel": { "$ref": "#/$defs/nullableString" },
-        "verificationStatus": { "type": "string" }
+        "verificationStatus": { "type": "string" },
+        "linkedinUrl": { "$ref": "#/$defs/nullableUri" },
+        "linkedinVerificationStatus": { "enum": ["verified_official_page", "not_found_exact_official_page"] }
       }
     },
     "educationRecord": {

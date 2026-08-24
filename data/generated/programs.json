@@ -12,7 +12,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "owner_supplied_detail_refinement"
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-cedt",
@@ -27,7 +29,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-computer-engineering",
@@ -42,7 +46,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "owner_supplied_detail_refinement"
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-public-relations",
@@ -57,7 +63,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-chinese",
@@ -72,7 +80,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-tu-marketing",
@@ -87,7 +97,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-bascii",
@@ -102,7 +114,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-tu-dbtm",
@@ -117,7 +131,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-economics",
@@ -132,7 +148,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-eba",
@@ -147,7 +165,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-finance",
@@ -162,7 +182,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "owner_supplied_detail_refinement"
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-kaist-aerospace-btm",
@@ -177,7 +199,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-tu-bba-marketing",
@@ -192,7 +216,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-cu-politics-global-studies",
@@ -207,7 +233,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-uq-social-science",
@@ -222,7 +250,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-nmu-urban-administration",
@@ -237,7 +267,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-tu-ibmp",
@@ -252,7 +284,9 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
     "programId": "program-ucl-mathematical-computation",
@@ -267,6 +301,8 @@
       }
     },
     "qualificationLevel": null,
-    "verificationStatus": "normalized_from_sheet_owner_review_required"
+    "verificationStatus": "normalized_from_sheet_owner_review_required",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   }
 ]

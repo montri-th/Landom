@@ -1,6 +1,82 @@
 {
-  "contractVersion": "1.0",
+  "contractVersion": "1.1",
   "sourceBasis": "owner_instruction_2026-08-23_detail_refinement",
+  "institutionLinkedInProfiles": [
+    {
+      "institutionId": "inst-kmitl",
+      "linkedinUrl": "https://www.linkedin.com/school/king-mongkut%27s-institute-of-technology-ladkrabang/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-chula",
+      "linkedinUrl": "https://www.linkedin.com/school/chulalongkornuniversity/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-thammasat",
+      "linkedinUrl": "https://www.linkedin.com/school/thammasatuniversity/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-kaist",
+      "linkedinUrl": "https://www.linkedin.com/company/kaist/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-uq",
+      "linkedinUrl": "https://www.linkedin.com/school/university-of-queensland/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-mahidol",
+      "linkedinUrl": "https://www.linkedin.com/school/mahidoluniversity/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-southampton",
+      "linkedinUrl": "https://www.linkedin.com/school/university-of-southampton/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    },
+    {
+      "institutionId": "inst-ucl",
+      "linkedinUrl": "https://www.linkedin.com/school/university-college-london/",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_linked_official_website_match_canonical_institution",
+      "retrievedAt": "2026-08-24"
+    }
+  ],
+  "programLinkedInProfiles": [],
+  "addedPublicSocialProfiles": [
+    {
+      "personId": "S0004",
+      "platform": "facebook",
+      "publicUrl": "https://www.facebook.com/phonsuda.12",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_plus_public_handle_name_match; facebook_profile_content_login_gated",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    }
+  ],
   "programOverrides": [
     {
       "programId": "program-kmitl-computer-engineering",

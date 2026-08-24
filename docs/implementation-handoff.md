@@ -38,10 +38,10 @@ Recommended sheet tabs and keys:
 | Tab | Primary key | Important relations / controls |
 |---|---|---|
 | `people_registry` | `person_id` | One ID only; names, core publication state, materialized current bio, `current_statement_id` |
-| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; v3.3 has 48 current statements |
+| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; v3.4 has 48 current statements |
 | `engagements` | `engagement_id` | `person_id`, role type, start/end/cohort, explicit academic placement type |
-| `institutions` | `institution_id` | Official TH/EN names and approved short labels |
-| `programs` | `program_id` | `institution_id`, official TH/EN names and approved short labels |
+| `institutions` | `institution_id` | Official TH/EN names, approved short labels, nullable exact official LinkedIn URL and verification status |
+| `programs` | `program_id` | `institution_id`, official TH/EN names, approved short labels, nullable exact official LinkedIn URL and verification status |
 | `education` | `education_record_id` | `person_id`, `institution_id`, optional `program_id`, degree program and separate personal award status |
 | `works` | `work_id` | Canonical work/product name plus localized catalog route and link evidence scope |
 | `contributions` | `contribution_id` | `person_id`, `work_id`, optional matching `engagement_id` |
@@ -74,7 +74,7 @@ For the controlled return trip to Google Sheet, run the exporter against both si
 node tools/export-sheet-tabs.mjs \
   --snapshot data/raw/google-sheet-snapshot.json \
   --site-data data/generated/site-data.json \
-  --output /private/tmp/landom-sheet-tabs-v3.3.0.json
+  --output /private/tmp/landom-sheet-tabs-v3.4.0.json
 ```
 
 Append a positional `<tab-name>` to emit only one structured tab payload. Always use `--output` with a private path for a full workbook so private candidates are not written to terminal/CI logs. The exporter merges the reviewed normalized records with private social/asset candidates and their review fields from the ignored raw snapshot, preserving those candidates across a roundtrip. The normalizer never promotes a candidate merely because it exists: private candidate URLs, handles, source URLs, evidence, permission records, and review notes remain raw-only unless the public gates explicitly produce an approved public field.
@@ -133,7 +133,7 @@ Discovery uses one canonical URL, `https://montri-th.github.io/Landom/`, shared 
 
 ## 6. Social and image approval gate
 
-Current release behavior, following the owner instruction for this directory, renders all 48 core profile records with bilingual `source_backed_placeholder` copy. Twenty-five records use concise paraphrases of first-person application answers with exact roster matches. Twenty-three use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. This is not individual approval of final copy. Raw application text, source Sheet IDs/ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection.
+Current release behavior, following the owner instruction for this directory, renders all 48 core profile records with bilingual `source_backed_placeholder` copy. Twenty-five records use concise paraphrases of first-person application answers with exact roster matches. Twenty-three use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. This is not individual approval of final copy. Raw application text, private recruitment/application Sheet IDs or ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection. The authorized core-registry Sheet ID may remain only in `meta.source` as registry provenance.
 
 Keep profile copy versioned in `profile_statements`; do not overwrite an old statement when a person's video transcript is reviewed. Add a new statement, link `supersedes_statement_id`, then move `people_registry.current_statement_id` after review. The separate private **Shortlisted recruitment** workbook owns unmatched applicants, contacts, CV/video URLs, screening stages, and reviewer notes; none of those fields belong in the repository or public projection.
 

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "schemaVersion": "1.4.0",
-    "generatedAt": "2026-08-23T00:00:00+07:00",
+    "schemaVersion": "1.5.0",
+    "generatedAt": "2026-08-24T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
       "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -28,8 +28,9 @@
       "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
       "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
       "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
+      "educationPublicProfiles": "Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.",
       "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
-      "profileCopy": "All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.",
+      "profileCopy": "All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
       "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
       "staffDegrees": "The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release."
     },
@@ -46,7 +47,10 @@
       "firstPersonProfilePlaceholders": 25,
       "factualFallbackProfilePlaceholders": 23,
       "verifiedCompletedStaffDegrees": 4,
-      "cooperativeEducationPeople": 6
+      "cooperativeEducationPeople": 6,
+      "verifiedInstitutionLinkedInProfiles": 8,
+      "verifiedProgramLinkedInProfiles": 0,
+      "publishedPublicSocialProfiles": 58
     }
   },
   "copy": {
@@ -85,7 +89,9 @@
       "aliases": [
         "KMITL"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/king-mongkut%27s-institute-of-technology-ladkrabang/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-chula",
@@ -103,7 +109,9 @@
         "Chulalongkorn",
         "Chulalongkorn University"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/chulalongkornuniversity/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-thammasat",
@@ -121,7 +129,9 @@
         "Thammasat",
         "Thammasat Business School"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/thammasatuniversity/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-kaist",
@@ -138,7 +148,9 @@
       "aliases": [
         "KAIST"
       ],
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_review_required",
+      "linkedinUrl": "https://www.linkedin.com/company/kaist/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-uq",
@@ -155,7 +167,9 @@
       "aliases": [
         "UQ"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/university-of-queensland/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-nmu",
@@ -172,7 +186,9 @@
       "aliases": [
         "Navamindradhiraj"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "institutionId": "inst-mahidol",
@@ -189,7 +205,9 @@
       "aliases": [
         "Mahidol"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/mahidoluniversity/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-southampton",
@@ -206,7 +224,9 @@
       "aliases": [
         "University of Southampton"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/university-of-southampton/",
+      "linkedinVerificationStatus": "verified_official_page"
     },
     {
       "institutionId": "inst-ucl",
@@ -223,7 +243,9 @@
       "aliases": [
         "UCL"
       ],
-      "verificationStatus": "canonical_name_reviewed"
+      "verificationStatus": "canonical_name_reviewed",
+      "linkedinUrl": "https://www.linkedin.com/school/university-college-london/",
+      "linkedinVerificationStatus": "verified_official_page"
     }
   ],
   "programs": [
@@ -240,7 +262,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "owner_supplied_detail_refinement"
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-cedt",
@@ -255,7 +279,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-computer-engineering",
@@ -270,7 +296,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "owner_supplied_detail_refinement"
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-public-relations",
@@ -285,7 +313,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-chinese",
@@ -300,7 +330,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-tu-marketing",
@@ -315,7 +347,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-bascii",
@@ -330,7 +364,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-tu-dbtm",
@@ -345,7 +381,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-economics",
@@ -360,7 +398,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-eba",
@@ -375,7 +415,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-finance",
@@ -390,7 +432,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "owner_supplied_detail_refinement"
+      "verificationStatus": "owner_supplied_detail_refinement",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-kaist-aerospace-btm",
@@ -405,7 +449,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-tu-bba-marketing",
@@ -420,7 +466,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-cu-politics-global-studies",
@@ -435,7 +483,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-uq-social-science",
@@ -450,7 +500,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-nmu-urban-administration",
@@ -465,7 +517,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-tu-ibmp",
@@ -480,7 +534,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     },
     {
       "programId": "program-ucl-mathematical-computation",
@@ -495,7 +551,9 @@
         }
       },
       "qualificationLevel": null,
-      "verificationStatus": "normalized_from_sheet_owner_review_required"
+      "verificationStatus": "normalized_from_sheet_owner_review_required",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
     }
   ],
   "educationRecords": [
@@ -12924,14 +12982,19 @@
       "socialProfileId": "SOC-S0004-FACEBOOK",
       "personId": "S0004",
       "platform": "facebook",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://www.facebook.com/phonsuda.12",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {

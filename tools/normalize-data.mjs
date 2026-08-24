@@ -94,7 +94,7 @@ function readApprovedJson(fileName) {
 const profileCopy = readApprovedJson('profile-copy.json');
 const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
 const profileDetailOverrides = readApprovedJson('profile-detail-overrides.json');
-if (profileDetailOverrides.contractVersion !== '1.0') {
+if (profileDetailOverrides.contractVersion !== '1.1') {
   throw new Error('Unsupported profile-detail override contract: ' + profileDetailOverrides.contractVersion);
 }
 const cooperativeEducationPersonIds = new Set(
@@ -204,6 +204,26 @@ const institutions = [
   }
 ];
 
+const institutionByIdForPublicProfiles = new Map(institutions.map((institution) => [institution.institutionId, institution]));
+for (const institution of institutions) {
+  institution.linkedinUrl = null;
+  institution.linkedinVerificationStatus = 'not_found_exact_official_page';
+}
+const seenInstitutionLinkedInIds = new Set();
+for (const approved of profileDetailOverrides.institutionLinkedInProfiles ?? []) {
+  const institution = institutionByIdForPublicProfiles.get(approved.institutionId);
+  if (!institution) throw new Error('Institution LinkedIn profile references an unknown institution: ' + approved.institutionId);
+  if (seenInstitutionLinkedInIds.has(approved.institutionId)) {
+    throw new Error('Duplicate institution LinkedIn profile: ' + approved.institutionId);
+  }
+  if (!/^https:\/\/www\.linkedin\.com\/(?:school|company)\//.test(approved.linkedinUrl)) {
+    throw new Error('Institution LinkedIn profile must use an exact LinkedIn school/company URL: ' + approved.institutionId);
+  }
+  seenInstitutionLinkedInIds.add(approved.institutionId);
+  institution.linkedinUrl = approved.linkedinUrl;
+  institution.linkedinVerificationStatus = approved.verificationStatus;
+}
+
 const programs = [
   ['program-kmitl-computer-engineering', 'วิศวกรรมคอมพิวเตอร์', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering', 'CP'],
   ['program-cu-cedt', 'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล', 'CEDT', 'Computer Engineering and Digital Technology', 'CEDT'],
@@ -227,7 +247,9 @@ const programs = [
   programId,
   names: { th: { formal: thFormal, short: thShort }, en: { formal: enFormal, short: enShort } },
   qualificationLevel: null,
-  verificationStatus: 'normalized_from_sheet_owner_review_required'
+  verificationStatus: 'normalized_from_sheet_owner_review_required',
+  linkedinUrl: null,
+  linkedinVerificationStatus: 'not_found_exact_official_page'
 }));
 
 const programByIdForOverrides = new Map(programs.map((program) => [program.programId, program]));
@@ -236,6 +258,20 @@ for (const override of profileDetailOverrides.programOverrides ?? []) {
   if (!program) throw new Error('Program override references an unknown program: ' + override.programId);
   program.names = structuredClone(override.names);
   program.verificationStatus = 'owner_supplied_detail_refinement';
+}
+const seenProgramLinkedInIds = new Set();
+for (const approved of profileDetailOverrides.programLinkedInProfiles ?? []) {
+  const program = programByIdForOverrides.get(approved.programId);
+  if (!program) throw new Error('Program LinkedIn profile references an unknown program: ' + approved.programId);
+  if (seenProgramLinkedInIds.has(approved.programId)) {
+    throw new Error('Duplicate program LinkedIn profile: ' + approved.programId);
+  }
+  if (!/^https:\/\/www\.linkedin\.com\/(?:school|company|showcase)\//.test(approved.linkedinUrl)) {
+    throw new Error('Program LinkedIn profile must use an exact LinkedIn school/company/showcase URL: ' + approved.programId);
+  }
+  seenProgramLinkedInIds.add(approved.programId);
+  program.linkedinUrl = approved.linkedinUrl;
+  program.linkedinVerificationStatus = approved.verificationStatus;
 }
 
 const educationMap = {
@@ -1104,6 +1140,18 @@ const socialOwnerApproval = {
   sourceRef: 'owner_instruction_2026-08-23'
 };
 const socialProfiles = [];
+const addedPublicSocialByKey = new Map();
+for (const approved of profileDetailOverrides.addedPublicSocialProfiles ?? []) {
+  if (!personById.has(approved.personId)) {
+    throw new Error('Approved public social profile references an unknown person: ' + approved.personId);
+  }
+  if (!socialPlatforms.includes(approved.platform)) {
+    throw new Error('Approved public social profile uses an unsupported platform: ' + approved.platform);
+  }
+  const key = approved.personId + '|' + approved.platform;
+  if (addedPublicSocialByKey.has(key)) throw new Error('Duplicate approved public social profile: ' + key);
+  addedPublicSocialByKey.set(key, approved);
+}
 for (const row of peopleRows) {
   const personId = sourceIdToPersonId.get(row.person_id);
   const person = people.find((item) => item.personId === personId);
@@ -1117,12 +1165,13 @@ for (const row of peopleRows) {
     tiktok: null
   };
   for (const platform of socialPlatforms) {
-    const candidate = publicCandidates[platform];
-    const ownerAuthorized = Boolean(candidate) && ownerAuthorizedSocialPlatforms.has(platform);
-    const verificationStatus = ownerAuthorized ? 'verified' : candidate ? 'owner_review_required' : 'missing';
-    const consentStatus = person.publication.consentStatus;
-    const publicationBasis = ownerAuthorized ? 'owner_authorized_public_profile_link' : null;
-    const ownerApproval = ownerAuthorized ? socialOwnerApproval : null;
+    const approved = addedPublicSocialByKey.get(personId + '|' + platform);
+    const candidate = approved?.publicUrl ?? publicCandidates[platform];
+    const ownerAuthorized = Boolean(candidate) && (ownerAuthorizedSocialPlatforms.has(platform) || Boolean(approved));
+    const verificationStatus = approved?.verificationStatus ?? (ownerAuthorized ? 'verified' : candidate ? 'owner_review_required' : 'missing');
+    const consentStatus = approved?.consentStatus ?? person.publication.consentStatus;
+    const publicationBasis = approved?.publicationBasis ?? (ownerAuthorized ? 'owner_authorized_public_profile_link' : null);
+    const ownerApproval = approved?.ownerApproval ?? (ownerAuthorized ? socialOwnerApproval : null);
     const publishable = Boolean(candidate) && verificationStatus === 'verified' && (
       consentStatus === 'granted' || publicationBasis === 'owner_authorized_public_profile_link'
     );
@@ -1348,8 +1397,8 @@ const copy = {
 };
 
 const meta = {
-  schemaVersion: '1.4.0',
-  generatedAt: '2026-08-23T00:00:00+07:00',
+  schemaVersion: '1.5.0',
+  generatedAt: '2026-08-24T00:00:00+07:00',
   source: {
     spreadsheetId: snapshot.source.spreadsheetId,
     snapshotFetchedAt: snapshot.source.fetchedAt,
@@ -1368,8 +1417,9 @@ const meta = {
     localeInsight: 'Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.',
     crossProductComparison: 'Compare only records produced under the same schema/release, otherwise state incompatibility.',
     socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
+    educationPublicProfiles: 'Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.',
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
-    profileCopy: 'All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy, and raw responses, source Sheet identifiers or ranges, contacts and reviewer notes are excluded.',
+    profileCopy: 'All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
     staffDegrees: 'The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release.'
   },
@@ -1388,7 +1438,10 @@ const meta = {
     verifiedCompletedStaffDegrees: educationRecords.filter((record) =>
       record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified === true
     ).length,
-    cooperativeEducationPeople: cooperativeEducationPersonIds.size
+    cooperativeEducationPeople: cooperativeEducationPersonIds.size,
+    verifiedInstitutionLinkedInProfiles: institutions.filter((institution) => institution.linkedinUrl).length,
+    verifiedProgramLinkedInProfiles: programs.filter((program) => program.linkedinUrl).length,
+    publishedPublicSocialProfiles: socialProfiles.filter((profile) => profile.publicUrl).length
   }
 };
 

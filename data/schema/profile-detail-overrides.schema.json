@@ -7,6 +7,9 @@
   "required": [
     "contractVersion",
     "sourceBasis",
+    "institutionLinkedInProfiles",
+    "programLinkedInProfiles",
+    "addedPublicSocialProfiles",
     "programOverrides",
     "educationProgramOverrides",
     "educationCardOverrides",
@@ -22,8 +25,11 @@
     "contributionRoleOverrides"
   ],
   "properties": {
-    "contractVersion": { "const": "1.0" },
+    "contractVersion": { "const": "1.1" },
     "sourceBasis": { "type": "string", "minLength": 1 },
+    "institutionLinkedInProfiles": { "type": "array", "items": { "$ref": "#/$defs/institutionLinkedInProfile" } },
+    "programLinkedInProfiles": { "type": "array", "items": { "$ref": "#/$defs/programLinkedInProfile" } },
+    "addedPublicSocialProfiles": { "type": "array", "items": { "$ref": "#/$defs/addedPublicSocialProfile" } },
     "programOverrides": { "type": "array", "items": { "$ref": "#/$defs/programOverride" } },
     "educationProgramOverrides": { "type": "array", "items": { "$ref": "#/$defs/educationProgramOverride" } },
     "educationCardOverrides": { "type": "array", "items": { "$ref": "#/$defs/educationCardOverride" } },
@@ -68,6 +74,56 @@
     },
     "localizedMap": { "type": "object", "additionalProperties": { "$ref": "#/$defs/localized" } },
     "nullableDate": { "type": ["string", "null"], "pattern": "^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$" },
+    "ownerApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "approvedAt", "scope", "sourceRef"],
+      "properties": {
+        "status": { "const": "granted" },
+        "approvedAt": { "type": "string", "format": "date" },
+        "scope": { "const": "public_profile_link_only" },
+        "sourceRef": { "type": "string", "minLength": 1 }
+      }
+    },
+    "institutionLinkedInProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["institutionId", "linkedinUrl", "verificationStatus", "evidenceBasis", "retrievedAt"],
+      "properties": {
+        "institutionId": { "type": "string", "pattern": "^inst-[a-z0-9-]+$" },
+        "linkedinUrl": { "type": "string", "format": "uri", "pattern": "^https://www\\.linkedin\\.com/(?:school|company)/" },
+        "verificationStatus": { "const": "verified_official_page" },
+        "evidenceBasis": { "const": "linkedin_page_name_and_linked_official_website_match_canonical_institution" },
+        "retrievedAt": { "type": "string", "format": "date" }
+      }
+    },
+    "programLinkedInProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["programId", "linkedinUrl", "verificationStatus", "evidenceBasis", "retrievedAt"],
+      "properties": {
+        "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" },
+        "linkedinUrl": { "type": "string", "format": "uri", "pattern": "^https://www\\.linkedin\\.com/(?:school|company|showcase)/" },
+        "verificationStatus": { "const": "verified_official_page" },
+        "evidenceBasis": { "const": "linkedin_page_exact_program_name_and_linked_official_website_match_canonical_program" },
+        "retrievedAt": { "type": "string", "format": "date" }
+      }
+    },
+    "addedPublicSocialProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "platform", "publicUrl", "verificationStatus", "identityEvidenceBasis", "consentStatus", "publicationBasis", "ownerApproval"],
+      "properties": {
+        "personId": { "$ref": "#/$defs/personId" },
+        "platform": { "enum": ["linkedin", "github", "gitlab", "website", "facebook", "instagram", "tiktok"] },
+        "publicUrl": { "type": "string", "format": "uri" },
+        "verificationStatus": { "const": "verified" },
+        "identityEvidenceBasis": { "type": "string", "minLength": 1 },
+        "consentStatus": { "const": "pending" },
+        "publicationBasis": { "const": "owner_authorized_public_profile_link" },
+        "ownerApproval": { "$ref": "#/$defs/ownerApproval" }
+      }
+    },
     "period": {
       "type": "object",
       "additionalProperties": false,

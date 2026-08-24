@@ -1,6 +1,6 @@
 # Landom people data dictionary
 
-เอกสารนี้กำหนดโครงสร้างข้อมูลกลางสำหรับหน้า people ของ Landom และเป็นสัญญาระหว่าง Google Sheet, ตัว normalize และหน้าเว็บจริง Public data schema ปัจจุบันคือ `1.4.0` ซึ่งเพิ่ม dimension `certificates`; ข้อมูลที่ generate แล้วอยู่ใน `data/generated/site-data.json` ไฟล์ย่อยแต่ละ dimension อยู่ในโฟลเดอร์เดียวกัน และ schema อยู่ที่ `data/schema/site-data.schema.json`
+เอกสารนี้กำหนดโครงสร้างข้อมูลกลางสำหรับหน้า people ของ Landom และเป็นสัญญาระหว่าง Google Sheet, ตัว normalize และหน้าเว็บจริง Public data schema ปัจจุบันคือ `1.5.0` ซึ่งเพิ่ม nullable official LinkedIn profile ให้ institution/program โดยไม่เดาหน้าใกล้เคียง; ข้อมูลที่ generate แล้วอยู่ใน `data/generated/site-data.json` ไฟล์ย่อยแต่ละ dimension อยู่ในโฟลเดอร์เดียวกัน และ schema อยู่ที่ `data/schema/site-data.schema.json`
 
 Raw snapshot เป็นข้อมูลปฏิบัติการที่อาจมี private contact fields จึงต้องอยู่เฉพาะในเครื่องของผู้มีสิทธิ์และถูก ignore จาก Git/public build ส่วน `data/generated/` ผ่าน privacy gate และเป็นชุดที่ Dev ใช้ได้ ตัว normalize รับ authorized snapshot ผ่าน `--input` และเลือกปลายทางผ่าน `--output-dir`; public CI ตรวจ generated contract โดยไม่มี raw input และห้ามอ่าน/เขียน Google Sheet แบบ remote
 
@@ -96,11 +96,13 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 
 ### profile_statements ใน Google Sheet
 
-ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Release v3.3 ต้องมี current statement ครบ 48 คน: first-person 25 และ factual fallback 23
+ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Release v3.4 ต้องมี current statement ครบ 48 คน: first-person 25 และ factual fallback 23
 
 ## institutions, programs และ educationRecords
 
 ### institutions
+
+`linkedinUrl` ใช้ได้เฉพาะหน้า LinkedIn school/company ที่ชื่อหน้าและเว็บไซต์ official ที่หน้าเชื่อมออกไปตรงกับ canonical institution เท่านั้น `linkedinVerificationStatus=verified_official_page` เมื่อผ่านเงื่อนไขนี้ ถ้ายังไม่พบ exact page ให้ `linkedinUrl=null` และใช้ `not_found_exact_official_page`; ห้ามใช้หน้า faculty หรือองค์กรชื่อคล้ายเป็นตัวแทนมหาวิทยาลัย
 
 ชื่อสถาบันมีทั้ง:
 
@@ -111,6 +113,8 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 ### programs
 
 ชื่อหลักสูตร/field ใช้โครงสร้าง formal/short แบบเดียวกับสถาบัน `qualificationLevel` เป็น `null` เมื่อ source ไม่ระบุระดับวุฒิ ห้ามเดา B.Eng., B.A. หรือวุฒิอื่นจากชื่อสาขาเพียงอย่างเดียว ชื่อปริญญาที่ใช้ต้องอ้าง official curriculum ของ program ที่จับคู่สถาบันและ field ได้แล้ว
+
+`linkedinUrl` ของ program ใช้เฉพาะหน้า LinkedIn ที่เป็น official exact program และมีเว็บไซต์ official ตรงกับ program นั้น หน้า faculty หรือ university-wide page ไม่ถูกเลื่อนชั้นเป็น program page; เมื่อไม่พบให้เก็บ `null` พร้อม `not_found_exact_official_page`
 
 - Computer Engineering ใช้ short label อังกฤษ `CP`
 - `I0022` และ `I0025` ใช้ `BBA Finance`
@@ -321,7 +325,7 @@ Portrait เผยแพร่ได้เมื่อ `verificationStatus=verif
 1. `consentStatus=granted` และ `publicationBasis=individual_consent`; หรือ
 2. `publicationBasis=owner_authorized_public_profile_portrait` พร้อม `ownerApproval.status=granted` และ scope `public_profile_portrait`
 
-Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent ปัจจุบันมี LinkedIn 45 ราย, GitHub 12 ราย และ local portrait 41 รายที่ผ่าน exact identity + owner basis; รายการอื่นต้องเป็น null/fallback
+Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent ปัจจุบันมี LinkedIn 45 ราย, GitHub 12 ราย, Facebook 1 ราย และ local portrait 41 รายที่ผ่าน exact identity + owner basis; รายการอื่นต้องเป็น null/fallback
 
 Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait source/CDN URL, evidence, permission record และ review noteเก็บเฉพาะใน ignored raw snapshot/private report เท่านั้น URL ที่ผ่าน gate ถูก copy เป็น `publicUrl`; portrait ถูก normalize เป็น local JPEG ภายใต้ `public/assets/people/<personId>.jpg` และ public JSON เก็บ local path/hash โดย `sourceUrl=null` เสมอ Exporter merge candidate/review fields เดิมกลับเฉพาะ private workbook เพื่อให้ roundtrip ไม่ทำข้อมูลสูญหาย
 
@@ -399,7 +403,7 @@ node tools/normalize-data.mjs \
 node tools/export-sheet-tabs.mjs \
   --snapshot data/raw/google-sheet-snapshot.json \
   --site-data data/generated/site-data.json \
-  --output /private/tmp/landom-sheet-tabs-v3.3.0.json
+  --output /private/tmp/landom-sheet-tabs-v3.4.0.json
 ```
 
 เพิ่ม `<tab-name>` ต่อท้ายคำสั่ง exporter เมื่อต้องการเพียง tab เดียว และใช้ `--output` ไปยัง private path เสมอสำหรับ payload เต็ม Payload อาจมี private social/asset candidates และ internal contacts จึงห้ามบันทึกลง repository, terminal/CI log หรือ public artifact การนำ payload ไปเขียน Google Sheet ต้องทำใน authorized local session หลังตรวจ spreadsheet เป้าหมายแล้วเท่านั้น; CI ต้องไม่เรียก Google Sheet remote ไม่ว่าทางอ่านหรือเขียน

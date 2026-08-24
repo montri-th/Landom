@@ -38,7 +38,7 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const output = execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs')], { cwd: root, encoding: 'utf8' });
   assert.doesNotMatch(output, /LDM-P-/);
   const exported = JSON.parse(output);
-  assert.equal(exported.schemaVersion, '3.3.0');
+  assert.equal(exported.schemaVersion, '3.4.0');
   const peopleTab = exported.tabs.people_registry;
   const personIdIndex = peopleTab.headers.indexOf('person_id');
   const sourceNoteIndex = peopleTab.headers.indexOf('source_note');
@@ -71,6 +71,8 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.equal(typeof exported.tabs.education.rows[0][isPrimaryIndex], 'boolean');
   assert.equal(typeof exported.tabs.qa.rows[0][qaExpectedIndex], 'number');
   assert.deepEqual(exported.tabs.social_profiles.validations.G, ['owner_review_required', 'verified', 'rejected', 'missing']);
+  assert.deepEqual(exported.tabs.institutions.validations.I, ['verified_official_page', 'not_found_exact_official_page']);
+  assert.deepEqual(exported.tabs.programs.validations.J, ['verified_official_page', 'not_found_exact_official_page']);
   assert.deepEqual(exported.tabs.assets.validations.I, ['owner_review_required', 'verified', 'rejected', 'missing']);
   assert.deepEqual(exported.tabs.assets.validations.K, ['cleared', 'pending', 'denied', 'revoked']);
   assert.deepEqual(exported.tabs.assets.validations.L, ['individual_consent', 'owner_authorized_public_profile_portrait']);
@@ -82,6 +84,11 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.match(portraitQa[qaFormulaIndex], /"publishable"/);
   const readmeTopicIndex = exported.tabs.README.headers.indexOf('topic');
   const readmeDetailIndex = exported.tabs.README.headers.indexOf('detail');
+  const datasetNameRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'ชื่อชุดข้อมูล');
+  assert.match(datasetNameRow[readmeDetailIndex], /v3\.4 \(24 Aug 2026\)/);
+  assert.doesNotMatch(datasetNameRow[readmeDetailIndex], /v3\.3/);
+  const bioRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'bio');
+  assert.match(bioRow[readmeDetailIndex], /private recruitment\/application Sheet ID\/range/);
   const backupRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'backup');
   assert.match(backupRow[readmeDetailIndex], /private operations artifact/);
   assert.doesNotMatch(backupRow[readmeDetailIndex], /Google Sheet ID/i);
@@ -136,6 +143,7 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     execFileSync(process.execPath, [path.join(root, 'tools/normalize-data.mjs'), '--input', snapshotPath, '--output-dir', outputDir], { cwd: root });
     const imported = JSON.parse(fs.readFileSync(path.join(outputDir, 'site-data.json'), 'utf8'));
     const baseline = loadGenerated();
+    assert.equal(imported.meta.source.inputSchema, 'normalized_sheet_v3_4');
     for (const dimension of ['people', 'engagements', 'institutions', 'programs', 'educationRecords', 'works', 'contributions', 'achievements', 'socialProfiles', 'assets', 'certificates']) {
       assert.equal(imported[dimension].length, baseline[dimension].length, 'roundtrip changed ' + dimension + ' row count');
     }
@@ -153,6 +161,11 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.sourceUrl, null);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 45);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 12);
+    assert.deepEqual(
+      imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).map((row) => [row.personId, row.publicUrl]),
+      [['S0004', 'https://www.facebook.com/phonsuda.12']]
+    );
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 58);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
     ));
@@ -188,7 +201,7 @@ test('schema and all generated dimensions are valid JSON', () => {
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(schemaPath, 'utf8')));
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(profileDetailOverrideSchemaPath, 'utf8')));
   const detailOverrides = JSON.parse(fs.readFileSync(profileDetailOverridePath, 'utf8'));
-  assert.equal(detailOverrides.contractVersion, '1.0');
+  assert.equal(detailOverrides.contractVersion, '1.1');
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^[SPI]\d{4}$/.test(engagement.personId)));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^E\d{4}$/.test(engagement.engagementId)));
   for (const fileName of fs.readdirSync(path.join(root, 'data/generated')).filter((name) => name.endsWith('.json'))) {
@@ -336,6 +349,33 @@ test('education uses normalized dimensions, appropriate display modes and preser
     assert.equal(record.programId, 'program-cu-cedt');
     assert.equal(record.verificationStatus, 'source_conflict_unresolved');
   }
+});
+
+test('only exact official institution and program LinkedIn pages enter the public model', () => {
+  const data = loadGenerated();
+  const expectedInstitutionUrls = new Map([
+    ['inst-kmitl', 'https://www.linkedin.com/school/king-mongkut%27s-institute-of-technology-ladkrabang/'],
+    ['inst-chula', 'https://www.linkedin.com/school/chulalongkornuniversity/'],
+    ['inst-thammasat', 'https://www.linkedin.com/school/thammasatuniversity/'],
+    ['inst-kaist', 'https://www.linkedin.com/company/kaist/'],
+    ['inst-uq', 'https://www.linkedin.com/school/university-of-queensland/'],
+    ['inst-mahidol', 'https://www.linkedin.com/school/mahidoluniversity/'],
+    ['inst-southampton', 'https://www.linkedin.com/school/university-of-southampton/'],
+    ['inst-ucl', 'https://www.linkedin.com/school/university-college-london/']
+  ]);
+  for (const institution of data.institutions) {
+    const expectedUrl = expectedInstitutionUrls.get(institution.institutionId) ?? null;
+    assert.equal(institution.linkedinUrl, expectedUrl);
+    assert.equal(
+      institution.linkedinVerificationStatus,
+      expectedUrl ? 'verified_official_page' : 'not_found_exact_official_page'
+    );
+  }
+  assert.equal(data.institutions.find((item) => item.institutionId === 'inst-nmu').linkedinUrl, null);
+  assert.ok(data.programs.every((program) => program.linkedinUrl === null));
+  assert.ok(data.programs.every((program) => program.linkedinVerificationStatus === 'not_found_exact_official_page'));
+  assert.equal(data.meta.counts.verifiedInstitutionLinkedInProfiles, 8);
+  assert.equal(data.meta.counts.verifiedProgramLinkedInProfiles, 0);
 });
 
 test('all core people receive provenance-distinct owner-authorized source-backed placeholder bios', () => {
@@ -638,9 +678,14 @@ test('only exact owner-authorized public profiles and governed local portraits a
   );
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
+  const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
   assert.equal(linkedIn.length, 45);
   assert.equal(github.length, 12);
-  for (const profile of [...linkedIn, ...github]) {
+  assert.deepEqual(facebook.map((profile) => ({ personId: profile.personId, publicUrl: profile.publicUrl })), [
+    { personId: 'S0004', publicUrl: 'https://www.facebook.com/phonsuda.12' }
+  ]);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 58);
+  for (const profile of [...linkedIn, ...github, ...facebook]) {
     assert.equal(profile.verificationStatus, 'verified');
     assert.equal(profile.consentStatus, 'pending');
     assert.equal(profile.publicationBasis, 'owner_authorized_public_profile_link');

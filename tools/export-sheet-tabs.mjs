@@ -210,7 +210,9 @@ const institutionRows = site.institutions.map((institution) => ({
   short_name_th: institution.names.th.short,
   short_name_en: institution.names.en.short,
   aliases: joined(institution.aliases),
-  verification_status: institution.verificationStatus
+  verification_status: institution.verificationStatus,
+  linkedin_url: institution.linkedinUrl,
+  linkedin_verification_status: institution.linkedinVerificationStatus
 }));
 
 const institutionIdsByProgram = new Map();
@@ -229,7 +231,9 @@ const programRows = site.programs.map((program) => ({
   short_name_th: program.names.th.short,
   short_name_en: program.names.en.short,
   qualification_level: program.qualificationLevel,
-  verification_status: program.verificationStatus
+  verification_status: program.verificationStatus,
+  linkedin_url: program.linkedinUrl,
+  linkedin_verification_status: program.linkedinVerificationStatus
 }));
 
 const educationRows = site.educationRecords.map((education) => ({
@@ -337,7 +341,7 @@ const socialRows = site.socialProfiles.map((social) => {
     social_profile_id: social.socialProfileId,
     person_id: social.personId,
     platform: social.platform,
-    candidate_url_or_handle: candidateFor(social.personId, social.platform),
+    candidate_url_or_handle: candidateFor(social.personId, social.platform) || social.publicUrl,
     public_url: social.publicUrl,
     candidate_status: social.candidateStatus,
     verification_status: social.verificationStatus,
@@ -493,7 +497,7 @@ const qaRows = [
 ];
 
 const readmeRows = [
-  { topic: 'ชื่อชุดข้อมูล', detail: 'Landom — People, Roles & Contributions Registry v3.3 (23 Aug 2026)' },
+  { topic: 'ชื่อชุดข้อมูล', detail: 'Landom — People, Roles & Contributions Registry v3.4 (24 Aug 2026)' },
   { topic: 'หลักการ', detail: 'หนึ่งคนหนึ่ง person_id; หลายช่วงบทบาทอยู่ใน engagements; หลายผลงานอยู่ใน contributions' },
   { topic: 'person_id', detail: 'รูปแบบ S0001 / P0001 / I0001 จัดตามประเภท ณ migration 2026-08-23 และ freeze หลังออกเลข' },
   { topic: 'หลายบทบาท', detail: 'โอ๊ตใช้ S0001 เดียวสำหรับ Intern → Part-time → Full-time' },
@@ -501,7 +505,7 @@ const readmeRows = [
   { topic: 'ฝึกงาน/สหกิจศึกษา', detail: 'ใช้ academic_placement_type ต่อ engagement เท่านั้น; เว็บหลักมีสหกิจ 6 IDs ที่ owner ยืนยัน ส่วนผู้เข้าร่วมรายที่ 7 อยู่ Shortlisted recruitment รอยืนยันการเริ่มงานและ contribution' },
   { topic: 'ผลงาน', detail: 'Land Portfolio และ Lead2Loan เป็นคนละ work_id; ทุกคนมี contribution อย่างน้อย 1 รายการ' },
   { topic: 'รางวัล', detail: 'Hack Land Value / CityCell อยู่ใน achievements และเชื่อมผู้รับรางวัลผ่าน person_achievements' },
-  { topic: 'bio', detail: 'ครบ 48 profiles: 25 ข้อความ paraphrase จาก first-person ที่จับคู่ roster ได้ exact และ 23 factual fallback ที่สังเคราะห์แบบ bounded จาก role, education และ verified work เท่านั้น ทุกข้อความเป็น source_backed_placeholder และรอ candidate/video review; ห้ามเผย raw application, source Sheet ID/range, contact หรือ reviewer data' },
+  { topic: 'bio', detail: 'ครบ 48 profiles: 25 ข้อความ paraphrase จาก first-person ที่จับคู่ roster ได้ exact และ 23 factual fallback ที่สังเคราะห์แบบ bounded จาก role, education และ verified work เท่านั้น ทุกข้อความเป็น source_backed_placeholder และรอ candidate/video review; ห้ามเผย raw application, private recruitment/application Sheet ID/range, contact หรือ reviewer data' },
   { topic: 'recruitment', detail: 'ผู้สมัครที่ไม่อยู่ใน Landom registry เก็บใน private Shortlisted recruitment เท่านั้น; ห้ามนำ contact, CV, video URL หรือ reviewer note เข้า public projection' },
   { topic: 'social', detail: 'ลิงก์ public profile ที่ตรวจ identity แล้วเผยแพร่ได้ด้วย individual_consent หรือ owner_authorized_public_profile_link; basis หลังไม่ใช่ consent ของเจ้าตัว' },
   { topic: 'photo', detail: 'portrait ต้องผ่าน identity verification + rights และมี individual consent หรือ owner_authorized_public_profile_portrait พร้อมไฟล์ local ที่อนุมัติแล้ว; ห้ามเผย CDN source URL' },
@@ -561,8 +565,12 @@ const tabs = {
     engagementRows,
     { validations: { M: ['ongoing', 'completed'], Q: ['cooperative_education', 'internship', 'not_applicable'] } }
   ),
-  institutions: tab(['institution_id', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'aliases', 'verification_status'], institutionRows),
-  programs: tab(['program_id', 'institution_ids', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'qualification_level', 'verification_status'], programRows),
+  institutions: tab(['institution_id', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'aliases', 'verification_status', 'linkedin_url', 'linkedin_verification_status'], institutionRows, {
+    validations: { I: ['verified_official_page', 'not_found_exact_official_page'] }
+  }),
+  programs: tab(['program_id', 'institution_ids', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'qualification_level', 'verification_status', 'linkedin_url', 'linkedin_verification_status'], programRows, {
+    validations: { J: ['verified_official_page', 'not_found_exact_official_page'] }
+  }),
   education: tab(['education_record_id', 'person_id', 'institution_id', 'program_id', 'record_type', 'is_primary', 'qualification_th', 'qualification_en', 'source_label', 'verification_status', 'evidence_note', 'degree_abbreviation_th', 'degree_abbreviation_en', 'degree_title_th', 'degree_title_en', 'degree_field_th', 'degree_field_en', 'degree_award_status', 'degree_personal_award_verified', 'degree_program_evidence_url', 'degree_evidence_scope'], educationRows, {
     validations: { R: ['under_review', 'in_progress', 'completed'] }
   }),
@@ -604,7 +612,7 @@ if (requestedTab && !Object.hasOwn(tabs, requestedTab)) {
 }
 
 const selectedTabs = requestedTab ? { [requestedTab]: tabs[requestedTab] } : tabs;
-const exportPayload = JSON.stringify({ schemaVersion: '3.3.0', spreadsheetId: site.meta.source.spreadsheetId, tabs: selectedTabs });
+const exportPayload = JSON.stringify({ schemaVersion: '3.4.0', spreadsheetId: site.meta.source.spreadsheetId, tabs: selectedTabs });
 if (/LDM-P-\d+/.test(exportPayload)) throw new Error('Legacy person ID escaped the sheet exporter canonicalization boundary.');
 if (outputPath) {
   fs.writeFileSync(outputPath, exportPayload, { encoding: 'utf8', mode: 0o600 });

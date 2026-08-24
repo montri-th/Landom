@@ -3493,14 +3493,19 @@
     "socialProfileId": "SOC-S0004-FACEBOOK",
     "personId": "S0004",
     "platform": "facebook",
-    "publicUrl": null,
-    "candidateStatus": "candidate_missing",
+    "publicUrl": "https://www.facebook.com/phonsuda.12",
+    "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
-    "verificationStatus": "missing",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "publicationBasis": null,
-    "ownerApproval": null,
-    "publicationStatus": "withheld_pending_candidate",
+    "publicationBasis": "owner_authorized_public_profile_link",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_profile_link_only",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "publicationStatus": "publishable",
     "dataBoundary": "private_candidates_not_emitted"
   },
   {

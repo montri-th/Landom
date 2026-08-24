@@ -67,6 +67,8 @@ const COPY = {
     educationNeutral: "การศึกษา",
     educationProgramPending: "รอยืนยันสาขาที่เรียน",
     educationQualificationPending: "รอยืนยันวุฒิ",
+    openProgramLinkedIn: "เปิดโปรไฟล์หลักสูตรบน LinkedIn",
+    openInstitutionLinkedIn: "เปิดโปรไฟล์มหาวิทยาลัยบน LinkedIn",
     university: "มหาวิทยาลัย",
     voice: "มุมมองและเป้าหมาย",
     contributions: "ผลงานที่ร่วมทำ",
@@ -164,6 +166,8 @@ const COPY = {
     educationNeutral: "Education",
     educationProgramPending: "Program pending confirmation",
     educationQualificationPending: "Qualification pending confirmation",
+    openProgramLinkedIn: "Open the program’s LinkedIn profile",
+    openInstitutionLinkedIn: "Open the university’s LinkedIn profile",
     university: "University",
     voice: "Perspective and goals",
     contributions: "Work they contributed to",
@@ -216,6 +220,8 @@ const state = {
   },
   currentPersonId: new URLSearchParams(window.location.search).get("person") || null,
   lastProfileTrigger: null,
+  masonryColumnCount: 0,
+  masonryLayoutFrame: 0,
   currentCertificate: null,
   lastCertificateTrigger: null
 };
@@ -695,6 +701,20 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     localizedField(institution || {}, ["officialName", "official_name", "fullName", "full_name", "name"]) ||
     localizedField(embeddedEducation, ["institutionOfficial", "institution_official", "institutionName", "institution_name", "university"]) ||
     (!hasProgramOrQualification ? detailDisplay : "");
+  const programLinkedInUrl = safeLinkedInUrl(firstValue(linkedEducation, [
+    "programLinkedInUrl", "program_linkedin_url", "program.linkedinUrl", "program.linkedin_url"
+  ]) || firstValue(program || {}, [
+    "linkedinUrl", "linkedInUrl", "linkedin_url", "links.linkedin", "social.linkedin"
+  ]) || firstValue(embeddedEducation, [
+    "programLinkedInUrl", "program_linkedin_url", "program.linkedinUrl", "program.linkedin_url"
+  ]));
+  const institutionLinkedInUrl = safeLinkedInUrl(firstValue(linkedEducation, [
+    "institutionLinkedInUrl", "institution_linkedin_url", "institution.linkedinUrl", "institution.linkedin_url"
+  ]) || firstValue(institution || {}, [
+    "linkedinUrl", "linkedInUrl", "linkedin_url", "links.linkedin", "social.linkedin"
+  ]) || firstValue(embeddedEducation, [
+    "institutionLinkedInUrl", "institution_linkedin_url", "institution.linkedinUrl", "institution.linkedin_url"
+  ]));
 
   return {
     labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified),
@@ -707,7 +727,9 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     shortProgram: shortProgram || fullProgram,
     fullProgram: fullProgram || shortProgram,
     shortInstitution: shortInstitution || fullInstitution,
-    fullInstitution: fullInstitution || shortInstitution
+    fullInstitution: fullInstitution || shortInstitution,
+    programLinkedInUrl,
+    institutionLinkedInUrl
   };
 }
 
@@ -772,6 +794,17 @@ function safeExternalUrl(value) {
   try {
     const url = new URL(String(value));
     return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
+  } catch (error) {
+    return "";
+  }
+}
+
+function safeLinkedInUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    const host = url.hostname.toLowerCase();
+    if (url.protocol !== "https:" || !["linkedin.com", "www.linkedin.com"].includes(host)) return "";
+    return url.href;
   } catch (error) {
     return "";
   }
@@ -1310,7 +1343,7 @@ function renderCard(model) {
         <span class="role-badge" data-role="${escapeHtml(model.roleKey)}">${escapeHtml(roleDisplay(model))}</span>
         <span class="person-id">${escapeHtml(model.id)}</span>
       </span>
-      <span class="card-name">${escapeHtml(nickname)}</span>
+      <span class="card-name" id="person-card-title-${escapeHtml(model.id)}">${escapeHtml(nickname)}</span>
       ${officialName && officialName !== nickname ? `<span class="card-official-name">${escapeHtml(officialName)}</span>` : ""}
       ${engagementHistoryMarkup(model)}
       ${educationMarkup}
@@ -1362,6 +1395,7 @@ function renderDirectory() {
   elements.error.hidden = true;
   elements.empty.hidden = models.length !== 0;
   elements.board.hidden = models.length === 0;
+  if (models.length) layoutMasonry({ resetAssignments: true });
   setText(elements.peopleTotal, formatNumber(state.models.length));
   setText(elements.resultsCount, message("results", { shown: formatNumber(models.length), total: formatNumber(state.models.length) }));
   updateFilterCount();
@@ -1480,17 +1514,39 @@ function roleTitleForHistory(engagement) {
   return engagementRoleName(engagement, key) || message(key);
 }
 
+function detailIconMarkup(kind) {
+  const paths = {
+    education: '<path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M7 12v4.2c2.8 2.1 7.2 2.1 10 0V12"/><path d="M21 10v5"/>',
+    history: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+    contributions: '<path d="M5 5.5h5v5H5zM14 13.5h5v5h-5z"/><path d="M10 8h2a4 4 0 0 1 4 4v1.5M14 16h-2a4 4 0 0 1-4-4v-1.5"/>',
+    achievements: '<path d="M8 4.5h8v3a4 4 0 0 1-8 0v-3Z"/><path d="M8 6H5.5v1.5A3.5 3.5 0 0 0 9 11M16 6h2.5v1.5A3.5 3.5 0 0 1 15 11M12 11.5V16M8.5 19.5h7M10 16h4v3.5"/>',
+    certificates: '<path d="M12 3.5 14 5l2.5-.1.6 2.4 2 1.4-1 2.3.7 2.4-2.2 1.2-.8 2.4-2.5-.3-1.8 1.7-1.8-1.7-2.5.3-.8-2.4L4.2 13l.7-2.4-1-2.3 2-1.4.6-2.4L9 5l3-1.5Z"/><path d="m9.2 11.3 1.8 1.8 3.8-4"/>',
+    profiles: '<circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5M12 3.5C9.8 5.8 8.7 8.6 8.7 12s1.1 6.2 3.3 8.5"/>'
+  };
+  return `<svg class="detail-section-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">${paths[kind] || paths.contributions}</svg>`;
+}
+
+function detailHeadingMarkup(id, label, icon) {
+  return `<h3 id="${escapeHtml(id)}">${detailIconMarkup(icon)}<span>${escapeHtml(label)}</span></h3>`;
+}
+
+function educationLinkedInMarkup(url, labelKey) {
+  if (!url) return "";
+  const label = message(labelKey);
+  return `<a class="education-profile-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}">${socialIconMarkup("linkedin")}</a>`;
+}
+
 function educationDetailMarkup(model) {
   const program = model.education.fullProgram;
   const institution = model.education.fullInstitution;
   if (!program && !institution) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-education-title-${escapeHtml(model.id)}">
-      <h3 id="detail-education-title-${escapeHtml(model.id)}">${escapeHtml(message("educationSection"))}</h3>
+      ${detailHeadingMarkup(`detail-education-title-${model.id}`, message("educationSection"), "education")}
       <div class="education-detail">
         <p class="education-context">${escapeHtml(message(model.education.labelKey))}</p>
-        ${program ? `<p class="education-program">${escapeHtml(program)}</p>` : ""}
-        ${institution ? `<p class="education-institution">${escapeHtml(institution)}</p>` : ""}
+        ${program ? `<div class="education-fact"><p class="education-program">${escapeHtml(program)}</p>${educationLinkedInMarkup(model.education.programLinkedInUrl, "openProgramLinkedIn")}</div>` : ""}
+        ${institution ? `<div class="education-fact"><p class="education-institution">${escapeHtml(institution)}</p>${educationLinkedInMarkup(model.education.institutionLinkedInUrl, "openInstitutionLinkedIn")}</div>` : ""}
       </div>
     </section>
   `;
@@ -1500,7 +1556,7 @@ function roleHistoryMarkup(model) {
   if (!model.engagements.length) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-role-title-${escapeHtml(model.id)}">
-      <h3 id="detail-role-title-${escapeHtml(model.id)}">${escapeHtml(message("roleHistory"))}</h3>
+      ${detailHeadingMarkup(`detail-role-title-${model.id}`, message("roleHistory"), "history")}
       <ol class="timeline">
         ${model.engagements.map((engagement) => {
           const role = roleTitleForHistory(engagement);
@@ -1517,7 +1573,7 @@ function contributionsMarkup(model) {
   if (!model.contributions.length) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-contribution-title-${escapeHtml(model.id)}">
-      <h3 id="detail-contribution-title-${escapeHtml(model.id)}">${escapeHtml(message("contributions"))}</h3>
+      ${detailHeadingMarkup(`detail-contribution-title-${model.id}`, message("contributions"), "contributions")}
       <ul class="contribution-list">
         ${model.contributions.map((contribution) => {
           const meta = [contribution.role ? message("contributionRole", { role: contribution.role }) : "", contribution.period].filter(Boolean).join(" · ");
@@ -1539,7 +1595,7 @@ function achievementsMarkup(model) {
   if (!model.achievements.length) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-achievement-title-${escapeHtml(model.id)}">
-      <h3 id="detail-achievement-title-${escapeHtml(model.id)}">${escapeHtml(message("achievements"))}</h3>
+      ${detailHeadingMarkup(`detail-achievement-title-${model.id}`, message("achievements"), "achievements")}
       <ul class="achievement-list">
         ${model.achievements.map((achievement) => {
           const name = localizedField(achievement, ["displayName", "display_name", "officialName", "official_name", "name", "title"]);
@@ -1558,11 +1614,14 @@ function socialIconMarkup(key) {
   if (key === "github") {
     return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.98 10.98 0 0 1 5.76 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.16v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>`;
   }
+  if (key === "facebook") {
+    return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.7 21v-7.7h2.6l.4-3h-3V8.4c0-.87.24-1.46 1.5-1.46h1.6V4.26A21 21 0 0 0 14.47 4c-2.3 0-3.88 1.4-3.88 3.98v2.22H8v3h2.6V21h3.1Z"/></svg>`;
+  }
   return "";
 }
 
 function profileSocialIconsMarkup(model) {
-  const profiles = model.socials.filter((social) => ["linkedin", "github"].includes(social.key));
+  const profiles = model.socials.filter((social) => ["linkedin", "github", "facebook"].includes(social.key));
   if (!profiles.length) return "";
   return `<nav class="profile-icon-links" aria-label="${escapeHtml(message("publicProfiles"))}">${profiles.map((social) => `
     <a class="profile-icon-link" href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(social.label)}" title="${escapeHtml(social.label)}">
@@ -1571,11 +1630,11 @@ function profileSocialIconsMarkup(model) {
 }
 
 function socialsMarkup(model) {
-  const profiles = model.socials.filter((social) => !["linkedin", "github"].includes(social.key));
+  const profiles = model.socials.filter((social) => !["linkedin", "github", "facebook"].includes(social.key));
   if (!profiles.length) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-social-title-${escapeHtml(model.id)}">
-      <h3 id="detail-social-title-${escapeHtml(model.id)}">${escapeHtml(message("publicProfiles"))}</h3>
+      ${detailHeadingMarkup(`detail-social-title-${model.id}`, message("publicProfiles"), "profiles")}
       <div class="social-list">
         ${profiles.map((social) => `<a class="social-link" href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer" data-platform="${escapeHtml(social.key)}">${escapeHtml(social.label)}</a>`).join("")}
       </div>
@@ -1604,7 +1663,7 @@ function certificatesMarkup(model) {
   if (!model.certificates.length) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-certificate-title-${escapeHtml(model.id)}">
-      <h3 id="detail-certificate-title-${escapeHtml(model.id)}">${escapeHtml(message("certificates"))}</h3>
+      ${detailHeadingMarkup(`detail-certificate-title-${model.id}`, message("certificates"), "certificates")}
       <div class="certificate-list">
         ${model.certificates.map((certificate) => {
           const title = certificateTitle(certificate);
@@ -1625,29 +1684,16 @@ function certificatesMarkup(model) {
 }
 
 function personDetailMarkup(model) {
-  const nickname = currentNickname(model);
-  const officialName = currentOfficialName(model);
-  const story = currentBio(model);
   return `
-    <article class="person-detail" aria-labelledby="person-profile-title-${escapeHtml(model.id)}">
+    <article class="person-detail" aria-labelledby="person-card-title-${escapeHtml(model.id)}">
       <div class="inline-detail-toolbar">
         <span class="section-kicker">${escapeHtml(message("registry"))}</span>
-        <button class="icon-button inline-detail-close" type="button" data-inline-close aria-label="${escapeHtml(message("closeDetails"))}"><span aria-hidden="true">×</span></button>
-      </div>
-      <header class="detail-hero detail-hero--inline">
-        <div class="detail-heading">
-        <span class="role-badge" data-role="${escapeHtml(model.roleKey)}">${escapeHtml(roleDisplay(model))}</span>
-        <h2 id="person-profile-title-${escapeHtml(model.id)}">${escapeHtml(nickname)}</h2>
-        ${officialName && officialName !== nickname ? `<p class="detail-full-name">${escapeHtml(officialName)}</p>` : ""}
-        ${profileSocialIconsMarkup(model)}
-        <p class="detail-id">${escapeHtml(model.id)}</p>
+        <div class="inline-detail-actions">
+          ${profileSocialIconsMarkup(model)}
+          <button class="icon-button inline-detail-close" type="button" data-inline-close aria-label="${escapeHtml(message("closeDetails"))}"><span aria-hidden="true">×</span></button>
         </div>
-      </header>
+      </div>
       <div class="detail-content">
-        ${story ? `<section class="detail-section" aria-labelledby="detail-story-title-${escapeHtml(model.id)}">
-          <h3 id="detail-story-title-${escapeHtml(model.id)}">${escapeHtml(message("voice"))}</h3>
-          <p class="detail-story">${escapeHtml(story)}</p>
-        </section>` : ""}
         ${educationDetailMarkup(model)}
         ${roleHistoryMarkup(model)}
         ${contributionsMarkup(model)}
@@ -1662,6 +1708,68 @@ function personDetailMarkup(model) {
 function cardShellFor(id) {
   return Array.from(elements.board.querySelectorAll(".person-card-shell"))
     .find((shell) => shell.dataset.personId === id) || null;
+}
+
+function masonryGap() {
+  const value = Number.parseFloat(getComputedStyle(elements.board).columnGap);
+  return Number.isFinite(value) ? value : 16;
+}
+
+function masonryColumnCount(width, gap) {
+  if (!desktopFilterQuery?.matches) return 1;
+  return Math.min(3, Math.max(1, Math.floor((width + gap) / (300 + gap))));
+}
+
+function layoutMasonry({ resetAssignments = false } = {}) {
+  const shells = Array.from(elements.board.querySelectorAll(".person-card-shell"));
+  const boardWidth = elements.board.clientWidth;
+  if (!shells.length || boardWidth <= 0 || elements.board.hidden) {
+    elements.board.style.removeProperty("height");
+    state.masonryColumnCount = 0;
+    return;
+  }
+
+  const gap = masonryGap();
+  const columnCount = masonryColumnCount(boardWidth, gap);
+  const assignmentsChanged = resetAssignments || columnCount !== state.masonryColumnCount;
+  const columnWidth = (boardWidth - (gap * (columnCount - 1))) / columnCount;
+
+  shells.forEach((shell) => {
+    shell.style.width = `${columnWidth}px`;
+    if (assignmentsChanged) delete shell.dataset.masonryColumn;
+  });
+
+  // Read every height only after all widths are fixed. This keeps the result
+  // deterministic and avoids the browser's multi-column balancing algorithm.
+  void elements.board.offsetWidth;
+  const columnHeights = Array(columnCount).fill(0);
+  const baseColumnSize = Math.floor(shells.length / columnCount);
+  const widerColumnCount = shells.length % columnCount;
+  const widerColumnItemCount = (baseColumnSize + 1) * widerColumnCount;
+  shells.forEach((shell, index) => {
+    const storedColumn = Number.parseInt(shell.dataset.masonryColumn || "", 10);
+    const column = Number.isInteger(storedColumn) && storedColumn >= 0 && storedColumn < columnCount
+      ? storedColumn
+      : index < widerColumnItemCount
+        ? Math.floor(index / (baseColumnSize + 1))
+        : widerColumnCount + Math.floor((index - widerColumnItemCount) / Math.max(1, baseColumnSize));
+    const top = columnHeights[column];
+    shell.dataset.masonryColumn = String(column);
+    shell.style.left = `${column * (columnWidth + gap)}px`;
+    shell.style.top = `${top}px`;
+    columnHeights[column] = top + shell.offsetHeight + gap;
+  });
+
+  elements.board.style.height = `${Math.max(0, ...columnHeights) - gap}px`;
+  state.masonryColumnCount = columnCount;
+}
+
+function scheduleMasonryLayout({ resetAssignments = false } = {}) {
+  if (state.masonryLayoutFrame) cancelAnimationFrame(state.masonryLayoutFrame);
+  state.masonryLayoutFrame = requestAnimationFrame(() => {
+    state.masonryLayoutFrame = 0;
+    layoutMasonry({ resetAssignments });
+  });
 }
 
 function cardPositionSnapshot() {
@@ -1739,7 +1847,7 @@ function openPerson(id, trigger = null, { fromUrl = false, animate = true, scrol
   state.currentPersonId = id;
   state.lastProfileTrigger = trigger || shell.querySelector(".person-card");
   if (!fromUrl) updateUrl({ person: id }, { replace: false });
-  void elements.board.offsetHeight;
+  layoutMasonry();
   if (before) animateCardReflow(before, id);
   if (!reducedMotionQuery?.matches) {
     detail.classList.remove("is-revealing");
@@ -1762,7 +1870,7 @@ function closePerson({ updateQuery = true, trigger = null, animate = true } = {}
   setCardExpanded(shell, false);
   state.currentPersonId = null;
   if (updateQuery) updateUrl({ person: null });
-  void elements.board.offsetHeight;
+  layoutMasonry();
   if (before) animateCardReflow(before, originId);
   (trigger || state.lastProfileTrigger)?.focus({ preventScroll: true });
 }
@@ -1925,6 +2033,7 @@ function bindEvents() {
     if (state.theme === "system") applyTheme({ announce: true });
   });
   desktopFilterQuery?.addEventListener("change", syncFilterDialogMode);
+  window.addEventListener("resize", () => scheduleMasonryLayout());
   window.addEventListener("popstate", () => {
     const params = new URLSearchParams(window.location.search);
     const person = params.get("person");
@@ -1943,6 +2052,7 @@ function initialize() {
   syncFilterDialogMode();
   updateFilterCount();
   loadData();
+  document.fonts?.ready.then(() => scheduleMasonryLayout());
 }
 
 initialize();

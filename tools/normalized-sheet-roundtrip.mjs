@@ -95,7 +95,7 @@ function sourceMeta(snapshot, baseline) {
     ...baseline.meta.source,
     spreadsheetId: snapshot.spreadsheetId ?? snapshot.source?.spreadsheetId ?? baseline.meta.source.spreadsheetId,
     snapshotFetchedAt: snapshot.fetchedAt ?? snapshot.source?.fetchedAt ?? baseline.meta.source.snapshotFetchedAt,
-    inputSchema: 'normalized_sheet_v3_3',
+    inputSchema: 'normalized_sheet_v3_4',
     publicSheetsUsed: ['people_registry', 'profile_statements', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'social_profiles', 'assets'],
     privateContactSourcesExcluded: true
   };
@@ -207,7 +207,10 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       en: { formal: text(row.official_name_en), short: text(row.short_name_en) }
     },
     aliases: split(row.aliases),
-    verificationStatus: text(row.verification_status) || 'owner_review_required'
+    verificationStatus: text(row.verification_status) || 'owner_review_required',
+    linkedinUrl: nullable(row.linkedin_url ?? baseInstitutions.get(text(row.institution_id))?.linkedinUrl),
+    linkedinVerificationStatus: text(row.linkedin_verification_status) ||
+      baseInstitutions.get(text(row.institution_id))?.linkedinVerificationStatus || 'not_found_exact_official_page'
   }));
 
   const programs = sheetRows(snapshot, 'programs').map((row) => ({
@@ -218,7 +221,10 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       en: { formal: text(row.official_name_en), short: text(row.short_name_en) }
     },
     qualificationLevel: nullable(row.qualification_level),
-    verificationStatus: text(row.verification_status) || 'owner_review_required'
+    verificationStatus: text(row.verification_status) || 'owner_review_required',
+    linkedinUrl: nullable(row.linkedin_url ?? basePrograms.get(text(row.program_id))?.linkedinUrl),
+    linkedinVerificationStatus: text(row.linkedin_verification_status) ||
+      basePrograms.get(text(row.program_id))?.linkedinVerificationStatus || 'not_found_exact_official_page'
   }));
 
   const educationRecords = sheetRows(snapshot, 'education').map((row) => {
@@ -413,13 +419,17 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     ...baseline.meta,
     source: sourceMeta(snapshot, baseline),
     counts: {
+      ...baseline.meta.counts,
       people: people.length,
       engagements: engagements.length,
       educationRecords: educationRecords.length,
       works: works.length,
       contributions: contributions.length,
       achievements: achievements.length,
-      certificates: baseline.certificates.length
+      certificates: baseline.certificates.length,
+      verifiedInstitutionLinkedInProfiles: institutions.filter((institution) => institution.linkedinUrl).length,
+      verifiedProgramLinkedInProfiles: programs.filter((program) => program.linkedinUrl).length,
+      publishedPublicSocialProfiles: socialProfiles.filter((profile) => profile.publicUrl).length
     }
   };
 

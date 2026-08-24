@@ -39,7 +39,7 @@ node tools/normalize-data.mjs \
 node tools/export-sheet-tabs.mjs \
   --snapshot data/raw/google-sheet-snapshot.json \
   --site-data data/generated/site-data.json \
-  --output /private/tmp/landom-sheet-tabs-v3.3.0.json
+  --output /private/tmp/landom-sheet-tabs-v3.4.0.json
 ```
 
 The exporter performs the return half of the controlled Sheet roundtrip: it combines the reviewed normalized records with private social and asset candidates preserved in the ignored raw snapshot. Those candidates remain raw-only; they must not be copied into `data/generated/`, repository source, logs, or build artifacts. Use `--output` with a private path so a full payload is not printed to a terminal log. A positional tab name may be appended to export only that tab.
@@ -58,7 +58,7 @@ Then open `http://localhost:4173/`.
 
 The UI reads `./data/generated/site-data.json`. Its public dimensions are:
 
-Public data schema `1.4.0` includes `institutions`, `programs`, `educationRecords`, `people`, `engagements`, `works`, `contributions`, `achievements`, `socialProfiles`, `assets`, and governed `certificates`.
+Public data schema `1.5.0` includes `institutions`, `programs`, `educationRecords`, `people`, `engagements`, `works`, `contributions`, `achievements`, `socialProfiles`, `assets`, and governed `certificates`. Institution and program records expose only exact verified official LinkedIn profiles through nullable `linkedinUrl` fields; a missing exact page remains `null` rather than being inferred from a faculty or similarly named organization.
 
 Person IDs have one canonical version only:
 
@@ -78,7 +78,7 @@ Developer references: [data dictionary](docs/data-dictionary.md), [public JSON S
 
 ## Privacy and assets
 
-- Current release behavior follows the owner instruction to render all 48 core registry profiles with bilingual `source_backed_placeholder` copy. Twenty-five are concise paraphrases of first-person application answers matched exactly to the core roster. The other 23 are explicitly labelled `factual_fallback` and use bounded synthesis from reconciled role, education, and verified-work evidence. Both groups remain `pending_candidate_video_review`; provenance fields keep the two bases distinct. No raw application text, source Sheet ID/range, contact, score, or reviewer note is emitted. A pending `people.publication.consentStatus` is not a UI filter for the core name/role/education/contribution card and does not become individual consent through owner authorization.
+- Current release behavior follows the owner instruction to render all 48 core registry profiles with bilingual `source_backed_placeholder` copy. Twenty-five are concise paraphrases of first-person application answers matched exactly to the core roster. The other 23 are explicitly labelled `factual_fallback` and use bounded synthesis from reconciled role, education, and verified-work evidence. Both groups remain `pending_candidate_video_review`; provenance fields keep the two bases distinct. No raw application text, private recruitment/application Sheet ID or range, contact, score, or reviewer note is emitted. The public registry Sheet ID may remain in `meta.source` solely as provenance for the authorized core registry. A pending `people.publication.consentStatus` is not a UI filter for the core name/role/education/contribution card and does not become individual consent through owner authorization.
 - Versioned profile text lives in the normalized `profile_statements` Sheet tab; `people_registry.current_statement_id` selects the current materialized copy. Unmatched applicants and all recruitment contacts, CV/video links, and reviewer notes stay in the separate private **Shortlisted recruitment** workbook.
 - `contacts_internal`, email, phone, Line, Discord, CV file IDs, raw sheet rows, credentials, and private notes must never enter source-facing UI files or `dist/`.
 - A social URL is public only when identity is verified, publication is `publishable`, and its basis is either recorded individual consent or scoped `owner_authorized_public_profile_link`. Owner authorization is recorded separately and must not be described as individual consent.
