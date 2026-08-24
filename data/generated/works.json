@@ -530,11 +530,345 @@
     "authorityStatus": "aligned_to_citymeter_current_release",
     "evidenceNote": null,
     "sourceAliases": [
-      "CityMETER: 3D Buildings"
+      "CityMETER: 3D Buildings",
+      "CityMETER: Building"
     ],
     "catalogUrl": {
       "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-buildings",
       "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-buildings"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-population",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-population-age-sex",
+    "names": {
+      "th": "ประชากรตามอายุและเพศ",
+      "en": "Population by Age & Sex"
+    },
+    "shortNames": {
+      "th": "ประชากรตามอายุและเพศ",
+      "en": "Population by Age & Sex"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Population"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-population-age-sex",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-population-age-sex"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-housing-estates",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-registered-housing-estates",
+    "names": {
+      "th": "โครงการจัดสรรที่ดินจดทะเบียน",
+      "en": "Registered Housing Estates"
+    },
+    "shortNames": {
+      "th": "โครงการจัดสรรที่ดินจดทะเบียน",
+      "en": "Registered Housing Estates"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Housing estate"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-registered-housing-estates",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-registered-housing-estates"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-condo-appraisal",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-condo-appraisal",
+    "names": {
+      "th": "ราคาประเมินคอนโดมิเนียม",
+      "en": "Condo Appraisal Prices"
+    },
+    "shortNames": {
+      "th": "ราคาประเมินคอนโดมิเนียม",
+      "en": "Condo Appraisal Prices"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Condo appraisal"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-condo-appraisal",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-condo-appraisal"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-business-dynamics",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-business-dynamics",
+    "names": {
+      "th": "Business Dynamics: สำนักงานใหญ่ สาขา และสาขาจดทะเบียนใหม่",
+      "en": "Business Dynamics: Headquarters, Branches & New Activity"
+    },
+    "shortNames": {
+      "th": "Business Dynamics: สำนักงานใหญ่ สาขา และสาขาจดทะเบียนใหม่",
+      "en": "Business Dynamics: Headquarters, Branches & New Activity"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Business dynamics"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-business-dynamics",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-business-dynamics"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-restaurants",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-restaurants",
+    "names": {
+      "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
+      "en": "Restaurants: Density, Ratings & Price"
+    },
+    "shortNames": {
+      "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
+      "en": "Restaurants: Density, Ratings & Price"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Restaurants"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-restaurants",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-restaurants"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-fire-monitoring",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-fire-monitoring",
+    "names": {
+      "th": "การติดตามสถานการณ์ไฟ",
+      "en": "Fire Monitoring"
+    },
+    "shortNames": {
+      "th": "การติดตามสถานการณ์ไฟ",
+      "en": "Fire Monitoring"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Fire"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-fire-monitoring",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-fire-monitoring"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-disaster-historical-impacts",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-disaster-historical-impacts",
+    "names": {
+      "th": "ผลกระทบจากสาธารณภัยในอดีต",
+      "en": "Disaster: Historical Impacts"
+    },
+    "shortNames": {
+      "th": "ผลกระทบจากสาธารณภัยในอดีต",
+      "en": "Disaster: Historical Impacts"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "dataset-disaster-historical-impacts"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-disaster-historical-impacts",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-disaster-historical-impacts"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-hat-yai-flood-2025-11",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-events-hat-yai-flood-2025-11",
+    "names": {
+      "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
+      "en": "Hat Yai Flood Reports — 24–27 Nov 2025"
+    },
+    "shortNames": {
+      "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
+      "en": "Hat Yai Flood Reports — 24–27 Nov 2025"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "dataset-events-hat-yai-flood-2025-11"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-events-hat-yai-flood-2025-11",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-events-hat-yai-flood-2025-11"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-flood-forecasting-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-flood-forecast-flash-flood-risk",
+    "names": {
+      "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
+      "en": "Flood: Flash Flood: 24-hour Risk by Google"
+    },
+    "shortNames": {
+      "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
+      "en": "Flood: Flash Flood: 24-hour Risk by Google"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER: Flood forecasting",
+      "dataset-flood-forecast-flash-flood-risk"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-flood-forecast-flash-flood-risk",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-flood-forecast-flash-flood-risk"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-dwr-flood-map",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-flood-forecast-depth",
+    "names": {
+      "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
+      "en": "Flood: Forecast Depth by DWR"
+    },
+    "shortNames": {
+      "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
+      "en": "Flood: Forecast Depth by DWR"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "DWR Flood map",
+      "dataset-flood-forecast-depth"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-flood-forecast-depth",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-flood-forecast-depth"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-quakesafe-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-events-quake-building-inspection",
+    "names": {
+      "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
+      "en": "QuakeSafe: Building Inspection Status"
+    },
+    "shortNames": {
+      "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
+      "en": "QuakeSafe: Building Inspection Status"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": null,
+    "sourceAliases": [
+      "CityMETER : QuakeSafe",
+      "CityMETER: QuakeSafe"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-events-quake-building-inspection",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-events-quake-building-inspection"
     },
     "destinationUrl": null,
     "linkEvidence": {
@@ -715,36 +1049,6 @@
     "catalogUrl": {
       "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-office-buildings-rent",
       "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-office-buildings-rent"
-    },
-    "destinationUrl": null,
-    "linkEvidence": {
-      "linkScope": "exact_module",
-      "sourceRef": "official_citymeter_catalog_2026-08-23",
-      "evidenceUrl": null
-    }
-  },
-  {
-    "workId": "work-citymeter-quakesafe-unresolved",
-    "parentProduct": "CityMETER",
-    "moduleSlug": null,
-    "names": {
-      "th": "CityMETER: QuakeSafe",
-      "en": "CityMETER: QuakeSafe"
-    },
-    "shortNames": {
-      "th": "CityMETER: QuakeSafe",
-      "en": "CityMETER: QuakeSafe"
-    },
-    "type": "module_name_unreconciled",
-    "scopeLayer": "product_specific",
-    "authorityStatus": "sheet_recorded_not_current_release_authority",
-    "evidenceNote": "คงเป็นชื่อผลงานเฉพาะจากชีต; ยังไม่ยกเป็น canonical CityMETER module จนกว่าจะเทียบ release/schema เดียวกัน",
-    "sourceAliases": [
-      "CityMETER : QuakeSafe"
-    ],
-    "catalogUrl": {
-      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-events-quake-building-inspection",
-      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-events-quake-building-inspection"
     },
     "destinationUrl": null,
     "linkEvidence": {
@@ -1164,34 +1468,6 @@
     }
   },
   {
-    "workId": "work-dwr-flood-map",
-    "parentProduct": "DWR",
-    "moduleSlug": null,
-    "names": {
-      "th": "แผนที่น้ำท่วม DWR",
-      "en": "DWR Flood Map"
-    },
-    "shortNames": {
-      "th": "แผนที่น้ำท่วม DWR",
-      "en": "DWR Flood Map"
-    },
-    "type": "partner_deliverable",
-    "scopeLayer": "partner_specific",
-    "authorityStatus": "owner_or_sheet_supplied_product_specific",
-    "evidenceNote": null,
-    "sourceAliases": [],
-    "catalogUrl": {
-      "th": null,
-      "en": null
-    },
-    "destinationUrl": null,
-    "linkEvidence": {
-      "linkScope": "unverified_no_link",
-      "sourceRef": null,
-      "evidenceUrl": null
-    }
-  },
-  {
     "workId": "work-population-forecasting-research",
     "parentProduct": "Research",
     "moduleSlug": null,
@@ -1319,34 +1595,6 @@
     "scopeLayer": "product_specific",
     "authorityStatus": "owner_or_sheet_supplied_product_specific",
     "evidenceNote": null,
-    "sourceAliases": [],
-    "catalogUrl": {
-      "th": "https://montri-th.github.io/CityMETER/",
-      "en": "https://montri-th.github.io/CityMETER/"
-    },
-    "destinationUrl": null,
-    "linkEvidence": {
-      "linkScope": "broader_catalog",
-      "sourceRef": "owner_official_product_routes_2026-08-23",
-      "evidenceUrl": null
-    }
-  },
-  {
-    "workId": "work-citymeter-flood-forecasting-unresolved",
-    "parentProduct": "CityMETER",
-    "moduleSlug": null,
-    "names": {
-      "th": "CityMETER: การคาดการณ์น้ำท่วม (รอระบุโมดูล)",
-      "en": "CityMETER: Flood Forecasting (Module Pending)"
-    },
-    "shortNames": {
-      "th": "CityMETER: การคาดการณ์น้ำท่วม (รอระบุโมดูล)",
-      "en": "CityMETER: Flood Forecasting (Module Pending)"
-    },
-    "type": "module_name_unreconciled",
-    "scopeLayer": "product_specific",
-    "authorityStatus": "unresolved_between_official_forecast_modules",
-    "evidenceNote": "ยังไม่ map ไป DWR forecast-depth หรือ Google flash-flood risk เพราะหลักฐานไม่พอระบุว่าเป็นโมดูลใด",
     "sourceAliases": [],
     "catalogUrl": {
       "th": "https://montri-th.github.io/CityMETER/",
@@ -1502,21 +1750,111 @@
   {
     "workId": "work-citymeter-rugon",
     "parentProduct": "CityMETER",
-    "moduleSlug": null,
+    "moduleSlug": "dataset-earthquake-sensors",
     "names": {
-      "th": "CityMETER: RUGON",
-      "en": "CityMETER: RUGON"
+      "th": "รู้ก่อน RUGON: เครือข่ายเซนเซอร์แผ่นดินไหว",
+      "en": "RUGON: Earthquake Sensor Network"
     },
     "shortNames": {
-      "th": "CityMETER: RUGON",
-      "en": "CityMETER: RUGON"
+      "th": "รู้ก่อน RUGON: เครือข่ายเซนเซอร์แผ่นดินไหว",
+      "en": "RUGON: Earthquake Sensor Network"
     },
-    "type": "product_specific_deliverable",
+    "type": "canonical_module",
     "scopeLayer": "product_specific",
-    "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
-    "evidenceNote": "Owner-supplied product-specific contribution; no exact current CityMETER catalog route is asserted.",
+    "authorityStatus": "aligned_to_citymeter_current_release",
+    "evidenceNote": "Owner mapped RUGON to the official CityMETER dataset-earthquake-sensors module on 2026-08-24.",
     "sourceAliases": [
       "CityMETER: RUGON"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-earthquake-sensors",
+      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-earthquake-sensors"
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-healthcare-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Healthcare",
+      "en": "CityMETER: Healthcare"
+    },
+    "shortNames": {
+      "th": "CityMETER: Healthcare",
+      "en": "CityMETER: Healthcare"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+    "evidenceNote": "Owner supplied this contribution name; no exact Healthcare module appears in the inspected 2026-08-24 CityMETER catalog, so no catalog slug or route is asserted.",
+    "sourceAliases": [
+      "CityMETER: Healthcare"
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-department-water-resources",
+    "parentProduct": "Department of Water Resources",
+    "moduleSlug": null,
+    "names": {
+      "th": "กรมทรัพยากรน้ำ",
+      "en": "Department of Water Resources"
+    },
+    "shortNames": {
+      "th": "กรมทรัพยากรน้ำ",
+      "en": "Department of Water Resources"
+    },
+    "type": "partner_program",
+    "scopeLayer": "partner_specific",
+    "authorityStatus": "owner_supplied_partner_contribution",
+    "evidenceNote": "Owner supplied the partner contribution; the English organization name is standardized to Department of Water Resources.",
+    "sourceAliases": [
+      "Department of Water Resource"
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-dwr-telemetry",
+    "parentProduct": "Department of Water Resources",
+    "moduleSlug": null,
+    "names": {
+      "th": "DWR: Telemetry",
+      "en": "DWR: Telemetry"
+    },
+    "shortNames": {
+      "th": "DWR: Telemetry",
+      "en": "DWR: Telemetry"
+    },
+    "type": "partner_deliverable",
+    "scopeLayer": "partner_specific",
+    "authorityStatus": "owner_supplied_partner_contribution",
+    "evidenceNote": "Owner supplied this DWR-specific contribution; it is not promoted to a shared Landometer capability.",
+    "sourceAliases": [
+      "DWR: Telemetry"
     ],
     "catalogUrl": {
       "th": null,

@@ -78,6 +78,8 @@ const COPY = {
     placementInternshipShort: "ฝึกงาน",
     placementCooperativeShort: "สหกิจศึกษา",
     achievements: "รางวัลและความสำเร็จ",
+    publications: "บทความวิชาการ",
+    openPublication: "เปิดบทความ {name}",
     publicProfiles: "ช่องทางออนไลน์",
     closeDetails: "ปิดรายละเอียด",
     certificates: "ประกาศนียบัตร",
@@ -177,6 +179,8 @@ const COPY = {
     placementInternshipShort: "Internship",
     placementCooperativeShort: "Co-op",
     achievements: "Awards and achievements",
+    publications: "Publication",
+    openPublication: "Open publication {name}",
     publicProfiles: "Online profiles",
     closeDetails: "Close details",
     certificates: "Certificates",
@@ -298,6 +302,7 @@ const elements = {
 const systemThemeQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
 const desktopFilterQuery = window.matchMedia?.("(min-width: 760px)");
 const reducedMotionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+const reflowAnimations = new WeakMap();
 
 function message(key, values = {}) {
   const keys = key.split(".");
@@ -609,6 +614,13 @@ function normalizedLabel(value) {
   return String(value || "").normalize("NFKC").toLocaleLowerCase().replace(/\s+/g, " ").trim();
 }
 
+function publicRoleLabel(role) {
+  if (state.language === "th" && ["consulting partner", "ที่ปรึกษาพันธมิตร"].includes(normalizedLabel(role))) {
+    return "ที่ปรึกษาธุรกิจ";
+  }
+  return role;
+}
+
 function uniqueLabels(values) {
   const seen = new Set();
   return values.filter((value) => {
@@ -639,7 +651,7 @@ function educationLabelKey(mode, placementType, awardStatus, personalAwardVerifi
   return "educationNeutral";
 }
 
-function educationFor(person, engagement, linkedEducationRecord, programIndex, institutionIndex, educationMode) {
+function educationFor(person, engagement, linkedEducationRecord, programIndex, institutionIndex, educationMode, hasPrimaryEducationRecord) {
   const personEducation = firstValue(person, ["education", "qualification"]);
   const embeddedEducation = personEducation && typeof personEducation === "object" ? personEducation : {};
   const linkedEducation = linkedEducationRecord && typeof linkedEducationRecord === "object" ? linkedEducationRecord : {};
@@ -670,12 +682,15 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
   const awardStatus = normalizedEnum(firstValue(linkedEducation, ["degree.awardStatus", "degree.award_status"]));
   const personalAwardVerified = normalizedBoolean(firstValue(linkedEducation, ["degree.personalAwardVerified", "degree.personal_award_verified"]));
   const verificationStatus = String(firstValue(linkedEducation, ["verificationStatus", "verification_status"]) || firstValue(person, ["educationDisplay.verificationStatus", "education_display.verification_status"]) || "");
+  const ownerDetailRequiredWithoutPrimaryEducation = normalizedEnum(verificationStatus) === "owner_detail_required" && !hasPrimaryEducationRecord;
   const effectiveAwardStatus = awardStatus || (/pending|review|required/i.test(verificationStatus) ? "under_review" : "");
   const placementType = academicPlacementTypeFor(engagement);
   const hasProgramOrQualification = Boolean(program || qualification || degreeShort || degreeDetail);
   const cardHasProgramAndInstitution = cardParts.length > 1;
   const detailHasProgramAndInstitution = detailParts.length > 1;
-  const pendingAcademicLabel = !hasProgramOrQualification && educationMode === "program"
+  const pendingAcademicLabel = ownerDetailRequiredWithoutPrimaryEducation
+    ? ""
+    : !hasProgramOrQualification && educationMode === "program"
     ? message("educationProgramPending")
     : !hasProgramOrQualification && educationMode === "qualification"
       ? message("educationQualificationPending")
@@ -723,6 +738,7 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     awardStatus: effectiveAwardStatus,
     personalAwardVerified,
     verificationStatus,
+    hidden: ownerDetailRequiredWithoutPrimaryEducation,
     cardDisplay,
     shortProgram: shortProgram || fullProgram,
     fullProgram: fullProgram || shortProgram,
@@ -906,6 +922,11 @@ function workNameForContribution(contribution, workIndex, language = state.langu
   return localizedWorkName(work || contribution, language);
 }
 
+function localizedContributionRole(contribution) {
+  const role = localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"]);
+  return publicRoleLabel(role);
+}
+
 function contributionRecordsForPerson(id, contributions, workIndex) {
   return contributions
     .filter((contribution) => {
@@ -929,7 +950,7 @@ function contributionRecordsForPerson(id, contributions, workIndex) {
         nameEn: workNameForContribution(contribution, workIndex, "en"),
         publicUrl,
         evidenceOnlyUrl,
-        role: localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"]),
+        role: localizedContributionRole(contribution),
         period: periodForContribution(contribution)
       };
     })
@@ -951,6 +972,30 @@ function achievementRecordsForPerson(id, achievements, personAchievements) {
     if (!key || seen.has(key)) return false;
     seen.add(key);
     return true;
+  });
+}
+
+function publicationRecordsForPerson(id, publications) {
+  return publications.flatMap((publication) => {
+    if (personId(publication) !== id) return [];
+
+    const scope = normalizedEnum(firstValue(publication, ["scope"]));
+    const verificationStatus = normalizedEnum(firstValue(publication, ["verificationStatus", "verification_status"]));
+    const publicationBasis = normalizedEnum(firstValue(publication, ["publicationBasis", "publication_basis"]));
+    const publicUrl = safeExternalUrl(firstValue(publication, ["publicUrl", "public_url"]));
+    const isGovernedExternalPublication = scope === "external_publication_not_landometer_contribution" &&
+      verificationStatus === "owner_supplied_with_bibliographic_match" &&
+      publicationBasis === "owner_authorized_external_publication_link";
+    if (!isGovernedExternalPublication || !publicUrl) return [];
+
+    return [{
+      id: recordId(publication, "publication"),
+      titleTh: localizedField(publication, ["title", "name"], "th"),
+      titleEn: localizedField(publication, ["title", "name"], "en"),
+      outlet: String(firstValue(publication, ["outlet", "publisher", "journal"]) || ""),
+      year: String(firstValue(publication, ["year", "publicationYear", "publication_year"]) || ""),
+      publicUrl
+    }];
   });
 }
 
@@ -995,6 +1040,7 @@ function buildModels(data) {
   const contributions = asRecords(data.contributions);
   const achievements = asRecords(data.achievements);
   const personAchievements = asRecords(data.personAchievements || data.person_achievements);
+  const publications = asRecords(data.publications);
   const socialProfiles = asRecords(data.socialProfiles || data.social_profiles);
   const assets = asRecords(data.assets?.people || data.assets);
   const certificates = asRecords(data.certificates);
@@ -1011,9 +1057,10 @@ function buildModels(data) {
     const educationMode = String(firstValue(personRecord, ["educationDisplayMode", "education_display_mode", "educationDisplay.mode", "education_display.mode"]) ||
       (roleKey === "fulltime" ? "qualification" : roleKey === "intern" ? "program" : "neutral"));
     const contributionsForPerson = contributionRecordsForPerson(id, contributions, workIndex);
+    const hasPrimaryEducationRecord = educationRecords.some((record) => personId(record) === id && record.isPrimary === true);
     const primaryEducation = educationRecords.find((record) => personId(record) === id && record.isPrimary === true) ||
       educationRecords.find((record) => personId(record) === id) || {};
-    const education = educationFor(personRecord, primaryEngagement, primaryEducation, programIndex, institutionIndex, educationMode);
+    const education = educationFor(personRecord, primaryEngagement, primaryEducation, programIndex, institutionIndex, educationMode, hasPrimaryEducationRecord);
     const nicknameTh = localizedField(personRecord, ["names.card", "names.nickname", "nickname", "displayName", "display_name", "shortName", "short_name"], "th");
     const nicknameEn = localizedField(personRecord, ["names.card", "names.nickname", "nickname", "displayName", "display_name", "shortName", "short_name"], "en");
     const fullNameTh = localizedField(personRecord, ["names.full", "officialName", "official_name", "fullName", "full_name", "name"], "th");
@@ -1026,6 +1073,7 @@ function buildModels(data) {
     const cohort = String(firstValue(primaryEngagement, ["cohort", "year", "firstJoined", "first_joined"]) || firstValue(personRecord, ["cohort", "firstJoined", "first_joined", "year"]) || "").slice(0, 4);
     const image = approvedAssetFor(personRecord, assets);
     const achievementRecords = achievementRecordsForPerson(id, achievements, personAchievements);
+    const publicationRecords = publicationRecordsForPerson(id, publications);
     const socials = normalizeSocials(personRecord, socialProfiles);
     const certificateRecords = certificateRecordsForPerson(personRecord, certificates);
     const model = {
@@ -1050,6 +1098,7 @@ function buildModels(data) {
       bio: state.language === "th" ? (bioTh || bioEn) : (bioEn || bioTh),
       contributions: contributionsForPerson,
       achievements: achievementRecords,
+      publications: publicationRecords,
       socials,
       certificates: certificateRecords,
       image,
@@ -1059,11 +1108,9 @@ function buildModels(data) {
     return model;
   }).filter((model) => model.id);
 
-  state.models.sort((a, b) => {
-    const active = Number(b.statusKey === "active") - Number(a.statusKey === "active");
-    if (active) return active;
-    return a.nickname.localeCompare(b.nickname, state.language);
-  });
+  // Array#sort is stable: current people move ahead as one group while the
+  // source registry order remains intact inside the current and alumni groups.
+  state.models.sort((a, b) => Number(b.statusKey === "active") - Number(a.statusKey === "active"));
 }
 
 function makeSearchText(model) {
@@ -1137,6 +1184,7 @@ function hydrateImages(scope) {
 }
 
 function educationSummary(model) {
+  if (model.education.hidden) return "";
   if (model.education.cardDisplay) return model.education.cardDisplay;
   const rawProgram = model.education.shortProgram;
   const program = state.language === "th" && /^วศ\.?\s*คอมพิวเตอร์$/i.test(rawProgram)
@@ -1161,7 +1209,7 @@ function roleDisplay(model) {
     return programs[programCode(model.primaryEngagement)] || model.roleName || message("intern");
   }
   const standardized = ["fulltime", "parttime"].includes(model.roleKey) ? message(model.roleKey) : "";
-  return standardized || model.roleName || message("member");
+  return standardized || publicRoleLabel(model.roleName) || message("member");
 }
 
 function currentNickname(model) {
@@ -1410,7 +1458,7 @@ function updateFilterCount() {
   const count = [state.filters.role, state.filters.cohort, state.filters.status, state.filters.work].filter(Boolean).length;
   setText(elements.filterCount, formatNumber(count));
   elements.filterCount.dataset.empty = String(count === 0);
-  setText(elements.filterOpenLabel, count ? message("filtersCount", { count: formatNumber(count) }) : message("filter"));
+  setText(elements.filterOpenLabel, message("filter"));
   elements.filterOpen.setAttribute("aria-label", count ? message("filtersCount", { count: formatNumber(count) }) : message("filter"));
 }
 
@@ -1511,7 +1559,7 @@ function roleTitleForHistory(engagement) {
     return titles[code] || localizedField(engagement, ["program.names", "roleTitle", "role_title"], "en") || code || message("intern");
   }
   const key = engagementRoleKey(engagement);
-  return engagementRoleName(engagement, key) || message(key);
+  return publicRoleLabel(engagementRoleName(engagement, key)) || message(key);
 }
 
 function detailIconMarkup(kind) {
@@ -1520,6 +1568,7 @@ function detailIconMarkup(kind) {
     history: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
     contributions: '<path d="M5 5.5h5v5H5zM14 13.5h5v5h-5z"/><path d="M10 8h2a4 4 0 0 1 4 4v1.5M14 16h-2a4 4 0 0 1-4-4v-1.5"/>',
     achievements: '<path d="M8 4.5h8v3a4 4 0 0 1-8 0v-3Z"/><path d="M8 6H5.5v1.5A3.5 3.5 0 0 0 9 11M16 6h2.5v1.5A3.5 3.5 0 0 1 15 11M12 11.5V16M8.5 19.5h7M10 16h4v3.5"/>',
+    publications: '<path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M14.5 3.5v3h3M9.5 11h5M9.5 14h5M9.5 17h3"/>',
     certificates: '<path d="M12 3.5 14 5l2.5-.1.6 2.4 2 1.4-1 2.3.7 2.4-2.2 1.2-.8 2.4-2.5-.3-1.8 1.7-1.8-1.7-2.5.3-.8-2.4L4.2 13l.7-2.4-1-2.3 2-1.4.6-2.4L9 5l3-1.5Z"/><path d="m9.2 11.3 1.8 1.8 3.8-4"/>',
     profiles: '<circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5M12 3.5C9.8 5.8 8.7 8.6 8.7 12s1.1 6.2 3.3 8.5"/>'
   };
@@ -1537,6 +1586,7 @@ function educationLinkedInMarkup(url, labelKey) {
 }
 
 function educationDetailMarkup(model) {
+  if (model.education.hidden) return "";
   const program = model.education.fullProgram;
   const institution = model.education.fullInstitution;
   if (!program && !institution) return "";
@@ -1601,6 +1651,28 @@ function achievementsMarkup(model) {
           const name = localizedField(achievement, ["displayName", "display_name", "officialName", "official_name", "name", "title"]);
           const note = localizedField(achievement, ["description", "summary", "note"]);
           return `<li class="achievement-item"><p class="achievement-name">${escapeHtml(name)}</p>${note ? `<p class="contribution-meta">${escapeHtml(note)}</p>` : ""}</li>`;
+        }).join("")}
+      </ul>
+    </section>
+  `;
+}
+
+function publicationsMarkup(model) {
+  if (!model.publications.length) return "";
+  return `
+    <section class="detail-section" aria-labelledby="detail-publication-title-${escapeHtml(model.id)}">
+      ${detailHeadingMarkup(`detail-publication-title-${model.id}`, message("publications"), "publications")}
+      <ul class="publication-list">
+        ${model.publications.map((publication) => {
+          const title = state.language === "th"
+            ? (publication.titleTh || publication.titleEn)
+            : (publication.titleEn || publication.titleTh);
+          const accessibleTitle = title || message("publications");
+          const meta = [publication.outlet, publication.year].filter(Boolean).join(" · ");
+          return `<li><a class="publication-link" href="${escapeHtml(publication.publicUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openPublication", { name: accessibleTitle }))}">
+            <span class="publication-copy"><strong>${escapeHtml(accessibleTitle)}</strong>${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</span>
+            <span class="publication-cue" aria-hidden="true">↗</span>
+          </a></li>`;
         }).join("")}
       </ul>
     </section>
@@ -1698,6 +1770,7 @@ function personDetailMarkup(model) {
         ${roleHistoryMarkup(model)}
         ${contributionsMarkup(model)}
         ${achievementsMarkup(model)}
+        ${publicationsMarkup(model)}
         ${certificatesMarkup(model)}
         ${socialsMarkup(model)}
       </div>
@@ -1720,7 +1793,7 @@ function masonryColumnCount(width, gap) {
   return Math.min(3, Math.max(1, Math.floor((width + gap) / (300 + gap))));
 }
 
-function layoutMasonry({ resetAssignments = false } = {}) {
+function layoutMasonry() {
   const shells = Array.from(elements.board.querySelectorAll(".person-card-shell"));
   const boardWidth = elements.board.clientWidth;
   if (!shells.length || boardWidth <= 0 || elements.board.hidden) {
@@ -1731,28 +1804,23 @@ function layoutMasonry({ resetAssignments = false } = {}) {
 
   const gap = masonryGap();
   const columnCount = masonryColumnCount(boardWidth, gap);
-  const assignmentsChanged = resetAssignments || columnCount !== state.masonryColumnCount;
   const columnWidth = (boardWidth - (gap * (columnCount - 1))) / columnCount;
 
   shells.forEach((shell) => {
     shell.style.width = `${columnWidth}px`;
-    if (assignmentsChanged) delete shell.dataset.masonryColumn;
   });
 
   // Read every height only after all widths are fixed. This keeps the result
   // deterministic and avoids the browser's multi-column balancing algorithm.
+  // Each card then joins the currently shortest column; ties resolve left to
+  // right, so the first row always begins at the same top edge.
   void elements.board.offsetWidth;
   const columnHeights = Array(columnCount).fill(0);
-  const baseColumnSize = Math.floor(shells.length / columnCount);
-  const widerColumnCount = shells.length % columnCount;
-  const widerColumnItemCount = (baseColumnSize + 1) * widerColumnCount;
-  shells.forEach((shell, index) => {
-    const storedColumn = Number.parseInt(shell.dataset.masonryColumn || "", 10);
-    const column = Number.isInteger(storedColumn) && storedColumn >= 0 && storedColumn < columnCount
-      ? storedColumn
-      : index < widerColumnItemCount
-        ? Math.floor(index / (baseColumnSize + 1))
-        : widerColumnCount + Math.floor((index - widerColumnItemCount) / Math.max(1, baseColumnSize));
+  shells.forEach((shell) => {
+    let column = 0;
+    for (let candidate = 1; candidate < columnCount; candidate += 1) {
+      if (columnHeights[candidate] < columnHeights[column]) column = candidate;
+    }
     const top = columnHeights[column];
     shell.dataset.masonryColumn = String(column);
     shell.style.left = `${column * (columnWidth + gap)}px`;
@@ -1764,11 +1832,11 @@ function layoutMasonry({ resetAssignments = false } = {}) {
   state.masonryColumnCount = columnCount;
 }
 
-function scheduleMasonryLayout({ resetAssignments = false } = {}) {
+function scheduleMasonryLayout() {
   if (state.masonryLayoutFrame) cancelAnimationFrame(state.masonryLayoutFrame);
   state.masonryLayoutFrame = requestAnimationFrame(() => {
     state.masonryLayoutFrame = 0;
-    layoutMasonry({ resetAssignments });
+    layoutMasonry();
   });
 }
 
@@ -1781,6 +1849,7 @@ function animateCardReflow(before, originId) {
   if (reducedMotionQuery?.matches) return;
   const shells = Array.from(elements.board.querySelectorAll(".person-card-shell"));
   const originIndex = Math.max(0, shells.findIndex((shell) => shell.dataset.personId === originId));
+  const movers = [];
   shells.forEach((shell, index) => {
     const previous = before.get(shell.dataset.personId);
     const current = shell.getBoundingClientRect();
@@ -1788,23 +1857,55 @@ function animateCardReflow(before, originId) {
     const deltaX = previous.left - current.left;
     const deltaY = previous.top - current.top;
     if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) return;
-    const distance = Math.min(Math.abs(index - originIndex), 8);
-    shell.classList.remove("is-reflowing");
-    shell.style.setProperty("--reflow-x", `${deltaX}px`);
-    shell.style.setProperty("--reflow-y", `${deltaY}px`);
-    shell.style.setProperty("--reflow-delay", `${distance * 22}ms`);
-    const reflowToken = `${performance.now()}-${index}`;
-    shell.dataset.reflowToken = reflowToken;
-    void shell.offsetWidth;
-    shell.classList.add("is-reflowing");
-    window.setTimeout(() => {
-      if (shell.dataset.reflowToken !== reflowToken) return;
+    movers.push({ shell, index, current, deltaX, deltaY });
+  });
+
+  // A deterministic ripple travels outward from the card the person chose.
+  // The full FLIP delta makes cross-column hops traceable instead of abrupt.
+  movers.sort((a, b) => Math.abs(a.index - originIndex) - Math.abs(b.index - originIndex) || a.index - b.index);
+  movers.forEach(({ shell, index, deltaX, deltaY }, rippleIndex) => {
+    reflowAnimations.get(shell)?.cancel();
+    const delay = Math.min(rippleIndex, 10) * 38;
+    const settleX = deltaX === 0 ? 0 : deltaX > 0 ? -7 : 7;
+    const settleY = deltaY > 0 ? -5 : 5;
+    if (typeof shell.animate !== "function") {
       shell.classList.remove("is-reflowing");
-      delete shell.dataset.reflowToken;
-      shell.style.removeProperty("--reflow-x");
-      shell.style.removeProperty("--reflow-y");
-      shell.style.removeProperty("--reflow-delay");
-    }, 460);
+      shell.style.setProperty("--reflow-x", `${deltaX}px`);
+      shell.style.setProperty("--reflow-y", `${deltaY}px`);
+      shell.style.setProperty("--reflow-settle-x", `${settleX}px`);
+      shell.style.setProperty("--reflow-settle-y", `${settleY}px`);
+      shell.style.setProperty("--reflow-delay", `${delay}ms`);
+      const reflowToken = `${performance.now()}-${index}`;
+      shell.dataset.reflowToken = reflowToken;
+      void shell.offsetWidth;
+      shell.classList.add("is-reflowing");
+      window.setTimeout(() => {
+        if (shell.dataset.reflowToken !== reflowToken) return;
+        shell.classList.remove("is-reflowing");
+        delete shell.dataset.reflowToken;
+        shell.style.removeProperty("--reflow-x");
+        shell.style.removeProperty("--reflow-y");
+        shell.style.removeProperty("--reflow-settle-x");
+        shell.style.removeProperty("--reflow-settle-y");
+        shell.style.removeProperty("--reflow-delay");
+      }, 670 + delay);
+      return;
+    }
+    const animation = shell.animate([
+      { transform: `translate3d(${deltaX}px, ${deltaY}px, 0) scale(0.995)`, offset: 0, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+      { transform: "translate3d(0, 0, 0) scale(1)", offset: 0.72, easing: "cubic-bezier(0.33, 1, 0.68, 1)" },
+      { transform: `translate3d(${settleX}px, ${settleY}px, 0) scale(1.002)`, offset: 0.86, easing: "ease-out" },
+      { transform: "translate3d(0, 0, 0)", offset: 1 }
+    ], {
+      id: `landom-card-reflow-${originId}`,
+      duration: 620,
+      delay,
+      fill: "backwards"
+    });
+    reflowAnimations.set(shell, animation);
+    animation.finished.catch(() => {}).finally(() => {
+      if (reflowAnimations.get(shell) === animation) reflowAnimations.delete(shell);
+    });
   });
 }
 

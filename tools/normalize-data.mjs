@@ -65,6 +65,7 @@ function writeSiteDataFiles(siteData) {
   writeJson('works.json', siteData.works);
   writeJson('contributions.json', siteData.contributions);
   writeJson('achievements.json', siteData.achievements);
+  writeJson('publications.json', siteData.publications);
   writeJson('social-profiles.json', siteData.socialProfiles);
   writeJson('assets.json', siteData.assets);
   writeJson('certificates.json', siteData.certificates);
@@ -368,6 +369,54 @@ const people = peopleRows.map((row) => {
   };
 });
 
+for (const approved of profileDetailOverrides.addedPeople ?? []) {
+  if (people.some((person) => person.personId === approved.personId)) {
+    throw new Error('Added person duplicates a person ID: ' + approved.personId);
+  }
+  if (!/^S\d{4}$/.test(approved.personId) || approved.migrationClassification !== 'full_time') {
+    throw new Error('Added full-time person must use a frozen S#### ID: ' + approved.personId);
+  }
+  people.push({
+    personId: approved.personId,
+    names: {
+      full: structuredClone(approved.fullName),
+      nickname: structuredClone(approved.nickname),
+      card: structuredClone(approved.nickname)
+    },
+    currentStatus: approved.currentStatus,
+    firstJoined: parseDate(approved.firstJoined),
+    migrationClassification: approved.migrationClassification,
+    canonicalIdPolicy: {
+      assignedAtMigration: migrationDate,
+      categoryAtMigration: approved.migrationClassification,
+      frozenAcrossFutureRoleChanges: true
+    },
+    educationDisplayMode: 'qualification',
+    educationDisplay: null,
+    bio: {
+      th: null,
+      en: null,
+      status: 'owner_pending',
+      verificationStatus: 'owner_pending',
+      publicationBasis: null,
+      sourceBasis: null,
+      sourceType: null,
+      sourceRef: null,
+      authorRole: null,
+      derivationMethod: null,
+      evidenceScope: null,
+      evidenceConfidence: null,
+      reviewStatus: 'pending_owner_copy',
+      ownerApproval: null
+    },
+    publication: { consentStatus: 'pending', profileStatus: 'withheld_pending_consent' },
+    dataQuality: {
+      profileVerificationStatus: approved.verificationStatus,
+      sourceNotePresent: true
+    }
+  });
+}
+
 const peopleById = new Map(people.map((person) => [person.personId, person]));
 const identityOverrideIds = new Set();
 const identityOverrideKeys = new Set([
@@ -531,7 +580,7 @@ const engagementRoleNames = {
   'Marketing Strategy Intern': { th: 'นักศึกษาฝึกงานด้านกลยุทธ์การตลาด', en: 'Marketing Strategy Intern' },
   'Product Developer Intern': { th: 'นักพัฒนาผลิตภัณฑ์ฝึกงาน', en: 'Product Developer Intern' },
   'Partnership Maker Intern': { th: 'นักศึกษาฝึกงานด้านการสร้างพันธมิตร', en: 'Partnership Maker Intern' },
-  'Consulting Partner': { th: 'ที่ปรึกษาพันธมิตร', en: 'Consulting Partner' },
+  'Consulting Partner': { th: 'ที่ปรึกษาธุรกิจ', en: 'Consulting Partner' },
   'Full-Stack Developer': { th: 'นักพัฒนา Full-Stack', en: 'Full-Stack Developer' },
   'Marketing Strategy': { th: 'กลยุทธ์การตลาด', en: 'Marketing Strategy' },
   'Product manager': { th: 'ผู้จัดการผลิตภัณฑ์', en: 'Product Manager' },
@@ -620,6 +669,7 @@ for (const override of profileDetailOverrides.existingEngagementOverrides ?? [])
   engagement.sequenceHint = override.sequenceHint;
   if (Object.hasOwn(override, 'start')) engagement.start = override.start;
   if (Object.hasOwn(override, 'end')) engagement.end = override.end;
+  if (override.status) engagement.status = override.status;
   if (override.verificationStatus) engagement.verificationStatus = override.verificationStatus;
   if (override.evidenceNote) engagement.evidenceNote = override.evidenceNote;
   if (engagement.start && engagement.end && engagement.start > engagement.end) {
@@ -663,6 +713,15 @@ engagements.sort((left, right) => {
   return (left.start || '9999').localeCompare(right.start || '9999') || left.engagementId.localeCompare(right.engagementId);
 });
 
+for (const override of profileDetailOverrides.existingEngagementOverrides ?? []) {
+  if (override.status !== 'completed') continue;
+  const engagement = engagements.find((item) => item.engagementId === override.engagementId);
+  const person = engagement ? personById.get(engagement.personId) : null;
+  if (person && !engagements.some((item) => item.personId === person.personId && item.status === 'ongoing')) {
+    person.currentStatus = 'alumni';
+  }
+}
+
 const workMap = new Map();
 const workAliasMap = new Map();
 
@@ -685,6 +744,17 @@ const citymeterCatalogSlugs = new Map([
   ['work-citymeter-locale-insights', 'dataset-locale-insights'],
   ['work-citymeter-government-workforce', 'dataset-government-agencies-workforce'],
   ['work-citymeter-buildings', 'dataset-buildings'],
+  ['work-citymeter-population', 'dataset-population-age-sex'],
+  ['work-citymeter-housing-estates', 'dataset-registered-housing-estates'],
+  ['work-citymeter-condo-appraisal', 'dataset-condo-appraisal'],
+  ['work-citymeter-business-dynamics', 'dataset-business-dynamics'],
+  ['work-citymeter-restaurants', 'dataset-restaurants'],
+  ['work-citymeter-fire-monitoring', 'dataset-fire-monitoring'],
+  ['work-citymeter-disaster-historical-impacts', 'dataset-disaster-historical-impacts'],
+  ['work-citymeter-hat-yai-flood-2025-11', 'dataset-events-hat-yai-flood-2025-11'],
+  ['work-citymeter-flood-forecasting-unresolved', 'dataset-flood-forecast-flash-flood-risk'],
+  ['work-dwr-flood-map', 'dataset-flood-forecast-depth'],
+  ['work-citymeter-rugon', 'dataset-earthquake-sensors'],
   ['work-citymeter-apartment-unresolved', 'dataset-apartment-rent'],
   ['work-citymeter-condo-offer-unresolved', 'dataset-condo-listing-prices'],
   ['work-citymeter-condo-rental-unresolved', 'dataset-condo-rent-yield'],
@@ -706,14 +776,13 @@ const productCatalogLinks = new Map([
   ['work-vote69', ['https://landometer.com/v3/vote69', 'exact_product']],
   ['work-landom-community', ['https://montri-th.github.io/Landom/', 'exact_product']],
   ['work-citymeter-fdi-playbook', ['https://montri-th.github.io/CityMETER/', 'broader_catalog']],
-  ['work-citymeter-flood-forecasting-unresolved', ['https://montri-th.github.io/CityMETER/', 'broader_catalog']],
   ['work-locale-insight-intelligence-layer', ['https://montri-th.github.io/Landometer/#align', 'exact_product']],
   ['work-land-portfolio', ['https://landometer.com/intro/products#product-portfolio', 'exact_product']],
   ['work-lead2loan', ['https://landometer.com/intro/products#product-l2l', 'exact_product']]
 ]);
 
-function workLinkFields(workId) {
-  const citymeterSlug = citymeterCatalogSlugs.get(workId);
+function workLinkFields(workId, moduleSlug = null, evidenceUrl = null) {
+  const citymeterSlug = moduleSlug || citymeterCatalogSlugs.get(workId);
   if (citymeterSlug) {
     return {
       catalogUrl: {
@@ -752,6 +821,17 @@ function workLinkFields(workId) {
       }
     };
   }
+  if (evidenceUrl) {
+    return {
+      catalogUrl: { th: null, en: null },
+      destinationUrl: null,
+      linkEvidence: {
+        linkScope: 'evidence_only',
+        sourceRef: 'owner_supplied_public_evidence_2026-08-24',
+        evidenceUrl
+      }
+    };
+  }
   return {
     catalogUrl: { th: null, en: null },
     destinationUrl: null,
@@ -775,7 +855,7 @@ function addWork(definition) {
     authorityStatus: definition.authorityStatus,
     evidenceNote: definition.evidenceNote || null,
     sourceAliases: definition.aliases || [],
-    ...workLinkFields(definition.workId)
+    ...workLinkFields(definition.workId, definition.moduleSlug, definition.evidenceUrl)
   };
   workMap.set(work.workId, work);
   for (const alias of work.sourceAliases) workAliasMap.set(alias, work.workId);
@@ -800,7 +880,18 @@ const citymeterModules = [
   ['work-citymeter-shopping-centers', 'dataset-shopping-centers', 'ศูนย์การค้า: จำนวน พื้นที่เช่า และกลุ่มตลาด', 'Shopping Centers: Supply, GLA & Market Segment', ['CityMETER: Shopping centers']],
   ['work-citymeter-locale-insights', 'dataset-locale-insights', 'Locale Insights: บริบทย่าน', 'Locale Insights', ['CityMETER: Locale insights']],
   ['work-citymeter-government-workforce', 'dataset-government-agencies-workforce', 'หน่วยงานรัฐและบุคลากร', 'Government Agencies & Workforce', ['CityMETER: Government agencies and workforces']],
-  ['work-citymeter-buildings', 'dataset-buildings', 'อาคาร: ขอบเขต พื้นที่อาคารรวม และความสูง', 'Buildings: Footprint, GFA & Height', ['CityMETER: 3D Buildings']]
+  ['work-citymeter-buildings', 'dataset-buildings', 'อาคาร: ขอบเขต พื้นที่อาคารรวม และความสูง', 'Buildings: Footprint, GFA & Height', ['CityMETER: 3D Buildings', 'CityMETER: Building']],
+  ['work-citymeter-population', 'dataset-population-age-sex', 'ประชากรตามอายุและเพศ', 'Population by Age & Sex', ['CityMETER: Population']],
+  ['work-citymeter-housing-estates', 'dataset-registered-housing-estates', 'โครงการจัดสรรที่ดินจดทะเบียน', 'Registered Housing Estates', ['CityMETER: Housing estate']],
+  ['work-citymeter-condo-appraisal', 'dataset-condo-appraisal', 'ราคาประเมินคอนโดมิเนียม', 'Condo Appraisal Prices', ['CityMETER: Condo appraisal']],
+  ['work-citymeter-business-dynamics', 'dataset-business-dynamics', 'Business Dynamics: สำนักงานใหญ่ สาขา และสาขาจดทะเบียนใหม่', 'Business Dynamics: Headquarters, Branches & New Activity', ['CityMETER: Business dynamics']],
+  ['work-citymeter-restaurants', 'dataset-restaurants', 'ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา', 'Restaurants: Density, Ratings & Price', ['CityMETER: Restaurants']],
+  ['work-citymeter-fire-monitoring', 'dataset-fire-monitoring', 'การติดตามสถานการณ์ไฟ', 'Fire Monitoring', ['CityMETER: Fire']],
+  ['work-citymeter-disaster-historical-impacts', 'dataset-disaster-historical-impacts', 'ผลกระทบจากสาธารณภัยในอดีต', 'Disaster: Historical Impacts', ['dataset-disaster-historical-impacts']],
+  ['work-citymeter-hat-yai-flood-2025-11', 'dataset-events-hat-yai-flood-2025-11', 'รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568', 'Hat Yai Flood Reports — 24–27 Nov 2025', ['dataset-events-hat-yai-flood-2025-11']],
+  ['work-citymeter-flood-forecasting-unresolved', 'dataset-flood-forecast-flash-flood-risk', 'น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google', 'Flood: Flash Flood: 24-hour Risk by Google', ['CityMETER: Flood forecasting', 'dataset-flood-forecast-flash-flood-risk']],
+  ['work-dwr-flood-map', 'dataset-flood-forecast-depth', 'คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ', 'Flood: Forecast Depth by DWR', ['DWR Flood map', 'dataset-flood-forecast-depth']],
+  ['work-citymeter-quakesafe-unresolved', 'dataset-events-quake-building-inspection', 'QuakeSafe: สถานะการตรวจสอบอาคาร', 'QuakeSafe: Building Inspection Status', ['CityMETER : QuakeSafe', 'CityMETER: QuakeSafe']]
 ];
 for (const [workId, moduleSlug, th, en, aliases] of citymeterModules) {
   addWork({
@@ -823,7 +914,6 @@ const unresolvedCitymeter = [
   ['work-citymeter-detached-house-unresolved', 'CityMETER: Detached House', ['CityMETER : Detached House']],
   ['work-citymeter-land-offer-unresolved', 'CityMETER: Land Offer', ['CityMETER : Land Offer']],
   ['work-citymeter-office-unresolved', 'CityMETER: Office', ['CityMETER : Office']],
-  ['work-citymeter-quakesafe-unresolved', 'CityMETER: QuakeSafe', ['CityMETER : QuakeSafe']],
   ['work-citymeter-road-traffic-unresolved', 'CityMETER: Road Traffic', ['CityMETER : Road Traffic']],
   ['work-citymeter-townhouse-unresolved', 'CityMETER: Townhouse', ['CityMETER : Townhouse']]
 ];
@@ -853,13 +943,11 @@ const additionalWorks = [
   ['work-brand-visual-guidelines-2025', 'Landometer', { th: 'Landometer: Brand Visual Guidelines 2025', en: 'Landometer: Brand Visual Guidelines 2025' }, 'brand_system', 'shared_landometer', ['Landometer Visual Guidlines (2025)']],
   ['work-vote69', 'Vote69', { th: 'Vote69', en: 'Vote69' }, 'product', 'product_specific', []],
   ['work-landom-community', 'Landom', { th: 'Landom: ด้อมผู้สร้าง Landometer', en: 'Landom: the Landometer community' }, 'community', 'shared_landometer', []],
-  ['work-dwr-flood-map', 'DWR', { th: 'แผนที่น้ำท่วม DWR', en: 'DWR Flood Map' }, 'partner_deliverable', 'partner_specific', []],
   ['work-population-forecasting-research', 'Research', { th: 'งานวิจัยแบบจำลองคาดการณ์ประชากร', en: 'Research: Population Forecasting Model' }, 'research', 'product_specific', []],
   ['work-dwr-runoff', 'DWR', { th: 'DWR Runoff', en: 'DWR Runoff' }, 'partner_deliverable', 'partner_specific', []],
   ['work-citycell-model', 'CityCell', { th: 'โมเดล CityCell', en: 'CityCell Model' }, 'hackathon_deliverable', 'product_specific', []],
   ['work-cityscan', 'CityScan', { th: 'CityScan', en: 'CityScan' }, 'product_specific_deliverable', 'product_specific', []],
   ['work-citymeter-fdi-playbook', 'CityMETER', { th: 'CityMETER Playbook สำหรับ FDI', en: 'CityMETER Playbook for FDI' }, 'product_specific_deliverable', 'product_specific', []],
-  ['work-citymeter-flood-forecasting-unresolved', 'CityMETER', { th: 'CityMETER: การคาดการณ์น้ำท่วม (รอระบุโมดูล)', en: 'CityMETER: Flood Forecasting (Module Pending)' }, 'module_name_unreconciled', 'product_specific', []],
   ['work-locale-insight-intelligence-layer', 'Landometer', { th: 'Locale Insight Intelligence Layer', en: 'Locale Insight Intelligence Layer' }, 'shared_capability', 'shared_landometer', []],
   ['work-land-portfolio', 'Landometer', { th: 'Land Portfolio', en: 'Land Portfolio' }, 'product_specific_deliverable', 'product_specific', []],
   ['work-lead2loan', 'Landometer', { th: 'Lead2Loan', en: 'Lead2Loan' }, 'product_specific_deliverable', 'product_specific', []],
@@ -867,16 +955,12 @@ const additionalWorks = [
   ['work-contribution-details-pending', 'Landometer', { th: 'มีส่วนร่วมกับทีม — รอระบุรายละเอียดผลงาน', en: 'Team contribution — project details pending' }, 'administrative_placeholder', 'shared_landometer', []]
 ];
 for (const [workId, parentProduct, names, type, scopeLayer, aliases] of additionalWorks) {
-  const authorityStatus = workId === 'work-citymeter-flood-forecasting-unresolved'
-    ? 'unresolved_between_official_forecast_modules'
-    : workId === 'work-locale-insight-intelligence-layer'
+  const authorityStatus = workId === 'work-locale-insight-intelligence-layer'
       ? 'owner_supplied_shared_layer_claim_product_implementations_not_implied'
       : workId === 'work-contribution-details-pending'
         ? 'owner_detail_required'
         : 'owner_or_sheet_supplied_product_specific';
-  const evidenceNote = workId === 'work-citymeter-flood-forecasting-unresolved'
-    ? 'ยังไม่ map ไป DWR forecast-depth หรือ Google flash-flood risk เพราะหลักฐานไม่พอระบุว่าเป็นโมดูลใด'
-    : workId === 'work-locale-insight-intelligence-layer'
+  const evidenceNote = workId === 'work-locale-insight-intelligence-layer'
       ? 'เป็น capability ใน shared Landometer layer; attribution รายบุคคลนี้ไม่ทำให้สมมติฐานของผลิตภัณฑ์หนึ่งเป็นข้อเท็จจริงของทุกผลิตภัณฑ์'
       : workId === 'work-contribution-details-pending'
         ? 'ใช้เพื่อยืนยันว่าไม่มีบุคคลใดมีผลงานเป็นศูนย์ โดยไม่แต่งชื่อโครงการ; เจ้าของข้อมูลต้องเติมรายละเอียดภายหลัง'
@@ -1096,8 +1180,8 @@ for (const definition of profileDetailOverrides.addedContributions ?? []) {
   addContribution({
     ...structuredClone(definition),
     evidenceStatus: 'owner_supplied',
-    sourceRef: profileDetailOverrides.sourceBasis,
-    evidenceNote: null
+    sourceRef: definition.sourceRef ?? profileDetailOverrides.sourceBasis,
+    evidenceNote: definition.evidenceNote ?? null
   });
 }
 
@@ -1117,8 +1201,11 @@ for (const person of people) {
 
 const engagementById = new Map(engagements.map((engagement) => [engagement.engagementId, engagement]));
 for (const contribution of contributions) {
-  const exactRoleOverride = (profileDetailOverrides.contributionRoleOverrides ?? []).find((override) =>
-    override.workId === contribution.workId
+  const roleOverrides = profileDetailOverrides.contributionRoleOverrides ?? [];
+  const exactRoleOverride = roleOverrides.find((override) =>
+    override.personId === contribution.personId && override.workId === contribution.workId
+  ) ?? roleOverrides.find((override) =>
+    !override.personId && override.workId === contribution.workId
   );
   if (exactRoleOverride) {
     contribution.role = structuredClone(exactRoleOverride.role);
@@ -1130,6 +1217,18 @@ for (const contribution of contributions) {
 }
 
 const works = [...workMap.values()];
+const publicationIds = new Set();
+const publications = (profileDetailOverrides.externalPublications ?? []).map((approved) => {
+  if (publicationIds.has(approved.publicationId)) throw new Error('Duplicate external publication ID: ' + approved.publicationId);
+  publicationIds.add(approved.publicationId);
+  if (!personById.has(approved.personId)) {
+    throw new Error('External publication references an unknown person: ' + approved.personId);
+  }
+  if (contributions.some((contribution) => contribution.workId === approved.publicationId)) {
+    throw new Error('External publication must not enter the Landometer contribution graph: ' + approved.publicationId);
+  }
+  return structuredClone(approved);
+});
 const approvedProfileByPersonId = new Map();
 const approvedProfileJson = JSON.stringify(profileCopy);
 if (/docs\.google\.com\/spreadsheets\/d\/|(?:2025|2026)![A-Z]+\d+(?::[A-Z]+\d+)?/i.test(approvedProfileJson)) {
@@ -1147,21 +1246,26 @@ for (const approvedProfile of profileCopy.profiles ?? []) {
   }
   approvedProfileByPersonId.set(approvedProfile.personId, approvedProfile);
 }
-if (approvedProfileByPersonId.size !== people.length || approvedProfileByPersonId.size !== 48) {
-  throw new Error('Approved profile copy must contain exactly one safe placeholder for all 48 core people.');
+if (approvedProfileByPersonId.size !== people.length) {
+  throw new Error('Approved profile copy must contain exactly one safe placeholder for every governed person.');
 }
 const firstPersonProfiles = [...approvedProfileByPersonId.values()].filter((profile) => !profile.basis || profile.basis === 'first_person');
 const factualFallbackProfiles = [...approvedProfileByPersonId.values()].filter((profile) => profile.basis === 'factual_fallback');
-if (firstPersonProfiles.length !== 25 || factualFallbackProfiles.length !== 23) {
-  throw new Error('Approved profile provenance must remain 25 first-person paraphrases and 23 factual fallbacks.');
+if (firstPersonProfiles.length !== 25 || factualFallbackProfiles.length !== people.length - 25) {
+  throw new Error('Approved profile provenance must retain 25 first-person paraphrases and use factual fallbacks only for the remaining governed people.');
 }
 for (const person of people) {
   const approvedProfile = approvedProfileByPersonId.get(person.personId);
   const factualFallback = approvedProfile.basis === 'factual_fallback';
   const sourceContract = factualFallback ? profileCopy.factualFallbackContract : profileCopy;
-  if (!sourceContract?.publicationBasis || !sourceContract?.sourceBasis || !sourceContract?.sourceType ||
-      !sourceContract?.sourceRef || !sourceContract?.authorRole || !sourceContract?.derivationMethod ||
-      !sourceContract?.evidenceScope || !(approvedProfile.evidenceConfidence || sourceContract.evidenceConfidence)) {
+  if (!(approvedProfile.publicationBasis || sourceContract?.publicationBasis) ||
+      !(approvedProfile.sourceBasis || sourceContract?.sourceBasis) ||
+      !(approvedProfile.sourceType || sourceContract?.sourceType) ||
+      !(approvedProfile.sourceRef || sourceContract?.sourceRef) ||
+      !(approvedProfile.authorRole || sourceContract?.authorRole) ||
+      !(approvedProfile.derivationMethod || sourceContract?.derivationMethod) ||
+      !(approvedProfile.evidenceScope || sourceContract?.evidenceScope) ||
+      !(approvedProfile.evidenceConfidence || sourceContract?.evidenceConfidence)) {
     throw new Error('Approved profile provenance contract is incomplete: ' + person.personId);
   }
   person.bio = {
@@ -1169,13 +1273,13 @@ for (const person of people) {
     en: approvedProfile.en,
     status: 'source_backed_placeholder',
     verificationStatus: 'owner_authorized_placeholder',
-    publicationBasis: sourceContract.publicationBasis,
-    sourceBasis: sourceContract.sourceBasis,
-    sourceType: sourceContract.sourceType,
-    sourceRef: sourceContract.sourceRef,
-    authorRole: sourceContract.authorRole,
-    derivationMethod: sourceContract.derivationMethod,
-    evidenceScope: sourceContract.evidenceScope,
+    publicationBasis: approvedProfile.publicationBasis || sourceContract.publicationBasis,
+    sourceBasis: approvedProfile.sourceBasis || sourceContract.sourceBasis,
+    sourceType: approvedProfile.sourceType || sourceContract.sourceType,
+    sourceRef: approvedProfile.sourceRef || sourceContract.sourceRef,
+    authorRole: approvedProfile.authorRole || sourceContract.authorRole,
+    derivationMethod: approvedProfile.derivationMethod || sourceContract.derivationMethod,
+    evidenceScope: approvedProfile.evidenceScope || sourceContract.evidenceScope,
     evidenceConfidence: approvedProfile.evidenceConfidence || sourceContract.evidenceConfidence,
     reviewStatus: sourceContract.reviewStatus,
     ownerApproval: structuredClone(profileCopy.ownerApproval)
@@ -1203,9 +1307,10 @@ for (const approved of profileDetailOverrides.addedPublicSocialProfiles ?? []) {
   if (addedPublicSocialByKey.has(key)) throw new Error('Duplicate approved public social profile: ' + key);
   addedPublicSocialByKey.set(key, approved);
 }
-for (const row of peopleRows) {
-  const personId = sourceIdToPersonId.get(row.person_id);
-  const person = people.find((item) => item.personId === personId);
+const sourcePeopleRowByPersonId = new Map(peopleRows.map((row) => [sourceIdToPersonId.get(row.person_id), row]));
+for (const person of people) {
+  const personId = person.personId;
+  const row = sourcePeopleRowByPersonId.get(personId) ?? {};
   const publicCandidates = {
     linkedin: clean(row.linkedin_url),
     github: clean(row.github_url),
@@ -1449,11 +1554,11 @@ const copy = {
 
 const meta = {
   schemaVersion: '1.5.0',
-  generatedAt: '2026-08-24T00:00:00+07:00',
+  generatedAt: '2026-08-25T00:00:00+07:00',
   source: {
     spreadsheetId: snapshot.source.spreadsheetId,
     snapshotFetchedAt: snapshot.source.fetchedAt,
-    publicSheetsUsed: ['people_registry', 'engagements', 'contributions'],
+    publicSheetsUsed: ['people_registry', 'profile_statements', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'external_publications', 'social_profiles', 'assets'],
     privateContactSourcesExcluded: true,
     exclusionReason: 'Private contact input must never be ingested into or emitted by public builds.'
   },
@@ -1470,9 +1575,10 @@ const meta = {
     socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
     educationPublicProfiles: 'Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.',
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
-    profileCopy: 'All 48 core profiles have owner-authorized bilingual placeholders pending candidate/video review. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-three are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
+    profileCopy: 'All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
-    staffDegrees: 'The directory owner confirmed completed degree and person-level verification for all four staff records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for this registry release.'
+    staffDegrees: 'The directory owner confirmed completed degree and person-level verification for the four existing staff education records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for those records. The three newly added staff profiles have no supplied education evidence and therefore retain no public degree claim.',
+    externalPublications: 'An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer.'
   },
   counts: {
     people: people.length,
@@ -1481,6 +1587,7 @@ const meta = {
     works: works.length,
     contributions: contributions.length,
     achievements: achievements.length,
+    publications: publications.length,
     certificates: certificates.length,
     sourceBackedProfilePlaceholders: approvedProfileByPersonId.size,
     ownerPendingProfiles: people.length - approvedProfileByPersonId.size,
@@ -1507,6 +1614,7 @@ const siteData = {
   works,
   contributions,
   achievements,
+  publications,
   socialProfiles,
   assets,
   certificates

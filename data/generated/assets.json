@@ -371,23 +371,28 @@
     "assetId": "PORTRAIT-I0011",
     "personId": "I0011",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0011.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของอิ๋ง",
       "en": "Profile portrait of Ing"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationBasis": null,
-    "ownerApproval": null,
-    "publicationStatus": "withheld_pending_rights_consent_and_verification",
-    "sha256": null,
-    "mediaType": null,
-    "bytes": null,
-    "identityVerificationEvidence": null
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "d9384fd2964fbdcc3941bfe136b592116d0a24e43041bc29c7887c241bd41203",
+    "mediaType": "image/jpeg",
+    "bytes": 8412,
+    "identityVerificationEvidence": "owner_exact_facebook_profile_assignment_and_public_og_title_exact_full_name_match"
   },
   {
     "assetId": "PORTRAIT-I0012",
@@ -874,23 +879,28 @@
     "assetId": "PORTRAIT-S0004",
     "personId": "S0004",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/S0004.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของฟิล์ม",
       "en": "Profile portrait of Film"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationBasis": null,
-    "ownerApproval": null,
-    "publicationStatus": "withheld_pending_rights_consent_and_verification",
-    "sha256": null,
-    "mediaType": null,
-    "bytes": null,
-    "identityVerificationEvidence": null
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "45e94b2ce6624421ebec895163cc1411fa37cea71e2dae7b806473dafea5c459",
+    "mediaType": "image/jpeg",
+    "bytes": 15553,
+    "identityVerificationEvidence": "owner_exact_facebook_profile_assignment_and_public_profile_title_match"
   },
   {
     "assetId": "PORTRAIT-I0030",
@@ -1259,5 +1269,81 @@
     "mediaType": "image/jpeg",
     "bytes": 89584,
     "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+  },
+  {
+    "assetId": "PORTRAIT-S0005",
+    "personId": "S0005",
+    "kind": "profile_portrait",
+    "publicPath": "public/assets/people/S0005.jpg",
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของบิว",
+      "en": "Profile portrait of Biw"
+    },
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
+    "consentStatus": "pending",
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "a79068222c94b892b4af8782751411c421bdaef489219514410596710f657992",
+    "mediaType": "image/jpeg",
+    "bytes": 164804,
+    "identityVerificationEvidence": "owner_supplied_named_portrait"
+  },
+  {
+    "assetId": "PORTRAIT-S0006",
+    "personId": "S0006",
+    "kind": "profile_portrait",
+    "publicPath": "public/assets/people/S0006.jpg",
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของนัท",
+      "en": "Profile portrait of Nat"
+    },
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
+    "consentStatus": "pending",
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-24",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-24"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "e673f299631e449c72d39a00d349ed53a0801948083a6dbd30e178601a85e422",
+    "mediaType": "image/jpeg",
+    "bytes": 148857,
+    "identityVerificationEvidence": "owner_supplied_named_portrait"
+  },
+  {
+    "assetId": "PORTRAIT-S0007",
+    "personId": "S0007",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของโปเต้",
+      "en": "Profile portrait of Pote"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   }
 ]

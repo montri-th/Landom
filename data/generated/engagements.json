@@ -812,7 +812,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -837,7 +837,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -862,7 +862,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -912,7 +912,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -937,7 +937,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -987,7 +987,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -1012,7 +1012,7 @@
     },
     "cohortLabel": "Impvest 2025 — Consulting Partner (โปรเจกต์ ijji)",
     "roleTitle": {
-      "th": "ที่ปรึกษาพันธมิตร",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -1112,7 +1112,7 @@
     },
     "cohortLabel": "Impvest 2025",
     "roleTitle": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "start": null,
@@ -1271,12 +1271,13 @@
       "en": "Product Developer Intern"
     },
     "start": "2026-04-28",
-    "end": null,
-    "status": "ongoing",
+    "end": "2026-07-31",
+    "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "sheet_recorded",
-    "sequenceHint": null
+    "verificationStatus": "owner_source_reconciled",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner confirmed that Team's PDI internship ended at the end of July 2026."
   },
   {
     "engagementId": "E0044",
@@ -1527,5 +1528,100 @@
     "evidenceStatus": "sheet_recorded",
     "verificationStatus": "sheet_recorded",
     "sequenceHint": null
+  },
+  {
+    "engagementId": "E0061",
+    "personId": "S0005",
+    "category": "full_time",
+    "academicPlacementType": "not_applicable",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "2019–present",
+    "roleTitle": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "start": "2019",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-land-portfolio",
+      "work-citymeter-fire-monitoring",
+      "work-citymeter-population",
+      "work-citymeter-buildings",
+      "work-citymeter-factories",
+      "work-citymeter-healthcare-unresolved",
+      "work-department-water-resources",
+      "work-dwr-telemetry"
+    ],
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_supplied",
+    "evidenceNote": null,
+    "sequenceHint": 1
+  },
+  {
+    "engagementId": "E0062",
+    "personId": "S0006",
+    "category": "full_time",
+    "academicPlacementType": "not_applicable",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "2018–present",
+    "roleTitle": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "start": "2018",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-citymeter-population",
+      "work-citymeter-buildings",
+      "work-land-portfolio",
+      "work-dwr-telemetry"
+    ],
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_supplied",
+    "evidenceNote": null,
+    "sequenceHint": 1
+  },
+  {
+    "engagementId": "E0063",
+    "personId": "S0007",
+    "category": "full_time",
+    "academicPlacementType": "not_applicable",
+    "program": {
+      "code": "Full-time",
+      "names": {
+        "th": "พนักงานประจำ",
+        "en": "Full-time staff"
+      }
+    },
+    "cohortLabel": "2018–present",
+    "roleTitle": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "start": "2018",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-citymeter-population",
+      "work-citymeter-buildings"
+    ],
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_supplied",
+    "evidenceNote": null,
+    "sequenceHint": 1
   }
 ]

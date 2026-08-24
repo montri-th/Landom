@@ -15,6 +15,7 @@
     "works",
     "contributions",
     "achievements",
+    "publications",
     "socialProfiles",
     "assets",
     "certificates"
@@ -30,6 +31,7 @@
     "works": { "type": "array", "items": { "$ref": "#/$defs/work" } },
     "contributions": { "type": "array", "items": { "$ref": "#/$defs/contribution" } },
     "achievements": { "type": "array", "items": { "$ref": "#/$defs/achievement" } },
+    "publications": { "type": "array", "items": { "$ref": "#/$defs/publication" } },
     "socialProfiles": { "type": "array", "items": { "$ref": "#/$defs/socialProfile" } },
     "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } },
     "certificates": {
@@ -329,6 +331,28 @@
         "recipientPersonIds": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/personId" } },
         "workId": { "type": ["string", "null"] },
         "evidenceStatus": { "type": "string" }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publicationId", "personId", "title", "outlet", "volume", "year", "doi", "publicUrl", "ownerEvidenceUrl", "bibliographicUrl", "relationship", "scope", "verificationStatus", "publicationBasis", "evidenceNote"],
+      "properties": {
+        "publicationId": { "type": "string", "pattern": "^PUB\\d{4}$" },
+        "personId": { "$ref": "#/$defs/personId" },
+        "title": { "$ref": "#/$defs/localizedRequired" },
+        "outlet": { "type": "string", "minLength": 1 },
+        "volume": { "type": "string", "minLength": 1 },
+        "year": { "type": "integer", "minimum": 1900, "maximum": 2100 },
+        "doi": { "type": "string", "minLength": 1 },
+        "publicUrl": { "type": "string", "format": "uri" },
+        "ownerEvidenceUrl": { "type": "string", "format": "uri" },
+        "bibliographicUrl": { "type": "string", "format": "uri" },
+        "relationship": { "const": "coauthor" },
+        "scope": { "const": "external_publication_not_landometer_contribution" },
+        "verificationStatus": { "const": "owner_supplied_with_bibliographic_match" },
+        "publicationBasis": { "const": "owner_authorized_external_publication_link" },
+        "evidenceNote": { "type": "string", "minLength": 1 }
       }
     },
     "socialProfile": {

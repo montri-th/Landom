@@ -2494,7 +2494,7 @@
         "en": "Team"
       }
     },
-    "currentStatus": "active",
+    "currentStatus": "alumni",
     "firstJoined": "2026-04-28",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
@@ -3212,6 +3212,207 @@
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
+      "sourceNotePresent": true
+    }
+  },
+  {
+    "personId": "S0005",
+    "names": {
+      "full": {
+        "th": "วชิรพงศ์ ลอยฟ้าขจร",
+        "en": "Wachirapong Loyfakajon"
+      },
+      "nickname": {
+        "th": "บิว",
+        "en": "Biw"
+      },
+      "card": {
+        "th": "บิว",
+        "en": "Biw"
+      }
+    },
+    "currentStatus": "active",
+    "firstJoined": "2019",
+    "migrationClassification": "full_time",
+    "canonicalIdPolicy": {
+      "assignedAtMigration": "2026-08-23",
+      "categoryAtMigration": "full_time",
+      "frozenAcrossFutureRoleChanges": true
+    },
+    "educationDisplayMode": "qualification",
+    "educationDisplay": {
+      "mode": "qualification",
+      "card": {
+        "th": null,
+        "en": null
+      },
+      "detail": {
+        "th": null,
+        "en": null
+      },
+      "verificationStatus": "owner_detail_required"
+    },
+    "bio": {
+      "th": "บิวทำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2019 และดูแลงานตั้งแต่ Land Portfolio ไปจนถึงข้อมูลเมืองด้านไฟ ประชากร อาคาร โรงงาน สุขภาพ และระบบข้อมูลของกรมทรัพยากรน้ำ",
+      "en": "Biw has worked full-time with Landometer since 2019, contributing across Land Portfolio, city data on fire, population, buildings, factories and healthcare, and data systems for the Department of Water Resources.",
+      "status": "source_backed_placeholder",
+      "verificationStatus": "owner_authorized_placeholder",
+      "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+      "sourceBasis": "factual_role_education_and_work_evidence",
+      "sourceType": "factual_fallback",
+      "sourceRef": "owner_instruction_2026-08-24",
+      "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+      "derivationMethod": "bounded_inference",
+      "evidenceScope": "owner_supplied_role_tenure_and_verified_work",
+      "evidenceConfidence": "medium_high",
+      "reviewStatus": "pending_candidate_video_review",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "source_backed_placeholder_profile_copy",
+        "sourceRef": "owner_instruction_2026-08-23"
+      }
+    },
+    "publication": {
+      "consentStatus": "pending",
+      "profileStatus": "withheld_pending_consent"
+    },
+    "dataQuality": {
+      "profileVerificationStatus": "owner_supplied",
+      "sourceNotePresent": true
+    }
+  },
+  {
+    "personId": "S0006",
+    "names": {
+      "full": {
+        "th": "ณัฐ พิทักษ์อำนวย",
+        "en": "Nat Pitakamnuay"
+      },
+      "nickname": {
+        "th": "นัท",
+        "en": "Nat"
+      },
+      "card": {
+        "th": "นัท",
+        "en": "Nat"
+      }
+    },
+    "currentStatus": "active",
+    "firstJoined": "2018",
+    "migrationClassification": "full_time",
+    "canonicalIdPolicy": {
+      "assignedAtMigration": "2026-08-23",
+      "categoryAtMigration": "full_time",
+      "frozenAcrossFutureRoleChanges": true
+    },
+    "educationDisplayMode": "qualification",
+    "educationDisplay": {
+      "mode": "qualification",
+      "card": {
+        "th": null,
+        "en": null
+      },
+      "detail": {
+        "th": null,
+        "en": null
+      },
+      "verificationStatus": "owner_detail_required"
+    },
+    "bio": {
+      "th": "นัททำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 และเชื่อมงานข้อมูลประชากรกับอาคาร Land Portfolio และระบบ Telemetry ของกรมทรัพยากรน้ำ",
+      "en": "Nat has worked full-time with Landometer since 2018, connecting population and building data with Land Portfolio and the Department of Water Resources telemetry system.",
+      "status": "source_backed_placeholder",
+      "verificationStatus": "owner_authorized_placeholder",
+      "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+      "sourceBasis": "factual_role_education_and_work_evidence",
+      "sourceType": "factual_fallback",
+      "sourceRef": "owner_instruction_2026-08-24",
+      "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+      "derivationMethod": "bounded_inference",
+      "evidenceScope": "owner_supplied_role_tenure_and_verified_work",
+      "evidenceConfidence": "medium_high",
+      "reviewStatus": "pending_candidate_video_review",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "source_backed_placeholder_profile_copy",
+        "sourceRef": "owner_instruction_2026-08-23"
+      }
+    },
+    "publication": {
+      "consentStatus": "pending",
+      "profileStatus": "withheld_pending_consent"
+    },
+    "dataQuality": {
+      "profileVerificationStatus": "owner_supplied",
+      "sourceNotePresent": true
+    }
+  },
+  {
+    "personId": "S0007",
+    "names": {
+      "full": {
+        "th": "กนกศิลป์",
+        "en": "Kanoksilp Jindadoungrut"
+      },
+      "nickname": {
+        "th": "โปเต้",
+        "en": "Pote"
+      },
+      "card": {
+        "th": "โปเต้",
+        "en": "Pote"
+      }
+    },
+    "currentStatus": "active",
+    "firstJoined": "2018",
+    "migrationClassification": "full_time",
+    "canonicalIdPolicy": {
+      "assignedAtMigration": "2026-08-23",
+      "categoryAtMigration": "full_time",
+      "frozenAcrossFutureRoleChanges": true
+    },
+    "educationDisplayMode": "qualification",
+    "educationDisplay": {
+      "mode": "qualification",
+      "card": {
+        "th": null,
+        "en": null
+      },
+      "detail": {
+        "th": null,
+        "en": null
+      },
+      "verificationStatus": "owner_detail_required"
+    },
+    "bio": {
+      "th": "โปเต้ทำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 โดยร่วมพัฒนาข้อมูลประชากรและอาคารให้กลายเป็นภาพเมืองที่ใช้งานต่อได้",
+      "en": "Pote has worked full-time with Landometer since 2018, helping turn population and building data into city views that others can use.",
+      "status": "source_backed_placeholder",
+      "verificationStatus": "owner_authorized_placeholder",
+      "publicationBasis": "owner_authorized_synthesis_from_roster_evidence",
+      "sourceBasis": "factual_role_education_and_work_evidence",
+      "sourceType": "factual_fallback",
+      "sourceRef": "owner_instruction_2026-08-24",
+      "authorRole": "assistant_paraphrase_from_owner_and_sheet_records",
+      "derivationMethod": "bounded_inference",
+      "evidenceScope": "owner_supplied_role_tenure_and_verified_work",
+      "evidenceConfidence": "medium_high",
+      "reviewStatus": "pending_candidate_video_review",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "source_backed_placeholder_profile_copy",
+        "sourceRef": "owner_instruction_2026-08-23"
+      }
+    },
+    "publication": {
+      "consentStatus": "pending",
+      "profileStatus": "withheld_pending_consent"
+    },
+    "dataQuality": {
+      "profileVerificationStatus": "owner_supplied",
       "sourceNotePresent": true
     }
   }

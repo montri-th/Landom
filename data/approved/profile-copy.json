@@ -311,6 +311,33 @@
       "evidenceConfidence": "medium",
       "th": "จอมใจเชื่อมรูปแบบโครงข่ายถนนกับความรู้ร่วมของเมือง ผ่าน RoadDNA และ CityWiki ให้ทั้งโครงสร้างและเรื่องราวของพื้นที่มีที่อยู่ในชุดเครื่องมือของทีม",
       "en": "Jomjai connected road-network patterns with shared city knowledge through RoadDNA and CityWiki, giving both urban structure and local stories a place in the team’s toolkit."
+    },
+    {
+      "personId": "S0005",
+      "basis": "factual_fallback",
+      "sourceRef": "owner_instruction_2026-08-24",
+      "evidenceScope": "owner_supplied_role_tenure_and_verified_work",
+      "evidenceConfidence": "medium_high",
+      "th": "บิวทำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2019 และดูแลงานตั้งแต่ Land Portfolio ไปจนถึงข้อมูลเมืองด้านไฟ ประชากร อาคาร โรงงาน สุขภาพ และระบบข้อมูลของกรมทรัพยากรน้ำ",
+      "en": "Biw has worked full-time with Landometer since 2019, contributing across Land Portfolio, city data on fire, population, buildings, factories and healthcare, and data systems for the Department of Water Resources."
+    },
+    {
+      "personId": "S0006",
+      "basis": "factual_fallback",
+      "sourceRef": "owner_instruction_2026-08-24",
+      "evidenceScope": "owner_supplied_role_tenure_and_verified_work",
+      "evidenceConfidence": "medium_high",
+      "th": "นัททำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 และเชื่อมงานข้อมูลประชากรกับอาคาร Land Portfolio และระบบ Telemetry ของกรมทรัพยากรน้ำ",
+      "en": "Nat has worked full-time with Landometer since 2018, connecting population and building data with Land Portfolio and the Department of Water Resources telemetry system."
+    },
+    {
+      "personId": "S0007",
+      "basis": "factual_fallback",
+      "sourceRef": "owner_instruction_2026-08-24",
+      "evidenceScope": "owner_supplied_role_tenure_and_verified_work",
+      "evidenceConfidence": "medium_high",
+      "th": "โปเต้ทำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 โดยร่วมพัฒนาข้อมูลประชากรและอาคารให้กลายเป็นภาพเมืองที่ใช้งานต่อได้",
+      "en": "Pote has worked full-time with Landometer since 2018, helping turn population and building data into city views that others can use."
     }
   ]
 }

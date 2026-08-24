@@ -96,7 +96,7 @@ function sourceMeta(snapshot, baseline) {
     spreadsheetId: snapshot.spreadsheetId ?? snapshot.source?.spreadsheetId ?? baseline.meta.source.spreadsheetId,
     snapshotFetchedAt: snapshot.fetchedAt ?? snapshot.source?.fetchedAt ?? baseline.meta.source.snapshotFetchedAt,
     inputSchema: 'normalized_sheet_v3_4',
-    publicSheetsUsed: ['people_registry', 'profile_statements', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'social_profiles', 'assets'],
+    publicSheetsUsed: ['people_registry', 'profile_statements', 'engagements', 'institutions', 'programs', 'education', 'works', 'contributions', 'achievements', 'person_achievements', 'external_publications', 'social_profiles', 'assets'],
     privateContactSourcesExcluded: true
   };
 }
@@ -343,6 +343,27 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     evidenceNote: nullable(row.evidence_note)
   }));
 
+  const publicationRows = sheetRows(snapshot, 'external_publications');
+  const publications = publicationRows.length
+    ? publicationRows.map((row) => ({
+        publicationId: text(row.publication_id),
+        personId: text(row.person_id),
+        title: localized(row.title_th, row.title_en),
+        outlet: text(row.outlet),
+        volume: nullable(row.volume),
+        year: Number(row.year),
+        doi: text(row.doi),
+        publicUrl: text(row.public_url),
+        ownerEvidenceUrl: nullable(row.owner_evidence_url),
+        bibliographicUrl: nullable(row.bibliographic_url),
+        relationship: text(row.relationship),
+        scope: text(row.scope),
+        verificationStatus: text(row.verification_status),
+        publicationBasis: text(row.publication_basis),
+        evidenceNote: nullable(row.evidence_note)
+      }))
+    : structuredClone(baseline.publications ?? []);
+
   const socialProfiles = sheetRows(snapshot, 'social_profiles').map((row) => {
     const person = personById.get(text(row.person_id));
     const candidate = nullable(row.candidate_url_or_handle);
@@ -426,6 +447,7 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       works: works.length,
       contributions: contributions.length,
       achievements: achievements.length,
+      publications: publications.length,
       certificates: baseline.certificates.length,
       verifiedInstitutionLinkedInProfiles: institutions.filter((institution) => institution.linkedinUrl).length,
       verifiedProgramLinkedInProfiles: programs.filter((program) => program.linkedinUrl).length,
@@ -444,6 +466,7 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     works,
     contributions,
     achievements,
+    publications,
     socialProfiles,
     assets,
     certificates: structuredClone(baseline.certificates)

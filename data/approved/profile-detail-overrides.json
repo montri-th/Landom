@@ -1,6 +1,35 @@
 {
   "contractVersion": "1.1",
-  "sourceBasis": "owner_instruction_2026-08-23_detail_refinement",
+  "sourceBasis": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+  "addedPeople": [
+    {
+      "personId": "S0005",
+      "fullName": { "th": "วชิรพงศ์ ลอยฟ้าขจร", "en": "Wachirapong Loyfakajon" },
+      "nickname": { "th": "บิว", "en": "Biw" },
+      "currentStatus": "active",
+      "firstJoined": "2019",
+      "migrationClassification": "full_time",
+      "verificationStatus": "owner_supplied"
+    },
+    {
+      "personId": "S0006",
+      "fullName": { "th": "ณัฐ พิทักษ์อำนวย", "en": "Nat Pitakamnuay" },
+      "nickname": { "th": "นัท", "en": "Nat" },
+      "currentStatus": "active",
+      "firstJoined": "2018",
+      "migrationClassification": "full_time",
+      "verificationStatus": "owner_supplied"
+    },
+    {
+      "personId": "S0007",
+      "fullName": { "th": "กนกศิลป์", "en": "Kanoksilp Jindadoungrut" },
+      "nickname": { "th": "โปเต้", "en": "Pote" },
+      "currentStatus": "active",
+      "firstJoined": "2018",
+      "migrationClassification": "full_time",
+      "verificationStatus": "owner_supplied"
+    }
+  ],
   "institutionLinkedInProfiles": [
     {
       "institutionId": "inst-kmitl",
@@ -75,6 +104,148 @@
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_2026-08-24"
       }
+    },
+    {
+      "personId": "S0005",
+      "platform": "github",
+      "publicUrl": "https://github.com/wachirapong74",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_github_profile",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "S0007",
+      "platform": "github",
+      "publicUrl": "https://github.com/kanoksl",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_github_profile",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "S0006",
+      "platform": "facebook",
+      "publicUrl": "https://www.facebook.com/zanmatoo",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment; facebook_profile_content_login_gated",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "S0005",
+      "platform": "facebook",
+      "publicUrl": "https://www.facebook.com/wachirapongbiw",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_facebook_profile",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "I0011",
+      "platform": "facebook",
+      "publicUrl": "https://www.facebook.com/ingkharut.ruttanaopha.2024",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_plus_public_og_title_exact_full_name_match",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "I0034",
+      "platform": "facebook",
+      "publicUrl": "https://www.facebook.com/xisury.thiphy.thn.thraphy",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_plus_public_og_title_exact_thai_full_name_match",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "S0007",
+      "platform": "facebook",
+      "publicUrl": "https://www.facebook.com/kanoksilp.jindadoungrut",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_facebook_profile",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "S0007",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/kanoksilp-jindadoungrut-841a67224/",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_to_exact_public_linkedin_profile",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-24"
+      }
+    }
+  ],
+  "externalPublications": [
+    {
+      "publicationId": "PUB0001",
+      "personId": "S0007",
+      "title": {
+        "th": "Neural Learning With Recoil Behavior in Hyperellipsoidal Structure",
+        "en": "Neural Learning With Recoil Behavior in Hyperellipsoidal Structure"
+      },
+      "outlet": "IEEE Access",
+      "volume": "8",
+      "year": 2020,
+      "doi": "10.1109/ACCESS.2020.3003531",
+      "publicUrl": "https://doi.org/10.1109/ACCESS.2020.3003531",
+      "ownerEvidenceUrl": "https://scispace.com/pdf/neural-learning-with-recoil-behavior-in-hyperellipsoidal-1iasnp6d0w.pdf",
+      "bibliographicUrl": "https://dblp.org/rec/journals/access/JindadoungrutPL20",
+      "relationship": "coauthor",
+      "scope": "external_publication_not_landometer_contribution",
+      "verificationStatus": "owner_supplied_with_bibliographic_match",
+      "publicationBasis": "owner_authorized_external_publication_link",
+      "evidenceNote": "The owner supplied the SciSpace paper link for Kanoksilp Jindadoungrut; the title, IEEE Access volume, year and DOI match the public bibliographic record. This record is external publication evidence and is never projected as a Landometer work or contribution."
     }
   ],
   "programOverrides": [
@@ -139,7 +310,15 @@
       "evidenceNote": "The governed cohort label states 19 May–31 Jul 2025 and the certificate confirms completion on 31 Jul 2025; this replaces the contradictory roster start date that fell after the recorded end."
     },
     { "engagementId": "E0038", "sequenceHint": 2 },
-    { "engagementId": "E0033", "sequenceHint": 3 }
+    { "engagementId": "E0033", "sequenceHint": 3 },
+    {
+      "engagementId": "E0043",
+      "sequenceHint": 1,
+      "end": "2026-07-31",
+      "status": "completed",
+      "verificationStatus": "owner_source_reconciled",
+      "evidenceNote": "Owner confirmed that Team's PDI internship ended at the end of July 2026."
+    }
   ],
   "addedEngagements": [
     {
@@ -228,7 +407,7 @@
       "category": "program_participant",
       "academicPlacementType": "not_applicable",
       "programCode": "IMP",
-      "roleTitle": { "th": "Consulting Partner", "en": "Consulting Partner" },
+      "roleTitle": { "th": "ที่ปรึกษาธุรกิจ", "en": "Consulting Partner" },
       "cohortLabel": "Impvest 2025",
       "start": null,
       "end": "2025-11-13",
@@ -237,6 +416,71 @@
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_review_required_name_spelling_variation",
       "evidenceNote": "Certificate spells the full name Panida Chantacharoenpong; retain canonical registry spelling Panida Chantacharoonpong pending owner review.",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0061",
+      "personId": "S0005",
+      "category": "full_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Full-time",
+      "roleTitle": { "th": "Full-time staff", "en": "Full-time staff" },
+      "cohortLabel": "2019–present",
+      "start": "2019",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": [
+        "work-land-portfolio",
+        "work-citymeter-fire-monitoring",
+        "work-citymeter-population",
+        "work-citymeter-buildings",
+        "work-citymeter-factories",
+        "work-citymeter-healthcare-unresolved",
+        "work-department-water-resources",
+        "work-dwr-telemetry"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_supplied",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0062",
+      "personId": "S0006",
+      "category": "full_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Full-time",
+      "roleTitle": { "th": "Full-time staff", "en": "Full-time staff" },
+      "cohortLabel": "2018–present",
+      "start": "2018",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": [
+        "work-citymeter-population",
+        "work-citymeter-buildings",
+        "work-land-portfolio",
+        "work-dwr-telemetry"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_supplied",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0063",
+      "personId": "S0007",
+      "category": "full_time",
+      "academicPlacementType": "not_applicable",
+      "programCode": "Full-time",
+      "roleTitle": { "th": "Full-time staff", "en": "Full-time staff" },
+      "cohortLabel": "2018–present",
+      "start": "2018",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": [
+        "work-citymeter-population",
+        "work-citymeter-buildings"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_supplied",
       "sequenceHint": 1
     }
   ],
@@ -256,13 +500,44 @@
   "addedWorks": [
     {
       "workId": "work-citymeter-rugon",
+      "moduleSlug": "dataset-earthquake-sensors",
       "parentProduct": "CityMETER",
-      "names": { "th": "CityMETER: RUGON", "en": "CityMETER: RUGON" },
-      "type": "product_specific_deliverable",
+      "names": { "th": "รู้ก่อน RUGON: เครือข่ายเซนเซอร์แผ่นดินไหว", "en": "RUGON: Earthquake Sensor Network" },
+      "type": "canonical_module",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "aligned_to_citymeter_current_release",
+      "evidenceNote": "Owner mapped RUGON to the official CityMETER dataset-earthquake-sensors module on 2026-08-24.",
+      "aliases": ["CityMETER: RUGON"]
+    },
+    {
+      "workId": "work-citymeter-healthcare-unresolved",
+      "parentProduct": "CityMETER",
+      "names": { "th": "CityMETER: Healthcare", "en": "CityMETER: Healthcare" },
+      "type": "module_name_unreconciled",
       "scopeLayer": "product_specific",
       "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
-      "evidenceNote": "Owner-supplied product-specific contribution; no exact current CityMETER catalog route is asserted.",
-      "aliases": ["CityMETER: RUGON"]
+      "evidenceNote": "Owner supplied this contribution name; no exact Healthcare module appears in the inspected 2026-08-24 CityMETER catalog, so no catalog slug or route is asserted.",
+      "aliases": ["CityMETER: Healthcare"]
+    },
+    {
+      "workId": "work-department-water-resources",
+      "parentProduct": "Department of Water Resources",
+      "names": { "th": "กรมทรัพยากรน้ำ", "en": "Department of Water Resources" },
+      "type": "partner_program",
+      "scopeLayer": "partner_specific",
+      "authorityStatus": "owner_supplied_partner_contribution",
+      "evidenceNote": "Owner supplied the partner contribution; the English organization name is standardized to Department of Water Resources.",
+      "aliases": ["Department of Water Resource"]
+    },
+    {
+      "workId": "work-dwr-telemetry",
+      "parentProduct": "Department of Water Resources",
+      "names": { "th": "DWR: Telemetry", "en": "DWR: Telemetry" },
+      "type": "partner_deliverable",
+      "scopeLayer": "partner_specific",
+      "authorityStatus": "owner_supplied_partner_contribution",
+      "evidenceNote": "Owner supplied this DWR-specific contribution; it is not promoted to a shared Landometer capability.",
+      "aliases": ["DWR: Telemetry"]
     }
   ],
   "addedContributions": [
@@ -293,15 +568,165 @@
       "engagementId": "E0060",
       "role": { "th": "Team member", "en": "Team member" },
       "period": { "start": null, "end": null, "label": "2025" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-land-portfolio",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-citymeter-fire-monitoring",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-citymeter-population",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-citymeter-buildings",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-citymeter-factories",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-citymeter-healthcare-unresolved",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" },
+      "evidenceNote": "The owner supplied the Healthcare contribution name; no exact current CityMETER catalog module is asserted."
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-department-water-resources",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0005",
+      "workId": "work-dwr-telemetry",
+      "engagementId": "E0061",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2019", "end": null, "label": "2019–present" }
+    },
+    {
+      "personId": "S0006",
+      "workId": "work-citymeter-population",
+      "engagementId": "E0062",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2018", "end": null, "label": "2018–present" }
+    },
+    {
+      "personId": "S0006",
+      "workId": "work-citymeter-buildings",
+      "engagementId": "E0062",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2018", "end": null, "label": "2018–present" }
+    },
+    {
+      "personId": "S0006",
+      "workId": "work-land-portfolio",
+      "engagementId": "E0062",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2018", "end": null, "label": "2018–present" }
+    },
+    {
+      "personId": "S0006",
+      "workId": "work-dwr-telemetry",
+      "engagementId": "E0062",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2018", "end": null, "label": "2018–present" }
+    },
+    {
+      "personId": "S0007",
+      "workId": "work-citymeter-population",
+      "engagementId": "E0063",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2018", "end": null, "label": "2018–present" }
+    },
+    {
+      "personId": "S0007",
+      "workId": "work-citymeter-buildings",
+      "engagementId": "E0063",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": "2018", "end": null, "label": "2018–present" }
+    },
+    {
+      "personId": "I0034",
+      "workId": "work-citymeter-housing-estates",
+      "engagementId": "E0044",
+      "role": { "th": "Software development", "en": "Software development" },
+      "period": { "start": null, "end": null, "label": "2026" }
+    },
+    {
+      "personId": "S0001",
+      "workId": "work-citymeter-condo-appraisal",
+      "engagementId": "E0031",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": null, "end": null, "label": "Full-time" }
+    },
+    {
+      "personId": "S0001",
+      "workId": "work-citymeter-business-dynamics",
+      "engagementId": "E0031",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": null, "end": null, "label": "Full-time" }
+    },
+    {
+      "personId": "S0001",
+      "workId": "work-citymeter-restaurants",
+      "engagementId": "E0031",
+      "role": { "th": "Full-time staff", "en": "Full-time staff" },
+      "period": { "start": null, "end": null, "label": "Full-time" }
+    },
+    {
+      "personId": "S0001",
+      "workId": "work-citymeter-quakesafe-unresolved",
+      "engagementId": "E0031",
+      "role": { "th": "Software development", "en": "Software development" },
+      "period": { "start": null, "end": null, "label": "Full-time" }
+    },
+    {
+      "personId": "I0030",
+      "workId": "work-citymeter-disaster-historical-impacts",
+      "engagementId": "E0040",
+      "role": { "th": "Software development", "en": "Software development" },
+      "period": { "start": null, "end": null, "label": "2026" }
+    },
+    {
+      "personId": "I0003",
+      "workId": "work-citymeter-hat-yai-flood-2025-11",
+      "engagementId": "E0055",
+      "role": { "th": "Software development", "en": "Software development" },
+      "period": { "start": null, "end": null, "label": "Part-time" }
     }
   ],
   "contributionRolesByProgram": {
     "FDI": { "th": "Software development", "en": "Software development" },
     "PDI": { "th": "Product development", "en": "Product development" },
     "MSI": { "th": "Go-to-market", "en": "Go-to-market" },
-    "IMP": { "th": "Consulting Partner", "en": "Consulting Partner" }
+    "IMP": { "th": "ที่ปรึกษาธุรกิจ", "en": "Consulting Partner" }
   },
   "contributionRoleOverrides": [
+    { "personId": "S0002", "workId": "work-citymeter-quakesafe-unresolved", "role": { "th": "Product development", "en": "Product development" } },
+    { "personId": "S0001", "workId": "work-citymeter-quakesafe-unresolved", "role": { "th": "Software development", "en": "Software development" } },
     { "workId": "work-citycell-model", "role": { "th": "Team member", "en": "Team member" } }
   ]
 }

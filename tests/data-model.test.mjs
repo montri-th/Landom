@@ -59,16 +59,16 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.doesNotMatch(pattareeyaRow[sourceNoteIndex], /Pitcha \(I0015\)/);
   const currentStatementIndex = peopleTab.headers.indexOf('current_statement_id');
   assert.ok(currentStatementIndex >= 0);
-  assert.equal(peopleTab.rows.filter((row) => row[currentStatementIndex]).length, 48);
+  assert.equal(peopleTab.rows.filter((row) => row[currentStatementIndex]).length, 51);
   const statements = exported.tabs.profile_statements;
-  assert.equal(statements.rows.length, 48);
+  assert.equal(statements.rows.length, 51);
   const statementIdIndex = statements.headers.indexOf('statement_id');
   const statementPersonIndex = statements.headers.indexOf('person_id');
   assertUnique(statements.rows.map((row) => ({ statementId: row[statementIdIndex] })), 'statementId');
   assert.ok(statements.rows.every((row) => /^[SPI]\d{4}$/.test(row[statementPersonIndex])));
   const statementSourceTypeIndex = statements.headers.indexOf('source_type');
   assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'first_person_application').length, 25);
-  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'factual_fallback').length, 23);
+  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'factual_fallback').length, 26);
   assert.deepEqual(peopleTab.validations.W, ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence']);
   assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence']);
   assert.deepEqual(statements.validations.G, ['first_person_application', 'factual_fallback', 'candidate_video_transcript', 'owner_supplied_copy']);
@@ -86,6 +86,8 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.deepEqual(exported.tabs.assets.validations.L, ['individual_consent', 'owner_authorized_public_profile_portrait']);
   assert.deepEqual(exported.tabs.assets.validations.Q, ['publishable', 'withheld_pending_rights_consent_and_verification', 'withdrawn']);
   assert.deepEqual(exported.tabs.social_profiles.validations.I, ['individual_consent', 'owner_authorized_public_profile_link']);
+  assert.deepEqual(exported.tabs.external_publications.validations.N, ['owner_supplied_with_bibliographic_match']);
+  assert.deepEqual(exported.tabs.external_publications.validations.O, ['owner_authorized_external_publication_link']);
   const qaMetricIndex = exported.tabs.qa.headers.indexOf('metric');
   const qaFormulaIndex = exported.tabs.qa.headers.indexOf('formula_value');
   const portraitQa = exported.tabs.qa.rows.find((row) => row[qaMetricIndex] === 'publishable_portraits');
@@ -93,7 +95,7 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const readmeTopicIndex = exported.tabs.README.headers.indexOf('topic');
   const readmeDetailIndex = exported.tabs.README.headers.indexOf('detail');
   const datasetNameRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'ชื่อชุดข้อมูล');
-  assert.match(datasetNameRow[readmeDetailIndex], /v3\.4 \(24 Aug 2026\)/);
+  assert.match(datasetNameRow[readmeDetailIndex], /v3\.4 \(25 Aug 2026\)/);
   assert.doesNotMatch(datasetNameRow[readmeDetailIndex], /v3\.3/);
   const bioRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'bio');
   assert.match(bioRow[readmeDetailIndex], /private recruitment\/application Sheet ID\/range/);
@@ -152,7 +154,7 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     const imported = JSON.parse(fs.readFileSync(path.join(outputDir, 'site-data.json'), 'utf8'));
     const baseline = loadGenerated();
     assert.equal(imported.meta.source.inputSchema, 'normalized_sheet_v3_4');
-    for (const dimension of ['people', 'engagements', 'institutions', 'programs', 'educationRecords', 'works', 'contributions', 'achievements', 'socialProfiles', 'assets', 'certificates']) {
+    for (const dimension of ['people', 'engagements', 'institutions', 'programs', 'educationRecords', 'works', 'contributions', 'achievements', 'publications', 'socialProfiles', 'assets', 'certificates']) {
       assert.equal(imported[dimension].length, baseline[dimension].length, 'roundtrip changed ' + dimension + ' row count');
     }
     const importedInstagram = imported.socialProfiles.find((row) => row.socialProfileId === 'SOC-I0001-INSTAGRAM');
@@ -167,13 +169,20 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 45);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 12);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 46);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 14);
     assert.deepEqual(
       imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).map((row) => [row.personId, row.publicUrl]),
-      [['S0004', 'https://www.facebook.com/phonsuda.12']]
+      [
+        ['I0011', 'https://www.facebook.com/ingkharut.ruttanaopha.2024'],
+        ['S0004', 'https://www.facebook.com/phonsuda.12'],
+        ['I0034', 'https://www.facebook.com/xisury.thiphy.thn.thraphy'],
+        ['S0005', 'https://www.facebook.com/wachirapongbiw'],
+        ['S0006', 'https://www.facebook.com/zanmatoo'],
+        ['S0007', 'https://www.facebook.com/kanoksilp.jindadoungrut']
+      ]
     );
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 58);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 66);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
     ));
@@ -244,9 +253,9 @@ test('verified English full names and exact Thai nicknames override stale regist
 
 test('person IDs have one frozen canonical version', () => {
   const data = loadGenerated();
-  assert.equal(data.people.length, 48);
+  assert.equal(data.people.length, 51);
   assertUnique(data.people, 'personId');
-  assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'full_time').map((person) => person.personId), ['S0001', 'S0002', 'S0003', 'S0004']);
+  assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'full_time').map((person) => person.personId), ['S0001', 'S0002', 'S0003', 'S0004', 'S0005', 'S0006', 'S0007']);
   assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'part_time').map((person) => person.personId), ['P0001']);
   assert.equal(data.people.filter((person) => person.migrationClassification === 'intern_or_program_participant').length, 43);
   assert.ok(data.people.every((person) => /^[SPI]\d{4}$/.test(person.personId)));
@@ -254,6 +263,101 @@ test('person IDs have one frozen canonical version', () => {
   const serialized = JSON.stringify(data);
   assert.doesNotMatch(serialized, /person_id_v1/i);
   assert.doesNotMatch(serialized, /LDM-P-/);
+});
+
+test('current staff, completed Team internship and owner-supplied work updates remain exact', () => {
+  const data = loadGenerated();
+  const people = new Map(data.people.map((person) => [person.personId, person]));
+  const engagements = new Map(data.engagements.map((engagement) => [engagement.engagementId, engagement]));
+  const contributionWorkIds = (personId) => data.contributions
+    .filter((contribution) => contribution.personId === personId)
+    .map((contribution) => contribution.workId)
+    .sort();
+
+  assert.deepEqual(
+    ['S0005', 'S0006', 'S0007'].map((personId) => ({
+      personId,
+      fullTh: people.get(personId).names.full.th,
+      fullEn: people.get(personId).names.full.en,
+      nicknameTh: people.get(personId).names.nickname.th,
+      nicknameEn: people.get(personId).names.nickname.en,
+      firstJoined: people.get(personId).firstJoined,
+      currentStatus: people.get(personId).currentStatus
+    })),
+    [
+      { personId: 'S0005', fullTh: 'วชิรพงศ์ ลอยฟ้าขจร', fullEn: 'Wachirapong Loyfakajon', nicknameTh: 'บิว', nicknameEn: 'Biw', firstJoined: '2019', currentStatus: 'active' },
+      { personId: 'S0006', fullTh: 'ณัฐ พิทักษ์อำนวย', fullEn: 'Nat Pitakamnuay', nicknameTh: 'นัท', nicknameEn: 'Nat', firstJoined: '2018', currentStatus: 'active' },
+      { personId: 'S0007', fullTh: 'กนกศิลป์', fullEn: 'Kanoksilp Jindadoungrut', nicknameTh: 'โปเต้', nicknameEn: 'Pote', firstJoined: '2018', currentStatus: 'active' }
+    ]
+  );
+
+  assert.deepEqual(contributionWorkIds('S0005'), [
+    'work-citymeter-buildings',
+    'work-citymeter-factories',
+    'work-citymeter-fire-monitoring',
+    'work-citymeter-healthcare-unresolved',
+    'work-citymeter-population',
+    'work-department-water-resources',
+    'work-dwr-telemetry',
+    'work-land-portfolio'
+  ]);
+  assert.deepEqual(contributionWorkIds('S0006'), [
+    'work-citymeter-buildings',
+    'work-citymeter-population',
+    'work-dwr-telemetry',
+    'work-land-portfolio'
+  ]);
+  assert.deepEqual(contributionWorkIds('S0007'), ['work-citymeter-buildings', 'work-citymeter-population']);
+  assert.deepEqual(engagements.get('E0061').responsibilityWorkIds.sort(), contributionWorkIds('S0005'));
+  assert.deepEqual(engagements.get('E0062').responsibilityWorkIds.sort(), contributionWorkIds('S0006'));
+  assert.deepEqual(engagements.get('E0063').responsibilityWorkIds.sort(), contributionWorkIds('S0007'));
+
+  const team = engagements.get('E0043');
+  assert.deepEqual({ personId: team.personId, end: team.end, status: team.status }, { personId: 'I0033', end: '2026-07-31', status: 'completed' });
+  assert.equal(people.get('I0033').currentStatus, 'alumni');
+
+  const hasContribution = (personId, workId, roleEn = null) => data.contributions.some((contribution) =>
+    contribution.personId === personId && contribution.workId === workId && (!roleEn || contribution.role.en === roleEn)
+  );
+  assert.ok(hasContribution('I0034', 'work-citymeter-flood-forecasting-unresolved', 'Software development'));
+  assert.ok(hasContribution('I0034', 'work-citymeter-housing-estates', 'Software development'));
+  for (const workId of ['work-citymeter-condo-appraisal', 'work-citymeter-business-dynamics', 'work-citymeter-restaurants']) {
+    assert.ok(hasContribution('S0001', workId));
+  }
+  assert.ok(hasContribution('I0032', 'work-dwr-flood-map', 'Software development'));
+  assert.ok(hasContribution('S0003', 'work-citymeter-rugon', 'Product management'));
+  assert.ok(hasContribution('I0030', 'work-citymeter-disaster-historical-impacts', 'Software development'));
+  assert.ok(hasContribution('I0003', 'work-citymeter-hat-yai-flood-2025-11', 'Software development'));
+  assert.ok(hasContribution('S0002', 'work-citymeter-quakesafe-unresolved', 'Product development'));
+  assert.ok(hasContribution('S0001', 'work-citymeter-quakesafe-unresolved', 'Software development'));
+});
+
+test('verified external publication evidence remains separate from Landometer works and contributions', () => {
+  const data = loadGenerated();
+  assert.deepEqual(data.publications, [{
+    publicationId: 'PUB0001',
+    personId: 'S0007',
+    title: {
+      th: 'Neural Learning With Recoil Behavior in Hyperellipsoidal Structure',
+      en: 'Neural Learning With Recoil Behavior in Hyperellipsoidal Structure'
+    },
+    outlet: 'IEEE Access',
+    volume: '8',
+    year: 2020,
+    doi: '10.1109/ACCESS.2020.3003531',
+    publicUrl: 'https://doi.org/10.1109/ACCESS.2020.3003531',
+    ownerEvidenceUrl: 'https://scispace.com/pdf/neural-learning-with-recoil-behavior-in-hyperellipsoidal-1iasnp6d0w.pdf',
+    bibliographicUrl: 'https://dblp.org/rec/journals/access/JindadoungrutPL20',
+    relationship: 'coauthor',
+    scope: 'external_publication_not_landometer_contribution',
+    verificationStatus: 'owner_supplied_with_bibliographic_match',
+    publicationBasis: 'owner_authorized_external_publication_link',
+    evidenceNote: data.publications[0].evidenceNote
+  }]);
+  assert.match(data.publications[0].evidenceNote, /never projected as a Landometer work or contribution/);
+  assert.ok(data.works.every((work) => work.workId !== 'PUB0001'));
+  assert.ok(data.contributions.every((contribution) => contribution.workId !== 'PUB0001'));
+  assert.match(data.meta.evidenceBoundary.externalPublications, /separate evidence dimension/);
 });
 
 test('all dimension IDs are unique and foreign keys have no orphans', () => {
@@ -266,6 +370,7 @@ test('all dimension IDs are unique and foreign keys have no orphans', () => {
     ['works', 'workId'],
     ['contributions', 'contributionId'],
     ['achievements', 'achievementId'],
+    ['publications', 'publicationId'],
     ['socialProfiles', 'socialProfileId'],
     ['assets', 'assetId'],
     ['certificates', 'certificateId']
@@ -282,6 +387,7 @@ test('all dimension IDs are unique and foreign keys have no orphans', () => {
   assert.ok(data.educationRecords.every((item) => personIds.has(item.personId) && institutionIds.has(item.institutionId) && (item.programId === null || programIds.has(item.programId))));
   assert.ok(data.contributions.every((item) => personIds.has(item.personId) && workIds.has(item.workId) && (item.engagementId === null || engagementIds.has(item.engagementId))));
   assert.ok(data.achievements.every((item) => item.recipientPersonIds.every((personId) => personIds.has(personId)) && (item.workId === null || workIds.has(item.workId))));
+  assert.ok(data.publications.every((item) => personIds.has(item.personId)));
   assert.ok(data.socialProfiles.every((item) => personIds.has(item.personId)));
   assert.ok(data.assets.every((item) => personIds.has(item.personId)));
   assert.ok(data.certificates.every((item) => personIds.has(item.personId) && item.workIds.every((workId) => workIds.has(workId))));
@@ -421,10 +527,10 @@ test('all core people receive provenance-distinct owner-authorized source-backed
   const factualFallbackIds = [
     'I0001', 'I0002', 'I0005', 'I0006', 'I0007', 'I0008', 'I0009', 'I0010',
     'I0011', 'I0012', 'I0019', 'I0020', 'I0021', 'I0023', 'I0025', 'I0034',
-    'I0035', 'I0036', 'I0037', 'I0038', 'I0039', 'P0001', 'S0001'
+    'I0035', 'I0036', 'I0037', 'I0038', 'I0039', 'P0001', 'S0001', 'S0005', 'S0006', 'S0007'
   ];
   const sourceBacked = data.people.filter((person) => person.bio.status === 'source_backed_placeholder');
-  assert.equal(sourceBacked.length, 48);
+  assert.equal(sourceBacked.length, 51);
   assert.ok(sourceBacked.every((person) => person.bio.th && person.bio.en));
   assert.ok(sourceBacked.every((person) =>
     person.bio.verificationStatus === 'owner_authorized_placeholder' &&
@@ -447,7 +553,8 @@ test('all core people receive provenance-distinct owner-authorized source-backed
 
   const factualFallback = sourceBacked.filter((person) => person.bio.sourceType === 'factual_fallback');
   assert.deepEqual(factualFallback.map((person) => person.personId).sort(), factualFallbackIds);
-  assert.ok(factualFallback.every((person) =>
+  const existingFactualFallback = factualFallback.filter((person) => !['S0005', 'S0006', 'S0007'].includes(person.personId));
+  assert.ok(existingFactualFallback.every((person) =>
     person.bio.publicationBasis === 'owner_authorized_synthesis_from_roster_evidence' &&
     person.bio.sourceBasis === 'factual_role_education_and_work_evidence' &&
     person.bio.sourceRef === 'alumni_sheet_and_registry_reconciliation_2026-08-23' &&
@@ -456,12 +563,22 @@ test('all core people receive provenance-distinct owner-authorized source-backed
     person.bio.evidenceScope === 'interest_and_work_style_from_role_education_and_verified_work' &&
     ['medium_high', 'medium', 'medium_low'].includes(person.bio.evidenceConfidence)
   ));
+  const newStaffFactualFallback = factualFallback.filter((person) => ['S0005', 'S0006', 'S0007'].includes(person.personId));
+  assert.ok(newStaffFactualFallback.every((person) =>
+    person.bio.publicationBasis === 'owner_authorized_synthesis_from_roster_evidence' &&
+    person.bio.sourceBasis === 'factual_role_education_and_work_evidence' &&
+    person.bio.sourceRef === 'owner_instruction_2026-08-24' &&
+    person.bio.authorRole === 'assistant_paraphrase_from_owner_and_sheet_records' &&
+    person.bio.derivationMethod === 'bounded_inference' &&
+    person.bio.evidenceScope === 'owner_supplied_role_tenure_and_verified_work' &&
+    person.bio.evidenceConfidence === 'medium_high'
+  ));
   assert.match(data.people.find((person) => person.personId === 'I0015').bio.th, /ความคิดเห็นของผู้ใช้/);
   assert.doesNotMatch(data.people.find((person) => person.personId === 'I0028').bio.th, /พลังบวก/);
-  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 48);
+  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 51);
   assert.equal(data.meta.counts.ownerPendingProfiles, 0);
   assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 25);
-  assert.equal(data.meta.counts.factualFallbackProfilePlaceholders, 23);
+  assert.equal(data.meta.counts.factualFallbackProfilePlaceholders, 26);
 });
 
 test('cooperative education is limited to the exact owner-confirmed public core set', () => {
@@ -482,7 +599,7 @@ test('cooperative education is limited to the exact owner-confirmed public core 
   assert.equal(tan.academicPlacementType, 'internship');
   assert.doesNotMatch(tan.cohortLabel, /co-?op|สหกิจ/i);
   assert.equal(data.meta.counts.cooperativeEducationPeople, 6);
-  assert.equal(data.people.length, 48);
+  assert.equal(data.people.length, 51);
 });
 
 test('FDI and computer-engineering display labels use the approved exact copy', () => {
@@ -533,19 +650,25 @@ test('program-specific contribution roles and exact owner-supplied works replace
   const data = loadGenerated();
   const engagementById = new Map(data.engagements.map((engagement) => [engagement.engagementId, engagement]));
   const expectedRoleByProgram = new Map([
-    ['FDI', 'Software development'],
-    ['PDI', 'Product development'],
-    ['MSI', 'Go-to-market'],
-    ['IMP', 'Consulting Partner']
+    ['FDI', { th: 'Software development', en: 'Software development' }],
+    ['PDI', { th: 'Product development', en: 'Product development' }],
+    ['MSI', { th: 'Go-to-market', en: 'Go-to-market' }],
+    ['IMP', { th: 'ที่ปรึกษาธุรกิจ', en: 'Consulting Partner' }]
+  ]);
+  const exactRoleOverrides = new Map([
+    ['S0002|work-citymeter-quakesafe-unresolved', 'Product development'],
+    ['S0001|work-citymeter-quakesafe-unresolved', 'Software development']
   ]);
   for (const contribution of data.contributions) {
     if (contribution.workId === 'work-citycell-model') continue;
+    if (exactRoleOverrides.has(`${contribution.personId}|${contribution.workId}`)) {
+      const role = exactRoleOverrides.get(`${contribution.personId}|${contribution.workId}`);
+      assert.deepEqual(contribution.role, { th: role, en: role });
+      continue;
+    }
     const programCode = engagementById.get(contribution.engagementId)?.program.code;
     if (!expectedRoleByProgram.has(programCode)) continue;
-    assert.deepEqual(contribution.role, {
-      th: expectedRoleByProgram.get(programCode),
-      en: expectedRoleByProgram.get(programCode)
-    });
+    assert.deepEqual(contribution.role, expectedRoleByProgram.get(programCode));
   }
 
   const cityCell = data.works.find((work) => work.workId === 'work-citycell-model');
@@ -567,13 +690,16 @@ test('internship timeline copy is English in both locales and raw availability n
   assert.ok(data.engagements.every((engagement) => !/เริ่มได้|\bstart\b|\d{1,2}[A-Za-z]{3}\s*[-–]\s*\d{1,2}[A-Za-z]{3}/i.test(engagement.cohortLabel ?? '')));
 });
 
-test('all 48 bio objects remain byte-equivalent to the v3.3 approved release baseline', () => {
+test('the existing 48 bio objects remain byte-equivalent to the v3.3 approved release baseline', () => {
   const stableSort = (value) => Array.isArray(value)
     ? value.map(stableSort)
     : value && typeof value === 'object'
       ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableSort(value[key])]))
       : value;
-  const projection = loadGenerated().people.map((person) => ({ personId: person.personId, bio: person.bio }));
+  const newPersonIds = new Set(['S0005', 'S0006', 'S0007']);
+  const projection = loadGenerated().people
+    .filter((person) => !newPersonIds.has(person.personId))
+    .map((person) => ({ personId: person.personId, bio: person.bio }));
   const digest = createHash('sha256').update(JSON.stringify(stableSort(projection))).digest('hex');
   assert.equal(digest, 'bbed839fd986c9c0e28f7562fec707df0e1a3a1410b9248200c75c5fd0420f71');
 });
@@ -616,6 +742,13 @@ test('staff degree programs separate official program names from personal award 
     record.degree.evidenceScope === 'owner_confirmed_completed_degree_with_official_program_definition'
   ));
   assert.match(data.people.find((person) => person.personId === 'S0003').educationDisplay.card.en, /B\.Eng\., Computer Engineering/);
+  for (const personId of ['S0005', 'S0006', 'S0007']) {
+    const person = data.people.find((item) => item.personId === personId);
+    assert.equal(primaryEducation(personId), undefined);
+    assert.equal(person.educationDisplay.verificationStatus, 'owner_detail_required');
+    assert.deepEqual(person.educationDisplay.card, { th: null, en: null });
+    assert.deepEqual(person.educationDisplay.detail, { th: null, en: null });
+  }
 });
 
 test('CityMETER works use release-aligned canonical mappings without promoting unresolved names', () => {
@@ -626,12 +759,26 @@ test('CityMETER works use release-aligned canonical mappings without promoting u
     ['work-citymeter-factories', 'dataset-factories-workers-investment'],
     ['work-citymeter-schools', 'dataset-schools-students-teachers'],
     ['work-citymeter-crop-area-output', 'dataset-crop-area-output'],
-    ['work-citymeter-buildings', 'dataset-buildings']
+    ['work-citymeter-buildings', 'dataset-buildings'],
+    ['work-citymeter-population', 'dataset-population-age-sex'],
+    ['work-citymeter-housing-estates', 'dataset-registered-housing-estates'],
+    ['work-citymeter-condo-appraisal', 'dataset-condo-appraisal'],
+    ['work-citymeter-business-dynamics', 'dataset-business-dynamics'],
+    ['work-citymeter-restaurants', 'dataset-restaurants'],
+    ['work-citymeter-fire-monitoring', 'dataset-fire-monitoring'],
+    ['work-citymeter-flood-forecasting-unresolved', 'dataset-flood-forecast-flash-flood-risk'],
+    ['work-dwr-flood-map', 'dataset-flood-forecast-depth'],
+    ['work-citymeter-rugon', 'dataset-earthquake-sensors'],
+    ['work-citymeter-disaster-historical-impacts', 'dataset-disaster-historical-impacts'],
+    ['work-citymeter-hat-yai-flood-2025-11', 'dataset-events-hat-yai-flood-2025-11'],
+    ['work-citymeter-quakesafe-unresolved', 'dataset-events-quake-building-inspection']
   ]);
   for (const [workId, slug] of expected) assert.equal(data.works.find((work) => work.workId === workId).moduleSlug, slug);
-  const floodForecast = data.works.find((work) => work.workId === 'work-citymeter-flood-forecasting-unresolved');
-  assert.equal(floodForecast.moduleSlug, null);
-  assert.equal(floodForecast.authorityStatus, 'unresolved_between_official_forecast_modules');
+  for (const [, slug] of expected) {
+    const matches = data.works.filter((work) => work.moduleSlug === slug);
+    assert.equal(matches.length, 1, `expected one canonical work for ${slug}`);
+    assert.equal(matches[0].authorityStatus, 'aligned_to_citymeter_current_release');
+  }
   const shopping = data.works.find((work) => work.workId === 'work-citymeter-shopping-centers');
   assert.doesNotMatch(shopping.names.en, /venues/i);
   const companies = data.works.find((work) => work.workId === 'work-citymeter-companies');
@@ -712,12 +859,17 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
-  assert.equal(linkedIn.length, 45);
-  assert.equal(github.length, 12);
+  assert.equal(linkedIn.length, 46);
+  assert.equal(github.length, 14);
   assert.deepEqual(facebook.map((profile) => ({ personId: profile.personId, publicUrl: profile.publicUrl })), [
-    { personId: 'S0004', publicUrl: 'https://www.facebook.com/phonsuda.12' }
+    { personId: 'I0011', publicUrl: 'https://www.facebook.com/ingkharut.ruttanaopha.2024' },
+    { personId: 'S0004', publicUrl: 'https://www.facebook.com/phonsuda.12' },
+    { personId: 'I0034', publicUrl: 'https://www.facebook.com/xisury.thiphy.thn.thraphy' },
+    { personId: 'S0005', publicUrl: 'https://www.facebook.com/wachirapongbiw' },
+    { personId: 'S0006', publicUrl: 'https://www.facebook.com/zanmatoo' },
+    { personId: 'S0007', publicUrl: 'https://www.facebook.com/kanoksilp.jindadoungrut' }
   ]);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 58);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 66);
   for (const profile of [...linkedIn, ...github, ...facebook]) {
     assert.equal(profile.verificationStatus, 'verified');
     assert.equal(profile.consentStatus, 'pending');
@@ -727,7 +879,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 41);
+  assert.equal(portraits.length, 45);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);

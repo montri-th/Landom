@@ -863,6 +863,90 @@
         "quality": 78,
         "sourceOriginalPreservedPrivately": true
       }
+    },
+    {
+      "personId": "S0004",
+      "publicPath": "public/assets/people/S0004.jpg",
+      "mime": "image/jpeg",
+      "bytes": 15553,
+      "sha256": "45e94b2ce6624421ebec895163cc1411fa37cea71e2dae7b806473dafea5c459",
+      "identityVerification": "owner_exact_facebook_profile_assignment_and_public_profile_title_match",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 240,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true
+      }
+    },
+    {
+      "personId": "I0011",
+      "publicPath": "public/assets/people/I0011.jpg",
+      "mime": "image/jpeg",
+      "bytes": 8412,
+      "sha256": "d9384fd2964fbdcc3941bfe136b592116d0a24e43041bc29c7887c241bd41203",
+      "identityVerification": "owner_exact_facebook_profile_assignment_and_public_og_title_exact_full_name_match",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 240,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true
+      }
+    },
+    {
+      "personId": "S0005",
+      "publicPath": "public/assets/people/S0005.jpg",
+      "mime": "image/jpeg",
+      "bytes": 164804,
+      "sha256": "a79068222c94b892b4af8782751411c421bdaef489219514410596710f657992",
+      "identityVerification": "owner_supplied_named_portrait",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 800,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true
+      }
+    },
+    {
+      "personId": "S0006",
+      "publicPath": "public/assets/people/S0006.jpg",
+      "mime": "image/jpeg",
+      "bytes": 148857,
+      "sha256": "e673f299631e449c72d39a00d349ed53a0801948083a6dbd30e178601a85e422",
+      "identityVerification": "owner_supplied_named_portrait",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-24",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-24"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 800,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true
+      }
     }
   ]
 }

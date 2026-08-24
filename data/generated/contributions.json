@@ -167,8 +167,8 @@
     "workId": "work-citymeter-quakesafe-unresolved",
     "engagementId": "E0005",
     "role": {
-      "th": "Go-to-market",
-      "en": "Go-to-market"
+      "th": "Product development",
+      "en": "Product development"
     },
     "period": {
       "start": null,
@@ -257,7 +257,7 @@
     "workId": "work-ijji",
     "engagementId": "E0026",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -275,7 +275,7 @@
     "workId": "work-ijji",
     "engagementId": "E0028",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -293,7 +293,7 @@
     "workId": "work-ijji",
     "engagementId": "E0023",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -311,7 +311,7 @@
     "workId": "work-ijji",
     "engagementId": "E0024",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -329,7 +329,7 @@
     "workId": "work-ijji",
     "engagementId": "E0025",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -347,7 +347,7 @@
     "workId": "work-ijji",
     "engagementId": "E0027",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -365,7 +365,7 @@
     "workId": "work-ijji",
     "engagementId": "E0029",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -1724,7 +1724,7 @@
       "label": "2026"
     },
     "evidenceStatus": "owner_supplied",
-    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
     "evidenceNote": null
   },
   {
@@ -1742,7 +1742,7 @@
       "label": null
     },
     "evidenceStatus": "owner_supplied",
-    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
     "evidenceNote": null
   },
   {
@@ -1760,7 +1760,7 @@
       "label": "2025"
     },
     "evidenceStatus": "owner_supplied",
-    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
     "evidenceNote": null
   },
   {
@@ -1769,7 +1769,7 @@
     "workId": "work-ijji",
     "engagementId": "E0060",
     "role": {
-      "th": "Consulting Partner",
+      "th": "ที่ปรึกษาธุรกิจ",
       "en": "Consulting Partner"
     },
     "period": {
@@ -1778,7 +1778,385 @@
       "label": "2025"
     },
     "evidenceStatus": "owner_supplied",
-    "sourceRef": "owner_instruction_2026-08-23_detail_refinement",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0100",
+    "personId": "S0005",
+    "workId": "work-land-portfolio",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0101",
+    "personId": "S0005",
+    "workId": "work-citymeter-fire-monitoring",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0102",
+    "personId": "S0005",
+    "workId": "work-citymeter-population",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0103",
+    "personId": "S0005",
+    "workId": "work-citymeter-buildings",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0104",
+    "personId": "S0005",
+    "workId": "work-citymeter-factories",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0105",
+    "personId": "S0005",
+    "workId": "work-citymeter-healthcare-unresolved",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": "The owner supplied the Healthcare contribution name; no exact current CityMETER catalog module is asserted."
+  },
+  {
+    "contributionId": "C0106",
+    "personId": "S0005",
+    "workId": "work-department-water-resources",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0107",
+    "personId": "S0005",
+    "workId": "work-dwr-telemetry",
+    "engagementId": "E0061",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2019",
+      "end": null,
+      "label": "2019–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0108",
+    "personId": "S0006",
+    "workId": "work-citymeter-population",
+    "engagementId": "E0062",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2018",
+      "end": null,
+      "label": "2018–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0109",
+    "personId": "S0006",
+    "workId": "work-citymeter-buildings",
+    "engagementId": "E0062",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2018",
+      "end": null,
+      "label": "2018–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0110",
+    "personId": "S0006",
+    "workId": "work-land-portfolio",
+    "engagementId": "E0062",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2018",
+      "end": null,
+      "label": "2018–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0111",
+    "personId": "S0006",
+    "workId": "work-dwr-telemetry",
+    "engagementId": "E0062",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2018",
+      "end": null,
+      "label": "2018–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0112",
+    "personId": "S0007",
+    "workId": "work-citymeter-population",
+    "engagementId": "E0063",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2018",
+      "end": null,
+      "label": "2018–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0113",
+    "personId": "S0007",
+    "workId": "work-citymeter-buildings",
+    "engagementId": "E0063",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": "2018",
+      "end": null,
+      "label": "2018–present"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0114",
+    "personId": "I0034",
+    "workId": "work-citymeter-housing-estates",
+    "engagementId": "E0044",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0115",
+    "personId": "S0001",
+    "workId": "work-citymeter-condo-appraisal",
+    "engagementId": "E0031",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0116",
+    "personId": "S0001",
+    "workId": "work-citymeter-business-dynamics",
+    "engagementId": "E0031",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0117",
+    "personId": "S0001",
+    "workId": "work-citymeter-restaurants",
+    "engagementId": "E0031",
+    "role": {
+      "th": "Full-time staff",
+      "en": "Full-time staff"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0118",
+    "personId": "S0001",
+    "workId": "work-citymeter-quakesafe-unresolved",
+    "engagementId": "E0031",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Full-time"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0119",
+    "personId": "I0030",
+    "workId": "work-citymeter-disaster-historical-impacts",
+    "engagementId": "E0040",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "2026"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+    "evidenceNote": null
+  },
+  {
+    "contributionId": "C0120",
+    "personId": "I0003",
+    "workId": "work-citymeter-hat-yai-flood-2025-11",
+    "engagementId": "E0055",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": "Part-time"
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
     "evidenceNote": null
   }
 ]

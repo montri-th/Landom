@@ -846,16 +846,27 @@
   }
 
   .person-card-shell.is-reflowing {
-    animation: card-reflow 240ms var(--motion-ease-enter) var(--reflow-delay, 0ms) both;
+    animation: card-reflow 620ms linear var(--reflow-delay, 0ms) both;
   }
 
   @keyframes card-reflow {
-    from {
-      transform: translate(var(--reflow-x, 0), var(--reflow-y, 0));
+    0% {
+      transform: translate3d(var(--reflow-x, 0), var(--reflow-y, 0), 0) scale(0.995);
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    to {
-      transform: translate(0, 0);
+    72% {
+      transform: translate3d(0, 0, 0) scale(1);
+      animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    86% {
+      transform: translate3d(var(--reflow-settle-x, 0), var(--reflow-settle-y, 0), 0) scale(1.002);
+      animation-timing-function: ease-out;
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -1481,7 +1492,8 @@
 
   .timeline,
   .contribution-list,
-  .achievement-list {
+  .achievement-list,
+  .publication-list {
     display: grid;
     gap: var(--space-3);
     padding: 0;
@@ -1527,6 +1539,47 @@
     line-height: var(--leading-compact);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
+  }
+
+  .publication-link {
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-pill);
+    color: var(--text-primary);
+    transition: border-color var(--motion-duration-state) var(--motion-ease-state), color var(--motion-duration-state) var(--motion-ease-state), transform var(--motion-duration-feedback) var(--motion-ease-state);
+  }
+
+  .publication-link:hover {
+    border-color: var(--interaction-accent);
+    color: var(--interaction-accent);
+    transform: translateY(-1px);
+  }
+
+  .publication-copy {
+    display: grid;
+    min-width: 0;
+    gap: var(--space-1);
+  }
+
+  .publication-copy strong {
+    line-height: var(--leading-compact);
+  }
+
+  .publication-copy span {
+    color: var(--text-metadata);
+    font-size: var(--type-caption);
+    line-height: var(--leading-compact);
+  }
+
+  .publication-cue {
+    flex: 0 0 auto;
+    color: var(--interaction-accent);
+    font-size: 1.1rem;
   }
 
   .certificate-list {

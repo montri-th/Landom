@@ -320,6 +320,25 @@ const personAchievementRows = site.achievements.flatMap((achievement) =>
   }))
 );
 
+const publicationRows = (site.publications ?? []).map((publication) => ({
+  publication_id: publication.publicationId,
+  person_id: publication.personId,
+  title_th: publication.title.th,
+  title_en: publication.title.en,
+  outlet: publication.outlet,
+  volume: publication.volume,
+  year: publication.year,
+  doi: publication.doi,
+  public_url: publication.publicUrl,
+  owner_evidence_url: publication.ownerEvidenceUrl,
+  bibliographic_url: publication.bibliographicUrl,
+  relationship: publication.relationship,
+  scope: publication.scope,
+  verification_status: publication.verificationStatus,
+  publication_basis: publication.publicationBasis,
+  evidence_note: publication.evidenceNote
+}));
+
 function candidateFor(personId, platform) {
   if (normalizedInput) return rawSocialByKey.get(personId + '|' + platform)?.candidate_url_or_handle ?? '';
   const oldId = canonicalToOld.get(personId);
@@ -390,6 +409,15 @@ const contactRows = rawContacts.map((contact) => ({
   ...contact,
   person_id: sourceIdToCanonical.get(contact.person_id) ?? contact.person_id
 }));
+const contactPersonIds = new Set(contactRows.map((contact) => contact.person_id));
+for (const person of site.people) {
+  if (contactPersonIds.has(person.personId)) continue;
+  contactRows.push({
+    person_id: person.personId,
+    name: person.names.full.th || person.names.full.en || person.names.nickname.th || person.names.nickname.en || person.personId
+  });
+  contactPersonIds.add(person.personId);
+}
 const contactHeaders = contactRows.length
   ? Object.keys(contactRows[0])
   : ['person_id', 'name', 'email', 'phone', 'line_id', 'discord', 'instagram', 'facebook', 'tiktok', 'cv_file_ids', 'note'];
@@ -477,35 +505,36 @@ const enumRows = [
 ].map(([enum_group, value, label_th, label_en]) => ({ enum_group, value, label_th, label_en }));
 
 const qaRows = [
-  { metric: 'people_count', expected: 48, formula_value: '=COUNTA(people_registry!A2:A)', review_rule: 'ต้องเท่ากับ expected' },
+  { metric: 'people_count', expected: site.people.length, formula_value: '=COUNTA(people_registry!A2:A)', review_rule: 'ต้องเท่ากับ expected' },
   { metric: 'duplicate_person_ids', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((people_registry!A2:A<>"")*(COUNTIF(people_registry!A2:A,people_registry!A2:A)>1))))', review_rule: 'ต้องเป็น 0' },
   { metric: 'people_without_contribution', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((people_registry!A2:A<>"")*(COUNTIF(contributions!B2:B,people_registry!A2:A)=0))))', review_rule: 'ต้องเป็น 0' },
   { metric: 'orphan_engagement_person_ids', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((engagements!B2:B<>"")*(COUNTIF(people_registry!A2:A,engagements!B2:B)=0))))', review_rule: 'ต้องเป็น 0' },
   { metric: 'invalid_person_id_format', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((people_registry!A2:A<>"")*(REGEXMATCH(people_registry!A2:A,"^[SPI][0-9]{4}$")=FALSE))))', review_rule: 'ต้องเป็น 0' },
   { metric: 'oat_land_portfolio_and_lead2loan', expected: 2, formula_value: '=COUNTUNIQUE(FILTER(contributions!C2:C,contributions!B2:B="S0001",REGEXMATCH(contributions!C2:C,"work-(land-portfolio|lead2loan)")))', review_rule: 'ต้องเป็น 2 work IDs แยกกัน' },
-  { metric: 'pending_profile_consent', expected: 48, formula_value: '=COUNTIF(people_registry!S2:S,"pending")', review_rule: 'ค่าปัจจุบันที่ audit แล้ว; ลดลงเมื่อมี individual consent จริงเท่านั้น ไม่เปลี่ยนเพราะ owner authorization รายการย่อย' },
-  { metric: 'publishable_portraits', expected: 41, formula_value: '=COUNTIF(assets!Q2:Q,"publishable")', review_rule: 'ค่าปัจจุบันที่ผ่าน gate; อีก 7 คนใช้ชื่อเล่นเต็มเป็น avatar fallback จนกว่าจะมีภาพที่ยืนยันได้' },
+  { metric: 'pending_profile_consent', expected: site.people.filter((person) => person.publication.consentStatus === 'pending').length, formula_value: '=COUNTIF(people_registry!S2:S,"pending")', review_rule: 'ค่าปัจจุบันที่ audit แล้ว; ลดลงเมื่อมี individual consent จริงเท่านั้น ไม่เปลี่ยนเพราะ owner authorization รายการย่อย' },
+  { metric: 'publishable_portraits', expected: site.assets.filter((asset) => asset.publicationStatus === 'publishable').length, formula_value: '=COUNTIF(assets!Q2:Q,"publishable")', review_rule: 'ค่าปัจจุบันที่ผ่าน gate; คนที่ยังไม่มีภาพที่ยืนยันได้ใช้ชื่อเล่นเต็มเป็น avatar fallback' },
   { metric: 'core_cooperative_education_count', expected: 6, formula_value: '=COUNTIF(engagements!Q2:Q,"cooperative_education")', review_rule: 'เว็บหลักมี 6 คน: I0003, I0030, I0031, I0034, I0036, I0039; ผู้เข้าร่วมรายที่ 7 อยู่ Shortlisted recruitment จนกว่าจะมี contribution' },
   { metric: 'non_authorized_core_coop', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((engagements!Q2:Q="cooperative_education")*(REGEXMATCH(engagements!B2:B,"^(I0003|I0030|I0031|I0034|I0036|I0039)$")=FALSE))))', review_rule: 'ต้องเป็น 0' },
-  { metric: 'profile_statements', expected: 48, formula_value: '=COUNTA(profile_statements!A2:A)', review_rule: 'ทุก core person ต้องมี current statement หนึ่งรายการ' },
-  { metric: 'source_backed_profile_copy', expected: 48, formula_value: '=COUNTIF(people_registry!Q2:Q,"source_backed_placeholder")', review_rule: 'ครบ 48 คนและต้องมี provenance ที่แยก first-person ออกจาก factual fallback' },
+  { metric: 'profile_statements', expected: site.people.length, formula_value: '=COUNTA(profile_statements!A2:A)', review_rule: 'ทุก governed person ต้องมี current statement หนึ่งรายการ' },
+  { metric: 'source_backed_profile_copy', expected: site.people.filter((person) => person.bio.status === 'source_backed_placeholder').length, formula_value: '=COUNTIF(people_registry!Q2:Q,"source_backed_placeholder")', review_rule: 'ต้องครบทุก governed person และมี provenance ที่แยก first-person ออกจาก factual fallback' },
   { metric: 'owner_pending_profile_copy', expected: 0, formula_value: '=COUNTIF(people_registry!Q2:Q,"owner_pending")', review_rule: 'release นี้ต้องเป็น 0' },
   { metric: 'first_person_profile_statements', expected: 25, formula_value: '=COUNTIF(profile_statements!G2:G,"first_person_application")', review_rule: 'จับคู่ core roster แบบ exact และรอ video review' },
-  { metric: 'factual_fallback_profile_statements', expected: 23, formula_value: '=COUNTIF(profile_statements!G2:G,"factual_fallback")', review_rule: 'ใช้เฉพาะ role, education และ verified work; ห้ามใช้ reviewer inference' },
+  { metric: 'factual_fallback_profile_statements', expected: site.people.filter((person) => person.bio.sourceType === 'factual_fallback').length, formula_value: '=COUNTIF(profile_statements!G2:G,"factual_fallback")', review_rule: 'ใช้เฉพาะ role, education และ verified work; ห้ามใช้ reviewer inference' },
   { metric: 'staff_degree_programs', expected: 4, formula_value: '=COUNTIFS(education!B2:B,"S*",education!L2:L,"<>")', review_rule: 'ชื่อ degree program ครบ 4 staff' },
   { metric: 'verified_completed_staff_degrees', expected: 4, formula_value: '=COUNTIFS(education!B2:B,"S*",education!R2:R,"completed",education!S2:S,TRUE)', review_rule: 'owner ยืนยัน completed + personalAwardVerified ครบ 4 staff' }
 ];
 
 const readmeRows = [
-  { topic: 'ชื่อชุดข้อมูล', detail: 'Landom — People, Roles & Contributions Registry v3.4 (24 Aug 2026)' },
+  { topic: 'ชื่อชุดข้อมูล', detail: 'Landom — People, Roles & Contributions Registry v3.4 (25 Aug 2026)' },
   { topic: 'หลักการ', detail: 'หนึ่งคนหนึ่ง person_id; หลายช่วงบทบาทอยู่ใน engagements; หลายผลงานอยู่ใน contributions' },
   { topic: 'person_id', detail: 'รูปแบบ S0001 / P0001 / I0001 จัดตามประเภท ณ migration 2026-08-23 และ freeze หลังออกเลข' },
   { topic: 'หลายบทบาท', detail: 'โอ๊ตใช้ S0001 เดียวสำหรับ Intern → Part-time → Full-time' },
-  { topic: 'การศึกษา', detail: 'Card ใช้ชื่อย่อ program + institution; detail ใช้ชื่อทางการ; staff ทั้ง 4 คนแสดง degree + field + institution โดย release นี้ owner ยืนยัน completed และ personalAwardVerified แล้ว' },
+  { topic: 'การศึกษา', detail: 'Card ใช้ชื่อย่อ program + institution; detail ใช้ชื่อทางการ; staff 4 คนเดิมมี degree + field + institution ที่ owner ยืนยัน completed และ personalAwardVerified แล้ว ส่วน staff ใหม่ 3 คนยังเว้นข้อมูลการศึกษารอหลักฐาน' },
   { topic: 'ฝึกงาน/สหกิจศึกษา', detail: 'ใช้ academic_placement_type ต่อ engagement เท่านั้น; เว็บหลักมีสหกิจ 6 IDs ที่ owner ยืนยัน ส่วนผู้เข้าร่วมรายที่ 7 อยู่ Shortlisted recruitment รอยืนยันการเริ่มงานและ contribution' },
   { topic: 'ผลงาน', detail: 'Land Portfolio และ Lead2Loan เป็นคนละ work_id; ทุกคนมี contribution อย่างน้อย 1 รายการ' },
   { topic: 'รางวัล', detail: 'Hack Land Value / CityCell อยู่ใน achievements และเชื่อมผู้รับรางวัลผ่าน person_achievements' },
-  { topic: 'bio', detail: 'ครบ 48 profiles: 25 ข้อความ paraphrase จาก first-person ที่จับคู่ roster ได้ exact และ 23 factual fallback ที่สังเคราะห์แบบ bounded จาก role, education และ verified work เท่านั้น ทุกข้อความเป็น source_backed_placeholder และรอ candidate/video review; ห้ามเผย raw application, private recruitment/application Sheet ID/range, contact หรือ reviewer data' },
+  { topic: 'bio', detail: 'ครบ 51 profiles: 25 ข้อความ paraphrase จาก first-person ที่จับคู่ roster ได้ exact และ 26 factual fallback ที่สังเคราะห์แบบ bounded จาก role, education และ verified work เท่านั้น โดยคงข้อความเดิม 48 คนไว้และเพิ่มข้อความข้อเท็จจริงสำหรับ staff ใหม่ 3 คน ทุกข้อความเป็น source_backed_placeholder และรอ candidate/video review; ห้ามเผย raw application, private recruitment/application Sheet ID/range, contact หรือ reviewer data' },
+  { topic: 'publication', detail: 'external_publications แยกจาก works และ contributions โดยเด็ดขาด; ใช้เฉพาะผลงานตีพิมพ์ภายนอกที่มี identity match, bibliographic evidence และ owner-authorized public link' },
   { topic: 'recruitment', detail: 'ผู้สมัครที่ไม่อยู่ใน Landom registry เก็บใน private Shortlisted recruitment เท่านั้น; ห้ามนำ contact, CV, video URL หรือ reviewer note เข้า public projection' },
   { topic: 'social', detail: 'ลิงก์ public profile ที่ตรวจ identity แล้วเผยแพร่ได้ด้วย individual_consent หรือ owner_authorized_public_profile_link; basis หลังไม่ใช่ consent ของเจ้าตัว' },
   { topic: 'photo', detail: 'portrait ต้องผ่าน identity verification + rights และมี individual consent หรือ owner_authorized_public_profile_portrait พร้อมไฟล์ local ที่อนุมัติแล้ว; ห้ามเผย CDN source URL' },
@@ -580,6 +609,14 @@ const tabs = {
   contributions: tab(['contribution_id', 'person_id', 'work_id', 'engagement_id', 'role_th', 'role_en', 'period_start', 'period_end', 'period_label', 'evidence_status', 'source_ref', 'evidence_note'], contributionRows),
   achievements: tab(['achievement_id', 'title_th', 'title_en', 'result_th', 'result_en', 'organizer_th', 'organizer_en', 'awarded_on', 'date_verification_status', 'work_id', 'evidence_status', 'evidence_url', 'evidence_note'], achievementRows),
   person_achievements: tab(['person_achievement_id', 'achievement_id', 'person_id'], personAchievementRows),
+  external_publications: tab(['publication_id', 'person_id', 'title_th', 'title_en', 'outlet', 'volume', 'year', 'doi', 'public_url', 'owner_evidence_url', 'bibliographic_url', 'relationship', 'scope', 'verification_status', 'publication_basis', 'evidence_note'], publicationRows, {
+    validations: {
+      L: ['coauthor'],
+      M: ['external_publication_not_landometer_contribution'],
+      N: ['owner_supplied_with_bibliographic_match'],
+      O: ['owner_authorized_external_publication_link']
+    }
+  }),
   social_profiles: tab(['social_profile_id', 'person_id', 'platform', 'candidate_url_or_handle', 'public_url', 'candidate_status', 'verification_status', 'consent_status', 'publication_basis', 'owner_approval_status', 'owner_approved_at', 'owner_approval_scope', 'owner_approval_source_ref', 'publication_status', 'source_note'], socialRows, {
     validations: {
       F: ['candidate_present', 'candidate_missing'],

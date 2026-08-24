@@ -7,9 +7,11 @@
   "required": [
     "contractVersion",
     "sourceBasis",
+    "addedPeople",
     "institutionLinkedInProfiles",
     "programLinkedInProfiles",
     "addedPublicSocialProfiles",
+    "externalPublications",
     "programOverrides",
     "educationProgramOverrides",
     "educationCardOverrides",
@@ -27,9 +29,11 @@
   "properties": {
     "contractVersion": { "const": "1.1" },
     "sourceBasis": { "type": "string", "minLength": 1 },
+    "addedPeople": { "type": "array", "items": { "$ref": "#/$defs/addedPerson" } },
     "institutionLinkedInProfiles": { "type": "array", "items": { "$ref": "#/$defs/institutionLinkedInProfile" } },
     "programLinkedInProfiles": { "type": "array", "items": { "$ref": "#/$defs/programLinkedInProfile" } },
     "addedPublicSocialProfiles": { "type": "array", "items": { "$ref": "#/$defs/addedPublicSocialProfile" } },
+    "externalPublications": { "type": "array", "items": { "$ref": "#/$defs/externalPublication" } },
     "programOverrides": { "type": "array", "items": { "$ref": "#/$defs/programOverride" } },
     "educationProgramOverrides": { "type": "array", "items": { "$ref": "#/$defs/educationProgramOverride" } },
     "educationCardOverrides": { "type": "array", "items": { "$ref": "#/$defs/educationCardOverride" } },
@@ -74,6 +78,20 @@
     },
     "localizedMap": { "type": "object", "additionalProperties": { "$ref": "#/$defs/localized" } },
     "nullableDate": { "type": ["string", "null"], "pattern": "^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$" },
+    "addedPerson": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "fullName", "nickname", "currentStatus", "firstJoined", "migrationClassification", "verificationStatus"],
+      "properties": {
+        "personId": { "$ref": "#/$defs/personId" },
+        "fullName": { "$ref": "#/$defs/localized" },
+        "nickname": { "$ref": "#/$defs/localized" },
+        "currentStatus": { "enum": ["active", "alumni"] },
+        "firstJoined": { "$ref": "#/$defs/nullableDate" },
+        "migrationClassification": { "const": "full_time" },
+        "verificationStatus": { "const": "owner_supplied" }
+      }
+    },
     "ownerApproval": {
       "type": "object",
       "additionalProperties": false,
@@ -124,6 +142,28 @@
         "ownerApproval": { "$ref": "#/$defs/ownerApproval" }
       }
     },
+    "externalPublication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publicationId", "personId", "title", "outlet", "volume", "year", "doi", "publicUrl", "ownerEvidenceUrl", "bibliographicUrl", "relationship", "scope", "verificationStatus", "publicationBasis", "evidenceNote"],
+      "properties": {
+        "publicationId": { "type": "string", "pattern": "^PUB\\d{4}$" },
+        "personId": { "$ref": "#/$defs/personId" },
+        "title": { "$ref": "#/$defs/localized" },
+        "outlet": { "type": "string", "minLength": 1 },
+        "volume": { "type": "string", "minLength": 1 },
+        "year": { "type": "integer", "minimum": 1900, "maximum": 2100 },
+        "doi": { "type": "string", "pattern": "^10\\.[0-9]{4,9}/[-._;()/:A-Z0-9]+$" },
+        "publicUrl": { "type": "string", "format": "uri" },
+        "ownerEvidenceUrl": { "type": "string", "format": "uri" },
+        "bibliographicUrl": { "type": "string", "format": "uri" },
+        "relationship": { "const": "coauthor" },
+        "scope": { "const": "external_publication_not_landometer_contribution" },
+        "verificationStatus": { "const": "owner_supplied_with_bibliographic_match" },
+        "publicationBasis": { "const": "owner_authorized_external_publication_link" },
+        "evidenceNote": { "type": "string", "minLength": 1 }
+      }
+    },
     "period": {
       "type": "object",
       "additionalProperties": false,
@@ -157,6 +197,7 @@
         "sequenceHint": { "type": "integer", "minimum": 1 },
         "start": { "type": ["string", "null"], "format": "date" },
         "end": { "type": ["string", "null"], "format": "date" },
+        "status": { "enum": ["ongoing", "completed"] },
         "verificationStatus": { "type": "string", "minLength": 1 },
         "evidenceNote": { "type": "string", "minLength": 1 }
       }
@@ -195,6 +236,8 @@
       "required": ["workId", "parentProduct", "names", "type", "scopeLayer", "authorityStatus", "evidenceNote", "aliases"],
       "properties": {
         "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" },
+        "moduleSlug": { "type": "string", "pattern": "^dataset-[a-z0-9-]+$" },
+        "evidenceUrl": { "type": "string", "format": "uri" },
         "parentProduct": { "type": "string", "minLength": 1 },
         "names": { "$ref": "#/$defs/localized" },
         "type": { "type": "string", "minLength": 1 },
@@ -213,14 +256,16 @@
         "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" },
         "engagementId": { "type": "string", "pattern": "^E\\d{4}$" },
         "role": { "$ref": "#/$defs/localized" },
-        "period": { "$ref": "#/$defs/period" }
+        "period": { "$ref": "#/$defs/period" },
+        "sourceRef": { "type": "string", "minLength": 1 },
+        "evidenceNote": { "type": "string", "minLength": 1 }
       }
     },
     "contributionRoleOverride": {
       "type": "object",
       "additionalProperties": false,
       "required": ["workId", "role"],
-      "properties": { "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" }, "role": { "$ref": "#/$defs/localized" } }
+      "properties": { "personId": { "$ref": "#/$defs/personId" }, "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" }, "role": { "$ref": "#/$defs/localized" } }
     }
   }
 }

@@ -245,6 +245,9 @@ export function validateDataContract(data) {
   const engagementsById = new Map(data.engagements.map((engagement) => [engagement.engagementId, engagement]));
   const worksById = new Map(data.works.map((work) => [work.workId, work]));
   const assetsById = new Map(data.assets.map((asset) => [asset.assetId, asset]));
+  const peopleWithPrimaryEducation = new Set(data.educationRecords
+    .filter((record) => record.isPrimary === true)
+    .map((record) => record.personId));
 
   const identityOwners = new Map();
   for (const person of data.people) {
@@ -280,8 +283,11 @@ export function validateDataContract(data) {
         errors.push(`Person ${person.personId} canonical ID is not frozen across future role changes.`);
       }
       if (category !== 'part_time') {
+        const ownerDetailRequiredWithoutPrimaryEducation =
+          normalizeText(valueAt(person.educationDisplay ?? {}, ['verificationStatus'])) === 'owner_detail_required' &&
+          !peopleWithPrimaryEducation.has(person.personId);
         for (const field of ['card.th', 'card.en', 'detail.th', 'detail.en']) {
-          if (!valueAt(person.educationDisplay ?? {}, [field])) {
+          if (!ownerDetailRequiredWithoutPrimaryEducation && !valueAt(person.educationDisplay ?? {}, [field])) {
             errors.push(`Person ${person.personId} is missing role-aware educationDisplay.${field}.`);
           }
         }
@@ -512,6 +518,36 @@ async function validateUi(publishRoot, errors) {
   if (!/function animateCardReflow\b/.test(sourceText) || !/reducedMotionQuery/.test(sourceText)) {
     errors.push('Inline profile expansion must preserve orientation with reduced-motion-aware reflow behavior.');
   }
+  const masonryRenderer = sourceText.match(/function layoutMasonry\b[\s\S]*?(?=function scheduleMasonryLayout\b)/)?.[0] ?? '';
+  if (!/columnHeights\[candidate\]\s*<\s*columnHeights\[column\]/.test(masonryRenderer) || /storedColumn/.test(masonryRenderer)) {
+    errors.push('Masonry must deterministically recompute the shortest column so the first row shares one top edge and expansion cannot hide cards.');
+  }
+  const reflowRenderer = sourceText.match(/function animateCardReflow\b[\s\S]*?(?=function setCardExpanded\b)/)?.[0] ?? '';
+  for (const token of ['originIndex', 'deltaX', 'deltaY', 'rippleIndex', 'fill: "backwards"']) {
+    if (!reflowRenderer.includes(token)) errors.push(`Inline profile reflow must preserve full FLIP ripple behavior: ${token}.`);
+  }
+  const modelBuilder = sourceText.match(/function buildModels\b[\s\S]*?(?=function makeSearchText\b)/)?.[0] ?? '';
+  if (!/state\.models\.sort\(\(a, b\) => Number\(b\.statusKey === "active"\) - Number\(a\.statusKey === "active"\)\)/.test(modelBuilder) || /nickname\.localeCompare/.test(modelBuilder)) {
+    errors.push('People must sort current-first while preserving source order inside the current and alumni groups.');
+  }
+  const filterCountRenderer = sourceText.match(/function updateFilterCount\b[\s\S]*?(?=function syncFilterState\b)/)?.[0] ?? '';
+  if (!/setText\(elements\.filterOpenLabel, message\("filter"\)\)/.test(filterCountRenderer)) {
+    errors.push('The compact filter label must not repeat the active-filter count already shown by its badge.');
+  }
+  if (!sourceText.includes('return "ที่ปรึกษาธุรกิจ";')) {
+    errors.push('Thai Consulting Partner copy must use the approved “ที่ปรึกษาธุรกิจ” label.');
+  }
+  const publicationRenderer = sourceText.match(/function publicationsMarkup\b[\s\S]*?(?=function socialIconMarkup\b)/)?.[0] ?? '';
+  const personDetailRenderer = sourceText.match(/function personDetailMarkup\b[\s\S]*?(?=function cardShellFor\b)/)?.[0] ?? '';
+  for (const token of ['external_publication_not_landometer_contribution', 'owner_supplied_with_bibliographic_match', 'owner_authorized_external_publication_link', 'safeExternalUrl']) {
+    if (!sourceText.includes(token)) errors.push(`External publications must retain their strict publication governance boundary: ${token}.`);
+  }
+  if (!/publicationsMarkup\(model\)/.test(personDetailRenderer) || !/publication-link/.test(publicationRenderer)) {
+    errors.push('Governed external publications must render as minimal links in expanded person detail.');
+  }
+  if (!/\.publication-link\s*\{[^}]*border-radius:\s*var\(--radius-pill\)/s.test(sourceText)) {
+    errors.push('External publication actions must use the design-system capsule shape.');
+  }
   if (!/owner_authorized_public_certificate/.test(sourceText) || !/safeCertificateUrl/.test(sourceText) || !/certificate-download/.test(allUiText)) {
     errors.push('Certificate previews must use the governed local-asset contract and offer a high-resolution download.');
   }
@@ -536,17 +572,27 @@ async function validateUi(publishRoot, errors) {
     errors.push('Engagement-history chips must stay flat and separate from the current-role badge.');
   }
   const cardRenderer = sourceText.match(/function renderCard\b[\s\S]*?(?=function filteredModels\b)/)?.[0] ?? '';
+  if (/publication/i.test(cardRenderer)) {
+    errors.push('External publications must never appear in the collapsed card or Landometer work preview.');
+  }
   if ((cardRenderer.match(/role-badge/g) ?? []).length !== 1 || !cardRenderer.includes('engagementHistoryMarkup(model)')) {
     errors.push('Each person card must keep one current-role badge and a separate repeat-engagement history row.');
   }
   const educationRenderer = sourceText.match(/function educationFor\b[\s\S]*?(?=function normalizedBoolean\b)/)?.[0] ?? '';
   const educationSummaryRenderer = sourceText.match(/function educationSummary\b[\s\S]*?(?=function programCode\b)/)?.[0] ?? '';
+  const educationDetailRenderer = sourceText.match(/function educationDetailMarkup\b[\s\S]*?(?=function roleHistoryMarkup\b)/)?.[0] ?? '';
   if (!/shortProgram\s*=\s*degreeShort\s*\|\|\s*\(cardHasProgramAndInstitution\s*\?\s*cardParts\[0\]/s.test(educationRenderer) ||
       !/shortInstitution\s*=\s*\(cardHasProgramAndInstitution\s*\?\s*cardParts\.slice/s.test(educationRenderer)) {
     errors.push('Governed educationDisplay.card labels must take priority over canonical dimension abbreviations at runtime.');
   }
   if (!educationRenderer.includes('cardDisplay,') || !educationSummaryRenderer.includes('model.education.cardDisplay')) {
     errors.push('Person-specific governed education card labels must render intact, including labels without a middle-dot separator.');
+  }
+  if (!educationRenderer.includes('ownerDetailRequiredWithoutPrimaryEducation') ||
+      !educationRenderer.includes('hidden: ownerDetailRequiredWithoutPrimaryEducation') ||
+      !educationSummaryRenderer.includes('model.education.hidden') ||
+      !educationDetailRenderer.includes('model.education.hidden')) {
+    errors.push('Owner-detail-required education must stay hidden only when no primary education record exists.');
   }
   const bioGate = sourceText.match(/function governedBioIsVisible\b[\s\S]*?(?=function buildModels\b)/)?.[0] ?? '';
   for (const field of [

@@ -1,0 +1,22 @@
+[
+  {
+    "publicationId": "PUB0001",
+    "personId": "S0007",
+    "title": {
+      "th": "Neural Learning With Recoil Behavior in Hyperellipsoidal Structure",
+      "en": "Neural Learning With Recoil Behavior in Hyperellipsoidal Structure"
+    },
+    "outlet": "IEEE Access",
+    "volume": "8",
+    "year": 2020,
+    "doi": "10.1109/ACCESS.2020.3003531",
+    "publicUrl": "https://doi.org/10.1109/ACCESS.2020.3003531",
+    "ownerEvidenceUrl": "https://scispace.com/pdf/neural-learning-with-recoil-behavior-in-hyperellipsoidal-1iasnp6d0w.pdf",
+    "bibliographicUrl": "https://dblp.org/rec/journals/access/JindadoungrutPL20",
+    "relationship": "coauthor",
+    "scope": "external_publication_not_landometer_contribution",
+    "verificationStatus": "owner_supplied_with_bibliographic_match",
+    "publicationBasis": "owner_authorized_external_publication_link",
+    "evidenceNote": "The owner supplied the SciSpace paper link for Kanoksilp Jindadoungrut; the title, IEEE Access volume, year and DOI match the public bibliographic record. This record is external publication evidence and is never projected as a Landometer work or contribution."
+  }
+]

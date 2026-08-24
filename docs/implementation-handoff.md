@@ -38,7 +38,7 @@ Recommended sheet tabs and keys:
 | Tab | Primary key | Important relations / controls |
 |---|---|---|
 | `people_registry` | `person_id` | One ID only; names, core publication state, materialized current bio, `current_statement_id` |
-| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; v3.4 has 48 current statements |
+| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; v3.4 has 51 current statements |
 | `engagements` | `engagement_id` | `person_id`, role type, start/end/cohort, explicit academic placement type |
 | `institutions` | `institution_id` | Official TH/EN names, approved short labels, nullable exact official LinkedIn URL and verification status |
 | `programs` | `program_id` | `institution_id`, official TH/EN names, approved short labels, nullable exact official LinkedIn URL and verification status |
@@ -46,6 +46,7 @@ Recommended sheet tabs and keys:
 | `works` | `work_id` | Canonical work/product name plus localized catalog route and link evidence scope |
 | `contributions` | `contribution_id` | `person_id`, `work_id`, optional matching `engagement_id` |
 | `achievements` | `achievement_id` | Recipient person IDs, optional related work, public evidence URL |
+| `external_publications` | `publication_id` | Exact author match, bibliographic evidence and owner-authorized public link; never a Landometer work or contribution |
 | `social_profiles` | `social_profile_id` | Platform, private candidate, public URL, verification, consent, publication basis, scoped owner approval |
 | `assets` | `asset_id` | Person, governed local path, verification, consent, rights, publication basis, owner approval, hash |
 
@@ -90,7 +91,7 @@ For role-aware education display:
 - Inline expanded card: official full institution/program labels.
 - FDI program display copy is exact: `Full-stack Developer Intern, FDI` in both UI locales.
 - The Thai short label for Computer Engineering is `วิศวกรรมคอมพิวเตอร์`, not `วศ.คอมพิวเตอร์`.
-- A degree label such as `B.Eng., Computer Engineering` requires both standardized official-program nomenclature and recorded person-level status. The current release carries explicit directory-owner confirmation for `degree.awardStatus=completed` and `degree.personalAwardVerified=true` on all four staff records. Future changes must preserve this separation and may not infer an earned award from a curriculum title alone.
+- A degree label such as `B.Eng., Computer Engineering` requires both standardized official-program nomenclature and recorded person-level status. The current release carries explicit directory-owner confirmation for `degree.awardStatus=completed` and `degree.personalAwardVerified=true` on four existing staff education records. S0005–S0007 have no supplied education evidence, so their education section stays absent rather than inventing or displaying a pending credential. Future changes must preserve this separation and may not infer an earned award from a curriculum title alone.
 - `academicPlacementType` is required on every engagement: `internship`, `cooperative_education`, or `not_applicable`. It is never parsed from `cohortLabel`. The public co-op set is exactly `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, and `I0039`; Q stays private until a started engagement and contribution are verified.
 - If a required program or qualification is still unknown, show an explicit pending-confirmation label beside the verified institution; never repeat an institution name as though it were the program.
 
@@ -135,7 +136,9 @@ Browser tabs use the exact DS v0.9.0 transparent compact symbol at `https://mont
 
 ## 6. Social and image approval gate
 
-Current release behavior, following the owner instruction for this directory, renders all 48 core profile records with bilingual `source_backed_placeholder` copy. Twenty-five records use concise paraphrases of first-person application answers with exact roster matches. Twenty-three use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. This is not individual approval of final copy. Raw application text, private recruitment/application Sheet IDs or ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection. The authorized core-registry Sheet ID may remain only in `meta.source` as registry provenance.
+Current release behavior, following the owner instruction for this directory, renders all 51 core profile records with bilingual `source_backed_placeholder` copy. The existing 48 profile texts remain byte-for-byte unchanged. Twenty-five records use concise paraphrases of first-person application answers with exact roster matches. Twenty-six use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence, including three bounded new-staff profiles. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. This is not individual approval of final copy. Raw application text, private recruitment/application Sheet IDs or ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection. The authorized core-registry Sheet ID may remain only in `meta.source` as registry provenance.
+
+`external_publications` is a separate evidence dimension. Each row needs an exact person match, title/outlet/year/DOI bibliographic verification, and an owner-authorized public-link basis. Never project an external paper into `works`, `contributions`, an engagement responsibility, or a Landometer product claim.
 
 Keep profile copy versioned in `profile_statements`; do not overwrite an old statement when a person's video transcript is reviewed. Add a new statement, link `supersedes_statement_id`, then move `people_registry.current_statement_id` after review. The separate private **Shortlisted recruitment** workbook owns unmatched applicants, contacts, CV/video URLs, screening stages, and reviewer notes; none of those fields belong in the repository or public projection.
 

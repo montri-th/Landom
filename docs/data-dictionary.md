@@ -59,6 +59,7 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `works` | ผลิตภัณฑ์ โมดูล โครงการ งานวิจัย หรือ deliverable |
 | `contributions` | ความสัมพันธ์คน–ผลงาน–ช่วงบทบาท |
 | `achievements` | รางวัลหรือความสำเร็จที่มีผู้รับหนึ่งคนหรือหลายคน |
+| `publications` | ผลงานตีพิมพ์ภายนอกที่ exact-match ผู้เขียนและผ่าน bibliographic verification; ไม่ใช่งาน Landometer |
 | `socialProfiles` | ช่องทางสังคมพร้อม publication gate |
 | `assets` | ภาพ profile พร้อม consent/verification/rights gate |
 | `certificates` | ใบประกาศที่ยืนยันแล้ว พร้อม local path/hash, printed facts, work linkage และ owner-authorization gate |
@@ -92,11 +93,11 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `bio.ownerApproval` | object/null | owner authorization ที่มีวัน ขอบเขต และ source reference; ไม่ใช่ individual consent |
 | `publication.consentStatus` | enum | `pending`, `granted`, `denied` |
 
-สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บแสดง core profile ทั้ง 48 คนพร้อมข้อความสองภาษาแบบ `source_backed_placeholder` โดย 25 คนเป็น paraphrase จากคำตอบ first-person ที่จับคู่ full name กับ roster ได้ exact และ 23 คนเป็น `factual_fallback` ที่สังเคราะห์อย่างจำกัดจาก role, education และ verified work ที่ reconcile แล้ว ทั้งสองกลุ่มยังรอวิดีโอ/เจ้าตัวทบทวน (`pending_candidate_video_review`) และต้องเก็บ provenance แยกกัน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลักและไม่ถูกเปลี่ยนเป็น `granted` เพราะ owner authorization ห้ามเผย raw application, Sheet ID/range, contact, คะแนน หรือ reviewer data และห้ามทำ inference เกิน `evidenceScope`
+สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บแสดง core profile ทั้ง 51 คนพร้อมข้อความสองภาษาแบบ `source_backed_placeholder` โดยข้อความเดิม 48 คนคงเดิมแบบ byte-for-byte, 25 คนเป็น paraphrase จากคำตอบ first-person ที่จับคู่ full name กับ roster ได้ exact และ 26 คนเป็น `factual_fallback` ที่สังเคราะห์อย่างจำกัดจาก role, education และ verified work ที่ reconcile แล้ว รวม factual profile ของ staff ใหม่ 3 คน ทั้งสองกลุ่มยังรอวิดีโอ/เจ้าตัวทบทวน (`pending_candidate_video_review`) และต้องเก็บ provenance แยกกัน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลักและไม่ถูกเปลี่ยนเป็น `granted` เพราะ owner authorization ห้ามเผย raw application, Sheet ID/range, contact, คะแนน หรือ reviewer data และห้ามทำ inference เกิน `evidenceScope`
 
 ### profile_statements ใน Google Sheet
 
-ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Release v3.4 ต้องมี current statement ครบ 48 คน: first-person 25 และ factual fallback 23
+ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Release v3.4 ต้องมี current statement ครบ 51 คน: first-person 25 และ factual fallback 26
 
 ## institutions, programs และ educationRecords
 
@@ -179,6 +180,10 @@ Land Portfolio กับ Lead2Loan เป็นคนละ `workId`; Land Portf
 - Pat (`S0003`): FDI → Part-time → Full-time
 - Grace (`I0018`): MSI 2025 → PDI 2026
 - Dada (`I0029`): Impvest 2025 → MSI 2026; ใบ certificate สะกดนามสกุลต่างจาก registry เล็กน้อยจึงคง canonical registry spelling และติด owner-review note
+- Team (`I0033`): PDI 2026 สิ้นสุด 31 July 2026 และมีสถานะ alumni
+- Biw (`S0005`): Full-time 2019–ปัจจุบัน; Nat (`S0006`) และ Pote (`S0007`): Full-time 2018–ปัจจุบัน
+
+S0005–S0007 ยังไม่มี education evidence ที่เจ้าของส่งมา จึงไม่มี `educationRecord` และไม่แสดง degree/มหาวิทยาลัยแทนด้วยค่าที่เดา; `educationDisplay.verificationStatus=owner_detail_required` ใช้เพื่อบอกขอบเขตข้อมูลและ UI ต้องซ่อนส่วนการศึกษาในกรณีนี้
 
 สหกิจศึกษาใน public core มีเพียง `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, `I0039` ส่วนผู้เข้าร่วมรายที่ 7 ตาม owner instruction ยังอยู่ใน private Shortlisted recruitment เพราะยังไม่มี started engagement และ contribution ที่ยืนยัน ห้ามสร้าง public person/work เพื่อให้จำนวนครบ
 
@@ -213,7 +218,7 @@ Locale Insight Intelligence Layer อยู่ใน `shared_landometer` แต�
 | `personId` | FK → people |
 | `workId` | FK → works |
 | `engagementId` | FK → engagements หรือ null เมื่อผูกช่วงบทบาทไม่ได้อย่างปลอดภัย |
-| `role.th/en` | FDI=`Software development`, PDI=`Product development`, MSI=`Go-to-market`; CityCell=`Team member`; program อื่นคง role ตามหลักฐานและห้ามยกระดับเอง |
+| `role.th/en` | FDI=`Software development`, PDI=`Product development`, MSI=`Go-to-market`; IMP ใช้ TH=`ที่ปรึกษาธุรกิจ`, EN=`Consulting Partner`; CityCell=`Team member`; program อื่นคง role ตามหลักฐานและห้ามยกระดับเอง |
 | `period` | start/end/label ตาม precision ของหลักฐาน |
 | `evidenceStatus` | ดูตารางด้านล่าง |
 | `sourceRef` | แหล่งข้อมูลระดับ record |
@@ -257,8 +262,9 @@ Evidence status:
 ข้อยกเว้น:
 
 - “Shopping centers and venues” ถูก map เฉพาะ Shopping Centers; ไม่รวม venues จนกว่าจะมีขอบเขตแยก
-- Flood forecasting ยังไม่ map เพราะ official modules แยก DWR forecast-depth กับ Google flash-flood risk
-- CityScan, CityMETER Playbook for FDI, DWR Runoff, GISTDA Urban Flood, `CityMETER: RUGON` และ CityCell เป็น product/partner-specific deliverable ไม่ใช่ canonical CityMETER dataset module
+- Earth flash-flood work map แบบ exact ไป `dataset-flood-forecast-flash-flood-risk`; DWR Flood Map map แบบ exact ไป `dataset-flood-forecast-depth` และไม่สร้าง work ซ้ำ
+- `CityMETER: RUGON` map แบบ exact ไป `dataset-earthquake-sensors`; QuakeSafe map ไป `dataset-events-quake-building-inspection`
+- CityScan, CityMETER Playbook for FDI, DWR Runoff, GISTDA Urban Flood และ CityCell ยังเป็น product/partner-specific deliverable ไม่ใช่ canonical CityMETER dataset module
 - ชื่อ work ของ CityCell ใช้ exact `CityCell: Machine learning model for nationwide land appraisal`; evidence link ยังชี้ไปหลักฐานรางวัลเท่านั้น
 - ชื่อ CityMETER รุ่นเก่าใน snapshot ที่ยังเทียบ release ไม่ได้ใช้ `sheet_recorded_not_current_release_authority`
 
@@ -272,6 +278,10 @@ Hack Land Value Hackathon:
 - ผู้รับ: `S0001` โอ๊ต, `P0001` เสก, `I0016` มุก (Pitcha)
 - `workId`: `work-citycell-model`
 - วันที่เป็น null และ `dateVerificationStatus=owner_detail_required` จนกว่าจะยืนยัน
+
+## publications
+
+`publications` แยกขาดจาก `works`, `contributions`, achievement และ engagement responsibility ใช้สำหรับผลงานตีพิมพ์ภายนอกที่ exact-match บุคคลกับ author record และตรวจ title, outlet, year, DOI กับ bibliographic source แล้วเท่านั้น ฟิลด์หลักคือ `publicationId`, `personId`, localized title, outlet/volume/year/DOI, public/bibliographic/evidence URL, relationship, verification status, publication basis และ evidence note การมี paper record ไม่ได้แปลว่า paper นั้นทำให้ Landometer
 
 ## certificates
 
@@ -347,6 +357,7 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 | `contributions` | คน–ผลงาน–engagement หนึ่งความสัมพันธ์ | `contribution_id` |
 | `achievements` | หนึ่งรางวัล/ความสำเร็จ | `achievement_id` |
 | `person_achievements` | หนึ่งผู้รับต่อ achievement | `person_achievement_id` |
+| `external_publications` | หนึ่งผลงานตีพิมพ์ภายนอกต่อผู้เขียนใน roster | `publication_id` |
 | `social_profiles` | หนึ่ง platform ต่อคน | `social_profile_id` |
 | `assets` | หนึ่ง portrait asset ต่อคน | `asset_id` |
 | `enums` | enum และ data validation | `enum_group + value` |
@@ -359,6 +370,7 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 - `education`: FK 3 ตัว, `is_primary`, qualification, structured degree program, separate award status/verification, evidence scope
 - `works`: localized names, `parent_product`, `module_slug`, `type`, `scope_layer`, `authority_status`, `catalog_url_th/en`, `destination_url`, `link_scope`, `url_source_ref`, `link_evidence_url`
 - `contributions`: FK person/work/engagement, role, period, evidence status/source/note
+- `external_publications`: FK person, title TH/EN, outlet, volume, year, DOI, public/evidence/bibliographic URLs, relationship, scope, verification, publication basis, evidence note
 - `social_profiles`: private candidate, approved `public_url`, identity verification, consent, `publication_basis`, owner approval fields, publication status, source note
 - `assets`: private source URL, governed local path, identity verification, consent, rights, `publication_basis`, owner approval, hash/media metadata, publication status
 
