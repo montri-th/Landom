@@ -168,11 +168,11 @@
     {
       "assetId": "PORTRAIT-I0008",
       "path": "public/assets/people/I0008.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 56317,
-      "sha256": "71bb8a8a7e7d1413235e222091cdd27aa6526e580948630e0dbc84190803fa96",
+      "bytes": 63289,
+      "sha256": "5681cbc4c7d43f2f714077da68fe02fd7f742b711def940529b60d1e65f18c8a",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -188,7 +188,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.deep; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.measure.deep",
+        "gradientCss": "linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0010",
@@ -218,11 +231,11 @@
     {
       "assetId": "PORTRAIT-I0012",
       "path": "public/assets/people/I0012.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 51275,
-      "sha256": "924c096cf99d49a99fcfb90c1ce30892cd520565f949636e547998cb05258654",
+      "bytes": 56572,
+      "sha256": "7bfbc53e4c37b0150debcedd79ca91a955eba8560f30db9df168a1296d087746",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -238,7 +251,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.current; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.ground.current",
+        "gradientCss": "linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0014",
@@ -343,11 +369,11 @@
     {
       "assetId": "PORTRAIT-I0018",
       "path": "public/assets/people/I0018.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 71359,
-      "sha256": "1a98046eeaff92fb4e63ab8cd76417202c0af16eb02e572b9d5339b2ac0ab17a",
+      "bytes": 80044,
+      "sha256": "1697ef4a5351458eb08644f887dcf693d0192486908e28e1ca6a1e9c64e66b5d",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -363,16 +389,29 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.glow; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.cultivate.glow",
+        "gradientCss": "linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0019",
       "path": "public/assets/people/I0019.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 83561,
-      "sha256": "4ec6dd561cac59d5db6a2ed87efa8d2b4ffa85a3099903d4eacb33b621ee21a2",
+      "bytes": 78860,
+      "sha256": "48588a875fb51c653b5405e9e0ecce01e34eb3bb1051c367c2242f564cdf9884",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -388,7 +427,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.diversity.spectrum; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.diversity.spectrum",
+        "gradientCss": "linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0020",
@@ -418,11 +470,11 @@
     {
       "assetId": "PORTRAIT-I0021",
       "path": "public/assets/people/I0021.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 62266,
-      "sha256": "ecca05b93dffb587167c19b6775002b2fab4fb6de81f08974cc49cd83bd86c1f",
+      "bytes": 66209,
+      "sha256": "1185fbee98581eb482371858b3a5c248dc1a5c8a2bba4aec2da449b74e8234b9",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -438,7 +490,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.mist; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.cultivate.mist",
+        "gradientCss": "linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0022",
@@ -518,11 +583,11 @@
     {
       "assetId": "PORTRAIT-I0025",
       "path": "public/assets/people/I0025.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 70424,
-      "sha256": "fa1621269992c5bc85af09fdb4c61dd79609ddee0a9cabc7fdae3678bde3609e",
+      "bytes": 64557,
+      "sha256": "d88521ed84510c8cdda913e238ee41f803b1d2f61dccae5cc29b997b58909a63",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -538,7 +603,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.mist; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.ground.mist",
+        "gradientCss": "linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0026",
@@ -693,11 +771,11 @@
     {
       "assetId": "PORTRAIT-I0033",
       "path": "public/assets/people/I0033.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 89891,
-      "sha256": "19ea5c7f31a8cd6180ab1afcdfdc0e53de90ec41d8a318275ba7560219824dc6",
+      "bytes": 91504,
+      "sha256": "6b7db934b93451bec835485d6e477027af0889cf5ff4c9f2edf5ae45505f0caa",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -713,7 +791,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.glow; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.cultivate.glow",
+        "gradientCss": "linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0034",
@@ -743,11 +834,11 @@
     {
       "assetId": "PORTRAIT-I0035",
       "path": "public/assets/people/I0035.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 42555,
-      "sha256": "c6bb94646b9c7dccdce26a67dc55fb2e9558fab28eef5b602ded0a59eb2fb85f",
+      "bytes": 48028,
+      "sha256": "c67e8a36b8daf1b754d69977bd9e0e1cb97dc9604c4d6780099ec3dc4fae23a1",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -763,7 +854,20 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.luminous; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.measure.luminous",
+        "gradientCss": "linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0036",
@@ -943,11 +1047,11 @@
     {
       "assetId": "PORTRAIT-I0001",
       "path": "public/assets/people/I0001.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 89822,
-      "sha256": "2060dc92da367c36bbd3efbce154741d764cc67c182eaf6d2ae164a67e9bf68c",
+      "bytes": 92883,
+      "sha256": "d3afe92f666f5bc36d88bf66d16e83807199a77f00b9401ab77a029efeb3b823",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -957,9 +1061,26 @@
         "scope": "public_profile_portrait",
         "sourceRef": "owner_instruction_2026-08-24"
       },
-      "approvedRoles": ["person-avatar"],
-      "prohibitedRoles": ["brand-mark"],
-      "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.luminous; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "backgroundEdit": {
+        "method": "pixel_preserving_foreground_mask_composite",
+        "requestedAt": "2026-08-25",
+        "sourceRef": "owner_instruction_2026-08-25",
+        "scope": "replace_blank_white_background_only",
+        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
+        "gradientToken": "atmosphere.gradient.measure.luminous",
+        "gradientCss": "linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%)",
+        "surfaceRole": "product_identity",
+        "deletionTest": "improves",
+        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
+        "contextPolicy": "no_environmental_context_present_in_source"
+      }
     },
     {
       "assetId": "PORTRAIT-I0002",
@@ -978,8 +1099,12 @@
         "scope": "public_profile_portrait",
         "sourceRef": "owner_instruction_2026-08-24"
       },
-      "approvedRoles": ["person-avatar"],
-      "prohibitedRoles": ["brand-mark"],
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
       "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
     },
     {
@@ -999,8 +1124,12 @@
         "scope": "public_profile_portrait",
         "sourceRef": "owner_instruction_2026-08-24"
       },
-      "approvedRoles": ["person-avatar"],
-      "prohibitedRoles": ["brand-mark"],
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
       "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
     },
     {
@@ -1020,8 +1149,12 @@
         "scope": "public_profile_portrait",
         "sourceRef": "owner_instruction_2026-08-24"
       },
-      "approvedRoles": ["person-avatar"],
-      "prohibitedRoles": ["brand-mark"],
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
       "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
     },
     {
@@ -1041,8 +1174,12 @@
         "scope": "public_profile_portrait",
         "sourceRef": "owner_instruction_2026-08-24"
       },
-      "approvedRoles": ["person-avatar"],
-      "prohibitedRoles": ["brand-mark"],
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
       "notes": "Exact LinkedIn identity verified; source URL retained only in private evidence; individual consent is not asserted."
     },
     {
@@ -1075,8 +1212,12 @@
         "scope": "public_profile_portrait",
         "sourceRef": "owner_instruction_2026-08-25"
       },
-      "approvedRoles": ["person-avatar"],
-      "prohibitedRoles": ["brand-mark"],
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
       "notes": "Owner-supplied named source photo. Deterministic square crop only; no AI generation, retouching, or identity alteration. Original remains private; individual consent is not asserted."
     }
   ]

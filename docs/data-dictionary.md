@@ -145,6 +145,10 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `degree.evidenceScope` | ขอบเขตว่าหลักฐานรองรับ program หรือสถานะบุคคลระดับใด |
 | `verificationStatus` | `owner_review_required` หรือสถานะ conflict |
 
+การแสดงผลภาษาไทยใช้คำว่า `นิสิต` เฉพาะ education relation ที่เลือกแล้วมี `institutionId=inst-chula`; สถาบันอื่นใช้คำกลางตามเดิม `educationProgram` ต้องแสดงชื่อ program หรือ qualification ที่ตรวจแล้วเป็น context โดยยังแสดง institution เป็นค่าแยก ห้ามใช้ literal `การศึกษาจาก` และห้ามสื่อว่าเรียนจบหรือได้รับปริญญาเมื่อ `degree=null`
+
+FK ของ `I0029` ใน canonical Sheet แก้ที่ `people_registry!I34` จาก secondary record `EDU0033` เป็น primary record `EDU0032`
+
 ณัฏฐณิชา (`I0037`) และนรภัทร (`I0038`) ยังเก็บค่าจากชีตเป็น CU CEDT พร้อม `source_conflict_unresolved` การปรากฏชื่อในเอกสารรับเข้าศึกษาของอีกมหาวิทยาลัยไม่พิสูจน์การลงทะเบียนหรือสถานะปัจจุบัน จึงไม่ overwrite
 
 ## engagements
@@ -341,6 +345,8 @@ Owner basis เป็นการตัดสินใจเผยแพร่�
 
 Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait source/CDN URL, evidence, permission record และ review noteเก็บเฉพาะใน ignored raw snapshot/private report เท่านั้น URL ที่ผ่าน gate ถูก copy เป็น `publicUrl`; portrait ถูก normalize เป็น local JPEG ภายใต้ `public/assets/people/<personId>.jpg` และ public JSON เก็บ local path/hash โดย `sourceUrl=null` เสมอ Exporter merge candidate/review fields เดิมกลับเฉพาะ private workbook เพื่อให้ roundtrip ไม่ทำข้อมูลสูญหาย
 
+release นี้แก้เฉพาะพื้นขาวไร้ context ของ `I0001`, `I0008`, `I0012`, `I0018`, `I0019`, `I0021`, `I0025`, `I0033` และ `I0035` โดย composite approved DS gradient ผ่าน pixel-preserving foreground mask และไม่แก้ portrait ที่มีบรรยากาศอยู่แล้ว ต้องใช้ approved recipe หลายแบบ บันทึก recipe ที่ใช้ไว้ต่อ asset และใช้ Diversity Spectrum กับ portrait เดียวเท่านั้น หลังแทนภาพต้อง sync SHA-256/bytes ใน public projection/manifest กับ canonical Sheet tab `assets` คอลัมน์ R:T (`sha256`, `media_type`, `bytes`) ไม่มี Drive portrait mirror จึงห้ามสร้างหรืออัปโหลดไฟล์ซ้ำไป Google Drive
+
 ข้อมูล email, phone, chat handle, private CV/file ID และค่าจาก private contact source ไม่ถูก ingest หรือ emit ใน generated/public data
 
 ## โครงสร้าง Google Sheet ที่แนะนำ
@@ -366,7 +372,7 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 
 ### คอลัมน์สำคัญที่ต้องเพิ่ม/รักษา
 
-- `people_registry`: `person_id`, names, `current_status`, `consent_public`, materialized bio fields, provenance/approval/review fields, `current_statement_id`
+- `people_registry`: `person_id`, names, `current_status`, `consent_public`, materialized bio fields, provenance/approval/review fields, `current_statement_id`; `I0029` ใช้ primary education FK `EDU0032` ที่ `I34`
 - `profile_statements`: versioned TH/EN text, publication/source basis, source type/ref, author/derivation/evidence scope and confidence, approval/review/consent/publication status, `supersedes_statement_id`
 - `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`, `academic_placement_type`, `education_context_label_th/en` (derived only for the Impvest Consulting Partner cohort)
 - `education`: FK 3 ตัว, `is_primary`, qualification, structured degree program, separate award status/verification, evidence scope
@@ -374,7 +380,7 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 - `contributions`: FK person/work/engagement, role, period, evidence status/source/note
 - `external_publications`: FK person, title TH/EN, outlet, volume, year, DOI, public/evidence/bibliographic URLs, relationship, scope, verification, publication basis, evidence note
 - `social_profiles`: private candidate, approved `public_url`, identity verification, consent, `publication_basis`, owner approval fields, publication status, source note
-- `assets`: private source URL, governed local path, identity verification, consent, rights, `publication_basis`, owner approval, hash/media metadata, publication status
+- `assets`: private source URL, governed local path, identity verification, consent, rights, `publication_basis`, owner approval, hash/media metadata, publication status; canonical R:T คือ `sha256`, `media_type`, `bytes`
 
 ### Data validation
 
@@ -400,6 +406,8 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 8. degree ที่ UI จะสื่อว่าได้รับแล้วแต่ `awardStatus/personalAwardVerified` ไม่รองรับ
 9. engagement ongoing แต่มี end dateผ่านแล้ว หรือ completed แต่ไม่มีเหตุผล/ช่วงเวลา
 10. nickname ซ้ำ โดยแสดง `personId` คู่กันเสมอ
+11. background edit อยู่นอก 9 IDs, แตะ portrait ที่มี context, ไม่บันทึก DS recipe หรือมี Diversity Spectrum ไม่เท่ากับหนึ่งภาพ
+12. SHA-256/bytes ของ public portrait ไม่ตรงกับ manifest หรือ canonical `assets!R:T`
 
 ## Build และ verification
 

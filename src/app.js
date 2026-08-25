@@ -743,6 +743,7 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
 
   return {
     labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified, programCode(engagement)),
+    institutionId: recordId(institution || {}, "institution"),
     mode: educationMode,
     placementType,
     awardStatus: effectiveAwardStatus,
@@ -759,6 +760,17 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     degreeSupplement: educationMode === "qualification" ? "" : degreeSupplement,
     studyPeriodLabel
   };
+}
+
+function educationLabelText(model, { detail = false } = {}) {
+  const education = model.education;
+  if (education.labelKey === "educationProgram") {
+    return detail ? education.fullProgram : education.shortProgram;
+  }
+
+  const label = message(education.labelKey);
+  const usesChulaStudentTerm = state.language === "th" && education.institutionId === "inst-chula";
+  return usesChulaStudentTerm ? label.replaceAll("นักศึกษา", "นิสิต") : label;
 }
 
 function normalizedBoolean(value, accepted = []) {
@@ -1197,6 +1209,9 @@ function hydrateImages(scope) {
 
 function educationSummary(model) {
   if (model.education.hidden) return "";
+  if (model.education.labelKey === "educationProgram") {
+    return model.education.shortInstitution || model.education.cardDisplay || model.education.shortProgram;
+  }
   if (model.education.cardDisplay) return model.education.cardDisplay;
   const rawProgram = model.education.shortProgram;
   const program = state.language === "th" && /^วศ\.?\s*คอมพิวเตอร์$/i.test(rawProgram)
@@ -1380,7 +1395,7 @@ function renderCard(model) {
   const storyMarkup = story ? `<span class="card-story">${escapeHtml(story)}</span>` : "";
   const educationMarkup = education ? `
     <span class="education-summary">
-      <span class="education-label">${escapeHtml(message(model.education.labelKey))}</span>
+      <span class="education-label">${escapeHtml(educationLabelText(model))}</span>
       <span class="education-value">${escapeHtml(education)}</span>
     </span>
   ` : "";
@@ -1610,12 +1625,13 @@ function educationDetailMarkup(model) {
     ? "education-context education-context--literal-case"
     : "education-context";
   if (!program && !institution) return "";
+  const programIsContext = model.education.labelKey === "educationProgram";
   return `
     <section class="detail-section" aria-labelledby="detail-education-title-${escapeHtml(model.id)}">
       ${detailHeadingMarkup(`detail-education-title-${model.id}`, message("educationSection"), "education")}
       <div class="education-detail">
-        <p class="${contextClass}">${escapeHtml(message(model.education.labelKey))}</p>
-        ${program ? `<div class="education-fact"><p class="education-program">${escapeHtml(program)}</p>${educationLinkedInMarkup(model.education.programLinkedInUrl, "openProgramLinkedIn")}</div>` : ""}
+        <p class="${contextClass}">${escapeHtml(educationLabelText(model, { detail: true }))}</p>
+        ${program && !programIsContext ? `<div class="education-fact"><p class="education-program">${escapeHtml(program)}</p>${educationLinkedInMarkup(model.education.programLinkedInUrl, "openProgramLinkedIn")}</div>` : ""}
         ${institution ? `<div class="education-fact"><p class="education-institution">${escapeHtml(institution)}</p>${educationLinkedInMarkup(model.education.institutionLinkedInUrl, "openInstitutionLinkedIn")}</div>` : ""}
         ${supplementary ? `<p class="education-supplementary">${escapeHtml(supplementary)}</p>` : ""}
       </div>
