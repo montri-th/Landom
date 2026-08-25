@@ -1507,6 +1507,13 @@
     color: var(--text-secondary);
   }
 
+  .education-supplementary {
+    color: var(--text-metadata);
+    font-size: var(--type-caption);
+    font-weight: 500;
+    line-height: var(--leading-compact);
+  }
+
   .timeline,
   .contribution-list,
   .achievement-list,

@@ -571,6 +571,36 @@
       }
     },
     {
+      "personId": "I0034",
+      "publicPath": "public/assets/people/I0034.jpg",
+      "mime": "image/jpeg",
+      "bytes": 131923,
+      "sha256": "a6309a173e1daf119b4b83db7b6773639a3b6e8c2abcba97d9bf825996337746",
+      "identityVerification": "owner_supplied_named_portrait_for_exact_roster_person",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-25"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "operation": "deterministic_source_crop_no_retouch",
+        "quality": 82,
+        "sourceWidth": 3024,
+        "sourceHeight": 4032,
+        "cropX": 0,
+        "cropY": 0,
+        "cropWidth": 3024,
+        "cropHeight": 3024,
+        "outputWidth": 800,
+        "outputHeight": 800,
+        "sourceOriginalSha256": "0d3a132cf3e5fd189a00988c7a5149e446096a5fe03a7440ec1a0f7776f5ccac",
+        "sourceOriginalPreservedPrivately": true
+      }
+    },
+    {
       "personId": "I0035",
       "publicPath": "public/assets/people/I0035.jpg",
       "mime": "image/jpeg",
@@ -616,20 +646,29 @@
       "personId": "I0039",
       "publicPath": "public/assets/people/I0039.jpg",
       "mime": "image/jpeg",
-      "bytes": 89054,
-      "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
-      "identityVerification": "sheet_profile_url_and_visible_profile_title",
+      "bytes": 90264,
+      "sha256": "e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506",
+      "identityVerification": "owner_supplied_named_portrait_for_exact_roster_person",
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "optimization": {
         "format": "jpeg",
-        "maxDimension": 800,
-        "quality": 78,
+        "operation": "deterministic_source_crop_no_retouch",
+        "quality": 82,
+        "sourceWidth": 993,
+        "sourceHeight": 1496,
+        "cropX": 0,
+        "cropY": 100,
+        "cropWidth": 993,
+        "cropHeight": 993,
+        "outputWidth": 800,
+        "outputHeight": 800,
+        "sourceOriginalSha256": "7fb19a35ff410f1dc143d9eda5ccb9c3150ade97f06e5e85904e8cc41246199a",
         "sourceOriginalPreservedPrivately": true
       }
     },
@@ -721,20 +760,29 @@
       "personId": "I0032",
       "publicPath": "public/assets/people/I0032.jpg",
       "mime": "image/jpeg",
-      "bytes": 119082,
-      "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
-      "identityVerification": "sheet_github_url_cross_checked_against_exact_linkedin_profile_title",
+      "bytes": 113777,
+      "sha256": "ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180",
+      "identityVerification": "owner_supplied_named_portrait_for_exact_roster_person",
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "optimization": {
         "format": "jpeg",
-        "maxDimension": 800,
-        "quality": 78,
+        "operation": "deterministic_source_crop_no_retouch",
+        "quality": 82,
+        "sourceWidth": 692,
+        "sourceHeight": 908,
+        "cropX": 0,
+        "cropY": 40,
+        "cropWidth": 692,
+        "cropHeight": 692,
+        "outputWidth": 692,
+        "outputHeight": 692,
+        "sourceOriginalSha256": "2d47aa20d184d0a9a2de70e451fcb8e901c2f740954d22a094162cd43978d185",
         "sourceOriginalPreservedPrivately": true
       }
     },

@@ -1244,7 +1244,7 @@
         "en": "Yew"
       },
       "fullName": {
-        "th": null,
+        "th": "ธรรมธร ธนะสมานโชค",
         "en": "Thammatorn Tanasamanchoke"
       },
       "profileUrl": {
@@ -1254,10 +1254,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg?v=6f87e14f83a2",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
         "mediaType": "image/jpeg",
-        "bytes": 119082,
-        "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
+        "bytes": 113777,
+        "sha256": "ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180",
         "alt": {
           "th": "ภาพโปรไฟล์ของยิ้ว",
           "en": "Profile portrait of Yew"
@@ -1321,14 +1321,25 @@
         "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
         "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
       },
-      "portrait": null,
+      "portrait": {
+        "status": "publishable",
+        "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+        "mediaType": "image/jpeg",
+        "bytes": 131923,
+        "sha256": "a6309a173e1daf119b4b83db7b6773639a3b6e8c2abcba97d9bf825996337746",
+        "alt": {
+          "th": "ภาพโปรไฟล์ของเอิร์ธ",
+          "en": "Profile portrait of Earth"
+        }
+      },
       "fallback": {
         "kind": "full_nickname",
         "fullNickname": {
           "th": "เอิร์ธ",
           "en": "Earth"
         },
-        "reason": "no_governed_person_portrait"
+        "reason": "image_load_failure"
       }
     },
     {
@@ -1477,10 +1488,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg?v=bcb61e98a1d9",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg?v=e4e163a8e3b9",
         "mediaType": "image/jpeg",
-        "bytes": 89054,
-        "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
+        "bytes": 90264,
+        "sha256": "e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506",
         "alt": {
           "th": "ภาพโปรไฟล์ของจอมใจ",
           "en": "Profile portrait of Jomjai"

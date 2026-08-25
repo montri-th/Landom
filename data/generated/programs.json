@@ -338,5 +338,39 @@
     "verificationStatus": "owner_supplied_with_official_program_definition",
     "linkedinUrl": null,
     "linkedinVerificationStatus": "not_found_exact_official_page"
+  },
+  {
+    "programId": "program-kmitl-iot-system-information-engineering",
+    "names": {
+      "th": {
+        "formal": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
+        "short": "IoT & IE"
+      },
+      "en": {
+        "formal": "IoT System and Information Engineering",
+        "short": "IoT & IE"
+      }
+    },
+    "qualificationLevel": "bachelor",
+    "verificationStatus": "owner_supplied_with_official_program_definition",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
+  },
+  {
+    "programId": "program-mahidol-faculty-ict",
+    "names": {
+      "th": {
+        "formal": "คณะเทคโนโลยีสารสนเทศและการสื่อสาร",
+        "short": "ICT"
+      },
+      "en": {
+        "formal": "Faculty of Information and Communication Technology",
+        "short": "ICT"
+      }
+    },
+    "qualificationLevel": null,
+    "verificationStatus": "owner_supplied_academic_unit_not_degree_program",
+    "linkedinUrl": "https://www.linkedin.com/company/muict",
+    "linkedinVerificationStatus": "verified_official_page"
   }
 ]

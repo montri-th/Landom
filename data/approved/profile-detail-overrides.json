@@ -59,6 +59,24 @@
       },
       "qualificationLevel": "bachelor",
       "verificationStatus": "owner_supplied_with_official_program_definition"
+    },
+    {
+      "programId": "program-kmitl-iot-system-information-engineering",
+      "names": {
+        "th": { "formal": "วิศวกรรมระบบไอโอทีและสารสนเทศ", "short": "IoT & IE" },
+        "en": { "formal": "IoT System and Information Engineering", "short": "IoT & IE" }
+      },
+      "qualificationLevel": "bachelor",
+      "verificationStatus": "owner_supplied_with_official_program_definition"
+    },
+    {
+      "programId": "program-mahidol-faculty-ict",
+      "names": {
+        "th": { "formal": "คณะเทคโนโลยีสารสนเทศและการสื่อสาร", "short": "ICT" },
+        "en": { "formal": "Faculty of Information and Communication Technology", "short": "ICT" }
+      },
+      "qualificationLevel": null,
+      "verificationStatus": "owner_supplied_academic_unit_not_degree_program"
     }
   ],
   "addedEducationRecords": [
@@ -178,7 +196,15 @@
       "retrievedAt": "2026-08-24"
     }
   ],
-  "programLinkedInProfiles": [],
+  "programLinkedInProfiles": [
+    {
+      "programId": "program-mahidol-faculty-ict",
+      "linkedinUrl": "https://www.linkedin.com/company/muict",
+      "verificationStatus": "verified_official_page",
+      "evidenceBasis": "linkedin_page_name_and_official_ict_mahidol_website_match_owner_confirmed_academic_unit",
+      "retrievedAt": "2026-08-25"
+    }
+  ],
   "addedPublicSocialProfiles": [
     {
       "personId": "S0004",
@@ -425,7 +451,38 @@
     { "personId": "I0020", "programId": "program-cu-eba" },
     { "personId": "I0021", "programId": "program-cu-eba" },
     { "personId": "I0023", "programId": "program-cu-eba" },
-    { "personId": "I0024", "programId": "program-cu-eba" }
+    { "personId": "I0024", "programId": "program-cu-eba" },
+    { "personId": "I0033", "programId": "program-kmitl-iot-system-information-engineering" },
+    { "personId": "I0039", "programId": "program-mahidol-faculty-ict" }
+  ],
+  "educationRecordOverrides": [
+    {
+      "personId": "I0033",
+      "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–Present — Bachelor of Engineering; IoT and Information Engineering Major",
+      "degree": {
+        "abbreviation": { "th": "วศ.บ.", "en": "B.Eng." },
+        "title": { "th": "วิศวกรรมศาสตรบัณฑิต", "en": "Bachelor of Engineering" },
+        "field": { "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ", "en": "IoT System and Information Engineering" },
+        "awardStatus": "in_progress",
+        "personalAwardVerified": false,
+        "programEvidenceUrl": "https://www.iote.kmitl.ac.th/iot-system-and-information/",
+        "evidenceScope": "owner_confirmed_current_study_with_official_program_definition"
+      },
+      "studyPeriod": {
+        "start": "2022",
+        "end": null,
+        "current": true,
+        "label": { "th": "2022–ปัจจุบัน", "en": "2022–Present" }
+      },
+      "verificationStatus": "owner_confirmed_current_study_with_official_program_definition",
+      "evidenceNote": "Owner confirmed Team's current Bachelor of Engineering study at KMITL from 2022 to present; the official department page standardizes the program as IoT System and Information Engineering. This is in progress and is not represented as a completed degree."
+    },
+    {
+      "personId": "I0039",
+      "sourceLabel": "Mahidol University, Faculty of Information and Communication Technology",
+      "verificationStatus": "owner_confirmed_academic_unit",
+      "evidenceNote": "Owner confirmed Jomjai's Faculty of Information and Communication Technology affiliation at Mahidol University. The faculty is retained as an academic unit and is not promoted to an unverified personal degree claim."
+    }
   ],
   "educationCardOverrides": [
     {

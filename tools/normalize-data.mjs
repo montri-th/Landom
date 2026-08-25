@@ -496,6 +496,7 @@ const peopleById = new Map(people.map((person) => [person.personId, person]));
 const identityOverrideIds = new Set();
 const identityOverrideKeys = new Set([
   'personId',
+  'fullNameTh',
   'fullNameEn',
   'nicknameTh',
   'verificationStatus',
@@ -511,7 +512,7 @@ const identityVerificationStatuses = new Set([
 for (const override of personIdentityOverrides.overrides ?? []) {
   const unknownKeys = Object.keys(override).filter((key) => !identityOverrideKeys.has(key));
   if (unknownKeys.length) throw new Error('Unknown person-identity override fields: ' + unknownKeys.join(', '));
-  if (!override.fullNameEn && !override.nicknameTh) {
+  if (!override.fullNameTh && !override.fullNameEn && !override.nicknameTh) {
     throw new Error('Person-identity override has no governed identity field: ' + override.personId);
   }
   if (!identityVerificationStatuses.has(override.verificationStatus)) {
@@ -523,6 +524,9 @@ for (const override of personIdentityOverrides.overrides ?? []) {
   if (override.fullNameEn && (!/[A-Za-z]/.test(override.fullNameEn) || /[ก-๙]/.test(override.fullNameEn))) {
     throw new Error('English full-name override is not evidence-safe Latin text: ' + override.personId);
   }
+  if (override.fullNameTh && !/[ก-๙]/.test(override.fullNameTh)) {
+    throw new Error('Thai full-name override does not contain Thai text: ' + override.personId);
+  }
   if (override.nicknameTh && !/[ก-๙]/.test(override.nicknameTh)) {
     throw new Error('Thai nickname override does not contain Thai text: ' + override.personId);
   }
@@ -532,6 +536,7 @@ for (const override of personIdentityOverrides.overrides ?? []) {
   identityOverrideIds.add(override.personId);
   const person = peopleById.get(override.personId);
   if (!person) throw new Error('Unknown person in identity override: ' + override.personId);
+  if (override.fullNameTh) person.names.full.th = clean(override.fullNameTh);
   if (override.fullNameEn) person.names.full.en = clean(override.fullNameEn);
   if (override.nicknameTh) {
     person.names.nickname.th = clean(override.nicknameTh);
@@ -557,6 +562,7 @@ for (const row of peopleRows) {
         ? { th: programs.find((program) => program.programId === programId).names.th.formal, en: programs.find((program) => program.programId === programId).names.en.formal }
         : { th: null, en: null },
       degree: null,
+      studyPeriod: null,
       verificationStatus: sourceConflict ? 'source_conflict_unresolved' : 'owner_review_required',
       evidenceNote: sourceConflict
         ? 'คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ'
@@ -588,6 +594,7 @@ for (const approved of profileDetailOverrides.addedEducationRecords ?? []) {
     sourceLabel: approved.sourceLabel,
     qualification: { th: program.names.th.formal, en: program.names.en.formal },
     degree: structuredClone(approved.degree),
+    studyPeriod: structuredClone(approved.studyPeriod ?? null),
     verificationStatus: approved.verificationStatus,
     evidenceNote: approved.evidenceNote
   });
@@ -617,6 +624,30 @@ for (const override of profileDetailOverrides.educationProgramOverrides ?? []) {
   record.qualification = { th: program.names.th.formal, en: program.names.en.formal };
   record.verificationStatus = 'owner_supplied_detail_refinement';
   record.evidenceNote = 'Owner standardized this person’s program label in the 2026-08-23 detail refinement.';
+}
+
+for (const override of profileDetailOverrides.educationRecordOverrides ?? []) {
+  if (!personById.has(override.personId)) throw new Error('Education-record override references an unknown person: ' + override.personId);
+  const record = educationRecords.find((item) => item.personId === override.personId && item.isPrimary);
+  if (!record) throw new Error('Education-record override has no primary education record: ' + override.personId);
+  if (override.degree) {
+    if (!['in_progress', 'completed', 'under_review'].includes(override.degree.awardStatus)) {
+      throw new Error('Education-record override has an unsupported degree award status: ' + override.personId);
+    }
+    if (override.degree.awardStatus === 'in_progress' && override.degree.personalAwardVerified) {
+      throw new Error('In-progress education cannot be represented as a verified personal award: ' + override.personId);
+    }
+    record.degree = structuredClone(override.degree);
+  }
+  if (override.studyPeriod) {
+    if (!/^\d{4}$/.test(override.studyPeriod.start ?? '') || (override.studyPeriod.end && !/^\d{4}$/.test(override.studyPeriod.end))) {
+      throw new Error('Education-record override has an invalid study period: ' + override.personId);
+    }
+    record.studyPeriod = structuredClone(override.studyPeriod);
+  }
+  if (override.sourceLabel) record.sourceLabel = override.sourceLabel;
+  if (override.verificationStatus) record.verificationStatus = override.verificationStatus;
+  if (override.evidenceNote) record.evidenceNote = override.evidenceNote;
 }
 
 const institutionById = new Map(institutions.map((item) => [item.institutionId, item]));

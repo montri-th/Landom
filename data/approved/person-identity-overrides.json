@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0",
-  "sourceBoundary": "Only exact, owner-confirmed Thai nicknames and an English full name verified on the person's exact LinkedIn profile may override the registry snapshot. Unverified transliterations stay blank.",
+  "sourceBoundary": "Only exact, owner-confirmed Thai names or nicknames and an English full name verified on the person's exact LinkedIn profile may override the registry snapshot. Unverified transliterations stay blank.",
   "overrides": [
     {
       "personId": "I0014",
@@ -72,6 +72,14 @@
       "verificationStatus": "verified_exact_linkedin_profile",
       "evidenceBasis": "owner_supplied_exact_linkedin_profile_url",
       "sourceRef": "https://www.linkedin.com/in/nathanicha-sornbundit-840109431",
+      "reviewedAt": "2026-08-25"
+    },
+    {
+      "personId": "I0032",
+      "fullNameTh": "ธรรมธร ธนะสมานโชค",
+      "verificationStatus": "owner_confirmed",
+      "evidenceBasis": "owner_supplied_exact_thai_full_name_for_existing_roster_person",
+      "sourceRef": "owner_instruction_2026-08-25",
       "reviewedAt": "2026-08-25"
     }
   ]

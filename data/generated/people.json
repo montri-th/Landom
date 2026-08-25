@@ -2415,7 +2415,7 @@
     "personId": "I0032",
     "names": {
       "full": {
-        "th": null,
+        "th": "ธรรมธร ธนะสมานโชค",
         "en": "Thammatorn Tanasamanchoke"
       },
       "nickname": {
@@ -2506,14 +2506,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "สจล.",
-        "en": "KMITL"
+        "th": "IoT & IE · สจล.",
+        "en": "IoT & IE · KMITL"
       },
       "detail": {
-        "th": "สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
-        "en": "King Mongkut's Institute of Technology Ladkrabang"
+        "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
+        "en": "IoT System and Information Engineering — King Mongkut's Institute of Technology Ladkrabang"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_confirmed_current_study_with_official_program_definition"
     },
     "bio": {
       "th": "ทีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
@@ -2908,14 +2908,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "มหิดล",
-        "en": "MU"
+        "th": "ICT · มหิดล",
+        "en": "ICT · MU"
       },
       "detail": {
-        "th": "มหาวิทยาลัยมหิดล",
-        "en": "Mahidol University"
+        "th": "คณะเทคโนโลยีสารสนเทศและการสื่อสาร — มหาวิทยาลัยมหิดล",
+        "en": "Faculty of Information and Communication Technology — Mahidol University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_confirmed_academic_unit"
     },
     "bio": {
       "th": "จอมใจเชื่อมรูปแบบโครงข่ายถนนกับความรู้ร่วมของเมือง ผ่าน RoadDNA และ CityWiki ให้ทั้งโครงสร้างและเรื่องราวของพื้นที่มีที่อยู่ในชุดเครื่องมือของทีม",

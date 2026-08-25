@@ -680,8 +680,11 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
   const degreeAbbreviation = localizedField(linkedEducation, ["degree.abbreviation"]);
   const degreeTitle = localizedField(linkedEducation, ["degree.title"]);
   const degreeField = localizedField(linkedEducation, ["degree.field"]);
-  const degreeShort = degreeDisplayValue({ abbreviation: degreeAbbreviation, title: degreeTitle, field: degreeField, compact: true });
-  const degreeDetail = degreeDisplayValue({ abbreviation: degreeAbbreviation, title: degreeTitle, field: degreeField });
+  const degreeSupplement = degreeDisplayValue({ abbreviation: degreeAbbreviation, title: degreeTitle, field: degreeField, compact: true });
+  const degreeShort = educationMode === "qualification" ? degreeSupplement : "";
+  const degreeDetail = educationMode === "qualification"
+    ? degreeDisplayValue({ abbreviation: degreeAbbreviation, title: degreeTitle, field: degreeField })
+    : "";
   const awardStatus = normalizedEnum(firstValue(linkedEducation, ["degree.awardStatus", "degree.award_status"]));
   const personalAwardVerified = normalizedBoolean(firstValue(linkedEducation, ["degree.personalAwardVerified", "degree.personal_award_verified"]));
   const verificationStatus = String(firstValue(linkedEducation, ["verificationStatus", "verification_status"]) || firstValue(person, ["educationDisplay.verificationStatus", "education_display.verification_status"]) || "");
@@ -733,6 +736,7 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
   ]) || firstValue(embeddedEducation, [
     "institutionLinkedInUrl", "institution_linkedin_url", "institution.linkedinUrl", "institution.linkedin_url"
   ]));
+  const studyPeriodLabel = localizedField(linkedEducation, ["studyPeriod.label", "study_period.label"]);
 
   return {
     labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified),
@@ -748,7 +752,9 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
     shortInstitution: shortInstitution || fullInstitution,
     fullInstitution: fullInstitution || shortInstitution,
     programLinkedInUrl,
-    institutionLinkedInUrl
+    institutionLinkedInUrl,
+    degreeSupplement: educationMode === "qualification" ? "" : degreeSupplement,
+    studyPeriodLabel
   };
 }
 
@@ -1596,6 +1602,7 @@ function educationDetailMarkup(model) {
   if (model.education.hidden) return "";
   const program = model.education.fullProgram;
   const institution = model.education.fullInstitution;
+  const supplementary = [model.education.degreeSupplement, model.education.studyPeriodLabel].filter(Boolean).join(" · ");
   if (!program && !institution) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-education-title-${escapeHtml(model.id)}">
@@ -1604,6 +1611,7 @@ function educationDetailMarkup(model) {
         <p class="education-context">${escapeHtml(message(model.education.labelKey))}</p>
         ${program ? `<div class="education-fact"><p class="education-program">${escapeHtml(program)}</p>${educationLinkedInMarkup(model.education.programLinkedInUrl, "openProgramLinkedIn")}</div>` : ""}
         ${institution ? `<div class="education-fact"><p class="education-institution">${escapeHtml(institution)}</p>${educationLinkedInMarkup(model.education.institutionLinkedInUrl, "openInstitutionLinkedIn")}</div>` : ""}
+        ${supplementary ? `<p class="education-supplementary">${escapeHtml(supplementary)}</p>` : ""}
       </div>
     </section>
   `;
