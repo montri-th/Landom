@@ -1085,7 +1085,7 @@ const additionalWorks = [
   ['work-citymeter-product-stewardship', 'CityMETER', { th: 'การดูแลผลิตภัณฑ์ CityMETER', en: 'CityMETER Product Stewardship' }, 'product_stewardship', 'product_specific', []],
   ['work-brand-visual-guidelines-2025', 'Landometer', { th: 'Landometer: Brand Visual Guidelines 2025', en: 'Landometer: Brand Visual Guidelines 2025' }, 'brand_system', 'shared_landometer', ['Landometer Visual Guidlines (2025)']],
   ['work-vote69', 'Vote69', { th: 'Vote69', en: 'Vote69' }, 'product', 'product_specific', []],
-  ['work-landom-community', 'Landom', { th: 'Landom: ด้อมผู้สร้าง Landometer', en: 'Landom: the Landometer community' }, 'community', 'shared_landometer', []],
+  ['work-landom-community', 'Landom', { th: 'Landom: ชาวด้อมผู้สร้าง Landometer', en: 'Landom: the Landometer community' }, 'community', 'shared_landometer', []],
   ['work-population-forecasting-research', 'Research', { th: 'งานวิจัยแบบจำลองคาดการณ์ประชากร', en: 'Research: Population Forecasting Model' }, 'research', 'product_specific', []],
   ['work-dwr-runoff', 'DWR', { th: 'DWR Runoff', en: 'DWR Runoff' }, 'partner_deliverable', 'partner_specific', []],
   ['work-citycell-model', 'CityCell', { th: 'โมเดล CityCell', en: 'CityCell Model' }, 'hackathon_deliverable', 'product_specific', []],

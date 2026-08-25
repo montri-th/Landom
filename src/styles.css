@@ -80,6 +80,14 @@
   unicode-range: U+0000-024F, U+1E00-1EFF;
 }
 
+@font-face {
+  font-family: "Material Symbols Rounded";
+  src: url("../public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+}
+
 @layer tokens, reset, base, components, utilities, responsive;
 
 @layer tokens {
@@ -1545,29 +1553,90 @@
     line-height: var(--leading-compact);
   }
 
-  .contribution-link {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
+  .contribution-heading-link {
+    display: grid;
+    min-height: 44px;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    align-items: center;
     gap: var(--space-3);
     color: var(--interaction-accent);
     font-weight: 600;
     line-height: var(--leading-compact);
+    text-decoration: none;
+  }
+
+  .contribution-heading-link .contribution-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
   }
 
+  .contribution-open-icon {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+    color: var(--interaction-accent);
+    transition: border-color var(--motion-duration-state) var(--motion-ease-state), color var(--motion-duration-state) var(--motion-ease-state), transform var(--motion-duration-feedback) var(--motion-ease-state);
+  }
+
+  .contribution-heading-link:hover .contribution-open-icon {
+    border-color: var(--interaction-accent);
+    transform: translateY(-1px);
+  }
+
+  .contribution-heading-link:active .contribution-open-icon {
+    transform: translateY(1px);
+  }
+
   .contribution-evidence-link {
     display: inline-flex;
+    min-height: 44px;
     align-items: center;
+    justify-content: center;
     gap: var(--space-2);
     margin-top: var(--space-2);
+    padding: 10px var(--space-5);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-pill);
+    background: var(--surface-raised);
     color: var(--interaction-accent);
     font-size: var(--type-label);
     font-weight: 600;
     line-height: var(--leading-compact);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
+    transition: border-color var(--motion-duration-state) var(--motion-ease-state), color var(--motion-duration-state) var(--motion-ease-state), transform var(--motion-duration-feedback) var(--motion-ease-state);
+  }
+
+  .contribution-evidence-link:hover {
+    border-color: var(--interaction-accent);
+    transform: translateY(-1px);
+  }
+
+  .contribution-evidence-link:active {
+    transform: translateY(1px);
+  }
+
+  .external-link-icon {
+    display: inline-block;
+    flex: 0 0 auto;
+    font-family: "Material Symbols Rounded";
+    font-size: 20px;
+    font-style: normal;
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 20;
+    font-weight: 300;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
   }
 
   .publication-link {

@@ -11,7 +11,8 @@
     "fallback": "Render the full nickname when any approval is absent, pending, revoked, or invalid.",
     "publicationBasisNote": "Owner-authorized public-profile portrait is a scoped directory-owner publication decision and must not be represented as individual consent.",
     "certificateInventory": "data/approved/certificate-assets.json",
-    "certificatePublicationBasisNote": "Filled certificate images use the separate owner_authorized_public_certificate gate. QR targets are excluded from public data and contribution evidence."
+    "certificatePublicationBasisNote": "Filled certificate images use the separate owner_authorized_public_certificate gate. QR targets are excluded from public data and contribution evidence.",
+    "socialPreviewPublicationBasisNote": "The social-preview photograph uses a separate owner_authorized_social_preview_image decision and is not approved for profile, brand, favicon, certificate, or other roles."
   },
   "assets": [
     {
@@ -39,6 +40,57 @@
         "person-avatar"
       ],
       "notes": "Official horizontal lockup. Do not crop or repurpose it as a compact mark."
+    },
+    {
+      "assetId": "social-landom-people-og",
+      "path": "public/assets/social/landom-people-og.jpg",
+      "variant": "owner-supplied-candid-collaboration-og-1200x630",
+      "approvalScope": "social-preview",
+      "mediaType": "image/jpeg",
+      "width": 1200,
+      "height": 630,
+      "bytes": 176692,
+      "sha256": "8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0",
+      "sourceFilename": "IMG_2989.jpg",
+      "sourceOriginalSha256": "031e4546f7e60bbc5d2a7135ed7d81a24c93bc5a2cd45b2510034f939467a733",
+      "sourceCrop": {
+        "sourceWidth": 3520,
+        "sourceHeight": 1980,
+        "x": 0,
+        "y": 66,
+        "width": 3520,
+        "height": 1848,
+        "outputWidth": 1200,
+        "outputHeight": 630,
+        "retouched": false,
+        "generated": false
+      },
+      "colorSpace": "sRGB",
+      "metadataStripped": true,
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_social_preview_image",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_social_preview_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "approvedRoles": [
+        "social-preview"
+      ],
+      "prohibitedRoles": [
+        "header-brand-lockup",
+        "favicon",
+        "compact-icon",
+        "person-avatar",
+        "certificate"
+      ],
+      "alt": {
+        "th": "ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer",
+        "en": "People of Landom during a shared activity at Landometer"
+      },
+      "notes": "Owner-supplied collaboration photograph selected for the social-preview role. Deterministic centered crop, sRGB conversion, downsample, and metadata removal only; no AI generation, retouching, identity alteration, text, or logo overlay."
     },
     {
       "assetId": "PORTRAIT-S0001",

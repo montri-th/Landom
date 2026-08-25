@@ -2,8 +2,8 @@
   "manifestVersion": "1.0",
   "authority": "Landometer Design System v0.9.0-r7",
   "sourceManifest": "https://montri-th.github.io/Landometer/machine/v0.9.0/font-assets.manifest.json",
-  "packageSource": "Fontsource npm packages 5.3.0",
-  "license": "SIL Open Font License 1.1",
+  "packageSource": "Fontsource npm packages 5.3.0 for text faces; Google Fonts CSS API v368 subset for Material Symbols Rounded",
+  "license": "SIL Open Font License 1.1 for text faces; Apache License 2.0 for Material Symbols Rounded",
   "fontSynthesis": false,
   "faces": [
     { "family": "Arvo", "subset": "latin", "weight": 700, "file": "arvo-latin-700-normal.woff2", "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37", "licenseFile": "licenses/arvo-OFL.txt" },
@@ -14,6 +14,7 @@
     { "family": "Bai Jamjuree", "subset": "thai", "weight": 400, "file": "bai-jamjuree-thai-400-normal.woff2", "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
     { "family": "Bai Jamjuree", "subset": "thai", "weight": 600, "file": "bai-jamjuree-thai-600-normal.woff2", "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
     { "family": "IBM Plex Sans Thai", "subset": "thai", "weight": 400, "file": "ibm-plex-sans-thai-thai-400-normal.woff2", "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056", "licenseFile": "licenses/ibm-plex-sans-thai-OFL.txt" },
-    { "family": "JetBrains Mono", "subset": "latin", "weight": 400, "file": "jetbrains-mono-latin-400-normal.woff2", "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb", "licenseFile": "licenses/jetbrains-mono-OFL.txt" }
+    { "family": "JetBrains Mono", "subset": "latin", "weight": 400, "file": "jetbrains-mono-latin-400-normal.woff2", "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb", "licenseFile": "licenses/jetbrains-mono-OFL.txt" },
+    { "family": "Material Symbols Rounded", "subset": "open_in_new", "weight": 300, "file": "material-symbols-rounded-open-in-new-300.woff2", "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e", "axesLock": "FILL 0, wght 300, GRAD 0, opsz 20", "license": "Apache License 2.0", "licenseFile": "licenses/material-symbols-Apache-2.0.txt" }
   ]
 }

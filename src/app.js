@@ -116,7 +116,7 @@ const COPY = {
     controlsLabel: "Display preferences",
     switchLanguage: "เปลี่ยนเป็นภาษาไทย",
     heroEyebrow: "LANDOM · THE PEOPLE SHAPING LANDOMETER",
-    heroTitle: "Not the place,\nbut the People",
+    heroTitle: "It’s not a place.\nIt’s the people.",
     heroIntro: "Landom is for people who want to understand cities and make them better, together.",
     peopleUnit: "people in Landom",
     loadingData: "Loading the latest data",
@@ -1610,6 +1610,10 @@ function detailHeadingMarkup(id, label, icon) {
   return `<h3 id="${escapeHtml(id)}">${detailIconMarkup(icon)}<span>${escapeHtml(label)}</span></h3>`;
 }
 
+function externalLinkIconMarkup() {
+  return `<span class="material-symbols-rounded external-link-icon" aria-hidden="true">open_in_new</span>`;
+}
+
 function educationLinkedInMarkup(url, labelKey) {
   if (!url) return "";
   const label = message(labelKey);
@@ -1666,10 +1670,10 @@ function contributionsMarkup(model) {
           const meta = [contribution.role ? message("contributionRole", { role: contribution.role }) : "", contribution.period].filter(Boolean).join(" · ");
           const name = localizedContributionName(contribution);
           const nameMarkup = contribution.publicUrl
-            ? `<a class="contribution-link" href="${escapeHtml(contribution.publicUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openWork", { name }))}"><span>${escapeHtml(name)}</span><span aria-hidden="true">↗</span></a>`
+            ? `<a class="contribution-heading-link" href="${escapeHtml(contribution.publicUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openWork", { name }))}"><span class="contribution-name">${escapeHtml(name)}</span><span class="contribution-open-icon" aria-hidden="true">${externalLinkIconMarkup()}</span></a>`
             : `<p class="contribution-name">${escapeHtml(name)}</p>`;
           const evidenceMarkup = contribution.evidenceOnlyUrl
-            ? `<a class="contribution-evidence-link" href="${escapeHtml(contribution.evidenceOnlyUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openAwardEvidence", { name }))}"><span>${escapeHtml(message("awardEvidence"))}</span><span aria-hidden="true">↗</span></a>`
+            ? `<a class="contribution-evidence-link" href="${escapeHtml(contribution.evidenceOnlyUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openAwardEvidence", { name }))}"><span>${escapeHtml(message("awardEvidence"))}</span>${externalLinkIconMarkup()}</a>`
             : "";
           return `<li class="contribution-item" data-work-id="${escapeHtml(contribution.workId)}">${nameMarkup}${evidenceMarkup}${meta ? `<p class="contribution-meta">${escapeHtml(meta)}</p>` : ""}</li>`;
         }).join("")}

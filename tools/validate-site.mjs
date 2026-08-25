@@ -49,6 +49,29 @@ export const REQUIRED_UI_IDS = [
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const textExtensions = new Set(['.css', '.html', '.js', '.json', '.mjs', '.svg', '.txt', '.webmanifest']);
+const SOCIAL_PREVIEW = Object.freeze({
+  path: 'public/assets/social/landom-people-og.jpg',
+  url: 'https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa',
+  mimeType: 'image/jpeg',
+  width: 1200,
+  height: 630,
+  bytes: 176692,
+  sha256: '8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0',
+  cacheRevision: '8f60ab324aaa',
+  alt: {
+    th: 'ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer',
+    en: 'People of Landom during a shared activity at Landometer'
+  }
+});
+const MATERIAL_SYMBOLS = Object.freeze({
+  path: 'public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2',
+  licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
+  bytes: 1124,
+  sha256: '778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e',
+  family: 'Material Symbols Rounded',
+  subset: 'open_in_new',
+  axesLock: 'FILL 0, wght 300, GRAD 0, opsz 20'
+});
 
 function valueAt(record, candidates) {
   for (const candidate of candidates) {
@@ -66,6 +89,31 @@ function normalizeText(value) {
     .trim()
     .replace(/\s+/g, ' ')
     .toLocaleLowerCase('en-US');
+}
+
+function jpegDimensions(bytes) {
+  if (bytes.length < 4 || bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
+  const startOfFrameMarkers = new Set([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf]);
+  let offset = 2;
+  while (offset + 4 <= bytes.length) {
+    while (offset < bytes.length && bytes[offset] !== 0xff) offset += 1;
+    while (offset < bytes.length && bytes[offset] === 0xff) offset += 1;
+    if (offset >= bytes.length) break;
+    const marker = bytes[offset];
+    offset += 1;
+    if (marker === 0xd8 || marker === 0xd9 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+    if (marker === 0xda || offset + 2 > bytes.length) break;
+    const segmentLength = bytes.readUInt16BE(offset);
+    if (segmentLength < 2 || offset + segmentLength > bytes.length) break;
+    if (startOfFrameMarkers.has(marker) && segmentLength >= 7) {
+      return {
+        height: bytes.readUInt16BE(offset + 3),
+        width: bytes.readUInt16BE(offset + 5)
+      };
+    }
+    offset += segmentLength;
+  }
+  return null;
 }
 
 function recordLabel(record, fallback) {
@@ -547,6 +595,26 @@ async function validateUi(publishRoot, errors) {
   if (!/\.publication-link\s*\{[^}]*border-radius:\s*var\(--radius-pill\)/s.test(sourceText)) {
     errors.push('External publication actions must use the design-system capsule shape.');
   }
+  const contributionRenderer = sourceText.match(/function contributionsMarkup\b[\s\S]*?(?=function achievementsMarkup\b)/)?.[0] ?? '';
+  const externalIconRenderer = sourceText.match(/function externalLinkIconMarkup\b[\s\S]*?(?=function educationLinkedInMarkup\b)/)?.[0] ?? '';
+  if (!/class="contribution-heading-link"/.test(contributionRenderer) || !/class="contribution-open-icon"/.test(contributionRenderer) || !/externalLinkIconMarkup\(\)/.test(contributionRenderer)) {
+    errors.push('Contribution destinations must preserve the linked title and its circular external-link cue in one accessible destination.');
+  }
+  if (/↗/.test(contributionRenderer)) {
+    errors.push('Contribution actions must not use a font-dependent arrow glyph.');
+  }
+  if (!/material-symbols-rounded external-link-icon/.test(externalIconRenderer) || !/>open_in_new<\/span>/.test(externalIconRenderer) || /<svg\b/.test(externalIconRenderer)) {
+    errors.push('Contribution actions must use the self-hosted Material Symbols Rounded open_in_new glyph, not an ad-hoc vector.');
+  }
+  if (!/\.contribution-open-icon\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;[^}]*border-radius:\s*50%;/s.test(sourceText)) {
+    errors.push('Contribution external-link cues must render as 44 by 44 pixel circles.');
+  }
+  if (!/\.contribution-evidence-link\s*\{[^}]*min-height:\s*44px;[^}]*padding:\s*10px\s+var\(--space-5\);[^}]*border-radius:\s*var\(--radius-pill\);/s.test(sourceText)) {
+    errors.push('Labelled contribution evidence actions must use the 44 pixel design-system capsule recipe.');
+  }
+  if (!/\.timeline-item,[\s\S]*?\.contribution-item,[\s\S]*?\.achievement-item\s*\{[^}]*border-radius:\s*var\(--radius-md\);/s.test(sourceText)) {
+    errors.push('Contribution containers must retain card geometry rather than action geometry.');
+  }
   if (!/owner_authorized_public_certificate/.test(sourceText) || !/safeCertificateUrl/.test(sourceText) || !/certificate-download/.test(allUiText)) {
     errors.push('Certificate previews must use the governed local-asset contract and offer a high-resolution download.');
   }
@@ -732,6 +800,26 @@ async function validateAssetManifest(publishRoot, siteData, errors) {
     }
   }
 
+  const socialPreview = manifest.assets.find((asset) => asset.assetId === 'social-landom-people-og');
+  if (
+    socialPreview?.path !== SOCIAL_PREVIEW.path ||
+    socialPreview?.mediaType !== SOCIAL_PREVIEW.mimeType ||
+    socialPreview?.width !== SOCIAL_PREVIEW.width ||
+    socialPreview?.height !== SOCIAL_PREVIEW.height ||
+    socialPreview?.bytes !== SOCIAL_PREVIEW.bytes ||
+    socialPreview?.sha256 !== SOCIAL_PREVIEW.sha256 ||
+    socialPreview?.approvalScope !== 'social-preview' ||
+    socialPreview?.publicationBasis !== 'owner_authorized_social_preview_image' ||
+    socialPreview?.ownerApproval?.status !== 'granted' ||
+    socialPreview?.ownerApproval?.scope !== 'public_social_preview_only' ||
+    socialPreview?.metadataStripped !== true ||
+    JSON.stringify(socialPreview?.approvedRoles) !== JSON.stringify(['social-preview']) ||
+    socialPreview?.alt?.th !== SOCIAL_PREVIEW.alt.th ||
+    socialPreview?.alt?.en !== SOCIAL_PREVIEW.alt.en
+  ) {
+    errors.push('docs/assets-manifest.json does not pin the owner-approved social-preview asset and role boundary.');
+  }
+
   const peopleAssetRoot = path.join(publishRoot, 'public', 'assets', 'people');
   const peopleAssetFiles = await walkFiles(peopleAssetRoot);
   const declaredPaths = new Set(
@@ -817,6 +905,50 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   const llms = await readIfPresent(path.join(publishRoot, 'llms.txt'));
   const robots = await readIfPresent(path.join(publishRoot, 'robots.txt'));
   const sitemap = await readIfPresent(path.join(publishRoot, 'sitemap.xml'));
+  try {
+    const fontBytes = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS.path));
+    const fontDigest = createHash('sha256').update(fontBytes).digest('hex');
+    const fontManifest = JSON.parse(await readFile(path.join(publishRoot, 'public/assets/fonts/font-assets.manifest.json'), 'utf8'));
+    const fontRecord = fontManifest.faces?.find((record) => record.family === MATERIAL_SYMBOLS.family);
+    const licenseText = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS.licensePath), 'utf8');
+    if (fontBytes.byteLength !== MATERIAL_SYMBOLS.bytes || fontDigest !== MATERIAL_SYMBOLS.sha256) {
+      errors.push('The Material Symbols Rounded subset bytes do not match the governed font record.');
+    }
+    if (
+      fontRecord?.file !== path.basename(MATERIAL_SYMBOLS.path) ||
+      fontRecord?.sha256 !== MATERIAL_SYMBOLS.sha256 ||
+      fontRecord?.subset !== MATERIAL_SYMBOLS.subset ||
+      fontRecord?.weight !== 300 ||
+      fontRecord?.axesLock !== MATERIAL_SYMBOLS.axesLock ||
+      fontRecord?.license !== 'Apache License 2.0' ||
+      fontRecord?.licenseFile !== path.relative('public/assets/fonts', MATERIAL_SYMBOLS.licensePath)
+    ) {
+      errors.push('The Material Symbols Rounded subset is missing its exact manifest, axis-lock, or license record.');
+    }
+    if (!/Apache License\s+Version 2\.0/i.test(licenseText)) {
+      errors.push('The Material Symbols Rounded Apache 2.0 license file is missing or invalid.');
+    }
+  } catch (error) {
+    errors.push(`The governed Material Symbols Rounded subset is missing at ${MATERIAL_SYMBOLS.path}.`);
+  }
+  try {
+    const previewBytes = await readFile(path.join(publishRoot, SOCIAL_PREVIEW.path));
+    const previewDigest = createHash('sha256').update(previewBytes).digest('hex');
+    const dimensions = jpegDimensions(previewBytes);
+    if (previewBytes.byteLength !== SOCIAL_PREVIEW.bytes || previewDigest !== SOCIAL_PREVIEW.sha256) {
+      errors.push('The social-preview image bytes do not match the approved identity record.');
+    }
+    if (dimensions?.width !== SOCIAL_PREVIEW.width || dimensions?.height !== SOCIAL_PREVIEW.height) {
+      errors.push('The social-preview image dimensions must remain exactly 1200 by 630 pixels.');
+    }
+    for (const marker of ['Exif\u0000\u0000', 'http://ns.adobe.com/xap/1.0/', 'GPS', 'iPhone']) {
+      if (previewBytes.includes(Buffer.from(marker, 'utf8'))) {
+        errors.push(`The social-preview derivative must remain free of source metadata marker ${JSON.stringify(marker)}.`);
+      }
+    }
+  } catch (error) {
+    errors.push(`The approved social-preview image is missing at ${SOCIAL_PREVIEW.path}.`);
+  }
   if (robots === null) errors.push('robots.txt is missing.');
   else {
     if (!/^User-agent:\s*\*$/m.test(robots) || !/^Allow:\s*\/$/m.test(robots)) {
@@ -879,8 +1011,26 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     if (/<link\b[^>]*\brel=["'][^"']*apple-touch-icon/i.test(html)) {
       errors.push(`${fileLabel} must not claim an unapproved apple-touch icon.`);
     }
-    if (/property=["']og:image["']/i.test(html) || /name=["']twitter:image["']/i.test(html)) {
-      errors.push(`${fileLabel} must not claim an unapproved social-preview image.`);
+    const expectedPreviewAlt = SOCIAL_PREVIEW.alt[locale];
+    const requiredPreviewMetadata = [
+      `<meta property="og:image" content="${SOCIAL_PREVIEW.url}">`,
+      `<meta property="og:image:secure_url" content="${SOCIAL_PREVIEW.url}">`,
+      `<meta property="og:image:type" content="${SOCIAL_PREVIEW.mimeType}">`,
+      `<meta property="og:image:width" content="${SOCIAL_PREVIEW.width}">`,
+      `<meta property="og:image:height" content="${SOCIAL_PREVIEW.height}">`,
+      `<meta property="og:image:alt" content="${expectedPreviewAlt}">`,
+      '<meta name="twitter:card" content="summary_large_image">',
+      `<meta name="twitter:image" content="${SOCIAL_PREVIEW.url}">`,
+      `<meta name="twitter:image:alt" content="${expectedPreviewAlt}">`
+    ];
+    for (const required of requiredPreviewMetadata) {
+      if (!html.includes(required)) errors.push(`${fileLabel} is missing approved social-preview metadata: ${required}`);
+    }
+    if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS.path}" as="font" type="font/woff2" crossorigin>`)) {
+      errors.push(`${fileLabel} must preload the self-hosted Material Symbols Rounded subset.`);
+    }
+    if ((html.match(/<meta property="og:image"\s/g) ?? []).length !== 1 || (html.match(/<meta name="twitter:image"\s/g) ?? []).length !== 1) {
+      errors.push(`${fileLabel} must expose exactly one approved Open Graph image and one approved Twitter image.`);
     }
     if (!html.includes('<meta name="robots" content="index,follow">')) {
       errors.push(`${fileLabel} must explicitly declare its approved public indexability.`);
@@ -906,7 +1056,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     const expectedDescription = locale === 'th'
       ? 'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer'
       : 'Meet the people, interests and work shaped through time with Landometer.';
-    const expectedHeading = locale === 'th' ? 'ไม่ใช่สถานที่&#10;แต่คือผู้คน' : 'Not the place,&#10;but the People';
+    const expectedHeading = locale === 'th' ? 'ไม่ใช่สถานที่&#10;แต่คือผู้คน' : 'It’s not a place.&#10;It’s the people.';
     if (!html.includes(`<title>${expectedTitle}</title>`)) errors.push(`${fileLabel} is missing its localized initial title.`);
     if (!html.includes(`content="${expectedDescription}"`)) errors.push(`${fileLabel} is missing its localized initial description.`);
     if (!html.includes(`id="page-title">${expectedHeading}</h1>`)) errors.push(`${fileLabel} is missing its localized initial H1.`);
@@ -988,9 +1138,31 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
       ) {
         errors.push('docs/identity-discovery.json does not pin the exact DS-approved favicon role and evidence.');
       }
+      const socialPreview = identityRecord?.identityAssets?.find((asset) => asset.role === 'social preview image');
+      if (
+        socialPreview?.path !== SOCIAL_PREVIEW.path ||
+        socialPreview?.deliveryUrl !== SOCIAL_PREVIEW.url ||
+        socialPreview?.mimeType !== SOCIAL_PREVIEW.mimeType ||
+        socialPreview?.intrinsicWidth !== SOCIAL_PREVIEW.width ||
+        socialPreview?.intrinsicHeight !== SOCIAL_PREVIEW.height ||
+        socialPreview?.bytes !== SOCIAL_PREVIEW.bytes ||
+        socialPreview?.sha256 !== SOCIAL_PREVIEW.sha256 ||
+        socialPreview?.cacheRevision !== SOCIAL_PREVIEW.cacheRevision ||
+        socialPreview?.approvalScope !== 'social preview image only' ||
+        socialPreview?.ownerApproval?.status !== 'granted' ||
+        socialPreview?.ownerApproval?.scope !== 'public_social_preview_only' ||
+        socialPreview?.localizedAlt?.th !== SOCIAL_PREVIEW.alt.th ||
+        socialPreview?.localizedAlt?.en !== SOCIAL_PREVIEW.alt.en ||
+        socialPreview?.sameOrigin !== true
+      ) {
+        errors.push('docs/identity-discovery.json does not pin the exact owner-approved social-preview role and evidence.');
+      }
       const omittedRoles = new Set((identityRecord?.omittedRoles ?? []).map((record) => record.role));
-      for (const role of ['apple-touch icon', 'maskable or install icon', 'social preview image']) {
+      for (const role of ['apple-touch icon', 'maskable or install icon']) {
         if (!omittedRoles.has(role)) errors.push(`docs/identity-discovery.json must record the missing ${role} approval.`);
+      }
+      if (omittedRoles.has('social preview image')) {
+        errors.push('docs/identity-discovery.json must not mark the approved social-preview role as omitted.');
       }
     } catch (error) {
       errors.push(`docs/identity-discovery.json is invalid JSON: ${error.message}`);

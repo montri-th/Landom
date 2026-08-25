@@ -161,7 +161,7 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /data-locale-route="en"/);
   assert.match(english, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/en\/">/);
   assert.match(english, /<title>Landom — meet the people shaping Landometer<\/title>/);
-  assert.match(english, /id="page-title">Not the place,&#10;but the People<\/h1>/);
+  assert.match(english, /id="page-title">It’s not a place\.&#10;It’s the people\.<\/h1>/);
   assert.match(english, /id="footer-meta">People of Landom<\/p>/);
   assert.match(english, /"inLanguage": "en"/);
   assert.match(english, /<base href="\.\.\/">/);
@@ -173,9 +173,75 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
     assert.match(html, /hreflang="en" href="https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
     assert.match(html, /hreflang="x-default" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
     assert.match(html, /landometer-symbol-transparent\.png\?v=35a1496f/);
-    assert.doesNotMatch(html, /apple-touch-icon|property="og:image"|name="twitter:image"/);
+    assert.match(html, /property="og:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=8f60ab324aaa"/);
+    assert.match(html, /name="twitter:card" content="summary_large_image"/);
+    assert.match(html, /name="twitter:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=8f60ab324aaa"/);
+    assert.doesNotMatch(html, /apple-touch-icon/);
     assert.doesNotMatch(html, /montri-th\.github\.io\/Landom\/th\//);
   }
+  assert.match(thai, /property="og:image:alt" content="ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer"/);
+  assert.match(thai, /name="twitter:image:alt" content="ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer"/);
+  assert.match(english, /property="og:image:alt" content="People of Landom during a shared activity at Landometer"/);
+  assert.match(english, /name="twitter:image:alt" content="People of Landom during a shared activity at Landometer"/);
+});
+
+test('the social preview is the exact owner-approved privacy-normalized derivative', async () => {
+  const image = await readFile(new URL('../public/assets/social/landom-people-og.jpg', import.meta.url));
+  const digest = createHash('sha256').update(image).digest('hex');
+  const manifest = JSON.parse(await readFile(new URL('../docs/assets-manifest.json', import.meta.url), 'utf8'));
+  const identity = JSON.parse(await readFile(new URL('../docs/identity-discovery.json', import.meta.url), 'utf8'));
+  const asset = manifest.assets.find((record) => record.assetId === 'social-landom-people-og');
+  const identityAsset = identity.identityAssets.find((record) => record.role === 'social preview image');
+
+  assert.equal(image.byteLength, 176692);
+  assert.equal(digest, '8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0');
+  assert.equal(asset.width, 1200);
+  assert.equal(asset.height, 630);
+  assert.equal(asset.metadataStripped, true);
+  assert.deepEqual(asset.approvedRoles, ['social-preview']);
+  assert.equal(asset.publicationBasis, 'owner_authorized_social_preview_image');
+  assert.equal(identityAsset.deliveryUrl, 'https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa');
+  assert.equal(identityAsset.ownerApproval.scope, 'public_social_preview_only');
+  for (const marker of ['Exif\0\0', 'http://ns.adobe.com/xap/1.0/', 'GPS', 'iPhone']) {
+    assert.equal(image.includes(Buffer.from(marker, 'utf8')), false, `Unexpected source metadata marker: ${marker}`);
+  }
+});
+
+test('contribution destination actions use governed circle and capsule geometry', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const font = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2', import.meta.url));
+  const fontManifest = JSON.parse(await readFile(new URL('../public/assets/fonts/font-assets.manifest.json', import.meta.url), 'utf8'));
+  const renderer = app.match(/function contributionsMarkup\b[\s\S]*?(?=function achievementsMarkup\b)/)?.[0] ?? '';
+  const iconRenderer = app.match(/function externalLinkIconMarkup\b[\s\S]*?(?=function educationLinkedInMarkup\b)/)?.[0] ?? '';
+  const fontRecord = fontManifest.faces.find((record) => record.family === 'Material Symbols Rounded');
+
+  assert.match(renderer, /class="contribution-heading-link"/);
+  assert.match(renderer, /class="contribution-open-icon"/);
+  assert.match(renderer, /externalLinkIconMarkup\(\)/);
+  assert.doesNotMatch(renderer, /↗/);
+  assert.match(iconRenderer, /material-symbols-rounded external-link-icon/);
+  assert.match(iconRenderer, />open_in_new<\/span>/);
+  assert.doesNotMatch(iconRenderer, /<svg\b/);
+  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded";[^}]*font-weight:\s*300;/s);
+  assert.match(styles, /\.external-link-icon\s*\{[^}]*font-family:\s*"Material Symbols Rounded";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 20;/s);
+  assert.match(styles, /\.contribution-open-icon\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;[^}]*border-radius:\s*50%;/s);
+  assert.match(styles, /\.contribution-evidence-link\s*\{[^}]*min-height:\s*44px;[^}]*padding:\s*10px\s+var\(--space-5\);[^}]*border-radius:\s*var\(--radius-pill\);/s);
+  assert.match(styles, /\.timeline-item,[\s\S]*?\.contribution-item,[\s\S]*?\.achievement-item\s*\{[^}]*border-radius:\s*var\(--radius-md\);/s);
+  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-open-in-new-300\.woff2" as="font" type="font\/woff2" crossorigin/);
+  assert.equal(font.byteLength, 1124);
+  assert.equal(createHash('sha256').update(font).digest('hex'), '778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e');
+  assert.equal(fontRecord?.subset, 'open_in_new');
+  assert.equal(fontRecord?.axesLock, 'FILL 0, wght 300, GRAD 0, opsz 20');
+  assert.equal(fontRecord?.license, 'Apache License 2.0');
+});
+
+test('the Landom community work uses the approved Thai name in canonical and short forms', async () => {
+  const works = JSON.parse(await readFile(new URL('../data/generated/works.json', import.meta.url), 'utf8'));
+  const work = works.find((record) => record.workId === 'work-landom-community');
+  assert.equal(work.names.th, 'Landom: ชาวด้อมผู้สร้าง Landometer');
+  assert.equal(work.shortNames.th, 'Landom: ชาวด้อมผู้สร้าง Landometer');
 });
 
 test('profile cards use English role names, explicit status capsules, and restrained education detail type', async () => {
