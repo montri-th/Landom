@@ -255,7 +255,7 @@ test('education labels expose institution context and render program or Chula-aw
   assert.equal(educationLabelText(chulaModel), 'นักศึกษาฝึกงานจาก');
 });
 
-test('the nine owner-requested blank-background portrait edits have deterministic governed metadata and file hashes', async () => {
+test('the nine owner-requested blank-background portraits have governed gradients and edge-refined v2 hashes', async () => {
   const targetPersonIds = [
     'I0001',
     'I0008',
@@ -268,6 +268,18 @@ test('the nine owner-requested blank-background portrait edits have deterministi
     'I0035'
   ];
   const ownerInstruction = 'owner_instruction_2026-08-25';
+  const edgeFollowup = 'owner_followup_edge_refinement_2026-08-25';
+  const priorHashes = new Map([
+    ['I0001', 'd3afe92f666f5bc36d88bf66d16e83807199a77f00b9401ab77a029efeb3b823'],
+    ['I0008', '5681cbc4c7d43f2f714077da68fe02fd7f742b711def940529b60d1e65f18c8a'],
+    ['I0012', '7bfbc53e4c37b0150debcedd79ca91a955eba8560f30db9df168a1296d087746'],
+    ['I0018', '1697ef4a5351458eb08644f887dcf693d0192486908e28e1ca6a1e9c64e66b5d'],
+    ['I0019', '48588a875fb51c653b5405e9e0ecce01e34eb3bb1051c367c2242f564cdf9884'],
+    ['I0021', '1185fbee98581eb482371858b3a5c248dc1a5c8a2bba4aec2da449b74e8234b9'],
+    ['I0025', 'd88521ed84510c8cdda913e238ee41f803b1d2f61dccae5cc29b997b58909a63'],
+    ['I0033', '6b7db934b93451bec835485d6e477027af0889cf5ff4c9f2edf5ae45505f0caa'],
+    ['I0035', 'c67e8a36b8daf1b754d69977bd9e0e1cb97dc9604c4d6780099ec3dc4fae23a1']
+  ]);
   const approvedGradients = new Map([
     [
       'atmosphere.gradient.measure.deep',
@@ -352,6 +364,23 @@ test('the nine owner-requested blank-background portrait edits have deterministi
     assert.equal(edit.contextPolicy, 'no_environmental_context_present_in_source');
     assert.ok(approvedGradients.has(edit.gradientToken), `Unapproved atmosphere token for ${personId}`);
     assert.equal(edit.gradientCss, approvedGradients.get(edit.gradientToken));
+    const edge = edit.edgeRefinement;
+    assert.equal(edge.version, 'v2');
+    assert.equal(edge.requestedAt, '2026-08-25');
+    assert.equal(edge.sourceRef, edgeFollowup);
+    assert.equal(edge.scope, 'foreground_mask_boundary_only');
+    assert.equal(
+      edge.method,
+      personId === 'I0018'
+        ? 'background_color_fit_with_interior_color_propagation'
+        : 'color_aware_soft_matte_projection'
+    );
+    assert.equal(edge.interiorPolicy, 'original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only');
+    assert.equal(edge.gradientPolicy, 'existing_gradient_token_and_css_preserved');
+    assert.equal(edge.encodingPolicy, 'existing_jpeg_quality_78_contract_preserved');
+    assert.equal(edge.derivedFromSha256, priorHashes.get(personId));
+    assert.equal(edge.rightsAndProvenancePolicy, 'unchanged');
+    assert.match(manifest.variant, /-edge-refined-v2$/);
     if (edit.gradientToken === 'atmosphere.gradient.diversity.spectrum') diversityCount += 1;
 
     const image = await readFile(new URL(`../${approved.publicPath}`, import.meta.url));
