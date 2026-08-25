@@ -267,7 +267,7 @@ export function validateDataContract(data) {
     const category = person.migrationClassification;
     const categoryContract = {
       full_time: { prefix: 'S', educationMode: 'qualification' },
-      part_time: { prefix: 'P', educationMode: 'neutral' },
+      part_time: { prefix: 'P', educationMode: 'qualification' },
       intern_or_program_participant: { prefix: 'I', educationMode: 'program' }
     }[category];
     if (categoryContract) {
@@ -282,14 +282,12 @@ export function validateDataContract(data) {
       if (person.canonicalIdPolicy && person.canonicalIdPolicy.frozenAcrossFutureRoleChanges !== true) {
         errors.push(`Person ${person.personId} canonical ID is not frozen across future role changes.`);
       }
-      if (category !== 'part_time') {
-        const ownerDetailRequiredWithoutPrimaryEducation =
-          normalizeText(valueAt(person.educationDisplay ?? {}, ['verificationStatus'])) === 'owner_detail_required' &&
-          !peopleWithPrimaryEducation.has(person.personId);
-        for (const field of ['card.th', 'card.en', 'detail.th', 'detail.en']) {
-          if (!ownerDetailRequiredWithoutPrimaryEducation && !valueAt(person.educationDisplay ?? {}, [field])) {
-            errors.push(`Person ${person.personId} is missing role-aware educationDisplay.${field}.`);
-          }
+      const ownerDetailRequiredWithoutPrimaryEducation =
+        normalizeText(valueAt(person.educationDisplay ?? {}, ['verificationStatus'])) === 'owner_detail_required' &&
+        !peopleWithPrimaryEducation.has(person.personId);
+      for (const field of ['card.th', 'card.en', 'detail.th', 'detail.en']) {
+        if (!ownerDetailRequiredWithoutPrimaryEducation && !valueAt(person.educationDisplay ?? {}, [field])) {
+          errors.push(`Person ${person.personId} is missing role-aware educationDisplay.${field}.`);
         }
       }
     }
@@ -534,8 +532,9 @@ async function validateUi(publishRoot, errors) {
   if (!/setText\(elements\.filterOpenLabel, message\("filter"\)\)/.test(filterCountRenderer)) {
     errors.push('The compact filter label must not repeat the active-filter count already shown by its badge.');
   }
-  if (!sourceText.includes('return "ที่ปรึกษาธุรกิจ";')) {
-    errors.push('Thai Consulting Partner copy must use the approved “ที่ปรึกษาธุรกิจ” label.');
+  const engagementRoleRenderer = sourceText.match(/function engagementRoleName\b[\s\S]*?(?=function engagementIsCurrent\b)/)?.[0] ?? '';
+  if (!/localizedField\([\s\S]*?, "en"\)/.test(engagementRoleRenderer) || sourceText.includes('return "ที่ปรึกษาธุรกิจ";')) {
+    errors.push('Public role labels must render from the English role field in both locales.');
   }
   const publicationRenderer = sourceText.match(/function publicationsMarkup\b[\s\S]*?(?=function socialIconMarkup\b)/)?.[0] ?? '';
   const personDetailRenderer = sourceText.match(/function personDetailMarkup\b[\s\S]*?(?=function cardShellFor\b)/)?.[0] ?? '';

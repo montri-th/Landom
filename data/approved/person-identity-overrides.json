@@ -65,6 +65,14 @@
       "evidenceBasis": "exact_linkedin_profile_title_headline_and_landometer_employment_match",
       "sourceRef": "https://www.linkedin.com/in/passapol-lukthongkum/",
       "reviewedAt": "2026-08-24"
+    },
+    {
+      "personId": "I0037",
+      "fullNameEn": "Nathanicha Sornbundit",
+      "verificationStatus": "verified_exact_linkedin_profile",
+      "evidenceBasis": "owner_supplied_exact_linkedin_profile_url",
+      "sourceRef": "https://www.linkedin.com/in/nathanicha-sornbundit-840109431",
+      "reviewedAt": "2026-08-25"
     }
   ]
 }

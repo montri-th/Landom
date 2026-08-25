@@ -1,6 +1,6 @@
 {
-  "contractVersion": "1.1",
-  "sourceBasis": "owner_instructions_2026-08-23_through_2026-08-24_detail_refinement",
+  "contractVersion": "1.2",
+  "sourceBasis": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
   "addedPeople": [
     {
       "personId": "S0005",
@@ -22,12 +22,102 @@
     },
     {
       "personId": "S0007",
-      "fullName": { "th": "กนกศิลป์", "en": "Kanoksilp Jindadoungrut" },
+      "fullName": { "th": "กนกศิลป์ จินดาดวงรัตน์", "en": "Kanoksilp Jindadoungrut" },
       "nickname": { "th": "โปเต้", "en": "Pote" },
       "currentStatus": "active",
       "firstJoined": "2018",
       "migrationClassification": "full_time",
       "verificationStatus": "owner_supplied"
+    }
+  ],
+  "addedInstitutions": [
+    {
+      "institutionId": "inst-psu",
+      "names": {
+        "th": { "formal": "มหาวิทยาลัยสงขลานครินทร์", "short": "ม.อ." },
+        "en": { "formal": "Prince of Songkla University", "short": "PSU" }
+      },
+      "aliases": ["ม.สงขลานครินทร์", "มหาวิทยาลัยสงขลานครินทร์", "Prince of Songkla University", "PSU"],
+      "verificationStatus": "owner_supplied_canonical_institution"
+    }
+  ],
+  "addedPrograms": [
+    {
+      "programId": "program-cu-computer-science",
+      "names": {
+        "th": { "formal": "วิทยาการคอมพิวเตอร์", "short": "วิทยาการคอมพิวเตอร์" },
+        "en": { "formal": "Computer Science", "short": "Computer Science" }
+      },
+      "qualificationLevel": "bachelor",
+      "verificationStatus": "owner_supplied_detail_refinement"
+    },
+    {
+      "programId": "program-psu-economics",
+      "names": {
+        "th": { "formal": "เศรษฐศาสตร์", "short": "เศรษฐศาสตร์" },
+        "en": { "formal": "Economics", "short": "Economics" }
+      },
+      "qualificationLevel": "bachelor",
+      "verificationStatus": "owner_supplied_with_official_program_definition"
+    }
+  ],
+  "addedEducationRecords": [
+    {
+      "personId": "S0006",
+      "institutionId": "inst-chula",
+      "programId": "program-cu-computer-engineering",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "B.Eng., Computer Engineering — Chulalongkorn University",
+      "degree": {
+        "abbreviation": { "th": "วศ.บ.", "en": "B.Eng." },
+        "title": { "th": "วิศวกรรมศาสตรบัณฑิต", "en": "Bachelor of Engineering" },
+        "field": { "th": "วิศวกรรมคอมพิวเตอร์", "en": "Computer Engineering" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.cp.eng.chula.ac.th/en/prospective/bachelor/",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      },
+      "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
+      "evidenceNote": "Owner confirmed Nat's completed B.Eng. in Computer Engineering from Chulalongkorn University; the official department page standardizes the program and degree nomenclature."
+    },
+    {
+      "personId": "S0007",
+      "institutionId": "inst-chula",
+      "programId": "program-cu-computer-science",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "B.Sc. (Hons.), Computer Science — Chulalongkorn University",
+      "degree": {
+        "abbreviation": { "th": "วท.บ. (เกียรตินิยม)", "en": "B.Sc. (Hons.)" },
+        "title": { "th": "วิทยาศาสตรบัณฑิต (เกียรตินิยม)", "en": "Bachelor of Science (Honours)" },
+        "field": { "th": "วิทยาการคอมพิวเตอร์", "en": "Computer Science" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://ieeexplore.ieee.org/iel7/6287639/8948470/09120020.pdf",
+        "evidenceScope": "owner_confirmed_completed_degree_with_publication_author_biography"
+      },
+      "verificationStatus": "owner_confirmed_completed_degree_with_publication_author_biography",
+      "evidenceNote": "Owner supplied the exact IEEE author-biography evidence stating Kanoksilp Jindadoungrut received the B.Sc. degree with honours in Computer Science from Chulalongkorn University."
+    },
+    {
+      "personId": "P0001",
+      "institutionId": "inst-psu",
+      "programId": "program-psu-economics",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "เศรษฐศาสตรบัณฑิต — มหาวิทยาลัยสงขลานครินทร์",
+      "degree": {
+        "abbreviation": { "th": "ศ.บ.", "en": "B.Econ." },
+        "title": { "th": "เศรษฐศาสตรบัณฑิต", "en": "Bachelor of Economics" },
+        "field": { "th": "เศรษฐศาสตร์", "en": "Economics" },
+        "awardStatus": "completed",
+        "personalAwardVerified": true,
+        "programEvidenceUrl": "https://www.psu.ac.th/en/?course=A1319999A45945&page=course-detial1",
+        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+      },
+      "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
+      "evidenceNote": "Owner confirmed Sek's completed Bachelor of Economics from Prince of Songkla University; the official PSU course page standardizes the degree title."
     }
   ],
   "institutionLinkedInProfiles": [
@@ -137,6 +227,36 @@
     },
     {
       "personId": "S0006",
+      "platform": "github",
+      "publicUrl": "https://github.com/otamnaz",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_github_profile",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-25"
+      }
+    },
+    {
+      "personId": "I0037",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/nathanicha-sornbundit-840109431",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_exact_linkedin_profile_url",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-25"
+      }
+    },
+    {
+      "personId": "S0006",
       "platform": "facebook",
       "publicUrl": "https://www.facebook.com/zanmatoo",
       "verificationStatus": "verified",
@@ -223,6 +343,36 @@
         "approvedAt": "2026-08-24",
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_2026-08-24"
+      }
+    },
+    {
+      "personId": "S0005",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/wachirapong-loyfakajon-1b260b221/",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "exact_name_plus_landometer_company_and_software_programmer_headline_match",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_to_research_linkedin_profiles_2026-08-23"
+      }
+    },
+    {
+      "personId": "S0006",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/nat-pitakamnuay-43127080/",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "exact_name_plus_chulalongkorn_and_smart_shift_solutions_profile_match",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_to_research_linkedin_profiles_2026-08-23"
       }
     }
   ],
@@ -424,7 +574,7 @@
       "category": "full_time",
       "academicPlacementType": "not_applicable",
       "programCode": "Full-time",
-      "roleTitle": { "th": "Full-time staff", "en": "Full-time staff" },
+      "roleTitle": { "th": "Software Programmer", "en": "Software Programmer" },
       "cohortLabel": "2019–present",
       "start": "2019",
       "end": null,
@@ -439,8 +589,9 @@
         "work-department-water-resources",
         "work-dwr-telemetry"
       ],
-      "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_supplied",
+      "evidenceStatus": "owner_supplied_and_public_profile_verified",
+      "verificationStatus": "linkedin_profile_headline_exact_identity_match",
+      "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the exact name and Landometer company profile: Software Programmer.",
       "sequenceHint": 1
     },
     {
@@ -449,7 +600,7 @@
       "category": "full_time",
       "academicPlacementType": "not_applicable",
       "programCode": "Full-time",
-      "roleTitle": { "th": "Full-time staff", "en": "Full-time staff" },
+      "roleTitle": { "th": "Assistant Manager", "en": "Assistant Manager" },
       "cohortLabel": "2018–present",
       "start": "2018",
       "end": null,
@@ -460,8 +611,9 @@
         "work-land-portfolio",
         "work-dwr-telemetry"
       ],
-      "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_supplied",
+      "evidenceStatus": "owner_supplied_and_public_profile_verified",
+      "verificationStatus": "linkedin_profile_headline_exact_identity_match",
+      "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the exact name, Chulalongkorn University and Smart Shift Solutions profile: Assistant Manager.",
       "sequenceHint": 1
     },
     {
@@ -470,7 +622,7 @@
       "category": "full_time",
       "academicPlacementType": "not_applicable",
       "programCode": "Full-time",
-      "roleTitle": { "th": "Full-time staff", "en": "Full-time staff" },
+      "roleTitle": { "th": "Software Developer", "en": "Software Developer" },
       "cohortLabel": "2018–present",
       "start": "2018",
       "end": null,
@@ -479,8 +631,9 @@
         "work-citymeter-population",
         "work-citymeter-buildings"
       ],
-      "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_supplied",
+      "evidenceStatus": "owner_supplied_and_public_profile_verified",
+      "verificationStatus": "linkedin_profile_headline_exact_identity_match",
+      "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the owner-supplied exact profile: Software Developer.",
       "sequenceHint": 1
     }
   ],
@@ -532,12 +685,13 @@
     {
       "workId": "work-dwr-telemetry",
       "parentProduct": "Department of Water Resources",
-      "names": { "th": "DWR: Telemetry", "en": "DWR: Telemetry" },
+      "names": { "th": "โทรมาตร กรมทรัพยากรน้ำ", "en": "DWR Water Monitoring Telemetry" },
       "type": "partner_deliverable",
       "scopeLayer": "partner_specific",
-      "authorityStatus": "owner_supplied_partner_contribution",
-      "evidenceNote": "Owner supplied this DWR-specific contribution; it is not promoted to a shared Landometer capability.",
-      "aliases": ["DWR: Telemetry"]
+      "authorityStatus": "owner_supplied_partner_contribution_with_official_destination",
+      "destinationUrl": "https://telemetry.dwr.go.th/",
+      "evidenceNote": "Owner identified the exact Department of Water Resources telemetry site; the Thai label is aligned to the official remote water-situation monitoring system and remains partner-specific.",
+      "aliases": ["DWR: Telemetry", "DWR Telemetry", "โทรมาตร กรมทรัพยากรน้ำ", "ระบบติดตามสถานการณ์น้ำทางไกลอัตโนมัติ"]
     }
   ],
   "addedContributions": [

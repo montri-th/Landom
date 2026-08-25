@@ -8,6 +8,9 @@
     "contractVersion",
     "sourceBasis",
     "addedPeople",
+    "addedInstitutions",
+    "addedPrograms",
+    "addedEducationRecords",
     "institutionLinkedInProfiles",
     "programLinkedInProfiles",
     "addedPublicSocialProfiles",
@@ -27,9 +30,12 @@
     "contributionRoleOverrides"
   ],
   "properties": {
-    "contractVersion": { "const": "1.1" },
+    "contractVersion": { "const": "1.2" },
     "sourceBasis": { "type": "string", "minLength": 1 },
     "addedPeople": { "type": "array", "items": { "$ref": "#/$defs/addedPerson" } },
+    "addedInstitutions": { "type": "array", "items": { "$ref": "#/$defs/addedInstitution" } },
+    "addedPrograms": { "type": "array", "items": { "$ref": "#/$defs/addedProgram" } },
+    "addedEducationRecords": { "type": "array", "items": { "$ref": "#/$defs/addedEducationRecord" } },
     "institutionLinkedInProfiles": { "type": "array", "items": { "$ref": "#/$defs/institutionLinkedInProfile" } },
     "programLinkedInProfiles": { "type": "array", "items": { "$ref": "#/$defs/programLinkedInProfile" } },
     "addedPublicSocialProfiles": { "type": "array", "items": { "$ref": "#/$defs/addedPublicSocialProfile" } },
@@ -90,6 +96,58 @@
         "firstJoined": { "$ref": "#/$defs/nullableDate" },
         "migrationClassification": { "const": "full_time" },
         "verificationStatus": { "const": "owner_supplied" }
+      }
+    },
+    "addedInstitution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["institutionId", "names", "aliases", "verificationStatus"],
+      "properties": {
+        "institutionId": { "type": "string", "pattern": "^inst-[a-z0-9-]+$" },
+        "names": { "$ref": "#/$defs/formalShortLocalized" },
+        "aliases": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "verificationStatus": { "type": "string", "minLength": 1 }
+      }
+    },
+    "addedProgram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["programId", "names", "qualificationLevel", "verificationStatus"],
+      "properties": {
+        "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" },
+        "names": { "$ref": "#/$defs/formalShortLocalized" },
+        "qualificationLevel": { "enum": ["bachelor", "master", "doctorate", "certificate"] },
+        "verificationStatus": { "type": "string", "minLength": 1 }
+      }
+    },
+    "degree": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["abbreviation", "title", "field", "awardStatus", "personalAwardVerified", "programEvidenceUrl", "evidenceScope"],
+      "properties": {
+        "abbreviation": { "$ref": "#/$defs/localized" },
+        "title": { "$ref": "#/$defs/localized" },
+        "field": { "$ref": "#/$defs/localized" },
+        "awardStatus": { "enum": ["under_review", "in_progress", "completed"] },
+        "personalAwardVerified": { "type": "boolean" },
+        "programEvidenceUrl": { "type": "string", "format": "uri" },
+        "evidenceScope": { "type": "string", "minLength": 1 }
+      }
+    },
+    "addedEducationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "institutionId", "programId", "recordType", "isPrimary", "sourceLabel", "degree", "verificationStatus", "evidenceNote"],
+      "properties": {
+        "personId": { "$ref": "#/$defs/personId" },
+        "institutionId": { "type": "string", "pattern": "^inst-[a-z0-9-]+$" },
+        "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" },
+        "recordType": { "const": "education" },
+        "isPrimary": { "const": true },
+        "sourceLabel": { "type": "string", "minLength": 1 },
+        "degree": { "$ref": "#/$defs/degree" },
+        "verificationStatus": { "type": "string", "minLength": 1 },
+        "evidenceNote": { "type": "string", "minLength": 1 }
       }
     },
     "ownerApproval": {
@@ -238,6 +296,7 @@
         "workId": { "type": "string", "pattern": "^work-[a-z0-9-]+$" },
         "moduleSlug": { "type": "string", "pattern": "^dataset-[a-z0-9-]+$" },
         "evidenceUrl": { "type": "string", "format": "uri" },
+        "destinationUrl": { "type": "string", "format": "uri" },
         "parentProduct": { "type": "string", "minLength": 1 },
         "names": { "$ref": "#/$defs/localized" },
         "type": { "type": "string", "minLength": 1 },

@@ -304,5 +304,39 @@
     "verificationStatus": "normalized_from_sheet_owner_review_required",
     "linkedinUrl": null,
     "linkedinVerificationStatus": "not_found_exact_official_page"
+  },
+  {
+    "programId": "program-cu-computer-science",
+    "names": {
+      "th": {
+        "formal": "วิทยาการคอมพิวเตอร์",
+        "short": "วิทยาการคอมพิวเตอร์"
+      },
+      "en": {
+        "formal": "Computer Science",
+        "short": "Computer Science"
+      }
+    },
+    "qualificationLevel": "bachelor",
+    "verificationStatus": "owner_supplied_detail_refinement",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
+  },
+  {
+    "programId": "program-psu-economics",
+    "names": {
+      "th": {
+        "formal": "เศรษฐศาสตร์",
+        "short": "เศรษฐศาสตร์"
+      },
+      "en": {
+        "formal": "Economics",
+        "short": "Economics"
+      }
+    },
+    "qualificationLevel": "bachelor",
+    "verificationStatus": "owner_supplied_with_official_program_definition",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   }
 ]

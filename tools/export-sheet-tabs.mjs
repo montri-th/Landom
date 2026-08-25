@@ -520,8 +520,8 @@ const qaRows = [
   { metric: 'owner_pending_profile_copy', expected: 0, formula_value: '=COUNTIF(people_registry!Q2:Q,"owner_pending")', review_rule: 'release นี้ต้องเป็น 0' },
   { metric: 'first_person_profile_statements', expected: 25, formula_value: '=COUNTIF(profile_statements!G2:G,"first_person_application")', review_rule: 'จับคู่ core roster แบบ exact และรอ video review' },
   { metric: 'factual_fallback_profile_statements', expected: site.people.filter((person) => person.bio.sourceType === 'factual_fallback').length, formula_value: '=COUNTIF(profile_statements!G2:G,"factual_fallback")', review_rule: 'ใช้เฉพาะ role, education และ verified work; ห้ามใช้ reviewer inference' },
-  { metric: 'staff_degree_programs', expected: 4, formula_value: '=COUNTIFS(education!B2:B,"S*",education!L2:L,"<>")', review_rule: 'ชื่อ degree program ครบ 4 staff' },
-  { metric: 'verified_completed_staff_degrees', expected: 4, formula_value: '=COUNTIFS(education!B2:B,"S*",education!R2:R,"completed",education!S2:S,TRUE)', review_rule: 'owner ยืนยัน completed + personalAwardVerified ครบ 4 staff' }
+  { metric: 'staff_degree_programs', expected: site.educationRecords.filter((record) => /^[SP]/.test(record.personId) && record.degree).length, formula_value: '=COUNTIFS(education!B2:B,"S*",education!L2:L,"<>")+COUNTIFS(education!B2:B,"P*",education!L2:L,"<>")', review_rule: 'ชื่อ degree program ครบทุก Full-time และ Part-time staff record ที่มีหลักฐาน' },
+  { metric: 'verified_completed_staff_degrees', expected: site.educationRecords.filter((record) => /^[SP]/.test(record.personId) && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, formula_value: '=COUNTIFS(education!B2:B,"S*",education!R2:R,"completed",education!S2:S,TRUE)+COUNTIFS(education!B2:B,"P*",education!R2:R,"completed",education!S2:S,TRUE)', review_rule: 'owner ยืนยัน completed + personalAwardVerified ครบทุก Full-time และ Part-time staff record ที่มีหลักฐาน' }
 ];
 
 const readmeRows = [
@@ -529,7 +529,7 @@ const readmeRows = [
   { topic: 'หลักการ', detail: 'หนึ่งคนหนึ่ง person_id; หลายช่วงบทบาทอยู่ใน engagements; หลายผลงานอยู่ใน contributions' },
   { topic: 'person_id', detail: 'รูปแบบ S0001 / P0001 / I0001 จัดตามประเภท ณ migration 2026-08-23 และ freeze หลังออกเลข' },
   { topic: 'หลายบทบาท', detail: 'โอ๊ตใช้ S0001 เดียวสำหรับ Intern → Part-time → Full-time' },
-  { topic: 'การศึกษา', detail: 'Card ใช้ชื่อย่อ program + institution; detail ใช้ชื่อทางการ; staff 4 คนเดิมมี degree + field + institution ที่ owner ยืนยัน completed และ personalAwardVerified แล้ว ส่วน staff ใหม่ 3 คนยังเว้นข้อมูลการศึกษารอหลักฐาน' },
+  { topic: 'การศึกษา', detail: 'Card ใช้ชื่อย่อ degree/field + institution; detail ใช้ชื่อทางการ; staff ที่ owner ยืนยัน completed และ personalAwardVerified แล้วมี 7 records ได้แก่ full-time เดิม 4 คน, Nat, Pote และ part-time staff Sek ส่วน Biw ยังเว้นข้อมูลการศึกษารอหลักฐาน' },
   { topic: 'ฝึกงาน/สหกิจศึกษา', detail: 'ใช้ academic_placement_type ต่อ engagement เท่านั้น; เว็บหลักมีสหกิจ 6 IDs ที่ owner ยืนยัน ส่วนผู้เข้าร่วมรายที่ 7 อยู่ Shortlisted recruitment รอยืนยันการเริ่มงานและ contribution' },
   { topic: 'ผลงาน', detail: 'Land Portfolio และ Lead2Loan เป็นคนละ work_id; ทุกคนมี contribution อย่างน้อย 1 รายการ' },
   { topic: 'รางวัล', detail: 'Hack Land Value / CityCell อยู่ใน achievements และเชื่อมผู้รับรางวัลผ่าน person_achievements' },

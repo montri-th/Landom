@@ -1103,15 +1103,15 @@
     "publicationBasis": "owner_authorized_public_profile_portrait",
     "ownerApproval": {
       "status": "granted",
-      "approvedAt": "2026-08-24",
+      "approvedAt": "2026-08-25",
       "scope": "public_profile_portrait",
-      "sourceRef": "owner_instruction_2026-08-24"
+      "sourceRef": "owner_instruction_2026-08-25"
     },
     "publicationStatus": "publishable",
-    "sha256": "e0c005bf8b2210c9d444ddf6f0abf361a8952a243b81a000b7f92998c8823093",
+    "sha256": "226bad11daa7aab5dab832fa992df2777afc876fbbd3837dbfb5cc51b487986c",
     "mediaType": "image/jpeg",
-    "bytes": 87815,
-    "identityVerificationEvidence": "exact_instagram_candidate_cross_checked_by_first_name_nickname_cedt_and_chulalongkorn"
+    "bytes": 141824,
+    "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
   },
   {
     "assetId": "PORTRAIT-I0038",

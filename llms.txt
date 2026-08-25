@@ -10,6 +10,7 @@
 ## Public machine-readable sources
 
 - Current public directory: https://montri-th.github.io/Landom/data/generated/site-data.json
+- Public people media manifest: https://montri-th.github.io/Landom/data/generated/people-media.json
 - Build integrity manifest: https://montri-th.github.io/Landom/build-manifest.json
 - Sitemap: https://montri-th.github.io/Landom/sitemap.xml
 - Source repository: https://github.com/montri-th/Landom

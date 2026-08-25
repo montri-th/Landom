@@ -169,8 +169,8 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 46);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 14);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 49);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 15);
     assert.deepEqual(
       imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).map((row) => [row.personId, row.publicUrl]),
       [
@@ -182,7 +182,7 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
         ['S0007', 'https://www.facebook.com/kanoksilp.jindadoungrut']
       ]
     );
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 66);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 70);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
     ));
@@ -222,7 +222,7 @@ test('schema and all generated dimensions are valid JSON', () => {
   const identityOverrides = JSON.parse(fs.readFileSync(personIdentityOverridePath, 'utf8'));
   assert.equal(identityOverrides.contractVersion, '1.0');
   assertUnique(identityOverrides.overrides.map((override) => ({ personId: override.personId })), 'personId');
-  assert.equal(detailOverrides.contractVersion, '1.1');
+  assert.equal(detailOverrides.contractVersion, '1.2');
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^[SPI]\d{4}$/.test(engagement.personId)));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^E\d{4}$/.test(engagement.engagementId)));
   for (const fileName of fs.readdirSync(path.join(root, 'data/generated')).filter((name) => name.endsWith('.json'))) {
@@ -234,7 +234,7 @@ test('verified English full names and exact Thai nicknames override stale regist
   const data = loadGenerated();
   const peopleById = new Map(data.people.map((person) => [person.personId, person]));
   assert.equal(peopleById.get('I0035').names.full.en, 'Passapol Lukthongkum');
-  assert.equal(peopleById.get('I0037').names.full.en, null);
+  assert.equal(peopleById.get('I0037').names.full.en, 'Nathanicha Sornbundit');
   assert.equal(peopleById.get('I0038').names.full.en, null);
   assert.deepEqual(
     Object.fromEntries(['I0014', 'I0018', 'I0019', 'I0020', 'I0021', 'I0023', 'I0025'].map((personId) => [personId, peopleById.get(personId).names.nickname.th])),
@@ -287,7 +287,7 @@ test('current staff, completed Team internship and owner-supplied work updates r
     [
       { personId: 'S0005', fullTh: 'วชิรพงศ์ ลอยฟ้าขจร', fullEn: 'Wachirapong Loyfakajon', nicknameTh: 'บิว', nicknameEn: 'Biw', firstJoined: '2019', currentStatus: 'active' },
       { personId: 'S0006', fullTh: 'ณัฐ พิทักษ์อำนวย', fullEn: 'Nat Pitakamnuay', nicknameTh: 'นัท', nicknameEn: 'Nat', firstJoined: '2018', currentStatus: 'active' },
-      { personId: 'S0007', fullTh: 'กนกศิลป์', fullEn: 'Kanoksilp Jindadoungrut', nicknameTh: 'โปเต้', nicknameEn: 'Pote', firstJoined: '2018', currentStatus: 'active' }
+      { personId: 'S0007', fullTh: 'กนกศิลป์ จินดาดวงรัตน์', fullEn: 'Kanoksilp Jindadoungrut', nicknameTh: 'โปเต้', nicknameEn: 'Pote', firstJoined: '2018', currentStatus: 'active' }
     ]
   );
 
@@ -311,6 +311,14 @@ test('current staff, completed Team internship and owner-supplied work updates r
   assert.deepEqual(engagements.get('E0061').responsibilityWorkIds.sort(), contributionWorkIds('S0005'));
   assert.deepEqual(engagements.get('E0062').responsibilityWorkIds.sort(), contributionWorkIds('S0006'));
   assert.deepEqual(engagements.get('E0063').responsibilityWorkIds.sort(), contributionWorkIds('S0007'));
+  assert.deepEqual(
+    ['E0061', 'E0062', 'E0063'].map((engagementId) => engagements.get(engagementId).roleTitle),
+    [
+      { th: 'Software Programmer', en: 'Software Programmer' },
+      { th: 'Assistant Manager', en: 'Assistant Manager' },
+      { th: 'Software Developer', en: 'Software Developer' }
+    ]
+  );
 
   const team = engagements.get('E0043');
   assert.deepEqual({ personId: team.personId, end: team.end, status: team.status }, { personId: 'I0033', end: '2026-07-31', status: 'completed' });
@@ -481,7 +489,7 @@ test('education uses normalized dimensions, appropriate display modes and preser
   assert.ok(data.programs.every((item) => item.names.th.formal && item.names.th.short && item.names.en.formal && item.names.en.short));
   assert.ok(data.people.filter((person) => person.migrationClassification === 'full_time').every((person) => person.educationDisplayMode === 'qualification'));
   assert.ok(data.people.filter((person) => person.migrationClassification === 'intern_or_program_participant').every((person) => person.educationDisplayMode === 'program'));
-  assert.equal(data.people.find((person) => person.personId === 'P0001').educationDisplayMode, 'neutral');
+  assert.equal(data.people.find((person) => person.personId === 'P0001').educationDisplayMode, 'qualification');
   for (const personId of ['I0037', 'I0038']) {
     const record = data.educationRecords.find((item) => item.personId === personId);
     assert.equal(record.institutionId, 'inst-chula');
@@ -735,20 +743,20 @@ test('staff degree programs separate official program names from personal award 
   assert.equal(film.personalAwardVerified, true);
   assert.match(film.programEvidenceUrl, /^https:\/\/imd\.nmu\.ac\.th\//);
 
-  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 4);
-  assert.equal(data.educationRecords.filter((record) => record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 4);
-  assert.equal(data.meta.counts.verifiedCompletedStaffDegrees, 4);
-  assert.ok(data.educationRecords.filter((record) => record.personId.startsWith('S')).every((record) =>
-    record.degree.evidenceScope === 'owner_confirmed_completed_degree_with_official_program_definition'
+  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 7);
+  assert.equal(data.educationRecords.filter((record) => record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 6);
+  assert.equal(data.educationRecords.filter((record) => ['S', 'P'].includes(record.personId.charAt(0)) && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 7);
+  assert.equal(data.meta.counts.verifiedCompletedStaffDegrees, 7);
+  assert.ok(['S0001', 'S0002', 'S0003', 'S0004', 'S0006'].every((personId) =>
+    primaryEducation(personId).degree.evidenceScope === 'owner_confirmed_completed_degree_with_official_program_definition'
   ));
+  assert.equal(primaryEducation('S0007').degree.evidenceScope, 'owner_confirmed_completed_degree_with_publication_author_biography');
   assert.match(data.people.find((person) => person.personId === 'S0003').educationDisplay.card.en, /B\.Eng\., Computer Engineering/);
-  for (const personId of ['S0005', 'S0006', 'S0007']) {
-    const person = data.people.find((item) => item.personId === personId);
-    assert.equal(primaryEducation(personId), undefined);
-    assert.equal(person.educationDisplay.verificationStatus, 'owner_detail_required');
-    assert.deepEqual(person.educationDisplay.card, { th: null, en: null });
-    assert.deepEqual(person.educationDisplay.detail, { th: null, en: null });
-  }
+  const biw = data.people.find((item) => item.personId === 'S0005');
+  assert.equal(primaryEducation('S0005'), undefined);
+  assert.equal(biw.educationDisplay.verificationStatus, 'owner_detail_required');
+  assert.deepEqual(biw.educationDisplay.card, { th: null, en: null });
+  assert.deepEqual(biw.educationDisplay.detail, { th: null, en: null });
 });
 
 test('CityMETER works use release-aligned canonical mappings without promoting unresolved names', () => {
@@ -859,8 +867,8 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
-  assert.equal(linkedIn.length, 46);
-  assert.equal(github.length, 14);
+  assert.equal(linkedIn.length, 49);
+  assert.equal(github.length, 15);
   assert.deepEqual(facebook.map((profile) => ({ personId: profile.personId, publicUrl: profile.publicUrl })), [
     { personId: 'I0011', publicUrl: 'https://www.facebook.com/ingkharut.ruttanaopha.2024' },
     { personId: 'S0004', publicUrl: 'https://www.facebook.com/phonsuda.12' },
@@ -869,7 +877,17 @@ test('only exact owner-authorized public profiles and governed local portraits a
     { personId: 'S0006', publicUrl: 'https://www.facebook.com/zanmatoo' },
     { personId: 'S0007', publicUrl: 'https://www.facebook.com/kanoksilp.jindadoungrut' }
   ]);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 66);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 70);
+  assert.deepEqual(
+    linkedIn
+      .filter((profile) => ['S0005', 'S0006', 'S0007'].includes(profile.personId))
+      .map((profile) => ({ personId: profile.personId, publicUrl: profile.publicUrl })),
+    [
+      { personId: 'S0005', publicUrl: 'https://www.linkedin.com/in/wachirapong-loyfakajon-1b260b221/' },
+      { personId: 'S0006', publicUrl: 'https://www.linkedin.com/in/nat-pitakamnuay-43127080/' },
+      { personId: 'S0007', publicUrl: 'https://www.linkedin.com/in/kanoksilp-jindadoungrut-841a67224/' }
+    ]
+  );
   for (const profile of [...linkedIn, ...github, ...facebook]) {
     assert.equal(profile.verificationStatus, 'verified');
     assert.equal(profile.consentStatus, 'pending');

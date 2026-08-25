@@ -53,7 +53,7 @@ const COPY = {
     errorCopy: "โปรดลองอีกครั้ง ข้อมูลบุคคลจะไม่ถูกแทนที่ด้วยข้อมูลที่ยังไม่ได้ยืนยัน",
     retry: "ลองอีกครั้ง",
     footerCopy: "มาเป็นชาว Landom กัน · Let us cultivate our city with data.",
-    registry: "รายชื่อชาว Landom",
+    registry: "ชาวด้อม Landom",
     openProfile: "ดูโปรไฟล์ของ {name}",
     readStory: "ดูโปรไฟล์",
     collapseProfile: "ย่อรายละเอียด",
@@ -557,7 +557,13 @@ function engagementRoleKey(engagement) {
 }
 
 function engagementRoleName(engagement, roleKey) {
-  return localizedField(engagement, ["roleName", "role_name", "roleTitle", "role_title", "title", "role"]) || message(roleKey);
+  const fallback = {
+    fulltime: "Full-time staff",
+    parttime: "Part-time staff",
+    intern: "Intern",
+    member: "Team member"
+  };
+  return localizedField(engagement, ["roleName", "role_name", "roleTitle", "role_title", "title", "role"], "en") || fallback[roleKey] || fallback.member;
 }
 
 function engagementIsCurrent(engagement) {
@@ -615,9 +621,6 @@ function normalizedLabel(value) {
 }
 
 function publicRoleLabel(role) {
-  if (state.language === "th" && ["consulting partner", "ที่ปรึกษาพันธมิตร"].includes(normalizedLabel(role))) {
-    return "ที่ปรึกษาธุรกิจ";
-  }
   return role;
 }
 
@@ -923,7 +926,7 @@ function workNameForContribution(contribution, workIndex, language = state.langu
 }
 
 function localizedContributionRole(contribution) {
-  const role = localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"]);
+  const role = localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"], "en");
   return publicRoleLabel(role);
 }
 
@@ -1206,10 +1209,13 @@ function roleDisplay(model) {
       PDI: "Product Developer Intern, PDI",
       PMI: "Partnership Maker Intern, PMI"
     };
-    return programs[programCode(model.primaryEngagement)] || model.roleName || message("intern");
+    return programs[programCode(model.primaryEngagement)] || model.roleName || "Intern";
   }
-  const standardized = ["fulltime", "parttime"].includes(model.roleKey) ? message(model.roleKey) : "";
-  return standardized || publicRoleLabel(model.roleName) || message("member");
+  return publicRoleLabel(model.roleName) || "Team member";
+}
+
+function statusDisplay(model) {
+  return model.statusKey === "alumni" ? "Alumni" : "Active";
 }
 
 function currentNickname(model) {
@@ -1318,10 +1324,8 @@ function distinctEngagementsForHistory(engagements) {
 
 function engagementChipName(engagement) {
   const category = engagementCategoryForHistory(engagement);
-  if (category === "full_time") return message("fulltime");
-  if (category === "part_time") return message("parttime");
-  if (category === "internship") return programCode(engagement) || localizedField(engagement, ["program.names", "roleTitle", "role_title"]);
-  return localizedField(engagement, ["program.names", "roleTitle", "role_title"]) || programCode(engagement) || message("member");
+  if (category === "internship") return programCode(engagement) || localizedField(engagement, ["program.names", "roleTitle", "role_title"], "en") || "Intern";
+  return engagementRoleName(engagement, engagementRoleKey(engagement)) || programCode(engagement) || "Team member";
 }
 
 function engagementChipLabel(engagement) {
@@ -1388,7 +1392,10 @@ function renderCard(model) {
     ${avatarMarkup({ ...model, nickname, officialName })}
     <span class="card-body">
       <span class="card-meta-row">
-        <span class="role-badge" data-role="${escapeHtml(model.roleKey)}">${escapeHtml(roleDisplay(model))}</span>
+        <span class="card-role-status">
+          <span class="role-badge" data-role="${escapeHtml(model.roleKey)}">${escapeHtml(roleDisplay(model))}</span>
+          <span class="status-badge" data-status="${escapeHtml(model.statusKey)}">${escapeHtml(statusDisplay(model))}</span>
+        </span>
         <span class="person-id">${escapeHtml(model.id)}</span>
       </span>
       <span class="card-name" id="person-card-title-${escapeHtml(model.id)}">${escapeHtml(nickname)}</span>
@@ -1556,10 +1563,10 @@ function roleTitleForHistory(engagement) {
       PMI: "Partnership Maker Intern, PMI"
     };
     const code = programCode(engagement);
-    return titles[code] || localizedField(engagement, ["program.names", "roleTitle", "role_title"], "en") || code || message("intern");
+    return titles[code] || localizedField(engagement, ["program.names", "roleTitle", "role_title"], "en") || code || "Intern";
   }
   const key = engagementRoleKey(engagement);
-  return publicRoleLabel(engagementRoleName(engagement, key)) || message(key);
+  return publicRoleLabel(engagementRoleName(engagement, key)) || "Team member";
 }
 
 function detailIconMarkup(kind) {

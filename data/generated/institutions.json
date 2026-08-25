@@ -171,5 +171,27 @@
     "verificationStatus": "canonical_name_reviewed",
     "linkedinUrl": "https://www.linkedin.com/school/university-college-london/",
     "linkedinVerificationStatus": "verified_official_page"
+  },
+  {
+    "institutionId": "inst-psu",
+    "names": {
+      "th": {
+        "formal": "มหาวิทยาลัยสงขลานครินทร์",
+        "short": "ม.อ."
+      },
+      "en": {
+        "formal": "Prince of Songkla University",
+        "short": "PSU"
+      }
+    },
+    "aliases": [
+      "ม.สงขลานครินทร์",
+      "มหาวิทยาลัยสงขลานครินทร์",
+      "Prince of Songkla University",
+      "PSU"
+    ],
+    "verificationStatus": "owner_supplied_canonical_institution",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
   }
 ]

@@ -61,7 +61,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['โปรดลองอีกครั้ง ข้อมูลบุคคลจะไม่ถูกแทนที่ด้วยข้อมูลที่ยังไม่ได้ยืนยัน', 'Please try again. Unverified information will not be substituted.'],
   ['ลองอีกครั้ง', 'Try again'],
   ['มาเป็นชาว Landom กัน · Let us cultivate our city with data.', 'Come be part of Landom · Let us cultivate our city with data.'],
-  ['รายชื่อชาว Landom', 'People of Landom'],
+  ['ชาวด้อม Landom', 'People of Landom'],
   ['ประกาศนียบัตร', 'Certificates'],
   ['ปิดประกาศนียบัตร', 'Close certificate'],
   ['เปิดภาพต้นฉบับ', 'Open original image'],

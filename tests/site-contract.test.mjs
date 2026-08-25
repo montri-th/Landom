@@ -151,6 +151,7 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(thai, /data-locale-route="th"/);
   assert.match(thai, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/">/);
   assert.match(thai, /id="page-title">คนที่ร่วมสร้าง Landometer<\/h1>/);
+  assert.match(thai, /id="footer-meta">ชาวด้อม Landom<\/p>/);
   assert.match(thai, /validLang\(langParam\) \|\| routeLang \|\| validLang\(storedLang\)/);
   assert.match(thai, /validLang\(root\.dataset\.localeRoute\) \|\| validLang\(root\.dataset\.defaultLanguage\) \|\| "th"/);
   assert.doesNotMatch(thai, /<base\b/);
@@ -160,6 +161,7 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/en\/">/);
   assert.match(english, /<title>Landom — meet the people shaping Landometer<\/title>/);
   assert.match(english, /id="page-title">Meet the people shaping Landometer<\/h1>/);
+  assert.match(english, /id="footer-meta">People of Landom<\/p>/);
   assert.match(english, /"inLanguage": "en"/);
   assert.match(english, /<base href="\.\.\/">/);
   assert.match(english, /href="https:\/\/montri-th\.github\.io\/Landom\/en\/#main-content"/);
@@ -173,6 +175,21 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
     assert.doesNotMatch(html, /apple-touch-icon|property="og:image"|name="twitter:image"/);
     assert.doesNotMatch(html, /montri-th\.github\.io\/Landom\/th\//);
   }
+});
+
+test('profile cards use English role names, explicit status capsules, and restrained education detail type', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+
+  assert.match(app, /function engagementRoleName[\s\S]*?localizedField\([\s\S]*?, "en"\)/);
+  assert.match(app, /function engagementChipName[\s\S]*?localizedField\([\s\S]*?, "en"\)/);
+  assert.match(app, /function statusDisplay\(model\)[\s\S]*?"Alumni" : "Active"/);
+  assert.match(app, /class="card-role-status"[\s\S]*?class="role-badge"[\s\S]*?class="status-badge"/);
+  assert.doesNotMatch(app, /const standardized = \["fulltime", "parttime"\]/);
+  assert.match(app, /registry: "ชาวด้อม Landom"/);
+  assert.match(styles, /\.card-role-status\s*\{[\s\S]*?flex-wrap: wrap;[\s\S]*?gap: var\(--space-2\);/);
+  assert.match(styles, /\.status-badge\[data-status="active"\][\s\S]*?var\(--semantic-success-fill\)/);
+  assert.match(styles, /\.education-program,[\s\S]*?\.education-institution\s*\{[\s\S]*?font-size: var\(--type-body-sm\);[\s\S]*?font-weight: 400;/);
 });
 
 test('source satisfies the integrated data, privacy, asset, naming, and UI contract', async () => {

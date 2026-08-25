@@ -1023,23 +1023,36 @@
     {
       "assetId": "PORTRAIT-I0037",
       "path": "public/assets/people/I0037.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "owner-supplied-exact-pixel-square-crop",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 87815,
-      "sha256": "e0c005bf8b2210c9d444ddf6f0abf361a8952a243b81a000b7f92998c8823093",
+      "width": 1400,
+      "height": 1400,
+      "bytes": 141824,
+      "sha256": "226bad11daa7aab5dab832fa992df2777afc876fbbd3837dbfb5cc51b487986c",
+      "sourceOriginalSha256": "655fe37578c1fd7fb30d7fb1a462e51e615d10cd4f4ae8a61714de2977df2201",
+      "sourceCrop": {
+        "sourceWidth": 3409,
+        "sourceHeight": 2160,
+        "x": 1000,
+        "y": 0,
+        "width": 1400,
+        "height": 1400,
+        "retouched": false,
+        "generated": false
+      },
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-24",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-24"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "approvedRoles": ["person-avatar"],
       "prohibitedRoles": ["brand-mark"],
-      "notes": "Exact Instagram candidate cross-checked by first name, nickname, CEDT, and Chulalongkorn; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Owner-supplied named source photo. Deterministic square crop only; no AI generation, retouching, or identity alteration. Original remains private; individual consent is not asserted."
     }
   ]
 }

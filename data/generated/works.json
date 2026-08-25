@@ -1842,28 +1842,31 @@
     "parentProduct": "Department of Water Resources",
     "moduleSlug": null,
     "names": {
-      "th": "DWR: Telemetry",
-      "en": "DWR: Telemetry"
+      "th": "โทรมาตร กรมทรัพยากรน้ำ",
+      "en": "DWR Water Monitoring Telemetry"
     },
     "shortNames": {
-      "th": "DWR: Telemetry",
-      "en": "DWR: Telemetry"
+      "th": "โทรมาตร กรมทรัพยากรน้ำ",
+      "en": "DWR Water Monitoring Telemetry"
     },
     "type": "partner_deliverable",
     "scopeLayer": "partner_specific",
-    "authorityStatus": "owner_supplied_partner_contribution",
-    "evidenceNote": "Owner supplied this DWR-specific contribution; it is not promoted to a shared Landometer capability.",
+    "authorityStatus": "owner_supplied_partner_contribution_with_official_destination",
+    "evidenceNote": "Owner identified the exact Department of Water Resources telemetry site; the Thai label is aligned to the official remote water-situation monitoring system and remains partner-specific.",
     "sourceAliases": [
-      "DWR: Telemetry"
+      "DWR: Telemetry",
+      "DWR Telemetry",
+      "โทรมาตร กรมทรัพยากรน้ำ",
+      "ระบบติดตามสถานการณ์น้ำทางไกลอัตโนมัติ"
     ],
     "catalogUrl": {
       "th": null,
       "en": null
     },
-    "destinationUrl": null,
+    "destinationUrl": "https://telemetry.dwr.go.th/",
     "linkEvidence": {
-      "linkScope": "unverified_no_link",
-      "sourceRef": null,
+      "linkScope": "exact_product",
+      "sourceRef": "owner_confirmed_official_partner_destination_2026-08-25",
       "evidenceUrl": null
     }
   }

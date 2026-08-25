@@ -1543,8 +1543,8 @@
     },
     "cohortLabel": "2019–present",
     "roleTitle": {
-      "th": "Full-time staff",
-      "en": "Full-time staff"
+      "th": "Software Programmer",
+      "en": "Software Programmer"
     },
     "start": "2019",
     "end": null,
@@ -1559,9 +1559,9 @@
       "work-department-water-resources",
       "work-dwr-telemetry"
     ],
-    "evidenceStatus": "owner_supplied",
-    "verificationStatus": "owner_supplied",
-    "evidenceNote": null,
+    "evidenceStatus": "owner_supplied_and_public_profile_verified",
+    "verificationStatus": "linkedin_profile_headline_exact_identity_match",
+    "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the exact name and Landometer company profile: Software Programmer.",
     "sequenceHint": 1
   },
   {
@@ -1578,8 +1578,8 @@
     },
     "cohortLabel": "2018–present",
     "roleTitle": {
-      "th": "Full-time staff",
-      "en": "Full-time staff"
+      "th": "Assistant Manager",
+      "en": "Assistant Manager"
     },
     "start": "2018",
     "end": null,
@@ -1590,9 +1590,9 @@
       "work-land-portfolio",
       "work-dwr-telemetry"
     ],
-    "evidenceStatus": "owner_supplied",
-    "verificationStatus": "owner_supplied",
-    "evidenceNote": null,
+    "evidenceStatus": "owner_supplied_and_public_profile_verified",
+    "verificationStatus": "linkedin_profile_headline_exact_identity_match",
+    "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the exact name, Chulalongkorn University and Smart Shift Solutions profile: Assistant Manager.",
     "sequenceHint": 1
   },
   {
@@ -1609,8 +1609,8 @@
     },
     "cohortLabel": "2018–present",
     "roleTitle": {
-      "th": "Full-time staff",
-      "en": "Full-time staff"
+      "th": "Software Developer",
+      "en": "Software Developer"
     },
     "start": "2018",
     "end": null,
@@ -1619,9 +1619,9 @@
       "work-citymeter-population",
       "work-citymeter-buildings"
     ],
-    "evidenceStatus": "owner_supplied",
-    "verificationStatus": "owner_supplied",
-    "evidenceNote": null,
+    "evidenceStatus": "owner_supplied_and_public_profile_verified",
+    "verificationStatus": "linkedin_profile_headline_exact_identity_match",
+    "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the owner-supplied exact profile: Software Developer.",
     "sequenceHint": 1
   }
 ]

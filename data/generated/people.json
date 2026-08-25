@@ -224,18 +224,18 @@
       "categoryAtMigration": "part_time",
       "frozenAcrossFutureRoleChanges": true
     },
-    "educationDisplayMode": "neutral",
+    "educationDisplayMode": "qualification",
     "educationDisplay": {
-      "mode": "neutral",
+      "mode": "qualification",
       "card": {
-        "th": null,
-        "en": null
+        "th": "ศ.บ. เศรษฐศาสตร์ · ม.อ.",
+        "en": "B.Econ., Economics · PSU"
       },
       "detail": {
-        "th": null,
-        "en": null
+        "th": "เศรษฐศาสตรบัณฑิต (เศรษฐศาสตร์) — มหาวิทยาลัยสงขลานครินทร์",
+        "en": "Bachelor of Economics (Economics) — Prince of Songkla University"
       },
-      "verificationStatus": "owner_detail_required"
+      "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition"
     },
     "bio": {
       "th": "เสกเชื่อมสองด้านของการทำความเข้าใจเมือง ผ่าน CityCell ที่มองพื้นที่เป็นระบบ และ CityChat ที่พาคำถามของคนกลับเข้าสู่ข้อมูล",
@@ -2751,7 +2751,7 @@
     "names": {
       "full": {
         "th": "ณัฏฐณิชา ศรบัณฑิต",
-        "en": null
+        "en": "Nathanicha Sornbundit"
       },
       "nickname": {
         "th": "ณิชา",
@@ -3310,14 +3310,14 @@
     "educationDisplay": {
       "mode": "qualification",
       "card": {
-        "th": null,
-        "en": null
+        "th": "วศ.บ. วิศวกรรมคอมพิวเตอร์ · จุฬาฯ",
+        "en": "B.Eng., Computer Engineering · CU"
       },
       "detail": {
-        "th": null,
-        "en": null
+        "th": "วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์) — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Bachelor of Engineering (Computer Engineering) — Chulalongkorn University"
       },
-      "verificationStatus": "owner_detail_required"
+      "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition"
     },
     "bio": {
       "th": "นัททำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 และเชื่อมงานข้อมูลประชากรกับอาคาร Land Portfolio และระบบ Telemetry ของกรมทรัพยากรน้ำ",
@@ -3353,7 +3353,7 @@
     "personId": "S0007",
     "names": {
       "full": {
-        "th": "กนกศิลป์",
+        "th": "กนกศิลป์ จินดาดวงรัตน์",
         "en": "Kanoksilp Jindadoungrut"
       },
       "nickname": {
@@ -3377,14 +3377,14 @@
     "educationDisplay": {
       "mode": "qualification",
       "card": {
-        "th": null,
-        "en": null
+        "th": "วท.บ. (เกียรตินิยม) วิทยาการคอมพิวเตอร์ · จุฬาฯ",
+        "en": "B.Sc. (Hons.), Computer Science · CU"
       },
       "detail": {
-        "th": null,
-        "en": null
+        "th": "วิทยาศาสตรบัณฑิต (เกียรตินิยม) (วิทยาการคอมพิวเตอร์) — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Bachelor of Science (Honours) (Computer Science) — Chulalongkorn University"
       },
-      "verificationStatus": "owner_detail_required"
+      "verificationStatus": "owner_confirmed_completed_degree_with_publication_author_biography"
     },
     "bio": {
       "th": "โปเต้ทำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 โดยร่วมพัฒนาข้อมูลประชากรและอาคารให้กลายเป็นภาพเมืองที่ใช้งานต่อได้",

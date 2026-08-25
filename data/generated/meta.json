@@ -41,13 +41,13 @@
     "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
     "profileCopy": "All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
     "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
-    "staffDegrees": "The directory owner confirmed completed degree and person-level verification for the four existing staff education records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for those records. The three newly added staff profiles have no supplied education evidence and therefore retain no public degree claim.",
+    "staffDegrees": "The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.",
     "externalPublications": "An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer."
   },
   "counts": {
     "people": 51,
     "engagements": 63,
-    "educationRecords": 48,
+    "educationRecords": 51,
     "works": 63,
     "contributions": 120,
     "achievements": 1,
@@ -57,10 +57,10 @@
     "ownerPendingProfiles": 0,
     "firstPersonProfilePlaceholders": 25,
     "factualFallbackProfilePlaceholders": 26,
-    "verifiedCompletedStaffDegrees": 4,
+    "verifiedCompletedStaffDegrees": 7,
     "cooperativeEducationPeople": 6,
     "verifiedInstitutionLinkedInProfiles": 8,
     "verifiedProgramLinkedInProfiles": 0,
-    "publishedPublicSocialProfiles": 66
+    "publishedPublicSocialProfiles": 70
   }
 }

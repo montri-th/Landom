@@ -948,6 +948,13 @@
     margin-bottom: var(--space-4);
   }
 
+  .card-role-status {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
   .person-id {
     color: var(--text-metadata);
     font-family: var(--font-technical);
@@ -975,6 +982,16 @@
   }
 
   .role-badge[data-role="parttime"] {
+    background: var(--semantic-neutral-fill);
+    color: var(--semantic-neutral-ink);
+  }
+
+  .status-badge[data-status="active"] {
+    background: var(--semantic-success-fill);
+    color: var(--semantic-success-ink);
+  }
+
+  .status-badge[data-status="alumni"] {
     background: var(--semantic-neutral-fill);
     color: var(--semantic-neutral-ink);
   }
@@ -1481,8 +1498,8 @@
   .education-program,
   .education-institution {
     color: var(--text-primary);
-    font-size: var(--type-body-lg);
-    font-weight: 600;
+    font-size: var(--type-body-sm);
+    font-weight: 400;
     line-height: var(--leading-compact);
   }
 

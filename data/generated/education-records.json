@@ -834,5 +834,104 @@
     "degree": null,
     "verificationStatus": "owner_review_required",
     "evidenceNote": null
+  },
+  {
+    "educationRecordId": "EDU0049",
+    "personId": "S0006",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-computer-engineering",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "B.Eng., Computer Engineering — Chulalongkorn University",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์",
+      "en": "Computer Engineering"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "วศ.บ.",
+        "en": "B.Eng."
+      },
+      "title": {
+        "th": "วิศวกรรมศาสตรบัณฑิต",
+        "en": "Bachelor of Engineering"
+      },
+      "field": {
+        "th": "วิศวกรรมคอมพิวเตอร์",
+        "en": "Computer Engineering"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://www.cp.eng.chula.ac.th/en/prospective/bachelor/",
+      "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+    },
+    "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
+    "evidenceNote": "Owner confirmed Nat's completed B.Eng. in Computer Engineering from Chulalongkorn University; the official department page standardizes the program and degree nomenclature."
+  },
+  {
+    "educationRecordId": "EDU0050",
+    "personId": "S0007",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-computer-science",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "B.Sc. (Hons.), Computer Science — Chulalongkorn University",
+    "qualification": {
+      "th": "วิทยาการคอมพิวเตอร์",
+      "en": "Computer Science"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "วท.บ. (เกียรตินิยม)",
+        "en": "B.Sc. (Hons.)"
+      },
+      "title": {
+        "th": "วิทยาศาสตรบัณฑิต (เกียรตินิยม)",
+        "en": "Bachelor of Science (Honours)"
+      },
+      "field": {
+        "th": "วิทยาการคอมพิวเตอร์",
+        "en": "Computer Science"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://ieeexplore.ieee.org/iel7/6287639/8948470/09120020.pdf",
+      "evidenceScope": "owner_confirmed_completed_degree_with_publication_author_biography"
+    },
+    "verificationStatus": "owner_confirmed_completed_degree_with_publication_author_biography",
+    "evidenceNote": "Owner supplied the exact IEEE author-biography evidence stating Kanoksilp Jindadoungrut received the B.Sc. degree with honours in Computer Science from Chulalongkorn University."
+  },
+  {
+    "educationRecordId": "EDU0051",
+    "personId": "P0001",
+    "institutionId": "inst-psu",
+    "programId": "program-psu-economics",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "เศรษฐศาสตรบัณฑิต — มหาวิทยาลัยสงขลานครินทร์",
+    "qualification": {
+      "th": "เศรษฐศาสตร์",
+      "en": "Economics"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "ศ.บ.",
+        "en": "B.Econ."
+      },
+      "title": {
+        "th": "เศรษฐศาสตรบัณฑิต",
+        "en": "Bachelor of Economics"
+      },
+      "field": {
+        "th": "เศรษฐศาสตร์",
+        "en": "Economics"
+      },
+      "awardStatus": "completed",
+      "personalAwardVerified": true,
+      "programEvidenceUrl": "https://www.psu.ac.th/en/?course=A1319999A45945&page=course-detial1",
+      "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+    },
+    "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
+    "evidenceNote": "Owner confirmed Sek's completed Bachelor of Economics from Prince of Songkla University; the official PSU course page standardizes the degree title."
   }
 ]

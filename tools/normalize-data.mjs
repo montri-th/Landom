@@ -15,6 +15,7 @@ function option(name, fallback) {
 }
 const inputPath = option('--input', path.join(root, 'data/raw/google-sheet-snapshot.json'));
 const outputDir = option('--output-dir', path.join(root, 'data/generated'));
+const publicSiteRoot = 'https://montri-th.github.io/Landom/';
 
 const snapshot = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 
@@ -53,6 +54,53 @@ function writeJson(name, value) {
   fs.writeFileSync(path.join(outputDir, name), JSON.stringify(value, null, 2) + '\n');
 }
 
+function buildPeopleMediaManifest(siteData) {
+  const portraitByPersonId = new Map(siteData.assets
+    .filter((asset) => asset.kind === 'profile_portrait' && asset.publicPath && asset.publicationStatus === 'publishable')
+    .map((asset) => [asset.personId, asset]));
+
+  return {
+    schemaVersion: '1.0.0',
+    generatedAt: siteData.meta.generatedAt,
+    canonicalUrl: `${publicSiteRoot}data/generated/people-media.json`,
+    contract: {
+      access: 'public_read_only',
+      urlType: 'absolute_https',
+      sourceProfileUrlsExcluded: true,
+      failureMode: 'render_fallback.fullNickname',
+      portraitRule: 'Only governed publishable person portraits receive an image URL.'
+    },
+    people: siteData.people.map((person) => {
+      const portrait = portraitByPersonId.get(person.personId) ?? null;
+      const stableImageUrl = portrait ? `${publicSiteRoot}${portrait.publicPath}` : null;
+      const revision = portrait?.sha256?.slice(0, 12) ?? null;
+      return {
+        personId: person.personId,
+        displayName: person.names.card,
+        fullName: person.names.full,
+        profileUrl: {
+          th: `${publicSiteRoot}?person=${person.personId}&lang=th`,
+          en: `${publicSiteRoot}en/?person=${person.personId}&lang=en`
+        },
+        portrait: portrait ? {
+          status: 'publishable',
+          url: stableImageUrl,
+          versionedUrl: `${stableImageUrl}?v=${revision}`,
+          mediaType: portrait.mediaType,
+          bytes: portrait.bytes,
+          sha256: portrait.sha256,
+          alt: portrait.alt
+        } : null,
+        fallback: {
+          kind: 'full_nickname',
+          fullNickname: person.names.card,
+          reason: portrait ? 'image_load_failure' : 'no_governed_person_portrait'
+        }
+      };
+    })
+  };
+}
+
 function writeSiteDataFiles(siteData) {
   fs.mkdirSync(outputDir, { recursive: true });
   writeJson('meta.json', siteData.meta);
@@ -68,6 +116,7 @@ function writeSiteDataFiles(siteData) {
   writeJson('publications.json', siteData.publications);
   writeJson('social-profiles.json', siteData.socialProfiles);
   writeJson('assets.json', siteData.assets);
+  writeJson('people-media.json', buildPeopleMediaManifest(siteData));
   writeJson('certificates.json', siteData.certificates);
   writeJson('site-data.json', siteData);
 }
@@ -96,7 +145,7 @@ const profileCopy = readApprovedJson('profile-copy.json');
 const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
 const profileDetailOverrides = readApprovedJson('profile-detail-overrides.json');
 const personIdentityOverrides = readApprovedJson('person-identity-overrides.json');
-if (profileDetailOverrides.contractVersion !== '1.1') {
+if (profileDetailOverrides.contractVersion !== '1.2') {
   throw new Error('Unsupported profile-detail override contract: ' + profileDetailOverrides.contractVersion);
 }
 if (personIdentityOverrides.contractVersion !== '1.0') {
@@ -209,6 +258,18 @@ const institutions = [
   }
 ];
 
+for (const approved of profileDetailOverrides.addedInstitutions ?? []) {
+  if (institutions.some((institution) => institution.institutionId === approved.institutionId)) {
+    throw new Error('Added institution duplicates an institution ID: ' + approved.institutionId);
+  }
+  institutions.push({
+    institutionId: approved.institutionId,
+    names: structuredClone(approved.names),
+    aliases: [...approved.aliases],
+    verificationStatus: approved.verificationStatus
+  });
+}
+
 const institutionByIdForPublicProfiles = new Map(institutions.map((institution) => [institution.institutionId, institution]));
 for (const institution of institutions) {
   institution.linkedinUrl = null;
@@ -256,6 +317,20 @@ const programs = [
   linkedinUrl: null,
   linkedinVerificationStatus: 'not_found_exact_official_page'
 }));
+
+for (const approved of profileDetailOverrides.addedPrograms ?? []) {
+  if (programs.some((program) => program.programId === approved.programId)) {
+    throw new Error('Added program duplicates a program ID: ' + approved.programId);
+  }
+  programs.push({
+    programId: approved.programId,
+    names: structuredClone(approved.names),
+    qualificationLevel: approved.qualificationLevel,
+    verificationStatus: approved.verificationStatus,
+    linkedinUrl: null,
+    linkedinVerificationStatus: 'not_found_exact_official_page'
+  });
+}
 
 const programByIdForOverrides = new Map(programs.map((program) => [program.programId, program]));
 for (const override of profileDetailOverrides.programOverrides ?? []) {
@@ -342,7 +417,7 @@ const people = peopleRows.map((row) => {
     educationDisplayMode: migrationClassification === 'full_time'
       ? 'qualification'
       : migrationClassification === 'part_time'
-        ? 'neutral'
+        ? 'qualification'
         : 'program',
     educationDisplay: null,
     bio: {
@@ -489,6 +564,32 @@ for (const row of peopleRows) {
           ? 'ชีตระบุเพียงปีแลกเปลี่ยน ไม่ระบุหลักสูตรหรือวุฒิ จึงไม่เติมข้อมูลที่อนุมานเอง'
           : null
     });
+  });
+}
+
+for (const approved of profileDetailOverrides.addedEducationRecords ?? []) {
+  if (!peopleById.has(approved.personId)) {
+    throw new Error('Added education record references an unknown person: ' + approved.personId);
+  }
+  if (approved.isPrimary && educationRecords.some((record) => record.personId === approved.personId && record.isPrimary)) {
+    throw new Error('Added education record duplicates a primary education record: ' + approved.personId);
+  }
+  const institution = institutions.find((item) => item.institutionId === approved.institutionId);
+  const program = programs.find((item) => item.programId === approved.programId);
+  if (!institution) throw new Error('Added education record references an unknown institution: ' + approved.institutionId);
+  if (!program) throw new Error('Added education record references an unknown program: ' + approved.programId);
+  educationRecords.push({
+    educationRecordId: 'EDU' + String(educationRecords.length + 1).padStart(4, '0'),
+    personId: approved.personId,
+    institutionId: approved.institutionId,
+    programId: approved.programId,
+    recordType: approved.recordType,
+    isPrimary: approved.isPrimary,
+    sourceLabel: approved.sourceLabel,
+    qualification: { th: program.names.th.formal, en: program.names.en.formal },
+    degree: structuredClone(approved.degree),
+    verificationStatus: approved.verificationStatus,
+    evidenceNote: approved.evidenceNote
   });
 }
 
@@ -781,7 +882,7 @@ const productCatalogLinks = new Map([
   ['work-lead2loan', ['https://landometer.com/intro/products#product-l2l', 'exact_product']]
 ]);
 
-function workLinkFields(workId, moduleSlug = null, evidenceUrl = null) {
+function workLinkFields(workId, moduleSlug = null, evidenceUrl = null, destinationUrl = null) {
   const citymeterSlug = moduleSlug || citymeterCatalogSlugs.get(workId);
   if (citymeterSlug) {
     return {
@@ -821,6 +922,17 @@ function workLinkFields(workId, moduleSlug = null, evidenceUrl = null) {
       }
     };
   }
+  if (destinationUrl) {
+    return {
+      catalogUrl: { th: null, en: null },
+      destinationUrl,
+      linkEvidence: {
+        linkScope: 'exact_product',
+        sourceRef: 'owner_confirmed_official_partner_destination_2026-08-25',
+        evidenceUrl: null
+      }
+    };
+  }
   if (evidenceUrl) {
     return {
       catalogUrl: { th: null, en: null },
@@ -855,7 +967,7 @@ function addWork(definition) {
     authorityStatus: definition.authorityStatus,
     evidenceNote: definition.evidenceNote || null,
     sourceAliases: definition.aliases || [],
-    ...workLinkFields(definition.workId, definition.moduleSlug, definition.evidenceUrl)
+    ...workLinkFields(definition.workId, definition.moduleSlug, definition.evidenceUrl, definition.destinationUrl)
   };
   workMap.set(work.workId, work);
   for (const alias of work.sourceAliases) workAliasMap.set(alias, work.workId);
@@ -1577,7 +1689,7 @@ const meta = {
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
     profileCopy: 'All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
-    staffDegrees: 'The directory owner confirmed completed degree and person-level verification for the four existing staff education records. Official program sources substantiate standardized degree nomenclature; the owner confirmation is the recorded personal-status evidence boundary for those records. The three newly added staff profiles have no supplied education evidence and therefore retain no public degree claim.',
+    staffDegrees: 'The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.',
     externalPublications: 'An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer.'
   },
   counts: {
@@ -1594,7 +1706,9 @@ const meta = {
     firstPersonProfilePlaceholders: firstPersonProfiles.length,
     factualFallbackProfilePlaceholders: factualFallbackProfiles.length,
     verifiedCompletedStaffDegrees: educationRecords.filter((record) =>
-      record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified === true
+      ['S', 'P'].includes(record.personId.charAt(0)) &&
+      record.degree?.awardStatus === 'completed' &&
+      record.degree?.personalAwardVerified === true
     ).length,
     cooperativeEducationPeople: cooperativeEducationPersonIds.size,
     verifiedInstitutionLinkedInProfiles: institutions.filter((institution) => institution.linkedinUrl).length,

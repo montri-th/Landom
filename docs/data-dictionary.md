@@ -4,6 +4,8 @@
 
 Raw snapshot เป็นข้อมูลปฏิบัติการที่อาจมี private contact fields จึงต้องอยู่เฉพาะในเครื่องของผู้มีสิทธิ์และถูก ignore จาก Git/public build ส่วน `data/generated/` ผ่าน privacy gate และเป็นชุดที่ Dev ใช้ได้ ตัว normalize รับ authorized snapshot ผ่าน `--input` และเลือกปลายทางผ่าน `--output-dir`; public CI ตรวจ generated contract โดยไม่มี raw input และห้ามอ่าน/เขียน Google Sheet แบบ remote
 
+Client ภายนอกที่ต้องแสดงรูปบุคคลให้ใช้ `data/generated/people-media.json` เป็นสัญญา media โดยตรง ไฟล์นี้มี canonical person ID, absolute profile/portrait URL, hash, localized alt และ `fallback.fullNickname` แต่ไม่มี source CDN URL หาก `portrait=null` ต้องใช้ชื่อเล่นเต็มแทน ห้ามเดาหรือใช้ avatar ที่ไม่ได้ผ่าน portrait gate
+
 การแก้รายละเอียดที่เจ้าของยืนยันหลัง snapshot อยู่ใน `data/approved/profile-detail-overrides.json` และมี contract ที่ `data/schema/profile-detail-overrides.schema.json` เพื่อไม่แก้ generated output ด้วยมือ ส่วนชื่อบุคคลที่ยืนยันได้ภายหลังอยู่ใน `data/approved/person-identity-overrides.json` ภายใต้ `data/schema/person-identity-overrides.schema.json` โดยรับเฉพาะชื่อเล่นไทยที่เจ้าของหรือ Sheet ยืนยันตรงตัว และชื่ออังกฤษที่ตรงกับโปรไฟล์ LinkedIn ของบุคคลนั้น ห้ามถอดเสียงหรือเดาชื่อที่ยังไม่มีหลักฐาน ทั้งสองไฟล์ใช้ canonical person/work/engagement IDs และไม่เก็บ contact หรือ private Sheet locator
 
 Snapshot รองรับ 2 schema โดย normalizer ตรวจรูปแบบให้อัตโนมัติ:
@@ -75,7 +77,7 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `currentStatus` | enum | `active`, `alumni` |
 | `firstJoined` | ISO date, year, null | เก็บ precision เท่าที่หลักฐานมี ไม่สร้างวันที่จากปี |
 | `migrationClassification` | enum | `full_time`, `part_time`, `intern_or_program_participant` |
-| `educationDisplayMode` | enum | Full-time=`qualification`, Intern=`program`, Part-time=`neutral` |
+| `educationDisplayMode` | enum | Full-time และ Part-time staff=`qualification`, Intern=`program`; staff ที่ไม่มีหลักฐานการศึกษายังคงซ่อนค่า ไม่สร้าง degree ขึ้นมา |
 | `educationDisplay.card` | localized | หลักสูตร/field + ชื่อย่อสถาบัน |
 | `educationDisplay.detail` | localized | หลักสูตร/field + ชื่อเต็มสถาบัน |
 | `bio.th/en` | string/null | current materialized copy; null เมื่อยังไม่มีข้อความที่ผ่าน publication basis |
@@ -138,8 +140,8 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `degree.title.th/en` | ชื่อเต็ม degree program |
 | `degree.field.th/en` | field ที่บุคคลเรียนและใช้ร่วมกับ official program evidence |
 | `degree.awardStatus` | `under_review`, `in_progress`, `completed` แยกจากชื่อหลักสูตร |
-| `degree.personalAwardVerified` | true เมื่อมี person-level evidence ที่บันทึกชัดเจน; release นี้เจ้าของ directory ยืนยันครบ 4 staff และ official curriculum ใช้ยืนยัน nomenclature |
-| `degree.programEvidenceUrl` | primary official program source; ไม่ใช่หลักฐาน personal award |
+| `degree.personalAwardVerified` | true เมื่อมี person-level evidence ที่บันทึกชัดเจน; release นี้เจ้าของ directory ยืนยัน 7 records: full-time staff เดิม 4 คน, Nat, Pote และ part-time staff Sek |
+| `degree.programEvidenceUrl` | หลักฐานที่กำกับ degree record: โดยทั่วไปเป็น official program source สำหรับ nomenclature; Pote ใช้ owner-supplied IEEE author biography ที่ระบุวุฒิของบุคคลโดยตรง |
 | `degree.evidenceScope` | ขอบเขตว่าหลักฐานรองรับ program หรือสถานะบุคคลระดับใด |
 | `verificationStatus` | `owner_review_required` หรือสถานะ conflict |
 
@@ -183,7 +185,7 @@ Land Portfolio กับ Lead2Loan เป็นคนละ `workId`; Land Portf
 - Team (`I0033`): PDI 2026 สิ้นสุด 31 July 2026 และมีสถานะ alumni
 - Biw (`S0005`): Full-time 2019–ปัจจุบัน; Nat (`S0006`) และ Pote (`S0007`): Full-time 2018–ปัจจุบัน
 
-S0005–S0007 ยังไม่มี education evidence ที่เจ้าของส่งมา จึงไม่มี `educationRecord` และไม่แสดง degree/มหาวิทยาลัยแทนด้วยค่าที่เดา; `educationDisplay.verificationStatus=owner_detail_required` ใช้เพื่อบอกขอบเขตข้อมูลและ UI ต้องซ่อนส่วนการศึกษาในกรณีนี้
+Biw (`S0005`) ยังไม่มี education evidence ที่เจ้าของส่งมา จึงไม่มี `educationRecord` และไม่แสดง degree/มหาวิทยาลัยแทนด้วยค่าที่เดา; `educationDisplay.verificationStatus=owner_detail_required` ใช้เพื่อบอกขอบเขตข้อมูลและ UI ต้องซ่อนส่วนการศึกษาในกรณีนี้ ส่วน Nat (`S0006`) ใช้ `B.Eng., Computer Engineering — Chulalongkorn University`, Pote (`S0007`) ใช้ `B.Sc. (Hons.), Computer Science — Chulalongkorn University` และ Sek (`P0001`) ใช้ `B.Econ., Economics — Prince of Songkla University` ตามหลักฐานที่บันทึกแล้ว
 
 สหกิจศึกษาใน public core มีเพียง `I0003`, `I0030`, `I0031`, `I0034`, `I0036`, `I0039` ส่วนผู้เข้าร่วมรายที่ 7 ตาม owner instruction ยังอยู่ใน private Shortlisted recruitment เพราะยังไม่มี started engagement และ contribution ที่ยืนยัน ห้ามสร้าง public person/work เพื่อให้จำนวนครบ
 
@@ -203,7 +205,7 @@ S0005–S0007 ยังไม่มี education evidence ที่เจ้า�
 | `authorityStatus` | ความสอดคล้องกับ release/หลักฐาน |
 | `evidenceNote` | incompatibility หรือข้อจำกัดที่ต้องแสดง/เก็บไว้ |
 | `catalogUrl.th/en` | URL catalog ที่ยืนยันแล้วแยกภาษา; null หากยังไม่มี exact route |
-| `destinationUrl` | URL ปลายทางเฉพาะงานเมื่อมีหลักฐาน exact; ปัจจุบัน null เมื่อมีเพียง catalog route |
+| `destinationUrl` | URL ปลายทางเฉพาะงานเมื่อมีหลักฐาน exact; `work-dwr-telemetry` ใช้ `https://telemetry.dwr.go.th/` ส่วนงานที่มีเพียง catalog route ยังคง null |
 | `linkEvidence.linkScope` | `exact_module`, `exact_product`, `evidence_only`, `broader_catalog`, `unverified_no_link` |
 | `linkEvidence.sourceRef` | แหล่งยืนยัน route โดยไม่อ้างว่าลิงก์กว้างคือหน้ารายละเอียดเฉพาะงาน |
 | `linkEvidence.evidenceUrl` | URL หลักฐานที่ไม่ใช่ catalog/destination เช่นหลักฐานรางวัล CityCell |
