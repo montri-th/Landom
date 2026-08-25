@@ -168,11 +168,11 @@
     {
       "assetId": "PORTRAIT-I0008",
       "path": "public/assets/people/I0008.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 63289,
-      "sha256": "5681cbc4c7d43f2f714077da68fe02fd7f742b711def940529b60d1e65f18c8a",
+      "bytes": 62556,
+      "sha256": "7610343014a0f5dfc03e73584321cc994a1b4f695079d4dd9673de18031d2872",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -188,7 +188,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.deep; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.deep; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -200,7 +200,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 1,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "5681cbc4c7d43f2f714077da68fe02fd7f742b711def940529b60d1e65f18c8a",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -231,11 +248,11 @@
     {
       "assetId": "PORTRAIT-I0012",
       "path": "public/assets/people/I0012.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 56572,
-      "sha256": "7bfbc53e4c37b0150debcedd79ca91a955eba8560f30db9df168a1296d087746",
+      "bytes": 55382,
+      "sha256": "be4710c6c0d80f9db6bbfb45c069ab05d3c19c685adfc86d561279a1ed958974",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -251,7 +268,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.current; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.current; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -263,7 +280,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 0.8,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "7bfbc53e4c37b0150debcedd79ca91a955eba8560f30db9df168a1296d087746",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -369,11 +403,11 @@
     {
       "assetId": "PORTRAIT-I0018",
       "path": "public/assets/people/I0018.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 80044,
-      "sha256": "1697ef4a5351458eb08644f887dcf693d0192486908e28e1ca6a1e9c64e66b5d",
+      "bytes": 78569,
+      "sha256": "949b64c7ba564fdda8f070e98f33187720d6c2e08b49581a7b1505cf7af27828",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -389,7 +423,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.glow; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.glow; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -401,17 +435,37 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "background_color_fit_with_interior_color_propagation",
+          "parameters": {
+            "variant": "extended_hair_fringe_color_fit",
+            "innerBandPx": 9,
+            "fringeBandPx": 41,
+            "backgroundSimilarity": 0.05,
+            "propagationIterations": 80,
+            "interiorColorPropagation": 0.9
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "1697ef4a5351458eb08644f887dcf693d0192486908e28e1ca6a1e9c64e66b5d",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
       "assetId": "PORTRAIT-I0019",
       "path": "public/assets/people/I0019.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 78860,
-      "sha256": "48588a875fb51c653b5405e9e0ecce01e34eb3bb1051c367c2242f564cdf9884",
+      "bytes": 78383,
+      "sha256": "b944d47048835322d0f880cd84b86302394dee8f59c0095654964609969c56d5",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -427,7 +481,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.diversity.spectrum; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.diversity.spectrum; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -439,7 +493,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 0.8,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "48588a875fb51c653b5405e9e0ecce01e34eb3bb1051c367c2242f564cdf9884",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -470,11 +541,11 @@
     {
       "assetId": "PORTRAIT-I0021",
       "path": "public/assets/people/I0021.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 66209,
-      "sha256": "1185fbee98581eb482371858b3a5c248dc1a5c8a2bba4aec2da449b74e8234b9",
+      "bytes": 66266,
+      "sha256": "e0c005a1982f448fd336d278a704c52ff91e2e09841593103e3887382bc9f807",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -490,7 +561,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.mist; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.mist; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -502,7 +573,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 0.8,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "1185fbee98581eb482371858b3a5c248dc1a5c8a2bba4aec2da449b74e8234b9",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -583,11 +671,11 @@
     {
       "assetId": "PORTRAIT-I0025",
       "path": "public/assets/people/I0025.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 64557,
-      "sha256": "d88521ed84510c8cdda913e238ee41f803b1d2f61dccae5cc29b997b58909a63",
+      "bytes": 65099,
+      "sha256": "b233a51d79e59550017bfcd4787f775fd66b598aacc70bc9bfc66a7fde96d4d1",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -603,7 +691,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.mist; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.mist; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -615,7 +703,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 0.8,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "d88521ed84510c8cdda913e238ee41f803b1d2f61dccae5cc29b997b58909a63",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -771,11 +876,11 @@
     {
       "assetId": "PORTRAIT-I0033",
       "path": "public/assets/people/I0033.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 91504,
-      "sha256": "6b7db934b93451bec835485d6e477027af0889cf5ff4c9f2edf5ae45505f0caa",
+      "bytes": 92037,
+      "sha256": "b7b4cdb35fbbf8950de095d3dc0cfb701377998f46d8188597db94ded5086359",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -791,7 +896,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.glow; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.cultivate.glow; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -803,7 +908,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 1,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "6b7db934b93451bec835485d6e477027af0889cf5ff4c9f2edf5ae45505f0caa",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -834,11 +956,11 @@
     {
       "assetId": "PORTRAIT-I0035",
       "path": "public/assets/people/I0035.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 48028,
-      "sha256": "c67e8a36b8daf1b754d69977bd9e0e1cb97dc9604c4d6780099ec3dc4fae23a1",
+      "bytes": 48118,
+      "sha256": "32b661629ad1347e36fc591e6c55a9ff83df168016c4914f067df0d0d98b723f",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -854,7 +976,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.luminous; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.luminous; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -866,7 +988,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 1,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "c67e8a36b8daf1b754d69977bd9e0e1cb97dc9604c4d6780099ec3dc4fae23a1",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
@@ -1047,11 +1186,11 @@
     {
       "assetId": "PORTRAIT-I0001",
       "path": "public/assets/people/I0001.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
+      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 92883,
-      "sha256": "d3afe92f666f5bc36d88bf66d16e83807199a77f00b9401ab77a029efeb3b823",
+      "bytes": 92526,
+      "sha256": "b264e4deec7897283bfa94bdab5cec75b3a75cd02af0828f685f7cb4e1fba6b1",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
@@ -1067,7 +1206,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.luminous; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category.",
+      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.measure.luminous; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
       "backgroundEdit": {
         "method": "pixel_preserving_foreground_mask_composite",
         "requestedAt": "2026-08-25",
@@ -1079,7 +1218,24 @@
         "surfaceRole": "product_identity",
         "deletionTest": "improves",
         "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source"
+        "contextPolicy": "no_environmental_context_present_in_source",
+        "edgeRefinement": {
+          "version": "v2",
+          "requestedAt": "2026-08-25",
+          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
+          "scope": "foreground_mask_boundary_only",
+          "method": "color_aware_soft_matte_projection",
+          "parameters": {
+            "variant": "quadratic_background_projection_soft_matte",
+            "blendStrength": 0.65,
+            "softMaskAlphaLimit": 0.96
+          },
+          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
+          "gradientPolicy": "existing_gradient_token_and_css_preserved",
+          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
+          "derivedFromSha256": "d3afe92f666f5bc36d88bf66d16e83807199a77f00b9401ab77a029efeb3b823",
+          "rightsAndProvenancePolicy": "unchanged"
+        }
       }
     },
     {
