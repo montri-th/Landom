@@ -1495,6 +1495,10 @@
     text-transform: uppercase;
   }
 
+  .education-context--literal-case {
+    text-transform: none;
+  }
+
   .education-program,
   .education-institution {
     color: var(--text-primary);
@@ -1505,6 +1509,13 @@
 
   .education-institution {
     color: var(--text-secondary);
+  }
+
+  .education-supplementary {
+    color: var(--text-metadata);
+    font-size: var(--type-caption);
+    font-weight: 500;
+    line-height: var(--leading-compact);
   }
 
   .timeline,

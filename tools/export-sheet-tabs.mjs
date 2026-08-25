@@ -200,7 +200,9 @@ const engagementRows = site.engagements.map((engagement) => ({
   evidence_status: engagement.evidenceStatus,
   verification_status: engagement.verificationStatus,
   sequence_hint: engagement.sequenceHint,
-  academic_placement_type: engagement.academicPlacementType
+  academic_placement_type: engagement.academicPlacementType,
+  education_context_label_th: engagement.program.code === 'IMP' ? 'ที่ปรึกษาธุรกิจ Impvest จาก' : '',
+  education_context_label_en: engagement.program.code === 'IMP' ? 'Impvest Consulting Partner from' : ''
 }));
 
 const institutionRows = site.institutions.map((institution) => ({
@@ -257,7 +259,12 @@ const educationRows = site.educationRecords.map((education) => ({
   degree_award_status: education.degree?.awardStatus,
   degree_personal_award_verified: education.degree?.personalAwardVerified,
   degree_program_evidence_url: education.degree?.programEvidenceUrl,
-  degree_evidence_scope: education.degree?.evidenceScope
+  degree_evidence_scope: education.degree?.evidenceScope,
+  study_start: education.studyPeriod?.start,
+  study_end: education.studyPeriod?.end,
+  study_current: education.studyPeriod?.current,
+  study_period_label_th: education.studyPeriod?.label?.th,
+  study_period_label_en: education.studyPeriod?.label?.en
 }));
 
 const workRows = site.works.map((work) => ({
@@ -590,7 +597,7 @@ const tabs = {
     }
   ),
   engagements: tab(
-    ['engagement_id', 'person_id', 'category', 'program_code', 'program_name_th', 'program_name_en', 'cohort', 'role_th', 'role_en', 'responsibility_work_ids', 'start', 'end', 'status', 'evidence_status', 'verification_status', 'sequence_hint', 'academic_placement_type'],
+    ['engagement_id', 'person_id', 'category', 'program_code', 'program_name_th', 'program_name_en', 'cohort', 'role_th', 'role_en', 'responsibility_work_ids', 'start', 'end', 'status', 'evidence_status', 'verification_status', 'sequence_hint', 'academic_placement_type', 'education_context_label_th', 'education_context_label_en'],
     engagementRows,
     { validations: { M: ['ongoing', 'completed'], Q: ['cooperative_education', 'internship', 'not_applicable'] } }
   ),
@@ -600,8 +607,9 @@ const tabs = {
   programs: tab(['program_id', 'institution_ids', 'official_name_th', 'official_name_en', 'short_name_th', 'short_name_en', 'qualification_level', 'verification_status', 'linkedin_url', 'linkedin_verification_status'], programRows, {
     validations: { J: ['verified_official_page', 'not_found_exact_official_page'] }
   }),
-  education: tab(['education_record_id', 'person_id', 'institution_id', 'program_id', 'record_type', 'is_primary', 'qualification_th', 'qualification_en', 'source_label', 'verification_status', 'evidence_note', 'degree_abbreviation_th', 'degree_abbreviation_en', 'degree_title_th', 'degree_title_en', 'degree_field_th', 'degree_field_en', 'degree_award_status', 'degree_personal_award_verified', 'degree_program_evidence_url', 'degree_evidence_scope'], educationRows, {
-    validations: { R: ['under_review', 'in_progress', 'completed'] }
+  education: tab(['education_record_id', 'person_id', 'institution_id', 'program_id', 'record_type', 'is_primary', 'qualification_th', 'qualification_en', 'source_label', 'verification_status', 'evidence_note', 'degree_abbreviation_th', 'degree_abbreviation_en', 'degree_title_th', 'degree_title_en', 'degree_field_th', 'degree_field_en', 'degree_award_status', 'degree_personal_award_verified', 'degree_program_evidence_url', 'degree_evidence_scope', 'study_start', 'study_end', 'study_current', 'study_period_label_th', 'study_period_label_en'], educationRows, {
+    validations: { R: ['under_review', 'in_progress', 'completed'] },
+    columnWidths: { I: 380, K: 520, T: 420, U: 420, Y: 160, Z: 160 }
   }),
   works: tab(['work_id', 'parent_product', 'module_slug', 'canonical_name_th', 'canonical_name_en', 'short_name_th', 'short_name_en', 'type', 'scope_layer', 'authority_status', 'source_aliases', 'evidence_note', 'catalog_url_th', 'catalog_url_en', 'destination_url', 'link_scope', 'url_source_ref', 'link_evidence_url'], workRows, {
     validations: { P: ['exact_module', 'exact_product', 'evidence_only', 'broader_catalog', 'unverified_no_link'] }

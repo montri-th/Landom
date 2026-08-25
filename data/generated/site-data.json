@@ -61,7 +61,7 @@
       "verifiedCompletedStaffDegrees": 7,
       "cooperativeEducationPeople": 6,
       "verifiedInstitutionLinkedInProfiles": 8,
-      "verifiedProgramLinkedInProfiles": 0,
+      "verifiedProgramLinkedInProfiles": 1,
       "publishedPublicSocialProfiles": 70
     }
   },
@@ -622,6 +622,40 @@
       "verificationStatus": "owner_supplied_with_official_program_definition",
       "linkedinUrl": null,
       "linkedinVerificationStatus": "not_found_exact_official_page"
+    },
+    {
+      "programId": "program-kmitl-iot-system-information-engineering",
+      "names": {
+        "th": {
+          "formal": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
+          "short": "IoT & IE"
+        },
+        "en": {
+          "formal": "IoT System and Information Engineering",
+          "short": "IoT & IE"
+        }
+      },
+      "qualificationLevel": "bachelor",
+      "verificationStatus": "owner_supplied_with_official_program_definition",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
+    },
+    {
+      "programId": "program-mahidol-faculty-ict",
+      "names": {
+        "th": {
+          "formal": "คณะเทคโนโลยีสารสนเทศและการสื่อสาร",
+          "short": "ICT"
+        },
+        "en": {
+          "formal": "Faculty of Information and Communication Technology",
+          "short": "ICT"
+        }
+      },
+      "qualificationLevel": null,
+      "verificationStatus": "owner_supplied_academic_unit_not_degree_program",
+      "linkedinUrl": "https://www.linkedin.com/company/muict",
+      "linkedinVerificationStatus": "verified_official_page"
     }
   ],
   "educationRecords": [
@@ -655,6 +689,7 @@
         "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
         "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -671,6 +706,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -687,6 +723,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -720,6 +757,7 @@
         "programEvidenceUrl": "https://www.commarts.chula.ac.th/_docs/bca-curriculum-2566%2868%29.pdf",
         "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -736,6 +774,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -769,6 +808,7 @@
         "programEvidenceUrl": "https://www.ce.kmitl.ac.th/curriculum/Curriculum_master_com60.pdf",
         "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -785,6 +825,7 @@
         "en": "Chinese, Faculty of Arts"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -801,6 +842,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -817,6 +859,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -833,6 +876,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -849,6 +893,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -865,6 +910,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -881,6 +927,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -897,6 +944,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -913,6 +961,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -929,6 +978,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -945,6 +995,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -961,6 +1012,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -977,6 +1029,7 @@
         "en": "Marketing"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -993,6 +1046,7 @@
         "en": "Bachelor of Arts and Science in Integrated Innovation"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1009,6 +1063,7 @@
         "en": "Design, Business & Technology Management"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1025,6 +1080,7 @@
         "en": "Economics"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1041,6 +1097,7 @@
         "en": "Economics, International Program"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_supplied_detail_refinement",
       "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
@@ -1057,6 +1114,7 @@
         "en": "Economics, International Program"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_supplied_detail_refinement",
       "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
@@ -1073,6 +1131,7 @@
         "en": "Bachelor of Business Administration in Finance"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1089,6 +1148,7 @@
         "en": "Economics, International Program"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_supplied_detail_refinement",
       "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
@@ -1105,6 +1165,7 @@
         "en": "Economics, International Program"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_supplied_detail_refinement",
       "evidenceNote": "Owner standardized this person’s program label in the 2026-08-23 detail refinement."
     },
@@ -1121,6 +1182,7 @@
         "en": "Bachelor of Business Administration in Finance"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1137,6 +1199,7 @@
         "en": "Aerospace Engineering & Business Technology Management"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1153,6 +1216,7 @@
         "en": "BBA in Marketing"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1169,6 +1233,7 @@
         "en": "BBA in Marketing"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1185,6 +1250,7 @@
         "en": "Politics & Global Studies"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1201,6 +1267,7 @@
         "en": "Social Science"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1234,6 +1301,7 @@
         "programEvidenceUrl": "https://imd.nmu.ac.th/wp-content/uploads/2022/07/IMD-CityPASS-2022.pdf",
         "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1250,6 +1318,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1266,6 +1335,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1282,6 +1352,7 @@
         "en": "Computer Engineering"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1289,17 +1360,43 @@
       "educationRecordId": "EDU0038",
       "personId": "I0033",
       "institutionId": "inst-kmitl",
-      "programId": null,
+      "programId": "program-kmitl-iot-system-information-engineering",
       "recordType": "education",
       "isPrimary": true,
-      "sourceLabel": "KMITL",
+      "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–Present — Bachelor of Engineering; IoT and Information Engineering Major",
       "qualification": {
-        "th": null,
-        "en": null
+        "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
+        "en": "IoT System and Information Engineering"
       },
-      "degree": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "degree": {
+        "abbreviation": {
+          "th": "วศ.บ.",
+          "en": "B.Eng."
+        },
+        "title": {
+          "th": "วิศวกรรมศาสตรบัณฑิต",
+          "en": "Bachelor of Engineering"
+        },
+        "field": {
+          "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
+          "en": "IoT System and Information Engineering"
+        },
+        "awardStatus": "in_progress",
+        "personalAwardVerified": false,
+        "programEvidenceUrl": "https://www.iote.kmitl.ac.th/iot-system-and-information/",
+        "evidenceScope": "owner_confirmed_current_study_with_official_program_definition"
+      },
+      "studyPeriod": {
+        "start": "2022",
+        "end": null,
+        "current": true,
+        "label": {
+          "th": "2022–ปัจจุบัน",
+          "en": "2022–Present"
+        }
+      },
+      "verificationStatus": "owner_confirmed_current_study_with_official_program_definition",
+      "evidenceNote": "Owner confirmed Team's current Bachelor of Engineering study at KMITL from 2022 to present; the official department page standardizes the program as IoT System and Information Engineering. This is in progress and is not represented as a completed degree."
     },
     {
       "educationRecordId": "EDU0039",
@@ -1314,6 +1411,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1330,6 +1428,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1346,6 +1445,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1362,6 +1462,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "source_conflict_unresolved",
       "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
     },
@@ -1378,6 +1479,7 @@
         "en": "Computer Engineering and Digital Technology"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "source_conflict_unresolved",
       "evidenceNote": "คงค่าจากชีตเป็น CU CEDT; รายชื่อรับเข้าศึกษาของ KMITL ไม่ยืนยันการเข้าเรียนหรือมหาวิทยาลัยปัจจุบัน จึงยังไม่แก้ทับ"
     },
@@ -1385,17 +1487,18 @@
       "educationRecordId": "EDU0044",
       "personId": "I0039",
       "institutionId": "inst-mahidol",
-      "programId": null,
+      "programId": "program-mahidol-faculty-ict",
       "recordType": "education",
       "isPrimary": true,
-      "sourceLabel": "Mahidol",
+      "sourceLabel": "Mahidol University, Faculty of Information and Communication Technology",
       "qualification": {
-        "th": null,
-        "en": null
+        "th": "คณะเทคโนโลยีสารสนเทศและการสื่อสาร",
+        "en": "Faculty of Information and Communication Technology"
       },
       "degree": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "studyPeriod": null,
+      "verificationStatus": "owner_confirmed_academic_unit",
+      "evidenceNote": "Owner confirmed Jomjai's Faculty of Information and Communication Technology affiliation at Mahidol University. The faculty is retained as an academic unit and is not promoted to an unverified personal degree claim."
     },
     {
       "educationRecordId": "EDU0045",
@@ -1410,6 +1513,7 @@
         "en": "IBMP"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1426,6 +1530,7 @@
         "en": "Bachelor of Arts and Science in Integrated Innovation"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1442,6 +1547,7 @@
         "en": null
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": "ชีตระบุเพียงปีแลกเปลี่ยน ไม่ระบุหลักสูตรหรือวุฒิ จึงไม่เติมข้อมูลที่อนุมานเอง"
     },
@@ -1458,6 +1564,7 @@
         "en": "Mathematical Computation"
       },
       "degree": null,
+      "studyPeriod": null,
       "verificationStatus": "owner_review_required",
       "evidenceNote": null
     },
@@ -1491,6 +1598,7 @@
         "programEvidenceUrl": "https://www.cp.eng.chula.ac.th/en/prospective/bachelor/",
         "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
       "evidenceNote": "Owner confirmed Nat's completed B.Eng. in Computer Engineering from Chulalongkorn University; the official department page standardizes the program and degree nomenclature."
     },
@@ -1524,6 +1632,7 @@
         "programEvidenceUrl": "https://ieeexplore.ieee.org/iel7/6287639/8948470/09120020.pdf",
         "evidenceScope": "owner_confirmed_completed_degree_with_publication_author_biography"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_confirmed_completed_degree_with_publication_author_biography",
       "evidenceNote": "Owner supplied the exact IEEE author-biography evidence stating Kanoksilp Jindadoungrut received the B.Sc. degree with honours in Computer Science from Chulalongkorn University."
     },
@@ -1557,6 +1666,7 @@
         "programEvidenceUrl": "https://www.psu.ac.th/en/?course=A1319999A45945&page=course-detial1",
         "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
       },
+      "studyPeriod": null,
       "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
       "evidenceNote": "Owner confirmed Sek's completed Bachelor of Economics from Prince of Songkla University; the official PSU course page standardizes the degree title."
     }
@@ -3978,7 +4088,7 @@
       "personId": "I0032",
       "names": {
         "full": {
-          "th": null,
+          "th": "ธรรมธร ธนะสมานโชค",
           "en": "Thammatorn Tanasamanchoke"
         },
         "nickname": {
@@ -4069,14 +4179,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "สจล.",
-          "en": "KMITL"
+          "th": "IoT & IE · สจล.",
+          "en": "IoT & IE · KMITL"
         },
         "detail": {
-          "th": "สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
-          "en": "King Mongkut's Institute of Technology Ladkrabang"
+          "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
+          "en": "IoT System and Information Engineering — King Mongkut's Institute of Technology Ladkrabang"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_confirmed_current_study_with_official_program_definition"
       },
       "bio": {
         "th": "ทีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
@@ -4471,14 +4581,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "มหิดล",
-          "en": "MU"
+          "th": "ICT · มหิดล",
+          "en": "ICT · MU"
         },
         "detail": {
-          "th": "มหาวิทยาลัยมหิดล",
-          "en": "Mahidol University"
+          "th": "คณะเทคโนโลยีสารสนเทศและการสื่อสาร — มหาวิทยาลัยมหิดล",
+          "en": "Faculty of Information and Communication Technology — Mahidol University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_confirmed_academic_unit"
       },
       "bio": {
         "th": "จอมใจเชื่อมรูปแบบโครงข่ายถนนกับความรู้ร่วมของเมือง ผ่าน RoadDNA และ CityWiki ให้ทั้งโครงสร้างและเรื่องราวของพื้นที่มีที่อยู่ในชุดเครื่องมือของทีม",
@@ -17017,15 +17127,15 @@
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "publicationStatus": "publishable",
-      "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
+      "sha256": "ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180",
       "mediaType": "image/jpeg",
-      "bytes": 119082,
-      "identityVerificationEvidence": "sheet_github_url_cross_checked_against_exact_linkedin_profile_title"
+      "bytes": 113777,
+      "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
     },
     {
       "assetId": "PORTRAIT-I0033",
@@ -17058,23 +17168,28 @@
       "assetId": "PORTRAIT-I0034",
       "personId": "I0034",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0034.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของเอิร์ธ",
         "en": "Profile portrait of Earth"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "rightsStatus": "cleared",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-25"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "a6309a173e1daf119b4b83db7b6773639a3b6e8c2abcba97d9bf825996337746",
+      "mediaType": "image/jpeg",
+      "bytes": 131923,
+      "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
     },
     {
       "assetId": "PORTRAIT-I0035",
@@ -17196,15 +17311,15 @@
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "publicationStatus": "publishable",
-      "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
+      "sha256": "e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506",
       "mediaType": "image/jpeg",
-      "bytes": 89054,
-      "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+      "bytes": 90264,
+      "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
     },
     {
       "assetId": "PORTRAIT-I0040",

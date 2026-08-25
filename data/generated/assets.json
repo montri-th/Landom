@@ -973,15 +973,15 @@
     "publicationBasis": "owner_authorized_public_profile_portrait",
     "ownerApproval": {
       "status": "granted",
-      "approvedAt": "2026-08-23",
+      "approvedAt": "2026-08-25",
       "scope": "public_profile_portrait",
-      "sourceRef": "owner_instruction_2026-08-23"
+      "sourceRef": "owner_instruction_2026-08-25"
     },
     "publicationStatus": "publishable",
-    "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
+    "sha256": "ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180",
     "mediaType": "image/jpeg",
-    "bytes": 119082,
-    "identityVerificationEvidence": "sheet_github_url_cross_checked_against_exact_linkedin_profile_title"
+    "bytes": 113777,
+    "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
   },
   {
     "assetId": "PORTRAIT-I0033",
@@ -1014,23 +1014,28 @@
     "assetId": "PORTRAIT-I0034",
     "personId": "I0034",
     "kind": "profile_portrait",
-    "publicPath": null,
+    "publicPath": "public/assets/people/I0034.jpg",
     "sourceUrl": null,
     "alt": {
       "th": "ภาพโปรไฟล์ของเอิร์ธ",
       "en": "Profile portrait of Earth"
     },
-    "candidateStatus": "source_needed",
-    "verificationStatus": "missing",
+    "candidateStatus": "candidate_present",
+    "verificationStatus": "verified",
     "consentStatus": "pending",
-    "rightsStatus": "pending",
-    "publicationBasis": null,
-    "ownerApproval": null,
-    "publicationStatus": "withheld_pending_rights_consent_and_verification",
-    "sha256": null,
-    "mediaType": null,
-    "bytes": null,
-    "identityVerificationEvidence": null
+    "rightsStatus": "cleared",
+    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "ownerApproval": {
+      "status": "granted",
+      "approvedAt": "2026-08-25",
+      "scope": "public_profile_portrait",
+      "sourceRef": "owner_instruction_2026-08-25"
+    },
+    "publicationStatus": "publishable",
+    "sha256": "a6309a173e1daf119b4b83db7b6773639a3b6e8c2abcba97d9bf825996337746",
+    "mediaType": "image/jpeg",
+    "bytes": 131923,
+    "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
   },
   {
     "assetId": "PORTRAIT-I0035",
@@ -1152,15 +1157,15 @@
     "publicationBasis": "owner_authorized_public_profile_portrait",
     "ownerApproval": {
       "status": "granted",
-      "approvedAt": "2026-08-23",
+      "approvedAt": "2026-08-25",
       "scope": "public_profile_portrait",
-      "sourceRef": "owner_instruction_2026-08-23"
+      "sourceRef": "owner_instruction_2026-08-25"
     },
     "publicationStatus": "publishable",
-    "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
+    "sha256": "e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506",
     "mediaType": "image/jpeg",
-    "bytes": 89054,
-    "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+    "bytes": 90264,
+    "identityVerificationEvidence": "owner_supplied_named_portrait_for_exact_roster_person"
   },
   {
     "assetId": "PORTRAIT-I0040",

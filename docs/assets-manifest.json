@@ -807,6 +807,31 @@
       }
     },
     {
+      "assetId": "PORTRAIT-I0034",
+      "path": "public/assets/people/I0034.jpg",
+      "variant": "normalized-owner-approved-public-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 131923,
+      "sha256": "a6309a173e1daf119b4b83db7b6773639a3b6e8c2abcba97d9bf825996337746",
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-25",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-25"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Exact roster identity verified from the owner-supplied named portrait; deterministic square crop only, with no retouching or identity alteration."
+    },
+    {
       "assetId": "PORTRAIT-I0035",
       "path": "public/assets/people/I0035.jpg",
       "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background",
@@ -875,16 +900,16 @@
       "variant": "normalized-owner-approved-public-profile-portrait",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 89054,
-      "sha256": "bcb61e98a1d96bb44be8a0b100f03eb0b38c326e01ef46b9f90cb0aad2ce7c11",
+      "bytes": 90264,
+      "sha256": "e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "approvedRoles": [
         "person-avatar"
@@ -892,7 +917,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact roster identity verified from the owner-supplied named portrait; deterministic square crop only, with no retouching or identity alteration."
     },
     {
       "assetId": "PORTRAIT-I0040",
@@ -1000,16 +1025,16 @@
       "variant": "normalized-owner-approved-public-profile-portrait",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 119082,
-      "sha256": "6f87e14f83a281666cf9b17175dc9677c93e7f06e3471ea8c61b50cfd92987e5",
+      "bytes": 113777,
+      "sha256": "ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
       "publicationBasis": "owner_authorized_public_profile_portrait",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-08-25",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-08-25"
       },
       "approvedRoles": [
         "person-avatar"
@@ -1017,7 +1042,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Exact roster identity verified from the owner-supplied named portrait; deterministic square crop only, with no retouching or identity alteration."
     },
     {
       "assetId": "PORTRAIT-I0001",

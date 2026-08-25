@@ -188,6 +188,10 @@ test('profile cards use English role names, explicit status capsules, and restra
   assert.match(app, /class="card-role-status"[\s\S]*?class="role-badge"[\s\S]*?class="status-badge"/);
   assert.doesNotMatch(app, /const standardized = \["fulltime", "parttime"\]/);
   assert.match(app, /registry: "ชาวด้อม Landom"/);
+  assert.match(app, /educationImpvestConsultant: "ที่ปรึกษาธุรกิจ Impvest จาก"/);
+  assert.match(app, /educationImpvestConsultant: "Impvest Consulting Partner from"/);
+  assert.match(app, /education-context--literal-case/);
+  assert.match(app, /String\(engagementProgramCode\)\.toUpperCase\(\) === "IMP"/);
   assert.match(styles, /\.card-role-status\s*\{[\s\S]*?flex-wrap: wrap;[\s\S]*?gap: var\(--space-2\);/);
   assert.match(styles, /\.status-badge\[data-status="active"\][\s\S]*?var\(--semantic-success-fill\)/);
   assert.match(styles, /\.education-program,[\s\S]*?\.education-institution\s*\{[\s\S]*?font-size: var\(--type-body-sm\);[\s\S]*?font-weight: 400;/);

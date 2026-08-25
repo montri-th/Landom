@@ -241,6 +241,12 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
       row.degree_program_evidence_url,
       row.degree_evidence_scope
     ].some((value) => text(value));
+    const hasStudyPeriodColumns = [
+      row.study_start,
+      row.study_end,
+      row.study_period_label_th,
+      row.study_period_label_en
+    ].some((value) => text(value)) || boolean(row.study_current);
     return {
       ...existing,
       educationRecordId,
@@ -262,6 +268,14 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
             evidenceScope: text(row.degree_evidence_scope) || 'program_level_only'
           }
         : existing.degree ?? null,
+      studyPeriod: hasStudyPeriodColumns
+        ? {
+            start: nullable(row.study_start),
+            end: nullable(row.study_end),
+            current: boolean(row.study_current),
+            label: localized(row.study_period_label_th, row.study_period_label_en)
+          }
+        : existing.studyPeriod ?? null,
       verificationStatus: text(row.verification_status) || 'owner_review_required',
       evidenceNote: nullable(row.evidence_note)
     };

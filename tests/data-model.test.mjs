@@ -48,9 +48,11 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.ok(peopleTab.rows.every((row) => /^[SPI]\d{4}$/.test(row[personIdIndex])));
   assert.ok(peopleTab.rows.every((row) => !String(row[sourceNoteIndex]).includes('LDM-P-')));
   const fullNameEnIndex = peopleTab.headers.indexOf('full_name_en');
+  const fullNameThIndex = peopleTab.headers.indexOf('full_name_th');
   const nicknameThIndex = peopleTab.headers.indexOf('nickname_th');
   const identityRows = new Map(peopleTab.rows.map((row) => [row[personIdIndex], row]));
   assert.equal(identityRows.get('I0035')[fullNameEnIndex], 'Passapol Lukthongkum');
+  assert.equal(identityRows.get('I0032')[fullNameThIndex], 'ธรรมธร ธนะสมานโชค');
   assert.equal(identityRows.get('I0014')[nicknameThIndex], 'มอส');
   assert.equal(identityRows.get('I0023')[nicknameThIndex], 'ทิม');
   const pattareeyaRow = peopleTab.rows.find((row) => row[personIdIndex] === 'I0041');
@@ -73,7 +75,27 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence']);
   assert.deepEqual(statements.validations.G, ['first_person_application', 'factual_fallback', 'candidate_video_transcript', 'owner_supplied_copy']);
   assert.deepEqual(exported.tabs.engagements.validations.Q, ['cooperative_education', 'internship', 'not_applicable']);
+  const engagementHeaders = exported.tabs.engagements.headers;
+  const engagementProgramCode = engagementHeaders.indexOf('program_code');
+  const engagementContextTh = engagementHeaders.indexOf('education_context_label_th');
+  const engagementContextEn = engagementHeaders.indexOf('education_context_label_en');
+  assert.ok(engagementContextTh >= 0 && engagementContextEn >= 0);
+  const impvestRows = exported.tabs.engagements.rows.filter((row) => row[engagementProgramCode] === 'IMP');
+  assert.equal(impvestRows.length, 8);
+  assert.ok(impvestRows.every((row) => row[engagementContextTh] === 'ที่ปรึกษาธุรกิจ Impvest จาก'));
+  assert.ok(impvestRows.every((row) => row[engagementContextEn] === 'Impvest Consulting Partner from'));
+  assert.ok(exported.tabs.engagements.rows.filter((row) => row[engagementProgramCode] !== 'IMP')
+    .every((row) => row[engagementContextTh] === '' && row[engagementContextEn] === ''));
   assert.deepEqual(exported.tabs.education.validations.R, ['under_review', 'in_progress', 'completed']);
+  for (const header of ['study_start', 'study_end', 'study_current', 'study_period_label_th', 'study_period_label_en']) {
+    assert.ok(exported.tabs.education.headers.includes(header), `missing education export column ${header}`);
+  }
+  const educationPersonIndex = exported.tabs.education.headers.indexOf('person_id');
+  const teamEducation = exported.tabs.education.rows.find((row) => row[educationPersonIndex] === 'I0033');
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_start')], '2022');
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_end')], '');
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_current')], true);
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_period_label_en')], '2022–Present');
   const isPrimaryIndex = exported.tabs.education.headers.indexOf('is_primary');
   const qaExpectedIndex = exported.tabs.qa.headers.indexOf('expected');
   assert.equal(typeof exported.tabs.education.rows[0][isPrimaryIndex], 'boolean');
@@ -236,6 +258,7 @@ test('verified English full names and exact Thai nicknames override stale regist
   assert.equal(peopleById.get('I0035').names.full.en, 'Passapol Lukthongkum');
   assert.equal(peopleById.get('I0037').names.full.en, 'Nathanicha Sornbundit');
   assert.equal(peopleById.get('I0038').names.full.en, null);
+  assert.equal(peopleById.get('I0032').names.full.th, 'ธรรมธร ธนะสมานโชค');
   assert.deepEqual(
     Object.fromEntries(['I0014', 'I0018', 'I0019', 'I0020', 'I0021', 'I0023', 'I0025'].map((personId) => [personId, peopleById.get(personId).names.nickname.th])),
     {
@@ -519,10 +542,19 @@ test('only exact official institution and program LinkedIn pages enter the publi
     );
   }
   assert.equal(data.institutions.find((item) => item.institutionId === 'inst-nmu').linkedinUrl, null);
-  assert.ok(data.programs.every((program) => program.linkedinUrl === null));
-  assert.ok(data.programs.every((program) => program.linkedinVerificationStatus === 'not_found_exact_official_page'));
+  const expectedProgramUrls = new Map([
+    ['program-mahidol-faculty-ict', 'https://www.linkedin.com/company/muict']
+  ]);
+  for (const program of data.programs) {
+    const expectedUrl = expectedProgramUrls.get(program.programId) ?? null;
+    assert.equal(program.linkedinUrl, expectedUrl);
+    assert.equal(
+      program.linkedinVerificationStatus,
+      expectedUrl ? 'verified_official_page' : 'not_found_exact_official_page'
+    );
+  }
   assert.equal(data.meta.counts.verifiedInstitutionLinkedInProfiles, 8);
-  assert.equal(data.meta.counts.verifiedProgramLinkedInProfiles, 0);
+  assert.equal(data.meta.counts.verifiedProgramLinkedInProfiles, 1);
 });
 
 test('all core people receive provenance-distinct owner-authorized source-backed placeholder bios', () => {
@@ -712,7 +744,7 @@ test('the existing 48 bio objects remain byte-equivalent to the v3.3 approved re
   assert.equal(digest, 'bbed839fd986c9c0e28f7562fec707df0e1a3a1410b9248200c75c5fd0420f71');
 });
 
-test('staff degree programs separate official program names from personal award status', () => {
+test('degree programs separate completed staff awards from a current participant study record', () => {
   const data = loadGenerated();
   const primaryEducation = (personId) => data.educationRecords.find((record) => record.personId === personId && record.isPrimary);
   const oat = primaryEducation('S0001').degree;
@@ -743,7 +775,22 @@ test('staff degree programs separate official program names from personal award 
   assert.equal(film.personalAwardVerified, true);
   assert.match(film.programEvidenceUrl, /^https:\/\/imd\.nmu\.ac\.th\//);
 
-  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 7);
+  const team = primaryEducation('I0033');
+  assert.equal(team.programId, 'program-kmitl-iot-system-information-engineering');
+  assert.equal(team.degree.abbreviation.en, 'B.Eng.');
+  assert.equal(team.degree.field.en, 'IoT System and Information Engineering');
+  assert.equal(team.degree.awardStatus, 'in_progress');
+  assert.equal(team.degree.personalAwardVerified, false);
+  assert.deepEqual(team.studyPeriod, {
+    start: '2022',
+    end: null,
+    current: true,
+    label: { th: '2022–ปัจจุบัน', en: '2022–Present' }
+  });
+  assert.equal(data.people.find((person) => person.personId === 'I0033').educationDisplay.card.en, 'IoT & IE · KMITL');
+  assert.match(data.people.find((person) => person.personId === 'I0033').educationDisplay.detail.en, /^IoT System and Information Engineering/);
+
+  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 8);
   assert.equal(data.educationRecords.filter((record) => record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 6);
   assert.equal(data.educationRecords.filter((record) => ['S', 'P'].includes(record.personId.charAt(0)) && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 7);
   assert.equal(data.meta.counts.verifiedCompletedStaffDegrees, 7);
@@ -897,7 +944,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 45);
+  assert.equal(portraits.length, 46);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);
@@ -908,6 +955,17 @@ test('only exact owner-authorized public profiles and governed local portraits a
     assert.match(portrait.sha256, /^[a-f0-9]{64}$/);
     assert.ok(fs.existsSync(path.join(root, portrait.publicPath)));
   }
+  assert.deepEqual(
+    portraits
+      .filter((portrait) => ['I0032', 'I0034', 'I0039'].includes(portrait.personId))
+      .sort((a, b) => a.personId.localeCompare(b.personId))
+      .map((portrait) => ({ personId: portrait.personId, bytes: portrait.bytes, sha256: portrait.sha256 })),
+    [
+      { personId: 'I0032', bytes: 113777, sha256: 'ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180' },
+      { personId: 'I0034', bytes: 131923, sha256: 'a6309a173e1daf119b4b83db7b6773639a3b6e8c2abcba97d9bf825996337746' },
+      { personId: 'I0039', bytes: 90264, sha256: 'e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506' }
+    ]
+  );
 });
 
 test('26 filled certificates are copied byte-for-byte and exposed only through the governed owner-authorized contract', () => {
