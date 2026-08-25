@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
@@ -190,6 +191,175 @@ test('profile cards use English role names, explicit status capsules, and restra
   assert.match(styles, /\.card-role-status\s*\{[\s\S]*?flex-wrap: wrap;[\s\S]*?gap: var\(--space-2\);/);
   assert.match(styles, /\.status-badge\[data-status="active"\][\s\S]*?var\(--semantic-success-fill\)/);
   assert.match(styles, /\.education-program,[\s\S]*?\.education-institution\s*\{[\s\S]*?font-size: var\(--type-body-sm\);[\s\S]*?font-weight: 400;/);
+});
+
+test('education labels expose institution context and render program or Chula-aware student wording without duplication', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const educationFor = app.match(/function educationFor\b[\s\S]*?(?=function educationLabelText\b)/)?.[0] ?? '';
+  const educationLabelSource = app.match(/function educationLabelText\b[\s\S]*?(?=function normalizedBoolean\b)/)?.[0] ?? '';
+  const educationSummary = app.match(/function educationSummary\b[\s\S]*?(?=function programCode\b)/)?.[0] ?? '';
+  const cardRenderer = app.match(/function renderCard\b[\s\S]*?(?=function filteredModels\b)/)?.[0] ?? '';
+  const educationDetail = app.match(/function educationDetailMarkup\b[\s\S]*?(?=function roleHistoryMarkup\b)/)?.[0] ?? '';
+
+  assert.match(educationFor, /institutionId:\s*recordId\(institution\s*\|\|\s*\{\},\s*"institution"\)/);
+  assert.match(cardRenderer, /educationLabelText\(model\)/);
+  assert.match(educationDetail, /educationLabelText\(model,\s*\{\s*detail:\s*true\s*\}\)/);
+  assert.match(
+    educationSummary,
+    /labelKey\s*===\s*"educationProgram"[\s\S]*?return model\.education\.shortInstitution\s*\|\|\s*model\.education\.cardDisplay\s*\|\|\s*model\.education\.shortProgram/
+  );
+  assert.match(educationDetail, /const programIsContext\s*=\s*model\.education\.labelKey\s*===\s*"educationProgram"/);
+  assert.match(educationDetail, /program\s*&&\s*!programIsContext\s*\?/);
+  assert.match(app, /educationInternship:\s*"นักศึกษาฝึกงานจาก"/);
+  assert.match(app, /educationCooperative:\s*"นักศึกษาสหกิจศึกษาจาก"/);
+
+  assert.ok(educationLabelSource, 'educationLabelText must remain independently testable');
+  const state = { language: 'th' };
+  const translations = {
+    educationInternship: 'นักศึกษาฝึกงานจาก',
+    educationCooperative: 'นักศึกษาสหกิจศึกษาจาก'
+  };
+  const educationLabelText = Function(
+    'state',
+    'message',
+    `${educationLabelSource}; return educationLabelText;`
+  )(state, (key) => translations[key] ?? key);
+
+  const programModel = {
+    education: {
+      labelKey: 'educationProgram',
+      shortProgram: 'CEDT',
+      fullProgram: 'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล',
+      institutionId: 'inst-chula'
+    }
+  };
+  assert.equal(educationLabelText(programModel), 'CEDT');
+  assert.equal(
+    educationLabelText(programModel, { detail: true }),
+    'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล'
+  );
+
+  const chulaModel = {
+    education: { labelKey: 'educationInternship', institutionId: 'inst-chula' }
+  };
+  const nonChulaModel = {
+    education: { labelKey: 'educationInternship', institutionId: 'inst-kmitl' }
+  };
+  assert.equal(educationLabelText(chulaModel), 'นิสิตฝึกงานจาก');
+  assert.equal(educationLabelText(nonChulaModel), 'นักศึกษาฝึกงานจาก');
+  state.language = 'en';
+  assert.equal(educationLabelText(chulaModel), 'นักศึกษาฝึกงานจาก');
+});
+
+test('the nine owner-requested blank-background portrait edits have deterministic governed metadata and file hashes', async () => {
+  const targetPersonIds = [
+    'I0001',
+    'I0008',
+    'I0012',
+    'I0018',
+    'I0019',
+    'I0021',
+    'I0025',
+    'I0033',
+    'I0035'
+  ];
+  const ownerInstruction = 'owner_instruction_2026-08-25';
+  const approvedGradients = new Map([
+    [
+      'atmosphere.gradient.measure.deep',
+      'linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)'
+    ],
+    [
+      'atmosphere.gradient.measure.luminous',
+      'linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%)'
+    ],
+    [
+      'atmosphere.gradient.ground.current',
+      'linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%)'
+    ],
+    [
+      'atmosphere.gradient.ground.mist',
+      'linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%)'
+    ],
+    [
+      'atmosphere.gradient.cultivate.glow',
+      'linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%)'
+    ],
+    [
+      'atmosphere.gradient.cultivate.mist',
+      'linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%)'
+    ],
+    [
+      'atmosphere.gradient.diversity.spectrum',
+      'linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%)'
+    ]
+  ]);
+  const approvedPortraits = JSON.parse(
+    await readFile(new URL('../data/approved/portrait-assets.json', import.meta.url), 'utf8')
+  ).assets;
+  const generatedAssets = JSON.parse(
+    await readFile(new URL('../data/generated/assets.json', import.meta.url), 'utf8')
+  );
+  const assetManifest = JSON.parse(
+    await readFile(new URL('../docs/assets-manifest.json', import.meta.url), 'utf8')
+  ).assets;
+  const personIdFromPath = (record) => String(record.publicPath ?? record.path ?? '')
+    .match(/public\/assets\/people\/([SPI]\d{4})\.[a-z0-9]+$/i)?.[1] ?? '';
+  const recordsForInstruction = (records) => records.filter((record) =>
+    record.backgroundEdit?.sourceRef === ownerInstruction
+  );
+  const sortedPersonIds = (records) => records.map(personIdFromPath).sort();
+
+  const approvedEdits = recordsForInstruction(approvedPortraits);
+  const manifestEdits = recordsForInstruction(assetManifest);
+  assert.deepEqual(sortedPersonIds(approvedEdits), targetPersonIds);
+  assert.deepEqual(sortedPersonIds(manifestEdits), targetPersonIds);
+  assert.deepEqual(
+    approvedPortraits.filter((record) => record.backgroundEdit).map(personIdFromPath).sort(),
+    targetPersonIds
+  );
+  assert.deepEqual(
+    assetManifest.filter((record) => record.backgroundEdit).map(personIdFromPath).sort(),
+    targetPersonIds
+  );
+
+  const approvedByPersonId = new Map(approvedPortraits.map((record) => [record.personId, record]));
+  const generatedByPersonId = new Map(generatedAssets.map((record) => [record.personId, record]));
+  const manifestByPersonId = new Map(assetManifest.map((record) => [personIdFromPath(record), record]));
+  let diversityCount = 0;
+  for (const personId of targetPersonIds) {
+    const approved = approvedByPersonId.get(personId);
+    const generated = generatedByPersonId.get(personId);
+    const manifest = manifestByPersonId.get(personId);
+    assert.ok(approved, `Missing approved portrait record for ${personId}`);
+    assert.ok(generated, `Missing generated asset record for ${personId}`);
+    assert.ok(manifest, `Missing asset-manifest record for ${personId}`);
+    assert.deepEqual(manifest.backgroundEdit, approved.backgroundEdit);
+
+    const edit = approved.backgroundEdit;
+    assert.equal(edit.method, 'pixel_preserving_foreground_mask_composite');
+    assert.equal(edit.requestedAt, '2026-08-25');
+    assert.equal(edit.sourceRef, ownerInstruction);
+    assert.equal(edit.scope, 'replace_blank_white_background_only');
+    assert.equal(edit.foregroundPolicy, 'original_portrait_rgb_preserved_under_foreground_mask');
+    assert.equal(edit.surfaceRole, 'product_identity');
+    assert.equal(edit.deletionTest, 'improves');
+    assert.equal(edit.assignmentPolicy, 'contrast_balanced_visual_variety_not_role_status_or_category_encoding');
+    assert.equal(edit.contextPolicy, 'no_environmental_context_present_in_source');
+    assert.ok(approvedGradients.has(edit.gradientToken), `Unapproved atmosphere token for ${personId}`);
+    assert.equal(edit.gradientCss, approvedGradients.get(edit.gradientToken));
+    if (edit.gradientToken === 'atmosphere.gradient.diversity.spectrum') diversityCount += 1;
+
+    const image = await readFile(new URL(`../${approved.publicPath}`, import.meta.url));
+    const digest = createHash('sha256').update(image).digest('hex');
+    assert.equal(approved.bytes, image.byteLength);
+    assert.equal(generated.bytes, image.byteLength);
+    assert.equal(manifest.bytes, image.byteLength);
+    assert.equal(approved.sha256, digest);
+    assert.equal(generated.sha256, digest);
+    assert.equal(manifest.sha256, digest);
+  }
+  assert.equal(diversityCount, 1, 'The Diversity atmosphere must appear on exactly one portrait in this edit set');
 });
 
 test('source satisfies the integrated data, privacy, asset, naming, and UI contract', async () => {
