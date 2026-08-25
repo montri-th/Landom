@@ -60,6 +60,7 @@ const COPY = {
     educationSection: "การศึกษา",
     educationQualification: "วุฒิการศึกษา",
     educationProgram: "การศึกษาจาก",
+    educationImpvestConsultant: "ที่ปรึกษาธุรกิจ Impvest จาก",
     educationInternship: "นักศึกษาฝึกงานจาก",
     educationCooperative: "นักศึกษาสหกิจศึกษาจาก",
     educationDegreeInProgress: "กำลังศึกษา",
@@ -161,6 +162,7 @@ const COPY = {
     educationSection: "Education",
     educationQualification: "Qualification",
     educationProgram: "Education from",
+    educationImpvestConsultant: "Impvest Consulting Partner from",
     educationInternship: "Intern from",
     educationCooperative: "Cooperative education from",
     educationDegreeInProgress: "Degree in progress",
@@ -639,7 +641,7 @@ function degreeDisplayValue({ abbreviation, title, field, compact = false }) {
   return uniqueLabels([title || abbreviation, field]).join(" · ");
 }
 
-function educationLabelKey(mode, placementType, awardStatus, personalAwardVerified) {
+function educationLabelKey(mode, placementType, awardStatus, personalAwardVerified, engagementProgramCode = "") {
   if (mode === "qualification") {
     if (awardStatus === "in_progress") return "educationDegreeInProgress";
     if (awardStatus === "completed" && personalAwardVerified) return "educationQualification";
@@ -647,6 +649,7 @@ function educationLabelKey(mode, placementType, awardStatus, personalAwardVerifi
     return "educationQualification";
   }
   if (mode === "program") {
+    if (String(engagementProgramCode).toUpperCase() === "IMP") return "educationImpvestConsultant";
     if (placementType === "cooperative_education") return "educationCooperative";
     if (placementType === "internship") return "educationInternship";
     return "educationProgram";
@@ -739,7 +742,7 @@ function educationFor(person, engagement, linkedEducationRecord, programIndex, i
   const studyPeriodLabel = localizedField(linkedEducation, ["studyPeriod.label", "study_period.label"]);
 
   return {
-    labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified),
+    labelKey: educationLabelKey(educationMode, placementType, effectiveAwardStatus, personalAwardVerified, programCode(engagement)),
     mode: educationMode,
     placementType,
     awardStatus: effectiveAwardStatus,
@@ -1603,12 +1606,15 @@ function educationDetailMarkup(model) {
   const program = model.education.fullProgram;
   const institution = model.education.fullInstitution;
   const supplementary = [model.education.degreeSupplement, model.education.studyPeriodLabel].filter(Boolean).join(" · ");
+  const contextClass = model.education.labelKey === "educationImpvestConsultant"
+    ? "education-context education-context--literal-case"
+    : "education-context";
   if (!program && !institution) return "";
   return `
     <section class="detail-section" aria-labelledby="detail-education-title-${escapeHtml(model.id)}">
       ${detailHeadingMarkup(`detail-education-title-${model.id}`, message("educationSection"), "education")}
       <div class="education-detail">
-        <p class="education-context">${escapeHtml(message(model.education.labelKey))}</p>
+        <p class="${contextClass}">${escapeHtml(message(model.education.labelKey))}</p>
         ${program ? `<div class="education-fact"><p class="education-program">${escapeHtml(program)}</p>${educationLinkedInMarkup(model.education.programLinkedInUrl, "openProgramLinkedIn")}</div>` : ""}
         ${institution ? `<div class="education-fact"><p class="education-institution">${escapeHtml(institution)}</p>${educationLinkedInMarkup(model.education.institutionLinkedInUrl, "openInstitutionLinkedIn")}</div>` : ""}
         ${supplementary ? `<p class="education-supplementary">${escapeHtml(supplementary)}</p>` : ""}

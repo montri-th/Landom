@@ -368,7 +368,7 @@ Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait sour
 
 - `people_registry`: `person_id`, names, `current_status`, `consent_public`, materialized bio fields, provenance/approval/review fields, `current_statement_id`
 - `profile_statements`: versioned TH/EN text, publication/source basis, source type/ref, author/derivation/evidence scope and confidence, approval/review/consent/publication status, `supersedes_statement_id`
-- `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`, `academic_placement_type`
+- `engagements`: `engagement_id`, `person_id`, `category`, `program_code`, `role_title_th/en`, `start`, `end`, `status`, `evidence_status`, `academic_placement_type`, `education_context_label_th/en` (derived only for the Impvest Consulting Partner cohort)
 - `education`: FK 3 ตัว, `is_primary`, qualification, structured degree program, separate award status/verification, evidence scope
 - `works`: localized names, `parent_product`, `module_slug`, `type`, `scope_layer`, `authority_status`, `catalog_url_th/en`, `destination_url`, `link_scope`, `url_source_ref`, `link_evidence_url`
 - `contributions`: FK person/work/engagement, role, period, evidence status/source/note

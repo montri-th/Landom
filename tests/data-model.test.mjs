@@ -75,6 +75,17 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence']);
   assert.deepEqual(statements.validations.G, ['first_person_application', 'factual_fallback', 'candidate_video_transcript', 'owner_supplied_copy']);
   assert.deepEqual(exported.tabs.engagements.validations.Q, ['cooperative_education', 'internship', 'not_applicable']);
+  const engagementHeaders = exported.tabs.engagements.headers;
+  const engagementProgramCode = engagementHeaders.indexOf('program_code');
+  const engagementContextTh = engagementHeaders.indexOf('education_context_label_th');
+  const engagementContextEn = engagementHeaders.indexOf('education_context_label_en');
+  assert.ok(engagementContextTh >= 0 && engagementContextEn >= 0);
+  const impvestRows = exported.tabs.engagements.rows.filter((row) => row[engagementProgramCode] === 'IMP');
+  assert.equal(impvestRows.length, 8);
+  assert.ok(impvestRows.every((row) => row[engagementContextTh] === 'ที่ปรึกษาธุรกิจ Impvest จาก'));
+  assert.ok(impvestRows.every((row) => row[engagementContextEn] === 'Impvest Consulting Partner from'));
+  assert.ok(exported.tabs.engagements.rows.filter((row) => row[engagementProgramCode] !== 'IMP')
+    .every((row) => row[engagementContextTh] === '' && row[engagementContextEn] === ''));
   assert.deepEqual(exported.tabs.education.validations.R, ['under_review', 'in_progress', 'completed']);
   for (const header of ['study_start', 'study_end', 'study_current', 'study_period_label_th', 'study_period_label_en']) {
     assert.ok(exported.tabs.education.headers.includes(header), `missing education export column ${header}`);

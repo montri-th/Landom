@@ -200,7 +200,9 @@ const engagementRows = site.engagements.map((engagement) => ({
   evidence_status: engagement.evidenceStatus,
   verification_status: engagement.verificationStatus,
   sequence_hint: engagement.sequenceHint,
-  academic_placement_type: engagement.academicPlacementType
+  academic_placement_type: engagement.academicPlacementType,
+  education_context_label_th: engagement.program.code === 'IMP' ? 'ที่ปรึกษาธุรกิจ Impvest จาก' : '',
+  education_context_label_en: engagement.program.code === 'IMP' ? 'Impvest Consulting Partner from' : ''
 }));
 
 const institutionRows = site.institutions.map((institution) => ({
@@ -595,7 +597,7 @@ const tabs = {
     }
   ),
   engagements: tab(
-    ['engagement_id', 'person_id', 'category', 'program_code', 'program_name_th', 'program_name_en', 'cohort', 'role_th', 'role_en', 'responsibility_work_ids', 'start', 'end', 'status', 'evidence_status', 'verification_status', 'sequence_hint', 'academic_placement_type'],
+    ['engagement_id', 'person_id', 'category', 'program_code', 'program_name_th', 'program_name_en', 'cohort', 'role_th', 'role_en', 'responsibility_work_ids', 'start', 'end', 'status', 'evidence_status', 'verification_status', 'sequence_hint', 'academic_placement_type', 'education_context_label_th', 'education_context_label_en'],
     engagementRows,
     { validations: { M: ['ongoing', 'completed'], Q: ['cooperative_education', 'internship', 'not_applicable'] } }
   ),

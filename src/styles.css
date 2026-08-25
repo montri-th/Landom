@@ -1495,6 +1495,10 @@
     text-transform: uppercase;
   }
 
+  .education-context--literal-case {
+    text-transform: none;
+  }
+
   .education-program,
   .education-institution {
     color: var(--text-primary);
