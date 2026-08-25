@@ -906,7 +906,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     const expectedDescription = locale === 'th'
       ? 'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer'
       : 'Meet the people, interests and work shaped through time with Landometer.';
-    const expectedHeading = locale === 'th' ? 'คนที่ร่วมสร้าง Landometer' : 'Meet the people shaping Landometer';
+    const expectedHeading = locale === 'th' ? 'ไม่ใช่สถานที่&#10;แต่คือผู้คน' : 'Not the place,&#10;but the People';
     if (!html.includes(`<title>${expectedTitle}</title>`)) errors.push(`${fileLabel} is missing its localized initial title.`);
     if (!html.includes(`content="${expectedDescription}"`)) errors.push(`${fileLabel} is missing its localized initial description.`);
     if (!html.includes(`id="page-title">${expectedHeading}</h1>`)) errors.push(`${fileLabel} is missing its localized initial H1.`);

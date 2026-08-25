@@ -151,7 +151,7 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(thai, /<html[\s\S]*?lang="th"/);
   assert.match(thai, /data-locale-route="th"/);
   assert.match(thai, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/">/);
-  assert.match(thai, /id="page-title">คนที่ร่วมสร้าง Landometer<\/h1>/);
+  assert.match(thai, /id="page-title">ไม่ใช่สถานที่&#10;แต่คือผู้คน<\/h1>/);
   assert.match(thai, /id="footer-meta">ชาวด้อม Landom<\/p>/);
   assert.match(thai, /validLang\(langParam\) \|\| routeLang \|\| validLang\(storedLang\)/);
   assert.match(thai, /validLang\(root\.dataset\.localeRoute\) \|\| validLang\(root\.dataset\.defaultLanguage\) \|\| "th"/);
@@ -161,7 +161,7 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /data-locale-route="en"/);
   assert.match(english, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/en\/">/);
   assert.match(english, /<title>Landom — meet the people shaping Landometer<\/title>/);
-  assert.match(english, /id="page-title">Meet the people shaping Landometer<\/h1>/);
+  assert.match(english, /id="page-title">Not the place,&#10;but the People<\/h1>/);
   assert.match(english, /id="footer-meta">People of Landom<\/p>/);
   assert.match(english, /"inLanguage": "en"/);
   assert.match(english, /<base href="\.\.\/">/);

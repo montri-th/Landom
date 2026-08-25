@@ -100,7 +100,7 @@ jobs:
             const manifest = JSON.parse(readFileSync("/tmp/landom-build-manifest.json", "utf8"));
             if (!html.includes("id=\"people-board\"")) throw Error("people board missing from deployed HTML");
             if (!html.includes("data-locale-route=\"th\"") || !html.includes("hreflang=\"th\" href=\"https://montri-th.github.io/Landom/\"")) throw Error("Thai canonical root metadata is missing");
-            if (!english.includes("data-locale-route=\"en\"") || !english.includes("Meet the people shaping Landometer")) throw Error("English localized route metadata/copy is missing");
+            if (!english.includes("data-locale-route=\"en\"") || !english.includes("id=\"page-title\">Not the place,&#10;but the People</h1>")) throw Error("English localized route metadata/copy is missing");
             if (!english.includes("href=\"https://montri-th.github.io/Landom/en/#main-content\"")) throw Error("English skip link leaves the localized route");
             if (!Array.isArray(data.people) || data.people.length === 0) throw Error("deployed people dataset is empty");
             const expected = new Map(manifest.files.map((record) => [record.path, record.sha256]));

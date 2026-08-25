@@ -527,6 +527,7 @@
     font-size: var(--type-h1-th);
     letter-spacing: -0.055em;
     overflow-wrap: normal;
+    white-space: pre-line;
     word-break: normal;
   }
 

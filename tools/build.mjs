@@ -25,7 +25,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['Switch to English', 'เปลี่ยนเป็นภาษาไทย'],
   ['<span aria-hidden="true">TH</span>', '<span aria-hidden="true">EN</span>'],
   ['LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER', 'LANDOM · THE PEOPLE SHAPING LANDOMETER'],
-  ['คนที่ร่วมสร้าง Landometer', 'Meet the people shaping Landometer'],
+  ['ไม่ใช่สถานที่&#10;แต่คือผู้คน', 'Not the place,&#10;but the People'],
   [
     'Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น',
     'Landom is for people who want to understand cities and make them better, together.'
