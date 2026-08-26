@@ -24,7 +24,7 @@ const COPY = {
     latestData: "ข้อมูลล่าสุด",
     updatedData: "ปรับปรุงข้อมูล {date}",
     directoryKicker: "ชาว Landom",
-    directoryTitle: "รู้จักคนเบื้องหลังแต่ละผลงาน",
+    directoryTitle: "รู้จักพวกเรา ที่อยู่เบื้องหลังแต่ละงาน",
     loading: "กำลังโหลด…",
     results: "พบ {shown} จาก {total} คน",
     searchLabel: "ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน",

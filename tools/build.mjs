@@ -35,7 +35,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['คนใน Landom', 'people in Landom'],
   ['กำลังโหลดข้อมูลล่าสุด', 'Loading the latest data'],
   ['ชาว Landom', 'PEOPLE OF LANDOM'],
-  ['รู้จักคนเบื้องหลังแต่ละผลงาน', 'Meet the people behind the work'],
+  ['รู้จักพวกเรา ที่อยู่เบื้องหลังแต่ละงาน', 'Meet the people behind the work'],
   ['กำลังโหลด…', 'Loading…'],
   ['ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน', 'Search by name, university, program or contribution'],
   ['ค้นหาคนหรือผลงาน', 'Search people or work'],
