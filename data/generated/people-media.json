@@ -433,14 +433,25 @@
         "th": "https://montri-th.github.io/Landom/?person=I0009&lang=th",
         "en": "https://montri-th.github.io/Landom/en/?person=I0009&lang=en"
       },
-      "portrait": null,
+      "portrait": {
+        "status": "publishable",
+        "url": "https://montri-th.github.io/Landom/public/assets/people/I0009.jpg",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0009.jpg?v=65f6d372b3df",
+        "mediaType": "image/jpeg",
+        "bytes": 12297,
+        "sha256": "65f6d372b3df989f1a6305f0a0acc4d2e3224a6e18e642cf65894a111bdc0333",
+        "alt": {
+          "th": "ภาพโปรไฟล์ของแฮม",
+          "en": "Profile portrait of Ham"
+        }
+      },
       "fallback": {
         "kind": "full_nickname",
         "fullNickname": {
           "th": "แฮม",
           "en": "Ham"
         },
-        "reason": "no_governed_person_portrait"
+        "reason": "image_load_failure"
       }
     },
     {

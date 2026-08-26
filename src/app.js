@@ -17,7 +17,7 @@ const COPY = {
     heroEyebrow: "LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER",
     heroTitle: "ไม่ใช่สถานที่\nแต่คือผู้คน",
     heroIntro: "Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น",
-    heroImageAlt: "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
+    heroImageAlt: "ชาว Landom ร่วมทำงาน เรียนรู้ และใช้เวลาร่วมกัน",
     socialImageAlt: "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
     peopleUnit: "คนใน Landom",
     loadingData: "กำลังโหลดข้อมูลล่าสุด",
@@ -122,7 +122,7 @@ const COPY = {
     heroEyebrow: "LANDOM · THE PEOPLE SHAPING LANDOMETER",
     heroTitle: "It’s not a place.\nIt’s the people.",
     heroIntro: "Landom is for people who want to understand cities and make them better, together.",
-    heroImageAlt: "People of Landom together at the Landometer office",
+    heroImageAlt: "People of Landom working, learning, and celebrating together",
     socialImageAlt: "People of Landom together at the Landometer office",
     peopleUnit: "people in Landom",
     loadingData: "Loading the latest data",
@@ -597,6 +597,45 @@ function engagementSort(a, b) {
   const aDate = String(firstValue(a, ["start", "startDate", "start_date", "cohort", "year"]) || "");
   const bDate = String(firstValue(b, ["start", "startDate", "start_date", "cohort", "year"]) || "");
   return bDate.localeCompare(aDate, "en", { numeric: true });
+}
+
+function completedEngagementEndSortValue(engagement) {
+  const end = localizedValue(firstValue(engagement, ["end", "endDate", "end_date"]), "en").trim();
+  if (!end || engagementIsCurrent(engagement)) return null;
+
+  const isoDate = end.match(/^((?:19|20)\d{2})(?:-(\d{1,2})(?:-(\d{1,2}))?)?$/);
+  if (isoDate) {
+    const year = Number(isoDate[1]);
+    const month = isoDate[2] ? Number(isoDate[2]) : 0;
+    const day = isoDate[3] ? Number(isoDate[3]) : 0;
+    if ((isoDate[2] && (month < 1 || month > 12)) || (isoDate[3] && (day < 1 || day > 31))) return null;
+    return year * 10000 + month * 100 + day;
+  }
+
+  const parts = monthYearParts(end);
+  return parts ? parts.year * 10000 + (parts.month === null ? 0 : parts.month + 1) * 100 : null;
+}
+
+function latestCompletedEngagementEndSortValue(model) {
+  let latest = null;
+  for (const engagement of Array.isArray(model.engagements) ? model.engagements : []) {
+    const value = completedEngagementEndSortValue(engagement);
+    if (value !== null && (latest === null || value > latest)) latest = value;
+  }
+  return latest;
+}
+
+function personModelSort(a, b) {
+  const activeDifference = Number(b.statusKey === "active") - Number(a.statusKey === "active");
+  if (activeDifference) return activeDifference;
+  if (a.statusKey === "active") return 0;
+
+  const aLatestEnd = latestCompletedEngagementEndSortValue(a);
+  const bLatestEnd = latestCompletedEngagementEndSortValue(b);
+  if (aLatestEnd === null && bLatestEnd === null) return 0;
+  if (aLatestEnd === null) return 1;
+  if (bLatestEnd === null) return -1;
+  return Number(bLatestEnd > aLatestEnd) - Number(aLatestEnd > bLatestEnd);
 }
 
 function relationId(record, kind) {
@@ -1155,9 +1194,9 @@ function buildModels(data) {
     return model;
   }).filter((model) => model.id);
 
-  // Array#sort is stable: current people move ahead as one group while the
-  // source registry order remains intact inside the current and alumni groups.
-  state.models.sort((a, b) => Number(b.statusKey === "active") - Number(a.statusKey === "active"));
+  // Array#sort is stable: Active people remain in source order, while Alumni
+  // follow from the most recently completed engagement to undated records.
+  state.models.sort(personModelSort);
 }
 
 function makeSearchText(model) {

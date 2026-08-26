@@ -206,10 +206,10 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 49);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 50);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 23);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 72);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 73);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       ['linkedin', 'github'].includes(row.platform)
     ));
@@ -928,10 +928,10 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
-  assert.equal(linkedIn.length, 49);
+  assert.equal(linkedIn.length, 50);
   assert.equal(github.length, 23);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 72);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 73);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));
@@ -969,7 +969,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 46);
+  assert.equal(portraits.length, 47);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);

@@ -430,6 +430,21 @@
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_2026-08-26"
       }
+    },
+    {
+      "personId": "I0009",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/chayaphon-kingkaewkanthong-1ba238378/",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_linkedin_url_and_public_profile_identity_match",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
     }
   ],
   "externalPublications": [
@@ -562,6 +577,15 @@
       "status": "completed",
       "verificationStatus": "owner_source_reconciled",
       "evidenceNote": "Owner confirmed that Team's PDI internship ended at the end of July 2026."
+    },
+    {
+      "engagementId": "E0053",
+      "sequenceHint": 1,
+      "end": "2026-08-25",
+      "status": "completed",
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_last_day",
+      "evidenceNote": "Owner supplied Draft's last day as yesterday on 2026-08-26."
     }
   ],
   "addedEngagements": [

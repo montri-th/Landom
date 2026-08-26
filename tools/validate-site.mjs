@@ -578,8 +578,13 @@ async function validateUi(publishRoot, errors) {
     if (!reflowRenderer.includes(token)) errors.push(`Inline profile reflow must preserve full FLIP ripple behavior: ${token}.`);
   }
   const modelBuilder = sourceText.match(/function buildModels\b[\s\S]*?(?=function makeSearchText\b)/)?.[0] ?? '';
-  if (!/state\.models\.sort\(\(a, b\) => Number\(b\.statusKey === "active"\) - Number\(a\.statusKey === "active"\)\)/.test(modelBuilder) || /nickname\.localeCompare/.test(modelBuilder)) {
-    errors.push('People must sort current-first while preserving source order inside the current and alumni groups.');
+  const personOrdering = sourceText.match(/function completedEngagementEndSortValue\b[\s\S]*?(?=function relationId\b)/)?.[0] ?? '';
+  if (!/state\.models\.sort\(personModelSort\)/.test(modelBuilder) ||
+      !/statusKey === "active"/.test(personOrdering) ||
+      !/model\.engagements/.test(personOrdering) ||
+      !/latestCompletedEngagementEndSortValue/.test(personOrdering) ||
+      /nickname\.localeCompare/.test(modelBuilder)) {
+    errors.push('People must sort Active first, then Alumni by their latest completed engagement end date, with stable ties and undated Alumni last.');
   }
   const filterCountRenderer = sourceText.match(/function updateFilterCount\b[\s\S]*?(?=function syncFilterState\b)/)?.[0] ?? '';
   if (!/setText\(elements\.filterOpenLabel, message\("filter"\)\)/.test(filterCountRenderer)) {

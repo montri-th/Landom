@@ -106,6 +106,7 @@
     <link rel="preload" href="./public/assets/fonts/bai-jamjuree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./public/assets/hero/landom-community-anchor.jpg" as="image" fetchpriority="high">
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./src/styles.css">
 
@@ -176,6 +177,44 @@
 
     <main id="main-content">
       <section class="hero" aria-labelledby="page-title">
+        <figure class="hero-media">
+          <img
+            id="hero-image"
+            src="./public/assets/hero/landom-community-anchor.jpg"
+            width="1920"
+            height="1080"
+            alt="ชาว Landom ร่วมทำงาน เรียนรู้ และใช้เวลาร่วมกัน"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </figure>
+        <div class="hero-moment hero-moment--dinner" aria-hidden="true">
+          <img
+            src="./public/assets/hero/landom-community-dinner.jpg"
+            width="960"
+            height="960"
+            alt=""
+            decoding="async"
+          >
+        </div>
+        <div class="hero-moment hero-moment--work" aria-hidden="true">
+          <img
+            src="./public/assets/hero/landom-community-citymeter.jpg"
+            width="960"
+            height="960"
+            alt=""
+            decoding="async"
+          >
+        </div>
+        <div class="hero-moment hero-moment--gathering" aria-hidden="true">
+          <img
+            src="./public/assets/hero/landom-community-gathering.jpg"
+            width="1200"
+            height="720"
+            alt=""
+            decoding="async"
+          >
+        </div>
         <div class="hero-copy">
           <p class="eyebrow" id="hero-eyebrow">LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER</p>
           <h1 id="page-title">ไม่ใช่สถานที่&#10;แต่คือผู้คน</h1>
@@ -183,17 +222,6 @@
             Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น
           </p>
         </div>
-        <figure class="hero-media">
-          <img
-            id="hero-image"
-            src="./public/assets/hero/landom-people-hero.jpg"
-            width="1600"
-            height="900"
-            alt="ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer"
-            fetchpriority="high"
-            decoding="async"
-          >
-        </figure>
         <div class="hero-summary" aria-live="polite">
           <strong id="people-total">—</strong>
           <span id="people-total-label">คนใน Landom</span>

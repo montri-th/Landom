@@ -45,6 +45,35 @@ function fixture() {
   };
 }
 
+async function personModelComparatorFromSource() {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const orderingSource = app.match(
+    /function engagementIsCurrent\b[\s\S]*?(?=function relationId\b)/
+  )?.[0] ?? '';
+  const monthYearSource = app.match(
+    /function monthYearParts\b[\s\S]*?(?=function monthYearLabel\b)/
+  )?.[0] ?? '';
+  assert.ok(orderingSource, 'person ordering functions must remain independently testable');
+  assert.ok(monthYearSource, 'month-year parsing must remain independently testable');
+
+  const firstValue = (record, paths) => {
+    for (const path of paths) {
+      if (record?.[path] !== undefined && record[path] !== null) return record[path];
+    }
+    return null;
+  };
+  const localizedValue = (value, language = 'en') => {
+    if (value && typeof value === 'object') return String(value[language] ?? value.en ?? value.th ?? '');
+    return String(value ?? '');
+  };
+
+  return Function(
+    'firstValue',
+    'localizedValue',
+    `${orderingSource}\n${monthYearSource}\nreturn personModelSort;`
+  )(firstValue, localizedValue);
+}
+
 test('a minimal canonical public dataset passes', () => {
   assert.deepEqual(validateDataContract(fixture()), []);
 });
@@ -251,6 +280,36 @@ test('the social preview is the exact owner-approved privacy-normalized derivati
   }
 });
 
+test('the Hero uses the four governed community photographs from the selected constellation concept', async () => {
+  const source = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const manifest = JSON.parse(await readFile(new URL('../docs/assets-manifest.json', import.meta.url), 'utf8'));
+  const expected = [
+    ['hero-landom-community-anchor', 'public/assets/hero/landom-community-anchor.jpg'],
+    ['hero-landom-community-dinner', 'public/assets/hero/landom-community-dinner.jpg'],
+    ['hero-landom-community-citymeter', 'public/assets/hero/landom-community-citymeter.jpg'],
+    ['hero-landom-community-gathering', 'public/assets/hero/landom-community-gathering.jpg']
+  ];
+
+  assert.match(source, /id="hero-image"[\s\S]*?landom-community-anchor\.jpg/);
+  assert.match(source, /hero-moment--dinner[\s\S]*?landom-community-dinner\.jpg/);
+  assert.match(source, /hero-moment--work[\s\S]*?landom-community-citymeter\.jpg/);
+  assert.match(source, /hero-moment--gathering[\s\S]*?landom-community-gathering\.jpg/);
+  assert.doesNotMatch(source, /landom-people-hero\.jpg/);
+  assert.match(styles, /\.hero-moment\s*\{[\s\S]*?border-radius:\s*50%;/);
+  assert.match(styles, /@media \(max-width: 759px\)[\s\S]*?\.hero-moment--gathering/);
+
+  for (const [assetId, assetPath] of expected) {
+    const record = manifest.assets.find((asset) => asset.assetId === assetId);
+    assert.equal(record?.path, assetPath);
+    assert.equal(record?.publicationBasis, 'owner_authorized_hero_image');
+    assert.equal(record?.ownerApproval?.status, 'granted');
+    assert.equal(record?.ownerApproval?.scope, 'public_hero_collage_image_only');
+    assert.deepEqual(record?.approvedRoles, ['hero-image']);
+    assert.ok(record?.prohibitedRoles?.includes('social-preview'));
+  }
+});
+
 test('contribution destination actions use governed circle and capsule geometry', async () => {
   const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
   const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
@@ -305,6 +364,85 @@ test('profile cards use English role names, explicit status capsules, and restra
   assert.match(styles, /\.card-role-status\s*\{[\s\S]*?flex-wrap: wrap;[\s\S]*?gap: var\(--space-2\);/);
   assert.match(styles, /\.status-badge\[data-status="active"\][\s\S]*?var\(--semantic-success-fill\)/);
   assert.match(styles, /\.education-program,[\s\S]*?\.education-institution\s*\{[\s\S]*?font-size: var\(--type-body-sm\);[\s\S]*?font-weight: 400;/);
+});
+
+test('directory ordering keeps Active first and ranks Alumni by their latest completed engagement', async () => {
+  const compare = await personModelComparatorFromSource();
+  const models = [
+    {
+      id: 'older-alumni',
+      statusKey: 'alumni',
+      engagements: [{ status: 'completed', end: '2025-12-31' }]
+    },
+    {
+      id: 'active-first',
+      statusKey: 'active',
+      engagements: [{ status: 'ongoing', end: null }]
+    },
+    {
+      id: 'I0043',
+      statusKey: 'alumni',
+      engagements: [{ status: 'completed', end: '2026-08-25' }]
+    },
+    {
+      id: 'active-second',
+      statusKey: 'active',
+      engagements: [{ status: 'ongoing', end: null }]
+    }
+  ];
+
+  assert.deepEqual(
+    models.sort(compare).map((model) => model.id),
+    ['active-first', 'active-second', 'I0043', 'older-alumni']
+  );
+});
+
+test('directory ordering inspects every engagement and puts undated Alumni last', async () => {
+  const compare = await personModelComparatorFromSource();
+  const models = [
+    { id: 'undated', statusKey: 'alumni', engagements: [{ status: 'completed', end: null }] },
+    {
+      id: 'multiple-engagements',
+      statusKey: 'alumni',
+      engagements: [
+        { status: 'completed', end: '2024-05-31' },
+        { status: 'completed', end: '2026-02-14' }
+      ]
+    },
+    { id: 'single-engagement', statusKey: 'alumni', engagements: [{ status: 'completed', end: '2025-11-30' }] }
+  ];
+
+  assert.deepEqual(
+    models.sort(compare).map((model) => model.id),
+    ['multiple-engagements', 'single-engagement', 'undated']
+  );
+});
+
+test('directory ordering preserves source order for equal status and end-date ties', async () => {
+  const compare = await personModelComparatorFromSource();
+  const models = [
+    { id: 'tie-a', statusKey: 'alumni', engagements: [{ status: 'completed', end: '2025-07-31' }] },
+    { id: 'tie-b', statusKey: 'alumni', engagements: [{ status: 'completed', end: '2025-07-31' }] },
+    { id: 'undated-a', statusKey: 'alumni', engagements: [] },
+    { id: 'undated-b', statusKey: 'alumni', engagements: [] }
+  ];
+
+  assert.deepEqual(
+    models.sort(compare).map((model) => model.id),
+    ['tie-a', 'tie-b', 'undated-a', 'undated-b']
+  );
+});
+
+test('Draft is an Alumni record dated from the owner-confirmed last day', async () => {
+  const data = JSON.parse(await readFile(new URL('../data/generated/site-data.json', import.meta.url), 'utf8'));
+  const draft = data.people.find((person) => person.personId === 'I0043');
+  const draftEngagements = data.engagements.filter((engagement) => engagement.personId === 'I0043');
+
+  assert.equal(draft?.currentStatus, 'alumni');
+  assert.ok(
+    draftEngagements.some((engagement) => engagement.status === 'completed' && engagement.end === '2026-08-25'),
+    'Draft must carry the explicit owner-confirmed last day used by Alumni ordering'
+  );
 });
 
 test('education labels expose institution context and render program or Chula-aware student wording without duplication', async () => {

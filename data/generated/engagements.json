@@ -1522,12 +1522,13 @@
       "en": "Full-Stack Developer Intern"
     },
     "start": "2026-06-16",
-    "end": null,
-    "status": "ongoing",
+    "end": "2026-08-25",
+    "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "sheet_recorded",
-    "sequenceHint": null
+    "verificationStatus": "owner_confirmed_last_day",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner supplied Draft's last day as yesterday on 2026-08-26."
   },
   {
     "engagementId": "E0061",

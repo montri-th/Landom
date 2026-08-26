@@ -1276,6 +1276,30 @@
         "quality": 78,
         "sourceOriginalPreservedPrivately": true
       }
+    },
+    {
+      "personId": "I0009",
+      "publicPath": "public/assets/people/I0009.jpg",
+      "mime": "image/jpeg",
+      "bytes": 12297,
+      "sha256": "65f6d372b3df989f1a6305f0a0acc4d2e3224a6e18e642cf65894a111bdc0333",
+      "identityVerification": "owner_supplied_linkedin_url_and_public_profile_identity_match",
+      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "operation": "non_generative_exact_source_dimension_srgb_normalization",
+        "sourceWidth": 200,
+        "sourceHeight": 200,
+        "outputWidth": 200,
+        "outputHeight": 200,
+        "sourceOriginalPreservedPrivately": true
+      }
     }
   ]
 }

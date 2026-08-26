@@ -60,6 +60,24 @@ test('Biw and Nat expose governed absolute portrait URLs while Pote keeps the tr
   assert.deepEqual(byPersonId.get('S0007').fallback.fullNickname, { th: 'โปเต้', en: 'Pote' });
 });
 
+test('Ham exposes the exact owner-authorized LinkedIn portrait and public profile link', () => {
+  const expectedHash = '65f6d372b3df989f1a6305f0a0acc4d2e3224a6e18e642cf65894a111bdc0333';
+  const publicPath = path.join(root, 'public/assets/people/I0009.jpg');
+  const approved = portraitInventory.assets.find((asset) => asset.personId === 'I0009');
+  const projected = media.people.find((person) => person.personId === 'I0009');
+  const social = siteData.socialProfiles.find((profile) => profile.personId === 'I0009' && profile.platform === 'linkedin');
+
+  assert.equal(digest(publicPath), expectedHash);
+  assert.equal(fs.statSync(publicPath).size, 12297);
+  assert.equal(approved.sha256, expectedHash);
+  assert.equal(approved.publicationBasis, 'owner_authorized_public_profile_portrait');
+  assert.equal(approved.ownerApproval.status, 'granted');
+  assert.equal(approved.optimization.operation, 'non_generative_exact_source_dimension_srgb_normalization');
+  assert.equal(projected.portrait.url, `${canonicalRoot}public/assets/people/I0009.jpg`);
+  assert.equal(social.publicUrl, 'https://www.linkedin.com/in/chayaphon-kingkaewkanthong-1ba238378/');
+  assert.equal(social.publicationStatus, 'publishable');
+});
+
 test('Nicha portrait is the recorded deterministic source crop with no generated or retouched variant', () => {
   const expectedSourceHash = '655fe37578c1fd7fb30d7fb1a462e51e615d10cd4f4ae8a61714de2977df2201';
   const expectedOutputHash = '226bad11daa7aab5dab832fa992df2777afc876fbbd3837dbfb5cc51b487986c';
