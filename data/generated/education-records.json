@@ -360,18 +360,18 @@
     "educationRecordId": "EDU0019",
     "personId": "I0016",
     "institutionId": "inst-thammasat",
-    "programId": "program-tu-marketing",
+    "programId": "program-tu-bba-marketing",
     "recordType": "education",
     "isPrimary": true,
-    "sourceLabel": "Marketing, Thammasat",
+    "sourceLabel": "BBA (Marketing), Thammasat",
     "qualification": {
-      "th": "การตลาด",
-      "en": "Marketing"
+      "th": "บริหารธุรกิจ สาขาการตลาด",
+      "en": "BBA in Marketing"
     },
     "degree": null,
     "studyPeriod": null,
-    "verificationStatus": "owner_review_required",
-    "evidenceNote": null
+    "verificationStatus": "owner_confirmed_same_program_and_class",
+    "evidenceNote": "Owner confirmed Mook is in the same BBA Marketing program and class at Thammasat University as I0027 and I0028."
   },
   {
     "educationRecordId": "EDU0020",

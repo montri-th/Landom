@@ -7,6 +7,7 @@ const LANGUAGES = ["th", "en"];
 const COPY = {
   th: {
     pageTitle: "Landom — คนที่ร่วมสร้าง Landometer",
+    socialTitle: "LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER",
     pageDescription: "รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer",
     skip: "ข้ามไปยังเนื้อหาหลัก",
     headerLabel: "ส่วนหัวเว็บไซต์",
@@ -16,6 +17,8 @@ const COPY = {
     heroEyebrow: "LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER",
     heroTitle: "ไม่ใช่สถานที่\nแต่คือผู้คน",
     heroIntro: "Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น",
+    heroImageAlt: "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
+    socialImageAlt: "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
     peopleUnit: "คนใน Landom",
     loadingData: "กำลังโหลดข้อมูลล่าสุด",
     latestData: "ข้อมูลล่าสุด",
@@ -109,6 +112,7 @@ const COPY = {
   },
   en: {
     pageTitle: "Landom — meet the people shaping Landometer",
+    socialTitle: "Landom — meet the people shaping Landometer",
     pageDescription: "Meet the people, interests and work shaped through time with Landometer.",
     skip: "Skip to main content",
     headerLabel: "Site header",
@@ -118,6 +122,8 @@ const COPY = {
     heroEyebrow: "LANDOM · THE PEOPLE SHAPING LANDOMETER",
     heroTitle: "It’s not a place.\nIt’s the people.",
     heroIntro: "Landom is for people who want to understand cities and make them better, together.",
+    heroImageAlt: "People of Landom together at the Landometer office",
+    socialImageAlt: "People of Landom together at the Landometer office",
     peopleUnit: "people in Landom",
     loadingData: "Loading the latest data",
     latestData: "Latest data",
@@ -238,10 +244,12 @@ const elements = {
   metaDescription: document.querySelector('meta[name="description"]'),
   ogTitle: document.querySelector('meta[property="og:title"]'),
   ogDescription: document.querySelector('meta[property="og:description"]'),
+  ogImageAlt: document.querySelector('meta[property="og:image:alt"]'),
   ogLocale: document.querySelector('meta[property="og:locale"]'),
   ogLocaleAlternate: document.querySelector('meta[property="og:locale:alternate"]'),
   twitterTitle: document.querySelector('meta[name="twitter:title"]'),
   twitterDescription: document.querySelector('meta[name="twitter:description"]'),
+  twitterImageAlt: document.querySelector('meta[name="twitter:image:alt"]'),
   skip: document.querySelector(".skip-link"),
   siteHeader: document.querySelector(".site-header"),
   brand: document.querySelector(".brand"),
@@ -253,6 +261,7 @@ const elements = {
   heroEyebrow: document.querySelector("#hero-eyebrow"),
   pageTitle: document.querySelector("#page-title"),
   heroIntro: document.querySelector("#hero-intro"),
+  heroImage: document.querySelector("#hero-image"),
   peopleTotal: document.querySelector("#people-total"),
   peopleTotalLabel: document.querySelector("#people-total-label"),
   dataNote: document.querySelector("#data-note"),
@@ -367,12 +376,14 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   elements.root.lang = state.language;
   document.title = copy.pageTitle;
   elements.metaDescription?.setAttribute("content", copy.pageDescription);
-  elements.ogTitle?.setAttribute("content", copy.pageTitle);
+  elements.ogTitle?.setAttribute("content", copy.socialTitle);
   elements.ogDescription?.setAttribute("content", copy.pageDescription);
+  elements.ogImageAlt?.setAttribute("content", copy.socialImageAlt);
   elements.ogLocale?.setAttribute("content", state.language === "th" ? "th_TH" : "en_US");
   elements.ogLocaleAlternate?.setAttribute("content", state.language === "th" ? "en_US" : "th_TH");
-  elements.twitterTitle?.setAttribute("content", copy.pageTitle);
+  elements.twitterTitle?.setAttribute("content", copy.socialTitle);
   elements.twitterDescription?.setAttribute("content", copy.pageDescription);
+  elements.twitterImageAlt?.setAttribute("content", copy.socialImageAlt);
   setText(elements.skip, copy.skip);
   elements.siteHeader?.setAttribute("aria-label", copy.headerLabel);
   elements.brand?.setAttribute("aria-label", copy.homeLabel);
@@ -383,6 +394,7 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   setText(elements.heroEyebrow, copy.heroEyebrow);
   setText(elements.pageTitle, copy.heroTitle);
   setText(elements.heroIntro, copy.heroIntro);
+  elements.heroImage?.setAttribute("alt", copy.heroImageAlt);
   setText(elements.peopleTotalLabel, copy.peopleUnit);
   setText(elements.directoryKicker, copy.directoryKicker);
   setText(elements.directoryHeading, copy.directoryTitle);
@@ -915,15 +927,19 @@ function socialPlatform(profile) {
   return { key: "website", label: localizedField(profile, ["label", "name"]) || "Website" };
 }
 
+const PUBLIC_WEB_SOCIAL_KEYS = new Set(["linkedin", "github"]);
+
 function normalizeSocials(personRecord, socialProfiles) {
   const id = recordId(personRecord, "person");
   const seen = new Set();
   return socialProfiles.flatMap((profile) => {
     if (personId(profile) !== id || !socialIsPublishable(profile)) return [];
+    const platform = socialPlatform(profile);
+    if (!PUBLIC_WEB_SOCIAL_KEYS.has(platform.key)) return [];
     const url = safeExternalUrl(firstValue(profile, ["publicUrl", "public_url", "url", "href", "profileUrl", "profile_url"]));
     if (!url || seen.has(url)) return [];
     seen.add(url);
-    return [{ ...socialPlatform(profile), url }];
+    return [{ ...platform, url }];
   });
 }
 
@@ -1077,6 +1093,13 @@ function buildModels(data) {
     const id = recordId(personRecord, "person");
     const personEngagements = engagements.filter((engagement) => personId(engagement) === id).sort(engagementSort);
     const primaryEngagement = personEngagements[0] || {};
+    const primaryPlacementType = academicPlacementTypeFor(primaryEngagement);
+    const academicEngagement = String(programCode(primaryEngagement)).toUpperCase() === "IMP" ||
+      ["internship", "cooperative_education"].includes(primaryPlacementType)
+      ? primaryEngagement
+      : personEngagements.find((engagement) =>
+        ["internship", "cooperative_education"].includes(academicPlacementTypeFor(engagement))
+      ) || primaryEngagement;
     const roleKey = engagementRoleKey(primaryEngagement) || normalizeRole(firstValue(personRecord, ["role", "roleCategory", "role_category"]));
     const educationMode = String(firstValue(personRecord, ["educationDisplayMode", "education_display_mode", "educationDisplay.mode", "education_display.mode"]) ||
       (roleKey === "fulltime" ? "qualification" : roleKey === "intern" ? "program" : "neutral"));
@@ -1084,7 +1107,7 @@ function buildModels(data) {
     const hasPrimaryEducationRecord = educationRecords.some((record) => personId(record) === id && record.isPrimary === true);
     const primaryEducation = educationRecords.find((record) => personId(record) === id && record.isPrimary === true) ||
       educationRecords.find((record) => personId(record) === id) || {};
-    const education = educationFor(personRecord, primaryEngagement, primaryEducation, programIndex, institutionIndex, educationMode, hasPrimaryEducationRecord);
+    const education = educationFor(personRecord, academicEngagement, primaryEducation, programIndex, institutionIndex, educationMode, hasPrimaryEducationRecord);
     const nicknameTh = localizedField(personRecord, ["names.card", "names.nickname", "nickname", "displayName", "display_name", "shortName", "short_name"], "th");
     const nicknameEn = localizedField(personRecord, ["names.card", "names.nickname", "nickname", "displayName", "display_name", "shortName", "short_name"], "en");
     const fullNameTh = localizedField(personRecord, ["names.full", "officialName", "official_name", "fullName", "full_name", "name"], "th");
@@ -1727,14 +1750,11 @@ function socialIconMarkup(key) {
   if (key === "github") {
     return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.98 10.98 0 0 1 5.76 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.79 1.07.79 2.16v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>`;
   }
-  if (key === "facebook") {
-    return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.7 21v-7.7h2.6l.4-3h-3V8.4c0-.87.24-1.46 1.5-1.46h1.6V4.26A21 21 0 0 0 14.47 4c-2.3 0-3.88 1.4-3.88 3.98v2.22H8v3h2.6V21h3.1Z"/></svg>`;
-  }
   return "";
 }
 
 function profileSocialIconsMarkup(model) {
-  const profiles = model.socials.filter((social) => ["linkedin", "github", "facebook"].includes(social.key));
+  const profiles = model.socials.filter((social) => PUBLIC_WEB_SOCIAL_KEYS.has(social.key));
   if (!profiles.length) return "";
   return `<nav class="profile-icon-links" aria-label="${escapeHtml(message("publicProfiles"))}">${profiles.map((social) => `
     <a class="profile-icon-link" href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(social.label)}" title="${escapeHtml(social.label)}">
@@ -1743,16 +1763,7 @@ function profileSocialIconsMarkup(model) {
 }
 
 function socialsMarkup(model) {
-  const profiles = model.socials.filter((social) => !["linkedin", "github", "facebook"].includes(social.key));
-  if (!profiles.length) return "";
-  return `
-    <section class="detail-section" aria-labelledby="detail-social-title-${escapeHtml(model.id)}">
-      ${detailHeadingMarkup(`detail-social-title-${model.id}`, message("publicProfiles"), "profiles")}
-      <div class="social-list">
-        ${profiles.map((social) => `<a class="social-link" href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer" data-platform="${escapeHtml(social.key)}">${escapeHtml(social.label)}</a>`).join("")}
-      </div>
-    </section>
-  `;
+  return "";
 }
 
 function certificateTitle(certificate) {

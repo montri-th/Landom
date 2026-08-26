@@ -341,7 +341,9 @@ Portrait เผยแพร่ได้เมื่อ `verificationStatus=verif
 1. `consentStatus=granted` และ `publicationBasis=individual_consent`; หรือ
 2. `publicationBasis=owner_authorized_public_profile_portrait` พร้อม `ownerApproval.status=granted` และ scope `public_profile_portrait`
 
-Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent ปัจจุบันมี LinkedIn 45 ราย, GitHub 12 ราย, Facebook 1 ราย และ local portrait 41 รายที่ผ่าน exact identity + owner basis; รายการอื่นต้องเป็น null/fallback
+Owner basis เป็นการตัดสินใจเผยแพร่ของเจ้าของ directory เฉพาะลิงก์หรือ portrait รายการนั้น ไม่ใช่ consent ของบุคคล ดังนั้น `consentStatus` ยังคง `pending` และห้ามเปลี่ยน label เป็น consent รายการอื่นต้องเป็น null/fallback
+
+Public web projection ใช้ platform allowlist แบบ deny-by-default: เปิดเผยเฉพาะ LinkedIn และ GitHub ที่ผ่าน publication gate ข้างต้นเท่านั้น Facebook, Instagram และ social platform อื่นทั้งหมดเก็บเป็นข้อมูล Sheet/private raw snapshot แบบ Sheet-only เพื่อการทบทวนและ roundtrip แต่ห้าม emit ไปยัง public JSON, UI หรือ discovery/social metadata การผ่าน publication gate ไม่ได้ขยาย platform allowlist นี้
 
 Candidate URL/handle ที่ยังไม่ผ่าน gate, portrait source/CDN URL, evidence, permission record และ review noteเก็บเฉพาะใน ignored raw snapshot/private report เท่านั้น URL ที่ผ่าน gate ถูก copy เป็น `publicUrl`; portrait ถูก normalize เป็น local JPEG ภายใต้ `public/assets/people/<personId>.jpg` และ public JSON เก็บ local path/hash โดย `sourceUrl=null` เสมอ Exporter merge candidate/review fields เดิมกลับเฉพาะ private workbook เพื่อให้ roundtrip ไม่ทำข้อมูลสูญหาย
 

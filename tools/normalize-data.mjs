@@ -2,7 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { importNormalizedSheetSnapshot, isNormalizedSheetSnapshot } from './normalized-sheet-roundtrip.mjs';
+import {
+  importNormalizedSheetSnapshot,
+  isNormalizedSheetSnapshot,
+  PUBLIC_WEB_SOCIAL_PLATFORMS
+} from './normalized-sheet-roundtrip.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -1446,6 +1450,9 @@ for (const approved of profileDetailOverrides.addedPublicSocialProfiles ?? []) {
   if (!socialPlatforms.includes(approved.platform)) {
     throw new Error('Approved public social profile uses an unsupported platform: ' + approved.platform);
   }
+  if (!PUBLIC_WEB_SOCIAL_PLATFORMS.has(approved.platform)) {
+    throw new Error('Approved public social profile must use LinkedIn or GitHub; keep other platform candidates in the private Sheet only: ' + approved.platform);
+  }
   const key = approved.personId + '|' + approved.platform;
   if (addedPublicSocialByKey.has(key)) throw new Error('Duplicate approved public social profile: ' + key);
   addedPublicSocialByKey.set(key, approved);
@@ -1474,18 +1481,21 @@ for (const person of people) {
     const publishable = Boolean(candidate) && verificationStatus === 'verified' && (
       consentStatus === 'granted' || publicationBasis === 'owner_authorized_public_profile_link'
     );
+    const webPlatformAllowed = PUBLIC_WEB_SOCIAL_PLATFORMS.has(platform);
     socialProfiles.push({
       socialProfileId: 'SOC-' + personId + '-' + platform.toUpperCase(),
       personId,
       platform,
-      publicUrl: publishable ? candidate : null,
+      publicUrl: publishable && webPlatformAllowed ? candidate : null,
       candidateStatus: candidate ? 'candidate_present' : 'candidate_missing',
       candidateValueEmitted: false,
       verificationStatus,
       consentStatus,
       publicationBasis,
       ownerApproval,
-      publicationStatus: publishable
+      publicationStatus: publishable && !webPlatformAllowed
+        ? 'withheld_by_channel_policy'
+        : publishable
         ? 'publishable'
         : !candidate
           ? 'withheld_pending_candidate'
@@ -1715,7 +1725,7 @@ const meta = {
   evidenceBoundary: {
     localeInsight: 'Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.',
     crossProductComparison: 'Compare only records produced under the same schema/release, otherwise state incompatibility.',
-    socialAndPortraits: 'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
+    socialAndPortraits: 'Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
     educationPublicProfiles: 'Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.',
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
     profileCopy: 'All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',

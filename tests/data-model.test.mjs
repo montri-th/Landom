@@ -136,8 +136,23 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     const socialCandidateStatus = social.headers.indexOf('candidate_status');
     const socialVerification = social.headers.indexOf('verification_status');
     const socialConsent = social.headers.indexOf('consent_status');
+    const socialPublicUrl = social.headers.indexOf('public_url');
     const socialPublication = social.headers.indexOf('publication_status');
     const socialSourceNote = social.headers.indexOf('source_note');
+    const retainedSheetFacebookIds = [
+      'SOC-I0011-FACEBOOK',
+      'SOC-S0004-FACEBOOK',
+      'SOC-I0034-FACEBOOK',
+      'SOC-S0005-FACEBOOK',
+      'SOC-S0006-FACEBOOK',
+      'SOC-S0007-FACEBOOK'
+    ];
+    const retainedSheetFacebookPrefix = 'https://sheet-only.invalid/facebook-profile-';
+    for (const [index, socialProfileId] of retainedSheetFacebookIds.entries()) {
+      const facebookRow = social.rows.find((row) => row[socialId] === socialProfileId);
+      assert.ok(facebookRow, `missing normalized Sheet row ${socialProfileId}`);
+      facebookRow[socialPublicUrl] = retainedSheetFacebookPrefix + String(index + 1).padStart(2, '0');
+    }
     const allInstagramRows = social.rows.filter((row) => String(row[socialId]).endsWith('-INSTAGRAM'));
     const targetInstagram = allInstagramRows.find((row) => row[socialId] === 'SOC-I0001-INSTAGRAM');
     const instagramRows = [targetInstagram, ...allInstagramRows.filter((row) => row !== targetInstagram)].slice(0, 12);
@@ -192,19 +207,12 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 49);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 15);
-    assert.deepEqual(
-      imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).map((row) => [row.personId, row.publicUrl]),
-      [
-        ['I0011', 'https://www.facebook.com/ingkharut.ruttanaopha.2024'],
-        ['S0004', 'https://www.facebook.com/phonsuda.12'],
-        ['I0034', 'https://www.facebook.com/xisury.thiphy.thn.thraphy'],
-        ['S0005', 'https://www.facebook.com/wachirapongbiw'],
-        ['S0006', 'https://www.facebook.com/zanmatoo'],
-        ['S0007', 'https://www.facebook.com/kanoksilp.jindadoungrut']
-      ]
-    );
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 70);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 23);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 72);
+    assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
+      ['linkedin', 'github'].includes(row.platform)
+    ));
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
     ));
@@ -225,6 +233,12 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(roundtripInstagram[socialRoundtripTab.headers.indexOf('source_note')], 'Private identity evidence roundtrip 01');
     assert.equal(socialRoundtripTab.rows.filter((row) => String(row[socialRoundtripTab.headers.indexOf('candidate_url_or_handle')]).startsWith('private_ig_candidate_roundtrip_')).length, 12);
     assert.equal(socialRoundtripTab.rows.filter((row) => String(row[socialRoundtripTab.headers.indexOf('source_note')]).startsWith('Private identity evidence roundtrip ')).length, 12);
+    const roundtripFacebookUrls = retainedSheetFacebookIds.map((socialProfileId) => {
+      const row = socialRoundtripTab.rows.find((candidate) => candidate[socialRoundtripTab.headers.indexOf('social_profile_id')] === socialProfileId);
+      return row?.[socialRoundtripTab.headers.indexOf('public_url')];
+    });
+    assert.equal(roundtripFacebookUrls.length, 6);
+    assert.ok(roundtripFacebookUrls.every((url) => String(url).startsWith(retainedSheetFacebookPrefix)));
 
     const assetRoundtrip = JSON.parse(execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs'), '--snapshot', snapshotPath, '--site-data', path.join(outputDir, 'site-data.json'), 'assets'], { cwd: root, encoding: 'utf8' }));
     const assetRoundtripTab = assetRoundtrip.tabs.assets;
@@ -909,22 +923,33 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const data = loadGenerated();
   assert.equal(
     data.meta.evidenceBoundary.socialAndPortraits,
-    'A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.'
+    'Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.'
   );
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
   assert.equal(linkedIn.length, 49);
-  assert.equal(github.length, 15);
-  assert.deepEqual(facebook.map((profile) => ({ personId: profile.personId, publicUrl: profile.publicUrl })), [
-    { personId: 'I0011', publicUrl: 'https://www.facebook.com/ingkharut.ruttanaopha.2024' },
-    { personId: 'S0004', publicUrl: 'https://www.facebook.com/phonsuda.12' },
-    { personId: 'I0034', publicUrl: 'https://www.facebook.com/xisury.thiphy.thn.thraphy' },
-    { personId: 'S0005', publicUrl: 'https://www.facebook.com/wachirapongbiw' },
-    { personId: 'S0006', publicUrl: 'https://www.facebook.com/zanmatoo' },
-    { personId: 'S0007', publicUrl: 'https://www.facebook.com/kanoksilp.jindadoungrut' }
-  ]);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 70);
+  assert.equal(github.length, 23);
+  assert.equal(facebook.length, 0);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 72);
+  assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
+    ['linkedin', 'github'].includes(profile.platform)
+  ));
+  assert.deepEqual(
+    github
+      .filter((profile) => ['S0003', 'I0011', 'I0015', 'I0035', 'I0036', 'I0037', 'I0038', 'I0043'].includes(profile.personId))
+      .map((profile) => ({ personId: profile.personId, publicUrl: profile.publicUrl })),
+    [
+      { personId: 'S0003', publicUrl: 'https://github.com/24thofmayy' },
+      { personId: 'I0011', publicUrl: 'https://github.com/kharutta' },
+      { personId: 'I0015', publicUrl: 'https://github.com/PwFaze' },
+      { personId: 'I0035', publicUrl: 'https://github.com/TanPassapol' },
+      { personId: 'I0036', publicUrl: 'https://github.com/Poomrapee-chsk' },
+      { personId: 'I0037', publicUrl: 'https://github.com/nicha-natthanicha' },
+      { personId: 'I0038', publicUrl: 'https://github.com/NorraphatR' },
+      { personId: 'I0043', publicUrl: 'https://github.com/Drf-Chsrphbl' }
+    ]
+  );
   assert.deepEqual(
     linkedIn
       .filter((profile) => ['S0005', 'S0006', 'S0007'].includes(profile.personId))
@@ -935,7 +960,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
       { personId: 'S0007', publicUrl: 'https://www.linkedin.com/in/kanoksilp-jindadoungrut-841a67224/' }
     ]
   );
-  for (const profile of [...linkedIn, ...github, ...facebook]) {
+  for (const profile of [...linkedIn, ...github]) {
     assert.equal(profile.verificationStatus, 'verified');
     assert.equal(profile.consentStatus, 'pending');
     assert.equal(profile.publicationBasis, 'owner_authorized_public_profile_link');

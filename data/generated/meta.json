@@ -36,7 +36,7 @@
   "evidenceBoundary": {
     "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
     "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
-    "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
+    "socialAndPortraits": "Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
     "educationPublicProfiles": "Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.",
     "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
     "profileCopy": "All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
@@ -61,6 +61,6 @@
     "cooperativeEducationPeople": 6,
     "verifiedInstitutionLinkedInProfiles": 8,
     "verifiedProgramLinkedInProfiles": 1,
-    "publishedPublicSocialProfiles": 70
+    "publishedPublicSocialProfiles": 72
   }
 }

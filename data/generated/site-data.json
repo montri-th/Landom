@@ -37,7 +37,7 @@
     "evidenceBoundary": {
       "localeInsight": "Portfolio methodology and shared product architecture may span Land, Location and Living, but a product-specific implementation is not evidence for every Landometer product.",
       "crossProductComparison": "Compare only records produced under the same schema/release, otherwise state incompatibility.",
-      "socialAndPortraits": "A public profile link may be published after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
+      "socialAndPortraits": "Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
       "educationPublicProfiles": "Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.",
       "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
       "profileCopy": "All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
@@ -62,7 +62,7 @@
       "cooperativeEducationPeople": 6,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 70
+      "publishedPublicSocialProfiles": 72
     }
   },
   "copy": {
@@ -1020,18 +1020,18 @@
       "educationRecordId": "EDU0019",
       "personId": "I0016",
       "institutionId": "inst-thammasat",
-      "programId": "program-tu-marketing",
+      "programId": "program-tu-bba-marketing",
       "recordType": "education",
       "isPrimary": true,
-      "sourceLabel": "Marketing, Thammasat",
+      "sourceLabel": "BBA (Marketing), Thammasat",
       "qualification": {
-        "th": "การตลาด",
-        "en": "Marketing"
+        "th": "บริหารธุรกิจ สาขาการตลาด",
+        "en": "BBA in Marketing"
       },
       "degree": null,
       "studyPeriod": null,
-      "verificationStatus": "owner_review_required",
-      "evidenceNote": null
+      "verificationStatus": "owner_confirmed_same_program_and_class",
+      "evidenceNote": "Owner confirmed Mook is in the same BBA Marketing program and class at Thammasat University as I0027 and I0028."
     },
     {
       "educationRecordId": "EDU0020",
@@ -2973,14 +2973,14 @@
       "educationDisplay": {
         "mode": "program",
         "card": {
-          "th": "การตลาด · มธ.",
-          "en": "Marketing · TU"
+          "th": "BBA Marketing · มธ.",
+          "en": "BBA Marketing · TU"
         },
         "detail": {
-          "th": "การตลาด — มหาวิทยาลัยธรรมศาสตร์",
-          "en": "Marketing — Thammasat University"
+          "th": "บริหารธุรกิจ สาขาการตลาด — มหาวิทยาลัยธรรมศาสตร์",
+          "en": "BBA in Marketing — Thammasat University"
         },
-        "verificationStatus": "owner_review_required"
+        "verificationStatus": "owner_confirmed_same_program_and_class"
       },
       "bio": {
         "th": "มุก (Pitcha) สนใจเทคโนโลยีที่ช่วยยกระดับชีวิตในเมือง และอยากใช้ความเข้าใจเทรนด์ดิจิทัลกับความต้องการผู้ใช้เพื่อสร้างการมีส่วนร่วมและการรับรู้",
@@ -10316,7 +10316,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10334,7 +10334,7 @@
         "label": null
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10352,7 +10352,7 @@
         "label": "2025"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10370,7 +10370,7 @@
         "label": "2025"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10388,7 +10388,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10406,7 +10406,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10424,7 +10424,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10442,7 +10442,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10460,7 +10460,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10478,7 +10478,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": "The owner supplied the Healthcare contribution name; no exact current CityMETER catalog module is asserted."
     },
     {
@@ -10496,7 +10496,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10514,7 +10514,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10532,7 +10532,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10550,7 +10550,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10568,7 +10568,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10586,7 +10586,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10604,7 +10604,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10622,7 +10622,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10640,7 +10640,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10658,7 +10658,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10676,7 +10676,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10694,7 +10694,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10712,7 +10712,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10730,7 +10730,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10748,7 +10748,7 @@
         "label": "Part-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
       "evidenceNote": null
     }
   ],
@@ -11454,14 +11454,19 @@
       "socialProfileId": "SOC-S0003-GITHUB",
       "personId": "S0003",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/24thofmayy",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -12288,14 +12293,19 @@
       "socialProfileId": "SOC-I0011-GITHUB",
       "personId": "I0011",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/kharutta",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -12330,19 +12340,14 @@
       "socialProfileId": "SOC-I0011-FACEBOOK",
       "personId": "I0011",
       "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/ingkharut.ruttanaopha.2024",
-      "candidateStatus": "candidate_present",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
       "candidateValueEmitted": false,
-      "verificationStatus": "verified",
+      "verificationStatus": "missing",
       "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
-      "publicationStatus": "publishable",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -12715,14 +12720,19 @@
       "socialProfileId": "SOC-I0015-GITHUB",
       "personId": "I0015",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/PwFaze",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -14302,19 +14312,14 @@
       "socialProfileId": "SOC-S0004-FACEBOOK",
       "personId": "S0004",
       "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/phonsuda.12",
-      "candidateStatus": "candidate_present",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
       "candidateValueEmitted": false,
-      "verificationStatus": "verified",
+      "verificationStatus": "missing",
       "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
-      "publicationStatus": "publishable",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -14842,19 +14847,14 @@
       "socialProfileId": "SOC-I0034-FACEBOOK",
       "personId": "I0034",
       "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/xisury.thiphy.thn.thraphy",
-      "candidateStatus": "candidate_present",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
       "candidateValueEmitted": false,
-      "verificationStatus": "verified",
+      "verificationStatus": "missing",
       "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
-      "publicationStatus": "publishable",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -14908,14 +14908,19 @@
       "socialProfileId": "SOC-I0035-GITHUB",
       "personId": "I0035",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/TanPassapol",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15011,14 +15016,19 @@
       "socialProfileId": "SOC-I0036-GITHUB",
       "personId": "I0036",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/Poomrapee-chsk",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15114,14 +15124,19 @@
       "socialProfileId": "SOC-I0037-GITHUB",
       "personId": "I0037",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/nicha-natthanicha",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15212,14 +15227,19 @@
       "socialProfileId": "SOC-I0038-GITHUB",
       "personId": "I0038",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/NorraphatR",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15732,14 +15752,19 @@
       "socialProfileId": "SOC-I0043-GITHUB",
       "personId": "I0043",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/Drf-Chsrphbl",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
+      "verificationStatus": "verified",
       "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15882,19 +15907,14 @@
       "socialProfileId": "SOC-S0005-FACEBOOK",
       "personId": "S0005",
       "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/wachirapongbiw",
-      "candidateStatus": "candidate_present",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
       "candidateValueEmitted": false,
-      "verificationStatus": "verified",
+      "verificationStatus": "missing",
       "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
-      "publicationStatus": "publishable",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15995,19 +16015,14 @@
       "socialProfileId": "SOC-S0006-FACEBOOK",
       "personId": "S0006",
       "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/zanmatoo",
-      "candidateStatus": "candidate_present",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
       "candidateValueEmitted": false,
-      "verificationStatus": "verified",
+      "verificationStatus": "missing",
       "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
-      "publicationStatus": "publishable",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -16108,19 +16123,14 @@
       "socialProfileId": "SOC-S0007-FACEBOOK",
       "personId": "S0007",
       "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/kanoksilp.jindadoungrut",
-      "candidateStatus": "candidate_present",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
       "candidateValueEmitted": false,
-      "verificationStatus": "verified",
+      "verificationStatus": "missing",
       "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
-      "publicationStatus": "publishable",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {

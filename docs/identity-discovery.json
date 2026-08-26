@@ -56,17 +56,17 @@
     {
       "role": "social preview image",
       "path": "public/assets/social/landom-people-og.jpg",
-      "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa",
+      "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97",
       "variant": "owner-supplied-candid-collaboration-og-1200x630",
       "approvalScope": "social preview image only",
       "mimeType": "image/jpeg",
       "intrinsicWidth": 1200,
       "intrinsicHeight": 630,
-      "bytes": 176692,
-      "sha256": "8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0",
+      "bytes": 211478,
+      "sha256": "a7c46cf31e976e420f78eb324ed9c41cbbdb5b91be28849ec6e307cf4ca5865c",
       "transparentCanvas": false,
       "themeStrategy": "Use the same language-neutral photographic bytes for Thai and English routes without recolor, filter, text, logo overlay, or theme transformation.",
-      "sourceVersion": "Owner-supplied IMG_2989.jpg sha256:031e4546f7e60bbc5d2a7135ed7d81a24c93bc5a2cd45b2510034f939467a733; centered 40:21 crop, sRGB conversion, resize, and metadata removal only.",
+      "sourceVersion": "Owner-supplied IMG_4522.HEIC sha256:4929d056e4c63d15cf09af2353e5f8d353106d6250ec920c87480e458e23e4ce; bounded 40:21 crop, Display P3 to sRGB conversion, resize, and metadata removal only.",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-26",
@@ -74,10 +74,10 @@
         "sourceRef": "owner_instruction_2026-08-26"
       },
       "localizedAlt": {
-        "th": "ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer",
-        "en": "People of Landom during a shared activity at Landometer"
+        "th": "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
+        "en": "People of Landom together at the Landometer office"
       },
-      "cacheRevision": "8f60ab324aaa",
+      "cacheRevision": "a7c46cf31e97",
       "sameOrigin": true
     }
   ],

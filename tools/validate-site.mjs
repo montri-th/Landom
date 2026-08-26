@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const PERSON_ID_PATTERN = /^[SPI][0-9]{4}$/;
+const PUBLIC_WEB_SOCIAL_PLATFORMS = new Set(['linkedin', 'github']);
 const REQUIRED_DATASETS = [
   'institutions',
   'programs',
@@ -51,16 +52,16 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const textExtensions = new Set(['.css', '.html', '.js', '.json', '.mjs', '.svg', '.txt', '.webmanifest']);
 const SOCIAL_PREVIEW = Object.freeze({
   path: 'public/assets/social/landom-people-og.jpg',
-  url: 'https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa',
+  url: 'https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97',
   mimeType: 'image/jpeg',
   width: 1200,
   height: 630,
-  bytes: 176692,
-  sha256: '8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0',
-  cacheRevision: '8f60ab324aaa',
+  bytes: 211478,
+  sha256: 'a7c46cf31e976e420f78eb324ed9c41cbbdb5b91be28849ec6e307cf4ca5865c',
+  cacheRevision: 'a7c46cf31e97',
   alt: {
-    th: 'ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer',
-    en: 'People of Landom during a shared activity at Landometer'
+    th: 'ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer',
+    en: 'People of Landom together at the Landometer office'
   }
 });
 const MATERIAL_SYMBOLS = Object.freeze({
@@ -399,6 +400,10 @@ export function validateDataContract(data) {
 
   for (const profile of data.socialProfiles) {
     const profileIsPublic = isPublic(profile);
+    const platform = normalizeText(profile.platform);
+    if (hasPublicUrl(profile) && !PUBLIC_WEB_SOCIAL_PLATFORMS.has(platform)) {
+      errors.push(`Social profile ${profile.socialProfileId} exposes unsupported public platform ${profile.platform}; only LinkedIn and GitHub may appear on the web.`);
+    }
     if (hasPublicUrl(profile) && !profileIsPublic) {
       errors.push(`Social profile ${profile.socialProfileId} exposes a URL without public publication status.`);
     }
@@ -586,6 +591,12 @@ async function validateUi(publishRoot, errors) {
   }
   const publicationRenderer = sourceText.match(/function publicationsMarkup\b[\s\S]*?(?=function socialIconMarkup\b)/)?.[0] ?? '';
   const personDetailRenderer = sourceText.match(/function personDetailMarkup\b[\s\S]*?(?=function cardShellFor\b)/)?.[0] ?? '';
+  const socialNormalizer = sourceText.match(/function normalizeSocials\b[\s\S]*?(?=function normalizeSearch\b)/)?.[0] ?? '';
+  const socialIconRenderer = sourceText.match(/function profileSocialIconsMarkup\b[\s\S]*?(?=function socialsMarkup\b)/)?.[0] ?? '';
+  if (!/PUBLIC_WEB_SOCIAL_KEYS\.has\(platform\.key\)/.test(socialNormalizer) ||
+      !/PUBLIC_WEB_SOCIAL_KEYS\.has\(social\.key\)/.test(socialIconRenderer)) {
+    errors.push('The web UI must deny-by-default every social platform except LinkedIn and GitHub.');
+  }
   for (const token of ['external_publication_not_landometer_contribution', 'owner_supplied_with_bibliographic_match', 'owner_authorized_external_publication_link', 'safeExternalUrl']) {
     if (!sourceText.includes(token)) errors.push(`External publications must retain their strict publication governance boundary: ${token}.`);
   }
@@ -1053,11 +1064,20 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     const expectedTitle = locale === 'th'
       ? 'Landom — คนที่ร่วมสร้าง Landometer'
       : 'Landom — meet the people shaping Landometer';
+    const expectedSocialTitle = locale === 'th'
+      ? 'LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER'
+      : 'Landom — meet the people shaping Landometer';
     const expectedDescription = locale === 'th'
       ? 'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer'
       : 'Meet the people, interests and work shaped through time with Landometer.';
     const expectedHeading = locale === 'th' ? 'ไม่ใช่สถานที่&#10;แต่คือผู้คน' : 'It’s not a place.&#10;It’s the people.';
     if (!html.includes(`<title>${expectedTitle}</title>`)) errors.push(`${fileLabel} is missing its localized initial title.`);
+    if (!html.includes(`<meta property="og:title" content="${expectedSocialTitle}">`)) {
+      errors.push(`${fileLabel} is missing its exact locale-specific Open Graph title.`);
+    }
+    if (!html.includes(`<meta name="twitter:title" content="${expectedSocialTitle}">`)) {
+      errors.push(`${fileLabel} is missing its exact locale-specific Twitter title.`);
+    }
     if (!html.includes(`content="${expectedDescription}"`)) errors.push(`${fileLabel} is missing its localized initial description.`);
     if (!html.includes(`id="page-title">${expectedHeading}</h1>`)) errors.push(`${fileLabel} is missing its localized initial H1.`);
 

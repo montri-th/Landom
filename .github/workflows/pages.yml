@@ -74,7 +74,9 @@ jobs:
           font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-body-thai.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/bai-jamjuree-thai-400-normal.woff2")"
           icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2")"
           portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-s0001.jpg --write-out '%{content_type}' "$base_url/public/assets/people/S0001.jpg")"
-          social_preview_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-og.jpg --write-out '%{content_type}' "$base_url/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa")"
+          social_preview_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-og.jpg --write-out '%{content_type}' "$base_url/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97")"
+          hero_image_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-hero.jpg --write-out '%{content_type}' "$base_url/public/assets/hero/landom-people-hero.jpg")"
+          hero_motif_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landometer-hero-motif.png --write-out '%{content_type}' "$base_url/public/assets/decor/landometer-hero-motif.png")"
           robots_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-robots.txt --write-out '%{content_type}' "$base_url/robots.txt")"
           sitemap_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-sitemap.xml --write-out '%{content_type}' "$base_url/sitemap.xml")"
           llms_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-llms.txt --write-out '%{content_type}' "$base_url/llms.txt")"
@@ -91,6 +93,8 @@ jobs:
           case "$icon_font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected icon WOFF2 content type: $icon_font_type"; exit 1;; esac
           case "$portrait_type" in image/jpeg*) ;; *) echo "Unexpected portrait content type: $portrait_type"; exit 1;; esac
           case "$social_preview_type" in image/jpeg*) ;; *) echo "Unexpected social preview content type: $social_preview_type"; exit 1;; esac
+          case "$hero_image_type" in image/jpeg*) ;; *) echo "Unexpected hero image content type: $hero_image_type"; exit 1;; esac
+          case "$hero_motif_type" in image/png*) ;; *) echo "Unexpected hero motif content type: $hero_motif_type"; exit 1;; esac
           case "$robots_type" in text/plain*) ;; *) echo "Unexpected robots content type: $robots_type"; exit 1;; esac
           case "$sitemap_type" in application/xml*|text/xml*) ;; *) echo "Unexpected sitemap content type: $sitemap_type"; exit 1;; esac
           case "$llms_type" in text/plain*) ;; *) echo "Unexpected llms.txt content type: $llms_type"; exit 1;; esac
@@ -105,7 +109,7 @@ jobs:
             if (!html.includes("id=\"people-board\"")) throw Error("people board missing from deployed HTML");
             if (!html.includes("data-locale-route=\"th\"") || !html.includes("hreflang=\"th\" href=\"https://montri-th.github.io/Landom/\"")) throw Error("Thai canonical root metadata is missing");
             if (!english.includes("data-locale-route=\"en\"") || !english.includes("id=\"page-title\">It’s not a place.&#10;It’s the people.</h1>")) throw Error("English localized route metadata/copy is missing");
-            if (!html.includes("property=\"og:image\" content=\"https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa\"") || !english.includes("content=\"People of Landom during a shared activity at Landometer\"")) throw Error("Localized social preview metadata is missing");
+            if (!html.includes("property=\"og:title\" content=\"LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER\"") || !html.includes("property=\"og:image\" content=\"https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97\"") || !english.includes("content=\"People of Landom together at the Landometer office\"")) throw Error("Localized social preview metadata is missing");
             if (!english.includes("href=\"https://montri-th.github.io/Landom/en/#main-content\"")) throw Error("English skip link leaves the localized route");
             if (!Array.isArray(data.people) || data.people.length === 0) throw Error("deployed people dataset is empty");
             const expected = new Map(manifest.files.map((record) => [record.path, record.sha256]));
@@ -121,6 +125,8 @@ jobs:
               ["public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2", "/tmp/landom-material-symbols.woff2"],
               ["public/assets/people/S0001.jpg", "/tmp/landom-portrait-s0001.jpg"],
               ["public/assets/social/landom-people-og.jpg", "/tmp/landom-people-og.jpg"],
+              ["public/assets/hero/landom-people-hero.jpg", "/tmp/landom-people-hero.jpg"],
+              ["public/assets/decor/landometer-hero-motif.png", "/tmp/landometer-hero-motif.png"],
               ["robots.txt", "/tmp/landom-robots.txt"],
               ["sitemap.xml", "/tmp/landom-sitemap.xml"],
               ["llms.txt", "/tmp/landom-llms.txt"]
@@ -138,7 +144,17 @@ jobs:
             }
             const socialPreview = readFileSync("/tmp/landom-people-og.jpg");
             const socialPreviewDigest = createHash("sha256").update(socialPreview).digest("hex");
-            if (socialPreview.length !== 176692 || socialPreviewDigest !== "8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0") {
+            if (socialPreview.length !== 211478 || socialPreviewDigest !== "a7c46cf31e976e420f78eb324ed9c41cbbdb5b91be28849ec6e307cf4ca5865c") {
               throw Error("deployed social preview bytes do not match the owner-approved identity record");
+            }
+            const heroImage = readFileSync("/tmp/landom-people-hero.jpg");
+            const heroImageDigest = createHash("sha256").update(heroImage).digest("hex");
+            if (heroImage.length !== 395416 || heroImageDigest !== "bd344dcbfff2f33cb21daf7bdbea16c96f0241f5b53cdaaca90844010195b61e") {
+              throw Error("deployed hero image bytes do not match the owner-approved asset record");
+            }
+            const heroMotif = readFileSync("/tmp/landometer-hero-motif.png");
+            const heroMotifDigest = createHash("sha256").update(heroMotif).digest("hex");
+            if (heroMotif.length !== 74610 || heroMotifDigest !== "0317fb8e92b974717abce15f29be72d76dbce62e1ba8ff5bd40fe453bb6b2a67") {
+              throw Error("deployed hero motif bytes do not match the owner-approved asset record");
             }
           '

@@ -191,7 +191,7 @@
       "required": ["personId", "platform", "publicUrl", "verificationStatus", "identityEvidenceBasis", "consentStatus", "publicationBasis", "ownerApproval"],
       "properties": {
         "personId": { "$ref": "#/$defs/personId" },
-        "platform": { "enum": ["linkedin", "github", "gitlab", "website", "facebook", "instagram", "tiktok"] },
+        "platform": { "enum": ["linkedin", "github"] },
         "publicUrl": { "type": "string", "format": "uri" },
         "verificationStatus": { "const": "verified" },
         "identityEvidenceBasis": { "type": "string", "minLength": 1 },

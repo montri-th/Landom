@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.2",
-  "sourceBasis": "owner_instructions_2026-08-23_through_2026-08-25_detail_refinement",
+  "sourceBasis": "owner_instructions_2026-08-23_through_2026-08-26_detail_refinement",
   "addedPeople": [
     {
       "personId": "S0005",
@@ -207,21 +207,6 @@
   ],
   "addedPublicSocialProfiles": [
     {
-      "personId": "S0004",
-      "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/phonsuda.12",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_exact_identity_assignment_plus_public_handle_name_match; facebook_profile_content_login_gated",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      }
-    },
-    {
       "personId": "S0005",
       "platform": "github",
       "publicUrl": "https://github.com/wachirapong74",
@@ -282,81 +267,6 @@
       }
     },
     {
-      "personId": "S0006",
-      "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/zanmatoo",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_exact_identity_assignment; facebook_profile_content_login_gated",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      }
-    },
-    {
-      "personId": "S0005",
-      "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/wachirapongbiw",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_facebook_profile",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      }
-    },
-    {
-      "personId": "I0011",
-      "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/ingkharut.ruttanaopha.2024",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_exact_identity_assignment_plus_public_og_title_exact_full_name_match",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      }
-    },
-    {
-      "personId": "I0034",
-      "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/xisury.thiphy.thn.thraphy",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_exact_identity_assignment_plus_public_og_title_exact_thai_full_name_match",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      }
-    },
-    {
-      "personId": "S0007",
-      "platform": "facebook",
-      "publicUrl": "https://www.facebook.com/kanoksilp.jindadoungrut",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_exact_identity_assignment_to_public_facebook_profile",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-24"
-      }
-    },
-    {
       "personId": "S0007",
       "platform": "linkedin",
       "publicUrl": "https://www.linkedin.com/in/kanoksilp-jindadoungrut-841a67224/",
@@ -399,6 +309,126 @@
         "approvedAt": "2026-08-25",
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_to_research_linkedin_profiles_2026-08-23"
+      }
+    },
+    {
+      "personId": "S0003",
+      "platform": "github",
+      "publicUrl": "https://github.com/24thofmayy",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0011",
+      "platform": "github",
+      "publicUrl": "https://github.com/kharutta",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0015",
+      "platform": "github",
+      "publicUrl": "https://github.com/PwFaze",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0035",
+      "platform": "github",
+      "publicUrl": "https://github.com/TanPassapol",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0036",
+      "platform": "github",
+      "publicUrl": "https://github.com/Poomrapee-chsk",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0037",
+      "platform": "github",
+      "publicUrl": "https://github.com/nicha-natthanicha",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0038",
+      "platform": "github",
+      "publicUrl": "https://github.com/NorraphatR",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      }
+    },
+    {
+      "personId": "I0043",
+      "platform": "github",
+      "publicUrl": "https://github.com/Drf-Chsrphbl",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-08-26"
       }
     }
   ],
@@ -452,10 +482,17 @@
     { "personId": "I0021", "programId": "program-cu-eba" },
     { "personId": "I0023", "programId": "program-cu-eba" },
     { "personId": "I0024", "programId": "program-cu-eba" },
+    { "personId": "I0016", "programId": "program-tu-bba-marketing" },
     { "personId": "I0033", "programId": "program-kmitl-iot-system-information-engineering" },
     { "personId": "I0039", "programId": "program-mahidol-faculty-ict" }
   ],
   "educationRecordOverrides": [
+    {
+      "personId": "I0016",
+      "sourceLabel": "BBA (Marketing), Thammasat",
+      "verificationStatus": "owner_confirmed_same_program_and_class",
+      "evidenceNote": "Owner confirmed Mook is in the same BBA Marketing program and class at Thammasat University as I0027 and I0028."
+    },
     {
       "personId": "I0033",
       "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–Present — Bachelor of Engineering; IoT and Information Engineering Major",

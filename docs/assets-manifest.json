@@ -12,7 +12,8 @@
     "publicationBasisNote": "Owner-authorized public-profile portrait is a scoped directory-owner publication decision and must not be represented as individual consent.",
     "certificateInventory": "data/approved/certificate-assets.json",
     "certificatePublicationBasisNote": "Filled certificate images use the separate owner_authorized_public_certificate gate. QR targets are excluded from public data and contribution evidence.",
-    "socialPreviewPublicationBasisNote": "The social-preview photograph uses a separate owner_authorized_social_preview_image decision and is not approved for profile, brand, favicon, certificate, or other roles."
+    "socialPreviewPublicationBasisNote": "The social-preview photograph uses a separate owner_authorized_social_preview_image decision and is not approved for profile, brand, favicon, certificate, or other roles.",
+    "heroPublicationBasisNote": "The hero photograph and decorative motif have separate, role-scoped owner approvals. Neither asset is approved as a person portrait, header identity, favicon, certificate, or substitute brand mark."
   },
   "assets": [
     {
@@ -49,17 +50,17 @@
       "mediaType": "image/jpeg",
       "width": 1200,
       "height": 630,
-      "bytes": 176692,
-      "sha256": "8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0",
-      "sourceFilename": "IMG_2989.jpg",
-      "sourceOriginalSha256": "031e4546f7e60bbc5d2a7135ed7d81a24c93bc5a2cd45b2510034f939467a733",
+      "bytes": 211478,
+      "sha256": "a7c46cf31e976e420f78eb324ed9c41cbbdb5b91be28849ec6e307cf4ca5865c",
+      "sourceFilename": "IMG_4522.HEIC",
+      "sourceOriginalSha256": "4929d056e4c63d15cf09af2353e5f8d353106d6250ec920c87480e458e23e4ce",
       "sourceCrop": {
-        "sourceWidth": 3520,
-        "sourceHeight": 1980,
-        "x": 0,
-        "y": 66,
-        "width": 3520,
-        "height": 1848,
+        "sourceWidth": 4032,
+        "sourceHeight": 3024,
+        "x": 16,
+        "y": 605,
+        "width": 4000,
+        "height": 2100,
         "outputWidth": 1200,
         "outputHeight": 630,
         "retouched": false,
@@ -87,10 +88,80 @@
         "certificate"
       ],
       "alt": {
-        "th": "ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer",
-        "en": "People of Landom during a shared activity at Landometer"
+        "th": "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
+        "en": "People of Landom together at the Landometer office"
       },
-      "notes": "Owner-supplied collaboration photograph selected for the social-preview role. Deterministic centered crop, sRGB conversion, downsample, and metadata removal only; no AI generation, retouching, identity alteration, text, or logo overlay."
+      "notes": "Owner-supplied group photograph selected for the social-preview role because people and the Landometer office sign remain legible without a cluttered table or dominant third-party brand. Deterministic crop, Display P3 to sRGB conversion, downsample, and metadata removal only; no AI generation, retouching, identity alteration, text, or logo overlay."
+    },
+    {
+      "assetId": "hero-landom-people",
+      "path": "public/assets/hero/landom-people-hero.jpg",
+      "variant": "owner-supplied-office-group-hero-1600x900",
+      "approvalScope": "hero-image",
+      "mediaType": "image/jpeg",
+      "width": 1600,
+      "height": 900,
+      "bytes": 395416,
+      "sha256": "bd344dcbfff2f33cb21daf7bdbea16c96f0241f5b53cdaaca90844010195b61e",
+      "sourceFilename": "IMG_2091.HEIC",
+      "sourceOriginalSha256": "c5378378811fbbc248d713d2ff18de16ff8f58597c142a09c01263075ab15d89",
+      "sourceCrop": {
+        "sourceWidth": 4032,
+        "sourceHeight": 3024,
+        "x": 0,
+        "y": 320,
+        "width": 4032,
+        "height": 2268,
+        "outputWidth": 1600,
+        "outputHeight": 900,
+        "retouched": false,
+        "generated": false
+      },
+      "colorSpace": "sRGB",
+      "metadataStripped": true,
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_hero_image",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_hero_image_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "approvedRoles": ["hero-image"],
+      "prohibitedRoles": ["social-preview", "header-brand-lockup", "favicon", "person-avatar", "certificate"],
+      "alt": {
+        "th": "ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer",
+        "en": "People of Landom together at the Landometer office"
+      },
+      "notes": "Owner-supplied office group photograph. Deterministic 16:9 crop, Display P3 to sRGB conversion, downsample, and metadata removal only."
+    },
+    {
+      "assetId": "decor-landometer-hero-motif",
+      "path": "public/assets/decor/landometer-hero-motif.png",
+      "variant": "owner-supplied-landometer-motif-transparent-1600",
+      "approvalScope": "hero-decorative-motif",
+      "mediaType": "image/png",
+      "width": 1600,
+      "height": 1600,
+      "bytes": 74610,
+      "sha256": "0317fb8e92b974717abce15f29be72d76dbce62e1ba8ff5bd40fe453bb6b2a67",
+      "sourceFilename": "Landometer.LOGO 1.png",
+      "sourceOriginalSha256": "0495ab0a44b5f7cdeab98e6046c3de7b7c134ead9623a6ba1d9efaaf7e5a8115",
+      "transparentCanvas": true,
+      "metadataStripped": true,
+      "owner": "Landometer directory owner",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_authorized_decorative_motif",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-26",
+        "scope": "public_hero_decorative_motif_only",
+        "sourceRef": "owner_instruction_2026-08-26"
+      },
+      "approvedRoles": ["hero-decorative-motif"],
+      "prohibitedRoles": ["social-preview", "header-brand-lockup", "favicon", "compact-icon", "person-avatar", "certificate"],
+      "notes": "Exact supplied motif geometry retained on a transparent canvas, resized and stripped of metadata. It is applied as a low-opacity CSS mask in the hero and is not a replacement identity mark."
     },
     {
       "assetId": "PORTRAIT-S0001",

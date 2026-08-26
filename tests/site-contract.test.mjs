@@ -99,6 +99,7 @@ test('public social profiles require verification and an approved publication ba
   data.socialProfiles.push({
     socialProfileId: 'SOC-0001',
     personId: 'S0001',
+    platform: 'linkedin',
     profileUrl: 'https://example.com/person',
     publicationStatus: 'publishable',
     verificationStatus: 'pending',
@@ -113,6 +114,7 @@ test('owner-authorized public profile links do not masquerade as individual cons
   data.socialProfiles.push({
     socialProfileId: 'SOC-0002',
     personId: 'S0001',
+    platform: 'linkedin',
     publicUrl: 'https://www.linkedin.com/in/example/',
     publicationStatus: 'publishable',
     verificationStatus: 'verified',
@@ -121,6 +123,39 @@ test('owner-authorized public profile links do not masquerade as individual cons
     ownerApproval: { status: 'granted' }
   });
   assert.deepEqual(validateDataContract(data), []);
+});
+
+test('Facebook cannot be exposed by the public web contract even when its governance fields pass', () => {
+  const data = fixture();
+  data.socialProfiles.push({
+    socialProfileId: 'SOC-S0001-FACEBOOK',
+    personId: 'S0001',
+    platform: 'facebook',
+    publicUrl: 'https://example.invalid/facebook-profile',
+    publicationStatus: 'publishable',
+    verificationStatus: 'verified',
+    consentStatus: 'pending',
+    publicationBasis: 'owner_authorized_public_profile_link',
+    ownerApproval: { status: 'granted' }
+  });
+  assert.match(
+    validateDataContract(data).join('\n'),
+    /unsupported public platform facebook; only LinkedIn and GitHub may appear on the web/
+  );
+});
+
+test('web social normalization and icon rendering allow only LinkedIn and GitHub', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const normalizer = app.match(/function normalizeSocials\b[\s\S]*?(?=function normalizeSearch\b)/)?.[0] ?? '';
+  const iconMarkup = app.match(/function socialIconMarkup\b[\s\S]*?(?=function profileSocialIconsMarkup\b)/)?.[0] ?? '';
+  const iconRenderer = app.match(/function profileSocialIconsMarkup\b[\s\S]*?(?=function socialsMarkup\b)/)?.[0] ?? '';
+
+  assert.match(app, /const PUBLIC_WEB_SOCIAL_KEYS = new Set\(\["linkedin", "github"\]\)/);
+  assert.match(normalizer, /PUBLIC_WEB_SOCIAL_KEYS\.has\(platform\.key\)/);
+  assert.match(iconRenderer, /PUBLIC_WEB_SOCIAL_KEYS\.has\(social\.key\)/);
+  assert.match(iconMarkup, /key === "linkedin"/);
+  assert.match(iconMarkup, /key === "github"/);
+  assert.doesNotMatch(iconMarkup, /facebook|instagram|tiktok|gitlab/i);
 });
 
 test('person images require a fully approved asset record', () => {
@@ -153,6 +188,8 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(thai, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/">/);
   assert.match(thai, /id="page-title">ไม่ใช่สถานที่&#10;แต่คือผู้คน<\/h1>/);
   assert.match(thai, /id="footer-meta">ชาวด้อม Landom<\/p>/);
+  assert.match(thai, /property="og:title" content="LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER"/);
+  assert.match(thai, /name="twitter:title" content="LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER"/);
   assert.match(thai, /validLang\(langParam\) \|\| routeLang \|\| validLang\(storedLang\)/);
   assert.match(thai, /validLang\(root\.dataset\.localeRoute\) \|\| validLang\(root\.dataset\.defaultLanguage\) \|\| "th"/);
   assert.doesNotMatch(thai, /<base\b/);
@@ -161,6 +198,8 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /data-locale-route="en"/);
   assert.match(english, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/en\/">/);
   assert.match(english, /<title>Landom — meet the people shaping Landometer<\/title>/);
+  assert.match(english, /property="og:title" content="Landom — meet the people shaping Landometer"/);
+  assert.match(english, /name="twitter:title" content="Landom — meet the people shaping Landometer"/);
   assert.match(english, /id="page-title">It’s not a place\.&#10;It’s the people\.<\/h1>/);
   assert.match(english, /id="footer-meta">People of Landom<\/p>/);
   assert.match(english, /"inLanguage": "en"/);
@@ -173,16 +212,16 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
     assert.match(html, /hreflang="en" href="https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
     assert.match(html, /hreflang="x-default" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
     assert.match(html, /landometer-symbol-transparent\.png\?v=35a1496f/);
-    assert.match(html, /property="og:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=8f60ab324aaa"/);
+    assert.match(html, /property="og:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=a7c46cf31e97"/);
     assert.match(html, /name="twitter:card" content="summary_large_image"/);
-    assert.match(html, /name="twitter:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=8f60ab324aaa"/);
+    assert.match(html, /name="twitter:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=a7c46cf31e97"/);
     assert.doesNotMatch(html, /apple-touch-icon/);
     assert.doesNotMatch(html, /montri-th\.github\.io\/Landom\/th\//);
   }
-  assert.match(thai, /property="og:image:alt" content="ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer"/);
-  assert.match(thai, /name="twitter:image:alt" content="ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer"/);
-  assert.match(english, /property="og:image:alt" content="People of Landom during a shared activity at Landometer"/);
-  assert.match(english, /name="twitter:image:alt" content="People of Landom during a shared activity at Landometer"/);
+  assert.match(thai, /property="og:image:alt" content="ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer"/);
+  assert.match(thai, /name="twitter:image:alt" content="ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer"/);
+  assert.match(english, /property="og:image:alt" content="People of Landom together at the Landometer office"/);
+  assert.match(english, /name="twitter:image:alt" content="People of Landom together at the Landometer office"/);
 });
 
 test('the social preview is the exact owner-approved privacy-normalized derivative', async () => {
@@ -193,14 +232,19 @@ test('the social preview is the exact owner-approved privacy-normalized derivati
   const asset = manifest.assets.find((record) => record.assetId === 'social-landom-people-og');
   const identityAsset = identity.identityAssets.find((record) => record.role === 'social preview image');
 
-  assert.equal(image.byteLength, 176692);
-  assert.equal(digest, '8f60ab324aaa9e8984a4e13335e3b9db201c67e243f0cc59ba0da177f8adbed0');
+  assert.equal(image.byteLength, 211478);
+  assert.equal(digest, 'a7c46cf31e976e420f78eb324ed9c41cbbdb5b91be28849ec6e307cf4ca5865c');
   assert.equal(asset.width, 1200);
   assert.equal(asset.height, 630);
   assert.equal(asset.metadataStripped, true);
   assert.deepEqual(asset.approvedRoles, ['social-preview']);
   assert.equal(asset.publicationBasis, 'owner_authorized_social_preview_image');
-  assert.equal(identityAsset.deliveryUrl, 'https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=8f60ab324aaa');
+  assert.deepEqual(asset.alt, {
+    th: 'ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer',
+    en: 'People of Landom together at the Landometer office'
+  });
+  assert.equal(identityAsset.deliveryUrl, 'https://montri-th.github.io/Landom/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97');
+  assert.deepEqual(identityAsset.localizedAlt, asset.alt);
   assert.equal(identityAsset.ownerApproval.scope, 'public_social_preview_only');
   for (const marker of ['Exif\0\0', 'http://ns.adobe.com/xap/1.0/', 'GPS', 'iPhone']) {
     assert.equal(image.includes(Buffer.from(marker, 'utf8')), false, `Unexpected source metadata marker: ${marker}`);
@@ -319,6 +363,33 @@ test('education labels expose institution context and render program or Chula-aw
   assert.equal(educationLabelText(nonChulaModel), 'นักศึกษาฝึกงานจาก');
   state.language = 'en';
   assert.equal(educationLabelText(chulaModel), 'นักศึกษาฝึกงานจาก');
+});
+
+test('Pond, Mos, and Faze use their academic placement for education context even when later part-time work exists', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const data = JSON.parse(await readFile(new URL('../data/generated/site-data.json', import.meta.url), 'utf8'));
+  const modelBuilder = app.match(/function buildModels\b[\s\S]*?(?=function makeSearchText\b)/)?.[0] ?? '';
+
+  assert.match(modelBuilder, /const primaryPlacementType = academicPlacementTypeFor\(primaryEngagement\)/);
+  assert.match(modelBuilder, /const academicEngagement = String\(programCode\(primaryEngagement\)\)\.toUpperCase\(\) === "IMP" \|\|/);
+  assert.match(modelBuilder, /\["internship", "cooperative_education"\]\.includes\(primaryPlacementType\)/);
+  assert.match(modelBuilder, /: personEngagements\.find\(\(engagement\) =>/);
+  assert.match(modelBuilder, /\["internship", "cooperative_education"\]\.includes\(academicPlacementTypeFor\(engagement\)\)/);
+  assert.match(modelBuilder, /educationFor\(personRecord, academicEngagement,/);
+
+  const placementTypesFor = (personId) => data.engagements
+    .filter((engagement) => engagement.personId === personId)
+    .map((engagement) => engagement.academicPlacementType)
+    .sort();
+  assert.deepEqual(placementTypesFor('I0013'), ['internship']);
+  assert.deepEqual(placementTypesFor('I0014'), ['internship', 'not_applicable']);
+  assert.deepEqual(placementTypesFor('I0015'), ['internship', 'not_applicable']);
+  for (const personId of ['I0013', 'I0014', 'I0015']) {
+    assert.ok(
+      data.engagements.some((engagement) => engagement.personId === personId && engagement.academicPlacementType === 'internship'),
+      `${personId} must retain an internship engagement for academic context`
+    );
+  }
 });
 
 test('the nine owner-requested blank-background portraits have governed gradients and edge-refined v2 hashes', async () => {

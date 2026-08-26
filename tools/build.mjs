@@ -10,6 +10,7 @@ const distRoot = path.join(repoRoot, 'dist');
 const canonicalRoot = 'https://montri-th.github.io/Landom/';
 
 const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
+  ['LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER', 'Landom — meet the people shaping Landometer'],
   ['Landom — คนที่ร่วมสร้าง Landometer', 'Landom — meet the people shaping Landometer'],
   [
     'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer',
@@ -26,7 +27,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['<span aria-hidden="true">TH</span>', '<span aria-hidden="true">EN</span>'],
   ['LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER', 'LANDOM · THE PEOPLE SHAPING LANDOMETER'],
   ['ไม่ใช่สถานที่&#10;แต่คือผู้คน', 'It’s not a place.&#10;It’s the people.'],
-  ['ชาว Landom ระหว่างทำกิจกรรมร่วมกันที่ Landometer', 'People of Landom during a shared activity at Landometer'],
+  ['ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer', 'People of Landom together at the Landometer office'],
   [
     'Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น',
     'Landom is for people who want to understand cities and make them better, together.'

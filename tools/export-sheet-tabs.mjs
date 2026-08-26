@@ -1,7 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { isNormalizedSheetSnapshot, sheetRows } from './normalized-sheet-roundtrip.mjs';
+import {
+  isNormalizedSheetSnapshot,
+  sheetRows,
+  PUBLIC_WEB_SOCIAL_PLATFORMS
+} from './normalized-sheet-roundtrip.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -363,21 +367,23 @@ function candidateFor(personId, platform) {
 
 const socialRows = site.socialProfiles.map((social) => {
   const privateSource = rawSocialByKey.get(social.personId + '|' + social.platform) ?? {};
+  const preserveSheetOnlyPlatform = normalizedInput && !PUBLIC_WEB_SOCIAL_PLATFORMS.has(social.platform);
+  const sheetValue = (key, publicValue) => preserveSheetOnlyPlatform ? (privateSource[key] ?? publicValue) : publicValue;
   return {
     social_profile_id: social.socialProfileId,
     person_id: social.personId,
     platform: social.platform,
     candidate_url_or_handle: candidateFor(social.personId, social.platform) || social.publicUrl,
-    public_url: social.publicUrl,
-    candidate_status: social.candidateStatus,
-    verification_status: social.verificationStatus,
-    consent_status: social.consentStatus,
-    publication_basis: social.publicationBasis,
-    owner_approval_status: social.ownerApproval?.status,
-    owner_approved_at: social.ownerApproval?.approvedAt,
-    owner_approval_scope: social.ownerApproval?.scope,
-    owner_approval_source_ref: social.ownerApproval?.sourceRef,
-    publication_status: social.publicationStatus,
+    public_url: sheetValue('public_url', social.publicUrl),
+    candidate_status: sheetValue('candidate_status', social.candidateStatus),
+    verification_status: sheetValue('verification_status', social.verificationStatus),
+    consent_status: sheetValue('consent_status', social.consentStatus),
+    publication_basis: sheetValue('publication_basis', social.publicationBasis),
+    owner_approval_status: sheetValue('owner_approval_status', social.ownerApproval?.status),
+    owner_approved_at: sheetValue('owner_approved_at', social.ownerApproval?.approvedAt),
+    owner_approval_scope: sheetValue('owner_approval_scope', social.ownerApproval?.scope),
+    owner_approval_source_ref: sheetValue('owner_approval_source_ref', social.ownerApproval?.sourceRef),
+    publication_status: sheetValue('publication_status', social.publicationStatus),
     source_note: privateSource.source_note ?? social.dataBoundary
   };
 });

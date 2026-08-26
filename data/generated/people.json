@@ -1300,14 +1300,14 @@
     "educationDisplay": {
       "mode": "program",
       "card": {
-        "th": "การตลาด · มธ.",
-        "en": "Marketing · TU"
+        "th": "BBA Marketing · มธ.",
+        "en": "BBA Marketing · TU"
       },
       "detail": {
-        "th": "การตลาด — มหาวิทยาลัยธรรมศาสตร์",
-        "en": "Marketing — Thammasat University"
+        "th": "บริหารธุรกิจ สาขาการตลาด — มหาวิทยาลัยธรรมศาสตร์",
+        "en": "BBA in Marketing — Thammasat University"
       },
-      "verificationStatus": "owner_review_required"
+      "verificationStatus": "owner_confirmed_same_program_and_class"
     },
     "bio": {
       "th": "มุก (Pitcha) สนใจเทคโนโลยีที่ช่วยยกระดับชีวิตในเมือง และอยากใช้ความเข้าใจเทรนด์ดิจิทัลกับความต้องการผู้ใช้เพื่อสร้างการมีส่วนร่วมและการรับรู้",

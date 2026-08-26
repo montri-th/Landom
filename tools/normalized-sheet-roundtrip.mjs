@@ -2,6 +2,8 @@ function text(value) {
   return value == null ? '' : String(value).trim();
 }
 
+export const PUBLIC_WEB_SOCIAL_PLATFORMS = new Set(['linkedin', 'github']);
+
 function nullable(value) {
   const normalized = text(value);
   return normalized || null;
@@ -381,6 +383,7 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
   const socialProfiles = sheetRows(snapshot, 'social_profiles').map((row) => {
     const person = personById.get(text(row.person_id));
     const candidate = nullable(row.candidate_url_or_handle);
+    const platform = text(row.platform).toLowerCase();
     const requestedPublicUrl = nullable(row.public_url);
     const verificationStatus = normalizedVerification(row.verification_status, candidate ? 'owner_review_required' : 'missing');
     const consentStatus = normalizedConsent(row.consent_status);
@@ -391,8 +394,11 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     const ownerAuthorized = publicationBasis === 'owner_authorized_public_profile_link' && ownerApproval?.status === 'granted';
     const canPublish = Boolean(requestedPublicUrl) && verificationStatus === 'verified' &&
       (individuallyConsented || ownerAuthorized) && requestedPublication === 'publishable';
+    const webPlatformAllowed = PUBLIC_WEB_SOCIAL_PLATFORMS.has(platform);
     const publicationStatus = requestedPublication === 'withdrawn'
       ? 'withdrawn'
+      : requestedPublication === 'withheld_by_channel_policy' || (!webPlatformAllowed && (candidate || requestedPublicUrl))
+        ? 'withheld_by_channel_policy'
       : canPublish
         ? 'publishable'
         : !candidate && !requestedPublicUrl
@@ -403,8 +409,8 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     return {
       socialProfileId: text(row.social_profile_id),
       personId: text(row.person_id),
-      platform: text(row.platform).toLowerCase(),
-      publicUrl: canPublish ? requestedPublicUrl : null,
+      platform,
+      publicUrl: canPublish && webPlatformAllowed ? requestedPublicUrl : null,
       candidateStatus: candidateStatus(row.candidate_status, Boolean(candidate), 'social'),
       candidateValueEmitted: false,
       verificationStatus,
