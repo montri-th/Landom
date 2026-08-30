@@ -96,6 +96,7 @@ jobs:
           font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-body-thai.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/bai-jamjuree-thai-400-normal.woff2?$cache_bust")"
           icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2?$cache_bust")"
           nav_icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols-nav.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-nav-300.woff2?$cache_bust")"
+          filled_nav_icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols-nav-filled.ttf --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf?$cache_bust")"
           portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-s0001.jpg --write-out '%{content_type}' "$base_url/public/assets/people/S0001.jpg?$cache_bust")"
           ham_portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-i0009.jpg --write-out '%{content_type}' "$base_url/public/assets/people/I0009.jpg?$cache_bust")"
           social_preview_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-og.jpg --write-out '%{content_type}' "$base_url/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97&$cache_bust")"
@@ -122,6 +123,7 @@ jobs:
           case "$font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected WOFF2 content type: $font_type"; exit 1;; esac
           case "$icon_font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected icon WOFF2 content type: $icon_font_type"; exit 1;; esac
           case "$nav_icon_font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected navigation icon WOFF2 content type: $nav_icon_font_type"; exit 1;; esac
+          case "$filled_nav_icon_font_type" in font/ttf*|application/x-font-ttf*|application/octet-stream*) ;; *) echo "Unexpected filled navigation icon TTF content type: $filled_nav_icon_font_type"; exit 1;; esac
           case "$portrait_type" in image/jpeg*) ;; *) echo "Unexpected portrait content type: $portrait_type"; exit 1;; esac
           case "$ham_portrait_type" in image/jpeg*) ;; *) echo "Unexpected Ham portrait content type: $ham_portrait_type"; exit 1;; esac
           case "$social_preview_type" in image/jpeg*) ;; *) echo "Unexpected social preview content type: $social_preview_type"; exit 1;; esac
@@ -180,6 +182,7 @@ jobs:
               ["public/assets/fonts/bai-jamjuree-thai-400-normal.woff2", "/tmp/landom-body-thai.woff2"],
               ["public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2", "/tmp/landom-material-symbols.woff2"],
               ["public/assets/fonts/material-symbols-rounded-nav-300.woff2", "/tmp/landom-material-symbols-nav.woff2"],
+              ["public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf", "/tmp/landom-material-symbols-nav-filled.ttf"],
               ["public/assets/people/S0001.jpg", "/tmp/landom-portrait-s0001.jpg"],
               ["public/assets/people/I0009.jpg", "/tmp/landom-portrait-i0009.jpg"],
               ["public/assets/social/landom-people-og.jpg", "/tmp/landom-people-og.jpg"],

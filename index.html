@@ -55,6 +55,9 @@
           !(window.matchMedia && window.matchMedia("print").matches)
         ) {
           root.classList.add("lds-motion-pending");
+          window.__LANDOM_MOTION_WATCHDOG__ = window.setTimeout(function () {
+            root.classList.remove("lds-motion-pending", "lds-motion-ready");
+          }, 2400);
         }
         window.__LANDOM_PREFERENCES__ = { language: language, theme: theme };
       })();
@@ -113,6 +116,7 @@
     <link rel="preload" href="./public/assets/fonts/bai-jamjuree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-nav-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="./public/assets/hero/landom-community-anchor.jpg" as="image" fetchpriority="high">
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./src/styles.css">
@@ -149,40 +153,45 @@
     <a class="skip-link" href="#main-content">ข้ามไปยังเนื้อหาหลัก</a>
 
     <header class="site-header" aria-label="ส่วนหัวเว็บไซต์" data-navigation-header>
-      <div class="header-inner">
-        <div class="header-identity">
-          <a class="brand" href="https://landometer.com/" aria-label="Landometer — หน้าหลัก">
-            <img
-              src="./public/assets/brand/landometer-horizontal.png?v=6c71c10505ca"
-              width="1600"
-              height="439"
-              alt="Landometer"
-            >
-          </a>
-          <span class="brand-product" aria-label="เว็บไซต์ Landom"><span aria-hidden="true">/</span> Landom</span>
-        </div>
+      <div class="header-frame">
+        <div class="header-inner">
+          <div class="header-identity">
+            <a class="brand" href="https://landometer.com/" aria-label="Landometer — หน้าหลัก">
+              <img
+                src="./public/assets/brand/landometer-horizontal.png?v=6c71c10505ca"
+                width="1600"
+                height="439"
+                alt="Landometer"
+              >
+            </a>
+            <span class="brand-product" aria-label="เว็บไซต์ Landom"><span aria-hidden="true">/</span> Landom</span>
+          </div>
 
-        <nav class="header-nav" aria-label="ผลิตภัณฑ์ Landometer">
-          <a class="header-link" href="https://montri-th.github.io/CityMETER/">CityMETER</a>
-          <a class="header-link" href="https://landometer.com/v3/citywiki">CityWiki</a>
-          <a
-            class="header-cta"
-            id="join-team-link"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform"
-          >สมัครร่วมทีม</a>
-          <button
-            class="menu-toggle"
-            id="menu-toggle"
-            type="button"
-            aria-haspopup="dialog"
-            aria-expanded="false"
-            aria-controls="site-menu"
-            aria-label="เปิดเมนู"
-            title="เปิดเมนู"
-          >
-            <span class="icon-symbol menu-toggle-icon" aria-hidden="true">menu</span>
-          </button>
-        </nav>
+          <nav class="header-nav" aria-label="ผลิตภัณฑ์ Landometer">
+            <a class="header-link" href="https://montri-th.github.io/CityMETER/">CityMETER</a>
+            <a class="header-link" href="https://landometer.com/v3/citywiki">CityWiki</a>
+            <a
+              class="header-cta"
+              id="join-team-link"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform"
+            >
+              <span class="header-cta-label">สมัครร่วมทีม</span>
+              <span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม</span>
+            </a>
+            <button
+              class="menu-toggle"
+              id="menu-toggle"
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="site-menu"
+              aria-label="เปิดเมนู"
+              title="เปิดเมนู"
+            >
+              <span class="icon-symbol menu-toggle-icon" aria-hidden="true">menu</span>
+            </button>
+          </nav>
+        </div>
       </div>
     </header>
 
@@ -209,7 +218,10 @@
           class="header-cta site-menu-mobile-cta"
           id="join-team-link-mobile"
           href="https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform"
-        >สมัครร่วมทีม</a>
+        >
+          <span class="header-cta-label">สมัครร่วมทีม</span>
+          <span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม</span>
+        </a>
 
         <div class="site-menu-utilities" id="preference-controls" aria-label="การตั้งค่าการแสดงผล">
           <button

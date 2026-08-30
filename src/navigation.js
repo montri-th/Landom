@@ -34,11 +34,16 @@ export function initSiteNavigation() {
 
   root.classList.add('navigation-enhanced');
 
+  const documentScroller = document.scrollingElement || document.documentElement;
+  const lastYByScroller = new WeakMap();
+  const pendingScrollers = new Set();
   let menuOpen = false;
   let pointerIntent = false;
   let focusIntent = false;
-  let lastScrollY = Math.max(0, window.scrollY);
+  let calmRequested = Math.max(0, window.scrollY) > 24;
   let frame = 0;
+
+  lastYByScroller.set(documentScroller, Math.max(0, window.scrollY));
 
   function labelFor(state) {
     return state === 'open'
@@ -69,18 +74,50 @@ export function initSiteNavigation() {
     });
   }
 
-  function updateFromScroll() {
-    frame = 0;
-    const currentScrollY = Math.max(0, window.scrollY);
-    const movingUp = currentScrollY < lastScrollY - 2;
-    const nearTop = currentScrollY <= 24;
-    setCalm(!nearTop && !movingUp);
-    lastScrollY = currentScrollY;
-    syncScrollspy();
+  function resolveScroller(target) {
+    if (
+      !target ||
+      target === window ||
+      target === document ||
+      target === document.documentElement ||
+      target === document.body
+    ) return documentScroller;
+    return typeof target.scrollTop === 'number' ? target : documentScroller;
   }
 
-  function scheduleScrollUpdate() {
-    if (!frame) frame = window.requestAnimationFrame(updateFromScroll);
+  function scrollPosition(scroller) {
+    if (scroller === documentScroller) return Math.max(0, window.scrollY || documentScroller.scrollTop || 0);
+    return Math.max(0, scroller.scrollTop || 0);
+  }
+
+  function updateFromScroller(scroller) {
+    const currentY = scrollPosition(scroller);
+    const previousY = lastYByScroller.get(scroller) ?? 0;
+    const delta = currentY - previousY;
+    lastYByScroller.set(scroller, currentY);
+
+    if (currentY < 24) calmRequested = false;
+    else if (delta > 4) calmRequested = true;
+    else if (delta < -4) calmRequested = false;
+
+    setCalm(calmRequested);
+    if (scroller === documentScroller) syncScrollspy();
+  }
+
+  function flushScrollUpdates() {
+    frame = 0;
+    const scrollers = Array.from(pendingScrollers);
+    pendingScrollers.clear();
+    scrollers.forEach(updateFromScroller);
+  }
+
+  function scheduleScrollUpdate(scroller = documentScroller) {
+    pendingScrollers.add(scroller);
+    if (!frame) frame = window.requestAnimationFrame(flushScrollUpdates);
+  }
+
+  function handleCapturedScroll(event) {
+    scheduleScrollUpdate(resolveScroller(event.target));
   }
 
   function setMenuOpen(next, { returnFocus = true } = {}) {
@@ -92,7 +129,8 @@ export function initSiteNavigation() {
     toggle.setAttribute('title', label);
     toggleIcon.textContent = menuOpen ? 'close' : 'menu';
     document.body.classList.toggle('site-menu-open', menuOpen);
-    setCalm(false);
+    if (menuOpen || returnFocus) setCalm(false);
+    else setCalm(calmRequested);
 
     if (menuOpen) {
       window.requestAnimationFrame(() => {
@@ -134,6 +172,7 @@ export function initSiteNavigation() {
     const closeTarget = event.target.closest('[data-menu-close]');
     if (!closeTarget) return;
     let destination = null;
+    let destinationHash = '';
     if (closeTarget.matches('a[href]')) {
       try {
         const url = new URL(closeTarget.href, window.location.href);
@@ -141,18 +180,24 @@ export function initSiteNavigation() {
         if (
           url.origin === here.origin &&
           url.pathname === here.pathname &&
-          url.search === here.search &&
           url.hash
         ) {
           destination = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+          destinationHash = url.hash;
         }
       } catch {
         destination = null;
       }
     }
+    if (destination) event.preventDefault();
     setMenuOpen(false, { returnFocus: !destination });
     if (destination) {
-      window.requestAnimationFrame(() => destination?.focus({ preventScroll: true }));
+      const nextUrl = new URL(window.location.href);
+      const hashChanged = nextUrl.hash !== destinationHash;
+      nextUrl.hash = destinationHash;
+      if (hashChanged) window.history.pushState({}, '', nextUrl);
+      destination.scrollIntoView({ block: 'start' });
+      window.requestAnimationFrame(() => destination.focus({ preventScroll: true }));
     }
   });
   panel.addEventListener('keydown', handlePanelKeydown);
@@ -162,7 +207,7 @@ export function initSiteNavigation() {
   });
   header.addEventListener('pointerleave', () => {
     pointerIntent = false;
-    scheduleScrollUpdate();
+    scheduleScrollUpdate(documentScroller);
   });
   header.addEventListener('focusin', () => {
     focusIntent = true;
@@ -171,21 +216,23 @@ export function initSiteNavigation() {
   header.addEventListener('focusout', () => {
     window.requestAnimationFrame(() => {
       focusIntent = header.contains(document.activeElement);
-      scheduleScrollUpdate();
+      scheduleScrollUpdate(documentScroller);
     });
   });
-  window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
-  window.addEventListener('resize', scheduleScrollUpdate, { passive: true });
+  document.addEventListener('scroll', handleCapturedScroll, true);
+  window.addEventListener('resize', () => scheduleScrollUpdate(documentScroller), { passive: true });
   reducedMotion?.addEventListener?.('change', () => {
     if (reducedMotion.matches) setCalm(false);
-    else scheduleScrollUpdate();
+    else scheduleScrollUpdate(documentScroller);
   });
   window.addEventListener('pageshow', () => {
-    lastScrollY = Math.max(0, window.scrollY);
-    scheduleScrollUpdate();
+    const currentY = Math.max(0, window.scrollY);
+    lastYByScroller.set(documentScroller, currentY);
+    calmRequested = currentY > 24;
+    scheduleScrollUpdate(documentScroller);
   });
 
-  updateFromScroll();
+  scheduleScrollUpdate(documentScroller);
   return {
     close(options) {
       if (menuOpen) setMenuOpen(false, options);

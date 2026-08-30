@@ -1,7 +1,7 @@
 {
   "manifestVersion": "1.0",
   "authority": "Landometer Design System v0.9.0-r7",
-  "authorityScope": "The referenced Design System authority covers the inherited text faces and pre-existing open_in_new subset only; unified-nav-7 is an owner-approved Landom-local addition and does not publish or upgrade a normative Design System release.",
+  "authorityScope": "The referenced Design System authority covers the inherited text faces and pre-existing open_in_new subset only; unified-nav-7 and groups-filled-active are owner-approved Landom-local additions and do not publish or upgrade a normative Design System release.",
   "sourceManifest": "https://montri-th.github.io/Landometer/machine/v0.9.0/font-assets.manifest.json",
   "packageSource": "Fontsource npm packages 5.3.0 for text faces; Google Fonts CSS API v368 and v369 subsets for Material Symbols Rounded",
   "license": "SIL Open Font License 1.1 for text faces; Apache License 2.0 for Material Symbols Rounded",
@@ -29,6 +29,22 @@
       "glyphs": ["open_in_new", "menu", "close", "light_mode", "dark_mode", "contrast", "groups"],
       "source": "Google Fonts CSS API v369 exact subset bytes fetched 2026-08-30",
       "approvalAuthority": "Owner-approved Landom-local alignment",
+      "designSystemStatus": "Candidate local extension; not a normative Design System release",
+      "license": "Apache License 2.0",
+      "licenseFile": "licenses/material-symbols-Apache-2.0.txt"
+    },
+    {
+      "family": "Material Symbols Rounded Nav Filled",
+      "sourceFamily": "Material Symbols Rounded",
+      "subset": "groups-filled-active",
+      "weight": 300,
+      "file": "material-symbols-rounded-groups-filled-300.ttf",
+      "bytes": 2728,
+      "sha256": "7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc",
+      "axesLock": "FILL 1, wght 300, GRAD 0, opsz 24",
+      "glyphs": ["groups"],
+      "source": "Google Fonts CSS API v369 exact subset bytes fetched 2026-08-30",
+      "approvalAuthority": "Owner-approved Landom-local r7 active-state alignment",
       "designSystemStatus": "Candidate local extension; not a normative Design System release",
       "license": "Apache License 2.0",
       "licenseFile": "licenses/material-symbols-Apache-2.0.txt"

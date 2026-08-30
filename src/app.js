@@ -383,6 +383,16 @@ function setText(element, value) {
   if (element) element.textContent = value;
 }
 
+function setLayeredActionText(action, value) {
+  if (!action) return;
+  const layers = action.querySelectorAll(".header-cta-label, .header-cta-sweep");
+  if (layers.length === 0) {
+    setText(action, value);
+    return;
+  }
+  layers.forEach((layer) => setText(layer, value));
+}
+
 function safelyStore(key, value) {
   try {
     localStorage.setItem(key, value);
@@ -443,7 +453,7 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   elements.brand?.setAttribute("aria-label", copy.homeLabel);
   elements.brandProduct?.setAttribute("aria-label", copy.productLabel);
   elements.headerNav?.setAttribute("aria-label", copy.navigationLabel);
-  elements.joinTeamLinks?.forEach((link) => setText(link, copy.joinTeam));
+  elements.joinTeamLinks?.forEach((link) => setLayeredActionText(link, copy.joinTeam));
   if (elements.menuToggle) {
     elements.menuToggle.dataset.openLabel = copy.openMenu;
     elements.menuToggle.dataset.closeLabel = copy.closeMenu;

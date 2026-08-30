@@ -93,7 +93,23 @@ const MATERIAL_SYMBOLS_NAV = Object.freeze({
   approvalAuthority: 'Owner-approved Landom-local alignment',
   designSystemStatus: 'Candidate local extension; not a normative Design System release'
 });
-const MATERIAL_SYMBOL_FONTS = Object.freeze([MATERIAL_SYMBOLS_EXTERNAL, MATERIAL_SYMBOLS_NAV]);
+const MATERIAL_SYMBOLS_NAV_FILLED = Object.freeze({
+  path: 'public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf',
+  licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
+  bytes: 2728,
+  sha256: '7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc',
+  family: 'Material Symbols Rounded Nav Filled',
+  subset: 'groups-filled-active',
+  axesLock: 'FILL 1, wght 300, GRAD 0, opsz 24',
+  glyphs: ['groups'],
+  approvalAuthority: 'Owner-approved Landom-local r7 active-state alignment',
+  designSystemStatus: 'Candidate local extension; not a normative Design System release'
+});
+const MATERIAL_SYMBOL_FONTS = Object.freeze([
+  MATERIAL_SYMBOLS_EXTERNAL,
+  MATERIAL_SYMBOLS_NAV,
+  MATERIAL_SYMBOLS_NAV_FILLED
+]);
 
 function valueAt(record, candidates) {
   for (const candidate of candidates) {
@@ -592,6 +608,20 @@ async function validateUi(publishRoot, errors) {
   if ((index.match(new RegExp(`href="${joinTeamUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) ?? []).length !== 3) {
     errors.push('The unified navigation must expose the exact join-team destination in desktop, compact-menu, and fail-open contexts.');
   }
+  if (
+    (index.match(/class="header-cta-sweep"/g) ?? []).length !== 2 ||
+    !/<a[^>]*class="header-cta"[^>]*id="join-team-link"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/s.test(index) ||
+    !/<a[^>]*class="header-cta site-menu-mobile-cta"[^>]*id="join-team-link-mobile"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/s.test(index)
+  ) {
+    errors.push('The desktop and compact-menu CTAs must each preserve one visible label and one aria-hidden r7 sweep label.');
+  }
+  if (
+    !/function setLayeredActionText\b[\s\S]*?querySelectorAll\("\.header-cta-label, \.header-cta-sweep"\)[\s\S]*?layers\.forEach\(\(layer\) => setText\(layer, value\)\)/.test(sourceText) ||
+    !/joinTeamLinks\?\.forEach\(\(link\) => setLayeredActionText\(link, copy\.joinTeam\)\)/.test(sourceText) ||
+    /joinTeamLinks\?\.forEach\(\(link\) => setText\(link, copy\.joinTeam\)\)/.test(sourceText)
+  ) {
+    errors.push('Hydrated localization must update both CTA text layers without replacing the r7 sweep structure.');
+  }
   if (!/<button[\s\S]*?id="menu-toggle"[\s\S]*?aria-haspopup="dialog"[\s\S]*?aria-expanded="false"[\s\S]*?aria-controls="site-menu"/s.test(index) ||
       !/<div class="site-menu-panel" id="site-menu" role="dialog" aria-modal="true"[^>]*tabindex="-1"/s.test(index)) {
     errors.push('The site menu must be an explicitly controlled modal disclosure with a focusable dialog panel.');
@@ -621,19 +651,74 @@ async function validateUi(publishRoot, errors) {
     "toggle.focus({ preventScroll: true })",
     "url.origin === here.origin",
     "url.pathname === here.pathname",
-    "url.search === here.search",
     "document.getElementById(decodeURIComponent(url.hash.slice(1)))",
     "setMenuOpen(false, { returnFocus: !destination })",
+    "if (destination) event.preventDefault()",
+    "window.history.pushState({}, '', nextUrl)",
+    "destination.scrollIntoView({ block: 'start' })",
     "'(prefers-reduced-motion: reduce)'",
     "root.dataset.navState = 'calm'",
     "window.addEventListener('pageshow'"
   ]) {
     if (!navigationSource.includes(token)) errors.push(`The unified navigation controller is missing its accessibility/state contract: ${token}.`);
   }
+  if (
+    !/new WeakMap\(\)/.test(navigationSource) ||
+    !/document\.addEventListener\(['"]scroll['"],\s*\w+,\s*true\)/.test(navigationSource) ||
+    !/document\.scrollingElement/.test(navigationSource) ||
+    !/\.get\(\w+\)/.test(navigationSource) ||
+    !/\.set\(\w+,\s*\w+\)/.test(navigationSource) ||
+    !/delta\s*>\s*4/.test(navigationSource) ||
+    !/delta\s*<\s*-4/.test(navigationSource) ||
+    !/(?:currentY|scrollY|scrollTop)\s*<\s*24/.test(navigationSource)
+  ) {
+    errors.push('Deep-calm navigation must capture bubbling and nested scrolls, keep last position per scroller, use a delta greater than 4 pixels, and restore prominent state near the top.');
+  }
   if (!/\.site-header\.is-calm\s*\{/.test(sourceText) ||
       !/:root\[data-nav-state="calm"\]/.test(sourceText) ||
       !/@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s.test(sourceText)) {
     errors.push('The prominent/calm header states must retain a reduced-motion-safe CSS contract.');
+  }
+  if (
+    !/--site-header-height-prominent:\s*76px;/.test(sourceText) ||
+    !/--site-header-height-calm:\s*29px;/.test(sourceText) ||
+    !/@media \(max-width:\s*759px\)[\s\S]*?--site-header-height-prominent:\s*68px;[\s\S]*?--site-header-height-calm:\s*27px;/s.test(sourceText) ||
+    !/\.site-header\.is-calm\s*\{(?=[^}]*background:\s*color-mix\(in srgb,\s*var\(--surface-canvas\)\s*26%,\s*transparent\);)(?=[^}]*border-bottom(?:-color)?:\s*(?:1px solid )?color-mix\(in srgb,\s*var\(--border-hairline\)\s*20%,\s*transparent\);)[^}]*\}/s.test(sourceText) ||
+    !/\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{(?=[^}]*width:\s*200%;)(?=[^}]*opacity:\s*(?:0?\.72|72%);)(?=[^}]*transform:\s*scale\((?:0?\.5)\);)[^}]*\}/s.test(sourceText)
+  ) {
+    errors.push('The r7 deep-calm header must preserve 76→29 desktop and 68→27 mobile heights, 26% canvas/20% hairline glass, and a 200% row scaled to 0.5 at 72% opacity.');
+  }
+  if (!/\.site-header\.is-calm \.menu-toggle::before\s*\{(?=[^}]*width:\s*max\(100%,\s*88px\);)(?=[^}]*height:\s*88px;)(?=[^}]*pointer-events:\s*auto;)[^}]*\}/s.test(sourceText) ||
+      !/\.site-header\.is-calm \.header-nav\s*\{[^}]*gap:\s*22px;/s.test(sourceText)) {
+    errors.push('Deep-calm controls must retain unambiguous 44px rendered pointer targets through 88px pre-transform hit areas and a non-overlapping 22px pre-transform navigation gap.');
+  }
+  if (/url\.search === here\.search/.test(navigationSource)) {
+    errors.push('Same-path menu anchors must preserve the current query string instead of treating a query difference as cross-document navigation.');
+  }
+  if (
+    !/\.site-menu-panel\s*\{[^}]*top:\s*(?:6px|calc\(var\(--site-header-height(?:-prominent)?\)\s*\+\s*6px\));[^}]*width:\s*(?:min\(340px,[^)]+\)|340px);[^}]*padding:\s*(?:8px|var\(--space-2\));[^}]*border:\s*1px solid var\(--border-default\);[^}]*border-radius:\s*var\(--radius-md\);[^}]*box-shadow:\s*var\(--elevation-sm\);/s.test(sourceText) ||
+    !/@media \(max-width:\s*759px\)[\s\S]*?\.site-menu-panel\s*\{[^}]*top:\s*(?:0|var\(--site-header-height\));[^}]*width:\s*100%;[^}]*border-radius:\s*0 0 var\(--radius-md\) var\(--radius-md\);/s.test(sourceText)
+  ) {
+    errors.push('The menu must preserve r7 geometry: 340px desktop width, 6px offset, 8px padding, default border, medium radius/small shadow, and the full-width compact panel.');
+  }
+  if (
+    !/\.header-cta\s*\{(?=[^}]*position:\s*relative;)(?=[^}]*display:\s*inline-flex;)[^}]*\}/s.test(sourceText) ||
+    !/\.header-cta-sweep\s*\{(?=[^}]*position:\s*absolute;)(?=[^}]*background:\s*var\(--energy-yellow\);)(?=[^}]*color:\s*var\(--fg-on-light-primary\);)(?=[^}]*animation:\s*lmSweep 3\.7s var\(--motion-ease-state\) infinite,\s*lmFlick 1\.09s steps\(1,\s*end\) infinite;)(?=[^}]*pointer-events:\s*none;)[^}]*\}/s.test(sourceText) ||
+    !/@keyframes lmSweep\s*\{[\s\S]*?23%\s*,\s*27%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s.test(sourceText) ||
+    !/@keyframes lmSweep\s*\{[\s\S]*?53%\s*,\s*55%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s.test(sourceText) ||
+    !/@keyframes lmSweep\s*\{[\s\S]*?84%\s*,\s*89%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s.test(sourceText) ||
+    !/@keyframes lmFlick\s*\{/.test(sourceText)
+  ) {
+    errors.push('The CTA must preserve the r7 lmSweep 3.7s/lmFlick 1.09s treatment and all three full-word highlight beats.');
+  }
+  if (
+    !/@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*material-symbols-rounded-groups-filled-300\.ttf[^}]*font-weight:\s*300;/s.test(sourceText) ||
+    !/\.bookmark-rail a\[aria-current="location"\] \.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*font-variation-settings:\s*["']FILL["'] 1,\s*["']wght["'] 300,\s*["']GRAD["'] 0,\s*["']opsz["'] 24;/s.test(sourceText)
+  ) {
+    errors.push('The active bookmark rail must use the explicit self-hosted filled groups face, not request FILL 1 from the static outline navigation face.');
+  }
+  if (!/@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s.test(sourceText)) {
+    errors.push('Reduced-motion mode must keep the header prominent and suppress the moving CTA sweep.');
   }
 
   if (!/import \{ initApproachMotion \} from "\.\/approach-motion\.js";/.test(sourceText) ||
@@ -677,8 +762,20 @@ async function validateUi(publishRoot, errors) {
   if (!/html\.lds-motion-ready \[data-approach\]\.is-lds-reveal-armed/.test(sourceText) ||
       /html\.lds-motion-pending \[data-approach\]/.test(sourceText) ||
       !/--lds-reveal-delay/.test(sourceText) ||
+      !/__LANDOM_MOTION_WATCHDOG__[\s\S]*?setTimeout[\s\S]*?2400/.test(index) ||
+      !/function clearBootstrapWatchdog\(\)/.test(approachMotionSource) ||
       !/--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/.test(sourceText) ||
-      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-approach-opacity\)[\s\S]*?transform var\(--motion-duration-approach-transform\)/s.test(sourceText) ||
+      !/--motion-duration-reveal-opacity:\s*760ms/.test(sourceText) ||
+      !/--motion-duration-reveal-transform:\s*920ms/.test(sourceText) ||
+      !/--motion-duration-media-arrival:\s*900ms/.test(sourceText) ||
+      !/--motion-delay-stagger:\s*150ms/.test(sourceText) ||
+      !/--motion-delay-stagger-cap:\s*450ms/.test(sourceText) ||
+      !/--motion-distance-reveal:\s*32px/.test(sourceText) ||
+      !/--motion-distance-reveal-pair:\s*36px/.test(sourceText) ||
+      !/--motion-scale-reveal:\s*0\.985/.test(sourceText) ||
+      !/--motion-duration-reveal:\s*var\(--motion-duration-reveal-transform\)/.test(sourceText) ||
+      !/\.site-footer\s*\{[^}]*overflow-x:\s*clip;/s.test(sourceText) ||
+      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal-opacity\)[\s\S]*?transform var\(--motion-duration-reveal-transform\)/s.test(sourceText) ||
       !/\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s.test(sourceText)) {
     errors.push('Approach-motion CSS must hide only explicitly armed targets after readiness and retain stagger delay support.');
   }
@@ -1052,7 +1149,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   try {
     fontManifest = JSON.parse(await readFile(path.join(publishRoot, 'public/assets/fonts/font-assets.manifest.json'), 'utf8'));
     if (!/owner-approved Landom-local addition/i.test(fontManifest.authorityScope ?? '') ||
-        !/does not publish or upgrade a normative Design System release/i.test(fontManifest.authorityScope ?? '')) {
+        !/do(?:es)? not publish or upgrade a normative Design System release/i.test(fontManifest.authorityScope ?? '')) {
       errors.push('The font manifest must distinguish the local navigation subset from normative Design System authority.');
     }
     const licenseText = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS_EXTERNAL.licensePath), 'utf8');
@@ -1185,6 +1282,9 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     }
     if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_NAV.path}" as="font" type="font/woff2" crossorigin>`)) {
       errors.push(`${fileLabel} must preload the self-hosted unified-navigation Material Symbols subset.`);
+    }
+    if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_NAV_FILLED.path}" as="font" type="font/ttf" crossorigin>`)) {
+      errors.push(`${fileLabel} must preload the exact self-hosted filled groups subset used by the active bookmark rail.`);
     }
     if ((html.match(/<meta property="og:image"\s/g) ?? []).length !== 1 || (html.match(/<meta name="twitter:image"\s/g) ?? []).length !== 1) {
       errors.push(`${fileLabel} must expose exactly one approved Open Graph image and one approved Twitter image.`);

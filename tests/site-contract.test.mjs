@@ -273,6 +273,9 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(index, /href="https:\/\/montri-th\.github\.io\/CityMETER\/">CityMETER<\/a>/);
   assert.match(index, /href="https:\/\/landometer\.com\/v3\/citywiki">CityWiki<\/a>/);
   assert.equal(index.split(`href="${joinTeamUrl}"`).length - 1, 3);
+  assert.equal((index.match(/class="header-cta-sweep"/g) ?? []).length, 2);
+  assert.match(index, /<a[^>]*class="header-cta"[^>]*id="join-team-link"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/);
+  assert.match(index, /<a[^>]*class="header-cta site-menu-mobile-cta"[^>]*id="join-team-link-mobile"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/);
   assert.match(index, /id="menu-toggle"[\s\S]*?aria-haspopup="dialog"[\s\S]*?aria-expanded="false"[\s\S]*?aria-controls="site-menu"/);
   assert.match(index, /id="site-menu" role="dialog" aria-modal="true"[^>]*tabindex="-1"/);
   assert.match(index, /<a href="#people" data-menu-close>/);
@@ -281,38 +284,76 @@ test('the unified navigation preserves approved destinations, accessible menu be
 
   assert.match(app, /import \{ initSiteNavigation \} from "\.\/navigation\.js";/);
   assert.match(app, /initSiteNavigation\(\);/);
+  assert.match(app, /function setLayeredActionText\b[\s\S]*?querySelectorAll\("\.header-cta-label, \.header-cta-sweep"\)[\s\S]*?layers\.forEach\(\(layer\) => setText\(layer, value\)\)/);
+  assert.match(app, /joinTeamLinks\?\.forEach\(\(link\) => setLayeredActionText\(link, copy\.joinTeam\)\)/);
+  assert.doesNotMatch(app, /joinTeamLinks\?\.forEach\(\(link\) => setText\(link, copy\.joinTeam\)\)/);
   assert.match(navigation, /event\.key === 'Escape'/);
   assert.match(navigation, /event\.key !== 'Tab'/);
   assert.match(navigation, /toggle\.setAttribute\('aria-expanded'/);
   assert.match(navigation, /toggle\.focus\(\{ preventScroll: true \}\)/);
-  assert.match(navigation, /url\.origin === here\.origin[\s\S]*?url\.pathname === here\.pathname[\s\S]*?url\.search === here\.search/);
+  assert.match(navigation, /url\.origin === here\.origin[\s\S]*?url\.pathname === here\.pathname[\s\S]*?url\.hash/);
+  assert.doesNotMatch(navigation, /url\.search === here\.search/);
   assert.match(navigation, /document\.getElementById\(decodeURIComponent\(url\.hash\.slice\(1\)\)\)/);
   assert.match(navigation, /setMenuOpen\(false, \{ returnFocus: !destination \}\)/);
+  assert.match(navigation, /if \(destination\) event\.preventDefault\(\)/);
+  assert.match(navigation, /window\.history\.pushState\(\{\}, '', nextUrl\)/);
+  assert.match(navigation, /destination\.scrollIntoView\(\{ block: 'start' \}\)/);
   assert.match(navigation, /element\.getClientRects\(\)\.length > 0/);
   assert.match(navigation, /root\.classList\.add\('navigation-enhanced'\)/);
   assert.match(navigation, /window\.addEventListener\('pageshow'/);
   assert.match(navigation, /root\.dataset\.navState = 'calm'/);
   assert.match(navigation, /prefers-reduced-motion: reduce/);
+  assert.match(navigation, /new WeakMap\(\)/);
+  assert.match(navigation, /document\.addEventListener\(['"]scroll['"],\s*\w+,\s*true\)/);
+  assert.match(navigation, /document\.scrollingElement/);
+  assert.match(navigation, /\.get\(\w+\)/);
+  assert.match(navigation, /\.set\(\w+,\s*\w+\)/);
+  assert.match(navigation, />\s*4/);
+  assert.match(navigation, /<\s*-4/);
+  assert.match(navigation, /<\s*24/);
   assert.match(styles, /\.menu-toggle\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;/s);
   assert.match(styles, /\.site-header\.is-calm\s*\{/);
   assert.match(styles, /html\.navigation-enhanced \.navigation-fallback\s*\{[^}]*display:\s*none;/s);
   assert.match(styles, /scroll-margin-top:\s*calc\(var\(--site-header-height-prominent\)/);
   assert.match(styles, /:root\[data-nav-state="calm"\]/);
+  assert.match(styles, /--site-header-height-prominent:\s*76px;/);
+  assert.match(styles, /--site-header-height-calm:\s*29px;/);
+  assert.match(styles, /@media \(max-width:\s*759px\)[\s\S]*?--site-header-height-prominent:\s*68px;[\s\S]*?--site-header-height-calm:\s*27px;/s);
+  assert.match(styles, /\.site-header\.is-calm\s*\{(?=[^}]*background:\s*color-mix\(in srgb,\s*var\(--surface-canvas\)\s*26%,\s*transparent\);)(?=[^}]*border-bottom(?:-color)?:\s*(?:1px solid )?color-mix\(in srgb,\s*var\(--border-hairline\)\s*20%,\s*transparent\);)[^}]*\}/s);
+  assert.match(styles, /\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{(?=[^}]*width:\s*200%;)(?=[^}]*opacity:\s*(?:0?\.72|72%);)(?=[^}]*transform:\s*scale\((?:0?\.5)\);)[^}]*\}/s);
+  assert.match(styles, /\.site-header\.is-calm \.menu-toggle::before\s*\{(?=[^}]*width:\s*max\(100%,\s*88px\);)(?=[^}]*height:\s*88px;)(?=[^}]*pointer-events:\s*auto;)[^}]*\}/s);
+  assert.match(styles, /\.site-header\.is-calm \.header-nav\s*\{[^}]*gap:\s*22px;/s);
+  assert.match(styles, /\.site-menu-panel\s*\{[^}]*top:\s*(?:6px|calc\(var\(--site-header-height(?:-prominent)?\)\s*\+\s*6px\));[^}]*width:\s*(?:min\(340px,[^)]+\)|340px);[^}]*padding:\s*(?:8px|var\(--space-2\));[^}]*border:\s*1px solid var\(--border-default\);[^}]*border-radius:\s*var\(--radius-md\);[^}]*box-shadow:\s*var\(--elevation-sm\);/s);
+  assert.match(styles, /@media \(max-width:\s*759px\)[\s\S]*?\.site-menu-panel\s*\{[^}]*top:\s*(?:0|var\(--site-header-height\));[^}]*width:\s*100%;[^}]*border-radius:\s*0 0 var\(--radius-md\) var\(--radius-md\);/s);
+  assert.match(styles, /\.header-cta\s*\{(?=[^}]*position:\s*relative;)(?=[^}]*display:\s*inline-flex;)[^}]*\}/s);
+  assert.match(styles, /\.header-cta-sweep\s*\{(?=[^}]*position:\s*absolute;)(?=[^}]*background:\s*var\(--energy-yellow\);)(?=[^}]*color:\s*var\(--fg-on-light-primary\);)(?=[^}]*animation:\s*lmSweep 3\.7s var\(--motion-ease-state\) infinite,\s*lmFlick 1\.09s steps\(1,\s*end\) infinite;)(?=[^}]*pointer-events:\s*none;)[^}]*\}/s);
+  assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?23%\s*,\s*27%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
+  assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?53%\s*,\s*55%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
+  assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?84%\s*,\s*89%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
+  assert.match(styles, /@keyframes lmFlick\s*\{/);
+  assert.match(styles, /\.bookmark-rail a\[aria-current="location"\] \.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*font-variation-settings:\s*["']FILL["'] 1,\s*["']wght["'] 300,\s*["']GRAD["'] 0,\s*["']opsz["'] 24;/s);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s);
 });
 
 test('the unified navigation icon subset is exact, self-hosted, licensed, and preloaded', async () => {
   const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
   const font = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-nav-300.woff2', import.meta.url));
+  const filledFont = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf', import.meta.url));
   const fontManifest = JSON.parse(await readFile(new URL('../public/assets/fonts/font-assets.manifest.json', import.meta.url), 'utf8'));
   const fontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-nav-300.woff2');
+  const filledFontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-groups-filled-300.ttf');
 
   assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-nav-300\.woff2" as="font" type="font\/woff2" crossorigin/);
+  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-groups-filled-300\.ttf" as="font" type="font\/ttf" crossorigin/);
   assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav";[^}]*material-symbols-rounded-nav-300\.woff2[^}]*font-weight:\s*300;/s);
+  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*material-symbols-rounded-groups-filled-300\.ttf[^}]*font-weight:\s*300;/s);
   assert.match(styles, /\.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/s);
   assert.equal(font.byteLength, 2500);
   assert.equal(createHash('sha256').update(font).digest('hex'), 'd7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657');
+  assert.equal(filledFont.byteLength, 2728);
+  assert.equal(createHash('sha256').update(filledFont).digest('hex'), '7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc');
   assert.equal(fontRecord?.family, 'Material Symbols Rounded Nav');
   assert.equal(fontRecord?.subset, 'unified-nav-7');
   assert.equal(fontRecord?.axesLock, 'FILL 0, wght 300, GRAD 0, opsz 24');
@@ -320,9 +361,18 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   assert.equal(fontRecord?.approvalAuthority, 'Owner-approved Landom-local alignment');
   assert.equal(fontRecord?.designSystemStatus, 'Candidate local extension; not a normative Design System release');
   assert.equal(fontRecord?.license, 'Apache License 2.0');
+  assert.equal(filledFontRecord?.family, 'Material Symbols Rounded Nav Filled');
+  assert.equal(filledFontRecord?.subset, 'groups-filled-active');
+  assert.equal(filledFontRecord?.weight, 300);
+  assert.equal(filledFontRecord?.bytes, 2728);
+  assert.equal(filledFontRecord?.sha256, '7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc');
+  assert.equal(filledFontRecord?.axesLock, 'FILL 1, wght 300, GRAD 0, opsz 24');
+  assert.deepEqual(filledFontRecord?.glyphs, ['groups']);
+  assert.equal(filledFontRecord?.approvalAuthority, 'Owner-approved Landom-local r7 active-state alignment');
+  assert.equal(filledFontRecord?.designSystemStatus, 'Candidate local extension; not a normative Design System release');
+  assert.equal(filledFontRecord?.license, 'Apache License 2.0');
   assert.match(fontManifest.authorityScope, /owner-approved Landom-local addition/i);
-  assert.match(fontManifest.authorityScope, /does not publish or upgrade a normative Design System release/i);
-  assert.doesNotMatch(styles, /font-variation-settings:\s*"FILL" 1/);
+  assert.match(fontManifest.authorityScope, /do(?:es)? not publish or upgrade a normative Design System release/i);
 });
 
 test('Pages attestation binds cache-busted live bytes to this workflow build manifest', async () => {
@@ -333,6 +383,9 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
   assert.match(workflow, /cache_bust="release=\$RELEASE_SHA"/);
   assert.match(workflow, /actual_manifest_sha256=.*sha256sum \/tmp\/landom-build-manifest\.json/);
   assert.match(workflow, /"\$actual_manifest_sha256" = "\$EXPECTED_MANIFEST_SHA256"/);
+  assert.match(workflow, /material-symbols-rounded-groups-filled-300\.ttf\?\$cache_bust/);
+  assert.match(workflow, /filled_nav_icon_font_type[\s\S]*?font\/ttf\*\|application\/x-font-ttf\*\|application\/octet-stream\*/);
+  assert.match(workflow, /\["public\/assets\/fonts\/material-symbols-rounded-groups-filled-300\.ttf", "\/tmp\/landom-material-symbols-nav-filled\.ttf"\]/);
 });
 
 test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle edges', async () => {
@@ -371,12 +424,24 @@ test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle
   }
   assert.match(styles, /html\.lds-motion-ready \[data-approach\]\.is-lds-reveal-armed/);
   assert.doesNotMatch(styles, /html\.lds-motion-pending \[data-approach\]/);
+  assert.match(index, /__LANDOM_MOTION_WATCHDOG__[\s\S]*?setTimeout[\s\S]*?2400/);
+  assert.match(motion, /function clearBootstrapWatchdog\(\)/);
   assert.match(styles, /--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/);
-  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-approach-opacity\)[\s\S]*?transform var\(--motion-duration-approach-transform\)/s);
+  assert.match(styles, /--motion-duration-reveal-opacity:\s*760ms/);
+  assert.match(styles, /--motion-duration-reveal-transform:\s*920ms/);
+  assert.match(styles, /--motion-duration-media-arrival:\s*900ms/);
+  assert.match(styles, /--motion-delay-stagger:\s*150ms/);
+  assert.match(styles, /--motion-delay-stagger-cap:\s*450ms/);
+  assert.match(styles, /--motion-distance-reveal:\s*32px/);
+  assert.match(styles, /--motion-distance-reveal-pair:\s*36px/);
+  assert.match(styles, /--motion-scale-reveal:\s*0\.985/);
+  assert.match(styles, /--motion-duration-reveal:\s*var\(--motion-duration-reveal-transform\)/);
+  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal-opacity\)[\s\S]*?transform var\(--motion-duration-reveal-transform\)/s);
   assert.match(styles, /\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s);
-  assert.match(styles, /translate3d\(0, 32px, 0\) scale\(0\.985\)/);
-  assert.match(styles, /data-approach-from="inline-start"[\s\S]*?translate3d\(-36px, 0, 0\)/);
-  assert.match(styles, /data-approach-from="inline-end"[\s\S]*?translate3d\(36px, 0, 0\)/);
+  assert.match(styles, /translate3d\(0, var\(--motion-distance-reveal\), 0\) scale\(var\(--motion-scale-reveal\)\)/);
+  assert.match(styles, /data-approach-from="inline-start"[\s\S]*?calc\(-1 \* var\(--motion-distance-reveal-pair\)\)/);
+  assert.match(styles, /data-approach-from="inline-end"[\s\S]*?translate3d\(var\(--motion-distance-reveal-pair\), 0, 0\)/);
+  assert.match(styles, /\.site-footer\s*\{[^}]*overflow-x:\s*clip;/s);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*none !important;/s);
 });
 

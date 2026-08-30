@@ -199,6 +199,16 @@ export function initApproachMotion(options = {}) {
   let permanentlyFinal = false;
   let listenersInstalled = false;
 
+  function clearBootstrapWatchdog() {
+    const timer = win.__LANDOM_MOTION_WATCHDOG__;
+    if (timer) win.clearTimeout(timer);
+    try {
+      delete win.__LANDOM_MOTION_WATCHDOG__;
+    } catch {
+      win.__LANDOM_MOTION_WATCHDOG__ = 0;
+    }
+  }
+
   function clearSettleWork(target) {
     const cleanup = settleCleanup.get(target);
     if (cleanup) cleanup();
@@ -297,6 +307,7 @@ export function initApproachMotion(options = {}) {
   function failOpen(_reason = "fail-open") {
     if (permanentlyFinal) return;
     permanentlyFinal = true;
+    clearBootstrapWatchdog();
     win.clearTimeout(initializationTimer);
     win.cancelAnimationFrame(auditFrame);
     win.cancelAnimationFrame(auditSecondFrame);
@@ -522,6 +533,7 @@ export function initApproachMotion(options = {}) {
       }
 
       if (eligible.length === 0) {
+        clearBootstrapWatchdog();
         win.clearTimeout(initializationTimer);
         root.classList.remove(ROOT_PENDING, ROOT_READY);
         return;
@@ -550,6 +562,7 @@ export function initApproachMotion(options = {}) {
       installLifecycleGuards();
       root.classList.remove(ROOT_PENDING);
       root.classList.add(ROOT_READY);
+      clearBootstrapWatchdog();
       win.clearTimeout(initializationTimer);
       scheduleAudit();
     } catch {
