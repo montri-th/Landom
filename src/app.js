@@ -1,3 +1,6 @@
+import { initApproachMotion } from "./approach-motion.js";
+import { initSiteNavigation } from "./navigation.js";
+
 const DATA_URL = "./data/generated/site-data.json";
 const THEME_KEY = "lds-theme";
 const LANGUAGE_KEY = "lds-language";
@@ -11,9 +14,26 @@ const COPY = {
     pageDescription: "รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer",
     skip: "ข้ามไปยังเนื้อหาหลัก",
     headerLabel: "ส่วนหัวเว็บไซต์",
-    homeLabel: "Landom — หน้าหลัก",
+    homeLabel: "Landometer — หน้าหลัก",
+    productLabel: "เว็บไซต์ Landom",
+    navigationLabel: "ผลิตภัณฑ์ Landometer",
+    joinTeam: "สมัครร่วมทีม",
+    openMenu: "เปิดเมนู",
+    closeMenu: "ปิดเมนู",
+    menuLabel: "เมนู",
+    inThisPage: "ในหน้านี้",
+    peopleMenu: "ชาว Landom",
+    railLabel: "ทางลัดในหน้านี้",
+    ecosystem: "Landometer ecosystem",
+    ecosystemCurrent: "· อยู่ที่นี่",
+    ecosystemHomeDescription: "หน้าแรก · ผลิตภัณฑ์และบริการ",
+    ecosystemCitymeterDescription: "มุมมองข้อมูลเมือง",
+    ecosystemCitywikiDescription: "คู่มือย่าน",
+    ecosystemLandomDescription: "ผู้คนที่ร่วมสร้าง Landometer",
+    allProducts: "เปิด landometer.com — ผลิตภัณฑ์ทั้งหมด",
     controlsLabel: "การตั้งค่าการแสดงผล",
     switchLanguage: "Switch to English",
+    switchLanguageShort: "EN",
     heroEyebrow: "LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER",
     heroTitle: "ไม่ใช่สถานที่\nแต่คือผู้คน",
     heroIntro: "Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น",
@@ -116,9 +136,26 @@ const COPY = {
     pageDescription: "Meet the people, interests and work shaped through time with Landometer.",
     skip: "Skip to main content",
     headerLabel: "Site header",
-    homeLabel: "Landom — home",
+    homeLabel: "Landometer — home",
+    productLabel: "Landom website",
+    navigationLabel: "Landometer products",
+    joinTeam: "Join the team",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    menuLabel: "Menu",
+    inThisPage: "On this page",
+    peopleMenu: "People of Landom",
+    railLabel: "On-page shortcuts",
+    ecosystem: "Landometer ecosystem",
+    ecosystemCurrent: "· You are here",
+    ecosystemHomeDescription: "Home · Products and services",
+    ecosystemCitymeterDescription: "City data views",
+    ecosystemCitywikiDescription: "Neighbourhood guides",
+    ecosystemLandomDescription: "People shaping Landometer",
+    allProducts: "Open landometer.com — all products",
     controlsLabel: "Display preferences",
     switchLanguage: "เปลี่ยนเป็นภาษาไทย",
+    switchLanguageShort: "TH",
     heroEyebrow: "LANDOM · THE PEOPLE SHAPING LANDOMETER",
     heroTitle: "It’s not a place.\nIt’s the people.",
     heroIntro: "Landom is for people who want to understand cities and make them better, together.",
@@ -253,7 +290,24 @@ const elements = {
   skip: document.querySelector(".skip-link"),
   siteHeader: document.querySelector(".site-header"),
   brand: document.querySelector(".brand"),
-  controls: document.querySelector(".preference-controls"),
+  brandProduct: document.querySelector(".brand-product"),
+  headerNav: document.querySelector(".header-nav"),
+  joinTeamLinks: document.querySelectorAll("#join-team-link, #join-team-link-mobile"),
+  menuToggle: document.querySelector("#menu-toggle"),
+  menuPanel: document.querySelector("#site-menu"),
+  pageMenuLabel: document.querySelector("#page-menu-label"),
+  peopleMenuLabel: document.querySelector("#people-menu-label"),
+  bookmarkRail: document.querySelector(".bookmark-rail"),
+  bookmarkPeopleLink: document.querySelector('[data-scrollspy-link="people"]'),
+  ecosystemMenuLabel: document.querySelector("#ecosystem-menu-label"),
+  ecosystemCurrentLabel: document.querySelector("#ecosystem-current-label"),
+  ecosystemHomeDescription: document.querySelector("#ecosystem-home-description"),
+  ecosystemCitymeterDescription: document.querySelector("#ecosystem-citymeter-description"),
+  ecosystemCitywikiDescription: document.querySelector("#ecosystem-citywiki-description"),
+  ecosystemLandomDescription: document.querySelector("#ecosystem-landom-description"),
+  ecosystemLandomLink: document.querySelector('.site-menu-ecosystem a[aria-current="page"]'),
+  allProductsLink: document.querySelector("#all-products-link"),
+  controls: document.querySelector("#preference-controls"),
   languageButton: document.querySelector("#language-toggle"),
   themeButton: document.querySelector("#theme-toggle"),
   themeIcon: document.querySelector("#theme-toggle .theme-icon"),
@@ -357,7 +411,7 @@ function applyTheme({ persist = false, updateQuery = false, announce = false } =
   if (elements.themeColor) elements.themeColor.content = resolved === "dark" ? "#11191D" : "#F6F7F3";
   elements.themeButton?.setAttribute("aria-label", message(`theme.${state.theme}`));
   elements.themeButton?.setAttribute("title", message(`theme.${state.theme}`));
-  setText(elements.themeIcon, { system: "◐", light: "☀", dark: "☾" }[state.theme]);
+  setText(elements.themeIcon, { system: "light_mode", light: "dark_mode", dark: "contrast" }[state.theme]);
   if (persist) safelyStore(THEME_KEY, state.theme);
   if (updateQuery) updateUrl({ theme: state.theme });
   if (announce) {
@@ -387,10 +441,46 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   setText(elements.skip, copy.skip);
   elements.siteHeader?.setAttribute("aria-label", copy.headerLabel);
   elements.brand?.setAttribute("aria-label", copy.homeLabel);
+  elements.brandProduct?.setAttribute("aria-label", copy.productLabel);
+  elements.headerNav?.setAttribute("aria-label", copy.navigationLabel);
+  elements.joinTeamLinks?.forEach((link) => setText(link, copy.joinTeam));
+  if (elements.menuToggle) {
+    elements.menuToggle.dataset.openLabel = copy.openMenu;
+    elements.menuToggle.dataset.closeLabel = copy.closeMenu;
+    if (elements.menuToggle.getAttribute("aria-expanded") !== "true") {
+      elements.menuToggle.setAttribute("aria-label", copy.openMenu);
+      elements.menuToggle.setAttribute("title", copy.openMenu);
+    }
+  }
+  elements.menuPanel?.setAttribute("aria-label", copy.menuLabel);
+  setText(elements.pageMenuLabel, copy.inThisPage);
+  setText(elements.peopleMenuLabel, copy.peopleMenu);
+  elements.bookmarkRail?.setAttribute("aria-label", copy.railLabel);
+  if (elements.bookmarkPeopleLink) {
+    elements.bookmarkPeopleLink.dataset.label = copy.peopleMenu;
+    elements.bookmarkPeopleLink.setAttribute("aria-label", copy.peopleMenu);
+    elements.bookmarkPeopleLink.setAttribute("title", copy.peopleMenu);
+  }
+  setText(elements.ecosystemMenuLabel, copy.ecosystem);
+  setText(elements.ecosystemCurrentLabel, copy.ecosystemCurrent);
+  setText(elements.ecosystemHomeDescription, copy.ecosystemHomeDescription);
+  setText(elements.ecosystemCitymeterDescription, copy.ecosystemCitymeterDescription);
+  setText(elements.ecosystemCitywikiDescription, copy.ecosystemCitywikiDescription);
+  setText(elements.ecosystemLandomDescription, copy.ecosystemLandomDescription);
+  setText(elements.allProductsLink, copy.allProducts);
   elements.controls?.setAttribute("aria-label", copy.controlsLabel);
   elements.languageButton?.setAttribute("aria-label", copy.switchLanguage);
   elements.languageButton?.setAttribute("title", copy.switchLanguage);
-  setText(elements.languageButton?.querySelector("span"), state.language.toUpperCase());
+  elements.languageButton?.setAttribute("hreflang", state.language === "th" ? "en" : "th");
+  elements.languageButton?.setAttribute(
+    "href",
+    state.language === "th" ? new URL("en/", document.baseURI).href : new URL("./", document.baseURI).href
+  );
+  elements.ecosystemLandomLink?.setAttribute(
+    "href",
+    state.language === "th" ? new URL("./", document.baseURI).href : new URL("en/", document.baseURI).href
+  );
+  setText(elements.languageButton?.querySelector("span"), copy.switchLanguageShort);
   setText(elements.heroEyebrow, copy.heroEyebrow);
   setText(elements.pageTitle, copy.heroTitle);
   setText(elements.heroIntro, copy.heroIntro);
@@ -431,11 +521,6 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   if (persist) safelyStore(LANGUAGE_KEY, state.language);
   if (updateQuery) updateUrl({ lang: state.language });
   if (announce) setText(elements.preferenceStatus, copy.languageChanged);
-}
-
-function toggleLanguage() {
-  state.language = state.language === "th" ? "en" : "th";
-  applyLanguage({ persist: true, updateQuery: true, announce: true });
 }
 
 function updateStaticOptions() {
@@ -2186,7 +2271,6 @@ async function loadData() {
 
 function bindEvents() {
   elements.themeButton.addEventListener("click", cycleTheme);
-  elements.languageButton.addEventListener("click", toggleLanguage);
   elements.searchInput.addEventListener("input", syncFilterState);
   elements.filterForm.addEventListener("change", syncFilterState);
   elements.filterForm.addEventListener("submit", (event) => event.preventDefault());
@@ -2241,6 +2325,8 @@ function initialize() {
   bindEvents();
   applyLanguage();
   applyTheme();
+  initSiteNavigation();
+  initApproachMotion();
   syncFilterDialogMode();
   updateFilterCount();
   loadData();

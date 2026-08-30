@@ -1,8 +1,9 @@
 {
   "manifestVersion": "1.0",
   "authority": "Landometer Design System v0.9.0-r7",
+  "authorityScope": "The referenced Design System authority covers the inherited text faces and pre-existing open_in_new subset only; unified-nav-7 is an owner-approved Landom-local addition and does not publish or upgrade a normative Design System release.",
   "sourceManifest": "https://montri-th.github.io/Landometer/machine/v0.9.0/font-assets.manifest.json",
-  "packageSource": "Fontsource npm packages 5.3.0 for text faces; Google Fonts CSS API v368 subset for Material Symbols Rounded",
+  "packageSource": "Fontsource npm packages 5.3.0 for text faces; Google Fonts CSS API v368 and v369 subsets for Material Symbols Rounded",
   "license": "SIL Open Font License 1.1 for text faces; Apache License 2.0 for Material Symbols Rounded",
   "fontSynthesis": false,
   "faces": [
@@ -15,6 +16,22 @@
     { "family": "Bai Jamjuree", "subset": "thai", "weight": 600, "file": "bai-jamjuree-thai-600-normal.woff2", "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32", "licenseFile": "licenses/bai-jamjuree-OFL.txt" },
     { "family": "IBM Plex Sans Thai", "subset": "thai", "weight": 400, "file": "ibm-plex-sans-thai-thai-400-normal.woff2", "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056", "licenseFile": "licenses/ibm-plex-sans-thai-OFL.txt" },
     { "family": "JetBrains Mono", "subset": "latin", "weight": 400, "file": "jetbrains-mono-latin-400-normal.woff2", "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb", "licenseFile": "licenses/jetbrains-mono-OFL.txt" },
-    { "family": "Material Symbols Rounded", "subset": "open_in_new", "weight": 300, "file": "material-symbols-rounded-open-in-new-300.woff2", "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e", "axesLock": "FILL 0, wght 300, GRAD 0, opsz 20", "license": "Apache License 2.0", "licenseFile": "licenses/material-symbols-Apache-2.0.txt" }
+    { "family": "Material Symbols Rounded", "subset": "open_in_new", "weight": 300, "file": "material-symbols-rounded-open-in-new-300.woff2", "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e", "axesLock": "FILL 0, wght 300, GRAD 0, opsz 20", "license": "Apache License 2.0", "licenseFile": "licenses/material-symbols-Apache-2.0.txt" },
+    {
+      "family": "Material Symbols Rounded Nav",
+      "sourceFamily": "Material Symbols Rounded",
+      "subset": "unified-nav-7",
+      "weight": 300,
+      "file": "material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
+      "axesLock": "FILL 0, wght 300, GRAD 0, opsz 24",
+      "glyphs": ["open_in_new", "menu", "close", "light_mode", "dark_mode", "contrast", "groups"],
+      "source": "Google Fonts CSS API v369 exact subset bytes fetched 2026-08-30",
+      "approvalAuthority": "Owner-approved Landom-local alignment",
+      "designSystemStatus": "Candidate local extension; not a normative Design System release",
+      "license": "Apache License 2.0",
+      "licenseFile": "licenses/material-symbols-Apache-2.0.txt"
+    }
   ]
 }

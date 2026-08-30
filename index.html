@@ -49,6 +49,13 @@
         root.dataset.themePreference = theme;
         root.dataset.theme = resolvedTheme;
         root.style.colorScheme = resolvedTheme;
+        if (
+          "IntersectionObserver" in window &&
+          !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) &&
+          !(window.matchMedia && window.matchMedia("print").matches)
+        ) {
+          root.classList.add("lds-motion-pending");
+        }
         window.__LANDOM_PREFERENCES__ = { language: language, theme: theme };
       })();
     </script>
@@ -105,7 +112,7 @@
     <link rel="preload" href="./public/assets/fonts/bai-jamjuree-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/bai-jamjuree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-nav-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/hero/landom-community-anchor.jpg" as="image" fetchpriority="high">
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./src/styles.css">
@@ -141,42 +148,122 @@
   <body>
     <a class="skip-link" href="#main-content">ข้ามไปยังเนื้อหาหลัก</a>
 
-    <header class="site-header" aria-label="ส่วนหัวเว็บไซต์">
+    <header class="site-header" aria-label="ส่วนหัวเว็บไซต์" data-navigation-header>
       <div class="header-inner">
-        <a class="brand" href="./" aria-label="Landom — หน้าหลัก">
-          <img
-            src="./public/assets/brand/landometer-horizontal.png?v=6c71c10505ca"
-            width="1600"
-            height="439"
-            alt="Landometer"
-          >
-          <span class="brand-section" aria-hidden="true">Landom</span>
-        </a>
+        <div class="header-identity">
+          <a class="brand" href="https://landometer.com/" aria-label="Landometer — หน้าหลัก">
+            <img
+              src="./public/assets/brand/landometer-horizontal.png?v=6c71c10505ca"
+              width="1600"
+              height="439"
+              alt="Landometer"
+            >
+          </a>
+          <span class="brand-product" aria-label="เว็บไซต์ Landom"><span aria-hidden="true">/</span> Landom</span>
+        </div>
 
-        <div class="preference-controls" aria-label="การตั้งค่าการแสดงผล">
+        <nav class="header-nav" aria-label="ผลิตภัณฑ์ Landometer">
+          <a class="header-link" href="https://montri-th.github.io/CityMETER/">CityMETER</a>
+          <a class="header-link" href="https://landometer.com/v3/citywiki">CityWiki</a>
+          <a
+            class="header-cta"
+            id="join-team-link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform"
+          >สมัครร่วมทีม</a>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            aria-label="เปิดเมนู"
+            title="เปิดเมนู"
+          >
+            <span class="icon-symbol menu-toggle-icon" aria-hidden="true">menu</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="navigation-fallback" aria-label="ผลิตภัณฑ์ Landometer">
+      <a href="https://montri-th.github.io/CityMETER/">CityMETER</a>
+      <a href="https://landometer.com/v3/citywiki">CityWiki</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform">สมัครร่วมทีม</a>
+      <a class="navigation-fallback-language" href="./en/" hreflang="en">EN</a>
+    </nav>
+
+    <div class="site-menu-layer" id="site-menu-layer" hidden>
+      <div class="site-menu-scrim" data-menu-close aria-hidden="true"></div>
+      <div class="site-menu-panel" id="site-menu" role="dialog" aria-modal="true" aria-label="เมนู" tabindex="-1">
+        <div class="site-menu-group site-menu-mobile-only">
+          <p class="site-menu-label" id="page-menu-label">ในหน้านี้</p>
+          <nav class="site-menu-links" aria-labelledby="page-menu-label">
+            <a href="#people" data-menu-close>
+              <span><span class="icon-symbol" aria-hidden="true">groups</span><span id="people-menu-label">ชาว Landom</span></span>
+            </a>
+          </nav>
+        </div>
+
+        <a
+          class="header-cta site-menu-mobile-cta"
+          id="join-team-link-mobile"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform"
+        >สมัครร่วมทีม</a>
+
+        <div class="site-menu-utilities" id="preference-controls" aria-label="การตั้งค่าการแสดงผล">
           <button
             class="preference-button theme-button"
             id="theme-toggle"
             type="button"
             aria-label="ธีม: ตามระบบ กดเพื่อใช้ธีมสว่าง"
+            title="ธีม: ตามระบบ กดเพื่อใช้ธีมสว่าง"
           >
-            <span class="theme-icon" aria-hidden="true">◐</span>
+            <span class="icon-symbol theme-icon" aria-hidden="true">light_mode</span>
           </button>
-          <button
+          <a
             class="preference-button language-button"
             id="language-toggle"
-            type="button"
+            href="./en/"
+            hreflang="en"
             aria-label="Switch to English"
+            title="Switch to English"
           >
-            <span aria-hidden="true">TH</span>
-          </button>
+            <span aria-hidden="true">EN</span>
+          </a>
           <span class="sr-only" id="preference-status" role="status" aria-live="polite"></span>
         </div>
+
+        <div class="site-menu-group">
+          <p class="site-menu-label site-menu-label--ecosystem" id="ecosystem-menu-label">Landometer ecosystem</p>
+          <nav class="site-menu-links site-menu-ecosystem" aria-labelledby="ecosystem-menu-label">
+            <a href="https://montri-th.github.io/rebuild02/">
+              <span><strong>Landometer</strong><small id="ecosystem-home-description">หน้าแรก · ผลิตภัณฑ์และบริการ</small></span>
+            </a>
+            <a href="https://montri-th.github.io/CityMETER/">
+              <span><strong>CityMETER</strong><small id="ecosystem-citymeter-description">มุมมองข้อมูลเมือง</small></span>
+            </a>
+            <a href="https://landometer.com/v3/citywiki">
+              <span><strong>CityWiki</strong><small id="ecosystem-citywiki-description">คู่มือย่าน</small></span>
+            </a>
+            <a href="./" aria-current="page">
+              <span><strong>Landom <small class="ecosystem-current" id="ecosystem-current-label">· อยู่ที่นี่</small></strong><small id="ecosystem-landom-description">ผู้คนที่ร่วมสร้าง Landometer</small></span>
+            </a>
+          </nav>
+        </div>
+
+        <a class="site-menu-all-products" id="all-products-link" href="https://landometer.com/">เปิด landometer.com — ผลิตภัณฑ์ทั้งหมด</a>
       </div>
-    </header>
+    </div>
+
+    <nav class="bookmark-rail" aria-label="ทางลัดในหน้านี้">
+      <a href="#people" data-scrollspy-link="people" data-label="ชาว Landom" aria-label="ชาว Landom" title="ชาว Landom">
+        <span class="icon-symbol" aria-hidden="true">groups</span>
+      </a>
+    </nav>
 
     <main id="main-content">
-      <section class="hero" aria-labelledby="page-title">
+      <section class="hero" id="top" aria-labelledby="page-title">
         <figure class="hero-media">
           <img
             id="hero-image"
@@ -229,9 +316,9 @@
         </div>
       </section>
 
-      <section class="directory" aria-labelledby="directory-heading">
+      <section class="directory" id="people" aria-labelledby="directory-heading" tabindex="-1">
         <div class="directory-heading-row">
-          <div>
+          <div data-approach="section_opener">
             <p class="section-kicker" id="directory-kicker">ชาว Landom</p>
             <h2 id="directory-heading">รู้จักพวกเรา ที่อยู่เบื้องหลังแต่ละงาน</h2>
           </div>
@@ -334,12 +421,12 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div>
+    <footer class="site-footer" data-approach-sequence>
+      <div data-approach="paired_inline">
         <p class="footer-label" aria-hidden="true">Landometer × Landom</p>
         <p id="footer-copy">มาเป็นชาว Landom กัน · Let us cultivate our city with data.</p>
       </div>
-      <p class="footer-meta" id="footer-meta">ชาวด้อม Landom</p>
+      <p class="footer-meta" id="footer-meta" data-approach="paired_inline">ชาวด้อม Landom</p>
     </footer>
 
     <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">

@@ -20,14 +20,33 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['"name": "ชาว Landom"', '"name": "People of Landom"'],
   ['ข้ามไปยังเนื้อหาหลัก', 'Skip to main content'],
   ['ส่วนหัวเว็บไซต์', 'Site header'],
-  ['Landom — หน้าหลัก', 'Landom — home'],
+  ['Landometer — หน้าหลัก', 'Landometer — home'],
+  ['เว็บไซต์ Landom', 'Landom website'],
+  ['ผลิตภัณฑ์ Landometer', 'Landometer products'],
+  ['สมัครร่วมทีม', 'Join the team'],
+  ['เปิดเมนู', 'Open menu'],
+  ['aria-label="เมนู"', 'aria-label="Menu"'],
+  ['ในหน้านี้', 'On this page'],
+  ['ทางลัดในหน้านี้', 'On-page shortcuts'],
+  ['<span id="people-menu-label">ชาว Landom</span>', '<span id="people-menu-label">People of Landom</span>'],
+  [
+    'data-label="ชาว Landom" aria-label="ชาว Landom" title="ชาว Landom"',
+    'data-label="People of Landom" aria-label="People of Landom" title="People of Landom"'
+  ],
+  ['· อยู่ที่นี่', '· You are here'],
+  ['หน้าแรก · ผลิตภัณฑ์และบริการ', 'Home · Products and services'],
+  ['มุมมองข้อมูลเมือง', 'City data views'],
+  ['คู่มือย่าน', 'Neighbourhood guides'],
+  ['ผู้คนที่ร่วมสร้าง Landometer', 'People shaping Landometer'],
+  ['เปิด landometer.com — ผลิตภัณฑ์ทั้งหมด', 'Open landometer.com — all products'],
   ['การตั้งค่าการแสดงผล', 'Display preferences'],
   ['ธีม: ตามระบบ กดเพื่อใช้ธีมสว่าง', 'Theme: system. Press to use light theme'],
   ['Switch to English', 'เปลี่ยนเป็นภาษาไทย'],
-  ['<span aria-hidden="true">TH</span>', '<span aria-hidden="true">EN</span>'],
+  ['<span aria-hidden="true">EN</span>', '<span aria-hidden="true">TH</span>'],
   ['LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER', 'LANDOM · THE PEOPLE SHAPING LANDOMETER'],
   ['ไม่ใช่สถานที่&#10;แต่คือผู้คน', 'It’s not a place.&#10;It’s the people.'],
   ['ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer', 'People of Landom together at the Landometer office'],
+  ['ชาว Landom ร่วมทำงาน เรียนรู้ และใช้เวลาร่วมกัน', 'People of Landom working, learning, and spending time together'],
   [
     'Landom — แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น',
     'Landom is for people who want to understand cities and make them better, together.'
@@ -101,9 +120,27 @@ export function renderLocalizedEntrypoint(source, locale) {
   );
   html = replaceRequired(
     html,
-    '<a class="brand" href="./"',
-    `<a class="brand" href="${localeUrl}"`,
-    'locale-safe home link'
+    'href="#people"',
+    `href="${localeUrl}#people"`,
+    'locale-safe on-page links'
+  );
+  html = replaceRequired(
+    html,
+    'href="./en/"\n            hreflang="en"',
+    `href="${canonicalRoot}"\n            hreflang="th"`,
+    'locale switch link'
+  );
+  html = replaceRequired(
+    html,
+    '<a class="navigation-fallback-language" href="./en/" hreflang="en">EN</a>',
+    `<a class="navigation-fallback-language" href="${canonicalRoot}" hreflang="th">TH</a>`,
+    'fallback locale switch link'
+  );
+  html = replaceRequired(
+    html,
+    '<a href="./" aria-current="page">',
+    `<a href="${localeUrl}" aria-current="page">`,
+    'locale-safe current ecosystem link'
   );
   html = replaceRequired(
     html,

@@ -8,7 +8,10 @@ This repository is a static GitHub Pages site. No browser-side secret, API key, 
 |---|---|---|
 | `index.html` | `dist/index.html` | Accessible page shell and controls |
 | `robots.txt`, `sitemap.xml` | same root paths in `dist/` | Single-route discovery contract |
-| `src/` | `dist/src/` | CSS and browser JavaScript |
+| `src/app.js` | `dist/src/app.js` | Directory, locale copy, theme, filters, and profile behavior |
+| `src/navigation.js` | `dist/src/navigation.js` | Unified header/menu, calm state, focus containment, and bookmark rail |
+| `src/approach-motion.js` | `dist/src/approach-motion.js` | Fail-open, once-only Riddim approach-motion adapter |
+| `src/styles.css` | `dist/src/styles.css` | Shared visual, responsive, navigation, and motion states |
 | `public/` | `dist/public/` | Approved, repository-owned assets |
 | `data/generated/` | `dist/data/generated/` | Reviewed public records only |
 
@@ -28,6 +31,12 @@ The normalizer detects the shape; operators do not need to rewrite one form into
 - `Landom: ชาวด้อมผู้สร้าง Landometer` is a Landom work name, not a spelling variant of the brand.
 
 Locale Insight may be described at portfolio, methodology, and product-architecture levels across Land, Location, and Living. Product-specific evidence stays attached to that product. Do not turn assumptions from ijji/F&B, retail, municipality, or CityWiki into portfolio-wide facts. Cross-product and cross-city displays need the same schema/release or an explicit incompatibility note.
+
+### Owner-directed alignment boundary
+
+The unified-navbar handoff and Riddim approach-motion proposal supplied on 2026-08-30 are implementation references for this Landom release. They are not, by themselves, a normative Design System publication or approval to replace an identity asset. The page therefore keeps `data-ds-version="0.9.0"`, the existing owner-approved horizontal Landometer lockup, and the established favicon/social-image role boundaries. Selected navigation and motion patterns are adopted locally under the directory owner's instruction and must be described as **owner-directed Landom alignment**, not as proof that Landometer Design System v0.9.0-r7 has been released or that every proposal detail is conformant.
+
+The live `rebuild02/Landometer-Home-TH.dc.html` page is a comparison surface, not a source dependency. Because that page is being changed in parallel, record its observed build/source identity immediately before final release review. A later change to the reference does not silently change this repository's approved bytes.
 
 ## 3. Data ownership and refresh
 
@@ -118,8 +127,13 @@ The static shell owns these required IDs; changes require updating the validator
 
 | Hook | Contract |
 |---|---|
-| `#language-toggle` | TH/EN switch; updates document language and visible copy |
+| `#language-toggle` | Real link to the sibling TH/EN route; the built English page points back to the canonical Thai root |
 | `#theme-toggle` | light/dark/system behavior; updates `data-theme`, `color-scheme`, and theme color |
+| `[data-navigation-header]` | Unified sticky header; remains prominent at the top, on upward scroll, pointer/focus intent, menu-open state, and reduced motion |
+| `#menu-toggle`, `#site-menu-layer`, `#site-menu` | Accessible menu trigger, modal layer, focus containment, Escape close, and focus return |
+| `#join-team-link`, `#join-team-link-mobile` | Same owner-approved Google Form CTA in desktop and mobile navigation |
+| `#people`, `[data-scrollspy-link="people"]` | The only truthful on-page navigation target and matching desktop bookmark-rail item |
+| `[data-approach]`, `[data-approach-sequence]` | Explicit semantic approach-motion units; unmarked content remains in its final state |
 | `#search-input` | compact text search |
 | `#filter-open` | mobile filter bottom-sheet trigger |
 | `#filter-dialog`, `#filter-form` | accessible filter dialog and form |
@@ -130,6 +144,14 @@ The static shell owns these required IDs; changes require updating the validator
 | `#certificate-dialog`, `#certificate-close`, `#certificate-download` | governed high-resolution certificate preview and download |
 
 Cards must be keyboard-operable `.person-card` buttons. Profile details expand inside the selected masonry card rather than opening a person modal; only one profile is expanded at a time, and reduced-motion preferences disable decorative cascade motion. Small screens keep search compact and move secondary filters into `#filter-dialog`. Unapproved or broken person images fall back to the full nickname in `.avatar-name`; do not derive initials.
+
+The unified header keeps the approved Landometer lockup followed by the `/ Landom` product indicator. Desktop exposes CityMETER, CityWiki, the `สมัครร่วมทีม` / `Join the team` CTA, and the menu button. Mobile exposes only the menu button beside the identity. The menu contains the one real in-page target (`#people`), display preferences, language route, and ecosystem destinations. Do not add a certificate bookmark until a matching page-level section exists; profile certificate dialogs are not a page section.
+
+The calm header is a progressive visual state, not a content or hit-target reduction contract. It may become shorter while scrolling down, but it must return to the prominent state at the top, on upward scroll, while the header has pointer/keyboard intent, while the menu is open, and whenever `prefers-reduced-motion: reduce` matches. The implementation intentionally does not use the proposal's `scale(.5)` treatment or a looping CTA sweep.
+
+`src/approach-motion.js` implements the reviewed Riddim profile only for explicit eligible units: opacity 760 ms, transform 920 ms, 32 px rise with `scale(.985)`, paired inline travel of 36 px, and stagger 0/150/300/450 ms. Its observer uses threshold `0.14` and bottom root margin `-12%`, runs once, and has a 2,400 ms initialization watchdog. Unsupported APIs, runtime errors, print, reduced motion, BFCache restore, deep-link/focus entry, opened disclosures, and hidden or critical content must fail open to the fully visible and operable final state. Hero/LCP content, navigation, live regions, headings that own the page, and controls are excluded from decorative entrance motion.
+
+Navigation symbols are served locally from `public/assets/fonts/material-symbols-rounded-nav-300.woff2` (2,500 bytes, SHA-256 `d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657`). It is an owner-approved Landom-local, non-normative Apache-2.0 subset of Material Symbols Rounded at `FILL 0, wght 300, GRAD 0, opsz 24` containing only `open_in_new`, `menu`, `close`, `light_mode`, `dark_mode`, `contrast`, and `groups`; current state is communicated with background and color rather than requesting an unsupported filled axis. The earlier `open_in_new` subset remains separately governed because contribution links still use it. Both records, the local authority boundary, and their shared license file must stay in `public/assets/fonts/font-assets.manifest.json`.
 
 The app fetches `./data/generated/site-data.json`; keep URLs relative so project Pages works under `/Landom/`.
 
@@ -190,7 +212,7 @@ Certificate images use a separate deny-by-default inventory at `data/approved/ce
 The Pages workflow has two phases and is intentionally public-data-only. It must not make remote Google Sheet calls in either phase:
 
 1. `build`: checkout, Node 20, validation/tests, reproducible build, artifact upload;
-2. `deploy`: GitHub Pages deployment followed by live status/MIME checks and manifest-hash parity for HTML, public JSON, JavaScript, CSS, discovery files, the approved logo, and the governed social-preview, hero-photo, and hero-motif assets.
+2. `deploy`: GitHub Pages deployment followed by a release-SHA cache-busted fetch. The live `build-manifest.json` must first match the exact digest emitted by this workflow's build job; only then may it attest manifest-hash parity for HTML, public JSON, all three JavaScript modules, CSS, discovery files, both icon-font subsets, the approved logo, and the governed social-preview, hero-photo, and hero-motif assets. The live smoke test also checks status/MIME, localized menu routes, required unified-navigation markers, absence of a dead certificate bookmark, app-module imports, and the reviewed navigation/motion safety guards.
 
 Configure **Settings → Pages → Source: GitHub Actions**. The workflow needs standard Pages `write` and OIDC `id-token` permissions only in the deploy job. No repository secret is required.
 
@@ -202,9 +224,12 @@ Automation does not close these checks:
 
 - Thai and English copy/behavior review;
 - responsive review at narrow mobile, tablet, and desktop widths;
+- prominent/calm header transitions in both scroll directions, including pointer/focus intent and menu-open override;
+- desktop product links/CTA/bookmark rail and mobile menu-only header, including final external destinations;
 - native iOS/Android bottom-sheet, scroll, focus return, and virtual-keyboard behavior;
 - Thai at 130% zoom and page at 200% zoom;
-- keyboard, visible focus, screen-reader labels, reduced motion, inline-detail focus return, and filter/certificate dialog focus containment;
+- keyboard, visible focus, screen-reader labels, reduced motion, menu/filter/certificate focus containment, Escape behavior, and focus return;
+- Riddim approach motion at normal motion plus no hidden or delayed content under reduced motion, print, deep-link/focus entry, and BFCache restore;
 - final human review of institution/program canonicalization and product naming against the same CityMETER release;
 - candidate-video/profile-owner review of all current placeholder bios, preserving statement version history;
 - evidence, consent, and rights review for every newly published social link or person image.

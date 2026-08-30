@@ -95,13 +95,17 @@ Developer references: [data dictionary](docs/data-dictionary.md), [public JSON S
 
 ## Interface contract
 
-Language and theme controls follow the interaction pattern of the Landometer reference site. The source-of-truth hooks are listed in `docs/implementation-handoff.md` and enforced by validation.
+The unified header follows the owner-supplied navigation direction and the current Landometer reference surface while keeping Landom's approved identity assets and `data-ds-version="0.9.0"`. This is owner-directed local alignment, not a claim that the attached r7 handoff or motion proposal is a normative Design System release.
+
+Desktop navigation exposes CityMETER, CityWiki, the join-team CTA, and a menu; mobile keeps the product identity and menu trigger. The menu owns display preferences, a real sibling-language route, ecosystem destinations, and the only truthful page bookmark (`#people`). Its focus containment, Escape close, focus return, responsive visibility, and calm/prominent header states are enforced by validation.
+
+Decorative Riddim approach motion is progressive and fail-open. It applies only to explicitly marked, noncritical semantic units, runs once, and resolves immediately to final visible content for reduced motion, print, focus/deep-link entry, BFCache restore, unsupported APIs, or runtime errors. Hero/LCP content, navigation, controls, and live regions are excluded.
 
 On small screens, search remains compact and the filters open in a bottom-sheet dialog instead of permanently occupying the viewport. Cards are keyboard-operable buttons; full records expand accessibly inside the masonry board, while certificate images use a dedicated high-resolution preview dialog.
 
 ## Publishing
 
-`.github/workflows/pages.yml` validates every pull request. A successful build on `main` uploads the exact `dist/` artifact, deploys it with GitHub Pages, then smoke-tests the live HTML and generated JSON.
+`.github/workflows/pages.yml` validates every pull request. A successful build on `main` uploads the exact `dist/` artifact, deploys it with GitHub Pages, then uses the release SHA to bypass stale caches and requires the live manifest digest to equal this workflow run's build manifest before smoke-testing localized HTML, generated JSON, navigation and motion modules, CSS, icon-font subsets, discovery files, and governed identity/media assets.
 
 Repository setup required once: in **Settings → Pages**, select **GitHub Actions** as the source. A local build or a pushed commit is not proof of a live release; use the terminal deployment result and live smoke test.
 

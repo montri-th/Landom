@@ -33,6 +33,14 @@ export const PUBLIC_BUILD_INPUTS = Object.freeze([
 export const REQUIRED_UI_IDS = [
   'language-toggle',
   'theme-toggle',
+  'menu-toggle',
+  'site-menu-layer',
+  'site-menu',
+  'join-team-link',
+  'join-team-link-mobile',
+  'preference-controls',
+  'people',
+  'all-products-link',
   'search-input',
   'filter-open',
   'filter-dialog',
@@ -64,7 +72,7 @@ const SOCIAL_PREVIEW = Object.freeze({
     en: 'People of Landom together at the Landometer office'
   }
 });
-const MATERIAL_SYMBOLS = Object.freeze({
+const MATERIAL_SYMBOLS_EXTERNAL = Object.freeze({
   path: 'public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2',
   licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
   bytes: 1124,
@@ -73,6 +81,19 @@ const MATERIAL_SYMBOLS = Object.freeze({
   subset: 'open_in_new',
   axesLock: 'FILL 0, wght 300, GRAD 0, opsz 20'
 });
+const MATERIAL_SYMBOLS_NAV = Object.freeze({
+  path: 'public/assets/fonts/material-symbols-rounded-nav-300.woff2',
+  licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
+  bytes: 2500,
+  sha256: 'd7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657',
+  family: 'Material Symbols Rounded Nav',
+  subset: 'unified-nav-7',
+  axesLock: 'FILL 0, wght 300, GRAD 0, opsz 24',
+  glyphs: ['open_in_new', 'menu', 'close', 'light_mode', 'dark_mode', 'contrast', 'groups'],
+  approvalAuthority: 'Owner-approved Landom-local alignment',
+  designSystemStatus: 'Candidate local extension; not a normative Design System release'
+});
+const MATERIAL_SYMBOL_FONTS = Object.freeze([MATERIAL_SYMBOLS_EXTERNAL, MATERIAL_SYMBOLS_NAV]);
 
 function valueAt(record, candidates) {
   for (const candidate of candidates) {
@@ -544,10 +565,12 @@ async function validateUi(publishRoot, errors) {
     )
   ).join('\n');
   const allUiText = `${index}\n${sourceText}`;
-  const appPath = path.join(publishRoot, 'src', 'app.js');
-  const appCheck = spawnSync(process.execPath, ['--check', appPath], { encoding: 'utf8' });
-  if (appCheck.status !== 0) {
-    errors.push(`src/app.js has a syntax error: ${(appCheck.stderr || appCheck.stdout).trim()}`);
+  for (const sourceModule of ['app.js', 'navigation.js', 'approach-motion.js']) {
+    const sourcePath = path.join(publishRoot, 'src', sourceModule);
+    const sourceCheck = spawnSync(process.execPath, ['--check', sourcePath], { encoding: 'utf8' });
+    if (sourceCheck.status !== 0) {
+      errors.push(`src/${sourceModule} has a syntax error: ${(sourceCheck.stderr || sourceCheck.stdout).trim()}`);
+    }
   }
 
   for (const id of REQUIRED_UI_IDS) {
@@ -555,6 +578,110 @@ async function validateUi(publishRoot, errors) {
   }
   if (!/\.\/src\/styles\.css/.test(index)) errors.push('index.html must load ./src/styles.css.');
   if (!/\.\/src\/app\.js/.test(index)) errors.push('index.html must load ./src/app.js.');
+  const joinTeamUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform';
+  if (!/<header[^>]*data-navigation-header[^>]*>[\s\S]*?<div class="header-identity">[\s\S]*?<nav class="header-nav"/s.test(index)) {
+    errors.push('The unified header must preserve the approved identity-first structure and product navigation.');
+  }
+  if (!/<a class="brand" href="https:\/\/landometer\.com\/"[\s\S]*?landometer-horizontal\.png\?v=6c71c10505ca/s.test(index) ||
+      !/<span class="brand-product"[^>]*>[\s\S]*?Landom<\/span>/.test(index)) {
+    errors.push('The unified header must retain the approved Landometer lockup with the Landom product indicator.');
+  }
+  for (const destination of ['https://montri-th.github.io/CityMETER/', 'https://landometer.com/v3/citywiki']) {
+    if (!index.includes(`href="${destination}"`)) errors.push(`The unified navigation is missing ${destination}.`);
+  }
+  if ((index.match(new RegExp(`href="${joinTeamUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) ?? []).length !== 3) {
+    errors.push('The unified navigation must expose the exact join-team destination in desktop, compact-menu, and fail-open contexts.');
+  }
+  if (!/<button[\s\S]*?id="menu-toggle"[\s\S]*?aria-haspopup="dialog"[\s\S]*?aria-expanded="false"[\s\S]*?aria-controls="site-menu"/s.test(index) ||
+      !/<div class="site-menu-panel" id="site-menu" role="dialog" aria-modal="true"[^>]*tabindex="-1"/s.test(index)) {
+    errors.push('The site menu must be an explicitly controlled modal disclosure with a focusable dialog panel.');
+  }
+  if (!/<a href="#people" data-menu-close>/.test(index) ||
+      !/data-scrollspy-link="people"/.test(index) ||
+      /href="#certificates"/.test(index)) {
+    errors.push('On-page navigation must link only to the truthful #people section and must not expose a dead certificates anchor.');
+  }
+  if (!/<nav class="navigation-fallback"[^>]*>[\s\S]*?class="navigation-fallback-language" href="\.\/en\/" hreflang="en"/s.test(index) ||
+      !/root\.classList\.add\('navigation-enhanced'\)/.test(sourceText) ||
+      !/html\.navigation-enhanced \.navigation-fallback\s*\{[^}]*display:\s*none;/s.test(sourceText)) {
+    errors.push('Compact navigation must retain a crawlable fail-open fallback until the JavaScript controller is ready.');
+  }
+  if (!/id="language-toggle"[\s\S]*?href="\.\/en\/"[\s\S]*?hreflang="en"/s.test(index)) {
+    errors.push('The Thai entrypoint must expose English as a crawlable sibling route.');
+  }
+  if (!/import \{ initSiteNavigation \} from "\.\/navigation\.js";/.test(sourceText) ||
+      !/initSiteNavigation\(\);/.test(sourceText)) {
+    errors.push('The unified navigation controller must be imported and initialized.');
+  }
+  const navigationSource = await readIfPresent(path.join(publishRoot, 'src', 'navigation.js')) ?? '';
+  for (const token of [
+    "event.key === 'Escape'",
+    "event.key !== 'Tab'",
+    "toggle.setAttribute('aria-expanded'",
+    "toggle.focus({ preventScroll: true })",
+    "url.origin === here.origin",
+    "url.pathname === here.pathname",
+    "url.search === here.search",
+    "document.getElementById(decodeURIComponent(url.hash.slice(1)))",
+    "setMenuOpen(false, { returnFocus: !destination })",
+    "'(prefers-reduced-motion: reduce)'",
+    "root.dataset.navState = 'calm'",
+    "window.addEventListener('pageshow'"
+  ]) {
+    if (!navigationSource.includes(token)) errors.push(`The unified navigation controller is missing its accessibility/state contract: ${token}.`);
+  }
+  if (!/\.site-header\.is-calm\s*\{/.test(sourceText) ||
+      !/:root\[data-nav-state="calm"\]/.test(sourceText) ||
+      !/@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s.test(sourceText)) {
+    errors.push('The prominent/calm header states must retain a reduced-motion-safe CSS contract.');
+  }
+
+  if (!/import \{ initApproachMotion \} from "\.\/approach-motion\.js";/.test(sourceText) ||
+      !/initApproachMotion\(\);/.test(sourceText)) {
+    errors.push('The bounded approach-motion adapter must be imported and initialized.');
+  }
+  if (!/root\.classList\.add\("lds-motion-pending"\)/.test(index) ||
+      !/"IntersectionObserver" in window/.test(index) ||
+      !/prefers-reduced-motion: reduce/.test(index) ||
+      !/matchMedia\("print"\)/.test(index)) {
+    errors.push('The pre-paint motion bootstrap must remain capability-, reduced-motion-, and print-gated.');
+  }
+  if (!/data-approach="section_opener"/.test(index) ||
+      (index.match(/data-approach="paired_inline"/g) ?? []).length !== 2 ||
+      !/data-approach-sequence/.test(index)) {
+    errors.push('Approach motion must remain opt-in on bounded semantic units with an explicit two-item sequence.');
+  }
+  const approachMotionSource = await readIfPresent(path.join(publishRoot, 'src', 'approach-motion.js')) ?? '';
+  for (const token of [
+    'threshold: 0.14',
+    'rootMargin: "0px 0px -12% 0px"',
+    'const INIT_WATCHDOG_MS = 2400',
+    'const STAGGER_STEP_MS = 150',
+    'const STAGGER_CAP_MS = 450',
+    'function failOpen',
+    'function onFocusIn',
+    'function onHashChange',
+    'function onPageShow',
+    'function onBeforePrint',
+    'function onReducedMotionChange',
+    'const atDocumentEnd = Math.ceil',
+    '(atDocumentEnd && overlapsBlockViewport)',
+    'isForbiddenTarget',
+    'hasAlreadyPainted'
+  ]) {
+    if (!approachMotionSource.includes(token)) errors.push(`The hardened approach-motion adapter is missing: ${token}.`);
+  }
+  for (const excludedTarget of ['"header"', '"nav"', '"h1"', '"[aria-live]"', '".hero"']) {
+    if (!approachMotionSource.includes(excludedTarget)) errors.push(`Approach motion must exclude critical target ${excludedTarget}.`);
+  }
+  if (!/html\.lds-motion-ready \[data-approach\]\.is-lds-reveal-armed/.test(sourceText) ||
+      /html\.lds-motion-pending \[data-approach\]/.test(sourceText) ||
+      !/--lds-reveal-delay/.test(sourceText) ||
+      !/--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/.test(sourceText) ||
+      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-approach-opacity\)[\s\S]*?transform var\(--motion-duration-approach-transform\)/s.test(sourceText) ||
+      !/\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s.test(sourceText)) {
+    errors.push('Approach-motion CSS must hide only explicitly armed targets after readiness and retain stagger delay support.');
+  }
   if (!/<dialog[^>]*id=["']filter-dialog["']/s.test(index)) {
     errors.push('#filter-dialog must use the native dialog element.');
   }
@@ -921,31 +1048,45 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   const llms = await readIfPresent(path.join(publishRoot, 'llms.txt'));
   const robots = await readIfPresent(path.join(publishRoot, 'robots.txt'));
   const sitemap = await readIfPresent(path.join(publishRoot, 'sitemap.xml'));
+  let fontManifest = null;
   try {
-    const fontBytes = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS.path));
-    const fontDigest = createHash('sha256').update(fontBytes).digest('hex');
-    const fontManifest = JSON.parse(await readFile(path.join(publishRoot, 'public/assets/fonts/font-assets.manifest.json'), 'utf8'));
-    const fontRecord = fontManifest.faces?.find((record) => record.family === MATERIAL_SYMBOLS.family);
-    const licenseText = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS.licensePath), 'utf8');
-    if (fontBytes.byteLength !== MATERIAL_SYMBOLS.bytes || fontDigest !== MATERIAL_SYMBOLS.sha256) {
-      errors.push('The Material Symbols Rounded subset bytes do not match the governed font record.');
+    fontManifest = JSON.parse(await readFile(path.join(publishRoot, 'public/assets/fonts/font-assets.manifest.json'), 'utf8'));
+    if (!/owner-approved Landom-local addition/i.test(fontManifest.authorityScope ?? '') ||
+        !/does not publish or upgrade a normative Design System release/i.test(fontManifest.authorityScope ?? '')) {
+      errors.push('The font manifest must distinguish the local navigation subset from normative Design System authority.');
     }
-    if (
-      fontRecord?.file !== path.basename(MATERIAL_SYMBOLS.path) ||
-      fontRecord?.sha256 !== MATERIAL_SYMBOLS.sha256 ||
-      fontRecord?.subset !== MATERIAL_SYMBOLS.subset ||
-      fontRecord?.weight !== 300 ||
-      fontRecord?.axesLock !== MATERIAL_SYMBOLS.axesLock ||
-      fontRecord?.license !== 'Apache License 2.0' ||
-      fontRecord?.licenseFile !== path.relative('public/assets/fonts', MATERIAL_SYMBOLS.licensePath)
-    ) {
-      errors.push('The Material Symbols Rounded subset is missing its exact manifest, axis-lock, or license record.');
-    }
+    const licenseText = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS_EXTERNAL.licensePath), 'utf8');
     if (!/Apache License\s+Version 2\.0/i.test(licenseText)) {
       errors.push('The Material Symbols Rounded Apache 2.0 license file is missing or invalid.');
     }
   } catch (error) {
-    errors.push(`The governed Material Symbols Rounded subset is missing at ${MATERIAL_SYMBOLS.path}.`);
+    errors.push('The governed Material Symbols Rounded manifest or Apache 2.0 license is missing.');
+  }
+  for (const font of MATERIAL_SYMBOL_FONTS) {
+    try {
+      const fontBytes = await readFile(path.join(publishRoot, font.path));
+      const fontDigest = createHash('sha256').update(fontBytes).digest('hex');
+      const fontRecord = fontManifest?.faces?.find((record) => record.file === path.basename(font.path));
+      if (fontBytes.byteLength !== font.bytes || fontDigest !== font.sha256) {
+        errors.push(`The ${font.family} subset bytes do not match the governed font record.`);
+      }
+      if (
+        fontRecord?.family !== font.family ||
+        fontRecord?.sha256 !== font.sha256 ||
+        fontRecord?.subset !== font.subset ||
+        fontRecord?.weight !== 300 ||
+        fontRecord?.axesLock !== font.axesLock ||
+        fontRecord?.license !== 'Apache License 2.0' ||
+        fontRecord?.licenseFile !== path.relative('public/assets/fonts', font.licensePath) ||
+        (font.glyphs && JSON.stringify(fontRecord?.glyphs) !== JSON.stringify(font.glyphs)) ||
+        (font.approvalAuthority && fontRecord?.approvalAuthority !== font.approvalAuthority) ||
+        (font.designSystemStatus && fontRecord?.designSystemStatus !== font.designSystemStatus)
+      ) {
+        errors.push(`The ${font.family} subset is missing its exact manifest, glyph, axis-lock, or license record.`);
+      }
+    } catch (error) {
+      errors.push(`The governed ${font.family} subset is missing at ${font.path}.`);
+    }
   }
   try {
     const previewBytes = await readFile(path.join(publishRoot, SOCIAL_PREVIEW.path));
@@ -1042,8 +1183,8 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     for (const required of requiredPreviewMetadata) {
       if (!html.includes(required)) errors.push(`${fileLabel} is missing approved social-preview metadata: ${required}`);
     }
-    if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS.path}" as="font" type="font/woff2" crossorigin>`)) {
-      errors.push(`${fileLabel} must preload the self-hosted Material Symbols Rounded subset.`);
+    if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_NAV.path}" as="font" type="font/woff2" crossorigin>`)) {
+      errors.push(`${fileLabel} must preload the self-hosted unified-navigation Material Symbols subset.`);
     }
     if ((html.match(/<meta property="og:image"\s/g) ?? []).length !== 1 || (html.match(/<meta name="twitter:image"\s/g) ?? []).length !== 1) {
       errors.push(`${fileLabel} must expose exactly one approved Open Graph image and one approved Twitter image.`);
@@ -1063,8 +1204,21 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     if (localized && !html.includes(`href="${routeUrl}#main-content"`)) {
       errors.push(`${fileLabel} skip link must remain on its localized route when a base URL is present.`);
     }
-    if (localized && !html.includes(`<a class="brand" href="${routeUrl}"`)) {
-      errors.push(`${fileLabel} home link must preserve its localized route when a base URL is present.`);
+    if (localized && (html.match(new RegExp(`href="${routeUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}#people"`, 'g')) ?? []).length !== 2) {
+      errors.push(`${fileLabel} on-page shortcuts must remain on the localized route when a base URL is present.`);
+    }
+    if (!html.includes('<a class="brand" href="https://landometer.com/"')) {
+      errors.push(`${fileLabel} brand link must preserve the approved Landometer destination.`);
+    }
+    const siblingLocale = locale === 'th' ? 'en' : 'th';
+    const siblingRoute = localeUrls[siblingLocale];
+    if (!new RegExp(`id=["']language-toggle["'][\\s\\S]*?href=["']${siblingRoute.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][\\s\\S]*?hreflang=["']${siblingLocale}["']`).test(html) &&
+        !(locale === 'th' && /id=["']language-toggle["'][\s\S]*?href=["']\.\/en\/["'][\s\S]*?hreflang=["']en["']/.test(html))) {
+      errors.push(`${fileLabel} language switch must be a crawlable link to its ${siblingLocale} sibling route.`);
+    }
+    if (!html.includes(`<a href="${routeUrl}" aria-current="page">`) &&
+        !(locale === 'th' && html.includes('<a href="./" aria-current="page">'))) {
+      errors.push(`${fileLabel} current ecosystem item must preserve its localized route.`);
     }
     const expectedTitle = locale === 'th'
       ? 'Landom — คนที่ร่วมสร้าง Landometer'

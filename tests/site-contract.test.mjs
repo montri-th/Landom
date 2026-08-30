@@ -216,7 +216,7 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(thai, /data-locale-route="th"/);
   assert.match(thai, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/">/);
   assert.match(thai, /id="page-title">ไม่ใช่สถานที่&#10;แต่คือผู้คน<\/h1>/);
-  assert.match(thai, /id="footer-meta">ชาวด้อม Landom<\/p>/);
+  assert.match(thai, /id="footer-meta"[^>]*>ชาวด้อม Landom<\/p>/);
   assert.match(thai, /property="og:title" content="LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER"/);
   assert.match(thai, /name="twitter:title" content="LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER"/);
   assert.match(thai, /validLang\(langParam\) \|\| routeLang \|\| validLang\(storedLang\)/);
@@ -230,11 +230,17 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /property="og:title" content="Landom — meet the people shaping Landometer"/);
   assert.match(english, /name="twitter:title" content="Landom — meet the people shaping Landometer"/);
   assert.match(english, /id="page-title">It’s not a place\.&#10;It’s the people\.<\/h1>/);
-  assert.match(english, /id="footer-meta">People of Landom<\/p>/);
+  assert.match(english, /id="footer-meta"[^>]*>People of Landom<\/p>/);
   assert.match(english, /"inLanguage": "en"/);
   assert.match(english, /<base href="\.\.\/">/);
   assert.match(english, /href="https:\/\/montri-th\.github\.io\/Landom\/en\/#main-content"/);
-  assert.match(english, /<a class="brand" href="https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
+  assert.equal(english.match(/href="https:\/\/montri-th\.github\.io\/Landom\/en\/#people"/g)?.length, 2);
+  assert.doesNotMatch(english, /href="#people"/);
+  assert.match(english, /<a class="brand" href="https:\/\/landometer\.com\/"/);
+  assert.match(thai, /id="language-toggle"[\s\S]*?href="\.\/en\/"[\s\S]*?hreflang="en"/);
+  assert.match(english, /id="language-toggle"[\s\S]*?href="https:\/\/montri-th\.github\.io\/Landom\/"[\s\S]*?hreflang="th"/);
+  assert.match(thai, /<a href="\.\/" aria-current="page">/);
+  assert.match(english, /<a href="https:\/\/montri-th\.github\.io\/Landom\/en\/" aria-current="page">/);
 
   for (const html of [thai, english]) {
     assert.match(html, /hreflang="th" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
@@ -251,6 +257,127 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(thai, /name="twitter:image:alt" content="ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer"/);
   assert.match(english, /property="og:image:alt" content="People of Landom together at the Landometer office"/);
   assert.match(english, /name="twitter:image:alt" content="People of Landom together at the Landometer office"/);
+  assert.match(english, /alt="People of Landom working, learning, and spending time together"/);
+});
+
+test('the unified navigation preserves approved destinations, accessible menu behavior, and truthful page anchors', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const navigation = await readFile(new URL('../src/navigation.js', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const joinTeamUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform';
+
+  assert.match(index, /<header[^>]*data-navigation-header[^>]*>[\s\S]*?<div class="header-identity">[\s\S]*?<nav class="header-nav"/);
+  assert.match(index, /<a class="brand" href="https:\/\/landometer\.com\/"[\s\S]*?landometer-horizontal\.png\?v=6c71c10505ca/);
+  assert.match(index, /<span class="brand-product"[^>]*>[\s\S]*?<span aria-hidden="true">\/<\/span> Landom<\/span>/);
+  assert.match(index, /href="https:\/\/montri-th\.github\.io\/CityMETER\/">CityMETER<\/a>/);
+  assert.match(index, /href="https:\/\/landometer\.com\/v3\/citywiki">CityWiki<\/a>/);
+  assert.equal(index.split(`href="${joinTeamUrl}"`).length - 1, 3);
+  assert.match(index, /id="menu-toggle"[\s\S]*?aria-haspopup="dialog"[\s\S]*?aria-expanded="false"[\s\S]*?aria-controls="site-menu"/);
+  assert.match(index, /id="site-menu" role="dialog" aria-modal="true"[^>]*tabindex="-1"/);
+  assert.match(index, /<a href="#people" data-menu-close>/);
+  assert.match(index, /data-scrollspy-link="people"/);
+  assert.doesNotMatch(index, /href="#certificates"/);
+
+  assert.match(app, /import \{ initSiteNavigation \} from "\.\/navigation\.js";/);
+  assert.match(app, /initSiteNavigation\(\);/);
+  assert.match(navigation, /event\.key === 'Escape'/);
+  assert.match(navigation, /event\.key !== 'Tab'/);
+  assert.match(navigation, /toggle\.setAttribute\('aria-expanded'/);
+  assert.match(navigation, /toggle\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(navigation, /url\.origin === here\.origin[\s\S]*?url\.pathname === here\.pathname[\s\S]*?url\.search === here\.search/);
+  assert.match(navigation, /document\.getElementById\(decodeURIComponent\(url\.hash\.slice\(1\)\)\)/);
+  assert.match(navigation, /setMenuOpen\(false, \{ returnFocus: !destination \}\)/);
+  assert.match(navigation, /element\.getClientRects\(\)\.length > 0/);
+  assert.match(navigation, /root\.classList\.add\('navigation-enhanced'\)/);
+  assert.match(navigation, /window\.addEventListener\('pageshow'/);
+  assert.match(navigation, /root\.dataset\.navState = 'calm'/);
+  assert.match(navigation, /prefers-reduced-motion: reduce/);
+  assert.match(styles, /\.menu-toggle\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;/s);
+  assert.match(styles, /\.site-header\.is-calm\s*\{/);
+  assert.match(styles, /html\.navigation-enhanced \.navigation-fallback\s*\{[^}]*display:\s*none;/s);
+  assert.match(styles, /scroll-margin-top:\s*calc\(var\(--site-header-height-prominent\)/);
+  assert.match(styles, /:root\[data-nav-state="calm"\]/);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s);
+});
+
+test('the unified navigation icon subset is exact, self-hosted, licensed, and preloaded', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const font = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-nav-300.woff2', import.meta.url));
+  const fontManifest = JSON.parse(await readFile(new URL('../public/assets/fonts/font-assets.manifest.json', import.meta.url), 'utf8'));
+  const fontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-nav-300.woff2');
+
+  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-nav-300\.woff2" as="font" type="font\/woff2" crossorigin/);
+  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav";[^}]*material-symbols-rounded-nav-300\.woff2[^}]*font-weight:\s*300;/s);
+  assert.match(styles, /\.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/s);
+  assert.equal(font.byteLength, 2500);
+  assert.equal(createHash('sha256').update(font).digest('hex'), 'd7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657');
+  assert.equal(fontRecord?.family, 'Material Symbols Rounded Nav');
+  assert.equal(fontRecord?.subset, 'unified-nav-7');
+  assert.equal(fontRecord?.axesLock, 'FILL 0, wght 300, GRAD 0, opsz 24');
+  assert.deepEqual(fontRecord?.glyphs, ['open_in_new', 'menu', 'close', 'light_mode', 'dark_mode', 'contrast', 'groups']);
+  assert.equal(fontRecord?.approvalAuthority, 'Owner-approved Landom-local alignment');
+  assert.equal(fontRecord?.designSystemStatus, 'Candidate local extension; not a normative Design System release');
+  assert.equal(fontRecord?.license, 'Apache License 2.0');
+  assert.match(fontManifest.authorityScope, /owner-approved Landom-local addition/i);
+  assert.match(fontManifest.authorityScope, /does not publish or upgrade a normative Design System release/i);
+  assert.doesNotMatch(styles, /font-variation-settings:\s*"FILL" 1/);
+});
+
+test('Pages attestation binds cache-busted live bytes to this workflow build manifest', async () => {
+  const workflow = await readFile(new URL('../.github/workflows/pages.yml', import.meta.url), 'utf8');
+  assert.match(workflow, /outputs:\s*\n\s+manifest_sha256: \$\{\{ steps\.build_manifest\.outputs\.sha256 \}\}/);
+  assert.match(workflow, /EXPECTED_MANIFEST_SHA256: \$\{\{ needs\.build\.outputs\.manifest_sha256 \}\}/);
+  assert.match(workflow, /RELEASE_SHA: \$\{\{ github\.sha \}\}/);
+  assert.match(workflow, /cache_bust="release=\$RELEASE_SHA"/);
+  assert.match(workflow, /actual_manifest_sha256=.*sha256sum \/tmp\/landom-build-manifest\.json/);
+  assert.match(workflow, /"\$actual_manifest_sha256" = "\$EXPECTED_MANIFEST_SHA256"/);
+});
+
+test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle edges', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const motion = await readFile(new URL('../src/approach-motion.js', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+
+  assert.match(index, /"IntersectionObserver" in window[\s\S]*?prefers-reduced-motion: reduce[\s\S]*?matchMedia\("print"\)[\s\S]*?root\.classList\.add\("lds-motion-pending"\)/);
+  assert.match(index, /data-approach="section_opener"/);
+  assert.equal((index.match(/data-approach="paired_inline"/g) ?? []).length, 2);
+  assert.match(index, /data-approach-sequence/);
+  assert.match(app, /import \{ initApproachMotion \} from "\.\/approach-motion\.js";/);
+  assert.match(app, /initApproachMotion\(\);/);
+
+  for (const contract of [
+    'threshold: 0.14',
+    'rootMargin: "0px 0px -12% 0px"',
+    'const INIT_WATCHDOG_MS = 2400',
+    'const STAGGER_STEP_MS = 150',
+    'const STAGGER_CAP_MS = 450',
+    'function failOpen',
+    'function onFocusIn',
+    'function onHashChange',
+    'function onPageShow',
+    'function onBeforePrint',
+    'function onReducedMotionChange',
+    'const atDocumentEnd = Math.ceil',
+    '(atDocumentEnd && overlapsBlockViewport)',
+    'hasAlreadyPainted'
+  ]) {
+    assert.ok(motion.includes(contract), `Missing hardened motion contract: ${contract}`);
+  }
+  for (const excludedTarget of ['"header"', '"nav"', '"h1"', '"[aria-live]"', '".hero"']) {
+    assert.ok(motion.includes(excludedTarget), `Missing critical motion exclusion: ${excludedTarget}`);
+  }
+  assert.match(styles, /html\.lds-motion-ready \[data-approach\]\.is-lds-reveal-armed/);
+  assert.doesNotMatch(styles, /html\.lds-motion-pending \[data-approach\]/);
+  assert.match(styles, /--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/);
+  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-approach-opacity\)[\s\S]*?transform var\(--motion-duration-approach-transform\)/s);
+  assert.match(styles, /\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s);
+  assert.match(styles, /translate3d\(0, 32px, 0\) scale\(0\.985\)/);
+  assert.match(styles, /data-approach-from="inline-start"[\s\S]*?translate3d\(-36px, 0, 0\)/);
+  assert.match(styles, /data-approach-from="inline-end"[\s\S]*?translate3d\(36px, 0, 0\)/);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*none !important;/s);
 });
 
 test('the social preview is the exact owner-approved privacy-normalized derivative', async () => {
@@ -332,7 +459,7 @@ test('contribution destination actions use governed circle and capsule geometry'
   assert.match(styles, /\.contribution-open-icon\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;[^}]*border-radius:\s*50%;/s);
   assert.match(styles, /\.contribution-evidence-link\s*\{[^}]*min-height:\s*44px;[^}]*padding:\s*10px\s+var\(--space-5\);[^}]*border-radius:\s*var\(--radius-pill\);/s);
   assert.match(styles, /\.timeline-item,[\s\S]*?\.contribution-item,[\s\S]*?\.achievement-item\s*\{[^}]*border-radius:\s*var\(--radius-md\);/s);
-  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-open-in-new-300\.woff2" as="font" type="font\/woff2" crossorigin/);
+  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-nav-300\.woff2" as="font" type="font\/woff2" crossorigin/);
   assert.equal(font.byteLength, 1124);
   assert.equal(createHash('sha256').update(font).digest('hex'), '778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e');
   assert.equal(fontRecord?.subset, 'open_in_new');
@@ -671,7 +798,7 @@ test('the nine owner-requested blank-background portraits have governed gradient
 });
 
 test('source satisfies the integrated data, privacy, asset, naming, and UI contract', async () => {
-  assert.equal(REQUIRED_UI_IDS.length, 15);
+  assert.equal(REQUIRED_UI_IDS.length, 23);
   const errors = await validateSite();
   assert.deepEqual(errors, [], errors.join('\n'));
 });
