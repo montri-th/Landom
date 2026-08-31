@@ -116,6 +116,7 @@
     <link rel="preload" href="./public/assets/fonts/bai-jamjuree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-nav-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-footer-r10.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="./public/assets/hero/landom-community-anchor.jpg" as="image" fetchpriority="high">
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./src/styles.css">
@@ -279,7 +280,7 @@
             fetchpriority="high"
             decoding="async"
             data-parallax-media
-            data-parallax-depth="18"
+            data-parallax-depth="32"
           >
         </figure>
         <div class="hero-moment hero-moment--dinner" aria-hidden="true">
@@ -290,7 +291,7 @@
             alt=""
             decoding="async"
             data-parallax-media
-            data-parallax-depth="6"
+            data-parallax-depth="20"
           >
         </div>
         <div class="hero-moment hero-moment--work" aria-hidden="true">
@@ -301,7 +302,7 @@
             alt=""
             decoding="async"
             data-parallax-media
-            data-parallax-depth="5"
+            data-parallax-depth="18"
           >
         </div>
         <div class="hero-moment hero-moment--gathering" aria-hidden="true">
@@ -312,7 +313,7 @@
             alt=""
             decoding="async"
             data-parallax-media
-            data-parallax-depth="7"
+            data-parallax-depth="22"
           >
         </div>
         <div class="hero-copy">
@@ -416,7 +417,7 @@
           <div class="loading-card"></div>
         </div>
 
-        <div class="masonry-board" id="people-board" aria-busy="true"></div>
+        <div class="masonry-board" id="people-board" data-approach-sequence aria-busy="true"></div>
 
         <div class="empty-state" id="empty-state" hidden>
           <p class="empty-mark" aria-hidden="true">⌕</p>
@@ -434,11 +435,11 @@
       </section>
     </main>
 
-    <footer class="site-footer" data-approach-sequence aria-labelledby="footer-title">
+    <footer class="site-footer" aria-labelledby="footer-title">
       <div class="footer-measure-line" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
       </div>
-      <div class="footer-main">
+      <div class="footer-main" data-approach-sequence>
         <div class="footer-contact" data-approach="paired_inline">
           <p class="footer-label">Landometer Co., Ltd.</p>
           <h2 id="footer-title">มาเป็นชาว Landom กัน</h2>
@@ -447,9 +448,9 @@
             23/34-35 Room 4C-4D 4th Fl. The Quarter Bangkok Tower, ถนนตรีมิตร แขวงตลาดน้อย เขตสัมพันธวงศ์ กรุงเทพมหานคร 10100
           </address>
           <a class="footer-map-link" id="footer-map-link" href="https://maps.app.goo.gl/8DQPVMtPdxWMBoZU9" target="_blank" rel="noopener noreferrer">
-            <span aria-hidden="true">⌖</span>
+            <span class="icon-symbol footer-map-icon" aria-hidden="true">map</span>
             <span id="footer-map-label">เปิดแผนที่สำนักงาน</span>
-            <span aria-hidden="true">↗</span>
+            <span class="text-link__cue" aria-hidden="true">↗</span>
           </a>
         </div>
 

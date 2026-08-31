@@ -23,9 +23,9 @@ const OBSERVER_OPTIONS = Object.freeze({
 });
 
 const INIT_WATCHDOG_MS = 2400;
-const STAGGER_STEP_MS = 150;
-const STAGGER_CAP_MS = 450;
-const TRANSFORM_SETTLE_MS = 920;
+const STAGGER_STEP_MS = 120;
+const STAGGER_CAP_MS = 600;
+const TRANSFORM_SETTLE_MS = 640;
 const SETTLE_GRACE_MS = 80;
 
 const ALLOWED_ROLES = new Set([
@@ -135,6 +135,11 @@ function targetDelay(element) {
 
   if (!sequence) return 0;
 
+  const explicitStep = Number.parseInt(element.getAttribute("data-approach-step") || "", 10);
+  if (Number.isInteger(explicitStep) && explicitStep >= 0) {
+    return Math.min(explicitStep * STAGGER_STEP_MS, STAGGER_CAP_MS);
+  }
+
   const peers = [...sequence.children].filter(
     (child) => child.matches?.(TARGET_SELECTOR) && ALLOWED_ROLES.has(normalizeRole(child))
   );
@@ -142,7 +147,7 @@ function targetDelay(element) {
   return index < 0 ? 0 : Math.min(index * STAGGER_STEP_MS, STAGGER_CAP_MS);
 }
 
-function configurePairedDirection(element) {
+function validatePairedGroup(element) {
   if (normalizeRole(element) !== "paired_inline") return true;
 
   const sequence = element.parentElement?.matches(SEQUENCE_SELECTOR)
@@ -155,10 +160,7 @@ function configurePairedDirection(element) {
   );
   if (peers.length !== 2) return false;
 
-  const index = peers.indexOf(element);
-  if (index < 0) return false;
-  element.setAttribute("data-approach-from", index === 0 ? "inline-start" : "inline-end");
-  return true;
+  return peers.includes(element);
 }
 
 /**
@@ -169,12 +171,12 @@ function configurePairedDirection(element) {
  * Use `[data-approach-sequence]` on the direct parent when peer ordering matters.
  *
  * @param {{ document?: Document }} [options]
- * @returns {{ land: (node: Element|string) => void, landSubtree: (node: Element|Document|string) => void, destroy: () => void }}
+ * @returns {{ refresh: (node?: Element|Document|string) => void, land: (node: Element|string) => void, landSubtree: (node: Element|Document|string) => void, destroy: () => void }}
  */
 export function initApproachMotion(options = {}) {
   const doc = options.document ?? globalThis.document;
   if (!doc?.documentElement) {
-    return Object.freeze({ land() {}, landSubtree() {}, destroy() {} });
+    return Object.freeze({ refresh() {}, land() {}, landSubtree() {}, destroy() {} });
   }
 
   if (doc[CONTROLLER_KEY]) return doc[CONTROLLER_KEY];
@@ -187,6 +189,7 @@ export function initApproachMotion(options = {}) {
   const allTargets = new Set();
   const armedTargets = new Set();
   const settledTargets = new WeakSet();
+  const settledTargetKeys = new Set();
   const settleCleanup = new WeakMap();
 
   let observer = null;
@@ -229,6 +232,8 @@ export function initApproachMotion(options = {}) {
     target.classList.remove(ARMED, ARRIVING);
     armedTargets.delete(target);
     settledTargets.add(target);
+    const key = target.getAttribute("data-approach-key")?.trim();
+    if (key) settledTargetKeys.add(key);
   }
 
   function forceNodeAndWrappersFinal(node) {
@@ -483,14 +488,95 @@ export function initApproachMotion(options = {}) {
     });
   }
 
+  function ensureObserver() {
+    if (observer) return observer;
+    observer = new win.IntersectionObserver((entries) => {
+      try {
+        for (const entry of entries) {
+          if (entry.rootBounds) observerEffectiveBottom = entry.rootBounds.bottom;
+          if (entry.isIntersecting === true) revealTarget(entry.target);
+        }
+      } catch {
+        failOpen("observer-callback-error");
+      }
+    }, OBSERVER_OPTIONS);
+    return observer;
+  }
+
+  function resolvedScope(node = doc) {
+    if (typeof node === "string") return doc.querySelector(node);
+    return node;
+  }
+
+  function targetsIn(node = doc) {
+    const scope = resolvedScope(node);
+    if (!scope) return [];
+    const targets = [];
+    if (scope instanceof win.Element && scope.matches(TARGET_SELECTOR)) targets.push(scope);
+    scope.querySelectorAll?.(TARGET_SELECTOR).forEach((target) => targets.push(target));
+    return targets;
+  }
+
+  function cleanupDisconnectedTargets() {
+    for (const target of [...allTargets]) {
+      if (target.isConnected) continue;
+      clearSettleWork(target);
+      try {
+        observer?.unobserve(target);
+      } catch {
+        // Detached nodes cannot affect the visible final state.
+      }
+      armedTargets.delete(target);
+      allTargets.delete(target);
+    }
+  }
+
+  function armFreshTargets(node = doc) {
+    cleanupDisconnectedTargets();
+    const candidates = targetsIn(node).filter((target) => !allTargets.has(target));
+    candidates.forEach((target) => allTargets.add(target));
+    if (!candidates.length) return 0;
+
+    const metrics = viewportMetrics(doc, win);
+    const eligible = candidates.filter((target) => {
+      const role = normalizeRole(target);
+      const key = target.getAttribute("data-approach-key")?.trim();
+      if (key && settledTargetKeys.has(key)) return false;
+      if (!ALLOWED_ROLES.has(role) || settledTargets.has(target)) return false;
+      if (!isRendered(target, win) || isHiddenOrClosed(target) || isForbiddenTarget(target)) return false;
+      if (!validatePairedGroup(target)) return false;
+
+      const rect = target.getBoundingClientRect();
+      // Only wholly not-yet-visible content below the viewport may be armed.
+      return rect.top >= metrics.height && rect.top > metrics.effectiveBottom;
+    });
+
+    for (const target of candidates) {
+      if (!eligible.includes(target)) forceTargetFinal(target);
+    }
+
+    if (!eligible.length) return 0;
+    ensureObserver();
+    for (const target of eligible) {
+      const delay = targetDelay(target);
+      target.style.setProperty("--lds-reveal-delay", `${delay}ms`);
+      target.classList.remove(REVEALED, ARRIVING, SETTLED);
+      target.classList.add(ARMED);
+      armedTargets.add(target);
+      observer.observe(target);
+    }
+
+    installLifecycleGuards();
+    root.classList.add(ROOT_READY);
+    scheduleAudit();
+    return eligible.length;
+  }
+
   function prepare() {
     if (initialized || permanentlyFinal) return;
     initialized = true;
 
     try {
-      const candidates = [...doc.querySelectorAll(TARGET_SELECTOR)];
-      candidates.forEach((target) => allTargets.add(target));
-
       if (
         reducedMotion?.matches ||
         printMedia?.matches ||
@@ -515,53 +601,14 @@ export function initApproachMotion(options = {}) {
         forceNodeAndWrappersFinal(doc.activeElement);
       }
 
-      const metrics = viewportMetrics(doc, win);
-      const eligible = candidates.filter((target) => {
-        const role = normalizeRole(target);
-        if (!ALLOWED_ROLES.has(role)) return false;
-        if (settledTargets.has(target)) return false;
-        if (!isRendered(target, win) || isHiddenOrClosed(target) || isForbiddenTarget(target)) return false;
-        if (!configurePairedDirection(target)) return false;
-
-        const rect = target.getBoundingClientRect();
-        // Only wholly not-yet-visible content below the viewport may be armed.
-        return rect.top >= metrics.height && rect.top > metrics.effectiveBottom;
-      });
-
-      for (const target of candidates) {
-        if (!eligible.includes(target)) forceTargetFinal(target);
-      }
-
-      if (eligible.length === 0) {
+      const eligibleCount = armFreshTargets(doc);
+      if (eligibleCount === 0) {
         clearBootstrapWatchdog();
         win.clearTimeout(initializationTimer);
         root.classList.remove(ROOT_PENDING, ROOT_READY);
         return;
       }
-
-      observer = new win.IntersectionObserver((entries) => {
-        try {
-          for (const entry of entries) {
-            if (entry.rootBounds) observerEffectiveBottom = entry.rootBounds.bottom;
-            if (entry.isIntersecting === true) revealTarget(entry.target);
-          }
-        } catch {
-          failOpen("observer-callback-error");
-        }
-      }, OBSERVER_OPTIONS);
-
-      for (const target of eligible) {
-        const delay = targetDelay(target);
-        target.style.setProperty("--lds-reveal-delay", `${delay}ms`);
-        target.classList.remove(REVEALED, ARRIVING, SETTLED);
-        target.classList.add(ARMED);
-        armedTargets.add(target);
-        observer.observe(target);
-      }
-
-      installLifecycleGuards();
       root.classList.remove(ROOT_PENDING);
-      root.classList.add(ROOT_READY);
       clearBootstrapWatchdog();
       win.clearTimeout(initializationTimer);
       scheduleAudit();
@@ -571,6 +618,28 @@ export function initApproachMotion(options = {}) {
   }
 
   const controller = Object.freeze({
+    refresh(node = doc) {
+      try {
+        if (permanentlyFinal) {
+          forceSubtreeFinal(node);
+          return;
+        }
+        if (!initialized) prepare();
+        if (
+          reducedMotion?.matches ||
+          printMedia?.matches ||
+          typeof win.IntersectionObserver !== "function"
+        ) {
+          failOpen("unsupported-or-final-state");
+          return;
+        }
+        // Dynamic directory cards are inserted and refreshed in the same task,
+        // before their first paint. Existing content is never re-armed.
+        armFreshTargets(node);
+      } catch {
+        failOpen("refresh-api-error");
+      }
+    },
     land(node) {
       try {
         let resolved = node;

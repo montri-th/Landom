@@ -93,9 +93,49 @@ const MATERIAL_SYMBOLS_NAV = Object.freeze({
   approvalAuthority: 'Owner-approved Landom-local alignment',
   designSystemStatus: 'Candidate local extension; not a normative Design System release'
 });
+const MATERIAL_SYMBOLS_FOOTER = Object.freeze({
+  path: 'public/assets/fonts/material-symbols-rounded-footer-r10.ttf',
+  licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
+  bytes: 9464,
+  sha256: 'bbcc034717d243cd5a3653dd1169cec00e8f11f289c20ef949078db24dc680f5',
+  family: 'Material Symbols Rounded Footer',
+  subset: 'rebuild02-footer-r10',
+  axesLock: 'FILL 0, wght 300, GRAD 0, opsz 24',
+  glyphs: [
+    'arrow_downward',
+    'arrow_forward',
+    'close',
+    'compare_arrows',
+    'dark_mode',
+    'expand_more',
+    'graphic_eq',
+    'groups',
+    'handshake',
+    'light_mode',
+    'location_searching',
+    'mail',
+    'map',
+    'menu',
+    'monitoring',
+    'newspaper',
+    'place',
+    'query_stats',
+    'radar',
+    'send',
+    'share',
+    'square_foot',
+    'task_alt',
+    'visibility',
+    'widgets'
+  ],
+  source: 'Exact Apache-2.0-licensed font bytes used by the published rebuild02 ui-20260830-11 reference',
+  approvalAuthority: 'Owner instruction on 2026-08-31 to align the Landom footer map action with rebuild02',
+  designSystemStatus: 'Reference-aligned Landom-local addition; not a normative Design System release'
+});
 const MATERIAL_SYMBOL_FONTS = Object.freeze([
   MATERIAL_SYMBOLS_EXTERNAL,
-  MATERIAL_SYMBOLS_NAV
+  MATERIAL_SYMBOLS_NAV,
+  MATERIAL_SYMBOLS_FOOTER
 ]);
 
 function valueAt(record, candidates) {
@@ -713,6 +753,7 @@ async function validateUi(publishRoot, errors) {
 
   const mediaParallaxSource = await readIfPresent(path.join(publishRoot, 'src', 'media-parallax.js')) ?? '';
   const staticParallaxMarkers = index.match(/\bdata-parallax-media\b/g) ?? [];
+  const staticParallaxDepths = [...index.matchAll(/\bdata-parallax-depth="(\d+)"/g)].map((match) => Number(match[1]));
   const avatarRenderer = sourceText.match(/function avatarMarkup\b[\s\S]*?(?=function hydrateImages\b)/)?.[0] ?? '';
   const certificateRenderer = sourceText.match(/function certificatesMarkup\b[\s\S]*?(?=function personDetailMarkup\b)/)?.[0] ?? '';
   if (
@@ -720,7 +761,8 @@ async function validateUi(publishRoot, errors) {
     !/mediaParallaxController\s*=\s*initMediaParallax\(\)/.test(sourceText) ||
     !/mediaParallaxController\?\.refresh\(elements\.board\)/.test(sourceText) ||
     staticParallaxMarkers.length !== 4 ||
-    !/class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="9"/.test(avatarRenderer) ||
+    JSON.stringify(staticParallaxDepths) !== JSON.stringify([32, 20, 18, 22]) ||
+    !/class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="14"/.test(avatarRenderer) ||
     /data-parallax-media/.test(certificateRenderer) ||
     /<img[^>]*(?:landometer-horizontal|landometer-symbol)[^>]*data-parallax-media/i.test(index)
   ) {
@@ -728,7 +770,9 @@ async function validateUi(publishRoot, errors) {
   }
   for (const token of [
     'const MEDIA_SELECTOR = "img[data-parallax-media]"',
-    'const MAX_DEPTH = 24',
+    'const MAX_DEPTH = 36',
+    'maxOffset: parallaxBleedLimit(frameRect.height, scale)',
+    'image.parentElement?.getBoundingClientRect?.()',
     'new win.IntersectionObserver',
     'win.requestAnimationFrame',
     'win.cancelAnimationFrame',
@@ -758,7 +802,7 @@ async function validateUi(publishRoot, errors) {
     'https://x.com/landometer'
   ];
   if (
-    !/class="site-footer"[^>]*data-approach-sequence/.test(footerMarkup) ||
+    !/class="footer-main"[^>]*data-approach-sequence/.test(footerMarkup) ||
     !/class="footer-measure-line"[\s\S]*?<span><\/span><span><\/span><span><\/span><span><\/span>/.test(footerMarkup) ||
     /<form\b|id="footer-title">\s*Hello\b/i.test(footerMarkup) ||
     !/href="mailto:hello@landometer\.com">hello@landometer\.com<\/a>/.test(footerMarkup) ||
@@ -778,6 +822,14 @@ async function validateUi(publishRoot, errors) {
     !/\.footer-social-links a\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;[^}]*border-radius:\s*50%;/s.test(sourceText)
   ) {
     errors.push('The footer must preserve the rebuild02 measure strip, luminous gradient, circular social actions, and dark lower band.');
+  }
+  if (
+    !index.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_FOOTER.path}" as="font" type="font/ttf" crossorigin>`) ||
+    !/@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Footer";[^}]*material-symbols-rounded-footer-r10\.ttf[^}]*font-weight:\s*300;/s.test(sourceText) ||
+    !/class="icon-symbol footer-map-icon"[^>]*>map<\/span>/.test(footerMarkup) ||
+    !/\.footer-map-icon\s*\{[^}]*font-family:\s*"Material Symbols Rounded Footer";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/s.test(sourceText)
+  ) {
+    errors.push('The footer map action must preload and use the exact governed rebuild02 r10 Material Symbols font face.');
   }
   for (const localizedToken of [
     'footerTitle: "มาเป็นชาว Landom กัน"',
@@ -811,8 +863,9 @@ async function validateUi(publishRoot, errors) {
     'threshold: 0.14',
     'rootMargin: "0px 0px -12% 0px"',
     'const INIT_WATCHDOG_MS = 2400',
-    'const STAGGER_STEP_MS = 150',
-    'const STAGGER_CAP_MS = 450',
+    'const STAGGER_STEP_MS = 120',
+    'const STAGGER_CAP_MS = 600',
+    'const TRANSFORM_SETTLE_MS = 640',
     'function failOpen',
     'function onFocusIn',
     'function onHashChange',
@@ -835,17 +888,16 @@ async function validateUi(publishRoot, errors) {
       !/__LANDOM_MOTION_WATCHDOG__[\s\S]*?setTimeout[\s\S]*?2400/.test(index) ||
       !/function clearBootstrapWatchdog\(\)/.test(approachMotionSource) ||
       !/--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/.test(sourceText) ||
-      !/--motion-duration-reveal-opacity:\s*760ms/.test(sourceText) ||
-      !/--motion-duration-reveal-transform:\s*920ms/.test(sourceText) ||
+      !/--motion-duration-reveal-opacity:\s*640ms/.test(sourceText) ||
+      !/--motion-duration-reveal-transform:\s*640ms/.test(sourceText) ||
       !/--motion-duration-media-arrival:\s*900ms/.test(sourceText) ||
-      !/--motion-delay-stagger:\s*150ms/.test(sourceText) ||
-      !/--motion-delay-stagger-cap:\s*450ms/.test(sourceText) ||
-      !/--motion-distance-reveal:\s*32px/.test(sourceText) ||
-      !/--motion-distance-reveal-pair:\s*36px/.test(sourceText) ||
-      !/--motion-scale-reveal:\s*0\.985/.test(sourceText) ||
-      !/--motion-duration-reveal:\s*var\(--motion-duration-reveal-transform\)/.test(sourceText) ||
+      !/--motion-delay-stagger:\s*120ms/.test(sourceText) ||
+      !/--motion-delay-stagger-cap:\s*600ms/.test(sourceText) ||
+      !/--motion-distance-reveal:\s*20px/.test(sourceText) ||
+      !/--motion-duration-reveal:\s*640ms/.test(sourceText) ||
       !/\.site-footer\s*\{[^}]*overflow-x:\s*clip;/s.test(sourceText) ||
-      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal-opacity\)[\s\S]*?transform var\(--motion-duration-reveal-transform\)/s.test(sourceText) ||
+      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal\) var\(--motion-ease-enter\)[\s\S]*?transform var\(--motion-duration-reveal\) var\(--motion-ease-enter\)/s.test(sourceText) ||
+      !/\.is-lds-reveal-armed\s*\{[^}]*transform:\s*translate3d\(0,\s*var\(--motion-distance-reveal\),\s*0\);/s.test(sourceText) ||
       !/\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s.test(sourceText)) {
     errors.push('Approach-motion CSS must hide only explicitly armed targets after readiness and retain stagger delay support.');
   }
@@ -1257,6 +1309,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
         fontRecord?.license !== 'Apache License 2.0' ||
         fontRecord?.licenseFile !== path.relative('public/assets/fonts', font.licensePath) ||
         (font.glyphs && JSON.stringify(fontRecord?.glyphs) !== JSON.stringify(font.glyphs)) ||
+        (font.source && fontRecord?.source !== font.source) ||
         (font.approvalAuthority && fontRecord?.approvalAuthority !== font.approvalAuthority) ||
         (font.designSystemStatus && fontRecord?.designSystemStatus !== font.designSystemStatus)
       ) {
@@ -1363,6 +1416,9 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     }
     if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_NAV.path}" as="font" type="font/woff2" crossorigin>`)) {
       errors.push(`${fileLabel} must preload the self-hosted unified-navigation Material Symbols subset.`);
+    }
+    if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_FOOTER.path}" as="font" type="font/ttf" crossorigin>`)) {
+      errors.push(`${fileLabel} must preload the exact governed rebuild02 r10 footer Material Symbols subset.`);
     }
     if ((html.match(/<meta property="og:image"\s/g) ?? []).length !== 1 || (html.match(/<meta name="twitter:image"\s/g) ?? []).length !== 1) {
       errors.push(`${fileLabel} must expose exactly one approved Open Graph image and one approved Twitter image.`);

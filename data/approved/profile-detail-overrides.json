@@ -48,6 +48,24 @@
       "firstJoined": "2026-01-05",
       "verificationStatus": "owner_confirmed_exact_first_joined",
       "evidenceNote": "Owner confirmed on 2026-08-31 that France's internship began on 5 January 2026; this replaces the 12 January availability date that was not an actual start date."
+    },
+    {
+      "personId": "I0004",
+      "firstJoined": "2025-08",
+      "verificationStatus": "owner_confirmed_month_precision_first_joined",
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Ming's internship began in August 2025; no exact day was supplied, so month precision is preserved."
+    },
+    {
+      "personId": "I0040",
+      "firstJoined": "2026-05-19",
+      "verificationStatus": "owner_confirmed_exact_first_joined",
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Dan started with the same exact period as Nicha, beginning 19 May 2026."
+    },
+    {
+      "personId": "I0041",
+      "firstJoined": "2026-05-19",
+      "verificationStatus": "owner_confirmed_exact_first_joined",
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Mook (Pattareeya) started with the same exact period as Nicha, beginning 19 May 2026."
     }
   ],
   "addedInstitutions": [
@@ -576,6 +594,16 @@
     "Partnership Maker Intern": { "th": "Partnership Maker Intern", "en": "Partnership Maker Intern" }
   },
   "existingEngagementOverrides": [
+    {
+      "engagementId": "E0008",
+      "sequenceHint": 1,
+      "start": "2025-08",
+      "end": "2026-03",
+      "status": "completed",
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_month_period",
+      "evidenceNote": "Owner confirmed Ming's internship ran from August 2025 through March 2026; exact days were not supplied, so month precision is preserved."
+    },
     { "engagementId": "E0006", "sequenceHint": 1 },
     { "engagementId": "E0007", "sequenceHint": 1 },
     { "engagementId": "E0018", "sequenceHint": 1 },
@@ -654,6 +682,26 @@
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_last_day",
       "evidenceNote": "Owner supplied Draft's last day as yesterday on 2026-08-26."
+    },
+    {
+      "engagementId": "E0050",
+      "sequenceHint": 1,
+      "start": "2026-05-19",
+      "end": "2026-07-31",
+      "status": "completed",
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Dan's internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+    },
+    {
+      "engagementId": "E0051",
+      "sequenceHint": 1,
+      "start": "2026-05-19",
+      "end": "2026-07-31",
+      "status": "completed",
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Mook (Pattareeya)'s internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
     }
   ],
   "addedEngagements": [

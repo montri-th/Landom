@@ -505,10 +505,20 @@ for (const override of profileDetailOverrides.existingPersonTimelineOverrides ??
   personTimelineOverrideIds.add(override.personId);
   const person = peopleById.get(override.personId);
   if (!person) throw new Error('Existing-person timeline override references an unknown person: ' + override.personId);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(override.firstJoined ?? '') || parseDate(override.firstJoined) !== override.firstJoined) {
-    throw new Error('Existing-person timeline override has an invalid exact firstJoined date: ' + override.personId);
+  const firstJoinedPrecision = /^\d{4}-\d{2}-\d{2}$/.test(override.firstJoined ?? '')
+    ? 'exact'
+    : /^\d{4}-\d{2}$/.test(override.firstJoined ?? '')
+      ? 'month'
+      : null;
+  const expectedVerificationStatus = firstJoinedPrecision === 'exact'
+    ? 'owner_confirmed_exact_first_joined'
+    : firstJoinedPrecision === 'month'
+      ? 'owner_confirmed_month_precision_first_joined'
+      : null;
+  if (!firstJoinedPrecision || parseDate(override.firstJoined) !== override.firstJoined) {
+    throw new Error('Existing-person timeline override has an invalid firstJoined date: ' + override.personId);
   }
-  if (override.verificationStatus !== 'owner_confirmed_exact_first_joined' || !clean(override.evidenceNote)) {
+  if (override.verificationStatus !== expectedVerificationStatus || !clean(override.evidenceNote)) {
     throw new Error('Existing-person timeline override has incomplete owner evidence: ' + override.personId);
   }
   person.firstJoined = override.firstJoined;
@@ -818,6 +828,11 @@ engagements.push({
 for (const override of profileDetailOverrides.existingEngagementOverrides ?? []) {
   const engagement = engagements.find((item) => item.engagementId === override.engagementId);
   if (!engagement) throw new Error('Engagement override references an unknown engagement: ' + override.engagementId);
+  for (const field of ['start', 'end']) {
+    if (Object.hasOwn(override, field) && override[field] !== null && parseDate(override[field]) !== override[field]) {
+      throw new Error('Engagement override has an invalid ' + field + ' date: ' + override.engagementId);
+    }
+  }
   engagement.sequenceHint = override.sequenceHint;
   if (Object.hasOwn(override, 'start')) engagement.start = override.start;
   if (Object.hasOwn(override, 'end')) engagement.end = override.end;

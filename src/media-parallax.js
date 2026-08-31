@@ -10,7 +10,7 @@
 const MEDIA_SELECTOR = "img[data-parallax-media]";
 const ROOT_CLASS = "media-parallax-enabled";
 const ACTIVE_CLASS = "is-media-parallax-active";
-const MAX_DEPTH = 24;
+const MAX_DEPTH = 36;
 const CONTROLLER_KEY = Symbol.for("landometer.mediaParallax.controller");
 
 /**
@@ -36,14 +36,18 @@ export function clamp(value, minimum, maximum) {
 /**
  * Calculate a bounded vertical parallax offset from viewport geometry.
  *
- * @param {{ elementTop?: number, elementHeight?: number, viewportHeight?: number, depth?: number }} [metrics]
+ * @param {{ elementTop?: number, elementHeight?: number, viewportHeight?: number, depth?: number, maxOffset?: number }} [metrics]
  * @returns {number}
  */
 export function parallaxOffset(metrics = {}) {
   const elementTop = Number(metrics.elementTop);
   const elementHeight = Number(metrics.elementHeight);
   const viewportHeight = Number(metrics.viewportHeight);
-  const depth = clamp(metrics.depth, 0, MAX_DEPTH);
+  const requestedDepth = clamp(metrics.depth, 0, MAX_DEPTH);
+  const suppliedLimit = Number(metrics.maxOffset);
+  const depth = Number.isFinite(suppliedLimit)
+    ? Math.min(requestedDepth, Math.max(0, suppliedLimit))
+    : requestedDepth;
 
   if (
     !Number.isFinite(elementTop) ||
@@ -62,6 +66,21 @@ export function parallaxOffset(metrics = {}) {
   const normalizedPosition = clamp((elementCenter - viewportCenter) / travelRadius, -1, 1);
   const offset = -normalizedPosition * depth;
   return Math.abs(offset) < 0.005 ? 0 : offset;
+}
+
+/**
+ * Return the safe translation range provided by a centered scale transform.
+ * A one-pixel inset keeps subpixel sampling from exposing the clipping frame.
+ *
+ * @param {number} frameHeight
+ * @param {number} scale
+ * @returns {number}
+ */
+export function parallaxBleedLimit(frameHeight, scale) {
+  const height = Number(frameHeight);
+  const scaleValue = Number(scale);
+  if (!Number.isFinite(height) || !Number.isFinite(scaleValue) || height <= 0 || scaleValue <= 1) return 0;
+  return Math.max(0, (height * (scaleValue - 1)) / 2 - 1);
 }
 
 function staticController() {
@@ -168,15 +187,19 @@ export function initMediaParallax(options = {}) {
         continue;
       }
 
-      const rect = image.getBoundingClientRect();
+      const frameRect = image.parentElement?.getBoundingClientRect?.() ?? image.getBoundingClientRect();
       const depth = clamp(image.dataset.parallaxDepth, 0, MAX_DEPTH);
+      const scale = Number.parseFloat(
+        win.getComputedStyle(image).getPropertyValue("--media-parallax-scale")
+      ) || 1.06;
       updates.push({
         image,
         offset: parallaxOffset({
-          elementTop: rect.top,
-          elementHeight: rect.height,
+          elementTop: frameRect.top,
+          elementHeight: frameRect.height,
           viewportHeight,
-          depth
+          depth,
+          maxOffset: parallaxBleedLimit(frameRect.height, scale)
         })
       });
     }

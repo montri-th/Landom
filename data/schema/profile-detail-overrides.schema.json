@@ -106,8 +106,10 @@
       "required": ["personId", "firstJoined", "verificationStatus", "evidenceNote"],
       "properties": {
         "personId": { "$ref": "#/$defs/personId" },
-        "firstJoined": { "type": "string", "format": "date" },
-        "verificationStatus": { "const": "owner_confirmed_exact_first_joined" },
+        "firstJoined": { "$ref": "#/$defs/nullableDate" },
+        "verificationStatus": {
+          "enum": ["owner_confirmed_exact_first_joined", "owner_confirmed_month_precision_first_joined"]
+        },
         "evidenceNote": { "type": "string", "minLength": 1 }
       }
     },
@@ -266,8 +268,8 @@
       "properties": {
         "engagementId": { "type": "string", "pattern": "^E\\d{4}$" },
         "sequenceHint": { "type": "integer", "minimum": 1 },
-        "start": { "type": ["string", "null"], "format": "date" },
-        "end": { "type": ["string", "null"], "format": "date" },
+        "start": { "$ref": "#/$defs/nullableDate" },
+        "end": { "$ref": "#/$defs/nullableDate" },
         "status": { "enum": ["ongoing", "completed"] },
         "evidenceStatus": { "type": "string", "minLength": 1 },
         "verificationStatus": { "type": "string", "minLength": 1 },

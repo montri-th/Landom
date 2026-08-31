@@ -21,15 +21,15 @@ Status: **RELEASE CANDIDATE — local source/build gates and bounded desktop/mob
 - The calm state implements the r7 76→29 px desktop and 68→27 px mobile heights, 200% row width with `scale(.5)` at 72% opacity, and 26% canvas/20% hairline glass. It restores prominence at the top, on upward scroll, pointer/focus intent, menu-open state, and reduced motion.
 - The desktop and mobile join-team actions carry the owner-approved r7 exception: an `aria-hidden`, pointer-inert yellow text overlay with `lmSweep 3.7s` and `lmFlick 1.09s`, including full-word beats at 23–27%, 53–55%, and 84–89%. Reduced motion removes the loop and shows the final operable CTA immediately.
 - The menu is a modal dialog with focus containment, Escape close, scrim close, and trigger-focus return.
-- `src/approach-motion.js` applies once-only motion only to explicit eligible units, excludes navigation/Hero/LCP/controls/live content, and fails open to visible final content.
-- `src/media-parallax.js` adds bounded, component-local parallax only to explicitly marked Hero photographs and governed person portraits. It uses `IntersectionObserver`, a passive scroll listener, and one `requestAnimationFrame` update; reduced motion, print, save-data, and unsupported paths remain static. Logos, icons, the Hero motif, and certificate/evidence images are excluded.
+- `src/approach-motion.js` applies the 640 ms / 20 px Riddim Rise with a 120 ms stagger capped at 600 ms to explicit eligible units, including directory cards inserted after data load. It excludes navigation/Hero/LCP/controls/live content, runs once per stable target key, and fails open to visible final content.
+- `src/media-parallax.js` adds bounded, component-local parallax up to 36 px only to explicitly marked Hero photographs and governed person portraits. Each translation is also capped to the scale-generated image bleed inside its clipping frame, with a one-pixel safety inset. It uses `IntersectionObserver`, a passive scroll listener, and one `requestAnimationFrame` update; reduced motion, print, save-data, and unsupported paths remain static. Logos, icons, the Hero motif, and certificate/evidence images are excluded.
 - The active filled `groups` rail font is no longer used or preloaded. The outline navigation-symbol subset remains the only navigation icon font used by the page.
-- The footer follows the `rebuild02` visual family without the Hello form and exposes all five verified corporate profiles: Facebook, Instagram, TikTok, LinkedIn, and X. Person-level social controls remain restricted to approved LinkedIn and GitHub records.
+- The footer follows the `rebuild02` visual family without the Hello form. Its office-map action uses the same 44 px capsule structure and exact governed Material `map` font bytes, and it exposes all five verified corporate profiles: Facebook, Instagram, TikTok, LinkedIn, and X. Person-level social controls remain restricted to approved LinkedIn and GitHub records.
 - Governed image bytes and the existing Hero composition remain unchanged; parallax changes only presentation transforms on eligible photographs.
 
 ## Automated release coverage
 
-The 2026-08-30 baseline passed source, build, and rendered validation. The current 2026-08-31 delta passed a fresh full build, source/dist validation, all 73 automated tests, and `git diff --check`. The repository validator/tests and Pages workflow enforce:
+The 2026-08-30 baseline passed source, build, and rendered validation. The current 2026-08-31 delta passed a fresh full build, source/dist validation, all 75 automated tests, and `git diff --check`. The repository validator/tests and Pages workflow enforce:
 
 - Thai and English initial-HTML parity, canonical routes, and real sibling-language links;
 - required menu, CTA, and menu-owned `#people` marker, with no fixed bookmark rail and no dead `#certificates` navigation link;

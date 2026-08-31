@@ -415,6 +415,24 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   assert.match(fontManifest.authorityScope, /do(?:es)? not publish or upgrade a normative Design System release/i);
 });
 
+test('the office map action matches the published rebuild02 capsule and icon contract', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const font = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-footer-r10.ttf', import.meta.url));
+  const fontManifest = JSON.parse(await readFile(new URL('../public/assets/fonts/font-assets.manifest.json', import.meta.url), 'utf8'));
+  const fontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-footer-r10.ttf');
+
+  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-footer-r10\.ttf" as="font" type="font\/ttf" crossorigin/);
+  assert.match(index, /class="footer-map-link"[^>]*maps\.app\.goo\.gl\/8DQPVMtPdxWMBoZU9[^>]*>[\s\S]*?class="icon-symbol footer-map-icon"[^>]*>map<[\s\S]*?id="footer-map-label"[\s\S]*?class="text-link__cue"[^>]*>↗</s);
+  assert.match(styles, /\.footer-map-link\s*\{(?=[^}]*min-height:\s*44px;)(?=[^}]*padding-inline:\s*var\(--space-3\);)(?=[^}]*border:\s*1px solid)(?=[^}]*border-radius:\s*var\(--radius-pill\);)(?=[^}]*text-decoration:\s*none;)[^}]*\}/s);
+  assert.match(styles, /\.footer-map-icon\s*\{[^}]*font-family:\s*"Material Symbols Rounded Footer";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/s);
+  assert.equal(font.byteLength, 9464);
+  assert.equal(createHash('sha256').update(font).digest('hex'), 'bbcc034717d243cd5a3653dd1169cec00e8f11f289c20ef949078db24dc680f5');
+  assert.equal(fontRecord?.subset, 'rebuild02-footer-r10');
+  assert.ok(fontRecord?.glyphs.includes('map'));
+  assert.equal(fontRecord?.license, 'Apache License 2.0');
+});
+
 test('Pages attestation binds cache-busted live bytes to this workflow build manifest', async () => {
   const workflow = await readFile(new URL('../.github/workflows/pages.yml', import.meta.url), 'utf8');
   assert.match(workflow, /outputs:\s*\n\s+manifest_sha256: \$\{\{ steps\.build_manifest\.outputs\.sha256 \}\}/);
@@ -439,8 +457,8 @@ test('photo parallax is explicit, bounded, passive, lifecycle-safe, and excluded
   const certificateRenderer = app.match(/function certificatesMarkup\b[\s\S]*?(?=function personDetailMarkup\b)/)?.[0] ?? '';
 
   assert.equal(staticImages.length, 4);
-  assert.deepEqual(staticImages.map((markup) => markup.match(/data-parallax-depth="(\d+)"/)?.[1]), ['18', '6', '5', '7']);
-  assert.match(avatarRenderer, /class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="9"/);
+  assert.deepEqual(staticImages.map((markup) => markup.match(/data-parallax-depth="(\d+)"/)?.[1]), ['32', '20', '18', '22']);
+  assert.match(avatarRenderer, /class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="14"/);
   assert.doesNotMatch(certificateRenderer, /data-parallax-media/);
   assert.doesNotMatch(index, /<img[^>]*(?:landometer-horizontal|landometer-symbol)[^>]*data-parallax-media/i);
 
@@ -449,7 +467,9 @@ test('photo parallax is explicit, bounded, passive, lifecycle-safe, and excluded
   assert.match(app, /mediaParallaxController\?\.refresh\(elements\.board\)/);
   for (const token of [
     'const MEDIA_SELECTOR = "img[data-parallax-media]"',
-    'const MAX_DEPTH = 24',
+    'const MAX_DEPTH = 36',
+    'maxOffset: parallaxBleedLimit(frameRect.height, scale)',
+    'image.parentElement?.getBoundingClientRect?.()',
     'new win.IntersectionObserver',
     'win.requestAnimationFrame',
     'win.cancelAnimationFrame',
@@ -462,7 +482,8 @@ test('photo parallax is explicit, bounded, passive, lifecycle-safe, and excluded
   ]) {
     assert.ok(parallax.includes(token), `Missing media-parallax contract: ${token}`);
   }
-  assert.match(parallax, /const depth = clamp\(metrics\.depth, 0, MAX_DEPTH\)/);
+  assert.match(parallax, /const requestedDepth = clamp\(metrics\.depth, 0, MAX_DEPTH\)/);
+  assert.match(parallax, /Math\.min\(requestedDepth, Math\.max\(0, suppliedLimit\)\)/);
   assert.match(styles, /html\.media-parallax-enabled img\[data-parallax-media\]\.is-media-parallax-active\s*\{[^}]*will-change:\s*transform;/s);
   assert.match(styles, /@media print[\s\S]*?img\[data-parallax-media\]\s*\{[^}]*transform:\s*none !important;[^}]*will-change:\s*auto !important;/s);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?img\[data-parallax-media\]\s*\{[^}]*transform:\s*none !important;[^}]*will-change:\s*auto !important;/s);
@@ -477,16 +498,28 @@ test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle
   assert.match(index, /"IntersectionObserver" in window[\s\S]*?prefers-reduced-motion: reduce[\s\S]*?matchMedia\("print"\)[\s\S]*?root\.classList\.add\("lds-motion-pending"\)/);
   assert.match(index, /data-approach="section_opener"/);
   assert.equal((index.match(/data-approach="paired_inline"/g) ?? []).length, 2);
-  assert.match(index, /data-approach-sequence/);
+  assert.match(index, /class="footer-main"[^>]*data-approach-sequence/);
+  assert.match(index, /class="masonry-board"[^>]*data-approach-sequence/);
   assert.match(app, /import \{ initApproachMotion \} from "\.\/approach-motion\.js";/);
   assert.match(app, /initApproachMotion\(\);/);
+  assert.match(app, /shell\.dataset\.approach\s*=\s*"peer_group"/);
+  assert.match(app, /shell\.dataset\.approachKey\s*=\s*`person-\$\{model\.id\}`/);
+  assert.match(app, /approachMotionController\?\.refresh\(elements\.board\)/);
+  assert.match(app.match(/function renderDirectory\(\)[\s\S]*?(?=\nfunction formatNumber)/)?.[0] ?? '', /layoutMasonry[\s\S]*?approachMotionController\?\.refresh\(elements\.board\)/);
+  assert.match(app.match(/function initialize\(\)[\s\S]*?(?=\ninitialize\(\))/)?.[0] ?? '', /approachMotionController = initApproachMotion\(\)[\s\S]*?loadData\(\)/);
+  const openPersonSource = app.match(/function openPerson\b[\s\S]*?(?=\nfunction closePerson)/)?.[0] ?? '';
+  const closePersonSource = app.match(/function closePerson\b[\s\S]*?(?=\nfunction renderCertificateDialog)/)?.[0] ?? '';
+  assert.match(openPersonSource, /if \(animate\) approachMotionController\?\.landSubtree\(elements\.board\);[\s\S]*?else approachMotionController\?\.land\(shell\);[\s\S]*?cardPositionSnapshot\(\)/);
+  assert.match(closePersonSource, /if \(animate\) approachMotionController\?\.landSubtree\(elements\.board\);[\s\S]*?else approachMotionController\?\.land\(shell\);[\s\S]*?cardPositionSnapshot\(\)/);
 
   for (const contract of [
     'threshold: 0.14',
     'rootMargin: "0px 0px -12% 0px"',
     'const INIT_WATCHDOG_MS = 2400',
-    'const STAGGER_STEP_MS = 150',
-    'const STAGGER_CAP_MS = 450',
+    'const STAGGER_STEP_MS = 120',
+    'const STAGGER_CAP_MS = 600',
+    'const TRANSFORM_SETTLE_MS = 640',
+    'function armFreshTargets',
     'function failOpen',
     'function onFocusIn',
     'function onHashChange',
@@ -507,20 +540,17 @@ test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle
   assert.match(index, /__LANDOM_MOTION_WATCHDOG__[\s\S]*?setTimeout[\s\S]*?2400/);
   assert.match(motion, /function clearBootstrapWatchdog\(\)/);
   assert.match(styles, /--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/);
-  assert.match(styles, /--motion-duration-reveal-opacity:\s*760ms/);
-  assert.match(styles, /--motion-duration-reveal-transform:\s*920ms/);
+  assert.match(styles, /--motion-duration-reveal-opacity:\s*640ms/);
+  assert.match(styles, /--motion-duration-reveal-transform:\s*640ms/);
   assert.match(styles, /--motion-duration-media-arrival:\s*900ms/);
-  assert.match(styles, /--motion-delay-stagger:\s*150ms/);
-  assert.match(styles, /--motion-delay-stagger-cap:\s*450ms/);
-  assert.match(styles, /--motion-distance-reveal:\s*32px/);
-  assert.match(styles, /--motion-distance-reveal-pair:\s*36px/);
-  assert.match(styles, /--motion-scale-reveal:\s*0\.985/);
-  assert.match(styles, /--motion-duration-reveal:\s*var\(--motion-duration-reveal-transform\)/);
-  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal-opacity\)[\s\S]*?transform var\(--motion-duration-reveal-transform\)/s);
+  assert.match(styles, /--motion-delay-stagger:\s*120ms/);
+  assert.match(styles, /--motion-delay-stagger-cap:\s*600ms/);
+  assert.match(styles, /--motion-distance-reveal:\s*20px/);
+  assert.match(styles, /--motion-duration-reveal:\s*640ms/);
+  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal\)[\s\S]*?transform var\(--motion-duration-reveal\)/s);
   assert.match(styles, /\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s);
-  assert.match(styles, /translate3d\(0, var\(--motion-distance-reveal\), 0\) scale\(var\(--motion-scale-reveal\)\)/);
-  assert.match(styles, /data-approach-from="inline-start"[\s\S]*?calc\(-1 \* var\(--motion-distance-reveal-pair\)\)/);
-  assert.match(styles, /data-approach-from="inline-end"[\s\S]*?translate3d\(var\(--motion-distance-reveal-pair\), 0, 0\)/);
+  assert.match(styles, /translate3d\(0, var\(--motion-distance-reveal\), 0\)/);
+  assert.doesNotMatch(styles, /motion-distance-reveal-pair|data-approach-from=/);
   assert.match(styles, /\.site-footer\s*\{[^}]*overflow-x:\s*clip;/s);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*none !important;/s);
 });

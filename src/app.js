@@ -395,6 +395,7 @@ const systemThemeQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
 const desktopFilterQuery = window.matchMedia?.("(min-width: 760px)");
 const reducedMotionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
 const reflowAnimations = new WeakMap();
+let approachMotionController = null;
 let mediaParallaxController = null;
 
 function message(key, values = {}) {
@@ -1369,7 +1370,7 @@ function escapeHtml(value) {
 function avatarMarkup(model, className = "card-avatar") {
   const image = model.image;
   const imageMarkup = image
-    ? `<img class="avatar-image" src="${escapeHtml(image.url)}" alt="${escapeHtml(image.alt || model.officialName)}" loading="lazy" decoding="async" data-parallax-media data-parallax-depth="9">`
+    ? `<img class="avatar-image" src="${escapeHtml(image.url)}" alt="${escapeHtml(image.alt || model.officialName)}" loading="lazy" decoding="async" data-parallax-media data-parallax-depth="14">`
     : "";
   return `
     <div class="${className}" data-avatar>
@@ -1593,6 +1594,8 @@ function renderCard(model) {
   const shell = document.createElement("article");
   shell.className = "person-card-shell";
   shell.dataset.personId = model.id;
+  shell.dataset.approach = "peer_group";
+  shell.dataset.approachKey = `person-${model.id}`;
 
   const button = document.createElement("button");
   button.className = "person-card";
@@ -1665,6 +1668,7 @@ function renderDirectory() {
   elements.empty.hidden = models.length !== 0;
   elements.board.hidden = models.length === 0;
   if (models.length) layoutMasonry({ resetAssignments: true });
+  approachMotionController?.refresh(elements.board);
   setText(elements.peopleTotal, formatNumber(state.models.length));
   setText(elements.resultsCount, message("results", { shown: formatNumber(models.length), total: formatNumber(state.models.length) }));
   updateFilterCount();
@@ -2042,6 +2046,7 @@ function layoutMasonry() {
     }
     const top = columnHeights[column];
     shell.dataset.masonryColumn = String(column);
+    shell.dataset.approachStep = String(column);
     shell.style.left = `${column * (columnWidth + gap)}px`;
     shell.style.top = `${top}px`;
     columnHeights[column] = top + shell.offsetHeight + gap;
@@ -2161,6 +2166,11 @@ function openPerson(id, trigger = null, { fromUrl = false, animate = true, scrol
   const detail = shell?.querySelector(":scope > .person-inline-detail");
   if (!shell || !renderPersonDetail(id, detail)) return false;
   if (elements.filterDialog.open && !desktopFilterQuery?.matches) elements.filterDialog.close();
+  // Direct profile routes must be visible before expansion and scrolling.
+  // User-driven FLIP reflow owns card transforms, so settle every possible
+  // mover before taking the position snapshot.
+  if (animate) approachMotionController?.landSubtree(elements.board);
+  else approachMotionController?.land(shell);
   const before = animate ? cardPositionSnapshot() : null;
   if (state.currentPersonId && state.currentPersonId !== id) setCardExpanded(cardShellFor(state.currentPersonId), false);
   setCardExpanded(shell, true);
@@ -2185,6 +2195,8 @@ function closePerson({ updateQuery = true, trigger = null, animate = true } = {}
     if (updateQuery) updateUrl({ person: null });
     return;
   }
+  if (animate) approachMotionController?.landSubtree(elements.board);
+  else approachMotionController?.land(shell);
   const before = animate ? cardPositionSnapshot() : null;
   const originId = state.currentPersonId;
   setCardExpanded(shell, false);
@@ -2369,7 +2381,7 @@ function initialize() {
   applyLanguage();
   applyTheme();
   initSiteNavigation();
-  initApproachMotion();
+  approachMotionController = initApproachMotion();
   mediaParallaxController = initMediaParallax();
   syncFilterDialogMode();
   updateFilterCount();

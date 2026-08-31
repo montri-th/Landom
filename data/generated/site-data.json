@@ -2158,7 +2158,7 @@
         }
       },
       "currentStatus": "alumni",
-      "firstJoined": "2025-05-02",
+      "firstJoined": "2025-08",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -4637,7 +4637,7 @@
         }
       },
       "currentStatus": "alumni",
-      "firstJoined": "2026-05-20",
+      "firstJoined": "2026-05-19",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -4704,7 +4704,7 @@
         }
       },
       "currentStatus": "alumni",
-      "firstJoined": "2026-05-25",
+      "firstJoined": "2026-05-19",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -5449,13 +5449,14 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": "2025-05-02",
-      "end": null,
+      "start": "2025-08",
+      "end": "2026-03",
       "status": "completed",
       "responsibilityWorkIds": [],
-      "evidenceStatus": "sheet_recorded",
-      "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_month_period",
+      "sequenceHint": 1,
+      "evidenceNote": "Owner confirmed Ming's internship ran from August 2025 through March 2026; exact days were not supplied, so month precision is preserved."
     },
     {
       "engagementId": "E0009",
@@ -6542,13 +6543,14 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": null,
-      "end": null,
+      "start": "2026-05-19",
+      "end": "2026-07-31",
       "status": "completed",
       "responsibilityWorkIds": [],
-      "evidenceStatus": "sheet_recorded",
-      "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "sequenceHint": 1,
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Dan's internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
     },
     {
       "engagementId": "E0051",
@@ -6567,13 +6569,14 @@
         "th": "Product Developer Intern",
         "en": "Product Developer Intern"
       },
-      "start": null,
-      "end": null,
+      "start": "2026-05-19",
+      "end": "2026-07-31",
       "status": "completed",
       "responsibilityWorkIds": [],
-      "evidenceStatus": "sheet_recorded",
-      "verificationStatus": "owner_review_required",
-      "sequenceHint": null
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "sequenceHint": 1,
+      "evidenceNote": "Owner confirmed on 2026-08-31 that Mook (Pattareeya)'s internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
     },
     {
       "engagementId": "E0052",

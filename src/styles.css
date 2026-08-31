@@ -96,6 +96,14 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: "Material Symbols Rounded Footer";
+  src: url("../public/assets/fonts/material-symbols-rounded-footer-r10.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+}
+
 @layer tokens, reset, base, components, utilities, responsive;
 
 @layer tokens {
@@ -201,15 +209,13 @@
     --elevation-lg: 0 24px 64px rgba(30, 34, 48, 0.18);
     --motion-duration-feedback: 120ms;
     --motion-duration-state: 200ms;
-    --motion-duration-reveal-opacity: 760ms;
-    --motion-duration-reveal-transform: 920ms;
+    --motion-duration-reveal-opacity: 640ms;
+    --motion-duration-reveal-transform: 640ms;
     --motion-duration-media-arrival: 900ms;
-    --motion-delay-stagger: 150ms;
-    --motion-delay-stagger-cap: 450ms;
-    --motion-distance-reveal: 32px;
-    --motion-distance-reveal-pair: 36px;
-    --motion-scale-reveal: 0.985;
-    --motion-duration-reveal: var(--motion-duration-reveal-transform);
+    --motion-delay-stagger: 120ms;
+    --motion-delay-stagger-cap: 600ms;
+    --motion-distance-reveal: 20px;
+    --motion-duration-reveal: 640ms;
     --motion-duration-approach-opacity: var(--motion-duration-reveal-opacity);
     --motion-duration-approach-transform: var(--motion-duration-reveal-transform);
     --motion-duration-media-fade: var(--motion-duration-media-arrival);
@@ -1079,7 +1085,7 @@
   }
 
   .hero-moment img[data-parallax-media] {
-    --media-parallax-scale: 1.12;
+    --media-parallax-scale: 1.16;
   }
 
   html.media-parallax-enabled img[data-parallax-media].is-media-parallax-active {
@@ -1521,7 +1527,7 @@
   }
 
   .avatar-image[data-parallax-media] {
-    --media-parallax-scale: 1.06;
+    --media-parallax-scale: 1.1;
   }
 
   .has-photo .avatar-image {
@@ -2488,7 +2494,6 @@
     line-height: var(--leading-relaxed);
   }
 
-  .footer-map-link,
   .footer-email,
   .footer-links a {
     color: #11191D;
@@ -2499,12 +2504,47 @@
 
   .footer-map-link {
     display: inline-flex;
+    width: fit-content;
     min-height: 44px;
     align-items: center;
     gap: var(--space-2);
     margin-top: var(--space-3);
+    padding-inline: var(--space-3);
+    border: 1px solid color-mix(in srgb, #11191D 20%, transparent);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: #11191D;
     font-size: var(--type-label);
     font-weight: 600;
+    text-decoration: none;
+    transition:
+      background-color var(--motion-duration-state) var(--motion-ease-state),
+      transform var(--motion-duration-feedback) var(--motion-ease-state);
+  }
+
+  .footer-map-link:hover,
+  .footer-map-link:focus-visible {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+  }
+
+  .footer-map-link:active {
+    transform: translateY(2px);
+  }
+
+  .footer-map-icon {
+    flex: none;
+    font-family: "Material Symbols Rounded Footer";
+    font-size: 24px;
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+    text-decoration: none;
+  }
+
+  .footer-map-link .text-link__cue {
+    flex: none;
+    font-family: var(--font-technical);
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
   }
 
   .footer-connect {
@@ -2638,33 +2678,17 @@
 
   html.lds-motion-ready [data-approach].is-lds-reveal-armed.is-lds-revealed.is-lds-reveal-arriving {
     transition:
-      opacity var(--motion-duration-reveal-opacity) var(--motion-ease-enter) var(--lds-reveal-delay, 0ms),
-      transform var(--motion-duration-reveal-transform) var(--motion-ease-settle) var(--lds-reveal-delay, 0ms);
+      opacity var(--motion-duration-reveal) var(--motion-ease-enter) var(--lds-reveal-delay, 0ms),
+      transform var(--motion-duration-reveal) var(--motion-ease-enter) var(--lds-reveal-delay, 0ms);
   }
 
   html.lds-motion-ready [data-approach].is-lds-reveal-armed {
     opacity: 0;
-    transform: translate3d(0, var(--motion-distance-reveal), 0) scale(var(--motion-scale-reveal));
+    transform: translate3d(0, var(--motion-distance-reveal), 0);
     transition: none;
   }
 
-  html.lds-motion-ready [data-approach-from="inline-start"].is-lds-reveal-armed {
-    transform: translate3d(calc(-1 * var(--motion-distance-reveal-pair)), 0, 0);
-  }
-
-  html.lds-motion-ready [data-approach-from="inline-end"].is-lds-reveal-armed {
-    transform: translate3d(var(--motion-distance-reveal-pair), 0, 0);
-  }
-
-  html[dir="rtl"].lds-motion-ready [data-approach-from="inline-start"].is-lds-reveal-armed {
-    transform: translate3d(var(--motion-distance-reveal-pair), 0, 0);
-  }
-
-  html[dir="rtl"].lds-motion-ready [data-approach-from="inline-end"].is-lds-reveal-armed {
-    transform: translate3d(calc(-1 * var(--motion-distance-reveal-pair)), 0, 0);
-  }
-
-  html.lds-motion-ready [data-approach].is-lds-revealed {
+  html.lds-motion-ready [data-approach].is-lds-reveal-armed.is-lds-revealed {
     opacity: 1;
     transform: none;
   }

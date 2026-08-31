@@ -102,6 +102,26 @@ test('latest owner-confirmed internship periods and first-joined dates stay exac
     personId: 'I0018', start: '2025-05-19', end: '2025-07-31', status: 'completed',
     evidenceStatus: 'sheet_recorded', verificationStatus: 'owner_source_reconciled'
   });
+
+  assert.deepEqual(period('E0008'), {
+    personId: 'I0004', start: '2025-08', end: '2026-03', status: 'completed',
+    evidenceStatus: 'owner_supplied', verificationStatus: 'owner_confirmed_month_period'
+  });
+  assert.deepEqual(period('E0047'), {
+    personId: 'I0037', start: '2026-05-19', end: '2026-07-31', status: 'completed',
+    evidenceStatus: 'sheet_recorded', verificationStatus: 'sheet_recorded'
+  });
+  for (const engagementId of ['E0050', 'E0051']) {
+    assert.deepEqual(period(engagementId), {
+      personId: engagementId === 'E0050' ? 'I0040' : 'I0041',
+      start: '2026-05-19', end: '2026-07-31', status: 'completed',
+      evidenceStatus: 'owner_supplied', verificationStatus: 'owner_confirmed_exact_period'
+    });
+  }
+  assert.deepEqual(
+    Object.fromEntries(['I0004', 'I0037', 'I0040', 'I0041'].map((personId) => [personId, people.get(personId)?.firstJoined])),
+    { I0004: '2025-08', I0037: '2026-05-19', I0040: '2026-05-19', I0041: '2026-05-19' }
+  );
 });
 
 test('latest governed data additions do not change any approved profile biography', () => {
@@ -133,6 +153,22 @@ test('latest owner-confirmed facts remain present in the governed Sheet export',
   assert.deepEqual(
     Object.fromEntries(['I0026', 'I0027', 'I0028'].map((personId) => [personId, people.get(personId).first_joined])),
     { I0026: '2025-12-19', I0027: '2026-01-05', I0028: '2026-01-05' }
+  );
+  assert.deepEqual(
+    Object.fromEntries(['I0004', 'I0037', 'I0040', 'I0041'].map((personId) => [personId, people.get(personId).first_joined])),
+    { I0004: '2025-08', I0037: '2026-05-19', I0040: '2026-05-19', I0041: '2026-05-19' }
+  );
+  assert.deepEqual(
+    Object.fromEntries(['E0008', 'E0047', 'E0050', 'E0051'].map((engagementId) => {
+      const engagement = engagements.get(engagementId);
+      return [engagementId, [engagement.start, engagement.end, engagement.status]];
+    })),
+    {
+      E0008: ['2025-08', '2026-03', 'completed'],
+      E0047: ['2026-05-19', '2026-07-31', 'completed'],
+      E0050: ['2026-05-19', '2026-07-31', 'completed'],
+      E0051: ['2026-05-19', '2026-07-31', 'completed']
+    }
   );
   assert.deepEqual(
     Object.fromEntries(['E0030', 'E0034', 'E0037', 'E0045', 'E0052', 'E0059'].map((engagementId) => {

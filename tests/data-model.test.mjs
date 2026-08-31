@@ -262,11 +262,21 @@ test('schema and all generated dimensions are valid JSON', () => {
   assertUnique(detailOverrides.existingPersonTimelineOverrides.map((override) => ({ personId: override.personId })), 'personId');
   assert.deepEqual(
     Object.fromEntries(detailOverrides.existingPersonTimelineOverrides.map((override) => [override.personId, override.firstJoined])),
-    { I0026: '2025-12-19', I0027: '2026-01-05', I0028: '2026-01-05' }
+    {
+      I0026: '2025-12-19',
+      I0027: '2026-01-05',
+      I0028: '2026-01-05',
+      I0004: '2025-08',
+      I0040: '2026-05-19',
+      I0041: '2026-05-19'
+    }
   );
-  assert.ok(detailOverrides.existingPersonTimelineOverrides.every((override) =>
-    override.verificationStatus === 'owner_confirmed_exact_first_joined' && override.evidenceNote
-  ));
+  assert.ok(detailOverrides.existingPersonTimelineOverrides.every((override) => {
+    const expectedStatus = /^\d{4}-\d{2}$/.test(override.firstJoined)
+      ? 'owner_confirmed_month_precision_first_joined'
+      : 'owner_confirmed_exact_first_joined';
+    return override.verificationStatus === expectedStatus && override.evidenceNote;
+  }));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^[SPI]\d{4}$/.test(engagement.personId)));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^E\d{4}$/.test(engagement.engagementId)));
   for (const fileName of fs.readdirSync(path.join(root, 'data/generated')).filter((name) => name.endsWith('.json'))) {
