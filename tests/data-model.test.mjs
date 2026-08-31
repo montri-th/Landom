@@ -258,7 +258,15 @@ test('schema and all generated dimensions are valid JSON', () => {
   const identityOverrides = JSON.parse(fs.readFileSync(personIdentityOverridePath, 'utf8'));
   assert.equal(identityOverrides.contractVersion, '1.0');
   assertUnique(identityOverrides.overrides.map((override) => ({ personId: override.personId })), 'personId');
-  assert.equal(detailOverrides.contractVersion, '1.2');
+  assert.equal(detailOverrides.contractVersion, '1.3');
+  assertUnique(detailOverrides.existingPersonTimelineOverrides.map((override) => ({ personId: override.personId })), 'personId');
+  assert.deepEqual(
+    Object.fromEntries(detailOverrides.existingPersonTimelineOverrides.map((override) => [override.personId, override.firstJoined])),
+    { I0026: '2025-12-19', I0027: '2026-01-05', I0028: '2026-01-05' }
+  );
+  assert.ok(detailOverrides.existingPersonTimelineOverrides.every((override) =>
+    override.verificationStatus === 'owner_confirmed_exact_first_joined' && override.evidenceNote
+  ));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^[SPI]\d{4}$/.test(engagement.personId)));
   assert.ok(detailOverrides.addedEngagements.every((engagement) => /^E\d{4}$/.test(engagement.engagementId)));
   for (const fileName of fs.readdirSync(path.join(root, 'data/generated')).filter((name) => name.endsWith('.json'))) {

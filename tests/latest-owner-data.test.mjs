@@ -56,6 +56,54 @@ test('latest owner-confirmed identity, education and DWR telemetry records stay 
   }
 });
 
+test('latest owner-confirmed internship periods and first-joined dates stay exact', () => {
+  const people = new Map(data.people.map((person) => [person.personId, person]));
+  const engagements = new Map(data.engagements.map((engagement) => [engagement.engagementId, engagement]));
+  const period = (engagementId) => {
+    const engagement = engagements.get(engagementId);
+    return {
+      personId: engagement?.personId,
+      start: engagement?.start,
+      end: engagement?.end,
+      status: engagement?.status,
+      evidenceStatus: engagement?.evidenceStatus,
+      verificationStatus: engagement?.verificationStatus
+    };
+  };
+
+  assert.deepEqual(period('E0045'), {
+    personId: 'I0035', start: '2026-05-19', end: '2026-07-30', status: 'completed',
+    evidenceStatus: 'owner_supplied', verificationStatus: 'owner_confirmed_exact_period'
+  });
+  assert.deepEqual(period('E0052'), {
+    personId: 'I0042', start: null, end: '2026-08-27', status: 'completed',
+    evidenceStatus: 'owner_supplied', verificationStatus: 'owner_confirmed_exact_period'
+  });
+  assert.deepEqual(period('E0030'), {
+    personId: 'I0026', start: '2025-12-19', end: '2026-02-19', status: 'completed',
+    evidenceStatus: 'owner_supplied', verificationStatus: 'owner_confirmed_exact_period'
+  });
+  for (const [engagementId, personId] of [['E0059', 'I0018'], ['E0034', 'I0027'], ['E0037', 'I0028']]) {
+    assert.deepEqual(period(engagementId), {
+      personId, start: '2026-01-05', end: '2026-03-31', status: 'completed',
+      evidenceStatus: 'owner_supplied', verificationStatus: 'owner_confirmed_exact_period'
+    });
+  }
+
+  assert.deepEqual(
+    Object.fromEntries(['I0026', 'I0027', 'I0028'].map((personId) => [personId, people.get(personId)?.firstJoined])),
+    { I0026: '2025-12-19', I0027: '2026-01-05', I0028: '2026-01-05' }
+  );
+  for (const personId of ['I0018', 'I0026', 'I0027', 'I0028', 'I0035', 'I0042']) {
+    assert.equal(people.get(personId)?.currentStatus, 'alumni', personId + ' must be Alumni after the confirmed period ended');
+  }
+
+  assert.deepEqual(period('E0022'), {
+    personId: 'I0018', start: '2025-05-19', end: '2025-07-31', status: 'completed',
+    evidenceStatus: 'sheet_recorded', verificationStatus: 'owner_source_reconciled'
+  });
+});
+
 test('latest governed data additions do not change any approved profile biography', () => {
   const approvedCopy = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/profile-copy.json'), 'utf8'));
   const generatedById = new Map(data.people.map((person) => [person.personId, person.bio]));
@@ -69,6 +117,7 @@ test('latest owner-confirmed facts remain present in the governed Sheet export',
   const workbook = JSON.parse(execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs')], { cwd: root, encoding: 'utf8' }));
   const people = new Map(exportedRows(workbook.tabs.people_registry).map((row) => [row.person_id, row]));
   const education = new Map(exportedRows(workbook.tabs.education).map((row) => [row.person_id, row]));
+  const engagements = new Map(exportedRows(workbook.tabs.engagements).map((row) => [row.engagement_id, row]));
   const works = new Map(exportedRows(workbook.tabs.works).map((row) => [row.work_id, row]));
   const socials = new Map(exportedRows(workbook.tabs.social_profiles).map((row) => [row.person_id + '|' + row.platform, row]));
   const qa = new Map(exportedRows(workbook.tabs.qa).map((row) => [row.metric, row]));
@@ -81,5 +130,23 @@ test('latest owner-confirmed facts remain present in the governed Sheet export',
   assert.equal(works.get('work-dwr-telemetry').destination_url, 'https://telemetry.dwr.go.th/');
   assert.equal(socials.get('S0006|github').public_url, 'https://github.com/otamnaz');
   assert.equal(socials.get('I0037|linkedin').public_url, 'https://www.linkedin.com/in/nathanicha-sornbundit-840109431');
+  assert.deepEqual(
+    Object.fromEntries(['I0026', 'I0027', 'I0028'].map((personId) => [personId, people.get(personId).first_joined])),
+    { I0026: '2025-12-19', I0027: '2026-01-05', I0028: '2026-01-05' }
+  );
+  assert.deepEqual(
+    Object.fromEntries(['E0030', 'E0034', 'E0037', 'E0045', 'E0052', 'E0059'].map((engagementId) => {
+      const engagement = engagements.get(engagementId);
+      return [engagementId, [engagement.start, engagement.end, engagement.status]];
+    })),
+    {
+      E0030: ['2025-12-19', '2026-02-19', 'completed'],
+      E0034: ['2026-01-05', '2026-03-31', 'completed'],
+      E0037: ['2026-01-05', '2026-03-31', 'completed'],
+      E0045: ['2026-05-19', '2026-07-30', 'completed'],
+      E0052: ['', '2026-08-27', 'completed'],
+      E0059: ['2026-01-05', '2026-03-31', 'completed']
+    }
+  );
   assert.equal(qa.get('verified_completed_staff_degrees').expected, 7);
 });

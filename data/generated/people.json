@@ -1958,8 +1958,8 @@
         "en": "Hana"
       }
     },
-    "currentStatus": "active",
-    "firstJoined": "2025-12-22",
+    "currentStatus": "alumni",
+    "firstJoined": "2025-12-19",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -2026,7 +2026,7 @@
       }
     },
     "currentStatus": "alumni",
-    "firstJoined": "2026-01-01",
+    "firstJoined": "2026-01-05",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -2093,7 +2093,7 @@
       }
     },
     "currentStatus": "alumni",
-    "firstJoined": "2026-01-12",
+    "firstJoined": "2026-01-05",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -2628,7 +2628,7 @@
         "en": "Tan"
       }
     },
-    "currentStatus": "active",
+    "currentStatus": "alumni",
     "firstJoined": "2026-05-19",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
@@ -3097,7 +3097,7 @@
         "en": "May"
       }
     },
-    "currentStatus": "active",
+    "currentStatus": "alumni",
     "firstJoined": "2026-05-25",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {

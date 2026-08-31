@@ -1,4 +1,5 @@
 import { initApproachMotion } from "./approach-motion.js";
+import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
 
 const DATA_URL = "./data/generated/site-data.json";
@@ -23,7 +24,6 @@ const COPY = {
     menuLabel: "เมนู",
     inThisPage: "ในหน้านี้",
     peopleMenu: "ชาว Landom",
-    railLabel: "ทางลัดในหน้านี้",
     ecosystem: "Landometer ecosystem",
     ecosystemCurrent: "· อยู่ที่นี่",
     ecosystemHomeDescription: "หน้าแรก · ผลิตภัณฑ์และบริการ",
@@ -75,7 +75,17 @@ const COPY = {
     errorTitle: "โหลดข้อมูลไม่สำเร็จ",
     errorCopy: "โปรดลองอีกครั้ง ข้อมูลบุคคลจะไม่ถูกแทนที่ด้วยข้อมูลที่ยังไม่ได้ยืนยัน",
     retry: "ลองอีกครั้ง",
-    footerCopy: "มาเป็นชาว Landom กัน · Let us cultivate our city with data.",
+    footerTitle: "มาเป็นชาว Landom กัน",
+    footerCopy: "มาร่วมกันเข้าใจเมือง และช่วยกันทำให้ดีขึ้น",
+    footerAddress: "23/34-35 Room 4C-4D 4th Fl. The Quarter Bangkok Tower, ถนนตรีมิตร แขวงตลาดน้อย เขตสัมพันธวงศ์ กรุงเทพมหานคร 10100",
+    footerMap: "เปิดแผนที่สำนักงาน",
+    footerSocialLabel: "ช่องทางสังคมของ Landometer",
+    footerLinksLabel: "ลิงก์ท้ายหน้า",
+    footerBackTop: "กลับไปด้านบน",
+    footerPeople: "ชาว Landom",
+    footerPrivacy: "Privacy & Terms",
+    footerBrandLabel: "Landometer — กลับไปด้านบน",
+    footerCopyright: "© 2017–2026 Landometer Co., Ltd.",
     registry: "ชาวด้อม Landom",
     openProfile: "ดูโปรไฟล์ของ {name}",
     readStory: "ดูโปรไฟล์",
@@ -145,7 +155,6 @@ const COPY = {
     menuLabel: "Menu",
     inThisPage: "On this page",
     peopleMenu: "People of Landom",
-    railLabel: "On-page shortcuts",
     ecosystem: "Landometer ecosystem",
     ecosystemCurrent: "· You are here",
     ecosystemHomeDescription: "Home · Products and services",
@@ -197,7 +206,17 @@ const COPY = {
     errorTitle: "The profiles could not be loaded",
     errorCopy: "Please try again. Unverified information will not be substituted.",
     retry: "Try again",
-    footerCopy: "Come be part of Landom · Let us cultivate our city with data.",
+    footerTitle: "Be part of Landom",
+    footerCopy: "Understand cities. Make them better, together.",
+    footerAddress: "23/34-35 Room 4C-4D 4th Fl. The Quarter Bangkok Tower, Tri Mit Road, Talat Noi, Samphanthawong, Bangkok 10100, Thailand",
+    footerMap: "Open office map",
+    footerSocialLabel: "Landometer social profiles",
+    footerLinksLabel: "Footer links",
+    footerBackTop: "Back to top",
+    footerPeople: "People of Landom",
+    footerPrivacy: "Privacy & Terms",
+    footerBrandLabel: "Landometer — back to top",
+    footerCopyright: "© 2017–2026 Landometer Co., Ltd.",
     registry: "People of Landom",
     openProfile: "View {name}’s profile",
     readStory: "View profile",
@@ -297,8 +316,6 @@ const elements = {
   menuPanel: document.querySelector("#site-menu"),
   pageMenuLabel: document.querySelector("#page-menu-label"),
   peopleMenuLabel: document.querySelector("#people-menu-label"),
-  bookmarkRail: document.querySelector(".bookmark-rail"),
-  bookmarkPeopleLink: document.querySelector('[data-scrollspy-link="people"]'),
   ecosystemMenuLabel: document.querySelector("#ecosystem-menu-label"),
   ecosystemCurrentLabel: document.querySelector("#ecosystem-current-label"),
   ecosystemHomeDescription: document.querySelector("#ecosystem-home-description"),
@@ -352,7 +369,17 @@ const elements = {
   errorTitle: document.querySelector("#error-title"),
   errorCopy: document.querySelector("#error-copy"),
   retry: document.querySelector("#retry-button"),
+  footerTitle: document.querySelector("#footer-title"),
   footerCopy: document.querySelector("#footer-copy"),
+  footerAddress: document.querySelector("#footer-address"),
+  footerMapLabel: document.querySelector("#footer-map-label"),
+  footerSocialLinks: document.querySelector("#footer-social-links"),
+  footerLinks: document.querySelector("#footer-links"),
+  footerTopLink: document.querySelector("#footer-top-link"),
+  footerPeopleLink: document.querySelector("#footer-people-link"),
+  footerPrivacyLink: document.querySelector("#footer-privacy-link"),
+  footerBrand: document.querySelector("#footer-brand"),
+  footerCopyright: document.querySelector("#footer-copyright"),
   footerMeta: document.querySelector("#footer-meta"),
   certificateDialog: document.querySelector("#certificate-dialog"),
   certificateDialogKicker: document.querySelector("#certificate-dialog-kicker"),
@@ -368,6 +395,7 @@ const systemThemeQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
 const desktopFilterQuery = window.matchMedia?.("(min-width: 760px)");
 const reducedMotionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
 const reflowAnimations = new WeakMap();
+let mediaParallaxController = null;
 
 function message(key, values = {}) {
   const keys = key.split(".");
@@ -465,12 +493,6 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   elements.menuPanel?.setAttribute("aria-label", copy.menuLabel);
   setText(elements.pageMenuLabel, copy.inThisPage);
   setText(elements.peopleMenuLabel, copy.peopleMenu);
-  elements.bookmarkRail?.setAttribute("aria-label", copy.railLabel);
-  if (elements.bookmarkPeopleLink) {
-    elements.bookmarkPeopleLink.dataset.label = copy.peopleMenu;
-    elements.bookmarkPeopleLink.setAttribute("aria-label", copy.peopleMenu);
-    elements.bookmarkPeopleLink.setAttribute("title", copy.peopleMenu);
-  }
   setText(elements.ecosystemMenuLabel, copy.ecosystem);
   setText(elements.ecosystemCurrentLabel, copy.ecosystemCurrent);
   setText(elements.ecosystemHomeDescription, copy.ecosystemHomeDescription);
@@ -516,7 +538,17 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   setText(elements.errorTitle, copy.errorTitle);
   setText(elements.errorCopy, copy.errorCopy);
   setText(elements.retry, copy.retry);
+  setText(elements.footerTitle, copy.footerTitle);
   setText(elements.footerCopy, copy.footerCopy);
+  setText(elements.footerAddress, copy.footerAddress);
+  setText(elements.footerMapLabel, copy.footerMap);
+  elements.footerSocialLinks?.setAttribute("aria-label", copy.footerSocialLabel);
+  elements.footerLinks?.setAttribute("aria-label", copy.footerLinksLabel);
+  setText(elements.footerTopLink, copy.footerBackTop);
+  setText(elements.footerPeopleLink, copy.footerPeople);
+  setText(elements.footerPrivacyLink, copy.footerPrivacy);
+  elements.footerBrand?.setAttribute("aria-label", copy.footerBrandLabel);
+  setText(elements.footerCopyright, copy.footerCopyright);
   setText(elements.footerMeta, copy.registry);
   setText(elements.certificateDialogKicker, copy.certificates);
   elements.certificateClose?.setAttribute("aria-label", copy.closeCertificate);
@@ -1337,7 +1369,7 @@ function escapeHtml(value) {
 function avatarMarkup(model, className = "card-avatar") {
   const image = model.image;
   const imageMarkup = image
-    ? `<img class="avatar-image" src="${escapeHtml(image.url)}" alt="${escapeHtml(image.alt || model.officialName)}" loading="lazy" decoding="async">`
+    ? `<img class="avatar-image" src="${escapeHtml(image.url)}" alt="${escapeHtml(image.alt || model.officialName)}" loading="lazy" decoding="async" data-parallax-media data-parallax-depth="9">`
     : "";
   return `
     <div class="${className}" data-avatar>
@@ -1627,6 +1659,7 @@ function renderDirectory() {
   elements.board.setAttribute("aria-busy", "false");
   elements.board.setAttribute("aria-label", message("results", { shown: models.length, total: state.models.length }));
   hydrateImages(elements.board);
+  mediaParallaxController?.refresh(elements.board);
   elements.loading.hidden = true;
   elements.error.hidden = true;
   elements.empty.hidden = models.length !== 0;
@@ -2337,6 +2370,7 @@ function initialize() {
   applyTheme();
   initSiteNavigation();
   initApproachMotion();
+  mediaParallaxController = initMediaParallax();
   syncFilterDialogMode();
   updateFilterCount();
   loadData();

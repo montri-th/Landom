@@ -149,7 +149,7 @@ const profileCopy = readApprovedJson('profile-copy.json');
 const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
 const profileDetailOverrides = readApprovedJson('profile-detail-overrides.json');
 const personIdentityOverrides = readApprovedJson('person-identity-overrides.json');
-if (profileDetailOverrides.contractVersion !== '1.2') {
+if (profileDetailOverrides.contractVersion !== '1.3') {
   throw new Error('Unsupported profile-detail override contract: ' + profileDetailOverrides.contractVersion);
 }
 if (personIdentityOverrides.contractVersion !== '1.0') {
@@ -497,6 +497,22 @@ for (const approved of profileDetailOverrides.addedPeople ?? []) {
 }
 
 const peopleById = new Map(people.map((person) => [person.personId, person]));
+const personTimelineOverrideIds = new Set();
+for (const override of profileDetailOverrides.existingPersonTimelineOverrides ?? []) {
+  if (personTimelineOverrideIds.has(override.personId)) {
+    throw new Error('Duplicate existing-person timeline override: ' + override.personId);
+  }
+  personTimelineOverrideIds.add(override.personId);
+  const person = peopleById.get(override.personId);
+  if (!person) throw new Error('Existing-person timeline override references an unknown person: ' + override.personId);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(override.firstJoined ?? '') || parseDate(override.firstJoined) !== override.firstJoined) {
+    throw new Error('Existing-person timeline override has an invalid exact firstJoined date: ' + override.personId);
+  }
+  if (override.verificationStatus !== 'owner_confirmed_exact_first_joined' || !clean(override.evidenceNote)) {
+    throw new Error('Existing-person timeline override has incomplete owner evidence: ' + override.personId);
+  }
+  person.firstJoined = override.firstJoined;
+}
 const identityOverrideIds = new Set();
 const identityOverrideKeys = new Set([
   'personId',
@@ -806,6 +822,7 @@ for (const override of profileDetailOverrides.existingEngagementOverrides ?? [])
   if (Object.hasOwn(override, 'start')) engagement.start = override.start;
   if (Object.hasOwn(override, 'end')) engagement.end = override.end;
   if (override.status) engagement.status = override.status;
+  if (override.evidenceStatus) engagement.evidenceStatus = override.evidenceStatus;
   if (override.verificationStatus) engagement.verificationStatus = override.verificationStatus;
   if (override.evidenceNote) engagement.evidenceNote = override.evidenceNote;
   if (engagement.start && engagement.end && engagement.start > engagement.end) {

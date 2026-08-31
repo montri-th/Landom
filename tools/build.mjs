@@ -27,12 +27,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['เปิดเมนู', 'Open menu'],
   ['aria-label="เมนู"', 'aria-label="Menu"'],
   ['ในหน้านี้', 'On this page'],
-  ['ทางลัดในหน้านี้', 'On-page shortcuts'],
   ['<span id="people-menu-label">ชาว Landom</span>', '<span id="people-menu-label">People of Landom</span>'],
-  [
-    'data-label="ชาว Landom" aria-label="ชาว Landom" title="ชาว Landom"',
-    'data-label="People of Landom" aria-label="People of Landom" title="People of Landom"'
-  ],
   ['· อยู่ที่นี่', '· You are here'],
   ['หน้าแรก · ผลิตภัณฑ์และบริการ', 'Home · Products and services'],
   ['มุมมองข้อมูลเมือง', 'City data views'],
@@ -81,7 +76,17 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['โหลดข้อมูลไม่สำเร็จ', 'The profiles could not be loaded'],
   ['โปรดลองอีกครั้ง ข้อมูลบุคคลจะไม่ถูกแทนที่ด้วยข้อมูลที่ยังไม่ได้ยืนยัน', 'Please try again. Unverified information will not be substituted.'],
   ['ลองอีกครั้ง', 'Try again'],
-  ['มาเป็นชาว Landom กัน · Let us cultivate our city with data.', 'Come be part of Landom · Let us cultivate our city with data.'],
+  ['<h2 id="footer-title">มาเป็นชาว Landom กัน</h2>', '<h2 id="footer-title">Be part of Landom</h2>'],
+  ['มาร่วมกันเข้าใจเมือง และช่วยกันทำให้ดีขึ้น', 'Understand cities. Make them better, together.'],
+  [
+    '23/34-35 Room 4C-4D 4th Fl. The Quarter Bangkok Tower, ถนนตรีมิตร แขวงตลาดน้อย เขตสัมพันธวงศ์ กรุงเทพมหานคร 10100',
+    '23/34-35 Room 4C-4D 4th Fl. The Quarter Bangkok Tower, Tri Mit Road, Talat Noi, Samphanthawong, Bangkok 10100, Thailand'
+  ],
+  ['เปิดแผนที่สำนักงาน', 'Open office map'],
+  ['ช่องทางสังคมของ Landometer', 'Landometer social profiles'],
+  ['ลิงก์ท้ายหน้า', 'Footer links'],
+  ['กลับไปด้านบน', 'Back to top'],
+  ['Landometer — กลับไปด้านบน', 'Landometer — back to top'],
   ['ชาวด้อม Landom', 'People of Landom'],
   ['ประกาศนียบัตร', 'Certificates'],
   ['ปิดประกาศนียบัตร', 'Close certificate'],
@@ -117,6 +122,12 @@ export function renderLocalizedEntrypoint(source, locale) {
     'href="#main-content"',
     `href="${localeUrl}#main-content"`,
     'locale-safe skip link'
+  );
+  html = replaceRequired(
+    html,
+    'href="#top"',
+    `href="${localeUrl}#top"`,
+    'locale-safe top links'
   );
   html = replaceRequired(
     html,
@@ -174,6 +185,12 @@ export function renderLocalizedEntrypoint(source, locale) {
   )) {
     html = replaceRequired(html, search, replacement);
   }
+  html = replaceRequired(
+    html,
+    `<a id="footer-people-link" href="${localeUrl}#people">PEOPLE OF LANDOM</a>`,
+    `<a id="footer-people-link" href="${localeUrl}#people">People of Landom</a>`,
+    'localized footer people link'
+  );
   return html;
 }
 

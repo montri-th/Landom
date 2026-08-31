@@ -787,15 +787,15 @@
       "th": "Product Developer Intern",
       "en": "Product Developer Intern"
     },
-    "start": null,
-    "end": null,
+    "start": "2026-01-05",
+    "end": "2026-03-31",
     "status": "completed",
     "responsibilityWorkIds": [
       "work-ijji"
     ],
     "evidenceStatus": "owner_supplied",
-    "verificationStatus": "dates_owner_detail_required",
-    "evidenceNote": null,
+    "verificationStatus": "owner_confirmed_exact_period",
+    "evidenceNote": "Owner confirmed Grace's exact PDI internship period as 5 January through 31 March 2026 on 2026-08-31; her separate MSI 2025 engagement remains unchanged.",
     "sequenceHint": 2
   },
   {
@@ -1040,13 +1040,14 @@
       "th": "Product Developer Intern",
       "en": "Product Developer Intern"
     },
-    "start": null,
-    "end": null,
-    "status": "ongoing",
+    "start": "2025-12-19",
+    "end": "2026-02-19",
+    "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "owner_review_required",
-    "sequenceHint": null
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner confirmed Hana's exact internship period as 19 December 2025 through 19 February 2026 on 2026-08-31; this supersedes the stale ongoing flag and availability-date evidence."
   },
   {
     "engagementId": "E0034",
@@ -1065,13 +1066,14 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": null,
-    "end": null,
+    "start": "2026-01-05",
+    "end": "2026-03-31",
     "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "owner_review_required",
-    "sequenceHint": null
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner confirmed Noni's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
   },
   {
     "engagementId": "E0037",
@@ -1090,13 +1092,14 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": null,
-    "end": null,
+    "start": "2026-01-05",
+    "end": "2026-03-31",
     "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "owner_review_required",
-    "sequenceHint": null
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner confirmed France's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
   },
   {
     "engagementId": "E0060",
@@ -1322,12 +1325,13 @@
       "en": "Full-Stack Developer Intern"
     },
     "start": "2026-05-19",
-    "end": null,
-    "status": "ongoing",
+    "end": "2026-07-30",
+    "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "sheet_recorded",
-    "sequenceHint": null
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner confirmed on 2026-08-31 that Tan's internship ended on Thursday 30 July 2026, the last Thursday of that month."
   },
   {
     "engagementId": "E0046",
@@ -1498,11 +1502,12 @@
     },
     "start": null,
     "end": "2026-08-27",
-    "status": "ongoing",
+    "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "owner_review_required",
-    "sequenceHint": null
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
+    "sequenceHint": 1,
+    "evidenceNote": "Owner confirmed on 2026-08-31 that May's internship ended on Thursday 27 August 2026, the last Thursday of that month; the actual start date remains unknown."
   },
   {
     "engagementId": "E0053",
@@ -1525,7 +1530,7 @@
     "end": "2026-08-25",
     "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
+    "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_last_day",
     "sequenceHint": 1,
     "evidenceNote": "Owner supplied Draft's last day as yesterday on 2026-08-26."

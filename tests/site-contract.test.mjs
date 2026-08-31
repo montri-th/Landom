@@ -216,6 +216,8 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(thai, /data-locale-route="th"/);
   assert.match(thai, /<link rel="canonical" href="https:\/\/montri-th\.github\.io\/Landom\/">/);
   assert.match(thai, /id="page-title">ไม่ใช่สถานที่&#10;แต่คือผู้คน<\/h1>/);
+  assert.match(thai, /id="footer-title">มาเป็นชาว Landom กัน<\/h2>/);
+  assert.match(thai, /id="footer-copy">มาร่วมกันเข้าใจเมือง และช่วยกันทำให้ดีขึ้น<\/p>/);
   assert.match(thai, /id="footer-meta"[^>]*>ชาวด้อม Landom<\/p>/);
   assert.match(thai, /property="og:title" content="LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER"/);
   assert.match(thai, /name="twitter:title" content="LANDOM · พวกเรา ที่ช่วยกันสร้าง LANDOMETER"/);
@@ -230,6 +232,9 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /property="og:title" content="Landom — meet the people shaping Landometer"/);
   assert.match(english, /name="twitter:title" content="Landom — meet the people shaping Landometer"/);
   assert.match(english, /id="page-title">It’s not a place\.&#10;It’s the people\.<\/h1>/);
+  assert.match(english, /id="footer-title">Be part of Landom<\/h2>/);
+  assert.match(english, /id="footer-copy">Understand cities\. Make them better, together\.<\/p>/);
+  assert.match(english, /id="footer-address">[\s\S]*?Tri Mit Road, Talat Noi, Samphanthawong, Bangkok 10100, Thailand[\s\S]*?<\/address>/);
   assert.match(english, /id="footer-meta"[^>]*>People of Landom<\/p>/);
   assert.match(english, /"inLanguage": "en"/);
   assert.match(english, /<base href="\.\.\/">/);
@@ -260,6 +265,54 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /alt="People of Landom working, learning, and spending time together"/);
 });
 
+test('the footer follows the contact-first rebuild02 treatment without a form and exposes exact corporate destinations', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const footer = index.match(/<footer\b[\s\S]*?<\/footer>/)?.[0] ?? '';
+  const socialUrls = [
+    'https://www.facebook.com/landometer',
+    'https://www.instagram.com/landometer',
+    'https://www.tiktok.com/@landometer82',
+    'https://www.linkedin.com/company/landometer',
+    'https://x.com/landometer'
+  ];
+
+  assert.match(footer, /class="footer-measure-line"[\s\S]*?<span><\/span><span><\/span><span><\/span><span><\/span>/);
+  assert.doesNotMatch(footer, /<form\b|id="footer-title">\s*Hello\b/i);
+  assert.equal((footer.match(/<a class="footer-email" href="mailto:hello@landometer\.com">hello@landometer\.com<\/a>/g) ?? []).length, 1);
+  assert.match(footer, /href="https:\/\/maps\.app\.goo\.gl\/8DQPVMtPdxWMBoZU9"/);
+  assert.match(footer, /href="https:\/\/landometer\.com\/pdpa\/showDocVer"/);
+  assert.match(footer, /id="footer-top-link" href="#top"/);
+  assert.match(footer, /id="footer-people-link" href="#people"/);
+  assert.match(footer, /class="footer-brand"[\s\S]*?public\/assets\/brand\/landometer-horizontal\.png/);
+  for (const url of socialUrls) assert.equal(footer.split(`href="${url}"`).length - 1, 1);
+  assert.equal((footer.match(/class="footer-social-links"[\s\S]*?<\/nav>/)?.[0].match(/<a href=/g) ?? []).length, 5);
+
+  assert.match(styles, /\.site-footer\s*\{[^}]*background:\s*linear-gradient\(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%\);/s);
+  assert.match(styles, /\.footer-measure-line\s*\{[^}]*height:\s*8px;[^}]*grid-template-columns:\s*repeat\(4, minmax\(0, 1fr\)\);/s);
+  for (const color of ['#FF5A5F', '#FFBC1F', '#0AD69C', '#59D2FE']) assert.match(styles, new RegExp(`background: ${color}`));
+  assert.match(styles, /\.footer-bottom\s*\{[^}]*border-top:\s*1px solid #33403D;[^}]*background:\s*#11191D;/s);
+  assert.match(styles, /\.footer-social-links a\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;[^}]*border-radius:\s*50%;/s);
+
+  for (const token of [
+    'footerTitle: "มาเป็นชาว Landom กัน"',
+    'footerTitle: "Be part of Landom"',
+    'footerSocialLabel: "ช่องทางสังคมของ Landometer"',
+    'footerSocialLabel: "Landometer social profiles"',
+    'footerBackTop: "กลับไปด้านบน"',
+    'footerBackTop: "Back to top"',
+    'footerPeople: "ชาว Landom"',
+    'footerPeople: "People of Landom"',
+    'setText(elements.footerTitle, copy.footerTitle)',
+    'elements.footerSocialLinks?.setAttribute("aria-label", copy.footerSocialLabel)',
+    'setText(elements.footerTopLink, copy.footerBackTop)',
+    'setText(elements.footerPeopleLink, copy.footerPeople)'
+  ]) {
+    assert.ok(app.includes(token), `Missing locale-aware footer contract: ${token}`);
+  }
+});
+
 test('the unified navigation preserves approved destinations, accessible menu behavior, and truthful page anchors', async () => {
   const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
@@ -278,8 +331,8 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(index, /<a[^>]*class="header-cta site-menu-mobile-cta"[^>]*id="join-team-link-mobile"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/);
   assert.match(index, /id="menu-toggle"[\s\S]*?aria-haspopup="dialog"[\s\S]*?aria-expanded="false"[\s\S]*?aria-controls="site-menu"/);
   assert.match(index, /id="site-menu" role="dialog" aria-modal="true"[^>]*tabindex="-1"/);
-  assert.match(index, /<a href="#people" data-menu-close>/);
-  assert.match(index, /data-scrollspy-link="people"/);
+  assert.equal((index.match(/<a href="#people" data-menu-close>/g) ?? []).length, 1);
+  assert.doesNotMatch(index, /bookmark-rail|data-scrollspy-link/);
   assert.doesNotMatch(index, /href="#certificates"/);
 
   assert.match(app, /import \{ initSiteNavigation \} from "\.\/navigation\.js";/);
@@ -311,6 +364,7 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(navigation, />\s*4/);
   assert.match(navigation, /<\s*-4/);
   assert.match(navigation, /<\s*24/);
+  assert.doesNotMatch(navigation, /railLinks|railSections|syncScrollspy/);
   assert.match(styles, /\.menu-toggle\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;/s);
   assert.match(styles, /\.site-header\.is-calm\s*\{/);
   assert.match(styles, /html\.navigation-enhanced \.navigation-fallback\s*\{[^}]*display:\s*none;/s);
@@ -331,7 +385,7 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?53%\s*,\s*55%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
   assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?84%\s*,\s*89%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
   assert.match(styles, /@keyframes lmFlick\s*\{/);
-  assert.match(styles, /\.bookmark-rail a\[aria-current="location"\] \.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*font-variation-settings:\s*["']FILL["'] 1,\s*["']wght["'] 300,\s*["']GRAD["'] 0,\s*["']opsz["'] 24;/s);
+  assert.doesNotMatch(styles, /\.bookmark-rail|Material Symbols Rounded Nav Filled|material-symbols-rounded-groups-filled-300/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s);
 });
@@ -340,20 +394,16 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
   const font = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-nav-300.woff2', import.meta.url));
-  const filledFont = await readFile(new URL('../public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf', import.meta.url));
   const fontManifest = JSON.parse(await readFile(new URL('../public/assets/fonts/font-assets.manifest.json', import.meta.url), 'utf8'));
   const fontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-nav-300.woff2');
-  const filledFontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-groups-filled-300.ttf');
 
   assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-nav-300\.woff2" as="font" type="font\/woff2" crossorigin/);
-  assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-groups-filled-300\.ttf" as="font" type="font\/ttf" crossorigin/);
   assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav";[^}]*material-symbols-rounded-nav-300\.woff2[^}]*font-weight:\s*300;/s);
-  assert.match(styles, /@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*material-symbols-rounded-groups-filled-300\.ttf[^}]*font-weight:\s*300;/s);
+  assert.doesNotMatch(index, /material-symbols-rounded-groups-filled-300/);
+  assert.doesNotMatch(styles, /Material Symbols Rounded Nav Filled|material-symbols-rounded-groups-filled-300/);
   assert.match(styles, /\.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/s);
   assert.equal(font.byteLength, 2500);
   assert.equal(createHash('sha256').update(font).digest('hex'), 'd7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657');
-  assert.equal(filledFont.byteLength, 2728);
-  assert.equal(createHash('sha256').update(filledFont).digest('hex'), '7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc');
   assert.equal(fontRecord?.family, 'Material Symbols Rounded Nav');
   assert.equal(fontRecord?.subset, 'unified-nav-7');
   assert.equal(fontRecord?.axesLock, 'FILL 0, wght 300, GRAD 0, opsz 24');
@@ -361,16 +411,6 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   assert.equal(fontRecord?.approvalAuthority, 'Owner-approved Landom-local alignment');
   assert.equal(fontRecord?.designSystemStatus, 'Candidate local extension; not a normative Design System release');
   assert.equal(fontRecord?.license, 'Apache License 2.0');
-  assert.equal(filledFontRecord?.family, 'Material Symbols Rounded Nav Filled');
-  assert.equal(filledFontRecord?.subset, 'groups-filled-active');
-  assert.equal(filledFontRecord?.weight, 300);
-  assert.equal(filledFontRecord?.bytes, 2728);
-  assert.equal(filledFontRecord?.sha256, '7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc');
-  assert.equal(filledFontRecord?.axesLock, 'FILL 1, wght 300, GRAD 0, opsz 24');
-  assert.deepEqual(filledFontRecord?.glyphs, ['groups']);
-  assert.equal(filledFontRecord?.approvalAuthority, 'Owner-approved Landom-local r7 active-state alignment');
-  assert.equal(filledFontRecord?.designSystemStatus, 'Candidate local extension; not a normative Design System release');
-  assert.equal(filledFontRecord?.license, 'Apache License 2.0');
   assert.match(fontManifest.authorityScope, /owner-approved Landom-local addition/i);
   assert.match(fontManifest.authorityScope, /do(?:es)? not publish or upgrade a normative Design System release/i);
 });
@@ -383,9 +423,49 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
   assert.match(workflow, /cache_bust="release=\$RELEASE_SHA"/);
   assert.match(workflow, /actual_manifest_sha256=.*sha256sum \/tmp\/landom-build-manifest\.json/);
   assert.match(workflow, /"\$actual_manifest_sha256" = "\$EXPECTED_MANIFEST_SHA256"/);
-  assert.match(workflow, /material-symbols-rounded-groups-filled-300\.ttf\?\$cache_bust/);
-  assert.match(workflow, /filled_nav_icon_font_type[\s\S]*?font\/ttf\*\|application\/x-font-ttf\*\|application\/octet-stream\*/);
-  assert.match(workflow, /\["public\/assets\/fonts\/material-symbols-rounded-groups-filled-300\.ttf", "\/tmp\/landom-material-symbols-nav-filled\.ttf"\]/);
+  assert.match(workflow, /src\/media-parallax\.js\?\$cache_bust/);
+  assert.match(workflow, /media_parallax_script_type[\s\S]*?application\/javascript\*\|text\/javascript\*/);
+  assert.match(workflow, /\["src\/media-parallax\.js", "\/tmp\/landom-media-parallax\.js"\]/);
+  assert.doesNotMatch(workflow, /material-symbols-rounded-groups-filled-300|filled_nav_icon_font/);
+});
+
+test('photo parallax is explicit, bounded, passive, lifecycle-safe, and excluded from evidence and brand media', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const parallax = await readFile(new URL('../src/media-parallax.js', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const staticImages = [...index.matchAll(/<img\b[^>]*\bdata-parallax-media\b[^>]*>/g)].map((match) => match[0]);
+  const avatarRenderer = app.match(/function avatarMarkup\b[\s\S]*?(?=function hydrateImages\b)/)?.[0] ?? '';
+  const certificateRenderer = app.match(/function certificatesMarkup\b[\s\S]*?(?=function personDetailMarkup\b)/)?.[0] ?? '';
+
+  assert.equal(staticImages.length, 4);
+  assert.deepEqual(staticImages.map((markup) => markup.match(/data-parallax-depth="(\d+)"/)?.[1]), ['18', '6', '5', '7']);
+  assert.match(avatarRenderer, /class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="9"/);
+  assert.doesNotMatch(certificateRenderer, /data-parallax-media/);
+  assert.doesNotMatch(index, /<img[^>]*(?:landometer-horizontal|landometer-symbol)[^>]*data-parallax-media/i);
+
+  assert.match(app, /import \{ initMediaParallax \} from "\.\/media-parallax\.js";/);
+  assert.match(app, /mediaParallaxController\s*=\s*initMediaParallax\(\)/);
+  assert.match(app, /mediaParallaxController\?\.refresh\(elements\.board\)/);
+  for (const token of [
+    'const MEDIA_SELECTOR = "img[data-parallax-media]"',
+    'const MAX_DEPTH = 24',
+    'new win.IntersectionObserver',
+    'win.requestAnimationFrame',
+    'win.cancelAnimationFrame',
+    'addWindowListener("scroll", onScroll, { passive: true })',
+    '"(prefers-reduced-motion: reduce)"',
+    'win?.matchMedia?.("print")',
+    'addWindowListener("beforeprint", onBeforePrint)',
+    'addWindowListener("pagehide", onPageHide)',
+    'destroy()'
+  ]) {
+    assert.ok(parallax.includes(token), `Missing media-parallax contract: ${token}`);
+  }
+  assert.match(parallax, /const depth = clamp\(metrics\.depth, 0, MAX_DEPTH\)/);
+  assert.match(styles, /html\.media-parallax-enabled img\[data-parallax-media\]\.is-media-parallax-active\s*\{[^}]*will-change:\s*transform;/s);
+  assert.match(styles, /@media print[\s\S]*?img\[data-parallax-media\]\s*\{[^}]*transform:\s*none !important;[^}]*will-change:\s*auto !important;/s);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?img\[data-parallax-media\]\s*\{[^}]*transform:\s*none !important;[^}]*will-change:\s*auto !important;/s);
 });
 
 test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle edges', async () => {

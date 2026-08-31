@@ -93,22 +93,9 @@ const MATERIAL_SYMBOLS_NAV = Object.freeze({
   approvalAuthority: 'Owner-approved Landom-local alignment',
   designSystemStatus: 'Candidate local extension; not a normative Design System release'
 });
-const MATERIAL_SYMBOLS_NAV_FILLED = Object.freeze({
-  path: 'public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf',
-  licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
-  bytes: 2728,
-  sha256: '7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc',
-  family: 'Material Symbols Rounded Nav Filled',
-  subset: 'groups-filled-active',
-  axesLock: 'FILL 1, wght 300, GRAD 0, opsz 24',
-  glyphs: ['groups'],
-  approvalAuthority: 'Owner-approved Landom-local r7 active-state alignment',
-  designSystemStatus: 'Candidate local extension; not a normative Design System release'
-});
 const MATERIAL_SYMBOL_FONTS = Object.freeze([
   MATERIAL_SYMBOLS_EXTERNAL,
-  MATERIAL_SYMBOLS_NAV,
-  MATERIAL_SYMBOLS_NAV_FILLED
+  MATERIAL_SYMBOLS_NAV
 ]);
 
 function valueAt(record, candidates) {
@@ -581,7 +568,7 @@ async function validateUi(publishRoot, errors) {
     )
   ).join('\n');
   const allUiText = `${index}\n${sourceText}`;
-  for (const sourceModule of ['app.js', 'navigation.js', 'approach-motion.js']) {
+  for (const sourceModule of ['app.js', 'navigation.js', 'approach-motion.js', 'media-parallax.js']) {
     const sourcePath = path.join(publishRoot, 'src', sourceModule);
     const sourceCheck = spawnSync(process.execPath, ['--check', sourcePath], { encoding: 'utf8' });
     if (sourceCheck.status !== 0) {
@@ -626,10 +613,11 @@ async function validateUi(publishRoot, errors) {
       !/<div class="site-menu-panel" id="site-menu" role="dialog" aria-modal="true"[^>]*tabindex="-1"/s.test(index)) {
     errors.push('The site menu must be an explicitly controlled modal disclosure with a focusable dialog panel.');
   }
-  if (!/<a href="#people" data-menu-close>/.test(index) ||
-      !/data-scrollspy-link="people"/.test(index) ||
-      /href="#certificates"/.test(index)) {
-    errors.push('On-page navigation must link only to the truthful #people section and must not expose a dead certificates anchor.');
+  if ((index.match(/<a href="#people" data-menu-close>/g) ?? []).length !== 1 ||
+      /bookmark-rail|data-scrollspy-link/.test(index) ||
+      /href="#certificates"/.test(index) ||
+      /railLinks|railSections|syncScrollspy/.test(sourceText)) {
+    errors.push('On-page navigation must retain one compact-menu #people link, remove the obsolete one-item bookmark rail, and avoid dead certificate anchors.');
   }
   if (!/<nav class="navigation-fallback"[^>]*>[\s\S]*?class="navigation-fallback-language" href="\.\/en\/" hreflang="en"/s.test(index) ||
       !/root\.classList\.add\('navigation-enhanced'\)/.test(sourceText) ||
@@ -711,11 +699,8 @@ async function validateUi(publishRoot, errors) {
   ) {
     errors.push('The CTA must preserve the r7 lmSweep 3.7s/lmFlick 1.09s treatment and all three full-word highlight beats.');
   }
-  if (
-    !/@font-face\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*material-symbols-rounded-groups-filled-300\.ttf[^}]*font-weight:\s*300;/s.test(sourceText) ||
-    !/\.bookmark-rail a\[aria-current="location"\] \.icon-symbol\s*\{[^}]*font-family:\s*"Material Symbols Rounded Nav Filled";[^}]*font-variation-settings:\s*["']FILL["'] 1,\s*["']wght["'] 300,\s*["']GRAD["'] 0,\s*["']opsz["'] 24;/s.test(sourceText)
-  ) {
-    errors.push('The active bookmark rail must use the explicit self-hosted filled groups face, not request FILL 1 from the static outline navigation face.');
+  if (/Material Symbols Rounded Nav Filled|material-symbols-rounded-groups-filled-300|\.bookmark-rail/.test(sourceText)) {
+    errors.push('The removed bookmark rail must not leave a filled-groups font face or rail styling in the public UI.');
   }
   if (!/@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s.test(sourceText)) {
     errors.push('Reduced-motion mode must keep the header prominent and suppress the moving CTA sweep.');
@@ -724,6 +709,91 @@ async function validateUi(publishRoot, errors) {
   if (!/import \{ initApproachMotion \} from "\.\/approach-motion\.js";/.test(sourceText) ||
       !/initApproachMotion\(\);/.test(sourceText)) {
     errors.push('The bounded approach-motion adapter must be imported and initialized.');
+  }
+
+  const mediaParallaxSource = await readIfPresent(path.join(publishRoot, 'src', 'media-parallax.js')) ?? '';
+  const staticParallaxMarkers = index.match(/\bdata-parallax-media\b/g) ?? [];
+  const avatarRenderer = sourceText.match(/function avatarMarkup\b[\s\S]*?(?=function hydrateImages\b)/)?.[0] ?? '';
+  const certificateRenderer = sourceText.match(/function certificatesMarkup\b[\s\S]*?(?=function personDetailMarkup\b)/)?.[0] ?? '';
+  if (
+    !/import \{ initMediaParallax \} from "\.\/media-parallax\.js";/.test(sourceText) ||
+    !/mediaParallaxController\s*=\s*initMediaParallax\(\)/.test(sourceText) ||
+    !/mediaParallaxController\?\.refresh\(elements\.board\)/.test(sourceText) ||
+    staticParallaxMarkers.length !== 4 ||
+    !/class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="9"/.test(avatarRenderer) ||
+    /data-parallax-media/.test(certificateRenderer) ||
+    /<img[^>]*(?:landometer-horizontal|landometer-symbol)[^>]*data-parallax-media/i.test(index)
+  ) {
+    errors.push('Photo parallax must be initialized once, refresh generated portraits, mark exactly four static Hero photos plus approved portraits, and exclude certificates and brand assets.');
+  }
+  for (const token of [
+    'const MEDIA_SELECTOR = "img[data-parallax-media]"',
+    'const MAX_DEPTH = 24',
+    'new win.IntersectionObserver',
+    'win.requestAnimationFrame',
+    'win.cancelAnimationFrame',
+    'addWindowListener("scroll", onScroll, { passive: true })',
+    '"(prefers-reduced-motion: reduce)"',
+    'win?.matchMedia?.("print")',
+    'addWindowListener("beforeprint", onBeforePrint)',
+    'addWindowListener("pagehide", onPageHide)',
+    'destroy()'
+  ]) {
+    if (!mediaParallaxSource.includes(token)) errors.push(`The media-parallax controller is missing its bounded lifecycle contract: ${token}.`);
+  }
+  if (
+    !/html\.media-parallax-enabled img\[data-parallax-media\]\.is-media-parallax-active\s*\{[^}]*will-change:\s*transform;/s.test(sourceText) ||
+    !/@media print[\s\S]*?img\[data-parallax-media\]\s*\{[^}]*transform:\s*none !important;[^}]*will-change:\s*auto !important;/s.test(sourceText) ||
+    !/@media \(prefers-reduced-motion: reduce\)[\s\S]*?img\[data-parallax-media\]\s*\{[^}]*transform:\s*none !important;[^}]*will-change:\s*auto !important;/s.test(sourceText)
+  ) {
+    errors.push('Parallax CSS must remain opt-in and reset transforms for print and reduced-motion users.');
+  }
+
+  const footerMarkup = index.match(/<footer\b[\s\S]*?<\/footer>/)?.[0] ?? '';
+  const corporateSocialUrls = [
+    'https://www.facebook.com/landometer',
+    'https://www.instagram.com/landometer',
+    'https://www.tiktok.com/@landometer82',
+    'https://www.linkedin.com/company/landometer',
+    'https://x.com/landometer'
+  ];
+  if (
+    !/class="site-footer"[^>]*data-approach-sequence/.test(footerMarkup) ||
+    !/class="footer-measure-line"[\s\S]*?<span><\/span><span><\/span><span><\/span><span><\/span>/.test(footerMarkup) ||
+    /<form\b|id="footer-title">\s*Hello\b/i.test(footerMarkup) ||
+    !/href="mailto:hello@landometer\.com">hello@landometer\.com<\/a>/.test(footerMarkup) ||
+    !/href="https:\/\/maps\.app\.goo\.gl\/8DQPVMtPdxWMBoZU9"/.test(footerMarkup) ||
+    !/href="https:\/\/landometer\.com\/pdpa\/showDocVer"/.test(footerMarkup) ||
+    !/id="footer-top-link" href="#top"/.test(footerMarkup) ||
+    !/id="footer-people-link" href="#people"/.test(footerMarkup) ||
+    !/class="footer-brand"[\s\S]*?public\/assets\/brand\/landometer-horizontal\.png/.test(footerMarkup) ||
+    corporateSocialUrls.some((url) => (footerMarkup.split(`href="${url}"`).length - 1) !== 1)
+  ) {
+    errors.push('The footer must use the approved contact-first layout without a Hello form and expose the exact corporate contact, social, privacy, brand, and real-page destinations.');
+  }
+  if (
+    !/\.site-footer\s*\{[^}]*background:\s*linear-gradient\(135deg,\s*#89CEF6 0%,\s*#5ECAD6 50%,\s*#6CD5B3 100%\);/s.test(sourceText) ||
+    !/\.footer-measure-line\s*\{[^}]*height:\s*8px;[^}]*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\);/s.test(sourceText) ||
+    !/\.footer-bottom\s*\{[^}]*border-top:\s*1px solid #33403D;[^}]*background:\s*#11191D;/s.test(sourceText) ||
+    !/\.footer-social-links a\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;[^}]*border-radius:\s*50%;/s.test(sourceText)
+  ) {
+    errors.push('The footer must preserve the rebuild02 measure strip, luminous gradient, circular social actions, and dark lower band.');
+  }
+  for (const localizedToken of [
+    'footerTitle: "มาเป็นชาว Landom กัน"',
+    'footerTitle: "Be part of Landom"',
+    'footerSocialLabel: "ช่องทางสังคมของ Landometer"',
+    'footerSocialLabel: "Landometer social profiles"',
+    'footerBackTop: "กลับไปด้านบน"',
+    'footerBackTop: "Back to top"',
+    'footerPeople: "ชาว Landom"',
+    'footerPeople: "People of Landom"',
+    'setText(elements.footerTitle, copy.footerTitle)',
+    'elements.footerSocialLinks?.setAttribute("aria-label", copy.footerSocialLabel)',
+    'setText(elements.footerTopLink, copy.footerBackTop)',
+    'setText(elements.footerPeopleLink, copy.footerPeople)'
+  ]) {
+    if (!sourceText.includes(localizedToken)) errors.push(`The footer localization contract is missing: ${localizedToken}.`);
   }
   if (!/root\.classList\.add\("lds-motion-pending"\)/.test(index) ||
       !/"IntersectionObserver" in window/.test(index) ||
@@ -978,14 +1048,25 @@ async function validatePublishBoundary(publishRoot, errors, { distMode }) {
     [/contacts_internal/i, 'private contacts_internal dataset'],
     [/["'](?:email|phone|line_id|lineId|discord|cv_file_ids|cvFileIds)["']\s*:/i, 'private contact field'],
     [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, 'private key'],
-    [/(?:api[_-]?key|access[_-]?token|client[_-]?secret)["']?\s*[:=]\s*["'][^"']{8,}/i, 'credential-shaped value'],
-    [/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i, 'email address']
+    [/(?:api[_-]?key|access[_-]?token|client[_-]?secret)["']?\s*[:=]\s*["'][^"']{8,}/i, 'credential-shaped value']
   ];
   for (const file of files) {
     if (!textExtensions.has(path.extname(file))) continue;
     const contents = await readFile(file, 'utf8');
+    const relativePath = path.relative(publishRoot, file).split(path.sep).join('/');
     for (const [pattern, label] of forbidden) {
-      if (pattern.test(contents)) errors.push(`${path.relative(publishRoot, file)} contains a ${label}.`);
+      if (pattern.test(contents)) errors.push(`${relativePath} contains a ${label}.`);
+    }
+    const emailMatches = contents.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi) ?? [];
+    if (emailMatches.length > 0) {
+      const isStaticEntrypoint = relativePath === 'index.html' || relativePath === 'en/index.html';
+      const isExactCorporateFooterEmail =
+        emailMatches.length === 2 &&
+        emailMatches.every((email) => email.toLowerCase() === 'hello@landometer.com') &&
+        (contents.match(/<a class="footer-email" href="mailto:hello@landometer\.com">hello@landometer\.com<\/a>/g) ?? []).length === 1;
+      if (!isStaticEntrypoint || !isExactCorporateFooterEmail) {
+        errors.push(`${relativePath} contains an email address outside the single verified corporate footer contact.`);
+      }
     }
   }
   if (distMode) {
@@ -1282,9 +1363,6 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     }
     if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_NAV.path}" as="font" type="font/woff2" crossorigin>`)) {
       errors.push(`${fileLabel} must preload the self-hosted unified-navigation Material Symbols subset.`);
-    }
-    if (!html.includes(`<link rel="preload" href="./${MATERIAL_SYMBOLS_NAV_FILLED.path}" as="font" type="font/ttf" crossorigin>`)) {
-      errors.push(`${fileLabel} must preload the exact self-hosted filled groups subset used by the active bookmark rail.`);
     }
     if ((html.match(/<meta property="og:image"\s/g) ?? []).length !== 1 || (html.match(/<meta name="twitter:image"\s/g) ?? []).length !== 1) {
       errors.push(`${fileLabel} must expose exactly one approved Open Graph image and one approved Twitter image.`);

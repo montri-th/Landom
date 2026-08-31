@@ -116,7 +116,6 @@
     <link rel="preload" href="./public/assets/fonts/bai-jamjuree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-nav-300.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="./public/assets/hero/landom-community-anchor.jpg" as="image" fetchpriority="high">
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./src/styles.css">
@@ -268,12 +267,6 @@
       </div>
     </div>
 
-    <nav class="bookmark-rail" aria-label="ทางลัดในหน้านี้">
-      <a href="#people" data-scrollspy-link="people" data-label="ชาว Landom" aria-label="ชาว Landom" title="ชาว Landom">
-        <span class="icon-symbol" aria-hidden="true">groups</span>
-      </a>
-    </nav>
-
     <main id="main-content">
       <section class="hero" id="top" aria-labelledby="page-title">
         <figure class="hero-media">
@@ -285,6 +278,8 @@
             alt="ชาว Landom ร่วมทำงาน เรียนรู้ และใช้เวลาร่วมกัน"
             fetchpriority="high"
             decoding="async"
+            data-parallax-media
+            data-parallax-depth="18"
           >
         </figure>
         <div class="hero-moment hero-moment--dinner" aria-hidden="true">
@@ -294,6 +289,8 @@
             height="960"
             alt=""
             decoding="async"
+            data-parallax-media
+            data-parallax-depth="6"
           >
         </div>
         <div class="hero-moment hero-moment--work" aria-hidden="true">
@@ -303,6 +300,8 @@
             height="960"
             alt=""
             decoding="async"
+            data-parallax-media
+            data-parallax-depth="5"
           >
         </div>
         <div class="hero-moment hero-moment--gathering" aria-hidden="true">
@@ -312,6 +311,8 @@
             height="720"
             alt=""
             decoding="async"
+            data-parallax-media
+            data-parallax-depth="7"
           >
         </div>
         <div class="hero-copy">
@@ -433,12 +434,61 @@
       </section>
     </main>
 
-    <footer class="site-footer" data-approach-sequence>
-      <div data-approach="paired_inline">
-        <p class="footer-label" aria-hidden="true">Landometer × Landom</p>
-        <p id="footer-copy">มาเป็นชาว Landom กัน · Let us cultivate our city with data.</p>
+    <footer class="site-footer" data-approach-sequence aria-labelledby="footer-title">
+      <div class="footer-measure-line" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
       </div>
-      <p class="footer-meta" id="footer-meta" data-approach="paired_inline">ชาวด้อม Landom</p>
+      <div class="footer-main">
+        <div class="footer-contact" data-approach="paired_inline">
+          <p class="footer-label">Landometer Co., Ltd.</p>
+          <h2 id="footer-title">มาเป็นชาว Landom กัน</h2>
+          <p id="footer-copy">มาร่วมกันเข้าใจเมือง และช่วยกันทำให้ดีขึ้น</p>
+          <address id="footer-address">
+            23/34-35 Room 4C-4D 4th Fl. The Quarter Bangkok Tower, ถนนตรีมิตร แขวงตลาดน้อย เขตสัมพันธวงศ์ กรุงเทพมหานคร 10100
+          </address>
+          <a class="footer-map-link" id="footer-map-link" href="https://maps.app.goo.gl/8DQPVMtPdxWMBoZU9" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">⌖</span>
+            <span id="footer-map-label">เปิดแผนที่สำนักงาน</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="footer-connect" data-approach="paired_inline">
+          <a class="footer-email" href="mailto:hello@landometer.com">hello@landometer.com</a>
+          <nav class="footer-social-links" id="footer-social-links" aria-label="ช่องทางสังคมของ Landometer">
+            <a href="https://www.facebook.com/landometer" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M13.5 21v-7h2.7l.4-3h-3.1V9.3c0-.9.3-1.5 1.6-1.5h1.7V5.2c-.5-.1-1.2-.2-2.1-.2-2.7 0-4.3 1.7-4.3 4.6V11H8.2v3h2.2v7"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/landometer" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.6" r=".8"></circle></svg>
+            </a>
+            <a href="https://www.tiktok.com/@landometer82" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a4.1 4.1 0 1 1-3.2-4"></path><path d="M14 4c.6 2.1 2.1 3.5 4 4.2"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/landometer" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><circle cx="8" cy="8.4" r=".8"></circle><path d="M8 11.5V17M11.5 17v-5.5M11.5 13.4c.8-1.8 4.5-2.5 4.5.9V17"></path></svg>
+            </a>
+            <a href="https://x.com/landometer" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4 5 20"></path></svg>
+            </a>
+          </nav>
+          <nav class="footer-links" id="footer-links" aria-label="ลิงก์ท้ายหน้า">
+            <a id="footer-top-link" href="#top">กลับไปด้านบน</a>
+            <a id="footer-people-link" href="#people">ชาว Landom</a>
+            <a id="footer-privacy-link" href="https://landometer.com/pdpa/showDocVer" target="_blank" rel="noopener noreferrer">Privacy &amp; Terms</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <a class="footer-brand" id="footer-brand" href="#top" aria-label="Landometer — กลับไปด้านบน">
+            <img src="./public/assets/brand/landometer-horizontal.png" width="168" height="47" alt="">
+          </a>
+          <p class="footer-copyright" id="footer-copyright">© 2017–2026 Landometer Co., Ltd.</p>
+          <p class="footer-meta" id="footer-meta">ชาวด้อม Landom</p>
+        </div>
+      </div>
     </footer>
 
     <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">

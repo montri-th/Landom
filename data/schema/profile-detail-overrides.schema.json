@@ -8,6 +8,7 @@
     "contractVersion",
     "sourceBasis",
     "addedPeople",
+    "existingPersonTimelineOverrides",
     "addedInstitutions",
     "addedPrograms",
     "addedEducationRecords",
@@ -30,9 +31,10 @@
     "contributionRoleOverrides"
   ],
   "properties": {
-    "contractVersion": { "const": "1.2" },
+    "contractVersion": { "const": "1.3" },
     "sourceBasis": { "type": "string", "minLength": 1 },
     "addedPeople": { "type": "array", "items": { "$ref": "#/$defs/addedPerson" } },
+    "existingPersonTimelineOverrides": { "type": "array", "items": { "$ref": "#/$defs/existingPersonTimelineOverride" } },
     "addedInstitutions": { "type": "array", "items": { "$ref": "#/$defs/addedInstitution" } },
     "addedPrograms": { "type": "array", "items": { "$ref": "#/$defs/addedProgram" } },
     "addedEducationRecords": { "type": "array", "items": { "$ref": "#/$defs/addedEducationRecord" } },
@@ -96,6 +98,17 @@
         "firstJoined": { "$ref": "#/$defs/nullableDate" },
         "migrationClassification": { "const": "full_time" },
         "verificationStatus": { "const": "owner_supplied" }
+      }
+    },
+    "existingPersonTimelineOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "firstJoined", "verificationStatus", "evidenceNote"],
+      "properties": {
+        "personId": { "$ref": "#/$defs/personId" },
+        "firstJoined": { "type": "string", "format": "date" },
+        "verificationStatus": { "const": "owner_confirmed_exact_first_joined" },
+        "evidenceNote": { "type": "string", "minLength": 1 }
       }
     },
     "addedInstitution": {
@@ -256,6 +269,7 @@
         "start": { "type": ["string", "null"], "format": "date" },
         "end": { "type": ["string", "null"], "format": "date" },
         "status": { "enum": ["ongoing", "completed"] },
+        "evidenceStatus": { "type": "string", "minLength": 1 },
         "verificationStatus": { "type": "string", "minLength": 1 },
         "evidenceNote": { "type": "string", "minLength": 1 }
       }

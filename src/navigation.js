@@ -25,11 +25,6 @@ export function initSiteNavigation() {
   const layer = document.querySelector('#site-menu-layer');
   const panel = document.querySelector('#site-menu');
   const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-  const railLinks = Array.from(document.querySelectorAll('[data-scrollspy-link]'));
-  const railSections = railLinks
-    .map((link) => ({ link, section: document.getElementById(link.dataset.scrollspyLink || '') }))
-    .filter((record) => record.section);
-
   if (!header || !toggle || !toggleIcon || !layer || !panel) return { close() {} };
 
   root.classList.add('navigation-enhanced');
@@ -56,22 +51,6 @@ export function initSiteNavigation() {
     header.classList.toggle('is-calm', next);
     if (next) root.dataset.navState = 'calm';
     else delete root.dataset.navState;
-  }
-
-  function syncScrollspy() {
-    const headerHeight = header.getBoundingClientRect().height;
-    const readingLine = Math.max(headerHeight + 24, window.innerHeight * 0.42);
-    let active = null;
-
-    railSections.forEach((record) => {
-      const rect = record.section.getBoundingClientRect();
-      if (rect.top <= readingLine && rect.bottom > headerHeight + 16) active = record;
-    });
-
-    railSections.forEach((record) => {
-      if (record === active) record.link.setAttribute('aria-current', 'location');
-      else record.link.removeAttribute('aria-current');
-    });
   }
 
   function resolveScroller(target) {
@@ -101,7 +80,6 @@ export function initSiteNavigation() {
     else if (delta < -4) calmRequested = false;
 
     setCalm(calmRequested);
-    if (scroller === documentScroller) syncScrollspy();
   }
 
   function flushScrollUpdates() {

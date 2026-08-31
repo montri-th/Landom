@@ -90,13 +90,13 @@ jobs:
           script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-app.js --write-out '%{content_type}' "$base_url/src/app.js?$cache_bust")"
           navigation_script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-navigation.js --write-out '%{content_type}' "$base_url/src/navigation.js?$cache_bust")"
           approach_motion_script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-approach-motion.js --write-out '%{content_type}' "$base_url/src/approach-motion.js?$cache_bust")"
+          media_parallax_script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-media-parallax.js --write-out '%{content_type}' "$base_url/src/media-parallax.js?$cache_bust")"
           style_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-styles.css --write-out '%{content_type}' "$base_url/src/styles.css?$cache_bust")"
           logo_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo.png --write-out '%{content_type}' "$base_url/public/assets/brand/landometer-horizontal.png?$cache_bust")"
           font_manifest_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-font-manifest.json --write-out '%{content_type}' "$base_url/public/assets/fonts/font-assets.manifest.json?$cache_bust")"
           font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-body-thai.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/bai-jamjuree-thai-400-normal.woff2?$cache_bust")"
           icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2?$cache_bust")"
           nav_icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols-nav.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-nav-300.woff2?$cache_bust")"
-          filled_nav_icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols-nav-filled.ttf --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf?$cache_bust")"
           portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-s0001.jpg --write-out '%{content_type}' "$base_url/public/assets/people/S0001.jpg?$cache_bust")"
           ham_portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-i0009.jpg --write-out '%{content_type}' "$base_url/public/assets/people/I0009.jpg?$cache_bust")"
           social_preview_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-og.jpg --write-out '%{content_type}' "$base_url/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97&$cache_bust")"
@@ -117,13 +117,13 @@ jobs:
           case "$script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected JavaScript content type: $script_type"; exit 1;; esac
           case "$navigation_script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected navigation JavaScript content type: $navigation_script_type"; exit 1;; esac
           case "$approach_motion_script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected approach-motion JavaScript content type: $approach_motion_script_type"; exit 1;; esac
+          case "$media_parallax_script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected media-parallax JavaScript content type: $media_parallax_script_type"; exit 1;; esac
           case "$style_type" in text/css*) ;; *) echo "Unexpected CSS content type: $style_type"; exit 1;; esac
           case "$logo_type" in image/png*) ;; *) echo "Unexpected logo content type: $logo_type"; exit 1;; esac
           case "$font_manifest_type" in application/json*|text/json*) ;; *) echo "Unexpected font manifest content type: $font_manifest_type"; exit 1;; esac
           case "$font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected WOFF2 content type: $font_type"; exit 1;; esac
           case "$icon_font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected icon WOFF2 content type: $icon_font_type"; exit 1;; esac
           case "$nav_icon_font_type" in font/woff2*|application/font-woff*|application/octet-stream*) ;; *) echo "Unexpected navigation icon WOFF2 content type: $nav_icon_font_type"; exit 1;; esac
-          case "$filled_nav_icon_font_type" in font/ttf*|application/x-font-ttf*|application/octet-stream*) ;; *) echo "Unexpected filled navigation icon TTF content type: $filled_nav_icon_font_type"; exit 1;; esac
           case "$portrait_type" in image/jpeg*) ;; *) echo "Unexpected portrait content type: $portrait_type"; exit 1;; esac
           case "$ham_portrait_type" in image/jpeg*) ;; *) echo "Unexpected Ham portrait content type: $ham_portrait_type"; exit 1;; esac
           case "$social_preview_type" in image/jpeg*) ;; *) echo "Unexpected social preview content type: $social_preview_type"; exit 1;; esac
@@ -145,6 +145,7 @@ jobs:
             const app = readFileSync("/tmp/landom-app.js", "utf8");
             const navigation = readFileSync("/tmp/landom-navigation.js", "utf8");
             const approachMotion = readFileSync("/tmp/landom-approach-motion.js", "utf8");
+            const mediaParallax = readFileSync("/tmp/landom-media-parallax.js", "utf8");
             const data = JSON.parse(readFileSync("/tmp/landom-site-data.json", "utf8"));
             const manifest = JSON.parse(readFileSync("/tmp/landom-build-manifest.json", "utf8"));
             if (!html.includes("id=\"people-board\"")) throw Error("people board missing from deployed HTML");
@@ -154,12 +155,18 @@ jobs:
               }
               if (localizedHtml.includes("href=\"#certificates\"")) throw Error("deployed navigation links to a page section that does not exist");
             }
-            if ((html.match(/href="#people"/g) || []).length !== 2) throw Error("Thai on-page shortcuts are missing");
-            if ((english.match(/href="https:\/\/montri-th\.github\.io\/Landom\/en\/#people"/g) || []).length !== 2 || english.includes("href=\"#people\"")) throw Error("English on-page shortcuts leave the localized route");
+            const thaiMenuPeopleLinks = html.match(/<a\b(?=[^>]*\bdata-menu-close\b)(?=[^>]*href="#people")[^>]*>/g) || [];
+            const englishMenuPeopleLinks = english.match(/<a\b(?=[^>]*\bdata-menu-close\b)(?=[^>]*href="https:\/\/montri-th\.github\.io\/Landom\/en\/#people")[^>]*>/g) || [];
+            if (thaiMenuPeopleLinks.length !== 1) throw Error("Thai compact-menu people shortcut is missing or duplicated");
+            if (englishMenuPeopleLinks.length !== 1) throw Error("English compact-menu people shortcut is missing, duplicated, or leaves the localized route");
+            for (const localizedHtml of [html, english]) {
+              if (localizedHtml.includes("bookmark-rail") || localizedHtml.includes("data-scrollspy-link")) throw Error("obsolete bookmark rail remains in deployed HTML");
+            }
             if (!/id="language-toggle"[\s\S]*?href="\.\/en\/"[\s\S]*?hreflang="en"/.test(html) || !/id="language-toggle"[\s\S]*?href="https:\/\/montri-th\.github\.io\/Landom\/"[\s\S]*?hreflang="th"/.test(english)) throw Error("localized language routes are missing from the deployed menu");
-            if (!app.includes("./navigation.js") || !app.includes("./approach-motion.js")) throw Error("navigation or approach-motion module is not imported by deployed app.js");
+            if (!app.includes("./navigation.js") || !app.includes("./approach-motion.js") || !app.includes("./media-parallax.js")) throw Error("navigation, approach-motion, or media-parallax module is not imported by deployed app.js");
             if (!navigation.includes("aria-expanded") || !navigation.includes("prefers-reduced-motion: reduce") || !navigation.includes("Escape")) throw Error("deployed navigation module is missing required accessible-state guards");
             if (!approachMotion.includes("threshold: 0.14") || !approachMotion.includes("rootMargin: \"0px 0px -12% 0px\"") || !approachMotion.includes("INIT_WATCHDOG_MS = 2400")) throw Error("deployed approach-motion module is missing the reviewed fail-open profile");
+            if (!mediaParallax.includes("data-parallax-media")) throw Error("deployed media-parallax module is missing the explicit media marker contract");
             for (const asset of ["landom-community-anchor.jpg", "landom-community-dinner.jpg", "landom-community-gathering.jpg", "landom-community-citymeter.jpg"]) {
               if (!html.includes(asset)) throw Error(`current Hero asset missing from deployed HTML: ${asset}`);
             }
@@ -176,13 +183,13 @@ jobs:
               ["src/app.js", "/tmp/landom-app.js"],
               ["src/navigation.js", "/tmp/landom-navigation.js"],
               ["src/approach-motion.js", "/tmp/landom-approach-motion.js"],
+              ["src/media-parallax.js", "/tmp/landom-media-parallax.js"],
               ["src/styles.css", "/tmp/landom-styles.css"],
               ["public/assets/brand/landometer-horizontal.png", "/tmp/landom-logo.png"],
               ["public/assets/fonts/font-assets.manifest.json", "/tmp/landom-font-manifest.json"],
               ["public/assets/fonts/bai-jamjuree-thai-400-normal.woff2", "/tmp/landom-body-thai.woff2"],
               ["public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2", "/tmp/landom-material-symbols.woff2"],
               ["public/assets/fonts/material-symbols-rounded-nav-300.woff2", "/tmp/landom-material-symbols-nav.woff2"],
-              ["public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf", "/tmp/landom-material-symbols-nav-filled.ttf"],
               ["public/assets/people/S0001.jpg", "/tmp/landom-portrait-s0001.jpg"],
               ["public/assets/people/I0009.jpg", "/tmp/landom-portrait-i0009.jpg"],
               ["public/assets/social/landom-people-og.jpg", "/tmp/landom-people-og.jpg"],

@@ -9,8 +9,9 @@ This repository is a static GitHub Pages site. No browser-side secret, API key, 
 | `index.html` | `dist/index.html` | Accessible page shell and controls |
 | `robots.txt`, `sitemap.xml` | same root paths in `dist/` | Single-route discovery contract |
 | `src/app.js` | `dist/src/app.js` | Directory, locale copy, theme, filters, and profile behavior |
-| `src/navigation.js` | `dist/src/navigation.js` | Unified header/menu, calm state, focus containment, and bookmark rail |
+| `src/navigation.js` | `dist/src/navigation.js` | Unified header/menu, calm state, and focus containment |
 | `src/approach-motion.js` | `dist/src/approach-motion.js` | Fail-open, once-only Riddim approach-motion adapter |
+| `src/media-parallax.js` | `dist/src/media-parallax.js` | Bounded, component-local parallax for explicitly marked photographs |
 | `src/styles.css` | `dist/src/styles.css` | Shared visual, responsive, navigation, and motion states |
 | `public/` | `dist/public/` | Approved, repository-owned assets |
 | `data/generated/` | `dist/data/generated/` | Reviewed public records only |
@@ -132,8 +133,9 @@ The static shell owns these required IDs; changes require updating the validator
 | `[data-navigation-header]` | Unified sticky header; remains prominent at the top, on upward scroll, pointer/focus intent, menu-open state, and reduced motion |
 | `#menu-toggle`, `#site-menu-layer`, `#site-menu` | Accessible menu trigger, modal layer, focus containment, Escape close, and focus return |
 | `#join-team-link`, `#join-team-link-mobile` | Same owner-approved Google Form CTA in desktop and mobile navigation |
-| `#people`, `[data-scrollspy-link="people"]` | The only truthful on-page navigation target and matching desktop bookmark-rail item |
+| `#people` | The only truthful on-page navigation target; it remains in the menu without a duplicate fixed rail |
 | `[data-approach]`, `[data-approach-sequence]` | Explicit semantic approach-motion units; unmarked content remains in its final state |
+| `img[data-parallax-media]` | Explicit photo-only parallax allowlist; unmarked media remain static |
 | `#search-input` | compact text search |
 | `#filter-open` | mobile filter bottom-sheet trigger |
 | `#filter-dialog`, `#filter-form` | accessible filter dialog and form |
@@ -142,16 +144,21 @@ The static shell owns these required IDs; changes require updating the validator
 | `#people-board` | masonry result board and one-at-a-time inline profile expansion |
 | `.person-card-shell`, `.person-inline-detail` | accessible inline detail state and cascading masonry reflow |
 | `#certificate-dialog`, `#certificate-close`, `#certificate-download` | governed high-resolution certificate preview and download |
+| `#footer-social-links`, `#footer-links` | Corporate social destinations and real footer navigation, separate from person-profile controls |
 
 Cards must be keyboard-operable `.person-card` buttons. Profile details expand inside the selected masonry card rather than opening a person modal; only one profile is expanded at a time, and reduced-motion preferences disable decorative cascade motion. Small screens keep search compact and move secondary filters into `#filter-dialog`. Unapproved or broken person images fall back to the full nickname in `.avatar-name`; do not derive initials.
 
-The unified header keeps the approved Landometer lockup followed by the `/ Landom` product indicator. Desktop exposes CityMETER, CityWiki, the `สมัครร่วมทีม` / `Join the team` CTA, and the menu button. Mobile exposes only the menu button beside the identity. The menu contains the one real in-page target (`#people`), display preferences, language route, and ecosystem destinations. Do not add a certificate bookmark until a matching page-level section exists; profile certificate dialogs are not a page section.
+The unified header keeps the approved Landometer lockup followed by the `/ Landom` product indicator. Desktop exposes CityMETER, CityWiki, the `สมัครร่วมทีม` / `Join the team` CTA, and the menu button. Mobile exposes only the menu button beside the identity. The menu contains the one real in-page target (`#people`), display preferences, language route, and ecosystem destinations. The former fixed desktop bookmark rail was removed because it duplicated that single menu shortcut. Do not restore the rail for one item, and do not add a certificate bookmark until a matching page-level section exists; profile certificate dialogs are not a page section.
 
 The calm header is a progressive visual state, not a content or hit-target reduction contract. It uses the owner-approved r7 geometry: 76→29 px desktop, 68→27 px mobile, 200% row width with `scale(.5)` at 72% opacity, and 26% canvas/20% hairline glass. Interactive controls retain an 88 px pre-transform transparent hit area, yielding at least 44 px after the row scale; the navigation gap becomes 22 px before scaling so adjacent targets do not overlap. Captured scroll events keep the last position per scroller and require a delta greater than 4 px. The header returns to the prominent state at the top, on upward scroll, while it has pointer/keyboard intent, while the menu is open, and whenever `prefers-reduced-motion: reduce` matches. The CTA's separate r7 exception uses a pointer-inert, `aria-hidden` yellow duplicate label with `lmSweep 3.7s` and `lmFlick 1.09s`; reduced motion removes the loop and leaves the primary label visible and operable.
 
 `src/approach-motion.js` implements the reviewed Riddim profile only for explicit eligible units: opacity 760 ms, transform 920 ms, 32 px rise with `scale(.985)`, paired inline travel of 36 px, and stagger 0/150/300/450 ms. Its observer uses threshold `0.14` and bottom root margin `-12%`, runs once, and has a 2,400 ms initialization watchdog. Unsupported APIs, runtime errors, print, reduced motion, BFCache restore, deep-link/focus entry, opened disclosures, and hidden or critical content must fail open to the fully visible and operable final state. Hero/LCP content, navigation, live regions, headings that own the page, and controls are excluded from decorative entrance motion.
 
-Navigation symbols are served locally from `public/assets/fonts/material-symbols-rounded-nav-300.woff2` (2,500 bytes, SHA-256 `d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657`). It is an owner-approved Landom-local, non-normative Apache-2.0 subset of Material Symbols Rounded at `FILL 0, wght 300, GRAD 0, opsz 24` containing only `open_in_new`, `menu`, `close`, `light_mode`, `dark_mode`, `contrast`, and `groups`. The active bookmark uses the separately packaged official Google Fonts v369 `groups` glyph at `FILL 1, wght 300, GRAD 0, opsz 24` from `public/assets/fonts/material-symbols-rounded-groups-filled-300.ttf` (2,728 bytes, SHA-256 `7ca897604752103823f05ced0ffde6d942fe931fa0027736ad8b1b225b7bbbcc`). The earlier `open_in_new` subset remains separately governed because contribution links still use it. All records, the local authority boundary, and their shared Apache-2.0 license file must stay in `public/assets/fonts/font-assets.manifest.json`.
+`src/media-parallax.js` is a separate, component-local owner-approved enhancement, not a normative Design System recipe. Only explicitly marked photographs participate: the governed Hero anchor, the three governed Hero moments, and governed person portraits. Logos, navigation/social icons, the decorative Hero motif, certificate thumbnails, certificate dialogs, and other evidence/document reading surfaces remain unmarked and static. `IntersectionObserver` limits work to visible images; a passive scroll listener schedules a single `requestAnimationFrame` update with bounded depth. Unsupported APIs, `prefers-reduced-motion: reduce`, print, `Save-Data`, page hiding, and teardown restore the original static transform without delaying image content.
+
+Navigation symbols are served locally from `public/assets/fonts/material-symbols-rounded-nav-300.woff2` (2,500 bytes, SHA-256 `d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657`). It is an owner-approved Landom-local, non-normative Apache-2.0 subset of Material Symbols Rounded at `FILL 0, wght 300, GRAD 0, opsz 24` containing only `open_in_new`, `menu`, `close`, `light_mode`, `dark_mode`, `contrast`, and `groups`. The filled `groups` font formerly used only by the active fixed rail is no longer referenced by CSS or preloaded by the page. The earlier `open_in_new` subset remains separately governed because contribution links still use it. Keep the authority boundary and shared Apache-2.0 license explicit in `public/assets/fonts/font-assets.manifest.json`; a historical asset record does not make an unused font part of the active interface.
+
+The footer is a local adaptation of the contact/footer visual family observed on `rebuild02/Landometer-Home-TH.dc.html`; it is not a source dependency or a normative Design System release. It deliberately omits the reference Hello form. The current footer retains the approved Landometer horizontal identity, company/address/map/email details, real `#top` and `#people` links, the approved privacy destination, and five verified corporate social profiles: Facebook (`https://www.facebook.com/landometer`), Instagram (`https://www.instagram.com/landometer`), TikTok (`https://www.tiktok.com/@landometer82`), LinkedIn (`https://www.linkedin.com/company/landometer`), and X (`https://x.com/landometer`).
 
 The app fetches `./data/generated/site-data.json`; keep URLs relative so project Pages works under `/Landom/`.
 
@@ -195,7 +202,7 @@ Public social records require exact identity verification, a `publicUrl`, and `p
 
 The second basis is a scoped directory-owner publication decision, not individual consent. Keep `consentStatus: pending` unless actual individual consent is recorded. Store no session cookie, internal follower list, private message, email, phone, Line, Discord, CV identifier, or unpublished candidate handle in public JSON.
 
-The public web and generated public datasets additionally enforce a platform allowlist: expose only LinkedIn and GitHub records that pass the gate. Facebook, Instagram, and all other social-platform links remain Sheet/private-snapshot data and are Sheet-only. Preserve those candidates during private workbook roundtrip, but never emit them into public JSON, UI, or discovery/social metadata. Passing the gate does not widen this allowlist.
+Person records in the public web and generated public datasets additionally enforce a platform allowlist: expose only LinkedIn and GitHub records that pass the gate. Facebook, Instagram, and all other person-level social candidates remain Sheet/private-snapshot data and are Sheet-only; preserve them during private workbook roundtrip, but never emit them as individual controls, public person JSON, or discovery/social metadata. Passing the person gate does not widen this allowlist. The five static, verified Landometer corporate destinations in the footer are a separate site-level navigation contract and must not be copied into any person's `socialProfiles` records.
 
 Person-image records additionally require `rightsStatus: cleared`, exact identity verification, and either individual consent or `owner_authorized_public_profile_portrait` with scoped owner approval. Copy/normalize approved images into `public/assets/people/<personId>.jpg`; public data stores only the local path, SHA-256, media metadata, and bounded evidence label. Expiring CDN/source-profile URLs stay in private evidence and `sourceUrl` remains null. Every file there must have a matching publishable `assets[]` record. Failed, pending, revoked, missing, or broken assets render the full nickname as fallback.
 
@@ -212,7 +219,7 @@ Certificate images use a separate deny-by-default inventory at `data/approved/ce
 The Pages workflow has two phases and is intentionally public-data-only. It must not make remote Google Sheet calls in either phase:
 
 1. `build`: checkout, Node 20, validation/tests, reproducible build, artifact upload;
-2. `deploy`: GitHub Pages deployment followed by a release-SHA cache-busted fetch. The live `build-manifest.json` must first match the exact digest emitted by this workflow's build job; only then may it attest manifest-hash parity for HTML, public JSON, all three JavaScript modules, CSS, discovery files, all three governed Material Symbols assets, the approved logo, and the governed social-preview, hero-photo, and hero-motif assets. The live smoke test also checks status/MIME, localized menu routes, required unified-navigation markers, absence of a dead certificate bookmark, app-module imports, and the reviewed navigation/motion safety guards.
+2. `deploy`: GitHub Pages deployment followed by a release-SHA cache-busted fetch. The live `build-manifest.json` must first match the exact digest emitted by this workflow's build job; only then may it attest manifest-hash parity for HTML, public JSON, all four JavaScript modules, CSS, discovery files, active governed Material Symbols assets, the approved logo, and the governed social-preview, hero-photo, and hero-motif assets. The live smoke test also checks status/MIME, localized menu routes, required unified-navigation markers, absence of the retired fixed rail and any dead certificate bookmark, app-module imports, the reviewed navigation/approach-motion safety guards, the photo-parallax fail-static contract, and the corporate-footer destinations.
 
 Configure **Settings → Pages → Source: GitHub Actions**. The workflow needs standard Pages `write` and OIDC `id-token` permissions only in the deploy job. No repository secret is required.
 
@@ -225,11 +232,13 @@ Automation does not close these checks:
 - Thai and English copy/behavior review;
 - responsive review at narrow mobile, tablet, and desktop widths;
 - prominent/calm header transitions in both scroll directions, including pointer/focus intent and menu-open override;
-- desktop product links/CTA/bookmark rail and mobile menu-only header, including final external destinations;
+- desktop product links/CTA and mobile menu-only header, including the menu-owned `#people` shortcut and final external destinations, with no fixed bookmark rail;
 - native iOS/Android bottom-sheet, scroll, focus return, and virtual-keyboard behavior;
 - Thai at 130% zoom and page at 200% zoom;
 - keyboard, visible focus, screen-reader labels, reduced motion, menu/filter/certificate focus containment, Escape behavior, and focus return;
 - Riddim approach motion at normal motion plus no hidden or delayed content under reduced motion, print, deep-link/focus entry, and BFCache restore;
+- photo parallax at normal motion, plus static Hero/portrait media under reduced motion, print, save-data, unsupported APIs, and page lifecycle resets; verify that logos, icons, the motif, and certificate reading surfaces never move;
+- footer behavior at mobile/tablet/desktop widths, no Hello form, all five verified corporate social destinations, and continued LinkedIn/GitHub-only person controls;
 - final human review of institution/program canonicalization and product naming against the same CityMETER release;
 - candidate-video/profile-owner review of all current placeholder bios, preserving statement version history;
 - evidence, consent, and rights review for every newly published social link or person image.
