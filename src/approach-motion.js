@@ -1,5 +1,5 @@
 /**
- * Riddim approach-motion adapter (candidate contract).
+ * Landometer DS v0.9.1 Riddim approach-motion adapter.
  *
  * Source HTML and source CSS must render every target in its final state. This
  * module only arms explicit, eligible, below-viewport `[data-approach]` units
@@ -16,6 +16,7 @@ const ARMED = "is-lds-reveal-armed";
 const REVEALED = "is-lds-revealed";
 const ARRIVING = "is-lds-reveal-arriving";
 const SETTLED = "is-lds-reveal-settled";
+const MOTION_EVENT = "landom-motion-preference";
 
 const OBSERVER_OPTIONS = Object.freeze({
   threshold: 0.14,
@@ -23,17 +24,17 @@ const OBSERVER_OPTIONS = Object.freeze({
 });
 
 const INIT_WATCHDOG_MS = 2400;
-const STAGGER_STEP_MS = 120;
-const STAGGER_CAP_MS = 600;
-const TRANSFORM_SETTLE_MS = 640;
+const STAGGER_STEP_MS = 150;
+const STAGGER_CAP_MS = 450;
+const TRANSFORM_SETTLE_MS = 920;
 const SETTLE_GRACE_MS = 80;
 
 const ALLOWED_ROLES = new Set([
-  "section_opener",
-  "peer_group",
-  "paired_inline",
-  "proof_preview",
-  "contact_group"
+  "approach.soft",
+  "approach.inline-start",
+  "approach.inline-end",
+  "media.arrival",
+  "stagger.child"
 ]);
 
 const HIDDEN_CONTAINER_SELECTOR = [
@@ -79,8 +80,7 @@ const CONTROLLER_KEY = Symbol.for("landometer.riddimApproachMotion.controller");
 function normalizeRole(element) {
   return (element.getAttribute("data-approach") || "")
     .trim()
-    .toLowerCase()
-    .replaceAll("-", "_");
+    .toLowerCase();
 }
 
 function isRendered(element, win) {
@@ -148,26 +148,30 @@ function targetDelay(element) {
 }
 
 function validatePairedGroup(element) {
-  if (normalizeRole(element) !== "paired_inline") return true;
+  const role = normalizeRole(element);
+  if (role !== "approach.inline-start" && role !== "approach.inline-end") return true;
 
   const sequence = element.parentElement?.matches(SEQUENCE_SELECTOR)
     ? element.parentElement
     : null;
   if (!sequence) return false;
 
-  const peers = [...sequence.children].filter(
-    (child) => child.matches?.('[data-approach="paired_inline"], [data-approach="paired-inline"]')
-  );
+  const peers = [...sequence.children].filter((child) => {
+    const peerRole = normalizeRole(child);
+    return peerRole === "approach.inline-start" || peerRole === "approach.inline-end";
+  });
   if (peers.length !== 2) return false;
-
-  return peers.includes(element);
+  return peers.includes(element) &&
+    peers.some((peer) => normalizeRole(peer) === "approach.inline-start") &&
+    peers.some((peer) => normalizeRole(peer) === "approach.inline-end");
 }
 
 /**
- * Initialize the candidate Riddim approach-motion behavior.
+ * Initialize the governed Riddim approach-motion behavior.
  *
  * Mark each bounded semantic unit with one of:
- *   section_opener | peer_group | paired_inline | proof_preview | contact_group
+ *   approach.soft | approach.inline-start | approach.inline-end |
+ *   media.arrival | stagger.child
  * Use `[data-approach-sequence]` on the direct parent when peer ordering matters.
  *
  * @param {{ document?: Document }} [options]
@@ -301,6 +305,7 @@ export function initApproachMotion(options = {}) {
     win.removeEventListener("beforeprint", onBeforePrint);
     win.removeEventListener("scroll", onPassiveAudit);
     win.removeEventListener("resize", onResize);
+    win.removeEventListener(MOTION_EVENT, onPageMotionPreference);
     reducedMotion?.removeEventListener?.("change", onReducedMotionChange);
     reducedMotion?.removeListener?.(onReducedMotionChange);
     printMedia?.removeEventListener?.("change", onPrintMediaChange);
@@ -442,6 +447,12 @@ export function initApproachMotion(options = {}) {
     if (event.matches) failOpen("reduced-motion");
   }
 
+  function onPageMotionPreference(event) {
+    if (event?.detail?.paused === true || root.dataset.motionPaused === "true") {
+      failOpen("user-paused");
+    }
+  }
+
   function installLifecycleGuards() {
     if (listenersInstalled) return;
     listenersInstalled = true;
@@ -454,6 +465,7 @@ export function initApproachMotion(options = {}) {
     win.addEventListener("beforeprint", onBeforePrint);
     win.addEventListener("scroll", onPassiveAudit, { passive: true });
     win.addEventListener("resize", onResize, { passive: true });
+    win.addEventListener(MOTION_EVENT, onPageMotionPreference);
 
     if (reducedMotion?.addEventListener) {
       reducedMotion.addEventListener("change", onReducedMotionChange);
@@ -580,6 +592,7 @@ export function initApproachMotion(options = {}) {
       if (
         reducedMotion?.matches ||
         printMedia?.matches ||
+        root.dataset.motionPaused === "true" ||
         typeof win.IntersectionObserver !== "function"
       ) {
         failOpen("unsupported-or-final-state");
@@ -628,6 +641,7 @@ export function initApproachMotion(options = {}) {
         if (
           reducedMotion?.matches ||
           printMedia?.matches ||
+          root.dataset.motionPaused === "true" ||
           typeof win.IntersectionObserver !== "function"
         ) {
           failOpen("unsupported-or-final-state");

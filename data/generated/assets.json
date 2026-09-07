@@ -1355,5 +1355,27 @@
     "mediaType": null,
     "bytes": null,
     "identityVerificationEvidence": null
+  },
+  {
+    "assetId": "PORTRAIT-I0044",
+    "personId": "I0044",
+    "kind": "profile_portrait",
+    "publicPath": null,
+    "sourceUrl": null,
+    "alt": {
+      "th": "ภาพโปรไฟล์ของโซ่",
+      "en": "Profile portrait of Sorso"
+    },
+    "candidateStatus": "source_needed",
+    "verificationStatus": "missing",
+    "consentStatus": "pending",
+    "rightsStatus": "pending",
+    "publicationBasis": null,
+    "ownerApproval": null,
+    "publicationStatus": "withheld_pending_rights_consent_and_verification",
+    "sha256": null,
+    "mediaType": null,
+    "bytes": null,
+    "identityVerificationEvidence": null
   }
 ]

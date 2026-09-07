@@ -61,15 +61,15 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.doesNotMatch(pattareeyaRow[sourceNoteIndex], /Pitcha \(I0015\)/);
   const currentStatementIndex = peopleTab.headers.indexOf('current_statement_id');
   assert.ok(currentStatementIndex >= 0);
-  assert.equal(peopleTab.rows.filter((row) => row[currentStatementIndex]).length, 51);
+  assert.equal(peopleTab.rows.filter((row) => row[currentStatementIndex]).length, 52);
   const statements = exported.tabs.profile_statements;
-  assert.equal(statements.rows.length, 51);
+  assert.equal(statements.rows.length, 52);
   const statementIdIndex = statements.headers.indexOf('statement_id');
   const statementPersonIndex = statements.headers.indexOf('person_id');
   assertUnique(statements.rows.map((row) => ({ statementId: row[statementIdIndex] })), 'statementId');
   assert.ok(statements.rows.every((row) => /^[SPI]\d{4}$/.test(row[statementPersonIndex])));
   const statementSourceTypeIndex = statements.headers.indexOf('source_type');
-  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'first_person_application').length, 25);
+  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'first_person_application').length, 26);
   assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'factual_fallback').length, 26);
   assert.deepEqual(peopleTab.validations.W, ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence']);
   assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence']);
@@ -206,10 +206,10 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 50);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 51);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 23);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 73);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 74);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       ['linkedin', 'github'].includes(row.platform)
     ));
@@ -258,14 +258,14 @@ test('schema and all generated dimensions are valid JSON', () => {
   const identityOverrides = JSON.parse(fs.readFileSync(personIdentityOverridePath, 'utf8'));
   assert.equal(identityOverrides.contractVersion, '1.0');
   assertUnique(identityOverrides.overrides.map((override) => ({ personId: override.personId })), 'personId');
-  assert.equal(detailOverrides.contractVersion, '1.3');
+  assert.equal(detailOverrides.contractVersion, '1.4');
   assertUnique(detailOverrides.existingPersonTimelineOverrides.map((override) => ({ personId: override.personId })), 'personId');
   assert.deepEqual(
     Object.fromEntries(detailOverrides.existingPersonTimelineOverrides.map((override) => [override.personId, override.firstJoined])),
     {
-      I0026: '2025-12-19',
-      I0027: '2026-01-05',
-      I0028: '2026-01-05',
+      I0026: '2026-01-12',
+      I0027: '2026-01-12',
+      I0028: '2026-01-12',
       I0004: '2025-08',
       I0040: '2026-05-19',
       I0041: '2026-05-19'
@@ -308,11 +308,11 @@ test('verified English full names and exact Thai nicknames override stale regist
 
 test('person IDs have one frozen canonical version', () => {
   const data = loadGenerated();
-  assert.equal(data.people.length, 51);
+  assert.equal(data.people.length, 52);
   assertUnique(data.people, 'personId');
   assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'full_time').map((person) => person.personId), ['S0001', 'S0002', 'S0003', 'S0004', 'S0005', 'S0006', 'S0007']);
   assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'part_time').map((person) => person.personId), ['P0001']);
-  assert.equal(data.people.filter((person) => person.migrationClassification === 'intern_or_program_participant').length, 43);
+  assert.equal(data.people.filter((person) => person.migrationClassification === 'intern_or_program_participant').length, 44);
   assert.ok(data.people.every((person) => /^[SPI]\d{4}$/.test(person.personId)));
   assert.ok(data.people.every((person) => person.canonicalIdPolicy.frozenAcrossFutureRoleChanges === true));
   const serialized = JSON.stringify(data);
@@ -376,7 +376,7 @@ test('current staff, completed Team internship and owner-supplied work updates r
   );
 
   const team = engagements.get('E0043');
-  assert.deepEqual({ personId: team.personId, end: team.end, status: team.status }, { personId: 'I0033', end: '2026-07-31', status: 'completed' });
+  assert.deepEqual({ personId: team.personId, end: team.end, status: team.status }, { personId: 'I0033', end: '2026-07-10', status: 'completed' });
   assert.equal(people.get('I0033').currentStatus, 'alumni');
 
   const hasContribution = (personId, workId, roleEn = null) => data.contributions.some((contribution) =>
@@ -594,7 +594,7 @@ test('all core people receive provenance-distinct owner-authorized source-backed
   const firstPersonIds = [
     'I0003', 'I0004', 'I0013', 'I0014', 'I0015', 'I0016', 'I0017', 'I0018',
     'I0022', 'I0024', 'I0026', 'I0027', 'I0028', 'I0029', 'I0030', 'I0031',
-    'I0032', 'I0033', 'I0040', 'I0041', 'I0042', 'I0043', 'S0002', 'S0003', 'S0004'
+    'I0032', 'I0033', 'I0040', 'I0041', 'I0042', 'I0043', 'I0044', 'S0002', 'S0003', 'S0004'
   ];
   const factualFallbackIds = [
     'I0001', 'I0002', 'I0005', 'I0006', 'I0007', 'I0008', 'I0009', 'I0010',
@@ -602,7 +602,7 @@ test('all core people receive provenance-distinct owner-authorized source-backed
     'I0035', 'I0036', 'I0037', 'I0038', 'I0039', 'P0001', 'S0001', 'S0005', 'S0006', 'S0007'
   ];
   const sourceBacked = data.people.filter((person) => person.bio.status === 'source_backed_placeholder');
-  assert.equal(sourceBacked.length, 51);
+  assert.equal(sourceBacked.length, 52);
   assert.ok(sourceBacked.every((person) => person.bio.th && person.bio.en));
   assert.ok(sourceBacked.every((person) =>
     person.bio.verificationStatus === 'owner_authorized_placeholder' &&
@@ -647,9 +647,9 @@ test('all core people receive provenance-distinct owner-authorized source-backed
   ));
   assert.match(data.people.find((person) => person.personId === 'I0015').bio.th, /ความคิดเห็นของผู้ใช้/);
   assert.doesNotMatch(data.people.find((person) => person.personId === 'I0028').bio.th, /พลังบวก/);
-  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 51);
+  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 52);
   assert.equal(data.meta.counts.ownerPendingProfiles, 0);
-  assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 25);
+  assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 26);
   assert.equal(data.meta.counts.factualFallbackProfilePlaceholders, 26);
 });
 
@@ -671,7 +671,7 @@ test('cooperative education is limited to the exact owner-confirmed public core 
   assert.equal(tan.academicPlacementType, 'internship');
   assert.doesNotMatch(tan.cohortLabel, /co-?op|สหกิจ/i);
   assert.equal(data.meta.counts.cooperativeEducationPeople, 6);
-  assert.equal(data.people.length, 51);
+  assert.equal(data.people.length, 52);
 });
 
 test('FDI and computer-engineering display labels use the approved exact copy', () => {
@@ -768,7 +768,7 @@ test('the existing 48 bio objects remain byte-equivalent to the v3.3 approved re
     : value && typeof value === 'object'
       ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableSort(value[key])]))
       : value;
-  const newPersonIds = new Set(['S0005', 'S0006', 'S0007']);
+  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044']);
   const projection = loadGenerated().people
     .filter((person) => !newPersonIds.has(person.personId))
     .map((person) => ({ personId: person.personId, bio: person.bio }));
@@ -822,7 +822,7 @@ test('degree programs separate completed staff awards from a current participant
   assert.equal(data.people.find((person) => person.personId === 'I0033').educationDisplay.card.en, 'IoT & IE · KMITL');
   assert.match(data.people.find((person) => person.personId === 'I0033').educationDisplay.detail.en, /^IoT System and Information Engineering/);
 
-  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 8);
+  assert.equal(data.educationRecords.filter((record) => record.degree !== null).length, 9);
   assert.equal(data.educationRecords.filter((record) => record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 6);
   assert.equal(data.educationRecords.filter((record) => ['S', 'P'].includes(record.personId.charAt(0)) && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 7);
   assert.equal(data.meta.counts.verifiedCompletedStaffDegrees, 7);
@@ -946,10 +946,10 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
-  assert.equal(linkedIn.length, 50);
+  assert.equal(linkedIn.length, 51);
   assert.equal(github.length, 23);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 73);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 74);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));

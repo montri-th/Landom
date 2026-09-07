@@ -31,7 +31,7 @@
     "contributionRoleOverrides"
   ],
   "properties": {
-    "contractVersion": { "const": "1.3" },
+    "contractVersion": { "const": "1.4" },
     "sourceBasis": { "type": "string", "minLength": 1 },
     "addedPeople": { "type": "array", "items": { "$ref": "#/$defs/addedPerson" } },
     "existingPersonTimelineOverrides": { "type": "array", "items": { "$ref": "#/$defs/existingPersonTimelineOverride" } },
@@ -96,9 +96,25 @@
         "nickname": { "$ref": "#/$defs/localized" },
         "currentStatus": { "enum": ["active", "alumni"] },
         "firstJoined": { "$ref": "#/$defs/nullableDate" },
-        "migrationClassification": { "const": "full_time" },
-        "verificationStatus": { "const": "owner_supplied" }
-      }
+        "migrationClassification": { "enum": ["full_time", "part_time", "intern_or_program_participant"] },
+        "verificationStatus": { "type": "string", "minLength": 1 },
+        "idAssignedAt": { "type": "string", "format": "date" },
+        "evidenceNote": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "migrationClassification": { "const": "full_time" } }, "required": ["migrationClassification"] },
+          "then": { "properties": { "personId": { "pattern": "^S\\d{4}$" } } }
+        },
+        {
+          "if": { "properties": { "migrationClassification": { "const": "part_time" } }, "required": ["migrationClassification"] },
+          "then": { "properties": { "personId": { "pattern": "^P\\d{4}$" } } }
+        },
+        {
+          "if": { "properties": { "migrationClassification": { "const": "intern_or_program_participant" } }, "required": ["migrationClassification"] },
+          "then": { "properties": { "personId": { "pattern": "^I\\d{4}$" } } }
+        }
+      ]
     },
     "existingPersonTimelineOverride": {
       "type": "object",

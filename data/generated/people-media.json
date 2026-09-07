@@ -1750,6 +1750,30 @@
         },
         "reason": "no_governed_person_portrait"
       }
+    },
+    {
+      "personId": "I0044",
+      "displayName": {
+        "th": "โซ่",
+        "en": "Sorso"
+      },
+      "fullName": {
+        "th": "วิชานาถ คงเกลี้ยง",
+        "en": "Wichanat Khongkliang"
+      },
+      "profileUrl": {
+        "th": "https://montri-th.github.io/Landom/?person=I0044&lang=th",
+        "en": "https://montri-th.github.io/Landom/en/?person=I0044&lang=en"
+      },
+      "portrait": null,
+      "fallback": {
+        "kind": "full_nickname",
+        "fullNickname": {
+          "th": "โซ่",
+          "en": "Sorso"
+        },
+        "reason": "no_governed_person_portrait"
+      }
     }
   ]
 }

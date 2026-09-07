@@ -1959,7 +1959,7 @@
       }
     },
     "currentStatus": "alumni",
-    "firstJoined": "2025-12-19",
+    "firstJoined": "2026-01-12",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -2026,7 +2026,7 @@
       }
     },
     "currentStatus": "alumni",
-    "firstJoined": "2026-01-05",
+    "firstJoined": "2026-01-12",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -2093,7 +2093,7 @@
       }
     },
     "currentStatus": "alumni",
-    "firstJoined": "2026-01-05",
+    "firstJoined": "2026-01-12",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -2963,7 +2963,7 @@
         "en": "Dan"
       }
     },
-    "currentStatus": "alumni",
+    "currentStatus": "active",
     "firstJoined": "2026-05-19",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
@@ -3413,6 +3413,73 @@
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_supplied",
+      "sourceNotePresent": true
+    }
+  },
+  {
+    "personId": "I0044",
+    "names": {
+      "full": {
+        "th": "วิชานาถ คงเกลี้ยง",
+        "en": "Wichanat Khongkliang"
+      },
+      "nickname": {
+        "th": "โซ่",
+        "en": "Sorso"
+      },
+      "card": {
+        "th": "โซ่",
+        "en": "Sorso"
+      }
+    },
+    "currentStatus": "active",
+    "firstJoined": "2026-08-24",
+    "migrationClassification": "intern_or_program_participant",
+    "canonicalIdPolicy": {
+      "assignedAtMigration": "2026-09-06",
+      "categoryAtMigration": "intern_or_program_participant",
+      "frozenAcrossFutureRoleChanges": true
+    },
+    "educationDisplayMode": "program",
+    "educationDisplay": {
+      "mode": "program",
+      "card": {
+        "th": "ชีวเคมี · จุฬาฯ",
+        "en": "Biochemistry · CU"
+      },
+      "detail": {
+        "th": "ชีวเคมี — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Biochemistry — Chulalongkorn University"
+      },
+      "verificationStatus": "first_person_application_cv_and_official_program_definition"
+    },
+    "bio": {
+      "th": "โซ่อยากต่อยอดจากการคิดเชิงกลยุทธ์ไปสู่การลงมือทำจริง โดยนำวิธีคิดเชิงวิเคราะห์จากวิทยาศาสตร์และประสบการณ์ด้านที่ปรึกษามาช่วยค้นหาต้นเหตุและสร้างทางออกที่นำไปใช้ได้",
+      "en": "Sorso wants to move from strategy into execution, combining an analytical science background with consulting experience to uncover root causes and help turn ideas into practical outcomes.",
+      "status": "source_backed_placeholder",
+      "verificationStatus": "owner_authorized_placeholder",
+      "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+      "sourceBasis": "first_person_application_exact_roster_match",
+      "sourceType": "first_person_application",
+      "sourceRef": "authorized_application_roster_match_2025_2026",
+      "authorRole": "profile_subject",
+      "derivationMethod": "concise_paraphrase",
+      "evidenceScope": "personal_objective_and_self_described_work_style",
+      "evidenceConfidence": "exact_roster_match",
+      "reviewStatus": "pending_candidate_video_review",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-08-23",
+        "scope": "source_backed_placeholder_profile_copy",
+        "sourceRef": "owner_instruction_2026-08-23"
+      }
+    },
+    "publication": {
+      "consentStatus": "pending",
+      "profileStatus": "withheld_pending_consent"
+    },
+    "dataQuality": {
+      "profileVerificationStatus": "owner_confirmed_and_application_response_verified",
       "sourceNotePresent": true
     }
   }

@@ -152,6 +152,11 @@
       "en": "May is interested in using AI to improve user experience and sees herself as driven to learn new techniques, work with others, and keep trying through challenges."
     },
     {
+      "personId": "I0044",
+      "th": "โซ่อยากต่อยอดจากการคิดเชิงกลยุทธ์ไปสู่การลงมือทำจริง โดยนำวิธีคิดเชิงวิเคราะห์จากวิทยาศาสตร์และประสบการณ์ด้านที่ปรึกษามาช่วยค้นหาต้นเหตุและสร้างทางออกที่นำไปใช้ได้",
+      "en": "Sorso wants to move from strategy into execution, combining an analytical science background with consulting experience to uncover root causes and help turn ideas into practical outcomes."
+    },
+    {
       "personId": "S0001",
       "basis": "factual_fallback",
       "evidenceConfidence": "medium_high",

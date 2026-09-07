@@ -1,6 +1,6 @@
 {
-  "contractVersion": "1.3",
-  "sourceBasis": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+  "contractVersion": "1.4",
+  "sourceBasis": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
   "addedPeople": [
     {
       "personId": "S0005",
@@ -28,26 +28,37 @@
       "firstJoined": "2018",
       "migrationClassification": "full_time",
       "verificationStatus": "owner_supplied"
+    },
+    {
+      "personId": "I0044",
+      "fullName": { "th": "วิชานาถ คงเกลี้ยง", "en": "Wichanat Khongkliang" },
+      "nickname": { "th": "โซ่", "en": "Sorso" },
+      "currentStatus": "active",
+      "firstJoined": "2026-08-24",
+      "migrationClassification": "intern_or_program_participant",
+      "verificationStatus": "owner_confirmed_and_application_response_verified",
+      "idAssignedAt": "2026-09-06",
+      "evidenceNote": "Owner identified Sorso as the new 2026 applicant; the exact English identity and public academic facts were reconciled against the application and CV, while the Thai identity spelling was corroborated by exact-match official school records."
     }
   ],
   "existingPersonTimelineOverrides": [
     {
       "personId": "I0026",
-      "firstJoined": "2025-12-19",
+      "firstJoined": "2026-01-12",
       "verificationStatus": "owner_confirmed_exact_first_joined",
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Hana's internship began on 19 December 2025; this replaces the 22 December availability date that was not an actual start date."
+      "evidenceNote": "Owner clarified on 2026-09-06 that Hand refers to Hana and corrected her PDI internship start to 12 January 2026."
     },
     {
       "personId": "I0027",
-      "firstJoined": "2026-01-05",
+      "firstJoined": "2026-01-12",
       "verificationStatus": "owner_confirmed_exact_first_joined",
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Noni's internship began on 5 January 2026; this replaces the 1 January availability date that was not an actual start date."
+      "evidenceNote": "Owner corrected Noni's internship start to 12 January 2026 in the owner-supplied internship-period note dated 2026-09-06."
     },
     {
       "personId": "I0028",
-      "firstJoined": "2026-01-05",
+      "firstJoined": "2026-01-12",
       "verificationStatus": "owner_confirmed_exact_first_joined",
-      "evidenceNote": "Owner confirmed on 2026-08-31 that France's internship began on 5 January 2026; this replaces the 12 January availability date that was not an actual start date."
+      "evidenceNote": "Owner corrected France's internship start to 12 January 2026 in the owner-supplied internship-period note dated 2026-09-06."
     },
     {
       "personId": "I0004",
@@ -90,6 +101,15 @@
       "verificationStatus": "owner_supplied_detail_refinement"
     },
     {
+      "programId": "program-cu-biochemistry",
+      "names": {
+        "th": { "formal": "ชีวเคมี", "short": "ชีวเคมี" },
+        "en": { "formal": "Biochemistry", "short": "Biochemistry" }
+      },
+      "qualificationLevel": "bachelor",
+      "verificationStatus": "application_cv_and_official_program_definition"
+    },
+    {
       "programId": "program-psu-economics",
       "names": {
         "th": { "formal": "เศรษฐศาสตร์", "short": "เศรษฐศาสตร์" },
@@ -118,6 +138,25 @@
     }
   ],
   "addedEducationRecords": [
+    {
+      "personId": "I0044",
+      "institutionId": "inst-chula",
+      "programId": "program-cu-biochemistry",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "B.Sc. in Biochemistry — Chulalongkorn University",
+      "degree": {
+        "abbreviation": { "th": "วท.บ.", "en": "B.Sc." },
+        "title": { "th": "วิทยาศาสตรบัณฑิต", "en": "Bachelor of Science" },
+        "field": { "th": "ชีวเคมี", "en": "Biochemistry" },
+        "awardStatus": "in_progress",
+        "personalAwardVerified": false,
+        "programEvidenceUrl": "https://www.bc.sc.chula.ac.th/undergraduate/",
+        "evidenceScope": "first_person_application_and_cv_with_official_program_definition"
+      },
+      "verificationStatus": "first_person_application_cv_and_official_program_definition",
+      "evidenceNote": "The application and CV identify an in-progress B.Sc. in Biochemistry at Chulalongkorn University; the official department page is used only to standardize the program and degree nomenclature."
+    },
     {
       "personId": "S0006",
       "institutionId": "inst-chula",
@@ -483,6 +522,21 @@
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_2026-08-26"
       }
+    },
+    {
+      "personId": "I0044",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "exact_name_plus_chulalongkorn_biochemistry_and_impvest_identity_match",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-06",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_to_keep_verified_linkedin_and_github_profiles_complete"
+      }
     }
   ],
   "externalPublications": [
@@ -619,42 +673,44 @@
     {
       "engagementId": "E0030",
       "sequenceHint": 1,
-      "start": "2025-12-19",
-      "end": "2026-02-19",
+      "start": "2026-01-12",
+      "end": "2026-02-18",
       "status": "completed",
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed Hana's exact internship period as 19 December 2025 through 19 February 2026 on 2026-08-31; this supersedes the stale ongoing flag and availability-date evidence."
+      "evidenceNote": "Owner clarified on 2026-09-06 that Hand refers to Hana and supplied her exact PDI internship period as 12 January through 18 February 2026."
     },
     {
       "engagementId": "E0034",
       "sequenceHint": 1,
-      "start": "2026-01-05",
-      "end": "2026-03-31",
+      "start": "2026-01-12",
+      "end": "2026-03",
       "status": "completed",
       "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed Noni's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
+      "verificationStatus": "owner_confirmed_mixed_precision_period",
+      "evidenceNote": "Owner corrected Noni's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
     },
     {
       "engagementId": "E0037",
       "sequenceHint": 1,
-      "start": "2026-01-05",
-      "end": "2026-03-31",
+      "start": "2026-01-12",
+      "end": "2026-03",
       "status": "completed",
       "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed France's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
+      "verificationStatus": "owner_confirmed_mixed_precision_period",
+      "evidenceNote": "Owner corrected France's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
     },
     { "engagementId": "E0038", "sequenceHint": 2 },
     { "engagementId": "E0033", "sequenceHint": 3 },
     {
       "engagementId": "E0043",
       "sequenceHint": 1,
-      "end": "2026-07-31",
+      "start": "2026-04-28",
+      "end": "2026-07-10",
       "status": "completed",
-      "verificationStatus": "owner_source_reconciled",
-      "evidenceNote": "Owner confirmed that Team's PDI internship ended at the end of July 2026."
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "evidenceNote": "Owner supplied Team's exact PDI internship period as 28 April through 10 July 2026 in the note dated 2026-09-06."
     },
     {
       "engagementId": "E0045",
@@ -687,21 +743,21 @@
       "engagementId": "E0050",
       "sequenceHint": 1,
       "start": "2026-05-19",
-      "end": "2026-07-31",
-      "status": "completed",
+      "end": "2026-09-15",
+      "status": "ongoing",
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Dan's internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+      "evidenceNote": "Owner corrected Dan's internship period to 19 May through 15 September 2026 in the owner-supplied note dated 2026-09-06; it remains ongoing as of that date."
     },
     {
       "engagementId": "E0051",
       "sequenceHint": 1,
       "start": "2026-05-19",
-      "end": "2026-07-31",
+      "end": "2026-07-17",
       "status": "completed",
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Mook (Pattareeya)'s internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+      "evidenceNote": "Owner corrected Mook (Pattareeya)'s internship period to 19 May through 17 July 2026 in the owner-supplied note dated 2026-09-06."
     }
   ],
   "addedEngagements": [
@@ -777,13 +833,13 @@
       "programCode": "PDI",
       "roleTitle": { "th": "Product Developer Intern", "en": "Product Developer Intern" },
       "cohortLabel": "PDI 2026",
-      "start": "2026-01-05",
-      "end": "2026-03-31",
+      "start": "2026-01-12",
+      "end": "2026-03-27",
       "status": "completed",
       "responsibilityWorkIds": ["work-ijji"],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed Grace's exact PDI internship period as 5 January through 31 March 2026 on 2026-08-31; her separate MSI 2025 engagement remains unchanged.",
+      "evidenceNote": "Owner corrected Grace's exact PDI internship period to 12 January through 27 March 2026 in the owner-supplied note dated 2026-09-06; her separate MSI 2025 engagement remains unchanged.",
       "sequenceHint": 2
     },
     {
@@ -869,6 +925,23 @@
       "evidenceStatus": "owner_supplied_and_public_profile_verified",
       "verificationStatus": "linkedin_profile_headline_exact_identity_match",
       "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the owner-supplied exact profile: Software Developer.",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0064",
+      "personId": "I0044",
+      "category": "internship",
+      "academicPlacementType": "internship",
+      "programCode": "MSI",
+      "roleTitle": { "th": "Marketing Strategy Intern", "en": "Marketing Strategy Intern" },
+      "cohortLabel": "MSI 2026",
+      "start": "2026-08-24",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_start_end_pending",
+      "evidenceNote": "Owner identified Sorso as the new 2026 applicant and confirmed the actual start date as 24 August 2026. The end date remains pending and no duration is inferred from application availability.",
       "sequenceHint": 1
     }
   ],

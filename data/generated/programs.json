@@ -323,6 +323,23 @@
     "linkedinVerificationStatus": "not_found_exact_official_page"
   },
   {
+    "programId": "program-cu-biochemistry",
+    "names": {
+      "th": {
+        "formal": "ชีวเคมี",
+        "short": "ชีวเคมี"
+      },
+      "en": {
+        "formal": "Biochemistry",
+        "short": "Biochemistry"
+      }
+    },
+    "qualificationLevel": "bachelor",
+    "verificationStatus": "application_cv_and_official_program_definition",
+    "linkedinUrl": null,
+    "linkedinVerificationStatus": "not_found_exact_official_page"
+  },
+  {
     "programId": "program-psu-economics",
     "names": {
       "th": {

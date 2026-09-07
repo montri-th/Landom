@@ -38,6 +38,7 @@ export const REQUIRED_UI_IDS = [
   'site-menu',
   'join-team-link',
   'join-team-link-mobile',
+  'motion-toggle',
   'preference-controls',
   'people',
   'all-products-link',
@@ -72,6 +73,52 @@ const SOCIAL_PREVIEW = Object.freeze({
     en: 'People of Landom together at the Landometer office'
   }
 });
+const DESIGN_SYSTEM_ASSETS = Object.freeze([
+  Object.freeze({
+    path: 'public/assets/design-system/color-srgb-05.production.css',
+    sha256: '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/landometer-motifs.css',
+    sha256: '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/landometer-motifs.js',
+    sha256: '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/svg/logo-full.svg',
+    sha256: '90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/svg/dial-full.svg',
+    sha256: '7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/svg/rings-full.svg',
+    sha256: 'b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/svg/layers-quiet.svg',
+    sha256: 'e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/svg/slice-quiet.svg',
+    sha256: 'c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b'
+  }),
+  Object.freeze({
+    path: 'public/assets/landometer/svg/cultivate-full.svg',
+    sha256: 'ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12'
+  })
+]);
+const MOTIF_FALLBACKS = Object.freeze([
+  Object.freeze({ kind: 'logo', variant: 'full', file: 'logo-full.svg' }),
+  Object.freeze({ kind: 'dial', variant: 'full', file: 'dial-full.svg' }),
+  Object.freeze({ kind: 'rings', variant: 'full', file: 'rings-full.svg' }),
+  Object.freeze({ kind: 'layers', variant: 'quiet', file: 'layers-quiet.svg' }),
+  Object.freeze({ kind: 'slice', variant: 'quiet', file: 'slice-quiet.svg' }),
+  Object.freeze({ kind: 'cultivate', variant: 'full', file: 'cultivate-full.svg' })
+]);
 const MATERIAL_SYMBOLS_EXTERNAL = Object.freeze({
   path: 'public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2',
   licensePath: 'public/assets/fonts/licenses/material-symbols-Apache-2.0.txt',
@@ -90,8 +137,8 @@ const MATERIAL_SYMBOLS_NAV = Object.freeze({
   subset: 'unified-nav-7',
   axesLock: 'FILL 0, wght 300, GRAD 0, opsz 24',
   glyphs: ['open_in_new', 'menu', 'close', 'light_mode', 'dark_mode', 'contrast', 'groups'],
-  approvalAuthority: 'Owner-approved Landom-local alignment',
-  designSystemStatus: 'Candidate local extension; not a normative Design System release'
+  approvalAuthority: 'Landometer Design System 0.9.1',
+  designSystemStatus: 'Canonical outline interface-symbol subset'
 });
 const MATERIAL_SYMBOLS_FOOTER = Object.freeze({
   path: 'public/assets/fonts/material-symbols-rounded-footer-r10.ttf',
@@ -608,12 +655,81 @@ async function validateUi(publishRoot, errors) {
     )
   ).join('\n');
   const allUiText = `${index}\n${sourceText}`;
-  for (const sourceModule of ['app.js', 'navigation.js', 'approach-motion.js', 'media-parallax.js']) {
+  for (const sourceModule of ['app.js', 'navigation.js', 'approach-motion.js', 'brand-motion.js', 'media-parallax.js']) {
     const sourcePath = path.join(publishRoot, 'src', sourceModule);
     const sourceCheck = spawnSync(process.execPath, ['--check', sourcePath], { encoding: 'utf8' });
     if (sourceCheck.status !== 0) {
       errors.push(`src/${sourceModule} has a syntax error: ${(sourceCheck.stderr || sourceCheck.stdout).trim()}`);
     }
+  }
+
+  if (!/<html\b(?=[^>]*\bdata-ds=["']landometer["'])(?=[^>]*\bdata-ds-version=["']0\.9\.1["'])[^>]*>/s.test(index)) {
+    errors.push('The public root must declare the approved Landometer Design System v0.9.1 release.');
+  }
+  const requiredStyleAssets = [
+    './public/assets/design-system/color-srgb-05.production.css',
+    './public/assets/landometer/landometer-motifs.css'
+  ];
+  for (const href of requiredStyleAssets) {
+    const escapedHref = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (!new RegExp(`<link\\b(?=[^>]*\\brel=["']stylesheet["'])(?=[^>]*\\bhref=["']${escapedHref}(?:\\?[^"']*)?["'])[^>]*>`, 's').test(index)) {
+      errors.push(`index.html must load the pinned stylesheet ${href}.`);
+    }
+  }
+  if (!/<script\b(?=[^>]*\bsrc=["']\.\/public\/assets\/landometer\/landometer-motifs\.js(?:\?[^"']*)?["'])(?=[^>]*\bdefer\b)[^>]*><\/script>/s.test(index)) {
+    errors.push('index.html must defer-load the exact local Landometer motif runtime.');
+  }
+  for (const asset of DESIGN_SYSTEM_ASSETS) {
+    try {
+      const bytes = await readFile(path.join(publishRoot, asset.path));
+      const digest = createHash('sha256').update(bytes).digest('hex');
+      if (digest !== asset.sha256) {
+        errors.push(`${asset.path} does not match the pinned DS v0.9.1 / motif 1.2.1 SHA-256.`);
+      }
+    } catch {
+      errors.push(`The pinned DS v0.9.1 / motif 1.2.1 asset is missing at ${asset.path}.`);
+    }
+  }
+  const motifRuntimePath = path.join(publishRoot, 'public/assets/landometer/landometer-motifs.js');
+  const motifRuntimeCheck = spawnSync(process.execPath, ['--check', motifRuntimePath], { encoding: 'utf8' });
+  if (motifRuntimeCheck.status !== 0) {
+    errors.push(`The pinned Landometer motif runtime has a syntax error: ${(motifRuntimeCheck.stderr || motifRuntimeCheck.stdout).trim()}`);
+  }
+  const motifMarkup = [...allUiText.matchAll(/<lm-motif\b([^>]*)>([\s\S]*?)<\/lm-motif>/g)];
+  if (motifMarkup.length !== MOTIF_FALLBACKS.length) {
+    errors.push(`The page must expose exactly ${MOTIF_FALLBACKS.length} governed lm-motif surfaces with source-visible fallbacks.`);
+  }
+  for (const fallback of MOTIF_FALLBACKS) {
+    const matching = motifMarkup.filter(([, attributes, body]) => {
+      const hasKind = new RegExp(`\\bkind=["']${fallback.kind}["']`).test(attributes);
+      const hasQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
+      const hasVariant = fallback.variant === 'quiet' ? hasQuiet : !hasQuiet;
+      const escapedFile = fallback.file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const hasFallback = new RegExp(`<img\\b[^>]*\\bsrc=["']\\.\/public\/assets\/landometer\/svg\/${escapedFile}(?:\\?[^"']*)?["'][^>]*>`, 's').test(body);
+      return hasKind && hasVariant && hasFallback;
+    });
+    if (matching.length !== 1) {
+      errors.push(`The ${fallback.kind}-${fallback.variant} lm-motif must contain its exact ${fallback.file} source fallback once.`);
+    }
+  }
+  const headerMarkup = index.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '';
+  const brandMarkup = headerMarkup.match(/<a\b[^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*>[\s\S]*?<\/a>/)?.[0] ?? '';
+  if (!brandMarkup || !/<img\b/.test(brandMarkup) || /<lm-motif\b/.test(brandMarkup)) {
+    errors.push('The navbar identity must remain a static approved image rather than an animated or reconstructed wordmark.');
+  }
+  const motionToggleMarkup = index.match(/<button\b(?=[^>]*\bid=["']motion-toggle["'])(?=[^>]*\bdata-motion-toggle\b)(?=[^>]*\baria-pressed=["'](?:true|false)["'])[^>]*>/g) ?? [];
+  if (motionToggleMarkup.length !== 1 || (index.match(/\bdata-motion-toggle\b/g) ?? []).length !== 1) {
+    errors.push('The page must expose exactly one semantic page-level motion pause/resume button.');
+  }
+  if (!/data-motion-paused|dataset\.motionPaused/.test(sourceText)) {
+    errors.push('The page-level motion controller must publish the data-motion-paused="true" root state.');
+  }
+  if (!/import \{ initBrandMotion \} from "\.\/brand-motion\.js";/.test(sourceText) ||
+      !/brandMotionController\s*=\s*initBrandMotion\(/.test(sourceText) ||
+      !/const CUE_DURATION_MS = 540/.test(sourceText) ||
+      !/ctas\.find\(\(cta\) => isVisible\(cta, win\)\)/.test(sourceText) ||
+      !/cuePlayed = true/.test(sourceText)) {
+    errors.push('The page must initialize one fail-safe motion owner and cue only the first visible CTA once.');
   }
 
   for (const id of REQUIRED_UI_IDS) {
@@ -632,15 +748,20 @@ async function validateUi(publishRoot, errors) {
   for (const destination of ['https://montri-th.github.io/CityMETER/', 'https://landometer.com/v3/citywiki']) {
     if (!index.includes(`href="${destination}"`)) errors.push(`The unified navigation is missing ${destination}.`);
   }
+  const headerDirectControls = headerMarkup.match(/<(?:a|button)\b/g) ?? [];
+  if (headerDirectControls.length > 4) {
+    errors.push(`The desktop navbar exposes ${headerDirectControls.length} direct controls; DS v0.9.1 permits at most four including brand.`);
+  }
   if ((index.match(new RegExp(`href="${joinTeamUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) ?? []).length !== 3) {
     errors.push('The unified navigation must expose the exact join-team destination in desktop, compact-menu, and fail-open contexts.');
   }
   if (
     (index.match(/class="header-cta-sweep"/g) ?? []).length !== 2 ||
+    (index.match(/\bdata-cta-discovery\b/g) ?? []).length !== 2 ||
     !/<a[^>]*class="header-cta"[^>]*id="join-team-link"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/s.test(index) ||
     !/<a[^>]*class="header-cta site-menu-mobile-cta"[^>]*id="join-team-link-mobile"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/s.test(index)
   ) {
-    errors.push('The desktop and compact-menu CTAs must each preserve one visible label and one aria-hidden r7 sweep label.');
+    errors.push('The desktop and compact-menu CTAs must each preserve one visible label, one aria-hidden sweep label, and the finite discovery marker.');
   }
   if (
     !/function setLayeredActionText\b[\s\S]*?querySelectorAll\("\.header-cta-label, \.header-cta-sweep"\)[\s\S]*?layers\.forEach\(\(layer\) => setText\(layer, value\)\)/.test(sourceText) ||
@@ -707,18 +828,23 @@ async function validateUi(publishRoot, errors) {
       !/@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s.test(sourceText)) {
     errors.push('The prominent/calm header states must retain a reduced-motion-safe CSS contract.');
   }
-  if (
-    !/--site-header-height-prominent:\s*76px;/.test(sourceText) ||
-    !/--site-header-height-calm:\s*29px;/.test(sourceText) ||
-    !/@media \(max-width:\s*759px\)[\s\S]*?--site-header-height-prominent:\s*68px;[\s\S]*?--site-header-height-calm:\s*27px;/s.test(sourceText) ||
-    !/\.site-header\.is-calm\s*\{(?=[^}]*background:\s*color-mix\(in srgb,\s*var\(--surface-canvas\)\s*26%,\s*transparent\);)(?=[^}]*border-bottom(?:-color)?:\s*(?:1px solid )?color-mix\(in srgb,\s*var\(--border-hairline\)\s*20%,\s*transparent\);)[^}]*\}/s.test(sourceText) ||
-    !/\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{(?=[^}]*width:\s*200%;)(?=[^}]*opacity:\s*(?:0?\.72|72%);)(?=[^}]*transform:\s*scale\((?:0?\.5)\);)[^}]*\}/s.test(sourceText)
-  ) {
-    errors.push('The r7 deep-calm header must preserve 76→29 desktop and 68→27 mobile heights, 26% canvas/20% hairline glass, and a 200% row scaled to 0.5 at 72% opacity.');
+  const calmHeight = Number(sourceText.match(/--site-header-height-calm:\s*(\d+(?:\.\d+)?)px;/)?.[1]);
+  if (!Number.isFinite(calmHeight) || calmHeight < 44 ||
+      /\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{[^}]*transform:\s*scale\((?:0?\.5)\)/s.test(sourceText)) {
+    errors.push('The calm navbar must keep its own height and direct semantic geometry at or above 44px; half-scale target workarounds are not allowed.');
   }
-  if (!/\.site-header\.is-calm \.menu-toggle::before\s*\{(?=[^}]*width:\s*max\(100%,\s*88px\);)(?=[^}]*height:\s*88px;)(?=[^}]*pointer-events:\s*auto;)[^}]*\}/s.test(sourceText) ||
-      !/\.site-header\.is-calm \.header-nav\s*\{[^}]*gap:\s*22px;/s.test(sourceText)) {
-    errors.push('Deep-calm controls must retain unambiguous 44px rendered pointer targets through 88px pre-transform hit areas and a non-overlapping 22px pre-transform navigation gap.');
+  for (const selector of ['.brand', '.header-link', '.header-cta']) {
+    const escapedSelector = selector.replace('.', '\\.');
+    const rule = new RegExp(`${escapedSelector}[^{}]*\\{(?=[^}]*min-height:\\s*44px;)[^}]*\\}`, 's');
+    if (!rule.test(sourceText)) errors.push(`${selector} must retain a direct 44-pixel minimum block target in every navbar state.`);
+  }
+  if (!/\.brand img\s*\{[^}]*width:\s*clamp\(128px,/s.test(sourceText) ||
+      !/\.header-link\s*\{[^}]*padding-inline:\s*13px;/s.test(sourceText) ||
+      !/\.header-cta\s*\{[^}]*padding:\s*9px var\(--space-5\);/s.test(sourceText)) {
+    errors.push('Navbar links must retain direct, non-scaled inline geometry wider than 44 pixels.');
+  }
+  if (!/\.menu-toggle\s*\{(?=[^}]*width:\s*44px;)(?=[^}]*height:\s*44px;)[^}]*\}/s.test(sourceText)) {
+    errors.push('.menu-toggle must remain a direct 44 by 44 pixel semantic target.');
   }
   if (/url\.search === here\.search/.test(navigationSource)) {
     errors.push('Same-path menu anchors must preserve the current query string instead of treating a query difference as cross-document navigation.');
@@ -729,20 +855,27 @@ async function validateUi(publishRoot, errors) {
   ) {
     errors.push('The menu must preserve r7 geometry: 340px desktop width, 6px offset, 8px padding, default border, medium radius/small shadow, and the full-width compact panel.');
   }
-  if (
-    !/\.header-cta\s*\{(?=[^}]*position:\s*relative;)(?=[^}]*display:\s*inline-flex;)[^}]*\}/s.test(sourceText) ||
-    !/\.header-cta-sweep\s*\{(?=[^}]*position:\s*absolute;)(?=[^}]*background:\s*var\(--energy-yellow\);)(?=[^}]*color:\s*var\(--fg-on-light-primary\);)(?=[^}]*animation:\s*lmSweep 3\.7s var\(--motion-ease-state\) infinite,\s*lmFlick 1\.09s steps\(1,\s*end\) infinite;)(?=[^}]*pointer-events:\s*none;)[^}]*\}/s.test(sourceText) ||
-    !/@keyframes lmSweep\s*\{[\s\S]*?23%\s*,\s*27%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s.test(sourceText) ||
-    !/@keyframes lmSweep\s*\{[\s\S]*?53%\s*,\s*55%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s.test(sourceText) ||
-    !/@keyframes lmSweep\s*\{[\s\S]*?84%\s*,\s*89%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s.test(sourceText) ||
-    !/@keyframes lmFlick\s*\{/.test(sourceText)
-  ) {
-    errors.push('The CTA must preserve the r7 lmSweep 3.7s/lmFlick 1.09s treatment and all three full-word highlight beats.');
+  const ctaSweepRule = sourceText.match(/\.header-cta-sweep\s*\{[^}]*\}/s)?.[0] ?? '';
+  const ctaActiveRule = sourceText.match(/\.header-cta\.is-cta-cue-active \.header-cta-sweep\s*\{[^}]*\}/s)?.[0] ?? '';
+  const ctaCueRules = `${ctaSweepRule}\n${ctaActiveRule}`;
+  const ctaKeyframes = sourceText.match(/@keyframes\s+lmCtaDiscovery\s*\{[\s\S]*?\n\}/)?.[0] ?? '';
+  if (!/\.header-cta\s*\{(?=[^}]*position:\s*relative;)(?=[^}]*display:\s*inline-flex;)[^}]*\}/s.test(sourceText) ||
+      !/position:\s*absolute;/.test(ctaSweepRule) ||
+      !/pointer-events:\s*none;/.test(ctaSweepRule) ||
+      !/36%\s+64%/.test(ctaSweepRule) ||
+      !/opacity:\s*1;/.test(ctaSweepRule) ||
+      !/540ms/.test(ctaCueRules) ||
+      !/cubic-bezier\((?:0?\.)?16,\s*1,\s*(?:0?\.)?3,\s*1\)/.test(ctaCueRules) ||
+      !/(?:-120%|translateX\(-120%\))/.test(ctaKeyframes) ||
+      !/(?:120%|translateX\(120%\))/.test(ctaKeyframes) ||
+      /\binfinite\b/.test(ctaCueRules) ||
+      /@keyframes\s+lmFlick\b/.test(sourceText)) {
+    errors.push('The CTA discovery cue must run once for 540ms with the 28% −120%→120% sweep, keep content opaque, and contain no flicker or infinite animation.');
   }
   if (/Material Symbols Rounded Nav Filled|material-symbols-rounded-groups-filled-300|\.bookmark-rail/.test(sourceText)) {
     errors.push('The removed bookmark rail must not leave a filled-groups font face or rail styling in the public UI.');
   }
-  if (!/@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s.test(sourceText)) {
+  if (!/@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none\s*!important|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s.test(sourceText)) {
     errors.push('Reduced-motion mode must keep the header prominent and suppress the moving CTA sweep.');
   }
 
@@ -754,19 +887,21 @@ async function validateUi(publishRoot, errors) {
   const mediaParallaxSource = await readIfPresent(path.join(publishRoot, 'src', 'media-parallax.js')) ?? '';
   const staticParallaxMarkers = index.match(/\bdata-parallax-media\b/g) ?? [];
   const staticParallaxDepths = [...index.matchAll(/\bdata-parallax-depth="(\d+)"/g)].map((match) => Number(match[1]));
+  const parallaxAuthorityMarkers = index.match(/\bdata-parallax-authority=["']owner-approved-site-override["']/g) ?? [];
   const avatarRenderer = sourceText.match(/function avatarMarkup\b[\s\S]*?(?=function hydrateImages\b)/)?.[0] ?? '';
   const certificateRenderer = sourceText.match(/function certificatesMarkup\b[\s\S]*?(?=function personDetailMarkup\b)/)?.[0] ?? '';
   if (
     !/import \{ initMediaParallax \} from "\.\/media-parallax\.js";/.test(sourceText) ||
     !/mediaParallaxController\s*=\s*initMediaParallax\(\)/.test(sourceText) ||
     !/mediaParallaxController\?\.refresh\(elements\.board\)/.test(sourceText) ||
+    parallaxAuthorityMarkers.length !== 1 ||
     staticParallaxMarkers.length !== 4 ||
     JSON.stringify(staticParallaxDepths) !== JSON.stringify([32, 20, 18, 22]) ||
     !/class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="14"/.test(avatarRenderer) ||
     /data-parallax-media/.test(certificateRenderer) ||
     /<img[^>]*(?:landometer-horizontal|landometer-symbol)[^>]*data-parallax-media/i.test(index)
   ) {
-    errors.push('Photo parallax must be initialized once, refresh generated portraits, mark exactly four static Hero photos plus approved portraits, and exclude certificates and brand assets.');
+    errors.push('Photo parallax must carry exactly one owner-approved-site-override authority marker, initialize once, refresh generated portraits, mark exactly four static Hero photos plus approved portraits, and exclude certificates and brand assets.');
   }
   for (const token of [
     'const MEDIA_SELECTOR = "img[data-parallax-media]"',
@@ -853,19 +988,22 @@ async function validateUi(publishRoot, errors) {
       !/matchMedia\("print"\)/.test(index)) {
     errors.push('The pre-paint motion bootstrap must remain capability-, reduced-motion-, and print-gated.');
   }
-  if (!/data-approach="section_opener"/.test(index) ||
-      (index.match(/data-approach="paired_inline"/g) ?? []).length !== 2 ||
+  if (!/data-approach="approach\.soft"/.test(index) ||
+      (index.match(/data-approach="approach\.inline-(?:start|end)"/g) ?? []).length !== 2 ||
       !/data-approach-sequence/.test(index)) {
     errors.push('Approach motion must remain opt-in on bounded semantic units with an explicit two-item sequence.');
+  }
+  if (/shell\.dataset\.approach\s*=/.test(sourceText)) {
+    errors.push('Directory cards must remain immediately available; approach motion may not be blanket-applied to every generated card.');
   }
   const approachMotionSource = await readIfPresent(path.join(publishRoot, 'src', 'approach-motion.js')) ?? '';
   for (const token of [
     'threshold: 0.14',
     'rootMargin: "0px 0px -12% 0px"',
     'const INIT_WATCHDOG_MS = 2400',
-    'const STAGGER_STEP_MS = 120',
-    'const STAGGER_CAP_MS = 600',
-    'const TRANSFORM_SETTLE_MS = 640',
+    'const STAGGER_STEP_MS = 150',
+    'const STAGGER_CAP_MS = 450',
+    'const TRANSFORM_SETTLE_MS = 920',
     'function failOpen',
     'function onFocusIn',
     'function onHashChange',
@@ -882,24 +1020,32 @@ async function validateUi(publishRoot, errors) {
   for (const excludedTarget of ['"header"', '"nav"', '"h1"', '"[aria-live]"', '".hero"']) {
     if (!approachMotionSource.includes(excludedTarget)) errors.push(`Approach motion must exclude critical target ${excludedTarget}.`);
   }
+  if ((approachMotionSource.match(/new\s+win\.IntersectionObserver\b/g) ?? []).length !== 1 ||
+      !/observer\?\.unobserve\(target\)/.test(approachMotionSource)) {
+    errors.push('Approach motion must use one shared observer and unobserve every once-only target.');
+  }
   if (!/html\.lds-motion-ready \[data-approach\]\.is-lds-reveal-armed/.test(sourceText) ||
       /html\.lds-motion-pending \[data-approach\]/.test(sourceText) ||
       !/--lds-reveal-delay/.test(sourceText) ||
       !/__LANDOM_MOTION_WATCHDOG__[\s\S]*?setTimeout[\s\S]*?2400/.test(index) ||
       !/function clearBootstrapWatchdog\(\)/.test(approachMotionSource) ||
       !/--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/.test(sourceText) ||
-      !/--motion-duration-reveal-opacity:\s*640ms/.test(sourceText) ||
-      !/--motion-duration-reveal-transform:\s*640ms/.test(sourceText) ||
+      !/--leading-display-th:\s*1\.25;/.test(sourceText) ||
+      !/--motion-duration-reveal-opacity:\s*760ms/.test(sourceText) ||
+      !/--motion-duration-reveal-transform:\s*920ms/.test(sourceText) ||
       !/--motion-duration-media-arrival:\s*900ms/.test(sourceText) ||
-      !/--motion-delay-stagger:\s*120ms/.test(sourceText) ||
-      !/--motion-delay-stagger-cap:\s*600ms/.test(sourceText) ||
-      !/--motion-distance-reveal:\s*20px/.test(sourceText) ||
-      !/--motion-duration-reveal:\s*640ms/.test(sourceText) ||
+      !/--motion-delay-stagger:\s*150ms/.test(sourceText) ||
+      !/--motion-delay-stagger-cap:\s*450ms/.test(sourceText) ||
+      !/--motion-distance-reveal:\s*32px/.test(sourceText) ||
+      !/--motion-distance-reveal-pair:\s*36px/.test(sourceText) ||
+      !/--motion-scale-reveal:\s*0\.985/.test(sourceText) ||
       !/\.site-footer\s*\{[^}]*overflow-x:\s*clip;/s.test(sourceText) ||
-      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal\) var\(--motion-ease-enter\)[\s\S]*?transform var\(--motion-duration-reveal\) var\(--motion-ease-enter\)/s.test(sourceText) ||
-      !/\.is-lds-reveal-armed\s*\{[^}]*transform:\s*translate3d\(0,\s*var\(--motion-distance-reveal\),\s*0\);/s.test(sourceText) ||
+      !/\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal-opacity\) var\(--motion-ease-enter\)[\s\S]*?transform var\(--motion-duration-reveal-transform\) var\(--motion-ease-settle\)/s.test(sourceText) ||
+      !/\.is-lds-reveal-armed\s*\{[^}]*transform:\s*translate3d\(0,\s*var\(--motion-distance-reveal\),\s*0\)\s*scale\(var\(--motion-scale-reveal\)\);/s.test(sourceText) ||
+      !/data-approach="approach\.inline-start"[^}]*translate3d\([^)]*var\(--motion-distance-reveal-pair\)/s.test(sourceText) ||
+      !/data-approach="approach\.inline-end"[^}]*translate3d\([^)]*var\(--motion-distance-reveal-pair\)/s.test(sourceText) ||
       !/\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s.test(sourceText)) {
-    errors.push('Approach-motion CSS must hide only explicitly armed targets after readiness and retain stagger delay support.');
+    errors.push('Approach-motion CSS must use the exact v0.9.1 760/920/900ms, 32/36px, 0.985, four-beat stagger and Thai-safe-leading recipe on explicitly armed targets only.');
   }
   if (!/<dialog[^>]*id=["']filter-dialog["']/s.test(index)) {
     errors.push('#filter-dialog must use the native dialog element.');
@@ -1281,9 +1427,10 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   let fontManifest = null;
   try {
     fontManifest = JSON.parse(await readFile(path.join(publishRoot, 'public/assets/fonts/font-assets.manifest.json'), 'utf8'));
-    if (!/owner-approved Landom-local addition/i.test(fontManifest.authorityScope ?? '') ||
-        !/do(?:es)? not publish or upgrade a normative Design System release/i.test(fontManifest.authorityScope ?? '')) {
-      errors.push('The font manifest must distinguish the local navigation subset from normative Design System authority.');
+    if (!/Design System authority covers[\s\S]*unified-nav-7 outline subset/i.test(fontManifest.authorityScope ?? '') ||
+        !/rebuild02-footer-r10 remains an owner-approved Landom-local addition/i.test(fontManifest.authorityScope ?? '') ||
+        !/does not alter the normative Design System package/i.test(fontManifest.authorityScope ?? '')) {
+      errors.push('The font manifest must distinguish the canonical DS navigation subset from the local rebuild02 footer addition.');
     }
     const licenseText = await readFile(path.join(publishRoot, MATERIAL_SYMBOLS_EXTERNAL.licensePath), 'utf8');
     if (!/Apache License\s+Version 2\.0/i.test(licenseText)) {
@@ -1479,18 +1626,18 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     for (const match of structuredMatches) {
       try {
         const record = JSON.parse(match[1]);
-        if (record?.['@type'] === 'CollectionPage') collectionPage = record;
+        const graph = Array.isArray(record?.['@graph']) ? record['@graph'] : [record];
+        collectionPage = graph.find((node) => node?.['@type'] === 'CollectionPage') ?? collectionPage;
       } catch (error) {
         errors.push(`${fileLabel} contains invalid JSON-LD: ${error.message}`);
       }
     }
     if (!collectionPage) errors.push(`${fileLabel} is missing truthful CollectionPage JSON-LD.`);
     else {
-      if (collectionPage.url !== routeUrl || collectionPage.inLanguage !== locale) {
-        errors.push(`${fileLabel} JSON-LD URL/language does not match its localized route.`);
-      }
-      if (collectionPage?.mainEntity?.['@type'] !== 'ItemList' || collectionPage.mainEntity.numberOfItems !== siteData.people.length) {
-        errors.push(`${fileLabel} JSON-LD ItemList count does not match the public people registry.`);
+      if (collectionPage['@id'] !== `${routeUrl}#collection` ||
+          collectionPage.name !== 'Landom' ||
+          collectionPage.url !== routeUrl) {
+        errors.push(`${fileLabel} CollectionPage JSON-LD identity does not match its localized route.`);
       }
     }
   }
@@ -1542,7 +1689,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
         favicon?.intrinsicWidth !== 192 ||
         favicon?.intrinsicHeight !== 192 ||
         favicon?.approvalScope !== 'browser-tab favicon only' ||
-        favicon?.sourceVersion !== 'Landometer Design System v0.9.0' ||
+        favicon?.sourceVersion !== 'Current Landometer Design System 0.9.1 artifact binding; exact favicon bytes retained from the predecessor approval lineage' ||
         approvalRecord?.manifestPath !== 'deployment/machine/v0.9.0/identity-approvals.manifest.json' ||
         approvalRecord?.introducedAtCommit !== '36d72ab1dd755cbad5273a7f217e1ee10aeb54a2' ||
         approvalRecord?.gitBlob !== '7e1e084d2340486cd27fe4af5d44c8de6dcf4baa' ||

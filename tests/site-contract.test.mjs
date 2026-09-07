@@ -236,7 +236,9 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
   assert.match(english, /id="footer-copy">Understand cities\. Make them better, together\.<\/p>/);
   assert.match(english, /id="footer-address">[\s\S]*?Tri Mit Road, Talat Noi, Samphanthawong, Bangkok 10100, Thailand[\s\S]*?<\/address>/);
   assert.match(english, /id="footer-meta"[^>]*>People of Landom<\/p>/);
-  assert.match(english, /"inLanguage": "en"/);
+  assert.match(english, /"@graph": \[/);
+  assert.match(english, /"@id": "https:\/\/montri-th\.github\.io\/Landom\/en\/#collection"/);
+  assert.match(english, /"@type": "CollectionPage"[\s\S]*?"name": "Landom"[\s\S]*?"url": "https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
   assert.match(english, /<base href="\.\.\/">/);
   assert.match(english, /href="https:\/\/montri-th\.github\.io\/Landom\/en\/#main-content"/);
   assert.equal(english.match(/href="https:\/\/montri-th\.github\.io\/Landom\/en\/#people"/g)?.length, 2);
@@ -325,8 +327,11 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(index, /<span class="brand-product"[^>]*>[\s\S]*?<span aria-hidden="true">\/<\/span> Landom<\/span>/);
   assert.match(index, /href="https:\/\/montri-th\.github\.io\/CityMETER\/">CityMETER<\/a>/);
   assert.match(index, /href="https:\/\/landometer\.com\/v3\/citywiki">CityWiki<\/a>/);
+  const headerMarkup = index.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '';
+  assert.ok((headerMarkup.match(/<(?:a|button)\b/g) ?? []).length <= 4, 'desktop navbar must expose at most four direct controls including brand');
   assert.equal(index.split(`href="${joinTeamUrl}"`).length - 1, 3);
   assert.equal((index.match(/class="header-cta-sweep"/g) ?? []).length, 2);
+  assert.equal((index.match(/\bdata-cta-discovery\b/g) ?? []).length, 2);
   assert.match(index, /<a[^>]*class="header-cta"[^>]*id="join-team-link"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/);
   assert.match(index, /<a[^>]*class="header-cta site-menu-mobile-cta"[^>]*id="join-team-link-mobile"[^>]*>[\s\S]*?<span class="header-cta-label">สมัครร่วมทีม<\/span>[\s\S]*?<span class="header-cta-sweep" aria-hidden="true">สมัครร่วมทีม<\/span>[\s\S]*?<\/a>/);
   assert.match(index, /id="menu-toggle"[\s\S]*?aria-haspopup="dialog"[\s\S]*?aria-expanded="false"[\s\S]*?aria-controls="site-menu"/);
@@ -371,23 +376,55 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(styles, /scroll-margin-top:\s*calc\(var\(--site-header-height-prominent\)/);
   assert.match(styles, /:root\[data-nav-state="calm"\]/);
   assert.match(styles, /--site-header-height-prominent:\s*76px;/);
-  assert.match(styles, /--site-header-height-calm:\s*29px;/);
-  assert.match(styles, /@media \(max-width:\s*759px\)[\s\S]*?--site-header-height-prominent:\s*68px;[\s\S]*?--site-header-height-calm:\s*27px;/s);
+  const calmHeight = Number(styles.match(/--site-header-height-calm:\s*(\d+(?:\.\d+)?)px;/)?.[1]);
+  assert.ok(Number.isFinite(calmHeight) && calmHeight >= 44);
   assert.match(styles, /\.site-header\.is-calm\s*\{(?=[^}]*background:\s*color-mix\(in srgb,\s*var\(--surface-canvas\)\s*26%,\s*transparent\);)(?=[^}]*border-bottom(?:-color)?:\s*(?:1px solid )?color-mix\(in srgb,\s*var\(--border-hairline\)\s*20%,\s*transparent\);)[^}]*\}/s);
-  assert.match(styles, /\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{(?=[^}]*width:\s*200%;)(?=[^}]*opacity:\s*(?:0?\.72|72%);)(?=[^}]*transform:\s*scale\((?:0?\.5)\);)[^}]*\}/s);
-  assert.match(styles, /\.site-header\.is-calm \.menu-toggle::before\s*\{(?=[^}]*width:\s*max\(100%,\s*88px\);)(?=[^}]*height:\s*88px;)(?=[^}]*pointer-events:\s*auto;)[^}]*\}/s);
-  assert.match(styles, /\.site-header\.is-calm \.header-nav\s*\{[^}]*gap:\s*22px;/s);
+  assert.doesNotMatch(styles, /\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{[^}]*transform:\s*scale\((?:0?\.5)\)/s);
+  for (const selector of ['.brand', '.header-link', '.header-cta']) {
+    const escaped = selector.replace('.', '\\.');
+    assert.match(styles, new RegExp(`${escaped}[^{}]*\\{(?=[^}]*min-height:\\s*44px;)[^}]*\\}`, 's'));
+  }
+  assert.match(styles, /\.brand img\s*\{[^}]*width:\s*clamp\(128px,/s);
+  assert.match(styles, /\.header-link\s*\{[^}]*padding-inline:\s*13px;/s);
+  assert.match(styles, /\.header-cta\s*\{[^}]*padding:\s*9px var\(--space-5\);/s);
   assert.match(styles, /\.site-menu-panel\s*\{[^}]*top:\s*(?:6px|calc\(var\(--site-header-height(?:-prominent)?\)\s*\+\s*6px\));[^}]*width:\s*(?:min\(340px,[^)]+\)|340px);[^}]*padding:\s*(?:8px|var\(--space-2\));[^}]*border:\s*1px solid var\(--border-default\);[^}]*border-radius:\s*var\(--radius-md\);[^}]*box-shadow:\s*var\(--elevation-sm\);/s);
   assert.match(styles, /@media \(max-width:\s*759px\)[\s\S]*?\.site-menu-panel\s*\{[^}]*top:\s*(?:0|var\(--site-header-height\));[^}]*width:\s*100%;[^}]*border-radius:\s*0 0 var\(--radius-md\) var\(--radius-md\);/s);
   assert.match(styles, /\.header-cta\s*\{(?=[^}]*position:\s*relative;)(?=[^}]*display:\s*inline-flex;)[^}]*\}/s);
-  assert.match(styles, /\.header-cta-sweep\s*\{(?=[^}]*position:\s*absolute;)(?=[^}]*background:\s*var\(--energy-yellow\);)(?=[^}]*color:\s*var\(--fg-on-light-primary\);)(?=[^}]*animation:\s*lmSweep 3\.7s var\(--motion-ease-state\) infinite,\s*lmFlick 1\.09s steps\(1,\s*end\) infinite;)(?=[^}]*pointer-events:\s*none;)[^}]*\}/s);
-  assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?23%\s*,\s*27%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
-  assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?53%\s*,\s*55%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
-  assert.match(styles, /@keyframes lmSweep\s*\{[\s\S]*?84%\s*,\s*89%\s*\{[^}]*clip-path:\s*inset\(0(?:\s+0\s+0\s+0)?\)/s);
-  assert.match(styles, /@keyframes lmFlick\s*\{/);
+  const ctaSweepRule = styles.match(/\.header-cta-sweep\s*\{[^}]*\}/s)?.[0] ?? '';
+  const ctaActiveRule = styles.match(/\.header-cta\.is-cta-cue-active \.header-cta-sweep\s*\{[^}]*\}/s)?.[0] ?? '';
+  const ctaCueRules = `${ctaSweepRule}\n${ctaActiveRule}`;
+  assert.match(ctaSweepRule, /position:\s*absolute;/);
+  assert.match(ctaSweepRule, /pointer-events:\s*none;/);
+  assert.match(ctaSweepRule, /36%\s+64%/);
+  assert.match(ctaSweepRule, /opacity:\s*1;/);
+  assert.match(ctaCueRules, /540ms/);
+  assert.match(ctaCueRules, /cubic-bezier\((?:0?\.)?16,\s*1,\s*(?:0?\.)?3,\s*1\)/);
+  assert.match(styles, /@keyframes\s+lmCtaDiscovery[\s\S]*?-120%[\s\S]*?120%/s);
+  assert.doesNotMatch(ctaCueRules, /\binfinite\b/);
+  assert.doesNotMatch(styles, /@keyframes\s+lmFlick\b/);
   assert.doesNotMatch(styles, /\.bookmark-rail|Material Symbols Rounded Nav Filled|material-symbols-rounded-groups-filled-300/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?--site-header-height:\s*var\(--site-header-height-prominent\)/s);
-  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.header-cta-sweep\s*\{[^}]*(?:display:\s*none\s*!important|clip-path:\s*inset\(0\s+98%\s+0\s+0\)\s*!important);/s);
+  assert.equal((index.match(/\bdata-motion-toggle\b/g) ?? []).length, 1);
+  assert.match(index, /<button\b(?=[^>]*id="motion-toggle")(?=[^>]*data-motion-toggle)(?=[^>]*aria-pressed="false")[^>]*>/s);
+  const brandMotion = await readFile(new URL('../src/brand-motion.js', import.meta.url), 'utf8');
+  assert.match(app, /import \{ initBrandMotion \} from "\.\/brand-motion\.js";/);
+  assert.match(app, /brandMotionController\s*=\s*initBrandMotion\(/);
+  assert.match(brandMotion, /data-motion-paused|dataset\.motionPaused/);
+  assert.match(brandMotion, /const CUE_DURATION_MS = 540/);
+  assert.match(brandMotion, /ctas\.find\(\(cta\) => isVisible\(cta, win\)\)/);
+  assert.match(brandMotion, /cuePlayed = true/);
+});
+
+test('the persistent desktop filter does not steal focus or scroll past the Hero on load', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const syncSource = app.match(/function syncFilterDialogMode\b[\s\S]*?(?=\nfunction openFilters)/)?.[0] ?? '';
+  const openSource = app.match(/function openFilters\b[\s\S]*?(?=\nfunction closeFilters)/)?.[0] ?? '';
+
+  assert.match(syncSource, /filterDialog\.setAttribute\("open", ""\)/);
+  assert.doesNotMatch(syncSource, /filterDialog\.show\(\)/);
+  assert.match(openSource, /filterDialog\.showModal\(\)/);
+  assert.match(openSource, /filterRole\.focus\(\{ preventScroll: true \}\)/);
 });
 
 test('the unified navigation icon subset is exact, self-hosted, licensed, and preloaded', async () => {
@@ -408,11 +445,62 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   assert.equal(fontRecord?.subset, 'unified-nav-7');
   assert.equal(fontRecord?.axesLock, 'FILL 0, wght 300, GRAD 0, opsz 24');
   assert.deepEqual(fontRecord?.glyphs, ['open_in_new', 'menu', 'close', 'light_mode', 'dark_mode', 'contrast', 'groups']);
-  assert.equal(fontRecord?.approvalAuthority, 'Owner-approved Landom-local alignment');
-  assert.equal(fontRecord?.designSystemStatus, 'Candidate local extension; not a normative Design System release');
+  assert.equal(fontRecord?.approvalAuthority, 'Landometer Design System 0.9.1');
+  assert.equal(fontRecord?.designSystemStatus, 'Canonical outline interface-symbol subset');
   assert.equal(fontRecord?.license, 'Apache License 2.0');
-  assert.match(fontManifest.authorityScope, /owner-approved Landom-local addition/i);
-  assert.match(fontManifest.authorityScope, /do(?:es)? not publish or upgrade a normative Design System release/i);
+  assert.match(fontManifest.authorityScope, /Design System authority covers[\s\S]*unified-nav-7 outline subset/i);
+  assert.match(fontManifest.authorityScope, /rebuild02-footer-r10 remains an owner-approved Landom-local addition/i);
+  assert.match(fontManifest.authorityScope, /does not alter the normative Design System package/i);
+});
+
+test('DS v0.9.1 colors and motif 1.2.1 use exact local bytes with source-visible fallbacks', async () => {
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const assets = new Map([
+    ['public/assets/design-system/color-srgb-05.production.css', '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c'],
+    ['public/assets/landometer/landometer-motifs.css', '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e'],
+    ['public/assets/landometer/landometer-motifs.js', '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2'],
+    ['public/assets/landometer/svg/logo-full.svg', '90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1'],
+    ['public/assets/landometer/svg/dial-full.svg', '7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d'],
+    ['public/assets/landometer/svg/rings-full.svg', 'b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286'],
+    ['public/assets/landometer/svg/layers-quiet.svg', 'e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03'],
+    ['public/assets/landometer/svg/slice-quiet.svg', 'c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b'],
+    ['public/assets/landometer/svg/cultivate-full.svg', 'ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12']
+  ]);
+  const fallbacks = [
+    ['logo', false, 'logo-full.svg'],
+    ['dial', false, 'dial-full.svg'],
+    ['rings', false, 'rings-full.svg'],
+    ['layers', true, 'layers-quiet.svg'],
+    ['slice', true, 'slice-quiet.svg'],
+    ['cultivate', false, 'cultivate-full.svg']
+  ];
+
+  assert.match(index, /<html\b(?=[^>]*data-ds="landometer")(?=[^>]*data-ds-version="0\.9\.1")[^>]*>/s);
+  assert.match(index, /<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="\.\/public\/assets\/design-system\/color-srgb-05\.production\.css(?:\?[^"']*)?")[^>]*>/s);
+  assert.match(index, /<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="\.\/public\/assets\/landometer\/landometer-motifs\.css(?:\?[^"']*)?")[^>]*>/s);
+  assert.match(index, /<script\b(?=[^>]*src="\.\/public\/assets\/landometer\/landometer-motifs\.js(?:\?[^"']*)?")(?=[^>]*\bdefer\b)[^>]*><\/script>/s);
+
+  for (const [assetPath, expectedDigest] of assets) {
+    const bytes = await readFile(new URL(`../${assetPath}`, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), expectedDigest, assetPath);
+  }
+
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  const motifMarkup = [...`${index}\n${app}`.matchAll(/<lm-motif\b([^>]*)>([\s\S]*?)<\/lm-motif>/g)];
+  assert.equal(motifMarkup.length, fallbacks.length);
+  for (const [kind, quiet, file] of fallbacks) {
+    const matching = motifMarkup.filter(([, attributes, body]) => {
+      const isKind = new RegExp(`\\bkind=["']${kind}["']`).test(attributes);
+      const isQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
+      return isKind && isQuiet === quiet && body.includes(`./public/assets/landometer/svg/${file}`);
+    });
+    assert.equal(matching.length, 1, `${kind} must keep its exact ${file} source fallback`);
+  }
+
+  const header = index.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '';
+  const brand = header.match(/<a\b[^>]*class="[^"]*\bbrand\b[^"]*"[^>]*>[\s\S]*?<\/a>/)?.[0] ?? '';
+  assert.match(brand, /<img\b/);
+  assert.doesNotMatch(brand, /<lm-motif\b/);
 });
 
 test('the office map action matches the published rebuild02 capsule and icon contract', async () => {
@@ -444,6 +532,23 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
   assert.match(workflow, /src\/media-parallax\.js\?\$cache_bust/);
   assert.match(workflow, /media_parallax_script_type[\s\S]*?application\/javascript\*\|text\/javascript\*/);
   assert.match(workflow, /\["src\/media-parallax\.js", "\/tmp\/landom-media-parallax\.js"\]/);
+  assert.match(workflow, /src\/brand-motion\.js\?\$cache_bust/);
+  assert.match(workflow, /brand_motion_script_type[\s\S]*?application\/javascript\*\|text\/javascript\*/);
+  assert.match(workflow, /\["src\/brand-motion\.js", "\/tmp\/landom-brand-motion\.js"\]/);
+  assert.match(workflow, /public\/assets\/design-system\/color-srgb-05\.production\.css\?\$cache_bust/);
+  assert.match(workflow, /public\/assets\/landometer\/landometer-motifs\.css\?\$cache_bust/);
+  assert.match(workflow, /public\/assets\/landometer\/landometer-motifs\.js\?\$cache_bust/);
+  for (const file of ['logo-full', 'dial-full', 'rings-full', 'layers-quiet', 'slice-quiet', 'cultivate-full']) {
+    assert.match(workflow, new RegExp(`public/assets/landometer/svg/${file}\\.svg`));
+  }
+  for (const digest of [
+    '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c',
+    '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e',
+    '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2',
+    '90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1'
+  ]) {
+    assert.ok(workflow.includes(digest), `workflow must pin ${digest}`);
+  }
   assert.doesNotMatch(workflow, /material-symbols-rounded-groups-filled-300|filled_nav_icon_font/);
 });
 
@@ -457,6 +562,7 @@ test('photo parallax is explicit, bounded, passive, lifecycle-safe, and excluded
   const certificateRenderer = app.match(/function certificatesMarkup\b[\s\S]*?(?=function personDetailMarkup\b)/)?.[0] ?? '';
 
   assert.equal(staticImages.length, 4);
+  assert.equal((index.match(/\bdata-parallax-authority="owner-approved-site-override"/g) ?? []).length, 1);
   assert.deepEqual(staticImages.map((markup) => markup.match(/data-parallax-depth="(\d+)"/)?.[1]), ['32', '20', '18', '22']);
   assert.match(avatarRenderer, /class="avatar-image"[^>]*data-parallax-media[^>]*data-parallax-depth="14"/);
   assert.doesNotMatch(certificateRenderer, /data-parallax-media/);
@@ -496,14 +602,14 @@ test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle
   const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
 
   assert.match(index, /"IntersectionObserver" in window[\s\S]*?prefers-reduced-motion: reduce[\s\S]*?matchMedia\("print"\)[\s\S]*?root\.classList\.add\("lds-motion-pending"\)/);
-  assert.match(index, /data-approach="section_opener"/);
-  assert.equal((index.match(/data-approach="paired_inline"/g) ?? []).length, 2);
+  assert.match(index, /data-approach="approach\.soft"/);
+  assert.equal((index.match(/data-approach="approach\.inline-(?:start|end)"/g) ?? []).length, 2);
   assert.match(index, /class="footer-main"[^>]*data-approach-sequence/);
-  assert.match(index, /class="masonry-board"[^>]*data-approach-sequence/);
+  assert.doesNotMatch(index, /class="masonry-board"[^>]*data-approach(?:-sequence)?/);
   assert.match(app, /import \{ initApproachMotion \} from "\.\/approach-motion\.js";/);
   assert.match(app, /initApproachMotion\(\);/);
-  assert.match(app, /shell\.dataset\.approach\s*=\s*"peer_group"/);
-  assert.match(app, /shell\.dataset\.approachKey\s*=\s*`person-\$\{model\.id\}`/);
+  assert.doesNotMatch(app, /shell\.dataset\.approach\s*=/);
+  assert.doesNotMatch(app, /shell\.dataset\.approachKey\s*=/);
   assert.match(app, /approachMotionController\?\.refresh\(elements\.board\)/);
   assert.match(app.match(/function renderDirectory\(\)[\s\S]*?(?=\nfunction formatNumber)/)?.[0] ?? '', /layoutMasonry[\s\S]*?approachMotionController\?\.refresh\(elements\.board\)/);
   assert.match(app.match(/function initialize\(\)[\s\S]*?(?=\ninitialize\(\))/)?.[0] ?? '', /approachMotionController = initApproachMotion\(\)[\s\S]*?loadData\(\)/);
@@ -516,9 +622,9 @@ test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle
     'threshold: 0.14',
     'rootMargin: "0px 0px -12% 0px"',
     'const INIT_WATCHDOG_MS = 2400',
-    'const STAGGER_STEP_MS = 120',
-    'const STAGGER_CAP_MS = 600',
-    'const TRANSFORM_SETTLE_MS = 640',
+    'const STAGGER_STEP_MS = 150',
+    'const STAGGER_CAP_MS = 450',
+    'const TRANSFORM_SETTLE_MS = 920',
     'function armFreshTargets',
     'function failOpen',
     'function onFocusIn',
@@ -535,22 +641,27 @@ test('approach motion is opt-in, once-only, fail-open, and safe across lifecycle
   for (const excludedTarget of ['"header"', '"nav"', '"h1"', '"[aria-live]"', '".hero"']) {
     assert.ok(motion.includes(excludedTarget), `Missing critical motion exclusion: ${excludedTarget}`);
   }
+  assert.equal((motion.match(/new\s+win\.IntersectionObserver\b/g) ?? []).length, 1);
+  assert.match(motion, /observer\?\.unobserve\(target\)/);
   assert.match(styles, /html\.lds-motion-ready \[data-approach\]\.is-lds-reveal-armed/);
   assert.doesNotMatch(styles, /html\.lds-motion-pending \[data-approach\]/);
   assert.match(index, /__LANDOM_MOTION_WATCHDOG__[\s\S]*?setTimeout[\s\S]*?2400/);
   assert.match(motion, /function clearBootstrapWatchdog\(\)/);
   assert.match(styles, /--motion-ease-settle:\s*cubic-bezier\(0\.2, 0\.9, 0\.25, 1\.08\)/);
-  assert.match(styles, /--motion-duration-reveal-opacity:\s*640ms/);
-  assert.match(styles, /--motion-duration-reveal-transform:\s*640ms/);
+  assert.match(styles, /--leading-display-th:\s*1\.25;/);
+  assert.match(styles, /--motion-duration-reveal-opacity:\s*760ms/);
+  assert.match(styles, /--motion-duration-reveal-transform:\s*920ms/);
   assert.match(styles, /--motion-duration-media-arrival:\s*900ms/);
-  assert.match(styles, /--motion-delay-stagger:\s*120ms/);
-  assert.match(styles, /--motion-delay-stagger-cap:\s*600ms/);
-  assert.match(styles, /--motion-distance-reveal:\s*20px/);
-  assert.match(styles, /--motion-duration-reveal:\s*640ms/);
-  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal\)[\s\S]*?transform var\(--motion-duration-reveal\)/s);
+  assert.match(styles, /--motion-delay-stagger:\s*150ms/);
+  assert.match(styles, /--motion-delay-stagger-cap:\s*450ms/);
+  assert.match(styles, /--motion-distance-reveal:\s*32px/);
+  assert.match(styles, /--motion-distance-reveal-pair:\s*36px/);
+  assert.match(styles, /--motion-scale-reveal:\s*0\.985/);
+  assert.match(styles, /\.is-lds-reveal-armed\.is-lds-revealed\.is-lds-reveal-arriving\s*\{[\s\S]*?opacity var\(--motion-duration-reveal-opacity\) var\(--motion-ease-enter\)[\s\S]*?transform var\(--motion-duration-reveal-transform\) var\(--motion-ease-settle\)/s);
   assert.match(styles, /\.is-lds-reveal-armed\s*\{[^}]*transition:\s*none;/s);
-  assert.match(styles, /translate3d\(0, var\(--motion-distance-reveal\), 0\)/);
-  assert.doesNotMatch(styles, /motion-distance-reveal-pair|data-approach-from=/);
+  assert.match(styles, /translate3d\(0, var\(--motion-distance-reveal\), 0\)\s*scale\(var\(--motion-scale-reveal\)\)/);
+  assert.match(styles, /data-approach="approach\.inline-start"[^}]*translate3d\([^)]*var\(--motion-distance-reveal-pair\)/s);
+  assert.match(styles, /data-approach="approach\.inline-end"[^}]*translate3d\([^)]*var\(--motion-distance-reveal-pair\)/s);
   assert.match(styles, /\.site-footer\s*\{[^}]*overflow-x:\s*clip;/s);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*none !important;/s);
 });
@@ -973,7 +1084,7 @@ test('the nine owner-requested blank-background portraits have governed gradient
 });
 
 test('source satisfies the integrated data, privacy, asset, naming, and UI contract', async () => {
-  assert.equal(REQUIRED_UI_IDS.length, 23);
+  assert.equal(REQUIRED_UI_IDS.length, 24);
   const errors = await validateSite();
   assert.deepEqual(errors, [], errors.join('\n'));
 });

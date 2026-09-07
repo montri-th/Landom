@@ -1,66 +1,71 @@
-# Design QA — Unified navigation, photo parallax, footer, and Community constellation Hero
+# Design QA — DS 0.9.1, animated Landometer motifs, and Landom motion
 
-Date: 2026-08-31
+Date: 2026-09-08
 
-Status: **RELEASE CANDIDATE — local source/build gates and bounded desktop/mobile footer review passed on 2026-08-31; provider/live and named manual gates remain release-owned evidence**
+Status: **IMPLEMENTATION RECORD — source, build, rendered, accessibility, and deployed-byte gates must be rerun for the final release commit**
 
-## Reference and authority boundary
+## Authority and conformance boundary
 
-- Visual comparison surface: `https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html`, which is being revised in parallel. Immediately before release on 2026-08-30 it exposed `data-ds-version="0.9.0"`, `og:updated_time="2026-08-30"`, the reviewed unified-header destinations, the UUID-scoped DS stylesheet plus `site.css`, and `site.js`; it did not expose a build or source-commit marker.
-- Navigation input: owner-supplied `Unified navbar design handoff r7.zip`.
-- Motion input: owner-supplied `landometer-design-system-v0.9.0-riddim-approach-motion.proposal.md`.
-- Hero input: the previously owner-selected community-constellation concept and annotated CityMETER-circle replacement.
-- Footer comparison surface: the contact/footer treatment on `rebuild02`, adapted locally without its Hello form.
-- The handoff, motion proposal, parallax treatment, and footer adaptation are design evidence and owner-directed local decisions, not a normative Design System release. The implementation keeps the approved horizontal logo and `data-ds-version="0.9.0"`.
+- Visual and interaction authority: Landometer Design System `0.9.1`, authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`, machine package `v0.9.1-mp7`.
+- Audience color authority: exact `color-srgb-05.production.css`, SHA-256 `3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c`. Raw provenance token, scale, and delivery CSS files are not audience assets.
+- Animated-brand authority: motif release `1.2.1`, family `landometer.motif.v3`, using exact role-scoped runtime and fallback bytes recorded in `docs/assets-manifest.json`.
+- The owner-supplied navbar handoff, earlier Riddim proposal, `rebuild02` comparison surface, and previous static Hero motif remain implementation lineage. They do not override the active Design System or expand asset roles.
+- The owner explicitly approved all selected animated Landometer motifs and the animated brand-opening logo for this page, including artifact-local replay. That approval does not turn the animated logo into the official navigation identity.
+- Photo parallax remains an owner-directed Landom site behavior. Design System 0.9.1 prohibits parallax and accepts no artifact exception references. Therefore the page may accurately identify the Design System release it applies, but it must not claim zero-exception v0.9.1 artifact conformance while parallax remains enabled. All other applicable resolved rules remain release requirements.
 
 ## Intended implementation
 
-- The sticky header uses the approved Landometer lockup, `/ Landom` product indicator, CityMETER and CityWiki links, one join-team CTA, and a menu trigger.
-- The mobile header keeps identity plus the menu trigger. Preferences, language, the join-team CTA, ecosystem destinations, and the one truthful page anchor move into the menu.
-- The fixed desktop bookmark rail is removed because it duplicated the single truthful page shortcut. `#people` remains available in the menu; no certificate shortcut is shown because no page-level certificate section exists.
-- The calm state implements the r7 76→29 px desktop and 68→27 px mobile heights, 200% row width with `scale(.5)` at 72% opacity, and 26% canvas/20% hairline glass. It restores prominence at the top, on upward scroll, pointer/focus intent, menu-open state, and reduced motion.
-- The desktop and mobile join-team actions carry the owner-approved r7 exception: an `aria-hidden`, pointer-inert yellow text overlay with `lmSweep 3.7s` and `lmFlick 1.09s`, including full-word beats at 23–27%, 53–55%, and 84–89%. Reduced motion removes the loop and shows the final operable CTA immediately.
-- The menu is a modal dialog with focus containment, Escape close, scrim close, and trigger-focus return.
-- `src/approach-motion.js` applies the 640 ms / 20 px Riddim Rise with a 120 ms stagger capped at 600 ms to explicit eligible units, including directory cards inserted after data load. It excludes navigation/Hero/LCP/controls/live content, runs once per stable target key, and fails open to visible final content.
-- `src/media-parallax.js` adds bounded, component-local parallax up to 36 px only to explicitly marked Hero photographs and governed person portraits. Each translation is also capped to the scale-generated image bleed inside its clipping frame, with a one-pixel safety inset. It uses `IntersectionObserver`, a passive scroll listener, and one `requestAnimationFrame` update; reduced motion, print, save-data, and unsupported paths remain static. Logos, icons, the Hero motif, and certificate/evidence images are excluded.
-- The active filled `groups` rail font is no longer used or preloaded. The outline navigation-symbol subset remains the only navigation icon font used by the page.
-- The footer follows the `rebuild02` visual family without the Hello form. Its office-map action uses the same 44 px capsule structure and exact governed Material `map` font bytes, and it exposes all five verified corporate profiles: Facebook, Instagram, TikTok, LinkedIn, and X. Person-level social controls remain restricted to approved LinkedIn and GitHub records.
-- Governed image bytes and the existing Hero composition remain unchanged; parallax changes only presentation transforms on eligible photographs.
+- The sticky header retains the official static Landometer horizontal lockup, `/ Landom` indicator, CityMETER and CityWiki links, one join-team CTA, and the menu trigger. Animated logo assembly is separate Hero decoration, never the navbar/footer lockup, favicon, social image, or person identity.
+- Every header/menu state retains a direct semantic target of at least 44 × 44 CSS px. Calm presentation may change surface and hierarchy but may not scale interactive controls into proxy-hit-area activation.
+- The join-team discovery cue runs once on first eligible entry, finishes in 540 ms with `cubic-bezier(.16,1,.3,1)`, uses the governed 28% sweep band from -120% to +120%, and never flickers or loops. Reduced motion and observer failure use the complete static CTA.
+- The menu retains focus containment, Escape and scrim close, focus return, real sibling-language routes, ecosystem destinations, and the single truthful `#people` page anchor. The one-item fixed bookmark rail stays removed.
+- Approach motion uses the approved Riddim roles `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, and `stagger.child`; opacity resolves in 760 ms, transform in 920 ms, media arrival in 900 ms, block/inline distances are 32/36 px, scale starts at `.985`, and stagger uses 150 ms steps capped at 450 ms. The shared observer uses threshold `.14`, bottom root margin `-12%`, a 2,400 ms watchdog, and fail-open lifecycle handling. Hero/LCP, navigation, controls, alerts/status/live regions, focused/deep-linked content, and critical proof remain final and immediately operable.
+- Owner-directed photo parallax is limited to governed Hero and portrait photographs, is bounded by supplied image bleed, and fails static for reduced motion, print, save-data, unsupported APIs, page hiding, and teardown. Logos, motifs, icons, and certificates never receive photo parallax.
+- The footer follows the Landometer/rebuild02 contact family without a Hello form. Corporate Facebook, Instagram, TikTok, LinkedIn, and X remain separate from person-level LinkedIn/GitHub-only controls.
 
-## Automated release coverage
+## Motif inventory and lifecycle
 
-The 2026-08-30 baseline passed source, build, and rendered validation. The current 2026-08-31 delta passed a fresh full build, source/dist validation, all 75 automated tests, and `git diff --check`. The repository validator/tests and Pages workflow enforce:
+| Asset | Page role | Final-state fallback |
+|---|---|---|
+| `logo-full` | Hero brand opening | `public/assets/landometer/svg/logo-full.svg` |
+| `rings-full` | Hero spatial/depth layer | `public/assets/landometer/svg/rings-full.svg` |
+| `dial-full` | Directory section opener | `public/assets/landometer/svg/dial-full.svg` |
+| `layers-quiet` | Profile/detail decorative hover | `public/assets/landometer/svg/layers-quiet.svg` |
+| `slice-quiet` | Action/map CTA decorative hover | `public/assets/landometer/svg/slice-quiet.svg` |
+| `cultivate-full` | Footer closer | `public/assets/landometer/svg/cultivate-full.svg` |
 
-- Thai and English initial-HTML parity, canonical routes, and real sibling-language links;
-- required menu, CTA, and menu-owned `#people` marker, with no fixed bookmark rail and no dead `#certificates` navigation link;
-- JavaScript syntax plus delivery and manifest-hash parity for `app.js`, `navigation.js`, `approach-motion.js`, and `media-parallax.js`;
-- delivery and manifest-hash parity for runtime icon assets, including the seven-glyph outline navigation font, without requiring or preloading the retired filled active-rail font;
-- release-SHA cache busting and equality between the live manifest digest and the manifest emitted by the same workflow build;
-- required menu accessibility state and reduced-motion guards;
-- exact r7 deep-calm geometry, captured per-scroller direction, CTA sweep/flick timings and full-word beats, and menu geometry;
-- the reviewed Riddim threshold, root margin, watchdog, and fail-open contract;
-- bounded photo-parallax selectors and reduced-motion/print/save-data fail-static behavior, with no certificate, logo, icon, or motif opt-in;
-- footer contact/link semantics, no Hello form, and the five verified corporate social destinations;
-- unchanged governed Hero, social-preview, identity, portrait, data, and discovery asset bytes.
+The exact runtime is `public/assets/landometer/landometer-motifs.css` plus `public/assets/landometer/landometer-motifs.js`. Static or generated source markup keeps the matching complete fallback visible until `<lm-motif>` upgrades and its dependencies are ready. The manifest motion mode remains `finite_once`; the artifact-local loop/replay cadence is a separately owner-approved Landom page-controller decision and is not a portable Design System default. Full-logo animation reaches its authored final state at 2,870 ms. Full logo on a dark shell uses `ink="blue"`; do not use the historical 2,050 ms cutoff or a cyan wedge override.
 
-Baseline browser QA covered 320, 360, 390, 768, 1024, 1180, 1280, and 1440 px layouts in dark mode, the Thai and English entrypoints, Escape close/focus return, prominent/calm header states, non-overlapping 44 px rendered calm-state hit areas, query-preserving `#people` focus, hydrated CTA layer preservation, horizontal overflow, console errors, and the end-of-document footer tail. The 2026-08-31 delta received a fresh desktop and 390 px mobile check for the Hero heading and full footer tail. Wider breakpoint, zoom, native-device, reduced-motion, save-data, print, and lifecycle observations remain named manual gates; automated fail-static coverage does not convert those observations into passes.
+One controller owns each timer and the page-level pause/resume state. A surface is eligible only when at least 14% visible, the document is visible, reduced motion is not requested, and page motion is not paused. Offscreen, `visibilitychange`, `pagehide`, reduced motion, print, runtime failure, and no JavaScript retain the exact complete SVG state. Persisted `pageshow` resumes only eligible surfaces. Automatic cycles do not announce through an ARIA live region.
 
-Record the released commit and Pages run only after provider success.
+## Automated release coverage required
+
+The repository validator, tests, build manifest, and Pages smoke test must bind and verify:
+
+- exact DS tuple and the audience-safe production-color hash;
+- Thai and English initial-HTML parity, canonical routes, reciprocal language links, and truthful structured data;
+- direct 44 × 44 header/menu targets, accessible menu state, and the finite once-only CTA cue with reduced-motion and observer-failure static states;
+- approved Riddim roles, timings, one-observer/fail-open lifecycle, and exclusion of critical content;
+- explicit recording and containment of the owner-directed photo-parallax divergence without a zero-exception conformance claim;
+- exact MIME type, SHA-256, source-to-build parity, and live bytes for both motif runtime files and all six SVG fallbacks;
+- one motion owner per surface, no accumulating DOM/timers/network transfer, pause/resume, visibility, BFCache, reduced-motion, print, no-JavaScript, and failed-runtime behavior;
+- outline Material Symbols only at `FILL 0`, weight 300, with the unused filled `groups` record excluded from the active font manifest;
+- footer destination semantics, no Hello form, five corporate social destinations, and LinkedIn/GitHub-only person controls;
+- unchanged governed data, portrait, certificate, Hero-photo, social-preview, favicon, and official-lockup bytes unless a separately reviewed record says otherwise.
 
 ## Rendered and interaction gates
 
-| Priority | Check | Status |
-| --- | --- | --- |
-| P0 | Desktop header: 76 px prominent at top, 29 px deep calm on downward scroll, prominent on upward scroll, no content jump or horizontal overflow. | Baseline local browser pass; current regression pending |
-| P0 | Keyboard menu: visible focus, focus containment, Escape/scrim close, and focus return to the trigger. | Baseline local browser pass; current regression pending |
-| P0 | Reduced motion: header stays prominent, approach targets remain visible, and photo parallax remains static. | Current automated and native regression pending |
-| P1 | Mobile header/menu at 320–430 px: 68→27 px deep calm, identity and menu fit; CTA, locale, theme, and ecosystem links remain reachable. | Baseline pass at 320, 360, and 390 px; current regression pending |
-| P1 | Thai 130% and page 200% zoom: no clipped header/menu labels, overlapping controls, or unreachable content. | Pending rendered review |
-| P1 | Approach motion: directory/footer enter once with the reviewed timing; Hero, search, alerts, controls, and focused/deep-linked content never wait for animation. | Baseline pass; current footer regression pending |
-| P1 | Photo parallax: eligible Hero/portrait media move within their clipping frames; logos, icons, motif, and certificates stay static; reduced motion, print, and save-data fail static. | Pending fresh rendered review |
-| P1 | Hero desktop/tablet/mobile crops remain legible under bounded parallax, including all four people and enough of the CityMETER display in the lower-right circle. | Pending fresh rendered review |
-| P1 | Footer: no Hello form, complete contact/navigation semantics, and five verified corporate social links at desktop and mobile widths. | Fresh desktop and 390 px mobile render passed; exact destinations pass automated validation |
-| P2 | External CityMETER, CityWiki, ecosystem, Landometer, and join-team destinations resolve to the intended final pages. | Pending live review |
-| P2 | BFCache restore, print preview, and disclosure/profile expansion do not leave approach targets hidden. | Pending interaction review |
+| Priority | Check | Required release evidence |
+|---|---|---|
+| P0 | Header/menu keyboard, focus containment/return, Escape/scrim close, direct 44 × 44 controls, no proxy activation, and no overflow. | Fresh source plus rendered interaction receipt |
+| P0 | Reduced motion, print, no JavaScript, and failed motif runtime show complete content, actions, and exact SVG final states. | Fresh fail-open screenshots/runtime assertions |
+| P0 | CTA highlight appears once, completes within 540 ms, never flickers/repeats, and leaves the label fully readable. | Fresh two-entry observation plus automated timing assertion |
+| P0 | Motif CSS, JavaScript, and six fallbacks match the recorded hashes in source, build, and canonical HTTPS responses. | Build-manifest and deployed-byte receipt |
+| P1 | Approach motion uses the approved roles/timings and never delays Hero/LCP, controls, live content, focused/deep-linked content, or critical proof. | Fresh normal/reduced-motion observation |
+| P1 | Motif stages remain stable and unclipped at 320, 360, 390, tablet, and wide desktop widths in light/dark/system themes. | Fresh responsive screenshots |
+| P1 | Thai 130%, browser 200%, and 400% reflow retain readable headings, complete CTA labels, operable controls, and no horizontal overflow. | Fresh accessibility fixtures |
+| P1 | Page pause/resume, offscreen exit, `visibilitychange`, `pagehide`, and persisted `pageshow` leave no stale timer or duplicate component. | Two-cycle lifecycle trace |
+| P1 | Owner-directed photo parallax remains bounded and static in reduced motion, print, save-data, and unsupported/lifecycle states; brand/evidence assets never move. | Fresh divergence-specific interaction review |
+| P2 | External product, ecosystem, office-map, social, privacy, and join-team destinations resolve to their stated outcomes. | Fresh canonical-origin destination check |
 
-Native iOS/Android browser behavior remains a separate manual gate even after desktop emulation passes.
+Record the final commit, GitHub Pages run, canonical URL, tested time, and live hashes only after those checks pass. A previous local or live pass cannot attest a newer commit. Because photo parallax remains, the release record must continue to say that zero-exception Design System 0.9.1 conformance is not claimed.

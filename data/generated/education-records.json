@@ -910,6 +910,40 @@
   },
   {
     "educationRecordId": "EDU0049",
+    "personId": "I0044",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-biochemistry",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "B.Sc. in Biochemistry — Chulalongkorn University",
+    "qualification": {
+      "th": "ชีวเคมี",
+      "en": "Biochemistry"
+    },
+    "degree": {
+      "abbreviation": {
+        "th": "วท.บ.",
+        "en": "B.Sc."
+      },
+      "title": {
+        "th": "วิทยาศาสตรบัณฑิต",
+        "en": "Bachelor of Science"
+      },
+      "field": {
+        "th": "ชีวเคมี",
+        "en": "Biochemistry"
+      },
+      "awardStatus": "in_progress",
+      "personalAwardVerified": false,
+      "programEvidenceUrl": "https://www.bc.sc.chula.ac.th/undergraduate/",
+      "evidenceScope": "first_person_application_and_cv_with_official_program_definition"
+    },
+    "studyPeriod": null,
+    "verificationStatus": "first_person_application_cv_and_official_program_definition",
+    "evidenceNote": "The application and CV identify an in-progress B.Sc. in Biochemistry at Chulalongkorn University; the official department page is used only to standardize the program and degree nomenclature."
+  },
+  {
+    "educationRecordId": "EDU0050",
     "personId": "S0006",
     "institutionId": "inst-chula",
     "programId": "program-cu-computer-engineering",
@@ -943,7 +977,7 @@
     "evidenceNote": "Owner confirmed Nat's completed B.Eng. in Computer Engineering from Chulalongkorn University; the official department page standardizes the program and degree nomenclature."
   },
   {
-    "educationRecordId": "EDU0050",
+    "educationRecordId": "EDU0051",
     "personId": "S0007",
     "institutionId": "inst-chula",
     "programId": "program-cu-computer-science",
@@ -977,7 +1011,7 @@
     "evidenceNote": "Owner supplied the exact IEEE author-biography evidence stating Kanoksilp Jindadoungrut received the B.Sc. degree with honours in Computer Science from Chulalongkorn University."
   },
   {
-    "educationRecordId": "EDU0051",
+    "educationRecordId": "EDU0052",
     "personId": "P0001",
     "institutionId": "inst-psu",
     "programId": "program-psu-economics",

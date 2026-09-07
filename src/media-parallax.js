@@ -11,6 +11,7 @@ const MEDIA_SELECTOR = "img[data-parallax-media]";
 const ROOT_CLASS = "media-parallax-enabled";
 const ACTIVE_CLASS = "is-media-parallax-active";
 const MAX_DEPTH = 36;
+const MOTION_EVENT = "landom-motion-preference";
 const CONTROLLER_KEY = Symbol.for("landometer.mediaParallax.controller");
 
 /**
@@ -84,7 +85,7 @@ export function parallaxBleedLimit(frameHeight, scale) {
 }
 
 function staticController() {
-  return Object.freeze({ refresh() {}, destroy() {} });
+  return Object.freeze({ refresh() {}, pause() {}, resume() {}, destroy() {} });
 }
 
 /**
@@ -127,12 +128,15 @@ export function initMediaParallax(options = {}) {
   let destroyed = false;
   let pageHidden = false;
   let printing = false;
+  let controllerPaused = root.dataset.motionPaused === "true";
 
   function isMotionBlocked() {
     return Boolean(
       destroyed ||
       pageHidden ||
       printing ||
+      controllerPaused ||
+      root.dataset.motionPaused === "true" ||
       reducedMotion.matches ||
       printMedia.matches ||
       connection?.saveData === true
@@ -297,6 +301,11 @@ export function initMediaParallax(options = {}) {
     syncMotionPreference();
   }
 
+  function onPageMotionPreference(event) {
+    controllerPaused = event?.detail?.paused === true || root.dataset.motionPaused === "true";
+    syncMotionPreference();
+  }
+
   function onBeforePrint() {
     printing = true;
     clearMotionState();
@@ -324,6 +333,14 @@ export function initMediaParallax(options = {}) {
       registerScope(scope);
       syncMotionPreference();
     },
+    pause() {
+      controllerPaused = true;
+      clearMotionState();
+    },
+    resume() {
+      controllerPaused = root.dataset.motionPaused === "true";
+      syncMotionPreference();
+    },
     destroy() {
       if (destroyed) return;
       destroyed = true;
@@ -343,6 +360,7 @@ export function initMediaParallax(options = {}) {
   addWindowListener("afterprint", onAfterPrint);
   addWindowListener("pagehide", onPageHide);
   addWindowListener("pageshow", onPageShow);
+  addWindowListener(MOTION_EVENT, onPageMotionPreference);
   addChangeListener(reducedMotion, onPreferenceChange);
   addChangeListener(printMedia, onPreferenceChange);
   addChangeListener(connection, onPreferenceChange);

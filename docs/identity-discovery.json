@@ -1,5 +1,12 @@
 {
   "schemaVersion": "1.0.0",
+  "designSystemBinding": {
+    "dsVersion": "0.9.1",
+    "authoringRevision": "0.9.1-r8",
+    "rulesetId": "lds-rules-0.9.1",
+    "machinePackage": "v0.9.1-mp7",
+    "scope": "Current Landom artifact visual, interaction, accessibility, and format authority. Exact-byte identity approvals remain role-scoped and retain their historical evidence lineage."
+  },
   "page": {
     "owner": "Landometer",
     "scope": "Landom public people-and-contribution directory",
@@ -26,7 +33,7 @@
       "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85",
       "transparentCanvas": true,
       "themeStrategy": "Use the exact transparent RGBA bytes for light, dark, and system themes without carrier, recolor, crop, filter, mask, or reconstructed padding.",
-      "sourceVersion": "Landometer Design System v0.9.0",
+      "sourceVersion": "Current Landometer Design System 0.9.1 artifact binding; exact favicon bytes retained from the predecessor approval lineage",
       "approvalRecord": {
         "manifestPath": "deployment/machine/v0.9.0/identity-approvals.manifest.json",
         "introducedAtCommit": "36d72ab1dd755cbad5273a7f217e1ee10aeb54a2",

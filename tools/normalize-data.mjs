@@ -149,7 +149,7 @@ const profileCopy = readApprovedJson('profile-copy.json');
 const educationPlacementOverrides = readApprovedJson('education-placement-overrides.json');
 const profileDetailOverrides = readApprovedJson('profile-detail-overrides.json');
 const personIdentityOverrides = readApprovedJson('person-identity-overrides.json');
-if (profileDetailOverrides.contractVersion !== '1.3') {
+if (profileDetailOverrides.contractVersion !== '1.4') {
   throw new Error('Unsupported profile-detail override contract: ' + profileDetailOverrides.contractVersion);
 }
 if (personIdentityOverrides.contractVersion !== '1.0') {
@@ -452,8 +452,13 @@ for (const approved of profileDetailOverrides.addedPeople ?? []) {
   if (people.some((person) => person.personId === approved.personId)) {
     throw new Error('Added person duplicates a person ID: ' + approved.personId);
   }
-  if (!/^S\d{4}$/.test(approved.personId) || approved.migrationClassification !== 'full_time') {
-    throw new Error('Added full-time person must use a frozen S#### ID: ' + approved.personId);
+  const categoryPrefix = {
+    full_time: 'S',
+    part_time: 'P',
+    intern_or_program_participant: 'I'
+  }[approved.migrationClassification];
+  if (!categoryPrefix || !new RegExp('^' + categoryPrefix + '\\d{4}$').test(approved.personId)) {
+    throw new Error('Added person must use the frozen ID prefix for the migration classification: ' + approved.personId);
   }
   people.push({
     personId: approved.personId,
@@ -466,11 +471,11 @@ for (const approved of profileDetailOverrides.addedPeople ?? []) {
     firstJoined: parseDate(approved.firstJoined),
     migrationClassification: approved.migrationClassification,
     canonicalIdPolicy: {
-      assignedAtMigration: migrationDate,
+      assignedAtMigration: approved.idAssignedAt ?? migrationDate,
       categoryAtMigration: approved.migrationClassification,
       frozenAcrossFutureRoleChanges: true
     },
-    educationDisplayMode: 'qualification',
+    educationDisplayMode: approved.migrationClassification === 'intern_or_program_participant' ? 'program' : 'qualification',
     educationDisplay: null,
     bio: {
       th: null,
@@ -882,12 +887,11 @@ engagements.sort((left, right) => {
 });
 
 for (const override of profileDetailOverrides.existingEngagementOverrides ?? []) {
-  if (override.status !== 'completed') continue;
   const engagement = engagements.find((item) => item.engagementId === override.engagementId);
   const person = engagement ? personById.get(engagement.personId) : null;
-  if (person && !engagements.some((item) => item.personId === person.personId && item.status === 'ongoing')) {
-    person.currentStatus = 'alumni';
-  }
+  if (!person || !override.status) continue;
+  const hasOngoingEngagement = engagements.some((item) => item.personId === person.personId && item.status === 'ongoing');
+  person.currentStatus = hasOngoingEngagement ? 'active' : 'alumni';
 }
 
 const workMap = new Map();
@@ -1430,8 +1434,8 @@ if (approvedProfileByPersonId.size !== people.length) {
 }
 const firstPersonProfiles = [...approvedProfileByPersonId.values()].filter((profile) => !profile.basis || profile.basis === 'first_person');
 const factualFallbackProfiles = [...approvedProfileByPersonId.values()].filter((profile) => profile.basis === 'factual_fallback');
-if (firstPersonProfiles.length !== 25 || factualFallbackProfiles.length !== people.length - 25) {
-  throw new Error('Approved profile provenance must retain 25 first-person paraphrases and use factual fallbacks only for the remaining governed people.');
+if (firstPersonProfiles.length !== 26 || factualFallbackProfiles.length !== people.length - 26) {
+  throw new Error('Approved profile provenance must retain 26 first-person paraphrases and use factual fallbacks only for the remaining governed people.');
 }
 for (const person of people) {
   const approvedProfile = approvedProfileByPersonId.get(person.personId);
@@ -1760,7 +1764,7 @@ const meta = {
     socialAndPortraits: 'Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
     educationPublicProfiles: 'Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.',
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
-    profileCopy: 'All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
+    profileCopy: 'All 52 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The previously governed 51 profile texts are retained byte-for-byte and one exact-matched 2026 applicant paraphrase is added. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
     staffDegrees: 'The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.',
     externalPublications: 'An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer.'

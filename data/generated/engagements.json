@@ -788,15 +788,15 @@
       "th": "Product Developer Intern",
       "en": "Product Developer Intern"
     },
-    "start": "2026-01-05",
-    "end": "2026-03-31",
+    "start": "2026-01-12",
+    "end": "2026-03-27",
     "status": "completed",
     "responsibilityWorkIds": [
       "work-ijji"
     ],
     "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_exact_period",
-    "evidenceNote": "Owner confirmed Grace's exact PDI internship period as 5 January through 31 March 2026 on 2026-08-31; her separate MSI 2025 engagement remains unchanged.",
+    "evidenceNote": "Owner corrected Grace's exact PDI internship period to 12 January through 27 March 2026 in the owner-supplied note dated 2026-09-06; her separate MSI 2025 engagement remains unchanged.",
     "sequenceHint": 2
   },
   {
@@ -1041,14 +1041,14 @@
       "th": "Product Developer Intern",
       "en": "Product Developer Intern"
     },
-    "start": "2025-12-19",
-    "end": "2026-02-19",
+    "start": "2026-01-12",
+    "end": "2026-02-18",
     "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_exact_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner confirmed Hana's exact internship period as 19 December 2025 through 19 February 2026 on 2026-08-31; this supersedes the stale ongoing flag and availability-date evidence."
+    "evidenceNote": "Owner clarified on 2026-09-06 that Hand refers to Hana and supplied her exact PDI internship period as 12 January through 18 February 2026."
   },
   {
     "engagementId": "E0034",
@@ -1067,14 +1067,14 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": "2026-01-05",
-    "end": "2026-03-31",
+    "start": "2026-01-12",
+    "end": "2026-03",
     "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "owner_supplied",
-    "verificationStatus": "owner_confirmed_exact_period",
+    "verificationStatus": "owner_confirmed_mixed_precision_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner confirmed Noni's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
+    "evidenceNote": "Owner corrected Noni's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
   },
   {
     "engagementId": "E0037",
@@ -1093,14 +1093,14 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": "2026-01-05",
-    "end": "2026-03-31",
+    "start": "2026-01-12",
+    "end": "2026-03",
     "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "owner_supplied",
-    "verificationStatus": "owner_confirmed_exact_period",
+    "verificationStatus": "owner_confirmed_mixed_precision_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner confirmed France's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
+    "evidenceNote": "Owner corrected France's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
   },
   {
     "engagementId": "E0060",
@@ -1275,13 +1275,13 @@
       "en": "Product Developer Intern"
     },
     "start": "2026-04-28",
-    "end": "2026-07-31",
+    "end": "2026-07-10",
     "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "owner_source_reconciled",
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner confirmed that Team's PDI internship ended at the end of July 2026."
+    "evidenceNote": "Owner supplied Team's exact PDI internship period as 28 April through 10 July 2026 in the note dated 2026-09-06."
   },
   {
     "engagementId": "E0044",
@@ -1452,13 +1452,13 @@
       "en": "Marketing Strategy Intern"
     },
     "start": "2026-05-19",
-    "end": "2026-07-31",
-    "status": "completed",
+    "end": "2026-09-15",
+    "status": "ongoing",
     "responsibilityWorkIds": [],
     "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_exact_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner confirmed on 2026-08-31 that Dan's internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+    "evidenceNote": "Owner corrected Dan's internship period to 19 May through 15 September 2026 in the owner-supplied note dated 2026-09-06; it remains ongoing as of that date."
   },
   {
     "engagementId": "E0051",
@@ -1478,13 +1478,13 @@
       "en": "Product Developer Intern"
     },
     "start": "2026-05-19",
-    "end": "2026-07-31",
+    "end": "2026-07-17",
     "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_exact_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner confirmed on 2026-08-31 that Mook (Pattareeya)'s internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+    "evidenceNote": "Owner corrected Mook (Pattareeya)'s internship period to 19 May through 17 July 2026 in the owner-supplied note dated 2026-09-06."
   },
   {
     "engagementId": "E0052",
@@ -1631,6 +1631,32 @@
     "evidenceStatus": "owner_supplied_and_public_profile_verified",
     "verificationStatus": "linkedin_profile_headline_exact_identity_match",
     "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the owner-supplied exact profile: Software Developer.",
+    "sequenceHint": 1
+  },
+  {
+    "engagementId": "E0064",
+    "personId": "I0044",
+    "category": "internship",
+    "academicPlacementType": "internship",
+    "program": {
+      "code": "MSI",
+      "names": {
+        "th": "Marketing Strategy Intern, MSI",
+        "en": "Marketing Strategy Intern, MSI"
+      }
+    },
+    "cohortLabel": "MSI 2026",
+    "roleTitle": {
+      "th": "Marketing Strategy Intern",
+      "en": "Marketing Strategy Intern"
+    },
+    "start": "2026-08-24",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [],
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_start_end_pending",
+    "evidenceNote": "Owner identified Sorso as the new 2026 applicant and confirmed the actual start date as 24 August 2026. The end date remains pending and no duration is inferred from application availability.",
     "sequenceHint": 1
   }
 ]

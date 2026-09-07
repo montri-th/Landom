@@ -16,8 +16,6 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
     'รู้จักคน ความสนใจ และผลงานที่เกิดขึ้นระหว่างการร่วมงานกับ Landometer',
     'Meet the people, interests and work shaped through time with Landometer.'
   ],
-  ['"inLanguage": "th"', '"inLanguage": "en"'],
-  ['"name": "ชาว Landom"', '"name": "People of Landom"'],
   ['ข้ามไปยังเนื้อหาหลัก', 'Skip to main content'],
   ['ส่วนหัวเว็บไซต์', 'Site header'],
   ['Landometer — หน้าหลัก', 'Landometer — home'],
@@ -35,6 +33,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['ผู้คนที่ร่วมสร้าง Landometer', 'People shaping Landometer'],
   ['เปิด landometer.com — ผลิตภัณฑ์ทั้งหมด', 'Open landometer.com — all products'],
   ['การตั้งค่าการแสดงผล', 'Display preferences'],
+  ['หยุดการเคลื่อนไหว', 'Pause motion'],
   ['ธีม: ตามระบบ กดเพื่อใช้ธีมสว่าง', 'Theme: system. Press to use light theme'],
   ['Switch to English', 'เปลี่ยนเป็นภาษาไทย'],
   ['<span aria-hidden="true">EN</span>', '<span aria-hidden="true">TH</span>'],
@@ -173,8 +172,8 @@ export function renderLocalizedEntrypoint(source, locale) {
   );
   html = replaceRequired(
     html,
-    `"url": "${canonicalRoot}",`,
-    `"url": "${localeUrl}",`,
+    `"url": "${canonicalRoot}"`,
+    `"url": "${localeUrl}"`,
     'CollectionPage URL'
   );
   html = replaceRequired(html, '  lang="th"', '  lang="en"', 'root lang');

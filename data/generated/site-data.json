@@ -40,29 +40,29 @@
       "socialAndPortraits": "Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
       "educationPublicProfiles": "Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.",
       "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
-      "profileCopy": "All 51 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The existing 48 profile texts are retained byte-for-byte. Twenty-five are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence, including three new staff profiles. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
+      "profileCopy": "All 52 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The previously governed 51 profile texts are retained byte-for-byte and one exact-matched 2026 applicant paraphrase is added. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
       "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
       "staffDegrees": "The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.",
       "externalPublications": "An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer."
     },
     "counts": {
-      "people": 51,
-      "engagements": 63,
-      "educationRecords": 51,
+      "people": 52,
+      "engagements": 64,
+      "educationRecords": 52,
       "works": 63,
-      "contributions": 120,
+      "contributions": 121,
       "achievements": 1,
       "publications": 1,
       "certificates": 26,
-      "sourceBackedProfilePlaceholders": 51,
+      "sourceBackedProfilePlaceholders": 52,
       "ownerPendingProfiles": 0,
-      "firstPersonProfilePlaceholders": 25,
+      "firstPersonProfilePlaceholders": 26,
       "factualFallbackProfilePlaceholders": 26,
       "verifiedCompletedStaffDegrees": 7,
       "cooperativeEducationPeople": 6,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 73
+      "publishedPublicSocialProfiles": 74
     }
   },
   "copy": {
@@ -603,6 +603,23 @@
       },
       "qualificationLevel": "bachelor",
       "verificationStatus": "owner_supplied_detail_refinement",
+      "linkedinUrl": null,
+      "linkedinVerificationStatus": "not_found_exact_official_page"
+    },
+    {
+      "programId": "program-cu-biochemistry",
+      "names": {
+        "th": {
+          "formal": "ชีวเคมี",
+          "short": "ชีวเคมี"
+        },
+        "en": {
+          "formal": "Biochemistry",
+          "short": "Biochemistry"
+        }
+      },
+      "qualificationLevel": "bachelor",
+      "verificationStatus": "application_cv_and_official_program_definition",
       "linkedinUrl": null,
       "linkedinVerificationStatus": "not_found_exact_official_page"
     },
@@ -1570,6 +1587,40 @@
     },
     {
       "educationRecordId": "EDU0049",
+      "personId": "I0044",
+      "institutionId": "inst-chula",
+      "programId": "program-cu-biochemistry",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "B.Sc. in Biochemistry — Chulalongkorn University",
+      "qualification": {
+        "th": "ชีวเคมี",
+        "en": "Biochemistry"
+      },
+      "degree": {
+        "abbreviation": {
+          "th": "วท.บ.",
+          "en": "B.Sc."
+        },
+        "title": {
+          "th": "วิทยาศาสตรบัณฑิต",
+          "en": "Bachelor of Science"
+        },
+        "field": {
+          "th": "ชีวเคมี",
+          "en": "Biochemistry"
+        },
+        "awardStatus": "in_progress",
+        "personalAwardVerified": false,
+        "programEvidenceUrl": "https://www.bc.sc.chula.ac.th/undergraduate/",
+        "evidenceScope": "first_person_application_and_cv_with_official_program_definition"
+      },
+      "studyPeriod": null,
+      "verificationStatus": "first_person_application_cv_and_official_program_definition",
+      "evidenceNote": "The application and CV identify an in-progress B.Sc. in Biochemistry at Chulalongkorn University; the official department page is used only to standardize the program and degree nomenclature."
+    },
+    {
+      "educationRecordId": "EDU0050",
       "personId": "S0006",
       "institutionId": "inst-chula",
       "programId": "program-cu-computer-engineering",
@@ -1603,7 +1654,7 @@
       "evidenceNote": "Owner confirmed Nat's completed B.Eng. in Computer Engineering from Chulalongkorn University; the official department page standardizes the program and degree nomenclature."
     },
     {
-      "educationRecordId": "EDU0050",
+      "educationRecordId": "EDU0051",
       "personId": "S0007",
       "institutionId": "inst-chula",
       "programId": "program-cu-computer-science",
@@ -1637,7 +1688,7 @@
       "evidenceNote": "Owner supplied the exact IEEE author-biography evidence stating Kanoksilp Jindadoungrut received the B.Sc. degree with honours in Computer Science from Chulalongkorn University."
     },
     {
-      "educationRecordId": "EDU0051",
+      "educationRecordId": "EDU0052",
       "personId": "P0001",
       "institutionId": "inst-psu",
       "programId": "program-psu-economics",
@@ -3632,7 +3683,7 @@
         }
       },
       "currentStatus": "alumni",
-      "firstJoined": "2025-12-19",
+      "firstJoined": "2026-01-12",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -3699,7 +3750,7 @@
         }
       },
       "currentStatus": "alumni",
-      "firstJoined": "2026-01-05",
+      "firstJoined": "2026-01-12",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -3766,7 +3817,7 @@
         }
       },
       "currentStatus": "alumni",
-      "firstJoined": "2026-01-05",
+      "firstJoined": "2026-01-12",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -4636,7 +4687,7 @@
           "en": "Dan"
         }
       },
-      "currentStatus": "alumni",
+      "currentStatus": "active",
       "firstJoined": "2026-05-19",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
@@ -5086,6 +5137,73 @@
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_supplied",
+        "sourceNotePresent": true
+      }
+    },
+    {
+      "personId": "I0044",
+      "names": {
+        "full": {
+          "th": "วิชานาถ คงเกลี้ยง",
+          "en": "Wichanat Khongkliang"
+        },
+        "nickname": {
+          "th": "โซ่",
+          "en": "Sorso"
+        },
+        "card": {
+          "th": "โซ่",
+          "en": "Sorso"
+        }
+      },
+      "currentStatus": "active",
+      "firstJoined": "2026-08-24",
+      "migrationClassification": "intern_or_program_participant",
+      "canonicalIdPolicy": {
+        "assignedAtMigration": "2026-09-06",
+        "categoryAtMigration": "intern_or_program_participant",
+        "frozenAcrossFutureRoleChanges": true
+      },
+      "educationDisplayMode": "program",
+      "educationDisplay": {
+        "mode": "program",
+        "card": {
+          "th": "ชีวเคมี · จุฬาฯ",
+          "en": "Biochemistry · CU"
+        },
+        "detail": {
+          "th": "ชีวเคมี — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Biochemistry — Chulalongkorn University"
+        },
+        "verificationStatus": "first_person_application_cv_and_official_program_definition"
+      },
+      "bio": {
+        "th": "โซ่อยากต่อยอดจากการคิดเชิงกลยุทธ์ไปสู่การลงมือทำจริง โดยนำวิธีคิดเชิงวิเคราะห์จากวิทยาศาสตร์และประสบการณ์ด้านที่ปรึกษามาช่วยค้นหาต้นเหตุและสร้างทางออกที่นำไปใช้ได้",
+        "en": "Sorso wants to move from strategy into execution, combining an analytical science background with consulting experience to uncover root causes and help turn ideas into practical outcomes.",
+        "status": "source_backed_placeholder",
+        "verificationStatus": "owner_authorized_placeholder",
+        "publicationBasis": "owner_authorized_paraphrase_from_first_person_application",
+        "sourceBasis": "first_person_application_exact_roster_match",
+        "sourceType": "first_person_application",
+        "sourceRef": "authorized_application_roster_match_2025_2026",
+        "authorRole": "profile_subject",
+        "derivationMethod": "concise_paraphrase",
+        "evidenceScope": "personal_objective_and_self_described_work_style",
+        "evidenceConfidence": "exact_roster_match",
+        "reviewStatus": "pending_candidate_video_review",
+        "ownerApproval": {
+          "status": "granted",
+          "approvedAt": "2026-08-23",
+          "scope": "source_backed_placeholder_profile_copy",
+          "sourceRef": "owner_instruction_2026-08-23"
+        }
+      },
+      "publication": {
+        "consentStatus": "pending",
+        "profileStatus": "withheld_pending_consent"
+      },
+      "dataQuality": {
+        "profileVerificationStatus": "owner_confirmed_and_application_response_verified",
         "sourceNotePresent": true
       }
     }
@@ -5880,15 +5998,15 @@
         "th": "Product Developer Intern",
         "en": "Product Developer Intern"
       },
-      "start": "2026-01-05",
-      "end": "2026-03-31",
+      "start": "2026-01-12",
+      "end": "2026-03-27",
       "status": "completed",
       "responsibilityWorkIds": [
         "work-ijji"
       ],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner confirmed Grace's exact PDI internship period as 5 January through 31 March 2026 on 2026-08-31; her separate MSI 2025 engagement remains unchanged.",
+      "evidenceNote": "Owner corrected Grace's exact PDI internship period to 12 January through 27 March 2026 in the owner-supplied note dated 2026-09-06; her separate MSI 2025 engagement remains unchanged.",
       "sequenceHint": 2
     },
     {
@@ -6133,14 +6251,14 @@
         "th": "Product Developer Intern",
         "en": "Product Developer Intern"
       },
-      "start": "2025-12-19",
-      "end": "2026-02-19",
+      "start": "2026-01-12",
+      "end": "2026-02-18",
       "status": "completed",
       "responsibilityWorkIds": [],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner confirmed Hana's exact internship period as 19 December 2025 through 19 February 2026 on 2026-08-31; this supersedes the stale ongoing flag and availability-date evidence."
+      "evidenceNote": "Owner clarified on 2026-09-06 that Hand refers to Hana and supplied her exact PDI internship period as 12 January through 18 February 2026."
     },
     {
       "engagementId": "E0034",
@@ -6159,14 +6277,14 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": "2026-01-05",
-      "end": "2026-03-31",
+      "start": "2026-01-12",
+      "end": "2026-03",
       "status": "completed",
       "responsibilityWorkIds": [],
       "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_confirmed_exact_period",
+      "verificationStatus": "owner_confirmed_mixed_precision_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner confirmed Noni's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
+      "evidenceNote": "Owner corrected Noni's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
     },
     {
       "engagementId": "E0037",
@@ -6185,14 +6303,14 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": "2026-01-05",
-      "end": "2026-03-31",
+      "start": "2026-01-12",
+      "end": "2026-03",
       "status": "completed",
       "responsibilityWorkIds": [],
       "evidenceStatus": "owner_supplied",
-      "verificationStatus": "owner_confirmed_exact_period",
+      "verificationStatus": "owner_confirmed_mixed_precision_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner confirmed France's exact internship period as 5 January through 31 March 2026 on 2026-08-31; this replaces availability dates that were not actual engagement dates."
+      "evidenceNote": "Owner corrected France's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
     },
     {
       "engagementId": "E0060",
@@ -6367,13 +6485,13 @@
         "en": "Product Developer Intern"
       },
       "start": "2026-04-28",
-      "end": "2026-07-31",
+      "end": "2026-07-10",
       "status": "completed",
       "responsibilityWorkIds": [],
-      "evidenceStatus": "sheet_recorded",
-      "verificationStatus": "owner_source_reconciled",
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner confirmed that Team's PDI internship ended at the end of July 2026."
+      "evidenceNote": "Owner supplied Team's exact PDI internship period as 28 April through 10 July 2026 in the note dated 2026-09-06."
     },
     {
       "engagementId": "E0044",
@@ -6544,13 +6662,13 @@
         "en": "Marketing Strategy Intern"
       },
       "start": "2026-05-19",
-      "end": "2026-07-31",
-      "status": "completed",
+      "end": "2026-09-15",
+      "status": "ongoing",
       "responsibilityWorkIds": [],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Dan's internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+      "evidenceNote": "Owner corrected Dan's internship period to 19 May through 15 September 2026 in the owner-supplied note dated 2026-09-06; it remains ongoing as of that date."
     },
     {
       "engagementId": "E0051",
@@ -6570,13 +6688,13 @@
         "en": "Product Developer Intern"
       },
       "start": "2026-05-19",
-      "end": "2026-07-31",
+      "end": "2026-07-17",
       "status": "completed",
       "responsibilityWorkIds": [],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Mook (Pattareeya)'s internship started and ended on the same dates as Nicha: 19 May through 31 July 2026."
+      "evidenceNote": "Owner corrected Mook (Pattareeya)'s internship period to 19 May through 17 July 2026 in the owner-supplied note dated 2026-09-06."
     },
     {
       "engagementId": "E0052",
@@ -6723,6 +6841,32 @@
       "evidenceStatus": "owner_supplied_and_public_profile_verified",
       "verificationStatus": "linkedin_profile_headline_exact_identity_match",
       "evidenceNote": "LinkedIn headline verified on 2026-08-25 against the owner-supplied exact profile: Software Developer.",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0064",
+      "personId": "I0044",
+      "category": "internship",
+      "academicPlacementType": "internship",
+      "program": {
+        "code": "MSI",
+        "names": {
+          "th": "Marketing Strategy Intern, MSI",
+          "en": "Marketing Strategy Intern, MSI"
+        }
+      },
+      "cohortLabel": "MSI 2026",
+      "roleTitle": {
+        "th": "Marketing Strategy Intern",
+        "en": "Marketing Strategy Intern"
+      },
+      "start": "2026-08-24",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": [],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_start_end_pending",
+      "evidenceNote": "Owner identified Sorso as the new 2026 applicant and confirmed the actual start date as 24 August 2026. The end date remains pending and no duration is inferred from application availability.",
       "sequenceHint": 1
     }
   ],
@@ -10325,7 +10469,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10343,7 +10487,7 @@
         "label": null
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10361,7 +10505,7 @@
         "label": "2025"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10379,7 +10523,7 @@
         "label": "2025"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10397,7 +10541,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10415,7 +10559,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10433,7 +10577,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10451,7 +10595,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10469,7 +10613,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10487,7 +10631,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": "The owner supplied the Healthcare contribution name; no exact current CityMETER catalog module is asserted."
     },
     {
@@ -10505,7 +10649,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10523,7 +10667,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10541,7 +10685,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10559,7 +10703,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10577,7 +10721,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10595,7 +10739,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10613,7 +10757,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10631,7 +10775,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10649,7 +10793,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10667,7 +10811,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10685,7 +10829,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10703,7 +10847,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10721,7 +10865,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10739,7 +10883,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10757,8 +10901,26 @@
         "label": "Part-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-08-31_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
       "evidenceNote": null
+    },
+    {
+      "contributionId": "C0121",
+      "personId": "I0044",
+      "workId": "work-contribution-details-pending",
+      "engagementId": "E0064",
+      "role": {
+        "th": "Go-to-market",
+        "en": "Go-to-market"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": null
+      },
+      "evidenceStatus": "owner_detail_required",
+      "sourceRef": "owner_instruction_2026-08-23",
+      "evidenceNote": "เจ้าของข้อมูลยืนยันว่าทุกคนมีอย่างน้อยหนึ่งผลงาน แต่ยังไม่มีหลักฐานพอระบุชื่อโครงการของบุคคลนี้"
     }
   ],
   "achievements": [
@@ -16174,6 +16336,109 @@
       "ownerApproval": null,
       "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-LINKEDIN",
+      "personId": "I0044",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229",
+      "candidateStatus": "candidate_present",
+      "candidateValueEmitted": false,
+      "verificationStatus": "verified",
+      "consentStatus": "pending",
+      "publicationBasis": "owner_authorized_public_profile_link",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-06",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_to_keep_verified_linkedin_and_github_profiles_complete"
+      },
+      "publicationStatus": "publishable",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-GITHUB",
+      "personId": "I0044",
+      "platform": "github",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-GITLAB",
+      "personId": "I0044",
+      "platform": "gitlab",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-WEBSITE",
+      "personId": "I0044",
+      "platform": "website",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-FACEBOOK",
+      "personId": "I0044",
+      "platform": "facebook",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-INSTAGRAM",
+      "personId": "I0044",
+      "platform": "instagram",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0044-TIKTOK",
+      "personId": "I0044",
+      "platform": "tiktok",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
     }
   ],
   "assets": [
@@ -17521,6 +17786,28 @@
       "alt": {
         "th": "ภาพโปรไฟล์ของโปเต้",
         "en": "Profile portrait of Pote"
+      },
+      "candidateStatus": "source_needed",
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "rightsStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_rights_consent_and_verification",
+      "sha256": null,
+      "mediaType": null,
+      "bytes": null,
+      "identityVerificationEvidence": null
+    },
+    {
+      "assetId": "PORTRAIT-I0044",
+      "personId": "I0044",
+      "kind": "profile_portrait",
+      "publicPath": null,
+      "sourceUrl": null,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของโซ่",
+        "en": "Profile portrait of Sorso"
       },
       "candidateStatus": "source_needed",
       "verificationStatus": "missing",

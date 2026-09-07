@@ -1,4 +1,5 @@
 import { initApproachMotion } from "./approach-motion.js";
+import { initBrandMotion } from "./brand-motion.js";
 import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
 
@@ -32,6 +33,11 @@ const COPY = {
     ecosystemLandomDescription: "ผู้คนที่ร่วมสร้าง Landometer",
     allProducts: "เปิด landometer.com — ผลิตภัณฑ์ทั้งหมด",
     controlsLabel: "การตั้งค่าการแสดงผล",
+    motionPause: "หยุดการเคลื่อนไหว",
+    motionResume: "เล่นการเคลื่อนไหวต่อ",
+    motionReduced: "ระบบตั้งค่าให้ลดการเคลื่อนไหว",
+    motionPausedStatus: "หยุดการเคลื่อนไหวแล้ว",
+    motionResumedStatus: "เล่นการเคลื่อนไหวต่อแล้ว",
     switchLanguage: "Switch to English",
     switchLanguageShort: "EN",
     heroEyebrow: "LANDOM · ชุมชนของคนที่ร่วมสร้าง LANDOMETER",
@@ -163,6 +169,11 @@ const COPY = {
     ecosystemLandomDescription: "People shaping Landometer",
     allProducts: "Open landometer.com — all products",
     controlsLabel: "Display preferences",
+    motionPause: "Pause motion",
+    motionResume: "Resume motion",
+    motionReduced: "Motion follows your reduced-motion setting",
+    motionPausedStatus: "Motion paused",
+    motionResumedStatus: "Motion resumed",
     switchLanguage: "เปลี่ยนเป็นภาษาไทย",
     switchLanguageShort: "TH",
     heroEyebrow: "LANDOM · THE PEOPLE SHAPING LANDOMETER",
@@ -328,6 +339,7 @@ const elements = {
   languageButton: document.querySelector("#language-toggle"),
   themeButton: document.querySelector("#theme-toggle"),
   themeIcon: document.querySelector("#theme-toggle .theme-icon"),
+  motionButton: document.querySelector("#motion-toggle"),
   preferenceStatus: document.querySelector("#preference-status"),
   heroEyebrow: document.querySelector("#hero-eyebrow"),
   pageTitle: document.querySelector("#page-title"),
@@ -396,6 +408,7 @@ const desktopFilterQuery = window.matchMedia?.("(min-width: 760px)");
 const reducedMotionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)");
 const reflowAnimations = new WeakMap();
 let approachMotionController = null;
+let brandMotionController = null;
 let mediaParallaxController = null;
 
 function message(key, values = {}) {
@@ -514,6 +527,13 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
     state.language === "th" ? new URL("./", document.baseURI).href : new URL("en/", document.baseURI).href
   );
   setText(elements.languageButton?.querySelector("span"), copy.switchLanguageShort);
+  brandMotionController?.setLabels({
+    pause: copy.motionPause,
+    resume: copy.motionResume,
+    reduced: copy.motionReduced,
+    pausedStatus: copy.motionPausedStatus,
+    resumedStatus: copy.motionResumedStatus
+  });
   setText(elements.heroEyebrow, copy.heroEyebrow);
   setText(elements.pageTitle, copy.heroTitle);
   setText(elements.heroIntro, copy.heroIntro);
@@ -1594,8 +1614,6 @@ function renderCard(model) {
   const shell = document.createElement("article");
   shell.className = "person-card-shell";
   shell.dataset.personId = model.id;
-  shell.dataset.approach = "peer_group";
-  shell.dataset.approachKey = `person-${model.id}`;
 
   const button = document.createElement("button");
   button.className = "person-card";
@@ -1983,6 +2001,9 @@ function personDetailMarkup(model) {
     <article class="person-detail" aria-labelledby="person-card-title-${escapeHtml(model.id)}">
       <div class="inline-detail-toolbar">
         <span class="section-kicker">${escapeHtml(message("registry"))}</span>
+        <lm-motif class="profile-layers-motif" kind="layers" quiet ink="sky" replay="hover">
+          <img src="./public/assets/landometer/svg/layers-quiet.svg" alt="">
+        </lm-motif>
         <div class="inline-detail-actions">
           ${profileSocialIconsMarkup(model)}
           <button class="icon-button inline-detail-close" type="button" data-inline-close aria-label="${escapeHtml(message("closeDetails"))}"><span aria-hidden="true">×</span></button>
@@ -2247,8 +2268,13 @@ function closeCertificate() {
 function syncFilterDialogMode() {
   if (!desktopFilterQuery) return;
   if (desktopFilterQuery.matches) {
-    if (elements.filterDialog.open) elements.filterDialog.close();
-    elements.filterDialog.show();
+    // The desktop filter is persistent inline content. Setting `open`
+    // directly avoids the native dialog focusing steps from scrolling past
+    // the hero during initial load. Convert an open mobile modal first.
+    if (elements.filterDialog.open && document.body.classList.contains("modal-open") && !elements.certificateDialog.open) {
+      elements.filterDialog.close();
+    }
+    if (!elements.filterDialog.open) elements.filterDialog.setAttribute("open", "");
     if (!elements.certificateDialog.open) document.body.classList.remove("modal-open");
   } else if (elements.filterDialog.open) {
     elements.filterDialog.close();
@@ -2378,6 +2404,10 @@ function initialize() {
   state.theme = THEMES.includes(state.theme) ? state.theme : "system";
   updateUrl({ lang: state.language, theme: state.theme });
   bindEvents();
+  brandMotionController = initBrandMotion({
+    button: elements.motionButton,
+    statusElement: elements.preferenceStatus
+  });
   applyLanguage();
   applyTheme();
   initSiteNavigation();
