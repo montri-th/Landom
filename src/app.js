@@ -2001,7 +2001,7 @@ function personDetailMarkup(model) {
     <article class="person-detail" aria-labelledby="person-card-title-${escapeHtml(model.id)}">
       <div class="inline-detail-toolbar">
         <span class="section-kicker">${escapeHtml(message("registry"))}</span>
-        <lm-motif class="profile-layers-motif" kind="layers" quiet ink="sky" replay="hover">
+        <lm-motif class="profile-layers-motif" kind="layers" quiet replay="hover">
           <img src="./public/assets/landometer/svg/layers-quiet.svg" alt="">
         </lm-motif>
         <div class="inline-detail-actions">

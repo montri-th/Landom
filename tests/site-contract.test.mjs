@@ -459,20 +459,20 @@ test('DS v0.9.1 colors and motif 1.2.1 use exact local bytes with source-visible
     ['public/assets/design-system/color-srgb-05.production.css', '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c'],
     ['public/assets/landometer/landometer-motifs.css', '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e'],
     ['public/assets/landometer/landometer-motifs.js', '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2'],
-    ['public/assets/landometer/svg/logo-full.svg', '90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1'],
-    ['public/assets/landometer/svg/dial-full.svg', '7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d'],
-    ['public/assets/landometer/svg/rings-full.svg', 'b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286'],
+    ['public/assets/landometer/svg/logo-quiet.svg', '5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14'],
+    ['public/assets/landometer/svg/dial-quiet.svg', '2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f'],
+    ['public/assets/landometer/svg/rings-quiet.svg', 'd494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b'],
     ['public/assets/landometer/svg/layers-quiet.svg', 'e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03'],
     ['public/assets/landometer/svg/slice-quiet.svg', 'c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b'],
-    ['public/assets/landometer/svg/cultivate-full.svg', 'ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12']
+    ['public/assets/landometer/svg/cultivate-quiet.svg', 'edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f']
   ]);
   const fallbacks = [
-    ['logo', false, 'logo-full.svg'],
-    ['dial', false, 'dial-full.svg'],
-    ['rings', false, 'rings-full.svg'],
+    ['logo', true, 'logo-quiet.svg'],
+    ['dial', true, 'dial-quiet.svg'],
+    ['rings', true, 'rings-quiet.svg'],
     ['layers', true, 'layers-quiet.svg'],
     ['slice', true, 'slice-quiet.svg'],
-    ['cultivate', false, 'cultivate-full.svg']
+    ['cultivate', true, 'cultivate-quiet.svg']
   ];
 
   assert.match(index, /<html\b(?=[^>]*data-ds="landometer")(?=[^>]*data-ds-version="0\.9\.1")[^>]*>/s);
@@ -492,7 +492,8 @@ test('DS v0.9.1 colors and motif 1.2.1 use exact local bytes with source-visible
     const matching = motifMarkup.filter(([, attributes, body]) => {
       const isKind = new RegExp(`\\bkind=["']${kind}["']`).test(attributes);
       const isQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
-      return isKind && isQuiet === quiet && body.includes(`./public/assets/landometer/svg/${file}`);
+      const hasInkOverride = /(?:^|\s)ink=["']/.test(attributes);
+      return isKind && isQuiet === quiet && !hasInkOverride && body.includes(`./public/assets/landometer/svg/${file}`);
     });
     assert.equal(matching.length, 1, `${kind} must keep its exact ${file} source fallback`);
   }
@@ -538,14 +539,14 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
   assert.match(workflow, /public\/assets\/design-system\/color-srgb-05\.production\.css\?\$cache_bust/);
   assert.match(workflow, /public\/assets\/landometer\/landometer-motifs\.css\?\$cache_bust/);
   assert.match(workflow, /public\/assets\/landometer\/landometer-motifs\.js\?\$cache_bust/);
-  for (const file of ['logo-full', 'dial-full', 'rings-full', 'layers-quiet', 'slice-quiet', 'cultivate-full']) {
+  for (const file of ['logo-quiet', 'dial-quiet', 'rings-quiet', 'layers-quiet', 'slice-quiet', 'cultivate-quiet']) {
     assert.match(workflow, new RegExp(`public/assets/landometer/svg/${file}\\.svg`));
   }
   for (const digest of [
     '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c',
     '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e',
     '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2',
-    '90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1'
+    '5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14'
   ]) {
     assert.ok(workflow.includes(digest), `workflow must pin ${digest}`);
   }

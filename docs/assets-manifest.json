@@ -32,7 +32,9 @@
     "artifactRelease": "1.2.1",
     "familyId": "landometer.motif.v3",
     "motionMode": "finite_once",
-    "identityBoundary": "logo-full is an animated hero brand-opening only; the official navigation logo remains static and authoritative.",
+    "selectedVariant": "quiet",
+    "selectionScope": "All six animated Landometer surfaces use the exact quiet records from motif release 1.2.1.",
+    "identityBoundary": "logo-quiet is an animated hero brand-opening only; the official navigation logo remains static and authoritative.",
     "artifactLocalReplay": {
       "status": "owner_approved",
       "mode": "artifact_local_loop_replay",
@@ -110,13 +112,14 @@
       "notes": "Progressive enhancement controller: 14% visibility start, finite-once motif settlement, hidden/offscreen pause, owner-approved artifact-local loop/replay, and reduced/no-JS/print/failure fallback lifecycle."
     },
     {
-      "assetId": "motif-logo-full-1.2.1",
-      "path": "public/assets/landometer/svg/logo-full.svg",
-      "variant": "landometer-motif-v3-logo-full",
+      "assetId": "motif-logo-quiet-1.2.1",
+      "releaseAssetId": "landometer.logo.quiet",
+      "path": "public/assets/landometer/svg/logo-quiet.svg",
+      "variant": "landometer-motif-v3-logo-quiet",
       "approvalScope": "hero-brand-opening",
       "mediaType": "image/svg+xml",
-      "bytes": 1252,
-      "sha256": "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1",
+      "bytes": 1979,
+      "sha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14",
       "owner": "Landometer",
       "approvalStatus": "approved",
       "publicationBasis": "owner_approved_motif_release_1.2.1_exact_bytes",
@@ -129,16 +132,17 @@
       "approvedRoles": ["hero-brand-opening", "hero-brand-opening-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "header-brand-lockup", "footer-brand-lockup", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Animated brand-opening, never the persistent navigation identity. The official navigation logo remains static. This exact SVG is the final fallback."
+      "notes": "Quiet animated brand-opening, never the persistent navigation identity. The official navigation logo remains static. The animation ends at 3,360 ms and the page holds the complete final state from at least 3,400 ms. This exact SVG is the final fallback."
     },
     {
-      "assetId": "motif-rings-full-1.2.1",
-      "path": "public/assets/landometer/svg/rings-full.svg",
-      "variant": "landometer-motif-v3-rings-full",
+      "assetId": "motif-rings-quiet-1.2.1",
+      "releaseAssetId": "landometer.rings.quiet",
+      "path": "public/assets/landometer/svg/rings-quiet.svg",
+      "variant": "landometer-motif-v3-rings-quiet",
       "approvalScope": "hero-spatial-depth",
       "mediaType": "image/svg+xml",
-      "bytes": 552,
-      "sha256": "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286",
+      "bytes": 833,
+      "sha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b",
       "owner": "Landometer",
       "approvalStatus": "approved",
       "publicationBasis": "owner_approved_motif_release_1.2.1_exact_bytes",
@@ -151,16 +155,17 @@
       "approvedRoles": ["hero-spatial-depth", "hero-spatial-depth-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Hero spatial/depth motif. This exact SVG is the final fallback."
+      "notes": "Quiet Hero spatial/depth motif. This exact SVG is the final fallback."
     },
     {
-      "assetId": "motif-dial-full-1.2.1",
-      "path": "public/assets/landometer/svg/dial-full.svg",
-      "variant": "landometer-motif-v3-dial-full",
+      "assetId": "motif-dial-quiet-1.2.1",
+      "releaseAssetId": "landometer.dial.quiet",
+      "path": "public/assets/landometer/svg/dial-quiet.svg",
+      "variant": "landometer-motif-v3-dial-quiet",
       "approvalScope": "directory-section-opener",
       "mediaType": "image/svg+xml",
-      "bytes": 674,
-      "sha256": "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d",
+      "bytes": 733,
+      "sha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f",
       "owner": "Landometer",
       "approvalStatus": "approved",
       "publicationBasis": "owner_approved_motif_release_1.2.1_exact_bytes",
@@ -173,10 +178,11 @@
       "approvedRoles": ["directory-section-opener", "directory-section-opener-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Directory section-opening motif. This exact SVG is the final fallback."
+      "notes": "Quiet directory section-opening motif. This exact SVG is the final fallback."
     },
     {
       "assetId": "motif-layers-quiet-1.2.1",
+      "releaseAssetId": "landometer.layers.quiet",
       "path": "public/assets/landometer/svg/layers-quiet.svg",
       "variant": "landometer-motif-v3-layers-quiet",
       "approvalScope": "profile-detail-decorative-hover",
@@ -199,6 +205,7 @@
     },
     {
       "assetId": "motif-slice-quiet-1.2.1",
+      "releaseAssetId": "landometer.slice.quiet",
       "path": "public/assets/landometer/svg/slice-quiet.svg",
       "variant": "landometer-motif-v3-slice-quiet",
       "approvalScope": "action-map-cta-decorative-hover",
@@ -220,13 +227,14 @@
       "notes": "Action/map CTA decorative hover motif. This exact SVG is the final fallback."
     },
     {
-      "assetId": "motif-cultivate-full-1.2.1",
-      "path": "public/assets/landometer/svg/cultivate-full.svg",
-      "variant": "landometer-motif-v3-cultivate-full",
+      "assetId": "motif-cultivate-quiet-1.2.1",
+      "releaseAssetId": "landometer.cultivate.quiet",
+      "path": "public/assets/landometer/svg/cultivate-quiet.svg",
+      "variant": "landometer-motif-v3-cultivate-quiet",
       "approvalScope": "footer-closer",
       "mediaType": "image/svg+xml",
-      "bytes": 984,
-      "sha256": "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12",
+      "bytes": 1190,
+      "sha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f",
       "owner": "Landometer",
       "approvalStatus": "approved",
       "publicationBasis": "owner_approved_motif_release_1.2.1_exact_bytes",
@@ -239,7 +247,7 @@
       "approvedRoles": ["footer-closer", "footer-closer-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "footer-brand-lockup", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Footer-closing motif; decorative rather than an official footer brand identity. This exact SVG is the final fallback."
+      "notes": "Quiet footer-closing motif; decorative rather than an official footer brand identity. This exact SVG is the final fallback."
     },
     {
       "assetId": "brand-landometer-horizontal",

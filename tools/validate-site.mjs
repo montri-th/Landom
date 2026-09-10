@@ -87,16 +87,16 @@ const DESIGN_SYSTEM_ASSETS = Object.freeze([
     sha256: '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2'
   }),
   Object.freeze({
-    path: 'public/assets/landometer/svg/logo-full.svg',
-    sha256: '90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1'
+    path: 'public/assets/landometer/svg/logo-quiet.svg',
+    sha256: '5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14'
   }),
   Object.freeze({
-    path: 'public/assets/landometer/svg/dial-full.svg',
-    sha256: '7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d'
+    path: 'public/assets/landometer/svg/dial-quiet.svg',
+    sha256: '2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f'
   }),
   Object.freeze({
-    path: 'public/assets/landometer/svg/rings-full.svg',
-    sha256: 'b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286'
+    path: 'public/assets/landometer/svg/rings-quiet.svg',
+    sha256: 'd494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b'
   }),
   Object.freeze({
     path: 'public/assets/landometer/svg/layers-quiet.svg',
@@ -107,17 +107,17 @@ const DESIGN_SYSTEM_ASSETS = Object.freeze([
     sha256: 'c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b'
   }),
   Object.freeze({
-    path: 'public/assets/landometer/svg/cultivate-full.svg',
-    sha256: 'ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12'
+    path: 'public/assets/landometer/svg/cultivate-quiet.svg',
+    sha256: 'edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f'
   })
 ]);
 const MOTIF_FALLBACKS = Object.freeze([
-  Object.freeze({ kind: 'logo', variant: 'full', file: 'logo-full.svg' }),
-  Object.freeze({ kind: 'dial', variant: 'full', file: 'dial-full.svg' }),
-  Object.freeze({ kind: 'rings', variant: 'full', file: 'rings-full.svg' }),
+  Object.freeze({ kind: 'logo', variant: 'quiet', file: 'logo-quiet.svg' }),
+  Object.freeze({ kind: 'dial', variant: 'quiet', file: 'dial-quiet.svg' }),
+  Object.freeze({ kind: 'rings', variant: 'quiet', file: 'rings-quiet.svg' }),
   Object.freeze({ kind: 'layers', variant: 'quiet', file: 'layers-quiet.svg' }),
   Object.freeze({ kind: 'slice', variant: 'quiet', file: 'slice-quiet.svg' }),
-  Object.freeze({ kind: 'cultivate', variant: 'full', file: 'cultivate-full.svg' })
+  Object.freeze({ kind: 'cultivate', variant: 'quiet', file: 'cultivate-quiet.svg' })
 ]);
 const MATERIAL_SYMBOLS_EXTERNAL = Object.freeze({
   path: 'public/assets/fonts/material-symbols-rounded-open-in-new-300.woff2',
@@ -704,9 +704,10 @@ async function validateUi(publishRoot, errors) {
       const hasKind = new RegExp(`\\bkind=["']${fallback.kind}["']`).test(attributes);
       const hasQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
       const hasVariant = fallback.variant === 'quiet' ? hasQuiet : !hasQuiet;
+      const hasInkOverride = /(?:^|\s)ink=["']/.test(attributes);
       const escapedFile = fallback.file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const hasFallback = new RegExp(`<img\\b[^>]*\\bsrc=["']\\.\/public\/assets\/landometer\/svg\/${escapedFile}(?:\\?[^"']*)?["'][^>]*>`, 's').test(body);
-      return hasKind && hasVariant && hasFallback;
+      return hasKind && hasVariant && !hasInkOverride && hasFallback;
     });
     if (matching.length !== 1) {
       errors.push(`The ${fallback.kind}-${fallback.variant} lm-motif must contain its exact ${fallback.file} source fallback once.`);

@@ -96,12 +96,12 @@ jobs:
           ds_color_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-color-srgb.css --write-out '%{content_type}' "$base_url/public/assets/design-system/color-srgb-05.production.css?$cache_bust")"
           motif_css_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-motifs.css --write-out '%{content_type}' "$base_url/public/assets/landometer/landometer-motifs.css?$cache_bust")"
           motif_js_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-motifs.js --write-out '%{content_type}' "$base_url/public/assets/landometer/landometer-motifs.js?$cache_bust")"
-          logo_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo-full.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/logo-full.svg?$cache_bust")"
-          dial_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-dial-full.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/dial-full.svg?$cache_bust")"
-          rings_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-rings-full.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/rings-full.svg?$cache_bust")"
+          logo_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo-quiet.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/logo-quiet.svg?$cache_bust")"
+          dial_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-dial-quiet.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/dial-quiet.svg?$cache_bust")"
+          rings_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-rings-quiet.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/rings-quiet.svg?$cache_bust")"
           layers_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-layers-quiet.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/layers-quiet.svg?$cache_bust")"
           slice_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-slice-quiet.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/slice-quiet.svg?$cache_bust")"
-          cultivate_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-cultivate-full.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/cultivate-full.svg?$cache_bust")"
+          cultivate_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-cultivate-quiet.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/cultivate-quiet.svg?$cache_bust")"
           logo_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo.png --write-out '%{content_type}' "$base_url/public/assets/brand/landometer-horizontal.png?$cache_bust")"
           font_manifest_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-font-manifest.json --write-out '%{content_type}' "$base_url/public/assets/fonts/font-assets.manifest.json?$cache_bust")"
           font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-body-thai.woff2 --write-out '%{content_type}' "$base_url/public/assets/fonts/bai-jamjuree-thai-400-normal.woff2?$cache_bust")"
@@ -191,13 +191,13 @@ jobs:
             if ((html.match(/data-parallax-authority="owner-approved-site-override"/g) || []).length !== 1) throw Error("deployed bounded parallax is missing its explicit owner-approved authority marker");
             const motifSources = `${html}\n${app}`;
             const motifFallbacks = [
-              ["logo", false, "logo-full.svg"], ["dial", false, "dial-full.svg"], ["rings", false, "rings-full.svg"],
-              ["layers", true, "layers-quiet.svg"], ["slice", true, "slice-quiet.svg"], ["cultivate", false, "cultivate-full.svg"]
+              ["logo", true, "logo-quiet.svg"], ["dial", true, "dial-quiet.svg"], ["rings", true, "rings-quiet.svg"],
+              ["layers", true, "layers-quiet.svg"], ["slice", true, "slice-quiet.svg"], ["cultivate", true, "cultivate-quiet.svg"]
             ];
             const motifMarkup = [...motifSources.matchAll(/<lm-motif\b([^>]*)>([\s\S]*?)<\/lm-motif>/g)];
             if (motifMarkup.length !== motifFallbacks.length) throw Error("deployed page does not expose exactly six governed motif fallbacks");
             for (const [kind, quiet, file] of motifFallbacks) {
-              const matches = motifMarkup.filter(([, attributes, body]) => new RegExp(`\\bkind=["\x27]${kind}["\x27]`).test(attributes) && /(?:^|\s)quiet(?:\s|=|$)/.test(attributes) === quiet && body.includes(`./public/assets/landometer/svg/${file}`));
+              const matches = motifMarkup.filter(([, attributes, body]) => new RegExp(`\\bkind=["\x27]${kind}["\x27]`).test(attributes) && /(?:^|\s)quiet(?:\s|=|$)/.test(attributes) === quiet && !/(?:^|\s)ink=["\x27]/.test(attributes) && body.includes(`./public/assets/landometer/svg/${file}`));
               if (matches.length !== 1) throw Error(`deployed ${kind} motif is missing its exact ${file} fallback`);
             }
             const thaiMenuPeopleLinks = html.match(/<a\b(?=[^>]*\bdata-menu-close\b)(?=[^>]*href="#people")[^>]*>/g) || [];
@@ -247,12 +247,12 @@ jobs:
               ["public/assets/design-system/color-srgb-05.production.css", "/tmp/landom-color-srgb.css"],
               ["public/assets/landometer/landometer-motifs.css", "/tmp/landom-motifs.css"],
               ["public/assets/landometer/landometer-motifs.js", "/tmp/landom-motifs.js"],
-              ["public/assets/landometer/svg/logo-full.svg", "/tmp/landom-logo-full.svg"],
-              ["public/assets/landometer/svg/dial-full.svg", "/tmp/landom-dial-full.svg"],
-              ["public/assets/landometer/svg/rings-full.svg", "/tmp/landom-rings-full.svg"],
+              ["public/assets/landometer/svg/logo-quiet.svg", "/tmp/landom-logo-quiet.svg"],
+              ["public/assets/landometer/svg/dial-quiet.svg", "/tmp/landom-dial-quiet.svg"],
+              ["public/assets/landometer/svg/rings-quiet.svg", "/tmp/landom-rings-quiet.svg"],
               ["public/assets/landometer/svg/layers-quiet.svg", "/tmp/landom-layers-quiet.svg"],
               ["public/assets/landometer/svg/slice-quiet.svg", "/tmp/landom-slice-quiet.svg"],
-              ["public/assets/landometer/svg/cultivate-full.svg", "/tmp/landom-cultivate-full.svg"],
+              ["public/assets/landometer/svg/cultivate-quiet.svg", "/tmp/landom-cultivate-quiet.svg"],
               ["public/assets/brand/landometer-horizontal.png", "/tmp/landom-logo.png"],
               ["public/assets/fonts/font-assets.manifest.json", "/tmp/landom-font-manifest.json"],
               ["public/assets/fonts/bai-jamjuree-thai-400-normal.woff2", "/tmp/landom-body-thai.woff2"],
@@ -282,12 +282,12 @@ jobs:
               ["/tmp/landom-color-srgb.css", "3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c"],
               ["/tmp/landom-motifs.css", "7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e"],
               ["/tmp/landom-motifs.js", "3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2"],
-              ["/tmp/landom-logo-full.svg", "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1"],
-              ["/tmp/landom-dial-full.svg", "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d"],
-              ["/tmp/landom-rings-full.svg", "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286"],
+              ["/tmp/landom-logo-quiet.svg", "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14"],
+              ["/tmp/landom-dial-quiet.svg", "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f"],
+              ["/tmp/landom-rings-quiet.svg", "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b"],
               ["/tmp/landom-layers-quiet.svg", "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03"],
               ["/tmp/landom-slice-quiet.svg", "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b"],
-              ["/tmp/landom-cultivate-full.svg", "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12"]
+              ["/tmp/landom-cultivate-quiet.svg", "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f"]
             ];
             for (const [localPath, expectedDigest] of pinnedAssets) {
               const digest = createHash("sha256").update(readFileSync(localPath)).digest("hex");
