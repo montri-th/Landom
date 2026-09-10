@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.3.0",
+  "schemaVersion": "1.4.0",
   "policy": {
     "defaultDecision": "deny",
     "requiredForPersonImages": [
@@ -13,7 +13,7 @@
     "certificateInventory": "data/approved/certificate-assets.json",
     "certificatePublicationBasisNote": "Filled certificate images use the separate owner_authorized_public_certificate gate. QR targets are excluded from public data and contribution evidence.",
     "socialPreviewPublicationBasisNote": "The social-preview photograph uses a separate owner_authorized_social_preview_image decision and is not approved for profile, brand, favicon, certificate, or other roles.",
-    "heroPublicationBasisNote": "Hero photographs, the historical static decorative derivative, and the Motif Release 1.2.1 runtime/fallback assets have separate, role-scoped owner approvals. None is approved as a person portrait, favicon, certificate, or substitute navigation identity."
+    "heroPublicationBasisNote": "Hero photographs, the historical static decorative derivative, the immutable Motif Release 1.2.1 runtime/source assets, and the Landom-page quiet-gray fallback derivatives have separate, role-scoped owner approvals. None is approved as a person portrait, favicon, certificate, or substitute navigation identity."
   },
   "designSystem": {
     "dsVersion": "0.9.1",
@@ -33,7 +33,7 @@
     "familyId": "landometer.motif.v3",
     "motionMode": "finite_once",
     "selectedVariant": "quiet",
-    "selectionScope": "All six animated Landometer surfaces use the exact quiet records from motif release 1.2.1.",
+    "selectionScope": "All six animated Landometer surfaces select the quiet records from motif release 1.2.1. The canonical runtime and source SVG bytes remain unchanged; this Landom page applies the separately recorded owner-approved quiet-gray presentation override and uses color-only derived fallback SVGs.",
     "identityBoundary": "logo-quiet is an animated hero brand-opening only; the official navigation logo remains static and authoritative.",
     "artifactLocalReplay": {
       "status": "owner_approved",
@@ -41,7 +41,20 @@
       "scope": "explicit Landom page-controller loop/replay only; not a portable Design System default",
       "sourceRef": "owner_instruction_2026-09-08_approve_all_animated_motifs_and_logos"
     },
-    "lifecycle": "Start only after the motif is at least 14% visible; pause while hidden or offscreen; settle to the final SVG state after one finite run. Reduced-motion, no-JavaScript, runtime failure, print, and pause states keep the exact final SVG fallback visible.",
+    "artifactLocalContrastOverride": {
+      "status": "owner_approved",
+      "approvedAt": "2026-09-10",
+      "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray",
+      "scope": "Landom page only; this is not a recolor of canonical motif release 1.2.1 and is not a portable Landometer Design System rule.",
+      "runtimeBoundary": "The pinned motif CSS and JavaScript remain byte-for-byte unchanged. Landom host CSS changes currentColor only.",
+      "fallbackBoundary": "Active fallbacks are site-local color-only derivatives of the pinned canonical quiet SVG sources, not exact motif-release fallbacks.",
+      "lightAndLuminousInk": "#5F635A",
+      "darkFoundationInk": "#C4CECA",
+      "transform": "Replace #59D2FE with the applicable gray and change no other SVG byte.",
+      "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"],
+      "contrastQualification": "The Hero rings layer retains its deliberately low host opacity, so this record does not claim that every translucent decorative segment reaches a 3:1 contrast ratio."
+    },
+    "lifecycle": "Start only after the motif is at least 14% visible; pause while hidden or offscreen; settle to the final SVG state after one finite run. Reduced-motion, no-JavaScript, runtime failure, print, and pause states keep the matching owner-approved quiet-gray derived final-state fallback visible.",
     "runtimeCss": {
       "path": "public/assets/landometer/landometer-motifs.css",
       "bytes": 11190,
@@ -88,7 +101,7 @@
       },
       "approvedRoles": ["motif-runtime-styles"],
       "prohibitedRoles": ["navigation-identity", "favicon", "person-avatar", "certificate"],
-      "notes": "Motif Release 1.2.1 CSS for family landometer.motif.v3; exact SVG fallback remains visible when this asset is absent."
+      "notes": "Exact Motif Release 1.2.1 CSS for family landometer.motif.v3, retained unchanged. On this Landom page the matching owner-approved quiet-gray derived SVG fallback remains visible when the runtime is absent."
     },
     {
       "assetId": "motif-runtime-js-1.2.1",
@@ -114,6 +127,7 @@
     {
       "assetId": "motif-logo-quiet-1.2.1",
       "releaseAssetId": "landometer.logo.quiet",
+      "artifactRole": "canonical-release-source",
       "path": "public/assets/landometer/svg/logo-quiet.svg",
       "variant": "landometer-motif-v3-logo-quiet",
       "approvalScope": "hero-brand-opening",
@@ -132,11 +146,12 @@
       "approvedRoles": ["hero-brand-opening", "hero-brand-opening-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "header-brand-lockup", "footer-brand-lockup", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Quiet animated brand-opening, never the persistent navigation identity. The official navigation logo remains static. The animation ends at 3,360 ms and the page holds the complete final state from at least 3,400 ms. This exact SVG is the final fallback."
+      "notes": "Canonical quiet brand-opening source retained byte-for-byte and provenance-pinned. The official navigation logo remains static. The animation ends at 3,360 ms and the page holds the complete final state from at least 3,400 ms. The active Landom fallback is the separately recorded logo-quiet-gray.svg color-only derivative."
     },
     {
       "assetId": "motif-rings-quiet-1.2.1",
       "releaseAssetId": "landometer.rings.quiet",
+      "artifactRole": "canonical-release-source",
       "path": "public/assets/landometer/svg/rings-quiet.svg",
       "variant": "landometer-motif-v3-rings-quiet",
       "approvalScope": "hero-spatial-depth",
@@ -155,11 +170,12 @@
       "approvedRoles": ["hero-spatial-depth", "hero-spatial-depth-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Quiet Hero spatial/depth motif. This exact SVG is the final fallback."
+      "notes": "Canonical quiet Hero spatial/depth source retained byte-for-byte and provenance-pinned. The active Landom fallback is the separately recorded rings-quiet-gray.svg color-only derivative."
     },
     {
       "assetId": "motif-dial-quiet-1.2.1",
       "releaseAssetId": "landometer.dial.quiet",
+      "artifactRole": "canonical-release-source",
       "path": "public/assets/landometer/svg/dial-quiet.svg",
       "variant": "landometer-motif-v3-dial-quiet",
       "approvalScope": "directory-section-opener",
@@ -178,11 +194,12 @@
       "approvedRoles": ["directory-section-opener", "directory-section-opener-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Quiet directory section-opening motif. This exact SVG is the final fallback."
+      "notes": "Canonical quiet directory section-opening source retained byte-for-byte and provenance-pinned. The active Landom fallbacks are the separately recorded light- and dark-foundation color-only derivatives."
     },
     {
       "assetId": "motif-layers-quiet-1.2.1",
       "releaseAssetId": "landometer.layers.quiet",
+      "artifactRole": "canonical-release-source",
       "path": "public/assets/landometer/svg/layers-quiet.svg",
       "variant": "landometer-motif-v3-layers-quiet",
       "approvalScope": "profile-detail-decorative-hover",
@@ -201,11 +218,12 @@
       "approvedRoles": ["profile-detail-decorative-hover", "profile-detail-decorative-hover-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Profile/detail decorative hover motif. This exact SVG is the final fallback."
+      "notes": "Canonical quiet profile/detail decorative-hover source retained byte-for-byte and provenance-pinned. The active Landom fallbacks are the separately recorded light- and dark-foundation color-only derivatives."
     },
     {
       "assetId": "motif-slice-quiet-1.2.1",
       "releaseAssetId": "landometer.slice.quiet",
+      "artifactRole": "canonical-release-source",
       "path": "public/assets/landometer/svg/slice-quiet.svg",
       "variant": "landometer-motif-v3-slice-quiet",
       "approvalScope": "action-map-cta-decorative-hover",
@@ -224,11 +242,12 @@
       "approvedRoles": ["action-map-cta-decorative-hover", "action-map-cta-decorative-hover-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Action/map CTA decorative hover motif. This exact SVG is the final fallback."
+      "notes": "Canonical quiet action/map CTA decorative-hover source retained byte-for-byte and provenance-pinned. The active Landom fallback is the separately recorded slice-quiet-gray.svg color-only derivative."
     },
     {
       "assetId": "motif-cultivate-quiet-1.2.1",
       "releaseAssetId": "landometer.cultivate.quiet",
+      "artifactRole": "canonical-release-source",
       "path": "public/assets/landometer/svg/cultivate-quiet.svg",
       "variant": "landometer-motif-v3-cultivate-quiet",
       "approvalScope": "footer-closer",
@@ -247,7 +266,275 @@
       "approvedRoles": ["footer-closer", "footer-closer-final-fallback"],
       "prohibitedRoles": ["navigation-identity", "footer-brand-lockup", "favicon", "social-preview", "person-avatar", "certificate"],
       "motionMode": "finite_once",
-      "notes": "Quiet footer-closing motif; decorative rather than an official footer brand identity. This exact SVG is the final fallback."
+      "notes": "Canonical quiet footer-closing source retained byte-for-byte and provenance-pinned. It remains decorative rather than an official footer brand identity. The active Landom fallback is the separately recorded cultivate-quiet-gray.svg color-only derivative."
+    },
+    {
+      "assetId": "landom-motif-logo-quiet-gray-2026-09-10",
+      "sourceAssetId": "motif-logo-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.logo.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/logo-quiet-gray.svg",
+      "variant": "landom-artifact-local-logo-quiet-gray",
+      "approvalScope": "hero-brand-opening-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 1979,
+      "sha256": "6be5a0a6095a85d601e02402fe1466a0c07247ec25fe12e73a2229823ef6e4c3",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/logo-quiet.svg",
+        "sourceSha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#5F635A",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["hero-brand-opening-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "header-brand-lockup", "footer-brand-lockup", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom Hero quiet-logo fallback on the luminous surface. This is a site-local color-only derivative, not a recolored canonical motif release asset."
+    },
+    {
+      "assetId": "landom-motif-rings-quiet-gray-2026-09-10",
+      "sourceAssetId": "motif-rings-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.rings.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/rings-quiet-gray.svg",
+      "variant": "landom-artifact-local-rings-quiet-gray",
+      "approvalScope": "hero-spatial-depth-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 833,
+      "sha256": "9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/rings-quiet.svg",
+        "sourceSha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#5F635A",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["hero-spatial-depth-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom Hero rings fallback on the luminous surface. Host opacity remains intentionally subtle; no claim is made that every translucent segment reaches 3:1 contrast."
+    },
+    {
+      "assetId": "landom-motif-dial-quiet-gray-light-2026-09-10",
+      "sourceAssetId": "motif-dial-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.dial.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/dial-quiet-gray.svg",
+      "variant": "landom-artifact-local-dial-quiet-gray-light-foundation",
+      "themeScope": "light_foundation",
+      "approvalScope": "directory-section-opener-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 733,
+      "sha256": "d24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/dial-quiet.svg",
+        "sourceSha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#5F635A",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["directory-section-opener-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom directory-opener fallback for the light foundation."
+    },
+    {
+      "assetId": "landom-motif-dial-quiet-gray-dark-2026-09-10",
+      "sourceAssetId": "motif-dial-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.dial.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/dial-quiet-gray-dark.svg",
+      "variant": "landom-artifact-local-dial-quiet-gray-dark-foundation",
+      "themeScope": "dark_foundation",
+      "approvalScope": "directory-section-opener-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 733,
+      "sha256": "637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/dial-quiet.svg",
+        "sourceSha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#C4CECA",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["directory-section-opener-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom directory-opener fallback for the dark foundation."
+    },
+    {
+      "assetId": "landom-motif-layers-quiet-gray-light-2026-09-10",
+      "sourceAssetId": "motif-layers-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.layers.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/layers-quiet-gray.svg",
+      "variant": "landom-artifact-local-layers-quiet-gray-light-foundation",
+      "themeScope": "light_foundation",
+      "approvalScope": "profile-detail-decorative-hover-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 1274,
+      "sha256": "c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/layers-quiet.svg",
+        "sourceSha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#5F635A",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["profile-detail-decorative-hover-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom profile/detail hover fallback for the light foundation."
+    },
+    {
+      "assetId": "landom-motif-layers-quiet-gray-dark-2026-09-10",
+      "sourceAssetId": "motif-layers-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.layers.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/layers-quiet-gray-dark.svg",
+      "variant": "landom-artifact-local-layers-quiet-gray-dark-foundation",
+      "themeScope": "dark_foundation",
+      "approvalScope": "profile-detail-decorative-hover-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 1274,
+      "sha256": "3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/layers-quiet.svg",
+        "sourceSha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#C4CECA",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["profile-detail-decorative-hover-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom profile/detail hover fallback for the dark foundation."
+    },
+    {
+      "assetId": "landom-motif-slice-quiet-gray-2026-09-10",
+      "sourceAssetId": "motif-slice-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.slice.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/slice-quiet-gray.svg",
+      "variant": "landom-artifact-local-slice-quiet-gray",
+      "approvalScope": "action-map-cta-decorative-hover-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 350,
+      "sha256": "73db5c884cdcfd2014d5709f3aa5833c3db775f8c858804c66aa3ede826bf9f3",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/slice-quiet.svg",
+        "sourceSha256": "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#5F635A",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["action-map-cta-decorative-hover-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom action/map CTA fallback on the luminous footer surface."
+    },
+    {
+      "assetId": "landom-motif-cultivate-quiet-gray-2026-09-10",
+      "sourceAssetId": "motif-cultivate-quiet-1.2.1",
+      "sourceReleaseAssetId": "landometer.cultivate.quiet",
+      "artifactRole": "artifact-local-derived-fallback",
+      "path": "public/assets/landometer/svg/cultivate-quiet-gray.svg",
+      "variant": "landom-artifact-local-cultivate-quiet-gray",
+      "approvalScope": "footer-closer-final-fallback",
+      "mediaType": "image/svg+xml",
+      "bytes": 1190,
+      "sha256": "8ba9ca8abc66c7a11694526a682b980be0c7856decff77b8d3a99552bde9402f",
+      "owner": "Landometer",
+      "approvalStatus": "approved",
+      "publicationBasis": "owner_approved_landom_artifact_local_quiet_gray_derivative",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-10",
+        "scope": "public_landom_quiet_gray_motif_fallback_only",
+        "sourceRef": "owner_instruction_2026-09-10_quiet_motif_contrast_gray"
+      },
+      "derivation": {
+        "method": "single_color_substitution",
+        "sourcePath": "public/assets/landometer/svg/cultivate-quiet.svg",
+        "sourceSha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f",
+        "sourceColor": "#59D2FE",
+        "outputColor": "#5F635A",
+        "unchanged": ["geometry", "opacity", "motion", "replay", "sizes", "positions"]
+      },
+      "approvedRoles": ["footer-closer-final-fallback"],
+      "prohibitedRoles": ["canonical-motif-release-asset", "navigation-identity", "footer-brand-lockup", "favicon", "social-preview", "person-avatar", "certificate"],
+      "motionMode": "finite_once",
+      "notes": "Active Landom footer-closing fallback on the luminous surface; decorative rather than an official footer brand identity."
     },
     {
       "assetId": "brand-landometer-horizontal",

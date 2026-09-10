@@ -453,9 +453,10 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   assert.match(fontManifest.authorityScope, /does not alter the normative Design System package/i);
 });
 
-test('DS v0.9.1 colors and motif 1.2.1 use exact local bytes with source-visible fallbacks', async () => {
+test('canonical motif 1.2.1 bytes stay pinned while owner-approved quiet gray fallbacks are color-only derivatives', async () => {
   const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  const assets = new Map([
+  const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const canonicalAssets = new Map([
     ['public/assets/design-system/color-srgb-05.production.css', '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c'],
     ['public/assets/landometer/landometer-motifs.css', '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e'],
     ['public/assets/landometer/landometer-motifs.js', '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2'],
@@ -466,13 +467,23 @@ test('DS v0.9.1 colors and motif 1.2.1 use exact local bytes with source-visible
     ['public/assets/landometer/svg/slice-quiet.svg', 'c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b'],
     ['public/assets/landometer/svg/cultivate-quiet.svg', 'edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f']
   ]);
+  const derivedAssets = [
+    ['logo-quiet-gray.svg', 'logo-quiet.svg', '#5F635A', '6be5a0a6095a85d601e02402fe1466a0c07247ec25fe12e73a2229823ef6e4c3'],
+    ['rings-quiet-gray.svg', 'rings-quiet.svg', '#5F635A', '9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da'],
+    ['dial-quiet-gray.svg', 'dial-quiet.svg', '#5F635A', 'd24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22'],
+    ['dial-quiet-gray-dark.svg', 'dial-quiet.svg', '#C4CECA', '637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529'],
+    ['layers-quiet-gray.svg', 'layers-quiet.svg', '#5F635A', 'c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7'],
+    ['layers-quiet-gray-dark.svg', 'layers-quiet.svg', '#C4CECA', '3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99'],
+    ['slice-quiet-gray.svg', 'slice-quiet.svg', '#5F635A', '73db5c884cdcfd2014d5709f3aa5833c3db775f8c858804c66aa3ede826bf9f3'],
+    ['cultivate-quiet-gray.svg', 'cultivate-quiet.svg', '#5F635A', '8ba9ca8abc66c7a11694526a682b980be0c7856decff77b8d3a99552bde9402f']
+  ];
   const fallbacks = [
-    ['logo', true, 'logo-quiet.svg'],
-    ['dial', true, 'dial-quiet.svg'],
-    ['rings', true, 'rings-quiet.svg'],
-    ['layers', true, 'layers-quiet.svg'],
-    ['slice', true, 'slice-quiet.svg'],
-    ['cultivate', true, 'cultivate-quiet.svg']
+    ['logo', 'gray-luminous', [['logo-quiet-gray.svg', null]]],
+    ['dial', 'gray-foundation', [['dial-quiet-gray.svg', 'motif-fallback--light'], ['dial-quiet-gray-dark.svg', 'motif-fallback--dark']]],
+    ['rings', 'gray-luminous', [['rings-quiet-gray.svg', null]]],
+    ['layers', 'gray-foundation', [['layers-quiet-gray.svg', 'motif-fallback--light'], ['layers-quiet-gray-dark.svg', 'motif-fallback--dark']]],
+    ['slice', 'gray-luminous', [['slice-quiet-gray.svg', null]]],
+    ['cultivate', 'gray-luminous', [['cultivate-quiet-gray.svg', null]]]
   ];
 
   assert.match(index, /<html\b(?=[^>]*data-ds="landometer")(?=[^>]*data-ds-version="0\.9\.1")[^>]*>/s);
@@ -480,23 +491,50 @@ test('DS v0.9.1 colors and motif 1.2.1 use exact local bytes with source-visible
   assert.match(index, /<link\b(?=[^>]*rel="stylesheet")(?=[^>]*href="\.\/public\/assets\/landometer\/landometer-motifs\.css(?:\?[^"']*)?")[^>]*>/s);
   assert.match(index, /<script\b(?=[^>]*src="\.\/public\/assets\/landometer\/landometer-motifs\.js(?:\?[^"']*)?")(?=[^>]*\bdefer\b)[^>]*><\/script>/s);
 
-  for (const [assetPath, expectedDigest] of assets) {
+  for (const [assetPath, expectedDigest] of canonicalAssets) {
     const bytes = await readFile(new URL(`../${assetPath}`, import.meta.url));
     assert.equal(createHash('sha256').update(bytes).digest('hex'), expectedDigest, assetPath);
+  }
+  for (const [file, sourceFile, gray, expectedDigest] of derivedAssets) {
+    const derivedBytes = await readFile(new URL(`../public/assets/landometer/svg/${file}`, import.meta.url));
+    const sourceBytes = await readFile(new URL(`../public/assets/landometer/svg/${sourceFile}`, import.meta.url));
+    const derivedText = derivedBytes.toString('utf8');
+    assert.equal(createHash('sha256').update(derivedBytes).digest('hex'), expectedDigest, file);
+    assert.ok(derivedText.includes(gray), `${file} must use ${gray}`);
+    assert.doesNotMatch(derivedText, /#59D2FE/, `${file} must not retain the canonical Energy Sky ink`);
+    const restoredBytes = Buffer.from(derivedText.split(gray).join('#59D2FE'), 'utf8');
+    assert.equal(restoredBytes.equals(sourceBytes), true, `${file} must change color only from canonical ${sourceFile}`);
   }
 
   const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
   const motifMarkup = [...`${index}\n${app}`.matchAll(/<lm-motif\b([^>]*)>([\s\S]*?)<\/lm-motif>/g)];
   assert.equal(motifMarkup.length, fallbacks.length);
-  for (const [kind, quiet, file] of fallbacks) {
+  assert.equal(motifMarkup.filter(([, attributes]) => /\bdata-artifact-quiet-ink=["'](?:gray-luminous|gray-foundation)["']/.test(attributes)).length, 6);
+  assert.equal(motifMarkup.filter(([, attributes]) => /(?:^|\s)quiet(?:\s|=|$)/.test(attributes)).length, 6);
+  assert.equal(motifMarkup.filter(([, attributes]) => /(?:^|\s)ink=["']/.test(attributes)).length, 0);
+  for (const [kind, artifactInk, files] of fallbacks) {
     const matching = motifMarkup.filter(([, attributes, body]) => {
       const isKind = new RegExp(`\\bkind=["']${kind}["']`).test(attributes);
       const isQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
       const hasInkOverride = /(?:^|\s)ink=["']/.test(attributes);
-      return isKind && isQuiet === quiet && !hasInkOverride && body.includes(`./public/assets/landometer/svg/${file}`);
+      const hasArtifactInk = new RegExp(`\\bdata-artifact-quiet-ink=["']${artifactInk}["']`).test(attributes);
+      const imageMarkup = body.match(/<img\b[^>]*>/g) ?? [];
+      const hasFallbacks = files.every(([file, className]) => imageMarkup.some((image) =>
+        image.includes(`./public/assets/landometer/svg/${file}`) &&
+        (!className || new RegExp(`\\bclass=["'][^"']*\\b${className}\\b[^"']*["']`).test(image))
+      ));
+      return isKind && isQuiet && !hasInkOverride && hasArtifactInk &&
+        imageMarkup.length === files.length && hasFallbacks;
     });
-    assert.equal(matching.length, 1, `${kind} must keep its exact ${file} source fallback`);
+    assert.equal(matching.length, 1, `${kind} must use ${artifactInk} and its exact artifact-local gray fallback set`);
   }
+
+  assert.match(styles, /lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\]\s*,\s*lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-light,\s*#5F635A\);[^}]*\}/s);
+  assert.match(styles, /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-dark,\s*#C4CECA\);[^}]*\}/s);
+  assert.doesNotMatch(styles, /\[data-theme="dark"\][^{]*data-artifact-quiet-ink="gray-luminous"[^}]*\{[^}]*color\s*:/s);
+  assert.match(styles, /lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--dark\s*\{[^}]*display:\s*none;[^}]*\}/s);
+  assert.match(styles, /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--light\s*\{[^}]*display:\s*none;[^}]*\}/s);
+  assert.match(styles, /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--dark\s*\{[^}]*display:\s*block;[^}]*\}/s);
 
   const header = index.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '';
   const brand = header.match(/<a\b[^>]*class="[^"]*\bbrand\b[^"]*"[^>]*>[\s\S]*?<\/a>/)?.[0] ?? '';
@@ -542,11 +580,36 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
   for (const file of ['logo-quiet', 'dial-quiet', 'rings-quiet', 'layers-quiet', 'slice-quiet', 'cultivate-quiet']) {
     assert.match(workflow, new RegExp(`public/assets/landometer/svg/${file}\\.svg`));
   }
+  for (const file of [
+    'logo-quiet-gray',
+    'rings-quiet-gray',
+    'dial-quiet-gray',
+    'dial-quiet-gray-dark',
+    'layers-quiet-gray',
+    'layers-quiet-gray-dark',
+    'slice-quiet-gray',
+    'cultivate-quiet-gray'
+  ]) {
+    assert.match(workflow, new RegExp(`public/assets/landometer/svg/${file}\\.svg`));
+  }
   for (const digest of [
     '3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c',
     '7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e',
     '3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2',
-    '5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14'
+    '5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14',
+    '2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f',
+    'd494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b',
+    'e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03',
+    'c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b',
+    'edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f',
+    '6be5a0a6095a85d601e02402fe1466a0c07247ec25fe12e73a2229823ef6e4c3',
+    '9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da',
+    'd24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22',
+    '637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529',
+    'c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7',
+    '3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99',
+    '73db5c884cdcfd2014d5709f3aa5833c3db775f8c858804c66aa3ede826bf9f3',
+    '8ba9ca8abc66c7a11694526a682b980be0c7856decff77b8d3a99552bde9402f'
   ]) {
     assert.ok(workflow.includes(digest), `workflow must pin ${digest}`);
   }
