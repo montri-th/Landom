@@ -453,7 +453,7 @@ test('the unified navigation icon subset is exact, self-hosted, licensed, and pr
   assert.match(fontManifest.authorityScope, /does not alter the normative Design System package/i);
 });
 
-test('canonical motif 1.2.1 bytes stay pinned while owner-approved quiet gray fallbacks are color-only derivatives', async () => {
+test('canonical motif 1.2.1 bytes stay pinned while gray is limited to low-contrast luminous fallbacks', async () => {
   const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
   const canonicalAssets = new Map([
@@ -470,18 +470,14 @@ test('canonical motif 1.2.1 bytes stay pinned while owner-approved quiet gray fa
   const derivedAssets = [
     ['logo-quiet-gray.svg', 'logo-quiet.svg', '#5F635A', '6be5a0a6095a85d601e02402fe1466a0c07247ec25fe12e73a2229823ef6e4c3'],
     ['rings-quiet-gray.svg', 'rings-quiet.svg', '#5F635A', '9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da'],
-    ['dial-quiet-gray.svg', 'dial-quiet.svg', '#5F635A', 'd24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22'],
-    ['dial-quiet-gray-dark.svg', 'dial-quiet.svg', '#C4CECA', '637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529'],
-    ['layers-quiet-gray.svg', 'layers-quiet.svg', '#5F635A', 'c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7'],
-    ['layers-quiet-gray-dark.svg', 'layers-quiet.svg', '#C4CECA', '3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99'],
     ['slice-quiet-gray.svg', 'slice-quiet.svg', '#5F635A', '73db5c884cdcfd2014d5709f3aa5833c3db775f8c858804c66aa3ede826bf9f3'],
     ['cultivate-quiet-gray.svg', 'cultivate-quiet.svg', '#5F635A', '8ba9ca8abc66c7a11694526a682b980be0c7856decff77b8d3a99552bde9402f']
   ];
   const fallbacks = [
     ['logo', 'gray-luminous', [['logo-quiet-gray.svg', null]]],
-    ['dial', 'gray-foundation', [['dial-quiet-gray.svg', 'motif-fallback--light'], ['dial-quiet-gray-dark.svg', 'motif-fallback--dark']]],
+    ['dial', null, [['dial-quiet.svg', null]]],
     ['rings', 'gray-luminous', [['rings-quiet-gray.svg', null]]],
-    ['layers', 'gray-foundation', [['layers-quiet-gray.svg', 'motif-fallback--light'], ['layers-quiet-gray-dark.svg', 'motif-fallback--dark']]],
+    ['layers', null, [['layers-quiet.svg', null]]],
     ['slice', 'gray-luminous', [['slice-quiet-gray.svg', null]]],
     ['cultivate', 'gray-luminous', [['cultivate-quiet-gray.svg', null]]]
   ];
@@ -509,7 +505,8 @@ test('canonical motif 1.2.1 bytes stay pinned while owner-approved quiet gray fa
   const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
   const motifMarkup = [...`${index}\n${app}`.matchAll(/<lm-motif\b([^>]*)>([\s\S]*?)<\/lm-motif>/g)];
   assert.equal(motifMarkup.length, fallbacks.length);
-  assert.equal(motifMarkup.filter(([, attributes]) => /\bdata-artifact-quiet-ink=["'](?:gray-luminous|gray-foundation)["']/.test(attributes)).length, 6);
+  assert.equal(motifMarkup.filter(([, attributes]) => /\bdata-artifact-quiet-ink=["']gray-luminous["']/.test(attributes)).length, 4);
+  assert.equal(motifMarkup.filter(([, attributes]) => /\bdata-artifact-quiet-ink=/.test(attributes)).length, 4);
   assert.equal(motifMarkup.filter(([, attributes]) => /(?:^|\s)quiet(?:\s|=|$)/.test(attributes)).length, 6);
   assert.equal(motifMarkup.filter(([, attributes]) => /(?:^|\s)ink=["']/.test(attributes)).length, 0);
   for (const [kind, artifactInk, files] of fallbacks) {
@@ -517,24 +514,31 @@ test('canonical motif 1.2.1 bytes stay pinned while owner-approved quiet gray fa
       const isKind = new RegExp(`\\bkind=["']${kind}["']`).test(attributes);
       const isQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
       const hasInkOverride = /(?:^|\s)ink=["']/.test(attributes);
-      const hasArtifactInk = new RegExp(`\\bdata-artifact-quiet-ink=["']${artifactInk}["']`).test(attributes);
+      const hasArtifactInk = artifactInk
+        ? new RegExp(`\\bdata-artifact-quiet-ink=["']${artifactInk}["']`).test(attributes)
+        : !/\bdata-artifact-quiet-ink=/.test(attributes);
       const imageMarkup = body.match(/<img\b[^>]*>/g) ?? [];
+      const hasThemeScopedFallback = imageMarkup.some((image) => /\bmotif-fallback--(?:light|dark)\b/.test(image));
       const hasFallbacks = files.every(([file, className]) => imageMarkup.some((image) =>
         image.includes(`./public/assets/landometer/svg/${file}`) &&
         (!className || new RegExp(`\\bclass=["'][^"']*\\b${className}\\b[^"']*["']`).test(image))
       ));
-      return isKind && isQuiet && !hasInkOverride && hasArtifactInk &&
+      return isKind && isQuiet && !hasInkOverride && hasArtifactInk && (!artifactInk ? !hasThemeScopedFallback : true) &&
         imageMarkup.length === files.length && hasFallbacks;
     });
-    assert.equal(matching.length, 1, `${kind} must use ${artifactInk} and its exact artifact-local gray fallback set`);
+    const expected = artifactInk
+      ? `${artifactInk} and its exact artifact-local gray fallback set`
+      : 'canonical Energy Sky and its exact canonical fallback';
+    assert.equal(matching.length, 1, `${kind} must use ${expected}`);
   }
 
-  assert.match(styles, /lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\]\s*,\s*lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-light,\s*#5F635A\);[^}]*\}/s);
-  assert.match(styles, /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-dark,\s*#C4CECA\);[^}]*\}/s);
+  assert.match(styles, /lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-light,\s*#5F635A\);[^}]*\}/s);
   assert.doesNotMatch(styles, /\[data-theme="dark"\][^{]*data-artifact-quiet-ink="gray-luminous"[^}]*\{[^}]*color\s*:/s);
-  assert.match(styles, /lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--dark\s*\{[^}]*display:\s*none;[^}]*\}/s);
-  assert.match(styles, /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--light\s*\{[^}]*display:\s*none;[^}]*\}/s);
-  assert.match(styles, /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--dark\s*\{[^}]*display:\s*block;[^}]*\}/s);
+  const quietColorRules = [...styles.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .map(([, selector, body]) => ({ selector: selector.replace(/\/\*[\s\S]*?\*\//g, '').trim(), body }))
+    .filter(({ selector, body }) => selector.includes('lm-motif[quiet]') && /\bcolor\s*:/.test(body));
+  assert.equal(quietColorRules.length, 1);
+  assert.equal(quietColorRules[0].selector, 'lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"]');
 
   const header = index.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '';
   const brand = header.match(/<a\b[^>]*class="[^"]*\bbrand\b[^"]*"[^>]*>[\s\S]*?<\/a>/)?.[0] ?? '';
@@ -583,10 +587,6 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
   for (const file of [
     'logo-quiet-gray',
     'rings-quiet-gray',
-    'dial-quiet-gray',
-    'dial-quiet-gray-dark',
-    'layers-quiet-gray',
-    'layers-quiet-gray-dark',
     'slice-quiet-gray',
     'cultivate-quiet-gray'
   ]) {
@@ -604,10 +604,6 @@ test('Pages attestation binds cache-busted live bytes to this workflow build man
     'edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f',
     '6be5a0a6095a85d601e02402fe1466a0c07247ec25fe12e73a2229823ef6e4c3',
     '9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da',
-    'd24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22',
-    '637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529',
-    'c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7',
-    '3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99',
     '73db5c884cdcfd2014d5709f3aa5833c3db775f8c858804c66aa3ede826bf9f3',
     '8ba9ca8abc66c7a11694526a682b980be0c7856decff77b8d3a99552bde9402f'
   ]) {

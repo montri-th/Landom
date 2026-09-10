@@ -128,34 +128,6 @@ const MOTIF_ARTIFACT_GRAY_ASSETS = Object.freeze([
     sha256: '9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da'
   }),
   Object.freeze({
-    kind: 'dial',
-    file: 'dial-quiet-gray.svg',
-    sourceFile: 'dial-quiet.svg',
-    color: '#5F635A',
-    sha256: 'd24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22'
-  }),
-  Object.freeze({
-    kind: 'dial',
-    file: 'dial-quiet-gray-dark.svg',
-    sourceFile: 'dial-quiet.svg',
-    color: '#C4CECA',
-    sha256: '637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529'
-  }),
-  Object.freeze({
-    kind: 'layers',
-    file: 'layers-quiet-gray.svg',
-    sourceFile: 'layers-quiet.svg',
-    color: '#5F635A',
-    sha256: 'c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7'
-  }),
-  Object.freeze({
-    kind: 'layers',
-    file: 'layers-quiet-gray-dark.svg',
-    sourceFile: 'layers-quiet.svg',
-    color: '#C4CECA',
-    sha256: '3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99'
-  }),
-  Object.freeze({
     kind: 'slice',
     file: 'slice-quiet-gray.svg',
     sourceFile: 'slice-quiet.svg',
@@ -172,15 +144,9 @@ const MOTIF_ARTIFACT_GRAY_ASSETS = Object.freeze([
 ]);
 const MOTIF_FALLBACKS = Object.freeze([
   Object.freeze({ kind: 'logo', ink: 'gray-luminous', files: Object.freeze([{ file: 'logo-quiet-gray.svg' }]) }),
-  Object.freeze({ kind: 'dial', ink: 'gray-foundation', files: Object.freeze([
-    { file: 'dial-quiet-gray.svg', className: 'motif-fallback--light' },
-    { file: 'dial-quiet-gray-dark.svg', className: 'motif-fallback--dark' }
-  ]) }),
+  Object.freeze({ kind: 'dial', ink: null, files: Object.freeze([{ file: 'dial-quiet.svg' }]) }),
   Object.freeze({ kind: 'rings', ink: 'gray-luminous', files: Object.freeze([{ file: 'rings-quiet-gray.svg' }]) }),
-  Object.freeze({ kind: 'layers', ink: 'gray-foundation', files: Object.freeze([
-    { file: 'layers-quiet-gray.svg', className: 'motif-fallback--light' },
-    { file: 'layers-quiet-gray-dark.svg', className: 'motif-fallback--dark' }
-  ]) }),
+  Object.freeze({ kind: 'layers', ink: null, files: Object.freeze([{ file: 'layers-quiet.svg' }]) }),
   Object.freeze({ kind: 'slice', ink: 'gray-luminous', files: Object.freeze([{ file: 'slice-quiet-gray.svg' }]) }),
   Object.freeze({ kind: 'cultivate', ink: 'gray-luminous', files: Object.freeze([{ file: 'cultivate-quiet-gray.svg' }]) })
 ]);
@@ -787,18 +753,23 @@ async function validateUi(publishRoot, errors) {
   }
   const attributedQuietMotifs = motifMarkup.filter(([, attributes]) =>
     /(?:^|\s)quiet(?:\s|=|$)/.test(attributes) &&
-    /\bdata-artifact-quiet-ink=["'](?:gray-luminous|gray-foundation)["']/.test(attributes)
+    /\bdata-artifact-quiet-ink=/.test(attributes)
   );
-  if (attributedQuietMotifs.length !== MOTIF_FALLBACKS.length) {
-    errors.push('Every governed quiet motif must declare its owner-approved artifact-local gray ink mapping.');
+  const grayFallbackCount = MOTIF_FALLBACKS.filter(({ ink }) => ink === 'gray-luminous').length;
+  if (attributedQuietMotifs.length !== grayFallbackCount ||
+      attributedQuietMotifs.some(([, attributes]) => !/\bdata-artifact-quiet-ink=["']gray-luminous["']/.test(attributes))) {
+    errors.push('Only the four low-contrast luminous quiet motifs may declare the owner-approved gray-luminous ink mapping.');
   }
   for (const fallback of MOTIF_FALLBACKS) {
     const matching = motifMarkup.filter(([, attributes, body]) => {
       const hasKind = new RegExp(`\\bkind=["']${fallback.kind}["']`).test(attributes);
       const hasQuiet = /(?:^|\s)quiet(?:\s|=|$)/.test(attributes);
       const hasInkOverride = /(?:^|\s)ink=["']/.test(attributes);
-      const hasArtifactInk = new RegExp(`\\bdata-artifact-quiet-ink=["']${fallback.ink}["']`).test(attributes);
+      const hasArtifactInk = fallback.ink
+        ? new RegExp(`\\bdata-artifact-quiet-ink=["']${fallback.ink}["']`).test(attributes)
+        : !/\bdata-artifact-quiet-ink=/.test(attributes);
       const imageMarkup = body.match(/<img\b[^>]*>/g) ?? [];
+      const hasThemeScopedFallback = imageMarkup.some((image) => /\bmotif-fallback--(?:light|dark)\b/.test(image));
       const hasExpectedFallbacks = fallback.files.every(({ file, className }) => {
         const escapedFile = file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         return imageMarkup.some((image) => {
@@ -807,30 +778,28 @@ async function validateUi(publishRoot, errors) {
           return hasFile && hasClass;
         });
       });
-      return hasKind && hasQuiet && !hasInkOverride && hasArtifactInk &&
+      return hasKind && hasQuiet && !hasInkOverride && hasArtifactInk && (!fallback.ink ? !hasThemeScopedFallback : true) &&
         imageMarkup.length === fallback.files.length && hasExpectedFallbacks;
     });
     if (matching.length !== 1) {
-      errors.push(`The ${fallback.kind}-quiet lm-motif must use ${fallback.ink} and its exact owner-approved gray fallback set once.`);
+      const expectedInk = fallback.ink
+        ? `${fallback.ink} and its exact owner-approved gray fallback`
+        : 'canonical Energy Sky with its exact canonical fallback';
+      errors.push(`The ${fallback.kind}-quiet lm-motif must use ${expectedInk} set once.`);
     }
   }
   const artifactStyles = await readIfPresent(path.join(publishRoot, 'src/styles.css')) ?? '';
-  if (!/lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\]\s*,\s*lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-light,\s*#5F635A\);[^}]*\}/s.test(artifactStyles)) {
-    errors.push('Quiet gray motifs must use the exact DS light text-secondary token and #5F635A fallback.');
-  }
-  if (!/\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-dark,\s*#C4CECA\);[^}]*\}/s.test(artifactStyles)) {
-    errors.push('Dark foundation quiet motifs must use the exact DS dark text-secondary token and #C4CECA fallback.');
+  if (!/lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\]\s*\{[^}]*color:\s*var\(--ldm-foundation-text-secondary-light,\s*#5F635A\);[^}]*\}/s.test(artifactStyles)) {
+    errors.push('Low-contrast luminous quiet motifs must use the exact DS light text-secondary token and #5F635A fallback.');
   }
   if (/\[data-theme="dark"\][^{]*data-artifact-quiet-ink="gray-luminous"[^}]*\{[^}]*color\s*:/s.test(artifactStyles)) {
     errors.push('Luminous quiet motifs must stay on the light-side gray in both themes.');
   }
-  const surfaceAwareFallbackRules = [
-    /lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--dark\s*\{[^}]*display:\s*none;[^}]*\}/s,
-    /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--light\s*\{[^}]*display:\s*none;[^}]*\}/s,
-    /\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*>\s*\.motif-fallback--dark\s*\{[^}]*display:\s*block;[^}]*\}/s
-  ];
-  if (!surfaceAwareFallbackRules.every((rule) => rule.test(artifactStyles))) {
-    errors.push('Foundation quiet motif fallbacks must switch from the light gray asset to the dark gray asset with the page theme.');
+  const quietColorRules = [...artifactStyles.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .map(([, selector, body]) => ({ selector: selector.replace(/\/\*[\s\S]*?\*\//g, '').trim(), body }))
+    .filter(({ selector, body }) => selector.includes('lm-motif[quiet]') && /\bcolor\s*:/.test(body));
+  if (quietColorRules.length !== 1 || quietColorRules[0].selector !== 'lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"]') {
+    errors.push('Site CSS may override quiet motif color only through the exact gray-luminous artifact selector.');
   }
   const headerMarkup = index.match(/<header\b[\s\S]*?<\/header>/)?.[0] ?? '';
   const brandMarkup = headerMarkup.match(/<a\b[^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*>[\s\S]*?<\/a>/)?.[0] ?? '';

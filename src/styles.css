@@ -276,30 +276,12 @@
 
 /*
  * Owner-approved Landom artifact exception (2026-09-10): quiet motifs retain
- * release 1.2.1 geometry, opacity, and motion, while their host ink alone moves
- * from Energy Sky to a foundation gray for contrast. Luminous Hero/footer
- * surfaces stay on the light-side gray in both themes; foundation surfaces use
- * the corresponding dark-side gray when the page theme is dark.
+ * release 1.2.1 geometry, opacity, and motion. Only motifs on the low-contrast
+ * luminous Hero/footer atmospheres move from Energy Sky to foundation gray;
+ * motifs on canvas and card foundations keep their canonical Energy Sky ink.
  */
-lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"],
-lm-motif[quiet][data-artifact-quiet-ink="gray-foundation"] {
+lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"] {
   color: var(--ldm-foundation-text-secondary-light, #5F635A);
-}
-
-[data-theme="dark"] lm-motif[quiet][data-artifact-quiet-ink="gray-foundation"] {
-  color: var(--ldm-foundation-text-secondary-dark, #C4CECA);
-}
-
-lm-motif[quiet][data-artifact-quiet-ink="gray-foundation"] > .motif-fallback--dark {
-  display: none;
-}
-
-[data-theme="dark"] lm-motif[quiet][data-artifact-quiet-ink="gray-foundation"] > .motif-fallback--light {
-  display: none;
-}
-
-[data-theme="dark"] lm-motif[quiet][data-artifact-quiet-ink="gray-foundation"] > .motif-fallback--dark {
-  display: block;
 }
 
 @layer reset {

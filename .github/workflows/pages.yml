@@ -98,10 +98,6 @@ jobs:
           motif_js_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-motifs.js --write-out '%{content_type}' "$base_url/public/assets/landometer/landometer-motifs.js?$cache_bust")"
           logo_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo-quiet-gray.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/logo-quiet-gray.svg?$cache_bust")"
           rings_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-rings-quiet-gray.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/rings-quiet-gray.svg?$cache_bust")"
-          dial_fallback_light_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-dial-quiet-gray.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/dial-quiet-gray.svg?$cache_bust")"
-          dial_fallback_dark_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-dial-quiet-gray-dark.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/dial-quiet-gray-dark.svg?$cache_bust")"
-          layers_fallback_light_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-layers-quiet-gray.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/layers-quiet-gray.svg?$cache_bust")"
-          layers_fallback_dark_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-layers-quiet-gray-dark.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/layers-quiet-gray-dark.svg?$cache_bust")"
           slice_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-slice-quiet-gray.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/slice-quiet-gray.svg?$cache_bust")"
           cultivate_fallback_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-cultivate-quiet-gray.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/cultivate-quiet-gray.svg?$cache_bust")"
           logo_source_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-logo-quiet-source.svg --write-out '%{content_type}' "$base_url/public/assets/landometer/svg/logo-quiet.svg?$cache_bust")"
@@ -142,7 +138,7 @@ jobs:
           case "$ds_color_type" in text/css*) ;; *) echo "Unexpected DS color CSS content type: $ds_color_type"; exit 1;; esac
           case "$motif_css_type" in text/css*) ;; *) echo "Unexpected motif CSS content type: $motif_css_type"; exit 1;; esac
           case "$motif_js_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected motif JavaScript content type: $motif_js_type"; exit 1;; esac
-          for svg_type in "$logo_fallback_type" "$rings_fallback_type" "$dial_fallback_light_type" "$dial_fallback_dark_type" "$layers_fallback_light_type" "$layers_fallback_dark_type" "$slice_fallback_type" "$cultivate_fallback_type" "$logo_source_type" "$rings_source_type" "$dial_source_type" "$layers_source_type" "$slice_source_type" "$cultivate_source_type"; do
+          for svg_type in "$logo_fallback_type" "$rings_fallback_type" "$slice_fallback_type" "$cultivate_fallback_type" "$logo_source_type" "$rings_source_type" "$dial_source_type" "$layers_source_type" "$slice_source_type" "$cultivate_source_type"; do
             case "$svg_type" in image/svg+xml*) ;; *) echo "Unexpected motif fallback SVG content type: $svg_type"; exit 1;; esac
           done
           case "$logo_type" in image/png*) ;; *) echo "Unexpected logo content type: $logo_type"; exit 1;; esac
@@ -201,34 +197,36 @@ jobs:
             const motifFallbacks = [
               { kind: "logo", ink: "gray-luminous", fallbacks: [{ file: "logo-quiet-gray.svg" }] },
               { kind: "rings", ink: "gray-luminous", fallbacks: [{ file: "rings-quiet-gray.svg" }] },
-              { kind: "dial", ink: "gray-foundation", fallbacks: [
-                { file: "dial-quiet-gray.svg", className: "motif-fallback--light" },
-                { file: "dial-quiet-gray-dark.svg", className: "motif-fallback--dark" }
-              ] },
-              { kind: "layers", ink: "gray-foundation", fallbacks: [
-                { file: "layers-quiet-gray.svg", className: "motif-fallback--light" },
-                { file: "layers-quiet-gray-dark.svg", className: "motif-fallback--dark" }
-              ] },
+              { kind: "dial", ink: null, fallbacks: [{ file: "dial-quiet.svg" }] },
+              { kind: "layers", ink: null, fallbacks: [{ file: "layers-quiet.svg" }] },
               { kind: "slice", ink: "gray-luminous", fallbacks: [{ file: "slice-quiet-gray.svg" }] },
               { kind: "cultivate", ink: "gray-luminous", fallbacks: [{ file: "cultivate-quiet-gray.svg" }] }
             ];
             const motifMarkup = [...motifSources.matchAll(/<lm-motif\b([^>]*)>([\s\S]*?)<\/lm-motif>/g)];
             if (motifMarkup.length !== motifFallbacks.length) throw Error("deployed page does not expose exactly six governed motif fallbacks");
             for (const { kind, ink, fallbacks } of motifFallbacks) {
-              const matches = motifMarkup.filter(([, attributes]) => new RegExp(`\\bkind=["\x27]${kind}["\x27]`).test(attributes) && /(?:^|\s)quiet(?:\s|=|$)/.test(attributes) && !/(?:^|\s)ink=["\x27]/.test(attributes) && new RegExp(`\\bdata-artifact-quiet-ink=["\x27]${ink}["\x27]`).test(attributes));
-              if (matches.length !== 1) throw Error(`deployed ${kind} motif is missing its exact ${ink} artifact ink contract`);
+              const matches = motifMarkup.filter(([, attributes]) => {
+                const artifactInkMatches = ink
+                  ? new RegExp(`\\bdata-artifact-quiet-ink=["\x27]${ink}["\x27]`).test(attributes)
+                  : !/\bdata-artifact-quiet-ink=/.test(attributes);
+                return new RegExp(`\\bkind=["\x27]${kind}["\x27]`).test(attributes) && /(?:^|\s)quiet(?:\s|=|$)/.test(attributes) && !/(?:^|\s)ink=["\x27]/.test(attributes) && artifactInkMatches;
+              });
+              if (matches.length !== 1) throw Error(`deployed ${kind} motif is missing its exact ${ink || "canonical Energy Sky"} ink contract`);
               const body = matches[0][2];
               const images = [...body.matchAll(/<img\b([^>]*)>/g)];
-              if (images.length !== fallbacks.length) throw Error(`deployed ${kind} motif does not expose exactly ${fallbacks.length} gray fallback image(s)`);
+              if (!ink && images.some(([, attributes]) => /\bmotif-fallback--(?:light|dark)\b/.test(attributes))) throw Error(`deployed ${kind} canonical fallback must be shared by both themes`);
+              if (images.length !== fallbacks.length) throw Error(`deployed ${kind} motif does not expose exactly ${fallbacks.length} governed fallback image(s)`);
               for (const { file, className } of fallbacks) {
                 const fallbackMatches = images.filter(([, attributes]) => attributes.includes(`./public/assets/landometer/svg/${file}`) && (!className || new RegExp(`\\bclass=["\x27][^"\x27]*\\b${className}\\b[^"\x27]*["\x27]`).test(attributes)));
-                if (fallbackMatches.length !== 1) throw Error(`deployed ${kind} motif is missing its exact ${file} gray fallback`);
+                if (fallbackMatches.length !== 1) throw Error(`deployed ${kind} motif is missing its exact ${file} governed fallback`);
               }
             }
-            const grayBaseRule = styles.match(/lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\],\s*lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*\}/s)?.[0] || "";
-            const grayFoundationDarkRule = styles.match(/\[data-theme="dark"\]\s+lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-foundation"\]\s*\{[^}]*\}/s)?.[0] || "";
+            const grayBaseRule = styles.match(/lm-motif\[quiet\]\[data-artifact-quiet-ink="gray-luminous"\]\s*\{[^}]*\}/s)?.[0] || "";
             if (!/color:\s*var\(--ldm-foundation-text-secondary-light,\s*#5F635A\);/.test(grayBaseRule)) throw Error("deployed artifact-scoped quiet motif rule is missing exact light gray #5F635A");
-            if (!/color:\s*var\(--ldm-foundation-text-secondary-dark,\s*#C4CECA\);/.test(grayFoundationDarkRule)) throw Error("deployed foundation quiet motif rule is missing exact dark gray #C4CECA");
+            const quietColorRules = [...styles.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+              .map(([, selector, body]) => ({ selector: selector.replace(/\/\*[\s\S]*?\*\//g, "").trim(), body }))
+              .filter(({ selector, body }) => selector.includes("lm-motif[quiet]") && /\bcolor\s*:/.test(body));
+            if (quietColorRules.length !== 1 || quietColorRules[0].selector !== `lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"]`) throw Error("deployed site CSS does not scope its only quiet motif color override to gray-luminous surfaces");
             const globalQuietEnergySkyOverride = [...styles.matchAll(/([^{}]+)\{([^{}]*)\}/g)].some(([, selector, body]) => selector.includes("lm-motif[quiet]") && !selector.includes("[data-artifact-quiet-ink=") && /\bcolor\s*:\s*(?:var\(--energy-sky\b|#59D2FE\b)/i.test(body));
             if (globalQuietEnergySkyOverride) throw Error("deployed site styles globally override quiet motifs with Energy Sky");
             const thaiMenuPeopleLinks = html.match(/<a\b(?=[^>]*\bdata-menu-close\b)(?=[^>]*href="#people")[^>]*>/g) || [];
@@ -280,10 +278,6 @@ jobs:
               ["public/assets/landometer/landometer-motifs.js", "/tmp/landom-motifs.js"],
               ["public/assets/landometer/svg/logo-quiet-gray.svg", "/tmp/landom-logo-quiet-gray.svg"],
               ["public/assets/landometer/svg/rings-quiet-gray.svg", "/tmp/landom-rings-quiet-gray.svg"],
-              ["public/assets/landometer/svg/dial-quiet-gray.svg", "/tmp/landom-dial-quiet-gray.svg"],
-              ["public/assets/landometer/svg/dial-quiet-gray-dark.svg", "/tmp/landom-dial-quiet-gray-dark.svg"],
-              ["public/assets/landometer/svg/layers-quiet-gray.svg", "/tmp/landom-layers-quiet-gray.svg"],
-              ["public/assets/landometer/svg/layers-quiet-gray-dark.svg", "/tmp/landom-layers-quiet-gray-dark.svg"],
               ["public/assets/landometer/svg/slice-quiet-gray.svg", "/tmp/landom-slice-quiet-gray.svg"],
               ["public/assets/landometer/svg/cultivate-quiet-gray.svg", "/tmp/landom-cultivate-quiet-gray.svg"],
               ["public/assets/landometer/svg/logo-quiet.svg", "/tmp/landom-logo-quiet-source.svg"],
@@ -329,16 +323,25 @@ jobs:
               ["/tmp/landom-cultivate-quiet-source.svg", "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f"],
               ["/tmp/landom-logo-quiet-gray.svg", "6be5a0a6095a85d601e02402fe1466a0c07247ec25fe12e73a2229823ef6e4c3"],
               ["/tmp/landom-rings-quiet-gray.svg", "9d171e8a5fbe9c149e1ee9c5e3bfac60486effe80b450490bacc0dcca33bd3da"],
-              ["/tmp/landom-dial-quiet-gray.svg", "d24f7a4bcf77a9630720a6c7610ede61a1b23503f13f6db5e87bb3557c5c5b22"],
-              ["/tmp/landom-dial-quiet-gray-dark.svg", "637aa8bc06943249658a094904921c4cb10151f775c44fcdc6a0134d71ac0529"],
-              ["/tmp/landom-layers-quiet-gray.svg", "c46071e7d7c3d183f85a011b169ca7df0b47777f164852f014171c75b4e1fcc7"],
-              ["/tmp/landom-layers-quiet-gray-dark.svg", "3d6870c036e25a263296da0fd177a933abc8809581086f7f6757b3d524e2cd99"],
               ["/tmp/landom-slice-quiet-gray.svg", "73db5c884cdcfd2014d5709f3aa5833c3db775f8c858804c66aa3ede826bf9f3"],
               ["/tmp/landom-cultivate-quiet-gray.svg", "8ba9ca8abc66c7a11694526a682b980be0c7856decff77b8d3a99552bde9402f"]
             ];
             for (const [localPath, expectedDigest] of pinnedAssets) {
               const digest = createHash("sha256").update(readFileSync(localPath)).digest("hex");
               if (digest !== expectedDigest) throw Error(`live governed asset hash mismatch for ${localPath}`);
+            }
+            const grayDerivatives = [
+              ["/tmp/landom-logo-quiet-gray.svg", "/tmp/landom-logo-quiet-source.svg"],
+              ["/tmp/landom-rings-quiet-gray.svg", "/tmp/landom-rings-quiet-source.svg"],
+              ["/tmp/landom-slice-quiet-gray.svg", "/tmp/landom-slice-quiet-source.svg"],
+              ["/tmp/landom-cultivate-quiet-gray.svg", "/tmp/landom-cultivate-quiet-source.svg"]
+            ];
+            for (const [derivedPath, sourcePath] of grayDerivatives) {
+              const derivedText = readFileSync(derivedPath, "utf8");
+              const restored = Buffer.from(derivedText.split("#5F635A").join("#59D2FE"), "utf8");
+              if (!derivedText.includes("#5F635A") || derivedText.includes("#59D2FE") || !restored.equals(readFileSync(sourcePath))) {
+                throw Error(`deployed gray motif must differ from its canonical source by the approved color substitution only: ${derivedPath}`);
+              }
             }
             const favicon = readFileSync("/tmp/landom-favicon.png");
             const faviconDigest = createHash("sha256").update(favicon).digest("hex");

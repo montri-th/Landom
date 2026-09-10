@@ -2001,9 +2001,8 @@ function personDetailMarkup(model) {
     <article class="person-detail" aria-labelledby="person-card-title-${escapeHtml(model.id)}">
       <div class="inline-detail-toolbar">
         <span class="section-kicker">${escapeHtml(message("registry"))}</span>
-        <lm-motif class="profile-layers-motif" kind="layers" quiet replay="hover" data-artifact-quiet-ink="gray-foundation">
-          <img class="motif-fallback--light" src="./public/assets/landometer/svg/layers-quiet-gray.svg" alt="">
-          <img class="motif-fallback--dark" src="./public/assets/landometer/svg/layers-quiet-gray-dark.svg" alt="">
+        <lm-motif class="profile-layers-motif" kind="layers" quiet replay="hover">
+          <img src="./public/assets/landometer/svg/layers-quiet.svg" alt="">
         </lm-motif>
         <div class="inline-detail-actions">
           ${profileSocialIconsMarkup(model)}
