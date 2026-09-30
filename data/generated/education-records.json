@@ -1043,5 +1043,22 @@
     "studyPeriod": null,
     "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
     "evidenceNote": "Owner confirmed Sek's completed Bachelor of Economics from Prince of Songkla University; the official PSU course page standardizes the degree title."
+  },
+  {
+    "educationRecordId": "EDU0053",
+    "personId": "I0045",
+    "institutionId": "inst-chula",
+    "programId": "program-cu-cedt",
+    "recordType": "education",
+    "isPrimary": true,
+    "sourceLabel": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล — คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
+    "qualification": {
+      "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+      "en": "Computer Engineering and Digital Technology"
+    },
+    "degree": null,
+    "studyPeriod": null,
+    "verificationStatus": "first_person_application_program_verified_no_degree_award",
+    "evidenceNote": "The exact-matched application identifies Computer Engineering and Digital Technology at Chulalongkorn University, and the owner confirms cooperative education and current CityMETER work. No degree award, degree completion or study dates are asserted."
   }
 ]

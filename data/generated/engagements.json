@@ -1147,13 +1147,14 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": null,
-    "end": null,
+    "start": "2026-01-21",
+    "end": "2026-02-05",
     "status": "completed",
     "responsibilityWorkIds": [],
-    "evidenceStatus": "sheet_recorded",
-    "verificationStatus": "owner_review_required",
-    "sequenceHint": 2
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_period",
+    "sequenceHint": 2,
+    "evidenceNote": "Owner confirmed Dada's MSI period as 21 January through 5 February 2026 on 28 September 2026. This corrects only E0038; the separate IMP engagement E0060 ending 13 November 2025 is preserved. Aggregate firstJoined remains deferred because the earlier IMP start is not established."
   },
   {
     "engagementId": "E0039",
@@ -1451,14 +1452,14 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": "2026-05-19",
-    "end": "2026-09-15",
-    "status": "ongoing",
+    "start": "2026-05-16",
+    "end": "2026-09-01",
+    "status": "completed",
     "responsibilityWorkIds": [],
     "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_exact_period",
     "sequenceHint": 1,
-    "evidenceNote": "Owner corrected Dan's internship period to 19 May through 15 September 2026 in the owner-supplied note dated 2026-09-06; it remains ongoing as of that date."
+    "evidenceNote": "Owner corrected Dan's actual internship period to 16 May through 1 September 2026 on 28 September 2026 and confirmed alumni status. These latest dates supersede the earlier 19 May through 15 September record."
   },
   {
     "engagementId": "E0051",
@@ -1650,13 +1651,44 @@
       "th": "Marketing Strategy Intern",
       "en": "Marketing Strategy Intern"
     },
-    "start": "2026-08-24",
+    "start": "2026-08-18",
     "end": null,
     "status": "ongoing",
-    "responsibilityWorkIds": [],
+    "responsibilityWorkIds": [
+      "work-ijji"
+    ],
     "evidenceStatus": "owner_supplied",
     "verificationStatus": "owner_confirmed_exact_start_end_pending",
-    "evidenceNote": "Owner identified Sorso as the new 2026 applicant and confirmed the actual start date as 24 August 2026. The end date remains pending and no duration is inferred from application availability.",
+    "evidenceNote": "Owner corrected Sorso's actual start to 18 August 2026 on 28 September 2026 and confirmed ongoing work. On 29 September the owner specified support to Renee on ijji. The end date and exact responsibilities remain unspecified; no duration, lead role or completed result is inferred.",
+    "sequenceHint": 1
+  },
+  {
+    "engagementId": "E0065",
+    "personId": "I0045",
+    "category": "internship",
+    "academicPlacementType": "cooperative_education",
+    "program": {
+      "code": null,
+      "names": {
+        "th": "Landometer Internship Program / CEDT",
+        "en": "Landometer Internship Program / CEDT"
+      }
+    },
+    "cohortLabel": "2026",
+    "roleTitle": {
+      "th": "ผู้ร่วมงาน CityMETER",
+      "en": "CityMETER contributor"
+    },
+    "start": "2026-08-01",
+    "end": null,
+    "status": "ongoing",
+    "responsibilityWorkIds": [
+      "work-citymeter-religious-places-unresolved",
+      "work-citymeter-fuel-stations"
+    ],
+    "evidenceStatus": "owner_supplied",
+    "verificationStatus": "owner_confirmed_exact_start_end_pending",
+    "evidenceNote": "Owner confirmed Q's start on 1 August 2026 and ongoing work. Cooperative education and CU CEDT are reconciled with the exact application identity. The owner identified religious places and Fuel Stations improvement as in progress on 29 September 2026; no FDI program code, completion, granular implementation scope or result is inferred.",
     "sequenceHint": 1
   }
 ]

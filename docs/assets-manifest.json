@@ -1429,19 +1429,19 @@
     {
       "assetId": "PORTRAIT-I0028",
       "path": "public/assets/people/I0028.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "participant-submitted-profile-portrait",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 72435,
-      "sha256": "d697d57dd35a4a9f5a125da286d61ff3f79c97c743418ae5a4d9f8b19026a550",
-      "owner": "Landometer directory owner",
+      "bytes": 54956,
+      "sha256": "cba9f6f1e9655322d8b2f39874974549c62c44c73897b7d95bd5046e5a05108d",
+      "owner": "Profile subject",
       "approvalStatus": "approved",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-09-30",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-09-30"
       },
       "approvedRoles": [
         "person-avatar"
@@ -1449,7 +1449,7 @@
       "prohibitedRoles": [
         "brand-mark"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Direct participant-submitted replacement with consent for Landom profile and related work pages. Original and correspondence retained privately; full frame, metadata stripped."
     },
     {
       "assetId": "PORTRAIT-I0029",
@@ -2028,6 +2028,31 @@
         "brand-mark"
       ],
       "notes": "Owner-supplied named source photo. Deterministic square crop only; no AI generation, retouching, or identity alteration. Original remains private; individual consent is not asserted."
+    },
+    {
+      "assetId": "PORTRAIT-I0044",
+      "path": "public/assets/people/I0044.jpg",
+      "variant": "participant-submitted-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 57442,
+      "sha256": "06200b0b5849b0b318c2563b4b9c9a621baf7259e68e89fc15a02fba105fe840",
+      "owner": "Profile subject",
+      "approvalStatus": "approved",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-30",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-09-30"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark"
+      ],
+      "notes": "Direct participant-submitted portrait with consent for Landom profile and related work pages. Bounded square crop x=0,y=500,width=3648,height=3648 on the oriented original, then 800x800 JPEG78; preserves complete head in the existing square photo frame; metadata stripped. Original and correspondence remain private."
     }
   ]
 }

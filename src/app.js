@@ -2300,7 +2300,7 @@ function updateDataNote() {
     setText(elements.dataNote, message("loadingData"));
     return;
   }
-  const rawDate = firstValue(state.raw.meta || {}, ["generatedAt", "generated_at", "updatedAt", "updated_at", "sourceUpdatedAt", "source_updated_at", "releaseDate", "release_date"]);
+  const rawDate = firstValue(state.raw.meta || {}, ["dataUpdatedAt", "data_updated_at", "reviewedAt", "generatedAt", "generated_at", "updatedAt", "updated_at", "sourceUpdatedAt", "source_updated_at", "releaseDate", "release_date"]);
   const date = rawDate ? new Date(rawDate) : null;
   if (date && !Number.isNaN(date.getTime())) {
     const formatted = new Intl.DateTimeFormat(state.language === "th" ? "th-TH" : "en-US", {

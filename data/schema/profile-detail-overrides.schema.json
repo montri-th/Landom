@@ -72,6 +72,16 @@
       "required": ["th", "en"],
       "properties": { "th": { "type": "string", "minLength": 1 }, "en": { "type": "string", "minLength": 1 } }
     },
+    "localizedNullable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["th", "en"],
+      "properties": { "th": { "type": ["string", "null"], "minLength": 1 }, "en": { "type": ["string", "null"], "minLength": 1 } },
+      "anyOf": [
+        { "properties": { "th": { "type": "string" } } },
+        { "properties": { "en": { "type": "string" } } }
+      ]
+    },
     "formalShort": {
       "type": "object",
       "additionalProperties": false,
@@ -92,8 +102,8 @@
       "required": ["personId", "fullName", "nickname", "currentStatus", "firstJoined", "migrationClassification", "verificationStatus"],
       "properties": {
         "personId": { "$ref": "#/$defs/personId" },
-        "fullName": { "$ref": "#/$defs/localized" },
-        "nickname": { "$ref": "#/$defs/localized" },
+        "fullName": { "$ref": "#/$defs/localizedNullable" },
+        "nickname": { "$ref": "#/$defs/localizedNullable" },
         "currentStatus": { "enum": ["active", "alumni"] },
         "firstJoined": { "$ref": "#/$defs/nullableDate" },
         "migrationClassification": { "enum": ["full_time", "part_time", "intern_or_program_participant"] },
@@ -170,13 +180,14 @@
       "additionalProperties": false,
       "required": ["personId", "institutionId", "programId", "recordType", "isPrimary", "sourceLabel", "degree", "verificationStatus", "evidenceNote"],
       "properties": {
+        "educationRecordId": { "type": "string", "pattern": "^EDU\\d{4}$" },
         "personId": { "$ref": "#/$defs/personId" },
         "institutionId": { "type": "string", "pattern": "^inst-[a-z0-9-]+$" },
         "programId": { "type": "string", "pattern": "^program-[a-z0-9-]+$" },
         "recordType": { "const": "education" },
         "isPrimary": { "const": true },
         "sourceLabel": { "type": "string", "minLength": 1 },
-        "degree": { "$ref": "#/$defs/degree" },
+        "degree": { "anyOf": [{ "$ref": "#/$defs/degree" }, { "type": "null" }] },
         "verificationStatus": { "type": "string", "minLength": 1 },
         "evidenceNote": { "type": "string", "minLength": 1 }
       }
@@ -301,7 +312,8 @@
         "personId": { "$ref": "#/$defs/personId" },
         "category": { "enum": ["full_time", "part_time", "internship", "program_participant"] },
         "academicPlacementType": { "enum": ["cooperative_education", "internship", "not_applicable"] },
-        "programCode": { "type": "string", "minLength": 1 },
+        "programCode": { "type": ["string", "null"], "minLength": 1 },
+        "programNames": { "$ref": "#/$defs/localized" },
         "roleTitle": { "$ref": "#/$defs/localized" },
         "cohortLabel": { "type": ["string", "null"] },
         "start": { "$ref": "#/$defs/nullableDate" },
@@ -312,7 +324,13 @@
         "verificationStatus": { "type": "string", "minLength": 1 },
         "evidenceNote": { "type": "string", "minLength": 1 },
         "sequenceHint": { "type": "integer", "minimum": 1 }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "programCode": { "type": "null" } }, "required": ["programCode"] },
+          "then": { "required": ["programNames"] }
+        }
+      ]
     },
     "workOverride": {
       "type": "object",
@@ -329,6 +347,16 @@
         "moduleSlug": { "type": "string", "pattern": "^dataset-[a-z0-9-]+$" },
         "evidenceUrl": { "type": "string", "format": "uri" },
         "destinationUrl": { "type": "string", "format": "uri" },
+        "linkEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["linkScope", "sourceRef", "evidenceUrl"],
+          "properties": {
+            "linkScope": { "enum": ["exact_module", "exact_product", "evidence_only", "broader_catalog", "unverified_no_link"] },
+            "sourceRef": { "type": "string", "minLength": 1 },
+            "evidenceUrl": { "type": ["string", "null"], "format": "uri" }
+          }
+        },
         "parentProduct": { "type": "string", "minLength": 1 },
         "names": { "$ref": "#/$defs/localized" },
         "type": { "type": "string", "minLength": 1 },

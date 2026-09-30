@@ -117,7 +117,7 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const readmeTopicIndex = exported.tabs.README.headers.indexOf('topic');
   const readmeDetailIndex = exported.tabs.README.headers.indexOf('detail');
   const datasetNameRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'ชื่อชุดข้อมูล');
-  assert.match(datasetNameRow[readmeDetailIndex], /v3\.4 \(25 Aug 2026\)/);
+  assert.match(datasetNameRow[readmeDetailIndex], /reviewed 30 Sep 2026/);
   assert.doesNotMatch(datasetNameRow[readmeDetailIndex], /v3\.3/);
   const bioRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'bio');
   assert.match(bioRow[readmeDetailIndex], /private recruitment\/application Sheet ID\/range/);
@@ -214,7 +214,8 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
       ['linkedin', 'github'].includes(row.platform)
     ));
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
-      row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted'
+      (row.publicationBasis === 'owner_authorized_public_profile_link' && row.ownerApproval?.status === 'granted') ||
+      (row.publicationBasis === 'individual_consent' && row.consentStatus === 'granted')
     ));
     assert.equal(
       imported.assets.filter((row) => row.publicPath).length,
@@ -222,7 +223,8 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
       'withholding the I0001 portrait should remove exactly one public asset during roundtrip'
     );
     assert.ok(imported.assets.filter((row) => row.publicPath).every((row) =>
-      row.publicationBasis === 'owner_authorized_public_profile_portrait' && row.ownerApproval?.status === 'granted'
+      (row.publicationBasis === 'owner_authorized_public_profile_portrait' && row.ownerApproval?.status === 'granted') ||
+      (row.publicationBasis === 'individual_consent' && row.consentStatus === 'granted')
     ));
     assert.doesNotMatch(JSON.stringify(imported), /private_ig_candidate_roundtrip|Private identity evidence roundtrip|private\.example|PRIVATE-PERMISSION-PENDING/);
 
@@ -267,7 +269,7 @@ test('schema and all generated dimensions are valid JSON', () => {
       I0027: '2026-01-12',
       I0028: '2026-01-12',
       I0004: '2025-08',
-      I0040: '2026-05-19',
+      I0040: '2026-05-16',
       I0041: '2026-05-19'
     }
   );
@@ -308,11 +310,11 @@ test('verified English full names and exact Thai nicknames override stale regist
 
 test('person IDs have one frozen canonical version', () => {
   const data = loadGenerated();
-  assert.equal(data.people.length, 52);
+  assert.equal(data.people.length, 53);
   assertUnique(data.people, 'personId');
   assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'full_time').map((person) => person.personId), ['S0001', 'S0002', 'S0003', 'S0004', 'S0005', 'S0006', 'S0007']);
   assert.deepEqual(data.people.filter((person) => person.migrationClassification === 'part_time').map((person) => person.personId), ['P0001']);
-  assert.equal(data.people.filter((person) => person.migrationClassification === 'intern_or_program_participant').length, 44);
+  assert.equal(data.people.filter((person) => person.migrationClassification === 'intern_or_program_participant').length, 45);
   assert.ok(data.people.every((person) => /^[SPI]\d{4}$/.test(person.personId)));
   assert.ok(data.people.every((person) => person.canonicalIdPolicy.frozenAcrossFutureRoleChanges === true));
   const serialized = JSON.stringify(data);
@@ -589,7 +591,7 @@ test('only exact official institution and program LinkedIn pages enter the publi
   assert.equal(data.meta.counts.verifiedProgramLinkedInProfiles, 1);
 });
 
-test('all core people receive provenance-distinct owner-authorized source-backed placeholder bios', () => {
+test('52 governed biographies retain their provenance and Q remains deferred at the owner request', () => {
   const data = loadGenerated();
   const firstPersonIds = [
     'I0003', 'I0004', 'I0013', 'I0014', 'I0015', 'I0016', 'I0017', 'I0018',
@@ -648,7 +650,11 @@ test('all core people receive provenance-distinct owner-authorized source-backed
   assert.match(data.people.find((person) => person.personId === 'I0015').bio.th, /ความคิดเห็นของผู้ใช้/);
   assert.doesNotMatch(data.people.find((person) => person.personId === 'I0028').bio.th, /พลังบวก/);
   assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 52);
-  assert.equal(data.meta.counts.ownerPendingProfiles, 0);
+  assert.equal(data.meta.counts.ownerPendingProfiles, 1);
+  const deferred = data.people.filter((person) => person.bio.status === 'owner_pending');
+  assert.deepEqual(deferred.map((person) => person.personId), ['I0045']);
+  assert.equal(deferred[0].bio.th, null);
+  assert.equal(deferred[0].bio.en, null);
   assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 26);
   assert.equal(data.meta.counts.factualFallbackProfilePlaceholders, 26);
 });
@@ -658,7 +664,7 @@ test('cooperative education is limited to the exact owner-confirmed public core 
   const cooperativeEducation = data.engagements.filter((engagement) => engagement.academicPlacementType === 'cooperative_education');
   assert.deepEqual(
     cooperativeEducation.map((engagement) => engagement.personId).sort(),
-    ['I0003', 'I0030', 'I0031', 'I0034', 'I0036', 'I0039']
+    ['I0003', 'I0030', 'I0031', 'I0034', 'I0036', 'I0039', 'I0045']
   );
   assert.ok(cooperativeEducation.every((engagement) => engagement.category === 'internship'));
   assert.ok(data.engagements.filter((engagement) => engagement.category === 'internship').every((engagement) =>
@@ -670,8 +676,8 @@ test('cooperative education is limited to the exact owner-confirmed public core 
   const tan = data.engagements.find((engagement) => engagement.personId === 'I0035' && engagement.category === 'internship');
   assert.equal(tan.academicPlacementType, 'internship');
   assert.doesNotMatch(tan.cohortLabel, /co-?op|สหกิจ/i);
-  assert.equal(data.meta.counts.cooperativeEducationPeople, 6);
-  assert.equal(data.people.length, 52);
+  assert.equal(data.meta.counts.cooperativeEducationPeople, 7);
+  assert.equal(data.people.length, 53);
 });
 
 test('FDI and computer-engineering display labels use the approved exact copy', () => {
@@ -733,6 +739,10 @@ test('program-specific contribution roles and exact owner-supplied works replace
   ]);
   for (const contribution of data.contributions) {
     if (contribution.workId === 'work-citycell-model') continue;
+    if (contribution.personId === 'I0044' && contribution.workId === 'work-ijji') {
+      assert.deepEqual(contribution.role, { th: 'ร่วมสนับสนุนงาน', en: 'Project support' });
+      continue;
+    }
     if (exactRoleOverrides.has(`${contribution.personId}|${contribution.workId}`)) {
       const role = exactRoleOverrides.get(`${contribution.personId}|${contribution.workId}`);
       assert.deepEqual(contribution.role, { th: role, en: role });
@@ -768,7 +778,7 @@ test('the existing 48 bio objects remain byte-equivalent to the v3.3 approved re
     : value && typeof value === 'object'
       ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableSort(value[key])]))
       : value;
-  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044']);
+  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044', 'I0045']);
   const projection = loadGenerated().people
     .filter((person) => !newPersonIds.has(person.personId))
     .map((person) => ({ personId: person.personId, bio: person.bio }));
@@ -978,21 +988,26 @@ test('only exact owner-authorized public profiles and governed local portraits a
       { personId: 'S0007', publicUrl: 'https://www.linkedin.com/in/kanoksilp-jindadoungrut-841a67224/' }
     ]
   );
+  const scopedConsent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
+  const individualSocials = new Set(scopedConsent.records.flatMap((record) => (record.socials ?? []).map((profile) => record.personId + '|' + profile.platform)));
+  const individualPortraits = new Set(scopedConsent.records.filter((record) => record.portrait?.consentStatus === 'granted').map((record) => record.personId));
   for (const profile of [...linkedIn, ...github]) {
+    const individuallyApproved = individualSocials.has(profile.personId + '|' + profile.platform);
     assert.equal(profile.verificationStatus, 'verified');
-    assert.equal(profile.consentStatus, 'pending');
-    assert.equal(profile.publicationBasis, 'owner_authorized_public_profile_link');
+    assert.equal(profile.consentStatus, individuallyApproved ? 'granted' : 'pending');
+    assert.equal(profile.publicationBasis, individuallyApproved ? 'individual_consent' : 'owner_authorized_public_profile_link');
     assert.equal(profile.ownerApproval.status, 'granted');
     assert.equal(profile.ownerApproval.scope, 'public_profile_link_only');
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 47);
+  assert.equal(portraits.length, 48);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);
-    assert.equal(portrait.consentStatus, 'pending');
-    assert.equal(portrait.publicationBasis, 'owner_authorized_public_profile_portrait');
+    const individuallyApproved = individualPortraits.has(portrait.personId);
+    assert.equal(portrait.consentStatus, individuallyApproved ? 'granted' : 'pending');
+    assert.equal(portrait.publicationBasis, individuallyApproved ? 'individual_consent' : 'owner_authorized_public_profile_portrait');
     assert.equal(portrait.ownerApproval.status, 'granted');
     assert.equal(portrait.rightsStatus, 'cleared');
     assert.match(portrait.sha256, /^[a-f0-9]{64}$/);

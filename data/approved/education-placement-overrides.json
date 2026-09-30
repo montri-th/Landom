@@ -7,13 +7,14 @@
       "I0031",
       "I0034",
       "I0036",
-      "I0039"
+      "I0039",
+      "I0045"
     ],
     "explicitInternshipPersonIds": [
       "I0035"
     ],
     "nonCoreCandidatesExcluded": true,
-    "sourceBasis": "owner_instruction_with_exact_roster_reconciliation"
+    "sourceBasis": "owner_instruction_with_exact_roster_reconciliation_including_I0045_core_membership_and_CEDT_application_verified_2026-09-30"
   },
   "staffDegrees": [
     {

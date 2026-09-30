@@ -1,0 +1,234 @@
+{
+  "contractVersion": "1.0",
+  "reviewedAt": "2026-09-30",
+  "scope": "Landom profile and related work pages only",
+  "records": [
+    {
+      "personId": "I0028",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "cba9f6f1e9655322d8b2f39874974549c62c44c73897b7d95bd5046e5a05108d"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/panyakorn-kuratchatchaval-a5721628b/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0037",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "226bad11daa7aab5dab832fa992df2777afc876fbbd3837dbfb5cc51b487986c"
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/nicha-natthanicha",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/nathanicha-sornbundit-840109431",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0024",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "61f217250e501a694453e39a8025d20650991c31ac1554f6e774d2fda477f3ca"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/itthikorn-d-72078519a/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0008",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "7610343014a0f5dfc03e73584321cc994a1b4f695079d4dd9673de18031d2872"
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/GuyThanakornKhuntamanee",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/thanakorn-khuntamanee-255390372/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0032",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "ff9a8b34126e5bb8780bf0bdf67baac3cff39bda5d6765d8efbaa26a2780a180"
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/YwThammatorn",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/thammatorn-tanasamanchoke-14323a394/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0003",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "6214dff6a699ea27d802da183952518081751e8158f4adc69b77d1c0b156350f"
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/wwanellope",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/panapa-korpaiboonkij-062a12341/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0002",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "87479792816fdd3cd70572dfacad7ce9c2bdf28a3af1b1ddc401cb9e0de3f1c6"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/vorachot-banluepongpan-001911337/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0044",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "06200b0b5849b0b318c2563b4b9c9a621baf7259e68e89fc15a02fba105fe840"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "S0007",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "denied",
+        "sha256": null
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/kanoksl",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/kanoksilp-jindadoungrut-841a67224/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0030",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "786f96e99948ca46ccdec336a0dedc436332ef605064c8f395d4b7462565f28c"
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/Ken-Boriboon",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/boriboon-yimramai-1052ba398/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0041",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "633a43baf5bd7c379e4a29301558416ddb7663a58b1c215d5ec69bfac6f065e8"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/pattareeya-pattanapornchai-b952a0225/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    },
+    {
+      "personId": "I0039",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "e4e163a8e3b9d833cd57c339f5117fa5dab9af965735b45fadd58c8672170506"
+      },
+      "socials": [
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/lookchub",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/pattaraporn-tonsomboon-97a85039a/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-09-30"
+    }
+  ]
+}

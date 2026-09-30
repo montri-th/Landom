@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.4",
-  "sourceBasis": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+  "sourceBasis": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
   "addedPeople": [
     {
       "personId": "S0005",
@@ -34,11 +34,22 @@
       "fullName": { "th": "วิชานาถ คงเกลี้ยง", "en": "Wichanat Khongkliang" },
       "nickname": { "th": "โซ่", "en": "Sorso" },
       "currentStatus": "active",
-      "firstJoined": "2026-08-24",
+      "firstJoined": "2026-08-18",
       "migrationClassification": "intern_or_program_participant",
       "verificationStatus": "owner_confirmed_and_application_response_verified",
       "idAssignedAt": "2026-09-06",
-      "evidenceNote": "Owner identified Sorso as the new 2026 applicant; the exact English identity and public academic facts were reconciled against the application and CV, while the Thai identity spelling was corroborated by exact-match official school records."
+      "evidenceNote": "Owner identified Sorso as the new 2026 applicant; the exact English identity and public academic facts were reconciled against the application and CV, while the Thai identity spelling was corroborated by exact-match official school records. Owner corrected the actual start to 18 August 2026 on 28 September 2026, superseding the earlier 24 August record."
+    },
+    {
+      "personId": "I0045",
+      "fullName": { "th": "ณัฐพัฒน์ แดงคงแก้ว", "en": null },
+      "nickname": { "th": "คิว", "en": null },
+      "currentStatus": "active",
+      "firstJoined": "2026-08-01",
+      "migrationClassification": "intern_or_program_participant",
+      "verificationStatus": "owner_confirmed_and_application_response_verified",
+      "idAssignedAt": "2026-09-26",
+      "evidenceNote": "The owner confirmed Q's current CityMETER work and exact start on 1 August 2026. The core registry and exact-matched first-person application identify the Thai full name and CU CEDT cooperative education. English full name and nickname have not been supplied; no transliteration or degree award is inferred. The profile statement remains pending until the ongoing work is complete, as requested by the owner."
     }
   ],
   "existingPersonTimelineOverrides": [
@@ -68,9 +79,9 @@
     },
     {
       "personId": "I0040",
-      "firstJoined": "2026-05-19",
+      "firstJoined": "2026-05-16",
       "verificationStatus": "owner_confirmed_exact_first_joined",
-      "evidenceNote": "Owner confirmed on 2026-08-31 that Dan started with the same exact period as Nicha, beginning 19 May 2026."
+      "evidenceNote": "Owner corrected Dan's actual internship start to 16 May 2026 on 28 September 2026; the latest exact dates supersede the earlier 19 May record."
     },
     {
       "personId": "I0041",
@@ -139,6 +150,7 @@
   ],
   "addedEducationRecords": [
     {
+      "educationRecordId": "EDU0049",
       "personId": "I0044",
       "institutionId": "inst-chula",
       "programId": "program-cu-biochemistry",
@@ -158,6 +170,7 @@
       "evidenceNote": "The application and CV identify an in-progress B.Sc. in Biochemistry at Chulalongkorn University; the official department page is used only to standardize the program and degree nomenclature."
     },
     {
+      "educationRecordId": "EDU0050",
       "personId": "S0006",
       "institutionId": "inst-chula",
       "programId": "program-cu-computer-engineering",
@@ -177,6 +190,7 @@
       "evidenceNote": "Owner confirmed Nat's completed B.Eng. in Computer Engineering from Chulalongkorn University; the official department page standardizes the program and degree nomenclature."
     },
     {
+      "educationRecordId": "EDU0051",
       "personId": "S0007",
       "institutionId": "inst-chula",
       "programId": "program-cu-computer-science",
@@ -196,6 +210,7 @@
       "evidenceNote": "Owner supplied the exact IEEE author-biography evidence stating Kanoksilp Jindadoungrut received the B.Sc. degree with honours in Computer Science from Chulalongkorn University."
     },
     {
+      "educationRecordId": "EDU0052",
       "personId": "P0001",
       "institutionId": "inst-psu",
       "programId": "program-psu-economics",
@@ -213,6 +228,18 @@
       },
       "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
       "evidenceNote": "Owner confirmed Sek's completed Bachelor of Economics from Prince of Songkla University; the official PSU course page standardizes the degree title."
+    },
+    {
+      "educationRecordId": "EDU0053",
+      "personId": "I0045",
+      "institutionId": "inst-chula",
+      "programId": "program-cu-cedt",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล — คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
+      "degree": null,
+      "verificationStatus": "first_person_application_program_verified_no_degree_award",
+      "evidenceNote": "The exact-matched application identifies Computer Engineering and Digital Technology at Chulalongkorn University, and the owner confirms cooperative education and current CityMETER work. No degree award, degree completion or study dates are asserted."
     }
   ],
   "institutionLinkedInProfiles": [
@@ -526,7 +553,7 @@
     {
       "personId": "I0044",
       "platform": "linkedin",
-      "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229",
+      "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229/",
       "verificationStatus": "verified",
       "identityEvidenceBasis": "exact_name_plus_chulalongkorn_biochemistry_and_impvest_identity_match",
       "consentStatus": "pending",
@@ -700,7 +727,16 @@
       "verificationStatus": "owner_confirmed_mixed_precision_period",
       "evidenceNote": "Owner corrected France's internship period to 12 January through the end of March 2026 in the owner-supplied note dated 2026-09-06; no exact March end day was supplied, so month precision is preserved."
     },
-    { "engagementId": "E0038", "sequenceHint": 2 },
+    {
+      "engagementId": "E0038",
+      "sequenceHint": 2,
+      "start": "2026-01-21",
+      "end": "2026-02-05",
+      "status": "completed",
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "evidenceNote": "Owner confirmed Dada's MSI period as 21 January through 5 February 2026 on 28 September 2026. This corrects only E0038; the separate IMP engagement E0060 ending 13 November 2025 is preserved. Aggregate firstJoined remains deferred because the earlier IMP start is not established."
+    },
     { "engagementId": "E0033", "sequenceHint": 3 },
     {
       "engagementId": "E0043",
@@ -742,12 +778,12 @@
     {
       "engagementId": "E0050",
       "sequenceHint": 1,
-      "start": "2026-05-19",
-      "end": "2026-09-15",
-      "status": "ongoing",
+      "start": "2026-05-16",
+      "end": "2026-09-01",
+      "status": "completed",
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
-      "evidenceNote": "Owner corrected Dan's internship period to 19 May through 15 September 2026 in the owner-supplied note dated 2026-09-06; it remains ongoing as of that date."
+      "evidenceNote": "Owner corrected Dan's actual internship period to 16 May through 1 September 2026 on 28 September 2026 and confirmed alumni status. These latest dates supersede the earlier 19 May through 15 September record."
     },
     {
       "engagementId": "E0051",
@@ -935,13 +971,31 @@
       "programCode": "MSI",
       "roleTitle": { "th": "Marketing Strategy Intern", "en": "Marketing Strategy Intern" },
       "cohortLabel": "MSI 2026",
-      "start": "2026-08-24",
+      "start": "2026-08-18",
       "end": null,
       "status": "ongoing",
-      "responsibilityWorkIds": [],
+      "responsibilityWorkIds": ["work-ijji"],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_start_end_pending",
-      "evidenceNote": "Owner identified Sorso as the new 2026 applicant and confirmed the actual start date as 24 August 2026. The end date remains pending and no duration is inferred from application availability.",
+      "evidenceNote": "Owner corrected Sorso's actual start to 18 August 2026 on 28 September 2026 and confirmed ongoing work. On 29 September the owner specified support to Renee on ijji. The end date and exact responsibilities remain unspecified; no duration, lead role or completed result is inferred.",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0065",
+      "personId": "I0045",
+      "category": "internship",
+      "academicPlacementType": "cooperative_education",
+      "programCode": null,
+      "programNames": { "th": "Landometer Internship Program / CEDT", "en": "Landometer Internship Program / CEDT" },
+      "roleTitle": { "th": "ผู้ร่วมงาน CityMETER", "en": "CityMETER contributor" },
+      "cohortLabel": "2026",
+      "start": "2026-08-01",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": ["work-citymeter-religious-places-unresolved", "work-citymeter-fuel-stations"],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_start_end_pending",
+      "evidenceNote": "Owner confirmed Q's start on 1 August 2026 and ongoing work. Cooperative education and CU CEDT are reconciled with the exact application identity. The owner identified religious places and Fuel Stations improvement as in progress on 29 September 2026; no FDI program code, completion, granular implementation scope or result is inferred.",
       "sequenceHint": 1
     }
   ],
@@ -1000,6 +1054,32 @@
       "destinationUrl": "https://telemetry.dwr.go.th/",
       "evidenceNote": "Owner identified the exact Department of Water Resources telemetry site; the Thai label is aligned to the official remote water-situation monitoring system and remains partner-specific.",
       "aliases": ["DWR: Telemetry", "DWR Telemetry", "โทรมาตร กรมทรัพยากรน้ำ", "ระบบติดตามสถานการณ์น้ำทางไกลอัตโนมัติ"]
+    },
+    {
+      "workId": "work-citymeter-religious-places-unresolved",
+      "parentProduct": "CityMETER",
+      "names": { "th": "CityMETER: ศาสนสถาน", "en": "CityMETER: Religious Places" },
+      "type": "module_name_unreconciled",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+      "evidenceNote": "The owner identified Q's work on religious places as in progress on 29 September 2026. Religious Places is a descriptive English translation, not an asserted catalog or release name. No route, module slug, completion or detailed implementation scope is inferred.",
+      "aliases": ["CityMETER: ศาสนสถาน"]
+    },
+    {
+      "workId": "work-citymeter-nonbank",
+      "parentProduct": "CityMETER",
+      "names": { "th": "CityMETER: Non-bank", "en": "CityMETER: Non-bank" },
+      "type": "module_name_unreconciled",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "owner_supplied_live_module_pending_catalog_reconciliation",
+      "destinationUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+      "linkEvidence": {
+        "linkScope": "exact_module",
+        "sourceRef": "owner_instruction_2026-09-29",
+        "evidenceUrl": "https://landometer.com/v3/citymeter?d=nonBank"
+      },
+      "evidenceNote": "The owner supplied this exact CityMETER destination and credited Ken's new work on 29 September 2026. The live destination is evidence for this module only; no current catalog slug, exclusive authorship or project-lead role is inferred.",
+      "aliases": ["CityMETER: NonBank", "nonBank"]
     }
   ],
   "addedContributions": [
@@ -1178,6 +1258,42 @@
       "engagementId": "E0055",
       "role": { "th": "Software development", "en": "Software development" },
       "period": { "start": null, "end": null, "label": "Part-time" }
+    },
+    {
+      "personId": "I0044",
+      "workId": "work-ijji",
+      "engagementId": "E0064",
+      "role": { "th": "ร่วมสนับสนุนงาน", "en": "Project support" },
+      "period": { "start": null, "end": null, "label": null },
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner confirmed Sorso is supporting Renee on ijji. Exact tasks, deliverables and contribution dates were not supplied; no lead role or completed outcome is inferred."
+    },
+    {
+      "personId": "I0045",
+      "workId": "work-citymeter-religious-places-unresolved",
+      "engagementId": "E0065",
+      "role": { "th": "กำลังจัดทำ", "en": "Developing" },
+      "period": { "start": null, "end": null, "label": null },
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner identified Q's religious-places work as in progress and asked to defer the profile statement until the work is finished. No completion, detailed responsibilities or outcome is inferred."
+    },
+    {
+      "personId": "I0045",
+      "workId": "work-citymeter-fuel-stations",
+      "engagementId": "E0065",
+      "role": { "th": "กำลังปรับปรุง", "en": "Improving" },
+      "period": { "start": null, "end": null, "label": null },
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner identified Q's Gas station improvement work as in progress. It is reconciled to the existing Fuel Stations work record without inferring completion, a release, detailed responsibilities or an outcome."
+    },
+    {
+      "personId": "I0030",
+      "workId": "work-citymeter-nonbank",
+      "engagementId": "E0040",
+      "role": { "th": "Software development", "en": "Software development" },
+      "period": { "start": null, "end": null, "label": "2026" },
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner credited Ken with the new nonBank module at the supplied CityMETER destination. No exclusive authorship, project-lead role or exact contribution dates are inferred."
     }
   ],
   "contributionRolesByProgram": {
@@ -1187,6 +1303,7 @@
     "IMP": { "th": "ที่ปรึกษาธุรกิจ", "en": "Consulting Partner" }
   },
   "contributionRoleOverrides": [
+    { "personId": "I0044", "workId": "work-ijji", "role": { "th": "ร่วมสนับสนุนงาน", "en": "Project support" } },
     { "personId": "S0002", "workId": "work-citymeter-quakesafe-unresolved", "role": { "th": "Product development", "en": "Product development" } },
     { "personId": "S0001", "workId": "work-citymeter-quakesafe-unresolved", "role": { "th": "Software development", "en": "Software development" } },
     { "workId": "work-citycell-model", "role": { "th": "Team member", "en": "Team member" } }

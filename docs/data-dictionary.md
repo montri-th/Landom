@@ -95,11 +95,11 @@ Snapshot รองรับ 2 schema โดย normalizer ตรวจรูป�
 | `bio.ownerApproval` | object/null | owner authorization ที่มีวัน ขอบเขต และ source reference; ไม่ใช่ individual consent |
 | `publication.consentStatus` | enum | `pending`, `granted`, `denied` |
 
-สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บแสดง core profile ทั้ง 52 คนพร้อมข้อความสองภาษาแบบ `source_backed_placeholder` โดยข้อความเดิม 51 คนคงเดิมแบบ byte-for-byte, 26 คนเป็น paraphrase จากคำตอบ first-person ที่จับคู่ full name กับ roster ได้ exact และ 26 คนเป็น `factual_fallback` ที่สังเคราะห์อย่างจำกัดจาก role, education และ verified work ที่ reconcile แล้ว ทั้งสองกลุ่มยังรอวิดีโอ/เจ้าตัวทบทวน (`pending_candidate_video_review`) และต้องเก็บ provenance แยกกัน ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลักและไม่ถูกเปลี่ยนเป็น `granted` เพราะ owner authorization ห้ามเผย raw application, Sheet ID/range, contact, คะแนน หรือ reviewer data และห้ามทำ inference เกิน `evidenceScope`
+สำหรับ release ปัจจุบัน ตามคำสั่งเจ้าของ directory หน้าเว็บแสดง core profile ทั้ง 53 คน โดยข้อความสองภาษาแบบ `source_backed_placeholder` เดิม 52 คนคงเดิม ส่วนคิว I0045 เป็น `owner_pending` และเว้นข้อความตามคำสั่งให้ร่างหลังงานเสร็จ, 26 คนเป็น paraphrase จากคำตอบ first-person ที่จับคู่ full name กับ roster ได้ exact และ 26 คนเป็น `factual_fallback` ที่สังเคราะห์อย่างจำกัดจาก role, education และ verified work ที่ reconcile แล้ว ทั้งสองกลุ่มเก็บสถานะ provenance/review เดิมแยกกัน ส่วนคำตอบยินยอมล่าสุดบันทึกตามขอบเขตใน `data/approved/publication-consent.json` ค่า `people.publication.consentStatus=pending` ไม่ได้ใช้ filter card/detail หลักและไม่ถูกเปลี่ยนเป็น `granted` เพราะ owner authorization ห้ามเผย raw application, Sheet ID/range, contact, คะแนน หรือ reviewer data และห้ามทำ inference เกิน `evidenceScope`
 
 ### profile_statements ใน Google Sheet
 
-ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Release v3.4 ต้องมี current statement ครบ 52 คน: first-person 26 และ factual fallback 26
+ข้อความแต่ละ version เป็นคนละแถว (`statement_id`) และ `people_registry.current_statement_id` เลือกข้อความปัจจุบัน เก็บ `supersedes_statement_id` เมื่ออัปเดตจากวิดีโอ ห้าม overwrite ข้อความเก่าโดยไม่มี history ฟิลด์สำคัญคือ text TH/EN, `publication_basis`, `source_basis`, source type/ref, author role, derivation method, evidence scope/confidence, owner approval, person review, consent และ publication status ข้อมูลดิบจากใบสมัครหรือวิดีโอ private ไม่ถูก copy มาที่ tab นี้ Current projection มี statement 52 คน: first-person 26 และ factual fallback 26; คิว I0045 ไม่มี statement ตามคำสั่งให้ร่างภายหลัง
 
 ## institutions, programs และ educationRecords
 
@@ -404,7 +404,7 @@ release นี้แก้เฉพาะพื้นขาวไร้ context 
 4. institution/program alias ที่ยัง map ไม่ได้
 5. work ที่ `authorityStatus` ยัง unresolved
 6. bio ที่ยัง `owner_pending`, ไม่มี current statement, หรือ provenance ไม่ระบุว่า first-person/factual fallback
-7. exact co-op set ต่างจาก public 6 IDs หรือมี candidate-only person หลุดเข้า core
+7. exact co-op set ต่างจาก public 7 IDs หรือมี candidate-only person หลุดเข้า core
 8. degree ที่ UI จะสื่อว่าได้รับแล้วแต่ `awardStatus/personalAwardVerified` ไม่รองรับ
 9. engagement ongoing แต่มี end dateผ่านแล้ว หรือ completed แต่ไม่มีเหตุผล/ช่วงเวลา
 10. nickname ซ้ำ โดยแสดง `personId` คู่กันเสมอ

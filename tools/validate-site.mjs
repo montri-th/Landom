@@ -311,11 +311,13 @@ function hasOwnerAuthorizedBasis(record, basis) {
 }
 
 function hasSocialPublicationAuthority(profile, person) {
+  if (['denied', 'revoked'].includes(getStatus(profile, 'consentStatus'))) return false;
   if (hasOwnerAuthorizedBasis(profile, 'owner_authorized_public_profile_link')) return true;
   return hasConsent(profile) && (!person || hasConsent(person.publication ?? person));
 }
 
 function hasAssetPublicationAuthority(asset) {
+  if (['denied', 'revoked'].includes(getStatus(asset, 'consentStatus'))) return false;
   return hasConsent(asset) || hasOwnerAuthorizedBasis(asset, 'owner_authorized_public_profile_portrait');
 }
 

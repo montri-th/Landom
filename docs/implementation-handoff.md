@@ -1,3 +1,5 @@
+For the current data delta, begin with [30 September 2026 registry handoff](updates/2026-09-30-registry-handoff.md).
+
 # Landom implementation handoff
 
 ## 1. Delivery shape
@@ -51,7 +53,7 @@ Recommended sheet tabs and keys:
 | Tab | Primary key | Important relations / controls |
 |---|---|---|
 | `people_registry` | `person_id` | One ID only; names, core publication state, materialized current bio, `current_statement_id` |
-| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; v3.4 has 51 current statements |
+| `profile_statements` | `statement_id` | Versioned bilingual copy with distinct first-person/factual-fallback provenance, evidence boundary, approval and review state; the current projection retains 52 statements; Q is explicitly deferred |
 | `engagements` | `engagement_id` | `person_id`, role type, start/end/cohort, explicit academic placement type |
 | `institutions` | `institution_id` | Official TH/EN names, approved short labels, nullable exact official LinkedIn URL and verification status |
 | `programs` | `program_id` | `institution_id`, official TH/EN names, approved short labels, nullable exact official LinkedIn URL and verification status |
@@ -197,7 +199,7 @@ Project-path code cannot independently control the hostname-level search-result 
 
 ## 6. Social and image approval gate
 
-Current release behavior, following the owner instruction for this directory, renders all 52 core profile records with bilingual `source_backed_placeholder` copy. The previously governed 51 profile texts remain byte-for-byte unchanged. Twenty-six records use concise paraphrases of first-person application answers with exact roster matches. Twenty-six use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. This is not individual approval of final copy. Raw application text, private recruitment/application Sheet IDs or ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection. The authorized core-registry Sheet ID may remain only in `meta.source` as registry provenance.
+Current release behavior renders all 53 core profile records. The 52 existing bilingual `source_backed_placeholder` texts remain unchanged. Q (`I0045`) retains an empty `owner_pending` bio because the owner requested drafting it after his work is complete. Twenty-six records use concise paraphrases of first-person application answers with exact roster matches. Twenty-six use `factual_fallback` copy synthesized with `bounded_inference` only from reconciled role, education, and verified-work evidence. Each bio carries public-safe `publicationBasis`, `sourceBasis`, `sourceType`, `sourceRef`, `authorRole`, `derivationMethod`, `evidenceScope`, and `evidenceConfidence`; the two provenance paths must never be collapsed. Verification is `owner_authorized_placeholder` and review remains `pending_candidate_video_review` for both groups. These provenance flags do not imply individual approval of final copy. Latest field-scoped participant responses are recorded separately in `data/approved/publication-consent.json`; do not infer portrait or social consent from profile consent. Raw application text, private recruitment/application Sheet IDs or ranges, contacts, interviewer comments, scores, and unmatched applicant text remain outside the public projection. The authorized core-registry Sheet ID may remain only in `meta.source` as registry provenance.
 
 `external_publications` is a separate evidence dimension. Each row needs an exact person match, title/outlet/year/DOI bibliographic verification, and an owner-authorized public-link basis. Never project an external paper into `works`, `contributions`, an engagement responsibility, or a Landometer product claim.
 

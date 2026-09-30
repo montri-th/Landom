@@ -1869,5 +1869,66 @@
       "sourceRef": "owner_confirmed_official_partner_destination_2026-08-25",
       "evidenceUrl": null
     }
+  },
+  {
+    "workId": "work-citymeter-religious-places-unresolved",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: ศาสนสถาน",
+      "en": "CityMETER: Religious Places"
+    },
+    "shortNames": {
+      "th": "CityMETER: ศาสนสถาน",
+      "en": "CityMETER: Religious Places"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+    "evidenceNote": "The owner identified Q's work on religious places as in progress on 29 September 2026. Religious Places is a descriptive English translation, not an asserted catalog or release name. No route, module slug, completion or detailed implementation scope is inferred.",
+    "sourceAliases": [
+      "CityMETER: ศาสนสถาน"
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": null,
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-nonbank",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER: Non-bank",
+      "en": "CityMETER: Non-bank"
+    },
+    "shortNames": {
+      "th": "CityMETER: Non-bank",
+      "en": "CityMETER: Non-bank"
+    },
+    "type": "module_name_unreconciled",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_supplied_live_module_pending_catalog_reconciliation",
+    "evidenceNote": "The owner supplied this exact CityMETER destination and credited Ken's new work on 29 September 2026. The live destination is evidence for this module only; no current catalog slug, exclusive authorship or project-lead role is inferred.",
+    "sourceAliases": [
+      "CityMETER: NonBank",
+      "nonBank"
+    ],
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceUrl": "https://landometer.com/v3/citymeter?d=nonBank"
+    }
   }
 ]

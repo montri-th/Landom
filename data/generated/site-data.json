@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": "1.5.0",
-    "generatedAt": "2026-08-25T00:00:00+07:00",
+    "generatedAt": "2026-09-30T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
       "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -40,30 +40,32 @@
       "socialAndPortraits": "Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
       "educationPublicProfiles": "Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.",
       "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
-      "profileCopy": "All 52 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The previously governed 51 profile texts are retained byte-for-byte and one exact-matched 2026 applicant paraphrase is added. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
+      "profileCopy": "52 core profiles retain owner-authorized bilingual placeholders pending candidate/video review; 1 profiles remain blank at the owner's request until their work is complete. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
       "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
       "staffDegrees": "The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.",
       "externalPublications": "An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer."
     },
     "counts": {
-      "people": 52,
-      "engagements": 64,
-      "educationRecords": 52,
-      "works": 63,
-      "contributions": 121,
+      "people": 53,
+      "engagements": 65,
+      "educationRecords": 53,
+      "works": 65,
+      "contributions": 124,
       "achievements": 1,
       "publications": 1,
       "certificates": 26,
       "sourceBackedProfilePlaceholders": 52,
-      "ownerPendingProfiles": 0,
+      "ownerPendingProfiles": 1,
       "firstPersonProfilePlaceholders": 26,
       "factualFallbackProfilePlaceholders": 26,
       "verifiedCompletedStaffDegrees": 7,
-      "cooperativeEducationPeople": 6,
+      "cooperativeEducationPeople": 7,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
       "publishedPublicSocialProfiles": 74
-    }
+    },
+    "dataUpdatedAt": "2026-09-30",
+    "reviewedAt": "2026-09-30"
   },
   "copy": {
     "brand": {
@@ -1720,6 +1722,23 @@
       "studyPeriod": null,
       "verificationStatus": "owner_confirmed_completed_degree_with_official_program_definition",
       "evidenceNote": "Owner confirmed Sek's completed Bachelor of Economics from Prince of Songkla University; the official PSU course page standardizes the degree title."
+    },
+    {
+      "educationRecordId": "EDU0053",
+      "personId": "I0045",
+      "institutionId": "inst-chula",
+      "programId": "program-cu-cedt",
+      "recordType": "education",
+      "isPrimary": true,
+      "sourceLabel": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล — คณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
+      "qualification": {
+        "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล",
+        "en": "Computer Engineering and Digital Technology"
+      },
+      "degree": null,
+      "studyPeriod": null,
+      "verificationStatus": "first_person_application_program_verified_no_degree_award",
+      "evidenceNote": "The exact-matched application identifies Computer Engineering and Digital Technology at Chulalongkorn University, and the owner confirms cooperative education and current CityMETER work. No degree award, degree completion or study dates are asserted."
     }
   ],
   "people": [
@@ -1916,8 +1935,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -2117,8 +2136,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -2519,8 +2538,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -3591,8 +3610,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -3859,8 +3878,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4060,8 +4079,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4194,8 +4213,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4529,8 +4548,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4663,8 +4682,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4687,8 +4706,8 @@
           "en": "Dan"
         }
       },
-      "currentStatus": "active",
-      "firstJoined": "2026-05-19",
+      "currentStatus": "alumni",
+      "firstJoined": "2026-05-16",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-08-23",
@@ -4797,8 +4816,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -5132,8 +5151,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_supplied",
@@ -5157,7 +5176,7 @@
         }
       },
       "currentStatus": "active",
-      "firstJoined": "2026-08-24",
+      "firstJoined": "2026-08-18",
       "migrationClassification": "intern_or_program_participant",
       "canonicalIdPolicy": {
         "assignedAtMigration": "2026-09-06",
@@ -5197,6 +5216,68 @@
           "scope": "source_backed_placeholder_profile_copy",
           "sourceRef": "owner_instruction_2026-08-23"
         }
+      },
+      "publication": {
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
+      },
+      "dataQuality": {
+        "profileVerificationStatus": "owner_confirmed_and_application_response_verified",
+        "sourceNotePresent": true
+      }
+    },
+    {
+      "personId": "I0045",
+      "names": {
+        "full": {
+          "th": "ณัฐพัฒน์ แดงคงแก้ว",
+          "en": null
+        },
+        "nickname": {
+          "th": "คิว",
+          "en": null
+        },
+        "card": {
+          "th": "คิว",
+          "en": null
+        }
+      },
+      "currentStatus": "active",
+      "firstJoined": "2026-08-01",
+      "migrationClassification": "intern_or_program_participant",
+      "canonicalIdPolicy": {
+        "assignedAtMigration": "2026-09-26",
+        "categoryAtMigration": "intern_or_program_participant",
+        "frozenAcrossFutureRoleChanges": true
+      },
+      "educationDisplayMode": "program",
+      "educationDisplay": {
+        "mode": "program",
+        "card": {
+          "th": "CEDT · จุฬาฯ",
+          "en": "CEDT · CU"
+        },
+        "detail": {
+          "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล — จุฬาลงกรณ์มหาวิทยาลัย",
+          "en": "Computer Engineering and Digital Technology — Chulalongkorn University"
+        },
+        "verificationStatus": "first_person_application_program_verified_no_degree_award"
+      },
+      "bio": {
+        "th": null,
+        "en": null,
+        "status": "owner_pending",
+        "verificationStatus": "owner_pending",
+        "publicationBasis": null,
+        "sourceBasis": null,
+        "sourceType": null,
+        "sourceRef": null,
+        "authorRole": null,
+        "derivationMethod": null,
+        "evidenceScope": null,
+        "evidenceConfidence": null,
+        "reviewStatus": "pending_owner_copy",
+        "ownerApproval": null
       },
       "publication": {
         "consentStatus": "pending",
@@ -6357,13 +6438,14 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": null,
-      "end": null,
+      "start": "2026-01-21",
+      "end": "2026-02-05",
       "status": "completed",
       "responsibilityWorkIds": [],
-      "evidenceStatus": "sheet_recorded",
-      "verificationStatus": "owner_review_required",
-      "sequenceHint": 2
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_period",
+      "sequenceHint": 2,
+      "evidenceNote": "Owner confirmed Dada's MSI period as 21 January through 5 February 2026 on 28 September 2026. This corrects only E0038; the separate IMP engagement E0060 ending 13 November 2025 is preserved. Aggregate firstJoined remains deferred because the earlier IMP start is not established."
     },
     {
       "engagementId": "E0039",
@@ -6661,14 +6743,14 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": "2026-05-19",
-      "end": "2026-09-15",
-      "status": "ongoing",
+      "start": "2026-05-16",
+      "end": "2026-09-01",
+      "status": "completed",
       "responsibilityWorkIds": [],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_period",
       "sequenceHint": 1,
-      "evidenceNote": "Owner corrected Dan's internship period to 19 May through 15 September 2026 in the owner-supplied note dated 2026-09-06; it remains ongoing as of that date."
+      "evidenceNote": "Owner corrected Dan's actual internship period to 16 May through 1 September 2026 on 28 September 2026 and confirmed alumni status. These latest dates supersede the earlier 19 May through 15 September record."
     },
     {
       "engagementId": "E0051",
@@ -6860,13 +6942,44 @@
         "th": "Marketing Strategy Intern",
         "en": "Marketing Strategy Intern"
       },
-      "start": "2026-08-24",
+      "start": "2026-08-18",
       "end": null,
       "status": "ongoing",
-      "responsibilityWorkIds": [],
+      "responsibilityWorkIds": [
+        "work-ijji"
+      ],
       "evidenceStatus": "owner_supplied",
       "verificationStatus": "owner_confirmed_exact_start_end_pending",
-      "evidenceNote": "Owner identified Sorso as the new 2026 applicant and confirmed the actual start date as 24 August 2026. The end date remains pending and no duration is inferred from application availability.",
+      "evidenceNote": "Owner corrected Sorso's actual start to 18 August 2026 on 28 September 2026 and confirmed ongoing work. On 29 September the owner specified support to Renee on ijji. The end date and exact responsibilities remain unspecified; no duration, lead role or completed result is inferred.",
+      "sequenceHint": 1
+    },
+    {
+      "engagementId": "E0065",
+      "personId": "I0045",
+      "category": "internship",
+      "academicPlacementType": "cooperative_education",
+      "program": {
+        "code": null,
+        "names": {
+          "th": "Landometer Internship Program / CEDT",
+          "en": "Landometer Internship Program / CEDT"
+        }
+      },
+      "cohortLabel": "2026",
+      "roleTitle": {
+        "th": "ผู้ร่วมงาน CityMETER",
+        "en": "CityMETER contributor"
+      },
+      "start": "2026-08-01",
+      "end": null,
+      "status": "ongoing",
+      "responsibilityWorkIds": [
+        "work-citymeter-religious-places-unresolved",
+        "work-citymeter-fuel-stations"
+      ],
+      "evidenceStatus": "owner_supplied",
+      "verificationStatus": "owner_confirmed_exact_start_end_pending",
+      "evidenceNote": "Owner confirmed Q's start on 1 August 2026 and ongoing work. Cooperative education and CU CEDT are reconciled with the exact application identity. The owner identified religious places and Fuel Stations improvement as in progress on 29 September 2026; no FDI program code, completion, granular implementation scope or result is inferred.",
       "sequenceHint": 1
     }
   ],
@@ -8741,6 +8854,67 @@
         "sourceRef": "owner_confirmed_official_partner_destination_2026-08-25",
         "evidenceUrl": null
       }
+    },
+    {
+      "workId": "work-citymeter-religious-places-unresolved",
+      "parentProduct": "CityMETER",
+      "moduleSlug": null,
+      "names": {
+        "th": "CityMETER: ศาสนสถาน",
+        "en": "CityMETER: Religious Places"
+      },
+      "shortNames": {
+        "th": "CityMETER: ศาสนสถาน",
+        "en": "CityMETER: Religious Places"
+      },
+      "type": "module_name_unreconciled",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
+      "evidenceNote": "The owner identified Q's work on religious places as in progress on 29 September 2026. Religious Places is a descriptive English translation, not an asserted catalog or release name. No route, module slug, completion or detailed implementation scope is inferred.",
+      "sourceAliases": [
+        "CityMETER: ศาสนสถาน"
+      ],
+      "catalogUrl": {
+        "th": null,
+        "en": null
+      },
+      "destinationUrl": null,
+      "linkEvidence": {
+        "linkScope": "unverified_no_link",
+        "sourceRef": null,
+        "evidenceUrl": null
+      }
+    },
+    {
+      "workId": "work-citymeter-nonbank",
+      "parentProduct": "CityMETER",
+      "moduleSlug": null,
+      "names": {
+        "th": "CityMETER: Non-bank",
+        "en": "CityMETER: Non-bank"
+      },
+      "shortNames": {
+        "th": "CityMETER: Non-bank",
+        "en": "CityMETER: Non-bank"
+      },
+      "type": "module_name_unreconciled",
+      "scopeLayer": "product_specific",
+      "authorityStatus": "owner_supplied_live_module_pending_catalog_reconciliation",
+      "evidenceNote": "The owner supplied this exact CityMETER destination and credited Ken's new work on 29 September 2026. The live destination is evidence for this module only; no current catalog slug, exclusive authorship or project-lead role is inferred.",
+      "sourceAliases": [
+        "CityMETER: NonBank",
+        "nonBank"
+      ],
+      "catalogUrl": {
+        "th": null,
+        "en": null
+      },
+      "destinationUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+      "linkEvidence": {
+        "linkScope": "exact_module",
+        "sourceRef": "owner_instruction_2026-09-29",
+        "evidenceUrl": "https://landometer.com/v3/citymeter?d=nonBank"
+      }
     }
   ],
   "contributions": [
@@ -10469,7 +10643,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10487,7 +10661,7 @@
         "label": null
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10505,7 +10679,7 @@
         "label": "2025"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10523,7 +10697,7 @@
         "label": "2025"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10541,7 +10715,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10559,7 +10733,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10577,7 +10751,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10595,7 +10769,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10613,7 +10787,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10631,7 +10805,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": "The owner supplied the Healthcare contribution name; no exact current CityMETER catalog module is asserted."
     },
     {
@@ -10649,7 +10823,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10667,7 +10841,7 @@
         "label": "2019–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10685,7 +10859,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10703,7 +10877,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10721,7 +10895,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10739,7 +10913,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10757,7 +10931,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10775,7 +10949,7 @@
         "label": "2018–present"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10793,7 +10967,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10811,7 +10985,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10829,7 +11003,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10847,7 +11021,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10865,7 +11039,7 @@
         "label": "Full-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10883,7 +11057,7 @@
         "label": "2026"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
@@ -10901,26 +11075,80 @@
         "label": "Part-time"
       },
       "evidenceStatus": "owner_supplied",
-      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-06_detail_refinement",
+      "sourceRef": "owner_instructions_2026-08-23_through_2026-09-30_detail_refinement",
       "evidenceNote": null
     },
     {
       "contributionId": "C0121",
       "personId": "I0044",
-      "workId": "work-contribution-details-pending",
+      "workId": "work-ijji",
       "engagementId": "E0064",
       "role": {
-        "th": "Go-to-market",
-        "en": "Go-to-market"
+        "th": "ร่วมสนับสนุนงาน",
+        "en": "Project support"
       },
       "period": {
         "start": null,
         "end": null,
         "label": null
       },
-      "evidenceStatus": "owner_detail_required",
-      "sourceRef": "owner_instruction_2026-08-23",
-      "evidenceNote": "เจ้าของข้อมูลยืนยันว่าทุกคนมีอย่างน้อยหนึ่งผลงาน แต่ยังไม่มีหลักฐานพอระบุชื่อโครงการของบุคคลนี้"
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner confirmed Sorso is supporting Renee on ijji. Exact tasks, deliverables and contribution dates were not supplied; no lead role or completed outcome is inferred."
+    },
+    {
+      "contributionId": "C0122",
+      "personId": "I0045",
+      "workId": "work-citymeter-religious-places-unresolved",
+      "engagementId": "E0065",
+      "role": {
+        "th": "กำลังจัดทำ",
+        "en": "Developing"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": null
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner identified Q's religious-places work as in progress and asked to defer the profile statement until the work is finished. No completion, detailed responsibilities or outcome is inferred."
+    },
+    {
+      "contributionId": "C0123",
+      "personId": "I0045",
+      "workId": "work-citymeter-fuel-stations",
+      "engagementId": "E0065",
+      "role": {
+        "th": "กำลังปรับปรุง",
+        "en": "Improving"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": null
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner identified Q's Gas station improvement work as in progress. It is reconciled to the existing Fuel Stations work record without inferring completion, a release, detailed responsibilities or an outcome."
+    },
+    {
+      "contributionId": "C0124",
+      "personId": "I0030",
+      "workId": "work-citymeter-nonbank",
+      "engagementId": "E0040",
+      "role": {
+        "th": "Software development",
+        "en": "Software development"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": "2026"
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-09-29",
+      "evidenceNote": "The owner credited Ken with the new nonBank module at the supplied CityMETER destination. No exclusive authorship, project-lead role or exact contribution dates are inferred."
     }
   ],
   "achievements": [
@@ -11193,8 +11421,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -11502,8 +11730,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -11521,8 +11749,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -12135,8 +12363,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -12154,8 +12382,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -13813,8 +14041,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14225,8 +14453,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14534,8 +14762,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14553,8 +14781,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14750,8 +14978,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14769,8 +14997,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15285,8 +15513,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-25",
@@ -15304,8 +15532,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-26",
@@ -15496,8 +15724,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15515,8 +15743,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15707,8 +15935,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -16237,8 +16465,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-24",
@@ -16256,8 +16484,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-24",
@@ -16341,12 +16569,12 @@
       "socialProfileId": "SOC-I0044-LINKEDIN",
       "personId": "I0044",
       "platform": "linkedin",
-      "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229",
+      "publicUrl": "https://www.linkedin.com/in/wichanat-khongkliang-ab050a229/",
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-09-06",
@@ -16439,6 +16667,104 @@
       "ownerApproval": null,
       "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-LINKEDIN",
+      "personId": "I0045",
+      "platform": "linkedin",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-GITHUB",
+      "personId": "I0045",
+      "platform": "github",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-GITLAB",
+      "personId": "I0045",
+      "platform": "gitlab",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-WEBSITE",
+      "personId": "I0045",
+      "platform": "website",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-FACEBOOK",
+      "personId": "I0045",
+      "platform": "facebook",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-INSTAGRAM",
+      "personId": "I0045",
+      "platform": "instagram",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
+    },
+    {
+      "socialProfileId": "SOC-I0045-TIKTOK",
+      "personId": "I0045",
+      "platform": "tiktok",
+      "publicUrl": null,
+      "candidateStatus": "candidate_missing",
+      "candidateValueEmitted": false,
+      "verificationStatus": "missing",
+      "consentStatus": "pending",
+      "publicationBasis": null,
+      "ownerApproval": null,
+      "publicationStatus": "withheld_pending_candidate",
+      "dataBoundary": "private_candidates_not_emitted"
     }
   ],
   "assets": [
@@ -16508,9 +16834,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-24",
@@ -16589,9 +16915,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -16746,9 +17072,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17173,9 +17499,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17281,20 +17607,20 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-09-30",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-09-30"
       },
       "publicationStatus": "publishable",
-      "sha256": "d697d57dd35a4a9f5a125da286d61ff3f79c97c743418ae5a4d9f8b19026a550",
+      "sha256": "cba9f6f1e9655322d8b2f39874974549c62c44c73897b7d95bd5046e5a05108d",
       "mediaType": "image/jpeg",
-      "bytes": 72435,
-      "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+      "bytes": 54956,
+      "identityVerificationEvidence": "exact_roster_match_and_direct_participant_reply"
     },
     {
       "assetId": "PORTRAIT-I0029",
@@ -17362,9 +17688,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17416,9 +17742,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-25",
@@ -17551,9 +17877,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-25",
@@ -17600,9 +17926,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-25",
@@ -17654,9 +17980,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17789,8 +18115,8 @@
       },
       "candidateStatus": "source_needed",
       "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "rightsStatus": "pending",
+      "consentStatus": "denied",
+      "rightsStatus": "denied",
       "publicationBasis": null,
       "ownerApproval": null,
       "publicationStatus": "withheld_pending_rights_consent_and_verification",
@@ -17803,11 +18129,38 @@
       "assetId": "PORTRAIT-I0044",
       "personId": "I0044",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0044.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของโซ่",
         "en": "Profile portrait of Sorso"
+      },
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "rightsStatus": "cleared",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-30",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-09-30"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "06200b0b5849b0b318c2563b4b9c9a621baf7259e68e89fc15a02fba105fe840",
+      "mediaType": "image/jpeg",
+      "bytes": 57442,
+      "identityVerificationEvidence": "exact_roster_match_and_direct_participant_reply"
+    },
+    {
+      "assetId": "PORTRAIT-I0045",
+      "personId": "I0045",
+      "kind": "profile_portrait",
+      "publicPath": null,
+      "sourceUrl": null,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของคิว",
+        "en": "Profile portrait of I0045"
       },
       "candidateStatus": "source_needed",
       "verificationStatus": "missing",

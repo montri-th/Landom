@@ -192,8 +192,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -393,8 +393,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -795,8 +795,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -1867,8 +1867,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2135,8 +2135,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2336,8 +2336,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2470,8 +2470,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2805,8 +2805,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2939,8 +2939,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2963,8 +2963,8 @@
         "en": "Dan"
       }
     },
-    "currentStatus": "active",
-    "firstJoined": "2026-05-19",
+    "currentStatus": "alumni",
+    "firstJoined": "2026-05-16",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-08-23",
@@ -3073,8 +3073,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -3408,8 +3408,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_supplied",
@@ -3433,7 +3433,7 @@
       }
     },
     "currentStatus": "active",
-    "firstJoined": "2026-08-24",
+    "firstJoined": "2026-08-18",
     "migrationClassification": "intern_or_program_participant",
     "canonicalIdPolicy": {
       "assignedAtMigration": "2026-09-06",
@@ -3473,6 +3473,68 @@
         "scope": "source_backed_placeholder_profile_copy",
         "sourceRef": "owner_instruction_2026-08-23"
       }
+    },
+    "publication": {
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
+    },
+    "dataQuality": {
+      "profileVerificationStatus": "owner_confirmed_and_application_response_verified",
+      "sourceNotePresent": true
+    }
+  },
+  {
+    "personId": "I0045",
+    "names": {
+      "full": {
+        "th": "ณัฐพัฒน์ แดงคงแก้ว",
+        "en": null
+      },
+      "nickname": {
+        "th": "คิว",
+        "en": null
+      },
+      "card": {
+        "th": "คิว",
+        "en": null
+      }
+    },
+    "currentStatus": "active",
+    "firstJoined": "2026-08-01",
+    "migrationClassification": "intern_or_program_participant",
+    "canonicalIdPolicy": {
+      "assignedAtMigration": "2026-09-26",
+      "categoryAtMigration": "intern_or_program_participant",
+      "frozenAcrossFutureRoleChanges": true
+    },
+    "educationDisplayMode": "program",
+    "educationDisplay": {
+      "mode": "program",
+      "card": {
+        "th": "CEDT · จุฬาฯ",
+        "en": "CEDT · CU"
+      },
+      "detail": {
+        "th": "วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล — จุฬาลงกรณ์มหาวิทยาลัย",
+        "en": "Computer Engineering and Digital Technology — Chulalongkorn University"
+      },
+      "verificationStatus": "first_person_application_program_verified_no_degree_award"
+    },
+    "bio": {
+      "th": null,
+      "en": null,
+      "status": "owner_pending",
+      "verificationStatus": "owner_pending",
+      "publicationBasis": null,
+      "sourceBasis": null,
+      "sourceType": null,
+      "sourceRef": null,
+      "authorRole": null,
+      "derivationMethod": null,
+      "evidenceScope": null,
+      "evidenceConfidence": null,
+      "reviewStatus": "pending_owner_copy",
+      "ownerApproval": null
     },
     "publication": {
       "consentStatus": "pending",

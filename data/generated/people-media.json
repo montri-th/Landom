@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-08-25T00:00:00+07:00",
+  "generatedAt": "2026-09-30T00:00:00+07:00",
   "canonicalUrl": "https://montri-th.github.io/Landom/data/generated/people-media.json",
   "contract": {
     "access": "public_read_only",
@@ -1090,10 +1090,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/I0028.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0028.jpg?v=d697d57dd35a",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0028.jpg?v=cba9f6f1e965",
         "mediaType": "image/jpeg",
-        "bytes": 72435,
-        "sha256": "d697d57dd35a4a9f5a125da286d61ff3f79c97c743418ae5a4d9f8b19026a550",
+        "bytes": 54956,
+        "sha256": "cba9f6f1e9655322d8b2f39874974549c62c44c73897b7d95bd5046e5a05108d",
         "alt": {
           "th": "ภาพโปรไฟล์ของฟรัง",
           "en": "Profile portrait of France"
@@ -1765,12 +1765,47 @@
         "th": "https://montri-th.github.io/Landom/?person=I0044&lang=th",
         "en": "https://montri-th.github.io/Landom/en/?person=I0044&lang=en"
       },
-      "portrait": null,
+      "portrait": {
+        "status": "publishable",
+        "url": "https://montri-th.github.io/Landom/public/assets/people/I0044.jpg",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0044.jpg?v=06200b0b5849",
+        "mediaType": "image/jpeg",
+        "bytes": 57442,
+        "sha256": "06200b0b5849b0b318c2563b4b9c9a621baf7259e68e89fc15a02fba105fe840",
+        "alt": {
+          "th": "ภาพโปรไฟล์ของโซ่",
+          "en": "Profile portrait of Sorso"
+        }
+      },
       "fallback": {
         "kind": "full_nickname",
         "fullNickname": {
           "th": "โซ่",
           "en": "Sorso"
+        },
+        "reason": "image_load_failure"
+      }
+    },
+    {
+      "personId": "I0045",
+      "displayName": {
+        "th": "คิว",
+        "en": null
+      },
+      "fullName": {
+        "th": "ณัฐพัฒน์ แดงคงแก้ว",
+        "en": null
+      },
+      "profileUrl": {
+        "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
+        "en": "https://montri-th.github.io/Landom/en/?person=I0045&lang=en"
+      },
+      "portrait": null,
+      "fallback": {
+        "kind": "full_nickname",
+        "fullNickname": {
+          "th": "คิว",
+          "en": null
         },
         "reason": "no_governed_person_portrait"
       }

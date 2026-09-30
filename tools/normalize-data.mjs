@@ -7,6 +7,7 @@ import {
   isNormalizedSheetSnapshot,
   PUBLIC_WEB_SOCIAL_PLATFORMS
 } from './normalized-sheet-roundtrip.mjs';
+import { applyPublicationConsent } from './publication-consent.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -106,6 +107,22 @@ function buildPeopleMediaManifest(siteData) {
 }
 
 function writeSiteDataFiles(siteData) {
+  const consentPath = path.join(root, 'data/approved/publication-consent.json');
+  if (fs.existsSync(consentPath)) {
+    siteData = applyPublicationConsent(siteData, JSON.parse(fs.readFileSync(consentPath, 'utf8')));
+  }
+  const reviewDates = [siteData.meta.dataUpdatedAt, siteData.meta.reviewedAt];
+  for (const fileName of ['profile-detail-overrides.json', 'education-placement-overrides.json']) {
+    const approvedPath = path.join(root, 'data/approved', fileName);
+    if (fs.existsSync(approvedPath)) reviewDates.push(JSON.parse(fs.readFileSync(approvedPath, 'utf8')).reviewedAt);
+  }
+  const latestReviewDate = reviewDates.filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date ?? '')).sort().at(-1);
+  if (latestReviewDate) {
+    // Deterministic projection release date; retain the raw snapshot's own timestamp.
+    siteData.meta.generatedAt = `${latestReviewDate}T00:00:00+07:00`;
+    siteData.meta.dataUpdatedAt = latestReviewDate;
+    siteData.meta.reviewedAt = latestReviewDate;
+  }
   fs.mkdirSync(outputDir, { recursive: true });
   writeJson('meta.json', siteData.meta);
   writeJson('copy.json', siteData.copy);
@@ -619,8 +636,12 @@ for (const approved of profileDetailOverrides.addedEducationRecords ?? []) {
   const program = programs.find((item) => item.programId === approved.programId);
   if (!institution) throw new Error('Added education record references an unknown institution: ' + approved.institutionId);
   if (!program) throw new Error('Added education record references an unknown program: ' + approved.programId);
+  const educationRecordId = approved.educationRecordId ?? 'EDU' + String(educationRecords.length + 1).padStart(4, '0');
+  if (educationRecords.some((record) => record.educationRecordId === educationRecordId)) {
+    throw new Error('Added education record duplicates an education record ID: ' + educationRecordId);
+  }
   educationRecords.push({
-    educationRecordId: 'EDU' + String(educationRecords.length + 1).padStart(4, '0'),
+    educationRecordId,
     personId: approved.personId,
     institutionId: approved.institutionId,
     programId: approved.programId,
@@ -855,8 +876,8 @@ for (const override of profileDetailOverrides.addedEngagements ?? []) {
     throw new Error('Added engagement duplicates an engagement ID: ' + override.engagementId);
   }
   if (!personById.has(override.personId)) throw new Error('Added engagement references an unknown person: ' + override.personId);
-  const programNames = engagementProgramNames[override.programCode];
-  if (!programNames) throw new Error('Added engagement references an unknown program code: ' + override.programCode);
+  const programNames = engagementProgramNames[override.programCode] ?? (override.programCode === null ? override.programNames : null);
+  if (!clean(programNames?.th) || !clean(programNames?.en)) throw new Error('Added engagement requires a known program code or explicit bilingual program names: ' + override.engagementId);
   engagements.push({
     engagementId: override.engagementId,
     personId: override.personId,
@@ -1038,7 +1059,8 @@ function addWork(definition) {
     authorityStatus: definition.authorityStatus,
     evidenceNote: definition.evidenceNote || null,
     sourceAliases: definition.aliases || [],
-    ...workLinkFields(definition.workId, definition.moduleSlug, definition.evidenceUrl, definition.destinationUrl)
+    ...workLinkFields(definition.workId, definition.moduleSlug, definition.evidenceUrl, definition.destinationUrl),
+    ...(definition.linkEvidence ? { linkEvidence: structuredClone(definition.linkEvidence) } : {})
   };
   workMap.set(work.workId, work);
   for (const alias of work.sourceAliases) workAliasMap.set(alias, work.workId);
@@ -1429,16 +1451,25 @@ for (const approvedProfile of profileCopy.profiles ?? []) {
   }
   approvedProfileByPersonId.set(approvedProfile.personId, approvedProfile);
 }
-if (approvedProfileByPersonId.size !== people.length) {
-  throw new Error('Approved profile copy must contain exactly one safe placeholder for every governed person.');
+const deferredProfileByPersonId = new Map();
+for (const deferred of profileCopy.deferredProfiles ?? []) {
+  if (!personById.has(deferred.personId) || approvedProfileByPersonId.has(deferred.personId) || deferredProfileByPersonId.has(deferred.personId)) {
+    throw new Error('Deferred profile must reference one unique governed person without approved copy: ' + deferred.personId);
+  }
+  if (deferred.reason !== 'owner_requested_after_work_completion') throw new Error('Deferred profile requires an explicit owner-requested reason: ' + deferred.personId);
+  deferredProfileByPersonId.set(deferred.personId, deferred);
+}
+if (approvedProfileByPersonId.size + deferredProfileByPersonId.size !== people.length) {
+  throw new Error('Every governed person requires approved profile copy or an explicit owner-requested deferral.');
 }
 const firstPersonProfiles = [...approvedProfileByPersonId.values()].filter((profile) => !profile.basis || profile.basis === 'first_person');
 const factualFallbackProfiles = [...approvedProfileByPersonId.values()].filter((profile) => profile.basis === 'factual_fallback');
-if (firstPersonProfiles.length !== 26 || factualFallbackProfiles.length !== people.length - 26) {
+if (firstPersonProfiles.length !== 26 || factualFallbackProfiles.length !== approvedProfileByPersonId.size - 26) {
   throw new Error('Approved profile provenance must retain 26 first-person paraphrases and use factual fallbacks only for the remaining governed people.');
 }
 for (const person of people) {
   const approvedProfile = approvedProfileByPersonId.get(person.personId);
+  if (deferredProfileByPersonId.has(person.personId)) continue;
   const factualFallback = approvedProfile.basis === 'factual_fallback';
   const sourceContract = factualFallback ? profileCopy.factualFallbackContract : profileCopy;
   if (!(approvedProfile.publicationBasis || sourceContract?.publicationBasis) ||
@@ -1764,7 +1795,7 @@ const meta = {
     socialAndPortraits: 'Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
     educationPublicProfiles: 'Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.',
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
-    profileCopy: 'All 52 core profiles have owner-authorized bilingual placeholders pending candidate/video review. The previously governed 51 profile texts are retained byte-for-byte and one exact-matched 2026 applicant paraphrase is added. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.',
+    profileCopy: `${approvedProfileByPersonId.size} core profiles retain owner-authorized bilingual placeholders pending candidate/video review; ${deferredProfileByPersonId.size} profiles remain blank at the owner's request until their work is complete. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.`,
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
     staffDegrees: 'The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.',
     externalPublications: 'An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer.'

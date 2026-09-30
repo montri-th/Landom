@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedFrom": "owner_approved_portrait_import_2026-08-23_through_2026-08-25",
+  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-09-30",
   "sourceUrlsExcluded": true,
   "assets": [
     {
@@ -652,21 +652,23 @@
       "personId": "I0028",
       "publicPath": "public/assets/people/I0028.jpg",
       "mime": "image/jpeg",
-      "bytes": 72435,
-      "sha256": "d697d57dd35a4a9f5a125da286d61ff3f79c97c743418ae5a4d9f8b19026a550",
-      "identityVerification": "sheet_profile_url_and_visible_profile_title",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "bytes": 54956,
+      "sha256": "cba9f6f1e9655322d8b2f39874974549c62c44c73897b7d95bd5046e5a05108d",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
-        "approvedAt": "2026-08-23",
+        "approvedAt": "2026-09-30",
         "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
+        "sourceRef": "owner_instruction_2026-09-30"
       },
       "optimization": {
         "format": "jpeg",
         "maxDimension": 800,
         "quality": 78,
-        "sourceOriginalPreservedPrivately": true
+        "sourceOriginalPreservedPrivately": true,
+        "crop": "none",
+        "metadataStripped": true
       }
     },
     {
@@ -1299,6 +1301,36 @@
         "outputWidth": 200,
         "outputHeight": 200,
         "sourceOriginalPreservedPrivately": true
+      }
+    },
+    {
+      "personId": "I0044",
+      "publicPath": "public/assets/people/I0044.jpg",
+      "mime": "image/jpeg",
+      "bytes": 57442,
+      "sha256": "06200b0b5849b0b318c2563b4b9c9a621baf7259e68e89fc15a02fba105fe840",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-09-30",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-09-30"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 800,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true,
+        "crop": {
+          "x": 0,
+          "y": 500,
+          "width": 3648,
+          "height": 3648
+        },
+        "metadataStripped": true,
+        "width": 800,
+        "height": 800
       }
     }
   ]

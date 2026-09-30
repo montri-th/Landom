@@ -202,6 +202,25 @@ test('person images require a fully approved asset record', () => {
   assert.match(validateDataContract(data).join('\n'), /before all approvals pass/);
 });
 
+test('explicit media refusal takes precedence over historical owner publication authorization', () => {
+  const data = fixture();
+  data.assets.push({
+    assetId: 'PORTRAIT-S0001', personId: 'S0001', kind: 'profile_portrait',
+    publicPath: 'public/assets/people/S0001.jpg', publicationStatus: 'publishable',
+    verificationStatus: 'verified', consentStatus: 'denied', rightsStatus: 'cleared',
+    publicationBasis: 'owner_authorized_public_profile_portrait', ownerApproval: { status: 'granted' }
+  });
+  data.socialProfiles.push({
+    socialProfileId: 'SOC-S0001-LINKEDIN', personId: 'S0001', platform: 'linkedin',
+    publicUrl: 'https://www.linkedin.com/in/example/', publicationStatus: 'publishable',
+    verificationStatus: 'verified', consentStatus: 'denied',
+    publicationBasis: 'owner_authorized_public_profile_link', ownerApproval: { status: 'granted' }
+  });
+  const errors = validateDataContract(data).join('\n');
+  assert.match(errors, /Asset PORTRAIT-S0001 is public without verification, an approved publication basis, and publication rights/);
+  assert.match(errors, /public without verified source and an approved publication basis/);
+});
+
 test('the build allowlist excludes private raw sheets and runtime secrets', () => {
   assert.deepEqual(PUBLISH_PATHS, ['index.html', 'llms.txt', 'robots.txt', 'sitemap.xml', 'src', 'public', 'data/generated']);
   assert.equal(PUBLISH_PATHS.some((entry) => entry.startsWith('data/raw')), false);

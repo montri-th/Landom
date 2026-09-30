@@ -344,5 +344,11 @@
       "th": "โปเต้ทำงานกับ Landometer แบบ full-time ตั้งแต่ปี 2018 โดยร่วมพัฒนาข้อมูลประชากรและอาคารให้กลายเป็นภาพเมืองที่ใช้งานต่อได้",
       "en": "Pote has worked full-time with Landometer since 2018, helping turn population and building data into city views that others can use."
     }
+  ],
+  "deferredProfiles": [
+    {
+      "personId": "I0045",
+      "reason": "owner_requested_after_work_completion"
+    }
   ]
 }
