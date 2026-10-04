@@ -114,6 +114,7 @@ jobs:
           footer_icon_font_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-material-symbols-footer-r10.ttf --write-out '%{content_type}' "$base_url/public/assets/fonts/material-symbols-rounded-footer-r10.ttf?$cache_bust")"
           portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-s0001.jpg --write-out '%{content_type}' "$base_url/public/assets/people/S0001.jpg?$cache_bust")"
           ham_portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-i0009.jpg --write-out '%{content_type}' "$base_url/public/assets/people/I0009.jpg?$cache_bust")"
+          nine_portrait_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-portrait-i0038.jpg --write-out '%{content_type}' "$base_url/public/assets/people/I0038.jpg?v=d5ff64f6a1de&$cache_bust")"
           social_preview_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-og.jpg --write-out '%{content_type}' "$base_url/public/assets/social/landom-people-og.jpg?v=a7c46cf31e97&$cache_bust")"
           hero_image_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-people-hero.jpg --write-out '%{content_type}' "$base_url/public/assets/hero/landom-people-hero.jpg?$cache_bust")"
           hero_anchor_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-community-anchor.jpg --write-out '%{content_type}' "$base_url/public/assets/hero/landom-community-anchor.jpg?$cache_bust")"
@@ -149,6 +150,7 @@ jobs:
           case "$footer_icon_font_type" in font/ttf*|application/x-font-ttf*|application/octet-stream*) ;; *) echo "Unexpected footer icon TTF content type: $footer_icon_font_type"; exit 1;; esac
           case "$portrait_type" in image/jpeg*) ;; *) echo "Unexpected portrait content type: $portrait_type"; exit 1;; esac
           case "$ham_portrait_type" in image/jpeg*) ;; *) echo "Unexpected Ham portrait content type: $ham_portrait_type"; exit 1;; esac
+          case "$nine_portrait_type" in image/jpeg*) ;; *) echo "Unexpected Nine portrait content type: $nine_portrait_type"; exit 1;; esac
           case "$social_preview_type" in image/jpeg*) ;; *) echo "Unexpected social preview content type: $social_preview_type"; exit 1;; esac
           case "$hero_image_type" in image/jpeg*) ;; *) echo "Unexpected hero image content type: $hero_image_type"; exit 1;; esac
           case "$hero_anchor_type" in image/jpeg*) ;; *) echo "Unexpected Hero anchor content type: $hero_anchor_type"; exit 1;; esac
@@ -294,6 +296,7 @@ jobs:
               ["public/assets/fonts/material-symbols-rounded-footer-r10.ttf", "/tmp/landom-material-symbols-footer-r10.ttf"],
               ["public/assets/people/S0001.jpg", "/tmp/landom-portrait-s0001.jpg"],
               ["public/assets/people/I0009.jpg", "/tmp/landom-portrait-i0009.jpg"],
+              ["public/assets/people/I0038.jpg", "/tmp/landom-portrait-i0038.jpg"],
               ["public/assets/social/landom-people-og.jpg", "/tmp/landom-people-og.jpg"],
               ["public/assets/hero/landom-people-hero.jpg", "/tmp/landom-people-hero.jpg"],
               ["public/assets/hero/landom-community-anchor.jpg", "/tmp/landom-community-anchor.jpg"],

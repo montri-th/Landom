@@ -1001,7 +1001,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 48);
+  assert.equal(portraits.length, 49);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);

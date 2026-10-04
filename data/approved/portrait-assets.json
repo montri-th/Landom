@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-09-30",
+  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-10-04",
   "sourceUrlsExcluded": true,
   "assets": [
     {
@@ -1331,6 +1331,43 @@
         "metadataStripped": true,
         "width": 800,
         "height": 800
+      }
+    },
+    {
+      "personId": "I0038",
+      "publicPath": "public/assets/people/I0038.jpg",
+      "mime": "image/jpeg",
+      "bytes": 67406,
+      "sha256": "d5ff64f6a1de83a216cb1661977489704b57c9d133f401f1343f14b648bf2204",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-10-04"
+      },
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 800,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true,
+        "sourceOriginalSha256": "18205ab876de2d7162cade8fdc38096898aac5318c0e4a404a495e17699ea28e",
+        "crop": {
+          "x": 0,
+          "y": 240,
+          "width": 1108,
+          "height": 1108
+        },
+        "metadataStripped": true,
+        "width": 800,
+        "height": 800,
+        "resampling": "LANCZOS",
+        "colorHandling": "embedded_to_srgb",
+        "subsampling": 2,
+        "optimize": false,
+        "progressive": false,
+        "pillowVersion": "12.3.0"
       }
     }
   ]

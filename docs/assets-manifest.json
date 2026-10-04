@@ -2053,6 +2053,53 @@
         "brand-mark"
       ],
       "notes": "Direct participant-submitted portrait with consent for Landom profile and related work pages. Bounded square crop x=0,y=500,width=3648,height=3648 on the oriented original, then 800x800 JPEG78; preserves complete head in the existing square photo frame; metadata stripped. Original and correspondence remain private."
+    },
+    {
+      "assetId": "PORTRAIT-I0038",
+      "path": "public/assets/people/I0038.jpg",
+      "variant": "participant-submitted-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "width": 800,
+      "height": 800,
+      "bytes": 67406,
+      "sha256": "d5ff64f6a1de83a216cb1661977489704b57c9d133f401f1343f14b648bf2204",
+      "sourceOriginalSha256": "18205ab876de2d7162cade8fdc38096898aac5318c0e4a404a495e17699ea28e",
+      "sourceCrop": {
+        "sourceWidth": 1108,
+        "sourceHeight": 1477,
+        "x": 0,
+        "y": 240,
+        "width": 1108,
+        "height": 1108,
+        "retouched": false,
+        "generated": false
+      },
+      "owner": "Profile subject",
+      "approvalStatus": "approved",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-10-04"
+      },
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark",
+        "hero-image",
+        "social-preview",
+        "favicon",
+        "certificate"
+      ],
+      "metadataStripped": true,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของไนน์",
+        "en": "Profile portrait of Nine"
+      },
+      "notes": "Direct participant-submitted portrait with consent for Landom profile and related work pages. Bounded square crop x=0,y=240,width=1108,height=1108 on the oriented original, then 800x800 JPEG78 with embedded-profile conversion to sRGB and metadata stripping. No retouching or identity alteration. Original and correspondence remain private."
     }
   ]
 }

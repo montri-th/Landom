@@ -1472,14 +1472,25 @@
         "th": "https://montri-th.github.io/Landom/?person=I0038&lang=th",
         "en": "https://montri-th.github.io/Landom/en/?person=I0038&lang=en"
       },
-      "portrait": null,
+      "portrait": {
+        "status": "publishable",
+        "url": "https://montri-th.github.io/Landom/public/assets/people/I0038.jpg",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0038.jpg?v=d5ff64f6a1de",
+        "mediaType": "image/jpeg",
+        "bytes": 67406,
+        "sha256": "d5ff64f6a1de83a216cb1661977489704b57c9d133f401f1343f14b648bf2204",
+        "alt": {
+          "th": "ภาพโปรไฟล์ของไนน์",
+          "en": "Profile portrait of Nine"
+        }
+      },
       "fallback": {
         "kind": "full_nickname",
         "fullNickname": {
           "th": "ไนน์",
           "en": "Nine"
         },
-        "reason": "no_governed_person_portrait"
+        "reason": "image_load_failure"
       }
     },
     {

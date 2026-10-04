@@ -17906,23 +17906,28 @@
       "assetId": "PORTRAIT-I0038",
       "personId": "I0038",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0038.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของไนน์",
         "en": "Profile portrait of Nine"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "rightsStatus": "cleared",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_portrait",
+        "sourceRef": "owner_instruction_2026-10-04"
+      },
+      "publicationStatus": "publishable",
+      "sha256": "d5ff64f6a1de83a216cb1661977489704b57c9d133f401f1343f14b648bf2204",
+      "mediaType": "image/jpeg",
+      "bytes": 67406,
+      "identityVerificationEvidence": "exact_roster_match_and_direct_participant_reply"
     },
     {
       "assetId": "PORTRAIT-I0039",

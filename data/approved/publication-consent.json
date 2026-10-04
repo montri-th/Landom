@@ -360,6 +360,10 @@
     {
       "personId": "I0038",
       "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "d5ff64f6a1de83a216cb1661977489704b57c9d133f401f1343f14b648bf2204"
+      },
       "socials": [
         {
           "platform": "linkedin",
