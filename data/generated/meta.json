@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.5.0",
-  "generatedAt": "2026-09-30T00:00:00+07:00",
+  "generatedAt": "2026-10-04T00:00:00+07:00",
   "source": {
     "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
     "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -61,8 +61,8 @@
     "cooperativeEducationPeople": 7,
     "verifiedInstitutionLinkedInProfiles": 8,
     "verifiedProgramLinkedInProfiles": 1,
-    "publishedPublicSocialProfiles": 74
+    "publishedPublicSocialProfiles": 76
   },
-  "dataUpdatedAt": "2026-09-30",
-  "reviewedAt": "2026-09-30"
+  "dataUpdatedAt": "2026-10-04",
+  "reviewedAt": "2026-10-04"
 }

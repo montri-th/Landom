@@ -203,23 +203,25 @@ test('latest work credits preserve explicit scope, in-progress status and exact 
 
 test('reviewed publication replies apply per scope while nonrespondents and Pote portrait refusal remain truthful', () => {
   const consent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
-  assert.equal(consent.records.length, 12);
+  assert.equal(consent.records.length, 20);
   const respondents = new Set(consent.records.map((record) => record.personId));
-  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 12);
+  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 20);
   for (const person of data.people) {
     assert.equal(person.publication.consentStatus, respondents.has(person.personId) ? 'granted' : 'pending');
   }
   for (const record of consent.records) {
     const portrait = data.assets.find((asset) => asset.personId === record.personId && asset.kind === 'profile_portrait');
-    assert.equal(portrait.consentStatus, record.portrait.consentStatus);
-    if (record.portrait.consentStatus === 'granted') {
-      assert.equal(portrait.sha256, record.portrait.sha256);
-      assert.equal(portrait.publicationBasis, 'individual_consent');
-      assert.equal(portrait.publicationStatus, 'publishable');
-    } else {
-      assert.equal(portrait.publicPath, null);
-      assert.equal(portrait.sourceUrl, null);
-      assert.notEqual(portrait.publicationStatus, 'publishable');
+    if (record.portrait) {
+      assert.equal(portrait.consentStatus, record.portrait.consentStatus);
+      if (record.portrait.consentStatus === 'granted') {
+        assert.equal(portrait.sha256, record.portrait.sha256);
+        assert.equal(portrait.publicationBasis, 'individual_consent');
+        assert.equal(portrait.publicationStatus, 'publishable');
+      } else {
+        assert.equal(portrait.publicPath, null);
+        assert.equal(portrait.sourceUrl, null);
+        assert.notEqual(portrait.publicationStatus, 'publishable');
+      }
     }
     for (const approved of record.socials) {
       const profile = data.socialProfiles.find((item) => item.personId === record.personId && item.platform === approved.platform);
@@ -230,8 +232,8 @@ test('reviewed publication replies apply per scope while nonrespondents and Pote
   }
   assert.equal(data.assets.find((asset) => asset.personId === 'S0007').consentStatus, 'denied');
   assert.equal(fs.existsSync(path.join(root, 'public/assets/people/S0007.jpg')), false);
-  assert.equal(data.meta.dataUpdatedAt, '2026-09-30');
-  assert.equal(data.meta.reviewedAt, '2026-09-30');
+  assert.equal(data.meta.dataUpdatedAt, '2026-10-04');
+  assert.equal(data.meta.reviewedAt, '2026-10-04');
   if (rawAvailable) {
     const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'data/raw/google-sheet-snapshot.json'), 'utf8'));
     assert.equal(data.meta.source.snapshotFetchedAt, snapshot.source.fetchedAt, 'review dates must not falsify the raw fetch date');

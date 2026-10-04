@@ -564,6 +564,36 @@
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_to_keep_verified_linkedin_and_github_profiles_complete"
       }
+    },
+    {
+      "personId": "I0034",
+      "platform": "github",
+      "publicUrl": "https://github.com/Icegoo141",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "exact_roster_match_and_direct_participant_submitted_profile_url",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-10-04"
+      }
+    },
+    {
+      "personId": "I0038",
+      "platform": "linkedin",
+      "publicUrl": "https://www.linkedin.com/in/norraphat-rathasamuth-740877431/",
+      "verificationStatus": "verified",
+      "identityEvidenceBasis": "exact_roster_match_and_direct_participant_submitted_profile_url",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-10-04"
+      }
     }
   ],
   "externalPublications": [

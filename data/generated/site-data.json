@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": "1.5.0",
-    "generatedAt": "2026-09-30T00:00:00+07:00",
+    "generatedAt": "2026-10-04T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
       "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -62,10 +62,10 @@
       "cooperativeEducationPeople": 7,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 74
+      "publishedPublicSocialProfiles": 76
     },
-    "dataUpdatedAt": "2026-09-30",
-    "reviewedAt": "2026-09-30"
+    "dataUpdatedAt": "2026-10-04",
+    "reviewedAt": "2026-10-04"
   },
   "copy": {
     "brand": {
@@ -3074,8 +3074,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -3677,8 +3677,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -3811,8 +3811,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4146,8 +4146,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4347,8 +4347,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4481,8 +4481,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4615,8 +4615,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4749,8 +4749,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -13217,8 +13217,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14144,8 +14144,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14350,8 +14350,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14870,8 +14870,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -14889,8 +14889,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15194,8 +15194,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15209,14 +15209,19 @@
       "socialProfileId": "SOC-I0034-GITHUB",
       "personId": "I0034",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/Icegoo141",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-10-04"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15405,8 +15410,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15424,8 +15429,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-26",
@@ -15617,14 +15622,19 @@
       "socialProfileId": "SOC-I0038-LINKEDIN",
       "personId": "I0038",
       "platform": "linkedin",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://www.linkedin.com/in/norraphat-rathasamuth-740877431/",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": {
+        "status": "granted",
+        "approvedAt": "2026-10-04",
+        "scope": "public_profile_link_only",
+        "sourceRef": "owner_instruction_2026-10-04"
+      },
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15635,8 +15645,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-26",
@@ -15832,8 +15842,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17283,9 +17293,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17526,9 +17536,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17580,9 +17590,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17715,9 +17725,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17796,9 +17806,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-25",
@@ -17850,9 +17860,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17953,9 +17963,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
