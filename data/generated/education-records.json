@@ -703,7 +703,7 @@
     "programId": "program-kmitl-iot-system-information-engineering",
     "recordType": "education",
     "isPrimary": true,
-    "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–Present — Bachelor of Engineering; IoT and Information Engineering Major",
+    "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–2026 — Bachelor of Engineering; IoT and Information Engineering Major",
     "qualification": {
       "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
       "en": "IoT System and Information Engineering"
@@ -721,22 +721,22 @@
         "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
         "en": "IoT System and Information Engineering"
       },
-      "awardStatus": "in_progress",
+      "awardStatus": "under_review",
       "personalAwardVerified": false,
       "programEvidenceUrl": "https://www.iote.kmitl.ac.th/iot-system-and-information/",
-      "evidenceScope": "owner_confirmed_current_study_with_official_program_definition"
+      "evidenceScope": "participant_confirmed_study_period_degree_award_unverified"
     },
     "studyPeriod": {
       "start": "2022",
-      "end": null,
-      "current": true,
+      "end": "2026",
+      "current": false,
       "label": {
-        "th": "2022–ปัจจุบัน",
-        "en": "2022–Present"
+        "th": "2022–2026",
+        "en": "2022–2026"
       }
     },
-    "verificationStatus": "owner_confirmed_current_study_with_official_program_definition",
-    "evidenceNote": "Owner confirmed Team's current Bachelor of Engineering study at KMITL from 2022 to present; the official department page standardizes the program as IoT System and Information Engineering. This is in progress and is not represented as a completed degree."
+    "verificationStatus": "participant_confirmed_study_period_degree_award_unverified",
+    "evidenceNote": "Participant corrected the study period to 2022–2026. The official department page standardizes IoT System and Information Engineering. A completed degree has not been confirmed."
   },
   {
     "educationRecordId": "EDU0039",

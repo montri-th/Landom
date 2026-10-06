@@ -1,6 +1,6 @@
 # Landom participant updates — 6 October 2026
 
-The reviewed public projection has 53 people and 30 individual profile consents. Ten newly reviewed profile consents belong to `I0001`, `S0002`, `S0003`, `S0004`, `I0014`, `I0015`, `I0017`, `I0023`, `I0026`, and `I0021`. The 20 earlier approvals remain unchanged. The scope is Landom profiles and related work pages only; these records do not grant new rights for CityMETER or other uses.
+The reviewed public projection has 53 people and 33 individual profile consents. Thirteen newly reviewed profile consents belong to `I0001`, `S0002`, `S0003`, `S0004`, `I0014`, `I0015`, `I0017`, `I0023`, `I0026`, `I0021`, `I0009`, `I0033`, and `I0043`. The 20 earlier approvals remain unchanged. The scope is Landom profiles and related work pages only; these records do not grant new rights for CityMETER or other uses.
 
 ## Corrections
 
@@ -10,6 +10,10 @@ The reviewed public projection has 53 people and 30 individual profile consents.
 - Mind denied LinkedIn publication. Her LinkedIn record and URL are omitted from every current public data file. The consent contract records only person ID, platform, and denial.
 
 ## Scope preservation
+
+The late-evening review adds Ham (`I0009`), Teema (`I0033`), and Draf (`I0043`). Draf approves the existing profile, portrait and LinkedIn, but denies GitHub. The denied GitHub record and URL are omitted entirely from the current public graph. Teema's Thai nickname is corrected to **ธีม** in the card, profile copy and portrait alternative text. His study period is **2022–2026** in both locales; degree-award status is `under_review` because no completed award was confirmed. Existing English nickname copy remains unchanged because no replacement English spelling was supplied.
+
+Ham approves the existing profile, portrait and verified LinkedIn. A newly supplied GitHub candidate has consent but remains private and `withheld_pending_verification`: the account exists, but the required name plus university/employer match is not available. Consent and identity verification are separate gates.
 
 Pat (`S0003`), Faze (`I0015`), Tim (`I0023`), and Film (`S0004`) have consent for their existing profile, portrait and verified social links under the owner's confirmation of their general affirmative replies. Pleng EBA (`I0021`, Nichapa Wattanachai) replied via LinkedIn; her profile, existing portrait and verified LinkedIn link are approved under the owner's confirmed scope. Private evidence distinguishes the participant's exact words from the owner's scope interpretation. Unsupplied or unverified accounts remain withheld. Pote (`S0007`) continues to have no public portrait. Explicit refusals remain in effect.
 

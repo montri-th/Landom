@@ -330,9 +330,9 @@
     },
     "candidateStatus": "candidate_present",
     "verificationStatus": "verified",
-    "consentStatus": "pending",
+    "consentStatus": "granted",
     "rightsStatus": "cleared",
-    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-26",
@@ -985,14 +985,14 @@
     "publicPath": "public/assets/people/I0033.jpg",
     "sourceUrl": null,
     "alt": {
-      "th": "ภาพโปรไฟล์ของทีม",
+      "th": "ภาพโปรไฟล์ของธีม",
       "en": "Profile portrait of Team"
     },
     "candidateStatus": "candidate_present",
     "verificationStatus": "verified",
-    "consentStatus": "pending",
+    "consentStatus": "granted",
     "rightsStatus": "cleared",
-    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
@@ -1260,9 +1260,9 @@
     },
     "candidateStatus": "candidate_present",
     "verificationStatus": "verified",
-    "consentStatus": "pending",
+    "consentStatus": "granted",
     "rightsStatus": "cleared",
-    "publicationBasis": "owner_authorized_public_profile_portrait",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",

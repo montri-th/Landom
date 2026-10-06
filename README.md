@@ -117,7 +117,7 @@ See [the 30 September developer handoff](docs/updates/2026-09-30-registry-handof
 
 ## October 2026 participant updates
 
-See [the 6 October update](docs/updates/2026-10-06-participant-responses.md) for scoped consent, two replacement portraits, corrected profile copy and degree nomenclature.
+See [the 6 October update](docs/updates/2026-10-06-participant-responses.md) for 33 scoped profile consents, two replacement portraits, corrected profile copy and degree nomenclature, Teema's corrected Thai nickname and study period, and Draf's GitHub withdrawal.
 
 ## Publishing
 

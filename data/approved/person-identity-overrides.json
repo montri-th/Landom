@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0",
-  "sourceBoundary": "Only exact, owner-confirmed Thai names or nicknames and an English full name verified on the person's exact LinkedIn profile may override the registry snapshot. Unverified transliterations stay blank.",
+  "sourceBoundary": "Only exact owner-confirmed or participant-confirmed Thai names or nicknames recorded in the canonical registry, and an English full name verified on the person's exact LinkedIn profile, may override the registry snapshot. Unverified transliterations stay blank.",
   "overrides": [
     {
       "personId": "I0014",
@@ -81,6 +81,14 @@
       "evidenceBasis": "owner_supplied_exact_thai_full_name_for_existing_roster_person",
       "sourceRef": "owner_instruction_2026-08-25",
       "reviewedAt": "2026-08-25"
+    },
+    {
+      "personId": "I0033",
+      "nicknameTh": "ธีม",
+      "verificationStatus": "sheet_exact",
+      "evidenceBasis": "participant_supplied_exact_thai_nickname_recorded_in_canonical_registry",
+      "sourceRef": "participant_reply_reviewed_2026-10-06",
+      "reviewedAt": "2026-10-06"
     }
   ]
 }

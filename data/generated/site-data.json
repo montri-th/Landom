@@ -62,7 +62,7 @@
       "cooperativeEducationPeople": 7,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 75,
+      "publishedPublicSocialProfiles": 74,
       "participantApprovedProfileCopies": 1
     },
     "dataUpdatedAt": "2026-10-06",
@@ -1383,7 +1383,7 @@
       "programId": "program-kmitl-iot-system-information-engineering",
       "recordType": "education",
       "isPrimary": true,
-      "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–Present — Bachelor of Engineering; IoT and Information Engineering Major",
+      "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–2026 — Bachelor of Engineering; IoT and Information Engineering Major",
       "qualification": {
         "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
         "en": "IoT System and Information Engineering"
@@ -1401,22 +1401,22 @@
           "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ",
           "en": "IoT System and Information Engineering"
         },
-        "awardStatus": "in_progress",
+        "awardStatus": "under_review",
         "personalAwardVerified": false,
         "programEvidenceUrl": "https://www.iote.kmitl.ac.th/iot-system-and-information/",
-        "evidenceScope": "owner_confirmed_current_study_with_official_program_definition"
+        "evidenceScope": "participant_confirmed_study_period_degree_award_unverified"
       },
       "studyPeriod": {
         "start": "2022",
-        "end": null,
-        "current": true,
+        "end": "2026",
+        "current": false,
         "label": {
-          "th": "2022–ปัจจุบัน",
-          "en": "2022–Present"
+          "th": "2022–2026",
+          "en": "2022–2026"
         }
       },
-      "verificationStatus": "owner_confirmed_current_study_with_official_program_definition",
-      "evidenceNote": "Owner confirmed Team's current Bachelor of Engineering study at KMITL from 2022 to present; the official department page standardizes the program as IoT System and Information Engineering. This is in progress and is not represented as a completed degree."
+      "verificationStatus": "participant_confirmed_study_period_degree_award_unverified",
+      "evidenceNote": "Participant corrected the study period to 2022–2026. The official department page standardizes IoT System and Information Engineering. A completed degree has not been confirmed."
     },
     {
       "educationRecordId": "EDU0039",
@@ -2604,8 +2604,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4228,11 +4228,11 @@
           "en": "Teema Khawjit"
         },
         "nickname": {
-          "th": "ทีม",
+          "th": "ธีม",
           "en": "Team"
         },
         "card": {
-          "th": "ทีม",
+          "th": "ธีม",
           "en": "Team"
         }
       },
@@ -4255,10 +4255,10 @@
           "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
           "en": "IoT System and Information Engineering — King Mongkut's Institute of Technology Ladkrabang"
         },
-        "verificationStatus": "owner_confirmed_current_study_with_official_program_definition"
+        "verificationStatus": "participant_confirmed_study_period_degree_award_unverified"
       },
       "bio": {
-        "th": "ทีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
+        "th": "ธีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
         "en": "Team aims to learn PropTech and make complex data easier to understand and visualize, bringing a combined product, design, and development perspective.",
         "status": "source_backed_placeholder",
         "verificationStatus": "owner_authorized_placeholder",
@@ -4279,8 +4279,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -4949,8 +4949,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -12470,8 +12470,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-26",
@@ -12486,13 +12486,13 @@
       "personId": "I0009",
       "platform": "github",
       "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
+      "verificationStatus": "owner_review_required",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationStatus": "withheld_pending_verification",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -15066,8 +15066,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -15085,8 +15085,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -16131,32 +16131,13 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
         "scope": "public_profile_link_only",
         "sourceRef": "owner_instruction_2026-08-23"
-      },
-      "publicationStatus": "publishable",
-      "dataBoundary": "private_candidates_not_emitted"
-    },
-    {
-      "socialProfileId": "SOC-I0043-GITHUB",
-      "personId": "I0043",
-      "platform": "github",
-      "publicUrl": "https://github.com/Drf-Chsrphbl",
-      "candidateStatus": "candidate_present",
-      "candidateValueEmitted": false,
-      "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-26",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-26"
       },
       "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
@@ -17089,9 +17070,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-26",
@@ -17744,14 +17725,14 @@
       "publicPath": "public/assets/people/I0033.jpg",
       "sourceUrl": null,
       "alt": {
-        "th": "ภาพโปรไฟล์ของทีม",
+        "th": "ภาพโปรไฟล์ของธีม",
         "en": "Profile portrait of Team"
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -18019,9 +18000,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",

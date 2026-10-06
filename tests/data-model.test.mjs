@@ -97,9 +97,9 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const educationPersonIndex = exported.tabs.education.headers.indexOf('person_id');
   const teamEducation = exported.tabs.education.rows.find((row) => row[educationPersonIndex] === 'I0033');
   assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_start')], '2022');
-  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_end')], '');
-  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_current')], true);
-  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_period_label_en')], '2022–Present');
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_end')], '2026');
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_current')], false);
+  assert.equal(teamEducation[exported.tabs.education.headers.indexOf('study_period_label_en')], '2022–2026');
   const isPrimaryIndex = exported.tabs.education.headers.indexOf('is_primary');
   const qaExpectedIndex = exported.tabs.qa.headers.indexOf('expected');
   assert.equal(typeof exported.tabs.education.rows[0][isPrimaryIndex], 'boolean');
@@ -789,21 +789,24 @@ test('internship timeline copy is English in both locales and raw availability n
   assert.ok(data.engagements.every((engagement) => !/เริ่มได้|\bstart\b|\d{1,2}[A-Za-z]{3}\s*[-–]\s*\d{1,2}[A-Za-z]{3}/i.test(engagement.cohortLabel ?? '')));
 });
 
-test('the 47 unchanged legacy bio objects remain byte-equivalent to the approved baseline', () => {
+test('the 46 unchanged legacy bio objects remain byte-equivalent to the approved baseline', () => {
   const stableSort = (value) => Array.isArray(value)
     ? value.map(stableSort)
     : value && typeof value === 'object'
       ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableSort(value[key])]))
       : value;
-  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044', 'I0045', 'S0002']);
+  // I0033 is excluded only for the participant's exact Thai nickname correction.
+  // The 46-person baseline is reconciled to release 914a5f08c76d before this update.
+  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044', 'I0045', 'S0002', 'I0033']);
   const projection = loadGenerated().people
     .filter((person) => !newPersonIds.has(person.personId))
     .map((person) => ({ personId: person.personId, bio: person.bio }));
   const digest = createHash('sha256').update(JSON.stringify(stableSort(projection))).digest('hex');
-  assert.equal(digest, '42750db4d3740bcf68f27d7406888a26bc3c1c25414bba4cd7fbadb6411d6a8f');
+  assert.equal(projection.length, 46);
+  assert.equal(digest, '474ef88a0e96cba462ed6d4e11699ba29cce692b84556632f03aa704fd808b71');
 });
 
-test('degree programs separate completed staff awards from a current participant study record', () => {
+test('degree programs separate completed staff awards from participant study dates without inferring an award', () => {
   const data = loadGenerated();
   const primaryEducation = (personId) => data.educationRecords.find((record) => record.personId === personId && record.isPrimary);
   const oat = primaryEducation('S0001').degree;
@@ -839,13 +842,13 @@ test('degree programs separate completed staff awards from a current participant
   assert.equal(team.programId, 'program-kmitl-iot-system-information-engineering');
   assert.equal(team.degree.abbreviation.en, 'B.Eng.');
   assert.equal(team.degree.field.en, 'IoT System and Information Engineering');
-  assert.equal(team.degree.awardStatus, 'in_progress');
+  assert.equal(team.degree.awardStatus, 'under_review');
   assert.equal(team.degree.personalAwardVerified, false);
   assert.deepEqual(team.studyPeriod, {
     start: '2022',
-    end: null,
-    current: true,
-    label: { th: '2022–ปัจจุบัน', en: '2022–Present' }
+    end: '2026',
+    current: false,
+    label: { th: '2022–2026', en: '2022–2026' }
   });
   assert.equal(data.people.find((person) => person.personId === 'I0033').educationDisplay.card.en, 'IoT & IE · KMITL');
   assert.match(data.people.find((person) => person.personId === 'I0033').educationDisplay.detail.en, /^IoT System and Information Engineering/);
@@ -976,9 +979,9 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
   assert.equal(linkedIn.length, 51);
-  assert.equal(github.length, 24);
+  assert.equal(github.length, 23);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 75);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 74);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));
@@ -993,8 +996,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
       { personId: 'I0035', publicUrl: 'https://github.com/TanPassapol' },
       { personId: 'I0036', publicUrl: 'https://github.com/Poomrapee-chsk' },
       { personId: 'I0037', publicUrl: 'https://github.com/nicha-natthanicha' },
-      { personId: 'I0038', publicUrl: 'https://github.com/NorraphatR' },
-      { personId: 'I0043', publicUrl: 'https://github.com/Drf-Chsrphbl' }
+      { personId: 'I0038', publicUrl: 'https://github.com/NorraphatR' }
     ]
   );
   assert.deepEqual(

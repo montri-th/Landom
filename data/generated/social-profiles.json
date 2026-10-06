@@ -1268,8 +1268,8 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-26",
@@ -1284,13 +1284,13 @@
     "personId": "I0009",
     "platform": "github",
     "publicUrl": null,
-    "candidateStatus": "candidate_missing",
+    "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
-    "verificationStatus": "missing",
-    "consentStatus": "pending",
-    "publicationBasis": null,
+    "verificationStatus": "owner_review_required",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": null,
-    "publicationStatus": "withheld_pending_candidate",
+    "publicationStatus": "withheld_pending_verification",
     "dataBoundary": "private_candidates_not_emitted"
   },
   {
@@ -3864,8 +3864,8 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
@@ -3883,8 +3883,8 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
@@ -4929,32 +4929,13 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
       "scope": "public_profile_link_only",
       "sourceRef": "owner_instruction_2026-08-23"
-    },
-    "publicationStatus": "publishable",
-    "dataBoundary": "private_candidates_not_emitted"
-  },
-  {
-    "socialProfileId": "SOC-I0043-GITHUB",
-    "personId": "I0043",
-    "platform": "github",
-    "publicUrl": "https://github.com/Drf-Chsrphbl",
-    "candidateStatus": "candidate_present",
-    "candidateValueEmitted": false,
-    "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
-    "ownerApproval": {
-      "status": "granted",
-      "approvedAt": "2026-08-26",
-      "scope": "public_profile_link_only",
-      "sourceRef": "owner_instruction_2026-08-26"
     },
     "publicationStatus": "publishable",
     "dataBoundary": "private_candidates_not_emitted"

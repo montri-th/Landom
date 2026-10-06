@@ -201,11 +201,44 @@ test('latest work credits preserve explicit scope, in-progress status and exact 
   assert.equal(data.engagements.find((engagement) => engagement.engagementId === 'E0060').end, '2025-11-13');
 });
 
+test('late-evening replies preserve corrected names and dates while withholding withdrawn or unverified links', () => {
+  const teema = data.people.find((person) => person.personId === 'I0033');
+  const education = data.educationRecords.find((record) => record.personId === 'I0033' && record.isPrimary);
+  const media = JSON.parse(fs.readFileSync(path.join(root, 'data/generated/people-media.json'), 'utf8'));
+  assert.equal(teema.names.nickname.th, 'ธีม');
+  assert.equal(teema.names.card.th, 'ธีม');
+  assert.match(teema.bio.th, /^ธีมสนใจ/);
+  assert.deepEqual(education.studyPeriod, {
+    start: '2022', end: '2026', current: false,
+    label: { th: '2022–2026', en: '2022–2026' }
+  });
+  assert.equal(education.degree.awardStatus, 'under_review');
+  assert.equal(education.degree.personalAwardVerified, false);
+  assert.equal(media.people.find((person) => person.personId === 'I0033').displayName.th, 'ธีม');
+  assert.equal(data.assets.find((asset) => asset.personId === 'I0033').alt.th, 'ภาพโปรไฟล์ของธีม');
+  for (const personId of ['I0009', 'I0033', 'I0043']) {
+    assert.equal(data.people.find((person) => person.personId === personId).publication.consentStatus, 'granted');
+    assert.equal(data.assets.find((asset) => asset.personId === personId).consentStatus, 'granted');
+    assert.equal(data.socialProfiles.find((profile) => profile.personId === personId && profile.platform === 'linkedin').consentStatus, 'granted');
+  }
+  assert.equal(data.socialProfiles.find((profile) => profile.personId === 'I0033' && profile.platform === 'github').publicUrl, 'https://github.com/Tymcal');
+  assert.equal(data.socialProfiles.find((profile) => profile.personId === 'I0043' && profile.platform === 'github'), undefined);
+  const hamGithub = data.socialProfiles.find((profile) => profile.personId === 'I0009' && profile.platform === 'github');
+  assert.equal(hamGithub.consentStatus, 'granted');
+  assert.equal(hamGithub.publicUrl, null);
+  assert.equal(hamGithub.candidateValueEmitted, false);
+  assert.equal(hamGithub.verificationStatus, 'owner_review_required');
+  assert.equal(hamGithub.publicationStatus, 'withheld_pending_verification');
+  assert.equal(data.people.length, 53);
+  assert.equal(data.engagements.length, 65);
+  assert.equal(data.contributions.length, 124);
+});
+
 test('reviewed publication replies apply per scope while nonrespondents and Pote portrait refusal remain truthful', () => {
   const consent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
-  assert.equal(consent.records.length, 30);
+  assert.equal(consent.records.length, 33);
   const respondents = new Set(consent.records.map((record) => record.personId));
-  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 30);
+  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 33);
   for (const person of data.people) {
     assert.equal(person.publication.consentStatus, respondents.has(person.personId) ? 'granted' : 'pending');
   }

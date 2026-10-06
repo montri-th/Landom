@@ -1286,7 +1286,7 @@
     {
       "personId": "I0033",
       "displayName": {
-        "th": "ทีม",
+        "th": "ธีม",
         "en": "Team"
       },
       "fullName": {
@@ -1305,14 +1305,14 @@
         "bytes": 92037,
         "sha256": "b7b4cdb35fbbf8950de095d3dc0cfb701377998f46d8188597db94ded5086359",
         "alt": {
-          "th": "ภาพโปรไฟล์ของทีม",
+          "th": "ภาพโปรไฟล์ของธีม",
           "en": "Profile portrait of Team"
         }
       },
       "fallback": {
         "kind": "full_nickname",
         "fullNickname": {
-          "th": "ทีม",
+          "th": "ธีม",
           "en": "Team"
         },
         "reason": "image_load_failure"

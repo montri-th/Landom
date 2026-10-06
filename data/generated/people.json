@@ -860,8 +860,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -2484,11 +2484,11 @@
         "en": "Teema Khawjit"
       },
       "nickname": {
-        "th": "ทีม",
+        "th": "ธีม",
         "en": "Team"
       },
       "card": {
-        "th": "ทีม",
+        "th": "ธีม",
         "en": "Team"
       }
     },
@@ -2511,10 +2511,10 @@
         "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ — สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
         "en": "IoT System and Information Engineering — King Mongkut's Institute of Technology Ladkrabang"
       },
-      "verificationStatus": "owner_confirmed_current_study_with_official_program_definition"
+      "verificationStatus": "participant_confirmed_study_period_degree_award_unverified"
     },
     "bio": {
-      "th": "ทีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
+      "th": "ธีมสนใจเรียนรู้ด้าน PropTech และอยากทำให้ข้อมูลที่ซับซ้อนเข้าใจและมองเห็นได้ง่าย โดยนำมุมมองผสมระหว่างผลิตภัณฑ์ การออกแบบ และการพัฒนามาช่วยทีม",
       "en": "Team aims to learn PropTech and make complex data easier to understand and visualize, bringing a combined product, design, and development perspective.",
       "status": "source_backed_placeholder",
       "verificationStatus": "owner_authorized_placeholder",
@@ -2535,8 +2535,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -3205,8 +3205,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",

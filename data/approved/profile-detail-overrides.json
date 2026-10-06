@@ -521,21 +521,6 @@
       }
     },
     {
-      "personId": "I0043",
-      "platform": "github",
-      "publicUrl": "https://github.com/Drf-Chsrphbl",
-      "verificationStatus": "verified",
-      "identityEvidenceBasis": "owner_supplied_additional_roster_exact_person_to_public_github_mapping",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-26",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-26"
-      }
-    },
-    {
       "personId": "I0009",
       "platform": "linkedin",
       "publicUrl": "https://www.linkedin.com/in/chayaphon-kingkaewkanthong-1ba238378/",
@@ -659,24 +644,24 @@
     },
     {
       "personId": "I0033",
-      "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–Present — Bachelor of Engineering; IoT and Information Engineering Major",
+      "sourceLabel": "King Mongkut's Institute of Technology Ladkrabang, 2022–2026 — Bachelor of Engineering; IoT and Information Engineering Major",
       "degree": {
         "abbreviation": { "th": "วศ.บ.", "en": "B.Eng." },
         "title": { "th": "วิศวกรรมศาสตรบัณฑิต", "en": "Bachelor of Engineering" },
         "field": { "th": "วิศวกรรมระบบไอโอทีและสารสนเทศ", "en": "IoT System and Information Engineering" },
-        "awardStatus": "in_progress",
+        "awardStatus": "under_review",
         "personalAwardVerified": false,
         "programEvidenceUrl": "https://www.iote.kmitl.ac.th/iot-system-and-information/",
-        "evidenceScope": "owner_confirmed_current_study_with_official_program_definition"
+        "evidenceScope": "participant_confirmed_study_period_degree_award_unverified"
       },
       "studyPeriod": {
         "start": "2022",
-        "end": null,
-        "current": true,
-        "label": { "th": "2022–ปัจจุบัน", "en": "2022–Present" }
+        "end": "2026",
+        "current": false,
+        "label": { "th": "2022–2026", "en": "2022–2026" }
       },
-      "verificationStatus": "owner_confirmed_current_study_with_official_program_definition",
-      "evidenceNote": "Owner confirmed Team's current Bachelor of Engineering study at KMITL from 2022 to present; the official department page standardizes the program as IoT System and Information Engineering. This is in progress and is not represented as a completed degree."
+      "verificationStatus": "participant_confirmed_study_period_degree_award_unverified",
+      "evidenceNote": "Participant corrected the study period to 2022–2026. The official department page standardizes IoT System and Information Engineering. A completed degree has not been confirmed."
     },
     {
       "personId": "I0039",

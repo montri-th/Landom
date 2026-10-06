@@ -551,6 +551,63 @@
           "consentStatus": "granted"
         }
       ]
+    },
+    {
+      "personId": "I0009",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "65f6d372b3df989f1a6305f0a0acc4d2e3224a6e18e642cf65894a111bdc0333"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/chayaphon-kingkaewkanthong-1ba238378/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-06"
+    },
+    {
+      "personId": "I0033",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "b7b4cdb35fbbf8950de095d3dc0cfb701377998f46d8188597db94ded5086359"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/tymcal/",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/Tymcal",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-06"
+    },
+    {
+      "personId": "I0043",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "125e00474d0db2f6e38f6de8a7fa6b60da5d079e43ae0fc0bc97f86e2fb895ef"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/peranut-chaisiriphaibool-8b05b3354/",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "github",
+          "consentStatus": "denied"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-06"
     }
   ]
 }
