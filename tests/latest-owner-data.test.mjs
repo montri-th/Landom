@@ -203,9 +203,9 @@ test('latest work credits preserve explicit scope, in-progress status and exact 
 
 test('reviewed publication replies apply per scope while nonrespondents and Pote portrait refusal remain truthful', () => {
   const consent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
-  assert.equal(consent.records.length, 20);
+  assert.equal(consent.records.length, 30);
   const respondents = new Set(consent.records.map((record) => record.personId));
-  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 20);
+  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 30);
   for (const person of data.people) {
     assert.equal(person.publication.consentStatus, respondents.has(person.personId) ? 'granted' : 'pending');
   }
@@ -225,6 +225,11 @@ test('reviewed publication replies apply per scope while nonrespondents and Pote
     }
     for (const approved of record.socials) {
       const profile = data.socialProfiles.find((item) => item.personId === record.personId && item.platform === approved.platform);
+      if (approved.consentStatus === 'denied') {
+        assert.equal(profile, undefined, 'A denied social channel must be absent from public data.');
+        assert.equal(approved.publicUrl, undefined, 'A denial contract must not republish the refused link.');
+        continue;
+      }
       assert.equal(profile.publicUrl, approved.publicUrl);
       assert.equal(profile.consentStatus, 'granted');
       assert.equal(profile.publicationBasis, 'individual_consent');
@@ -232,8 +237,13 @@ test('reviewed publication replies apply per scope while nonrespondents and Pote
   }
   assert.equal(data.assets.find((asset) => asset.personId === 'S0007').consentStatus, 'denied');
   assert.equal(fs.existsSync(path.join(root, 'public/assets/people/S0007.jpg')), false);
-  assert.equal(data.meta.dataUpdatedAt, '2026-10-04');
-  assert.equal(data.meta.reviewedAt, '2026-10-04');
+  for (const personId of ['S0003', 'I0015', 'I0023', 'I0021']) {
+    assert.equal(data.assets.find((asset) => asset.personId === personId && asset.kind === 'profile_portrait').consentStatus, 'granted');
+    assert.ok(data.socialProfiles.filter((profile) => profile.personId === personId && profile.publicUrl).every((profile) => profile.consentStatus === 'granted'));
+  }
+  assert.equal(data.socialProfiles.find((profile) => profile.personId === 'S0004' && profile.platform === 'linkedin').consentStatus, 'granted');
+  assert.equal(data.meta.dataUpdatedAt, '2026-10-06');
+  assert.equal(data.meta.reviewedAt, '2026-10-06');
   if (rawAvailable) {
     const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'data/raw/google-sheet-snapshot.json'), 'utf8'));
     assert.equal(data.meta.source.snapshotFetchedAt, snapshot.source.fetchedAt, 'review dates must not falsify the raw fetch date');

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-10-04T00:00:00+07:00",
+  "generatedAt": "2026-10-06T00:00:00+07:00",
   "canonicalUrl": "https://montri-th.github.io/Landom/data/generated/people-media.json",
   "contract": {
     "access": "public_read_only",
@@ -705,10 +705,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/I0017.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0017.jpg?v=43dfaec66f8f",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0017.jpg?v=238984377a40",
         "mediaType": "image/jpeg",
-        "bytes": 84987,
-        "sha256": "43dfaec66f8faeca1e0486d8cc211613424c191edb0754e26065459778dd7d0d",
+        "bytes": 113435,
+        "sha256": "238984377a40663e95cfc9efb64ba2d71765ce26cda7b38c4cc30ef52c874df1",
         "alt": {
           "th": "ภาพโปรไฟล์ของมาย",
           "en": "Profile portrait of Mind"
@@ -1160,10 +1160,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/S0004.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0004.jpg?v=45e94b2ce662",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0004.jpg?v=bc01b402dbfb",
         "mediaType": "image/jpeg",
-        "bytes": 15553,
-        "sha256": "45e94b2ce6624421ebec895163cc1411fa37cea71e2dae7b806473dafea5c459",
+        "bytes": 129779,
+        "sha256": "bc01b402dbfbab31448fac5811e06fd793f170c6c97f7c156e2810b281e79021",
         "alt": {
           "th": "ภาพโปรไฟล์ของฟิล์ม",
           "en": "Profile portrait of Film"

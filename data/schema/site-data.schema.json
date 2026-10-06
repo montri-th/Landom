@@ -239,8 +239,8 @@
             "en": { "$ref": "#/$defs/nullableString" },
             "status": { "enum": ["owner_pending", "source_backed_placeholder", "owner_approved"] },
             "verificationStatus": { "enum": ["owner_pending", "owner_authorized_placeholder", "owner_approved"] },
-            "publicationBasis": { "enum": [null, "owner_authorized_paraphrase_from_first_person_application", "owner_authorized_synthesis_from_roster_evidence"] },
-            "sourceBasis": { "enum": [null, "first_person_application_exact_roster_match", "factual_role_education_and_work_evidence"] },
+            "publicationBasis": { "enum": [null, "owner_authorized_paraphrase_from_first_person_application", "owner_authorized_synthesis_from_roster_evidence", "individual_consent_profile_copy"] },
+            "sourceBasis": { "enum": [null, "first_person_application_exact_roster_match", "factual_role_education_and_work_evidence", "participant_supplied_profile_copy"] },
             "sourceType": { "enum": [null, "first_person_application", "factual_fallback", "candidate_video_transcript", "owner_supplied_copy"] },
             "sourceRef": { "$ref": "#/$defs/nullableString" },
             "authorRole": { "enum": [null, "profile_subject", "assistant_paraphrase_from_owner_and_sheet_records", "directory_owner"] },
@@ -248,7 +248,10 @@
             "evidenceScope": { "$ref": "#/$defs/nullableString" },
             "evidenceConfidence": { "enum": [null, "exact_roster_match", "owner_confirmed", "high", "medium_high", "medium", "medium_low"] },
             "reviewStatus": { "enum": ["pending_owner_copy", "pending_candidate_video_review", "owner_approved"] },
-            "ownerApproval": { "$ref": "#/$defs/ownerApprovalNullable" }
+            "ownerApproval": { "$ref": "#/$defs/ownerApprovalNullable" },
+            "statementId": { "type": "string", "pattern": "^STAT-[SPI][0-9]{4}-[0-9]{3}$" },
+            "supersedesStatementId": { "type": ["string", "null"], "pattern": "^STAT-[SPI][0-9]{4}-[0-9]{3}$" },
+            "reviewedAt": { "type": "string", "format": "date" }
           }
         },
         "publication": {

@@ -1031,27 +1031,44 @@
     {
       "assetId": "PORTRAIT-I0017",
       "path": "public/assets/people/I0017.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "participant-submitted-profile-portrait",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 84987,
-      "sha256": "43dfaec66f8faeca1e0486d8cc211613424c191edb0754e26065459778dd7d0d",
-      "owner": "Landometer directory owner",
+      "bytes": 113435,
+      "sha256": "238984377a40663e95cfc9efb64ba2d71765ce26cda7b38c4cc30ef52c874df1",
+      "owner": "Profile subject",
       "approvalStatus": "approved",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "approvedRoles": [
         "person-avatar"
       ],
       "prohibitedRoles": [
-        "brand-mark"
+        "brand-mark",
+        "hero-image",
+        "social-preview",
+        "favicon",
+        "certificate"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Direct participant-submitted portrait with consent limited to Landom profile and related work pages. Bounded square crop and 800x800 JPEG78; metadata stripped. No retouching, background replacement, generation, or identity alteration. Original and correspondence remain private.",
+      "width": 800,
+      "height": 800,
+      "sourceOriginalSha256": "e13b54859bb050e34831b3e29daf91a4b9b484d881bbdc6608a24531fefe6116",
+      "sourceCrop": {
+        "sourceWidth": 2526,
+        "sourceHeight": 1675,
+        "x": 426,
+        "y": 0,
+        "width": 1675,
+        "height": 1675,
+        "retouched": false,
+        "generated": false
+      },
+      "metadataStripped": true,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของมาย",
+        "en": "Profile portrait of Mind"
+      }
     },
     {
       "assetId": "PORTRAIT-I0018",
@@ -2100,6 +2117,48 @@
         "en": "Profile portrait of Nine"
       },
       "notes": "Direct participant-submitted portrait with consent for Landom profile and related work pages. Bounded square crop x=0,y=240,width=1108,height=1108 on the oriented original, then 800x800 JPEG78 with embedded-profile conversion to sRGB and metadata stripping. No retouching or identity alteration. Original and correspondence remain private."
+    },
+    {
+      "assetId": "PORTRAIT-S0004",
+      "approvalScope": "person-profile",
+      "path": "public/assets/people/S0004.jpg",
+      "variant": "participant-submitted-profile-portrait",
+      "mediaType": "image/jpeg",
+      "width": 800,
+      "height": 800,
+      "bytes": 129779,
+      "sha256": "bc01b402dbfbab31448fac5811e06fd793f170c6c97f7c156e2810b281e79021",
+      "sourceOriginalSha256": "e1be2633225a784aec2579f215719228ef2e111e73e6b087fdc98f4f295357b3",
+      "sourceCrop": {
+        "sourceWidth": 4284,
+        "sourceHeight": 5712,
+        "x": 0,
+        "y": 1100,
+        "width": 4284,
+        "height": 4284,
+        "retouched": false,
+        "generated": false
+      },
+      "owner": "Profile subject",
+      "approvalStatus": "approved",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark",
+        "hero-image",
+        "social-preview",
+        "favicon",
+        "certificate"
+      ],
+      "metadataStripped": true,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของฟิล์ม",
+        "en": "Profile portrait of Film"
+      },
+      "notes": "Direct participant-submitted portrait with consent limited to Landom profile and related work pages. Bounded square crop and 800x800 JPEG78; metadata stripped. No retouching, background replacement, generation, or identity alteration. Original and correspondence remain private."
     }
   ]
 }

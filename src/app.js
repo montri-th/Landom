@@ -1002,8 +1002,9 @@ function approvedAssetFor(personRecord, assets) {
   const rawUrl = String(firstValue(asset, ["publicPath", "public_path", "path", "src", "url", "href"]) || "").trim();
   const url = safeAssetUrl(rawUrl, id);
   if (!url) return null;
+  const revision = /^[a-f0-9]{64}$/.test(asset.sha256 || "") ? asset.sha256.slice(0, 12) : "";
   return {
-    url,
+    url: revision ? `${url}?v=${revision}` : url,
     alt: localizedField(asset, ["alt", "altText", "alt_text", "caption"])
   };
 }

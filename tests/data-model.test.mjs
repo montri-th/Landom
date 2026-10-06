@@ -63,16 +63,20 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.ok(currentStatementIndex >= 0);
   assert.equal(peopleTab.rows.filter((row) => row[currentStatementIndex]).length, 52);
   const statements = exported.tabs.profile_statements;
-  assert.equal(statements.rows.length, 52);
+  assert.ok(statements.rows.length >= 52, 'current statements and retained private history');
   const statementIdIndex = statements.headers.indexOf('statement_id');
   const statementPersonIndex = statements.headers.indexOf('person_id');
   assertUnique(statements.rows.map((row) => ({ statementId: row[statementIdIndex] })), 'statementId');
   assert.ok(statements.rows.every((row) => /^[SPI]\d{4}$/.test(row[statementPersonIndex])));
   const statementSourceTypeIndex = statements.headers.indexOf('source_type');
-  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'first_person_application').length, 26);
-  assert.equal(statements.rows.filter((row) => row[statementSourceTypeIndex] === 'factual_fallback').length, 26);
-  assert.deepEqual(peopleTab.validations.W, ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence']);
-  assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence']);
+  const currentStatementIds = new Set(peopleTab.rows.map((row) => row[currentStatementIndex]).filter(Boolean));
+  const currentStatements = statements.rows.filter((row) => currentStatementIds.has(row[statementIdIndex]));
+  assert.equal(currentStatements.length, 52);
+  assert.equal(currentStatements.filter((row) => row[statementSourceTypeIndex] === 'first_person_application').length, 25);
+  assert.equal(currentStatements.filter((row) => row[statementSourceTypeIndex] === 'factual_fallback').length, 26);
+  assert.equal(currentStatements.filter((row) => row[statementSourceTypeIndex] === 'owner_supplied_copy').length, 1);
+  assert.deepEqual(peopleTab.validations.W, ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence', 'individual_consent_profile_copy']);
+  assert.deepEqual(peopleTab.validations.X, ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence', 'participant_supplied_profile_copy']);
   assert.deepEqual(statements.validations.G, ['first_person_application', 'factual_fallback', 'candidate_video_transcript', 'owner_supplied_copy']);
   assert.deepEqual(exported.tabs.engagements.validations.Q, ['cooperative_education', 'internship', 'not_applicable']);
   const engagementHeaders = exported.tabs.engagements.headers;
@@ -117,7 +121,7 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const readmeTopicIndex = exported.tabs.README.headers.indexOf('topic');
   const readmeDetailIndex = exported.tabs.README.headers.indexOf('detail');
   const datasetNameRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'ชื่อชุดข้อมูล');
-  assert.match(datasetNameRow[readmeDetailIndex], /reviewed 30 Sep 2026/);
+  assert.match(datasetNameRow[readmeDetailIndex], /reviewed 2026-10-06/);
   assert.doesNotMatch(datasetNameRow[readmeDetailIndex], /v3\.3/);
   const bioRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'bio');
   assert.match(bioRow[readmeDetailIndex], /private recruitment\/application Sheet ID\/range/);
@@ -206,10 +210,10 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 52);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 51);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 24);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 76);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 75);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       ['linkedin', 'github'].includes(row.platform)
     ));
@@ -591,12 +595,12 @@ test('only exact official institution and program LinkedIn pages enter the publi
   assert.equal(data.meta.counts.verifiedProgramLinkedInProfiles, 1);
 });
 
-test('52 governed biographies retain their provenance and Q remains deferred at the owner request', () => {
+test('51 placeholders retain their provenance, Renee uses participant copy and Q remains deferred', () => {
   const data = loadGenerated();
   const firstPersonIds = [
     'I0003', 'I0004', 'I0013', 'I0014', 'I0015', 'I0016', 'I0017', 'I0018',
     'I0022', 'I0024', 'I0026', 'I0027', 'I0028', 'I0029', 'I0030', 'I0031',
-    'I0032', 'I0033', 'I0040', 'I0041', 'I0042', 'I0043', 'I0044', 'S0002', 'S0003', 'S0004'
+    'I0032', 'I0033', 'I0040', 'I0041', 'I0042', 'I0043', 'I0044', 'S0003', 'S0004'
   ];
   const factualFallbackIds = [
     'I0001', 'I0002', 'I0005', 'I0006', 'I0007', 'I0008', 'I0009', 'I0010',
@@ -604,7 +608,7 @@ test('52 governed biographies retain their provenance and Q remains deferred at 
     'I0035', 'I0036', 'I0037', 'I0038', 'I0039', 'P0001', 'S0001', 'S0005', 'S0006', 'S0007'
   ];
   const sourceBacked = data.people.filter((person) => person.bio.status === 'source_backed_placeholder');
-  assert.equal(sourceBacked.length, 52);
+  assert.equal(sourceBacked.length, 51);
   assert.ok(sourceBacked.every((person) => person.bio.th && person.bio.en));
   assert.ok(sourceBacked.every((person) =>
     person.bio.verificationStatus === 'owner_authorized_placeholder' &&
@@ -649,14 +653,27 @@ test('52 governed biographies retain their provenance and Q remains deferred at 
   ));
   assert.match(data.people.find((person) => person.personId === 'I0015').bio.th, /ความคิดเห็นของผู้ใช้/);
   assert.doesNotMatch(data.people.find((person) => person.personId === 'I0028').bio.th, /พลังบวก/);
-  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 52);
+  assert.equal(data.meta.counts.sourceBackedProfilePlaceholders, 51);
   assert.equal(data.meta.counts.ownerPendingProfiles, 1);
   const deferred = data.people.filter((person) => person.bio.status === 'owner_pending');
   assert.deepEqual(deferred.map((person) => person.personId), ['I0045']);
   assert.equal(deferred[0].bio.th, null);
   assert.equal(deferred[0].bio.en, null);
-  assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 26);
+  assert.equal(data.meta.counts.firstPersonProfilePlaceholders, 25);
   assert.equal(data.meta.counts.factualFallbackProfilePlaceholders, 26);
+  const renee = data.people.find((person) => person.personId === 'S0002').bio;
+  assert.equal(renee.th, 'เรเน่สนใจการเชื่อมโยงระหว่างธุรกิจ ผู้คน และเมือง เพื่อมองหาและเปลี่ยนความเชื่อมโยงเหล่านั้นให้กลายเป็นโอกาสใหม่ ๆ ทางธุรกิจ');
+  assert.equal(renee.en, null, 'Participant approval does not extend to an unsupplied English translation.');
+  assert.equal(renee.status, 'owner_approved');
+  assert.equal(renee.publicationBasis, 'individual_consent_profile_copy');
+  assert.equal(renee.sourceBasis, 'participant_supplied_profile_copy');
+  assert.equal(renee.sourceType, 'owner_supplied_copy');
+  assert.equal(renee.authorRole, 'profile_subject');
+  assert.equal(renee.derivationMethod, 'verbatim_owner_copy');
+  assert.equal(renee.ownerApproval, null, 'Participant copy must not fabricate directory-owner approval.');
+  assert.equal(renee.statementId, 'STAT-S0002-002');
+  assert.equal(renee.supersedesStatementId, 'STAT-S0002-001');
+  assert.equal(data.meta.counts.participantApprovedProfileCopies, 1);
 });
 
 test('cooperative education is limited to the exact owner-confirmed public core set', () => {
@@ -772,18 +789,18 @@ test('internship timeline copy is English in both locales and raw availability n
   assert.ok(data.engagements.every((engagement) => !/เริ่มได้|\bstart\b|\d{1,2}[A-Za-z]{3}\s*[-–]\s*\d{1,2}[A-Za-z]{3}/i.test(engagement.cohortLabel ?? '')));
 });
 
-test('the existing 48 bio objects remain byte-equivalent to the v3.3 approved release baseline', () => {
+test('the 47 unchanged legacy bio objects remain byte-equivalent to the approved baseline', () => {
   const stableSort = (value) => Array.isArray(value)
     ? value.map(stableSort)
     : value && typeof value === 'object'
       ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableSort(value[key])]))
       : value;
-  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044', 'I0045']);
+  const newPersonIds = new Set(['S0005', 'S0006', 'S0007', 'I0044', 'I0045', 'S0002']);
   const projection = loadGenerated().people
     .filter((person) => !newPersonIds.has(person.personId))
     .map((person) => ({ personId: person.personId, bio: person.bio }));
   const digest = createHash('sha256').update(JSON.stringify(stableSort(projection))).digest('hex');
-  assert.equal(digest, 'bbed839fd986c9c0e28f7562fec707df0e1a3a1410b9248200c75c5fd0420f71');
+  assert.equal(digest, '42750db4d3740bcf68f27d7406888a26bc3c1c25414bba4cd7fbadb6411d6a8f');
 });
 
 test('degree programs separate completed staff awards from a current participant study record', () => {
@@ -811,7 +828,8 @@ test('degree programs separate completed staff awards from a current participant
   assert.match(pat.programEvidenceUrl, /^https:\/\/www\.ce\.kmitl\.ac\.th\//);
 
   const film = primaryEducation('S0004').degree;
-  assert.deepEqual(film.abbreviation, { th: 'ศศ.บ.', en: 'B.A.' });
+  assert.deepEqual(film.abbreviation, { th: 'รป.บ.', en: 'B.P.A.' });
+  assert.deepEqual(film.title, { th: 'รัฐประศาสนศาสตรบัณฑิต', en: 'Bachelor of Public Administration' });
   assert.equal(film.field.en, 'Urban Administration and Management');
   assert.equal(film.awardStatus, 'completed');
   assert.equal(film.personalAwardVerified, true);
@@ -836,9 +854,10 @@ test('degree programs separate completed staff awards from a current participant
   assert.equal(data.educationRecords.filter((record) => record.personId.startsWith('S') && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 6);
   assert.equal(data.educationRecords.filter((record) => ['S', 'P'].includes(record.personId.charAt(0)) && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, 7);
   assert.equal(data.meta.counts.verifiedCompletedStaffDegrees, 7);
-  assert.ok(['S0001', 'S0002', 'S0003', 'S0004', 'S0006'].every((personId) =>
+  assert.ok(['S0001', 'S0002', 'S0003', 'S0006'].every((personId) =>
     primaryEducation(personId).degree.evidenceScope === 'owner_confirmed_completed_degree_with_official_program_definition'
   ));
+  assert.equal(film.evidenceScope, 'participant_corrected_degree_title_with_official_program_definition');
   assert.equal(primaryEducation('S0007').degree.evidenceScope, 'owner_confirmed_completed_degree_with_publication_author_biography');
   assert.match(data.people.find((person) => person.personId === 'S0003').educationDisplay.card.en, /B\.Eng\., Computer Engineering/);
   const biw = data.people.find((item) => item.personId === 'S0005');
@@ -956,10 +975,10 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
-  assert.equal(linkedIn.length, 52);
+  assert.equal(linkedIn.length, 51);
   assert.equal(github.length, 24);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 76);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 75);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));
@@ -989,7 +1008,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
     ]
   );
   const scopedConsent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
-  const individualSocials = new Set(scopedConsent.records.flatMap((record) => (record.socials ?? []).map((profile) => record.personId + '|' + profile.platform)));
+  const individualSocials = new Set(scopedConsent.records.flatMap((record) => (record.socials ?? []).filter((profile) => profile.consentStatus === 'granted').map((profile) => record.personId + '|' + profile.platform)));
   const individualPortraits = new Set(scopedConsent.records.filter((record) => record.portrait?.consentStatus === 'granted').map((record) => record.personId));
   for (const profile of [...linkedIn, ...github]) {
     const individuallyApproved = individualSocials.has(profile.personId + '|' + profile.platform);
@@ -1008,7 +1027,8 @@ test('only exact owner-authorized public profiles and governed local portraits a
     const individuallyApproved = individualPortraits.has(portrait.personId);
     assert.equal(portrait.consentStatus, individuallyApproved ? 'granted' : 'pending');
     assert.equal(portrait.publicationBasis, individuallyApproved ? 'individual_consent' : 'owner_authorized_public_profile_portrait');
-    assert.equal(portrait.ownerApproval.status, 'granted');
+    if (['I0017', 'S0004'].includes(portrait.personId)) assert.equal(portrait.ownerApproval, null);
+    else assert.equal(portrait.ownerApproval.status, 'granted');
     assert.equal(portrait.rightsStatus, 'cleared');
     assert.match(portrait.sha256, /^[a-f0-9]{64}$/);
     assert.ok(fs.existsSync(path.join(root, portrait.publicPath)));

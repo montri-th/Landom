@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-10-04",
+  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-10-06",
   "sourceUrlsExcluded": true,
   "assets": [
     {
@@ -298,21 +298,32 @@
       "personId": "I0017",
       "publicPath": "public/assets/people/I0017.jpg",
       "mime": "image/jpeg",
-      "bytes": 84987,
-      "sha256": "43dfaec66f8faeca1e0486d8cc211613424c191edb0754e26065459778dd7d0d",
-      "identityVerification": "sheet_profile_url_and_visible_profile_title",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
+      "bytes": 113435,
+      "sha256": "238984377a40663e95cfc9efb64ba2d71765ce26cda7b38c4cc30ef52c874df1",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "optimization": {
         "format": "jpeg",
         "maxDimension": 800,
         "quality": 78,
-        "sourceOriginalPreservedPrivately": true
+        "sourceOriginalPreservedPrivately": true,
+        "sourceOriginalSha256": "e13b54859bb050e34831b3e29daf91a4b9b484d881bbdc6608a24531fefe6116",
+        "crop": {
+          "x": 426,
+          "y": 0,
+          "width": 1675,
+          "height": 1675
+        },
+        "metadataStripped": true,
+        "width": 800,
+        "height": 800,
+        "resampling": "LANCZOS",
+        "colorHandling": "embedded_to_srgb",
+        "subsampling": 2,
+        "optimize": false,
+        "progressive": false,
+        "pillowVersion": "12.3.0"
       }
     },
     {
@@ -1199,21 +1210,32 @@
       "personId": "S0004",
       "publicPath": "public/assets/people/S0004.jpg",
       "mime": "image/jpeg",
-      "bytes": 15553,
-      "sha256": "45e94b2ce6624421ebec895163cc1411fa37cea71e2dae7b806473dafea5c459",
-      "identityVerification": "owner_exact_facebook_profile_assignment_and_public_profile_title_match",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-24",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-24"
-      },
+      "bytes": 129779,
+      "sha256": "bc01b402dbfbab31448fac5811e06fd793f170c6c97f7c156e2810b281e79021",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "optimization": {
         "format": "jpeg",
-        "maxDimension": 240,
+        "maxDimension": 800,
         "quality": 78,
-        "sourceOriginalPreservedPrivately": true
+        "sourceOriginalPreservedPrivately": true,
+        "sourceOriginalSha256": "e1be2633225a784aec2579f215719228ef2e111e73e6b087fdc98f4f295357b3",
+        "crop": {
+          "x": 0,
+          "y": 1100,
+          "width": 4284,
+          "height": 4284
+        },
+        "metadataStripped": true,
+        "width": 800,
+        "height": 800,
+        "resampling": "LANCZOS",
+        "colorHandling": "source_rgb_no_embedded_profile",
+        "subsampling": 2,
+        "optimize": false,
+        "progressive": false,
+        "pillowVersion": "12.3.0"
       }
     },
     {

@@ -77,6 +77,19 @@ test('portrait refusal overrides historical owner authorization even when profil
   assert.deepEqual(applyPublicationConsent(updated, approval), updated);
 });
 
+test('a refused social channel is omitted despite historical owner authorization and cannot revive on reapplication', () => {
+  const original = fixture();
+  const approval = contract({ socials: [{ platform: 'linkedin', consentStatus: 'denied' }] });
+  const updated = applyPublicationConsent(original, approval);
+  assert.equal(updated.people[0].publication.consentStatus, 'granted');
+  assert.equal(updated.socialProfiles.some((profile) => profile.personId === 'I0001' && profile.platform === 'linkedin'), false);
+  assert.equal(JSON.stringify(updated).includes('https://www.linkedin.com/in/I0001/'), false);
+  assert.deepEqual(updated.socialProfiles, [original.socialProfiles[1]]);
+  assert.deepEqual(updated.assets, original.assets);
+  assert.deepEqual(applyPublicationConsent(updated, approval), updated);
+  assert.throws(() => applyPublicationConsent(original, contract({ socials: [{ platform: 'linkedin', publicUrl: 'https://www.linkedin.com/in/wrong/', consentStatus: 'denied' }] })), /URL mismatch/);
+});
+
 test('consent fails closed on unknown or duplicate identities and unsupported private evidence', () => {
   assert.throws(() => applyPublicationConsent(fixture(), contract({ personId: 'I9999' })), /unknown person/);
   const duplicate = contract();

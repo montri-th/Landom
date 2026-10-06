@@ -111,7 +111,9 @@ function rewriteLegacyPersonIds(value) {
 const canonicalToOld = new Map([...sourceIdToCanonical].map(([sourceId, canonicalId]) => [canonicalId, sourceId]));
 const educationByPerson = new Map(site.educationRecords.map((record) => [record.personId, record]));
 const worksById = new Map(site.works.map((work) => [work.workId, work]));
-const statementIdFor = (person) => person.bio?.th && person.bio?.en ? 'STAT-' + person.personId + '-001' : '';
+const statementIdFor = (person) => person.bio?.th || person.bio?.en
+  ? person.bio.statementId || 'STAT-' + person.personId + '-001'
+  : '';
 
 const peopleRows = site.people.map((person) => {
   const oldId = canonicalToOld.get(person.personId);
@@ -167,7 +169,9 @@ const profileStatementRows = site.people
     text_en: person.bio.en,
     source_language: person.bio.sourceType === 'first_person_application'
       ? 'preserved_in_private_source'
-      : 'not_applicable_bilingual_factual_synthesis',
+      : person.bio.sourceType === 'owner_supplied_copy' && person.bio.authorRole === 'profile_subject'
+        ? (person.bio.en ? 'en' : 'th')
+        : 'not_applicable_bilingual_factual_synthesis',
     source_type: person.bio.sourceType,
     source_ref: person.bio.sourceRef,
     author_role: person.bio.authorRole,
@@ -179,13 +183,22 @@ const profileStatementRows = site.people
     person_review_status: person.bio.reviewStatus,
     consent_status: person.publication.consentStatus,
     publication_status: person.bio.status,
-    supersedes_statement_id: '',
-    effective_from: person.bio.ownerApproval?.approvedAt,
-    reviewed_at: '',
+    supersedes_statement_id: person.bio.supersedesStatementId ?? '',
+    effective_from: person.bio.reviewedAt ?? person.bio.ownerApproval?.approvedAt,
+    reviewed_at: person.bio.reviewedAt ?? '',
     publication_basis: person.bio.publicationBasis,
     source_basis: person.bio.sourceBasis,
     owner_approval_scope: person.bio.ownerApproval?.scope
   }));
+
+// The current projection is not a replacement for the private statement history.
+const currentStatementIds = new Set(profileStatementRows.map((row) => row.statement_id));
+for (const previous of sheetRows(snapshot, 'profile_statements')) {
+  if (previous.statement_id && !currentStatementIds.has(previous.statement_id)) {
+    profileStatementRows.push({ ...previous });
+    currentStatementIds.add(previous.statement_id);
+  }
+}
 
 const engagementRows = site.engagements.map((engagement) => ({
   engagement_id: engagement.engagementId,
@@ -494,8 +507,10 @@ const enumRows = [
   ['bio.status', 'owner_approved', 'เจ้าตัวยืนยันแล้ว', 'Owner approved'],
   ['bio.publication_basis', 'owner_authorized_paraphrase_from_first_person_application', 'เจ้าของ directory อนุมัติข้อความที่ถอดความจากคำตอบ first-person', 'Owner-authorized paraphrase from a first-person application'],
   ['bio.publication_basis', 'owner_authorized_synthesis_from_roster_evidence', 'เจ้าของ directory อนุมัติ factual fallback จากหลักฐาน roster', 'Owner-authorized factual fallback from roster evidence'],
+  ['bio.publication_basis', 'individual_consent_profile_copy', 'เจ้าตัวยืนยันข้อความในภาษาที่ระบุสำหรับ Landom', 'Participant-approved profile copy in the supplied language for Landom'],
   ['bio.source_basis', 'first_person_application_exact_roster_match', 'คำตอบ first-person จับคู่ core roster แบบ exact', 'First-person application with exact core-roster match'],
   ['bio.source_basis', 'factual_role_education_and_work_evidence', 'ข้อมูลบทบาท การศึกษา และผลงานที่ยืนยันแล้ว', 'Factual role, education, and verified-work evidence'],
+  ['bio.source_basis', 'participant_supplied_profile_copy', 'ข้อความที่เจ้าตัวส่งให้แก้โปรไฟล์โดยตรง', 'Profile copy supplied directly by the participant'],
   ['bio.review_status', 'pending_owner_copy', 'รอข้อความจากเจ้าตัว', 'Pending owner copy'],
   ['bio.review_status', 'pending_candidate_video_review', 'รอทบทวนจากวิดีโอของเจ้าตัว', 'Pending candidate video review'],
   ['bio.review_status', 'owner_approved', 'เจ้าตัวยืนยันแล้ว', 'Owner approved'],
@@ -528,17 +543,17 @@ const qaRows = [
   { metric: 'publishable_portraits', expected: site.assets.filter((asset) => asset.publicationStatus === 'publishable').length, formula_value: '=COUNTIF(assets!Q2:Q,"publishable")', review_rule: 'ค่าปัจจุบันที่ผ่าน gate; คนที่ยังไม่มีภาพที่ยืนยันได้ใช้ชื่อเล่นเต็มเป็น avatar fallback' },
   { metric: 'core_cooperative_education_count', expected: 7, formula_value: '=COUNTIF(engagements!Q2:Q,"cooperative_education")', review_rule: 'เว็บหลักมี 7 คน: I0003, I0030, I0031, I0034, I0036, I0039, I0045; คิวเริ่มงานและมี contribution ที่กำลังทำแล้ว' },
   { metric: 'non_authorized_core_coop', expected: 0, formula_value: '=SUM(ARRAYFORMULA(N((engagements!Q2:Q="cooperative_education")*(REGEXMATCH(engagements!B2:B,"^(I0003|I0030|I0031|I0034|I0036|I0039|I0045)$")=FALSE))))', review_rule: 'ต้องเป็น 0' },
-  { metric: 'profile_statements', expected: site.people.filter((person) => person.bio.status === 'source_backed_placeholder').length, formula_value: '=COUNTA(profile_statements!A2:A)', review_rule: 'คนที่มีข้อความที่อนุมัติแล้วมี current statement หนึ่งรายการ; I0045 เว้นตามคำสั่งเจ้าของ' },
+  { metric: 'profile_statements', expected: profileStatementRows.length, formula_value: '=COUNTA(profile_statements!A2:A)', review_rule: 'รวม current statement และประวัติข้อความเดิม; current_statement_id ใน people_registry ระบุข้อความที่ใช้อยู่; I0045 เว้นตามคำสั่งเจ้าของ' },
   { metric: 'source_backed_profile_copy', expected: site.people.filter((person) => person.bio.status === 'source_backed_placeholder').length, formula_value: '=COUNTIF(people_registry!Q2:Q,"source_backed_placeholder")', review_rule: 'ต้องตรงกับข้อความที่อนุมัติแล้วและมี provenance แยก first-person ออกจาก factual fallback; I0045 ยัง owner_pending' },
   { metric: 'owner_pending_profile_copy', expected: 1, formula_value: '=COUNTIF(people_registry!Q2:Q,"owner_pending")', review_rule: 'คิว I0045 รอร่างหลังงานเสร็จตามคำสั่งเจ้าของ' },
-  { metric: 'first_person_profile_statements', expected: site.people.filter((person) => person.bio.sourceType === 'first_person_application').length, formula_value: '=COUNTIF(profile_statements!G2:G,"first_person_application")', review_rule: 'จับคู่ core roster แบบ exact และรอ video review' },
-  { metric: 'factual_fallback_profile_statements', expected: site.people.filter((person) => person.bio.sourceType === 'factual_fallback').length, formula_value: '=COUNTIF(profile_statements!G2:G,"factual_fallback")', review_rule: 'ใช้เฉพาะ role, education และ verified work; ห้ามใช้ reviewer inference' },
+  { metric: 'first_person_profile_statements', expected: profileStatementRows.filter((row) => row.source_type === 'first_person_application').length, formula_value: '=COUNTIF(profile_statements!G2:G,"first_person_application")', review_rule: 'รวมประวัติข้อความ; จับคู่ core roster แบบ exact และรอ video review' },
+  { metric: 'factual_fallback_profile_statements', expected: profileStatementRows.filter((row) => row.source_type === 'factual_fallback').length, formula_value: '=COUNTIF(profile_statements!G2:G,"factual_fallback")', review_rule: 'รวมประวัติข้อความ; ใช้เฉพาะ role, education และ verified work; ห้ามใช้ reviewer inference' },
   { metric: 'staff_degree_programs', expected: site.educationRecords.filter((record) => /^[SP]/.test(record.personId) && record.degree).length, formula_value: '=COUNTIFS(education!B2:B,"S*",education!L2:L,"<>")+COUNTIFS(education!B2:B,"P*",education!L2:L,"<>")', review_rule: 'ชื่อ degree program ครบทุก Full-time และ Part-time staff record ที่มีหลักฐาน' },
   { metric: 'verified_completed_staff_degrees', expected: site.educationRecords.filter((record) => /^[SP]/.test(record.personId) && record.degree?.awardStatus === 'completed' && record.degree?.personalAwardVerified).length, formula_value: '=COUNTIFS(education!B2:B,"S*",education!R2:R,"completed",education!S2:S,TRUE)+COUNTIFS(education!B2:B,"P*",education!R2:R,"completed",education!S2:S,TRUE)', review_rule: 'owner ยืนยัน completed + personalAwardVerified ครบทุก Full-time และ Part-time staff record ที่มีหลักฐาน' }
 ];
 
 const readmeRows = [
-  { topic: 'ชื่อชุดข้อมูล', detail: 'Landom — People, Roles & Contributions Registry (reviewed 30 Sep 2026)' },
+  { topic: 'ชื่อชุดข้อมูล', detail: `Landom — People, Roles & Contributions Registry (reviewed ${site.meta.dataUpdatedAt})` },
   { topic: 'หลักการ', detail: 'หนึ่งคนหนึ่ง person_id; หลายช่วงบทบาทอยู่ใน engagements; หลายผลงานอยู่ใน contributions' },
   { topic: 'person_id', detail: 'รูปแบบ S0001 / P0001 / I0001 จัดตามประเภท ณ migration 2026-08-23 และ freeze หลังออกเลข' },
   { topic: 'หลายบทบาท', detail: 'โอ๊ตใช้ S0001 เดียวสำหรับ Intern → Part-time → Full-time' },
@@ -546,7 +561,7 @@ const readmeRows = [
   { topic: 'ฝึกงาน/สหกิจศึกษา', detail: 'ใช้ academic_placement_type ต่อ engagement เท่านั้น; เว็บหลักมีสหกิจ 7 IDs ที่ owner ยืนยัน รวมคิว I0045 ที่เริ่มงานและมี contribution ที่กำลังทำแล้ว' },
   { topic: 'ผลงาน', detail: 'Land Portfolio และ Lead2Loan เป็นคนละ work_id; ทุกคนมี contribution อย่างน้อย 1 รายการ' },
   { topic: 'รางวัล', detail: 'Hack Land Value / CityCell อยู่ใน achievements และเชื่อมผู้รับรางวัลผ่าน person_achievements' },
-  { topic: 'bio', detail: '53 คน: คง 52 profile statements เดิม เป็น 26 ข้อความ paraphrase จาก first-person ที่จับคู่ roster ได้ exact และ 26 factual fallback ที่สังเคราะห์แบบ bounded จาก role, education และ verified work เท่านั้น คิวยัง owner_pending และเว้นข้อความตามคำสั่งให้ร่างหลังงานเสร็จ ข้อความเดิมเป็น source_backed_placeholder; consent ล่าสุดแยกตามขอบเขตจาก provenance; ห้ามเผย raw application, private recruitment/application Sheet ID/range, contact หรือ reviewer data' },
+  { topic: 'bio', detail: '53 คน: มี current statement 52 รายการ ได้แก่ placeholder เดิม 51 รายการ (25 first-person paraphrases และ 26 factual fallbacks) กับข้อความภาษาไทยที่ S0002 ส่งให้แก้โดยตรง 1 รายการ; คิวยัง owner_pending และเว้นข้อความตามคำสั่งให้ร่างหลังงานเสร็จ เก็บประวัติข้อความที่ถูกแทนใน profile_statements และชี้ current_statement_id ไปข้อความล่าสุด; consent แยกตามขอบเขตจาก provenance; ห้ามเผย raw application, private recruitment/application Sheet ID/range, contact หรือ reviewer data' },
   { topic: 'publication', detail: 'external_publications แยกจาก works และ contributions โดยเด็ดขาด; ใช้เฉพาะผลงานตีพิมพ์ภายนอกที่มี identity match, bibliographic evidence และ owner-authorized public link' },
   { topic: 'recruitment', detail: 'ผู้สมัครที่ไม่อยู่ใน Landom registry เก็บใน private Shortlisted recruitment เท่านั้น; ห้ามนำ contact, CV, video URL หรือ reviewer note เข้า public projection' },
   { topic: 'social', detail: 'ลิงก์ public profile ที่ตรวจ identity แล้วเผยแพร่ได้ด้วย individual_consent หรือ owner_authorized_public_profile_link; basis หลังไม่ใช่ consent ของเจ้าตัว' },
@@ -571,8 +586,8 @@ const tabs = {
         Q: ['owner_pending', 'source_backed_placeholder', 'owner_approved'],
         R: ['owner_pending', 'owner_authorized_placeholder', 'owner_approved'],
         S: ['granted', 'pending', 'denied'],
-        W: ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence'],
-        X: ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence'],
+        W: ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence', 'individual_consent_profile_copy'],
+        X: ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence', 'participant_supplied_profile_copy'],
         Y: ['pending_owner_copy', 'pending_candidate_video_review', 'owner_approved'],
         Z: ['granted'],
         AE: ['first_person_application', 'factual_fallback', 'candidate_video_transcript', 'owner_supplied_copy'],
@@ -596,8 +611,8 @@ const tabs = {
         O: ['pending_candidate_video_review', 'owner_approved'],
         P: ['granted', 'pending', 'denied'],
         Q: ['source_backed_placeholder', 'owner_approved'],
-        U: ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence'],
-        V: ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence'],
+        U: ['owner_authorized_paraphrase_from_first_person_application', 'owner_authorized_synthesis_from_roster_evidence', 'individual_consent_profile_copy'],
+        V: ['first_person_application_exact_roster_match', 'factual_role_education_and_work_evidence', 'participant_supplied_profile_copy'],
         W: ['source_backed_placeholder_profile_copy']
       }
     }

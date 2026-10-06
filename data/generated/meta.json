@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.5.0",
-  "generatedAt": "2026-10-04T00:00:00+07:00",
+  "generatedAt": "2026-10-06T00:00:00+07:00",
   "source": {
     "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
     "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -39,7 +39,7 @@
     "socialAndPortraits": "Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.",
     "educationPublicProfiles": "Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.",
     "certificates": "Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.",
-    "profileCopy": "52 core profiles retain owner-authorized bilingual placeholders pending candidate/video review; 1 profiles remain blank at the owner's request until their work is complete. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
+    "profileCopy": "51 core profiles retain owner-authorized bilingual placeholders pending candidate/video review; 1 profile uses exact participant-supplied Thai copy with no participant-approved English text; 1 profile remains blank at the owner's request until work is complete. 25 placeholders are concise paraphrases of first-person applications from exact roster matches; 26 are bounded factual fallbacks from reconciled role, education and verified-work evidence. Placeholder provenance is not individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.",
     "academicPlacement": "Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.",
     "staffDegrees": "The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.",
     "externalPublications": "An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer."
@@ -53,16 +53,17 @@
     "achievements": 1,
     "publications": 1,
     "certificates": 26,
-    "sourceBackedProfilePlaceholders": 52,
+    "sourceBackedProfilePlaceholders": 51,
     "ownerPendingProfiles": 1,
-    "firstPersonProfilePlaceholders": 26,
+    "firstPersonProfilePlaceholders": 25,
     "factualFallbackProfilePlaceholders": 26,
     "verifiedCompletedStaffDegrees": 7,
     "cooperativeEducationPeople": 7,
     "verifiedInstitutionLinkedInProfiles": 8,
     "verifiedProgramLinkedInProfiles": 1,
-    "publishedPublicSocialProfiles": 76
+    "publishedPublicSocialProfiles": 75,
+    "participantApprovedProfileCopies": 1
   },
-  "dataUpdatedAt": "2026-10-04",
-  "reviewedAt": "2026-10-04"
+  "dataUpdatedAt": "2026-10-06",
+  "reviewedAt": "2026-10-06"
 }

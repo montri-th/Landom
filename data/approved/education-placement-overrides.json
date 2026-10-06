@@ -56,14 +56,15 @@
     {
       "personId": "S0004",
       "degree": {
-        "abbreviation": { "th": "ศศ.บ.", "en": "B.A." },
-        "title": { "th": "ศิลปศาสตรบัณฑิต", "en": "Bachelor of Arts" },
+        "abbreviation": { "th": "รป.บ.", "en": "B.P.A." },
+        "title": { "th": "รัฐประศาสนศาสตรบัณฑิต", "en": "Bachelor of Public Administration" },
         "field": { "th": "การบริหารจัดการเมือง", "en": "Urban Administration and Management" },
         "awardStatus": "completed",
         "personalAwardVerified": true,
-        "programEvidenceUrl": "https://imd.nmu.ac.th/wp-content/uploads/2022/07/IMD-CityPASS-2022.pdf",
-        "evidenceScope": "owner_confirmed_completed_degree_with_official_program_definition"
+        "programEvidenceUrl": "https://imd.nmu.ac.th/wp-content/uploads/2023/05/NMU-IMD-BPA-Urban-Administration-and-Management-2023-Brochure.pdf",
+        "evidenceScope": "participant_corrected_degree_title_with_official_program_definition"
       }
     }
-  ]
+  ],
+  "reviewedAt": "2026-10-06"
 }

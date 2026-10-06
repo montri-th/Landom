@@ -38,8 +38,24 @@
     },
     {
       "personId": "S0002",
-      "th": "เรเน่อยากเชื่อมความสนใจด้านการตลาดกับอสังหาริมทรัพย์ โดยนำพื้นฐานประชาสัมพันธ์ คอนเทนต์ และการสื่อสารมาช่วยพัฒนางานการตลาดพร้อมเรียนรู้ต่อเนื่อง",
-      "en": "Renee wants to connect her interests in marketing and real estate, bringing a public-relations, content, and communication perspective while continuing to learn."
+      "basis": "participant_supplied_profile_copy",
+      "th": "เรเน่สนใจการเชื่อมโยงระหว่างธุรกิจ ผู้คน และเมือง เพื่อมองหาและเปลี่ยนความเชื่อมโยงเหล่านั้นให้กลายเป็นโอกาสใหม่ ๆ ทางธุรกิจ",
+      "en": null,
+      "status": "owner_approved",
+      "verificationStatus": "owner_approved",
+      "publicationBasis": "individual_consent_profile_copy",
+      "sourceBasis": "participant_supplied_profile_copy",
+      "sourceType": "owner_supplied_copy",
+      "sourceRef": "participant_reply_reviewed_2026-10-06",
+      "authorRole": "profile_subject",
+      "derivationMethod": "verbatim_owner_copy",
+      "evidenceScope": "participant_supplied_profile_text_th_only",
+      "evidenceConfidence": "owner_confirmed",
+      "reviewStatus": "owner_approved",
+      "ownerApproval": null,
+      "statementId": "STAT-S0002-002",
+      "supersedesStatementId": "STAT-S0002-001",
+      "reviewedAt": "2026-10-06"
     },
     {
       "personId": "S0003",

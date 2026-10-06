@@ -74,10 +74,19 @@ export function applyPublicationConsent(siteData, contract) {
     const socialApprovals = indexUnique(record.socials ?? [], (social) => social?.platform, 'social consent platform for ' + personId);
     for (const [platform, approval] of socialApprovals) {
       assertObject(approval, ['platform', 'publicUrl', 'consentStatus'], 'Social consent');
-      if (!PUBLIC_SOCIAL_PLATFORMS.has(platform) || approval.consentStatus !== 'granted') {
-        throw new Error('Social consent must explicitly grant a public LinkedIn or GitHub profile: ' + personId);
+      if (!PUBLIC_SOCIAL_PLATFORMS.has(platform) || !['granted', 'denied'].includes(approval.consentStatus)) {
+        throw new Error('Social consent must explicitly grant or deny a public LinkedIn or GitHub profile: ' + personId);
       }
       const profile = socials.get(personId + '|' + platform);
+      if (approval.consentStatus === 'denied') {
+        // A withdrawn channel is omitted completely. Keep the URL and mailbox evidence private.
+        // Reapplying the same denial to an already omitted channel must be a no-op.
+        if (approval.publicUrl && profile && approval.publicUrl !== profile.publicUrl) {
+          throw new Error('Social consent URL mismatch: ' + personId + '|' + platform);
+        }
+        result.socialProfiles = result.socialProfiles.filter((item) => item.personId !== personId || item.platform !== platform);
+        continue;
+      }
       if (!profile || !approval.publicUrl || profile.publicUrl !== approval.publicUrl) {
         throw new Error('Social consent URL mismatch: ' + personId + '|' + platform);
       }
@@ -88,5 +97,8 @@ export function applyPublicationConsent(siteData, contract) {
   // Approval provenance stays in the reviewed contract; no mailbox evidence is projected.
   result.meta.dataUpdatedAt = [result.meta.dataUpdatedAt, contract.reviewedAt].filter(Boolean).sort().at(-1);
   result.meta.reviewedAt = result.meta.dataUpdatedAt;
+  if (result.meta.counts) {
+    result.meta.counts.publishedPublicSocialProfiles = result.socialProfiles.filter((profile) => profile.publicUrl && profile.publicationStatus === 'publishable').length;
+  }
   return result;
 }

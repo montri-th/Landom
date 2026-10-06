@@ -1446,8 +1446,9 @@ for (const approvedProfile of profileCopy.profiles ?? []) {
   if (approvedProfileByPersonId.has(approvedProfile.personId)) {
     throw new Error('Duplicate approved profile copy for ' + approvedProfile.personId);
   }
-  if (!clean(approvedProfile.th) || !clean(approvedProfile.en)) {
-    throw new Error('Approved profile copy must contain both languages: ' + approvedProfile.personId);
+  const participantCopy = approvedProfile.basis === 'participant_supplied_profile_copy';
+  if (participantCopy ? (!clean(approvedProfile.th) || approvedProfile.en !== null) : (!clean(approvedProfile.th) || !clean(approvedProfile.en))) {
+    throw new Error((participantCopy ? 'Reviewed participant copy must contain exact Thai text and null English: ' : 'Approved profile copy must contain both languages: ') + approvedProfile.personId);
   }
   approvedProfileByPersonId.set(approvedProfile.personId, approvedProfile);
 }
@@ -1464,14 +1465,23 @@ if (approvedProfileByPersonId.size + deferredProfileByPersonId.size !== people.l
 }
 const firstPersonProfiles = [...approvedProfileByPersonId.values()].filter((profile) => !profile.basis || profile.basis === 'first_person');
 const factualFallbackProfiles = [...approvedProfileByPersonId.values()].filter((profile) => profile.basis === 'factual_fallback');
-if (firstPersonProfiles.length !== 26 || factualFallbackProfiles.length !== approvedProfileByPersonId.size - 26) {
-  throw new Error('Approved profile provenance must retain 26 first-person paraphrases and use factual fallbacks only for the remaining governed people.');
+const participantProfiles = [...approvedProfileByPersonId.values()].filter((profile) => profile.basis === 'participant_supplied_profile_copy');
+if (firstPersonProfiles.length + factualFallbackProfiles.length + participantProfiles.length !== approvedProfileByPersonId.size) {
+  throw new Error('Every approved profile requires an explicit supported provenance basis.');
 }
 for (const person of people) {
   const approvedProfile = approvedProfileByPersonId.get(person.personId);
   if (deferredProfileByPersonId.has(person.personId)) continue;
   const factualFallback = approvedProfile.basis === 'factual_fallback';
-  const sourceContract = factualFallback ? profileCopy.factualFallbackContract : profileCopy;
+  const participantCopy = approvedProfile.basis === 'participant_supplied_profile_copy';
+  const sourceContract = participantCopy ? approvedProfile : factualFallback ? profileCopy.factualFallbackContract : profileCopy;
+  if (participantCopy && (approvedProfile.status !== 'owner_approved' || approvedProfile.verificationStatus !== 'owner_approved' ||
+      approvedProfile.reviewStatus !== 'owner_approved' || approvedProfile.publicationBasis !== 'individual_consent_profile_copy' ||
+      approvedProfile.sourceBasis !== 'participant_supplied_profile_copy' || approvedProfile.sourceType !== 'owner_supplied_copy' ||
+      approvedProfile.authorRole !== 'profile_subject' || approvedProfile.derivationMethod !== 'verbatim_owner_copy' ||
+      approvedProfile.ownerApproval !== null || !/^participant_reply_reviewed_\d{4}-\d{2}-\d{2}$/.test(approvedProfile.sourceRef ?? ''))) {
+    throw new Error('Participant-supplied copy requires exact participant approval and bounded provenance: ' + person.personId);
+  }
   if (!(approvedProfile.publicationBasis || sourceContract?.publicationBasis) ||
       !(approvedProfile.sourceBasis || sourceContract?.sourceBasis) ||
       !(approvedProfile.sourceType || sourceContract?.sourceType) ||
@@ -1485,8 +1495,8 @@ for (const person of people) {
   person.bio = {
     th: approvedProfile.th,
     en: approvedProfile.en,
-    status: 'source_backed_placeholder',
-    verificationStatus: 'owner_authorized_placeholder',
+    status: participantCopy ? 'owner_approved' : 'source_backed_placeholder',
+    verificationStatus: participantCopy ? 'owner_approved' : 'owner_authorized_placeholder',
     publicationBasis: approvedProfile.publicationBasis || sourceContract.publicationBasis,
     sourceBasis: approvedProfile.sourceBasis || sourceContract.sourceBasis,
     sourceType: approvedProfile.sourceType || sourceContract.sourceType,
@@ -1496,7 +1506,12 @@ for (const person of people) {
     evidenceScope: approvedProfile.evidenceScope || sourceContract.evidenceScope,
     evidenceConfidence: approvedProfile.evidenceConfidence || sourceContract.evidenceConfidence,
     reviewStatus: sourceContract.reviewStatus,
-    ownerApproval: structuredClone(profileCopy.ownerApproval)
+    ownerApproval: participantCopy ? null : structuredClone(profileCopy.ownerApproval),
+    ...(participantCopy ? {
+      statementId: approvedProfile.statementId,
+      supersedesStatementId: approvedProfile.supersedesStatementId,
+      reviewedAt: approvedProfile.reviewedAt
+    } : {})
   };
 }
 
@@ -1795,7 +1810,7 @@ const meta = {
     socialAndPortraits: 'Only LinkedIn and GitHub public profile links may enter the web projection after exact identity verification under either recorded individual consent or the owner-authorized public-link basis. Other platform candidates remain private and are not emitted to the web. A portrait may be published only after exact identity verification, cleared publication rights and either recorded individual consent or the owner-authorized public-portrait basis. Neither owner-authorized basis is individual consent.',
     educationPublicProfiles: 'Institution and program LinkedIn links are published only when the LinkedIn page name and linked official website match the exact canonical entity. Missing exact pages remain null; faculty pages and similarly named organizations are not substituted, and LinkedIn logos are not copied or rehosted.',
     certificates: 'Certificate images are owner-authorized public artifacts with cleared rights and pending individual consent. Only printed certificate facts, governed local paths, hashes and bounded canonical work links enter the public projection. QR destinations are excluded as contribution evidence; printed date conflicts and spelling mismatches remain explicitly flagged.',
-    profileCopy: `${approvedProfileByPersonId.size} core profiles retain owner-authorized bilingual placeholders pending candidate/video review; ${deferredProfileByPersonId.size} profiles remain blank at the owner's request until their work is complete. Twenty-six are concise paraphrases of first-person applications from exact roster matches; twenty-six are bounded factual fallbacks synthesized only from reconciled role, education and verified-work evidence. Provenance remains distinct per bio. Neither basis is individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.`,
+    profileCopy: `${firstPersonProfiles.length + factualFallbackProfiles.length} core profiles retain owner-authorized bilingual placeholders pending candidate/video review; ${participantProfiles.length} profile uses exact participant-supplied Thai copy with no participant-approved English text; ${deferredProfileByPersonId.size} profile remains blank at the owner's request until work is complete. ${firstPersonProfiles.length} placeholders are concise paraphrases of first-person applications from exact roster matches; ${factualFallbackProfiles.length} are bounded factual fallbacks from reconciled role, education and verified-work evidence. Placeholder provenance is not individual approval of final copy. Raw responses, private recruitment/application Sheet identifiers or ranges, contacts and reviewer notes are excluded; the authorized core-registry Sheet identifier remains only in meta.source as registry provenance.`,
     academicPlacement: 'Cooperative-education status is restricted to owner-confirmed public core records. A candidate who is not yet in the verified core roster is excluded rather than assigned a public person ID or contribution.',
     staffDegrees: 'The directory owner confirmed completed degrees for the four existing full-time records, Nat, Pote and Sek. Official program definitions standardize Nat and Sek; Pote uses the owner-supplied exact IEEE author biography as person-level degree evidence. Biw retains no public degree claim because no education evidence has been supplied.',
     externalPublications: 'An external author publication is a separate evidence dimension from Landometer works and contributions. It may be linked only after an exact person match, bibliographic verification and an owner-authorized public-link basis; it does not imply that the publication was created for or contributed to Landometer.'
@@ -1809,7 +1824,8 @@ const meta = {
     achievements: achievements.length,
     publications: publications.length,
     certificates: certificates.length,
-    sourceBackedProfilePlaceholders: approvedProfileByPersonId.size,
+    sourceBackedProfilePlaceholders: firstPersonProfiles.length + factualFallbackProfiles.length,
+    participantApprovedProfileCopies: participantProfiles.length,
     ownerPendingProfiles: people.length - approvedProfileByPersonId.size,
     firstPersonProfilePlaceholders: firstPersonProfiles.length,
     factualFallbackProfilePlaceholders: factualFallbackProfiles.length,

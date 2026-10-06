@@ -168,10 +168,13 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
         const publicationBasis = nullable(currentStatement?.publication_basis ?? row.bio_publication_basis) ?? existing.bio?.publicationBasis ?? null;
         const sourceBasis = nullable(currentStatement?.source_basis ?? row.bio_source_basis) ?? existing.bio?.sourceBasis ?? null;
         const sourceType = nullable(currentStatement?.source_type ?? row.bio_source_type) ?? existing.bio?.sourceType ?? null;
-        const sourceRef = safeProfileSourceRef(
-          currentStatement?.source_ref ?? row.bio_source_ref,
-          existing.bio?.sourceRef ?? null
-        );
+        const matchesReviewedParticipantCopy = publicationBasis === 'individual_consent_profile_copy' &&
+          existing.bio?.publicationBasis === publicationBasis && currentStatementId === existing.bio.statementId &&
+          nullable(currentStatement?.text_th ?? row.bio_th) === existing.bio.th &&
+          nullable(currentStatement?.text_en ?? row.bio_en) === existing.bio.en;
+        const sourceRef = matchesReviewedParticipantCopy
+          ? safeProfileSourceRef(existing.bio.sourceRef)
+          : safeProfileSourceRef(currentStatement?.source_ref ?? row.bio_source_ref, existing.bio?.sourceRef ?? null);
         return {
           th: nullable(currentStatement?.text_th ?? row.bio_th ?? row.bio_placeholder_th),
           en: nullable(currentStatement?.text_en ?? row.bio_en ?? row.bio_placeholder_en),
@@ -186,7 +189,12 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
           evidenceScope: nullable(currentStatement?.evidence_scope ?? row.bio_evidence_scope) ?? existing.bio?.evidenceScope ?? null,
           evidenceConfidence: nullable(currentStatement?.evidence_confidence ?? row.bio_evidence_confidence) ?? existing.bio?.evidenceConfidence ?? null,
           reviewStatus: nullable(currentStatement?.person_review_status ?? row.bio_review_status) ?? existing.bio?.reviewStatus ?? 'pending_owner_copy',
-          ownerApproval
+          ownerApproval: publicationBasis === 'individual_consent_profile_copy' ? null : ownerApproval,
+          ...(existing.bio?.statementId || publicationBasis === 'individual_consent_profile_copy' ? {
+            statementId: currentStatementId || existing.bio?.statementId,
+            supersedesStatementId: nullable(currentStatement?.supersedes_statement_id) ?? existing.bio?.supersedesStatementId ?? null,
+            reviewedAt: nullable(currentStatement?.reviewed_at) ?? existing.bio?.reviewedAt
+          } : {})
         };
       })(),
       publication: {
