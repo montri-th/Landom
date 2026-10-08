@@ -236,9 +236,9 @@ test('late-evening replies preserve corrected names and dates while withholding 
 
 test('reviewed publication replies apply per scope while nonrespondents and Pote portrait refusal remain truthful', () => {
   const consent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
-  assert.equal(consent.records.length, 33);
+  assert.equal(consent.records.length, 36);
   const respondents = new Set(consent.records.map((record) => record.personId));
-  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 33);
+  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 36);
   for (const person of data.people) {
     assert.equal(person.publication.consentStatus, respondents.has(person.personId) ? 'granted' : 'pending');
   }
@@ -275,8 +275,8 @@ test('reviewed publication replies apply per scope while nonrespondents and Pote
     assert.ok(data.socialProfiles.filter((profile) => profile.personId === personId && profile.publicUrl).every((profile) => profile.consentStatus === 'granted'));
   }
   assert.equal(data.socialProfiles.find((profile) => profile.personId === 'S0004' && profile.platform === 'linkedin').consentStatus, 'granted');
-  assert.equal(data.meta.dataUpdatedAt, '2026-10-06');
-  assert.equal(data.meta.reviewedAt, '2026-10-06');
+  assert.equal(data.meta.dataUpdatedAt, '2026-10-08');
+  assert.equal(data.meta.reviewedAt, '2026-10-08');
   if (rawAvailable) {
     const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'data/raw/google-sheet-snapshot.json'), 'utf8'));
     assert.equal(data.meta.source.snapshotFetchedAt, snapshot.source.fetchedAt, 'review dates must not falsify the raw fetch date');

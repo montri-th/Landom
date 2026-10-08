@@ -29,11 +29,20 @@ function assertUnique(items, key) {
   assert.ok(values.every(Boolean), 'missing ' + key);
 }
 
-test('normalizer is deterministic', { skip: rawAvailable ? false : 'authorized private snapshot is not present' }, () => {
-  const before = fs.readFileSync(generatedPath, 'utf8');
-  execFileSync(process.execPath, [path.join(root, 'tools/normalize-data.mjs')], { cwd: root });
-  const after = fs.readFileSync(generatedPath, 'utf8');
-  assert.equal(after, before);
+test('reviewed normalizer is deterministic without mutating repository outputs', () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'landom-reviewed-determinism-'));
+  try {
+    const before = fs.readFileSync(generatedPath, 'utf8');
+    const reviewedPath = path.join(tempRoot, 'reviewed.json');
+    fs.writeFileSync(reviewedPath, before);
+    const outputs = ['first', 'second'].map((name) => path.join(tempRoot, name));
+    for (const outputDir of outputs) execFileSync(process.execPath, [path.join(root, 'tools/normalize-data.mjs'), '--reviewed-site-data', reviewedPath, '--output-dir', outputDir], { cwd: root });
+    assert.equal(fs.readFileSync(path.join(outputs[0], 'site-data.json'), 'utf8'), before);
+    const files = fs.readdirSync(outputs[0]).sort();
+    assert.deepEqual(fs.readdirSync(outputs[1]).sort(), files);
+    for (const file of files) assert.equal(fs.readFileSync(path.join(outputs[0], file), 'utf8'), fs.readFileSync(path.join(outputs[1], file), 'utf8'), file + ' is nondeterministic');
+    assert.equal(fs.readFileSync(generatedPath, 'utf8'), before, 'test mutated the repository public graph');
+  } finally { fs.rmSync(tempRoot, { recursive: true, force: true }); }
 });
 
 test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', { skip: rawAvailable ? false : 'authorized private snapshot is not present' }, () => {
@@ -121,7 +130,7 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   const readmeTopicIndex = exported.tabs.README.headers.indexOf('topic');
   const readmeDetailIndex = exported.tabs.README.headers.indexOf('detail');
   const datasetNameRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'ชื่อชุดข้อมูล');
-  assert.match(datasetNameRow[readmeDetailIndex], /reviewed 2026-10-06/);
+  assert.ok(datasetNameRow[readmeDetailIndex].includes('reviewed ' + loadGenerated().meta.reviewedAt));
   assert.doesNotMatch(datasetNameRow[readmeDetailIndex], /v3\.3/);
   const bioRow = exported.tabs.README.rows.find((row) => row[readmeTopicIndex] === 'bio');
   assert.match(bioRow[readmeDetailIndex], /private recruitment\/application Sheet ID\/range/);
@@ -130,10 +139,16 @@ test('sheet exporter rewrites legacy person IDs in every exporter-facing cell', 
   assert.doesNotMatch(backupRow[readmeDetailIndex], /Google Sheet ID/i);
 });
 
-test('normalized Sheet roundtrip preserves private social and asset candidates without public leakage', { skip: rawAvailable ? false : 'authorized private snapshot is not present' }, () => {
+test('normalized Sheet roundtrip preserves private social and asset candidates without public leakage', () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'landom-normalized-roundtrip-'));
   try {
-    const workbook = JSON.parse(execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs')], { cwd: root, encoding: 'utf8' }));
+    // Build an isolated fixture from the current reviewed graph, never from stale private raw data.
+    const baseline = loadGenerated();
+    const seedPath = path.join(tempRoot, 'reviewed-seed.json');
+    const baselinePath = path.join(tempRoot, 'reviewed-site-data.json');
+    fs.writeFileSync(baselinePath, JSON.stringify(baseline));
+    fs.writeFileSync(seedPath, JSON.stringify({ tabs: { people_registry: { headers: ['person_id'], rows: baseline.people.map((person) => [person.personId]) } } }));
+    const workbook = JSON.parse(execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs'), '--snapshot', seedPath, '--site-data', baselinePath], { cwd: root, encoding: 'utf8' }));
     const social = workbook.tabs.social_profiles;
     const socialId = social.headers.indexOf('social_profile_id');
     const socialCandidate = social.headers.indexOf('candidate_url_or_handle');
@@ -176,7 +191,9 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     const assetCandidateStatus = assets.headers.indexOf('candidate_status');
     const assetVerification = assets.headers.indexOf('verification_status');
     const assetPermission = assets.headers.indexOf('permission_record_id');
-    const portrait = assets.rows.find((row) => row[assetId] === 'PORTRAIT-I0001');
+    const portrait = assets.rows.find((row) => row[assetId] === 'PORTRAIT-I0018');
+    assert.ok(portrait, 'missing nonrespondent I0018 portrait fixture');
+    assert.equal(baseline.assets.find((asset) => asset.assetId === 'PORTRAIT-I0018').publicationBasis, 'owner_authorized_public_profile_portrait');
     portrait[assetSource] = 'https://private.example/portrait-candidate.jpg';
     portrait[assetCandidateStatus] = 'candidate_present';
     portrait[assetVerification] = 'owner_review_required';
@@ -193,13 +210,12 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     fs.writeFileSync(snapshotPath, JSON.stringify(workbook));
     execFileSync(process.execPath, [path.join(root, 'tools/normalize-data.mjs'), '--input', snapshotPath, '--output-dir', outputDir], { cwd: root });
     const imported = JSON.parse(fs.readFileSync(path.join(outputDir, 'site-data.json'), 'utf8'));
-    const baseline = loadGenerated();
     assert.equal(imported.meta.source.inputSchema, 'normalized_sheet_v3_4');
     for (const dimension of ['people', 'engagements', 'institutions', 'programs', 'educationRecords', 'works', 'contributions', 'achievements', 'publications', 'socialProfiles', 'assets', 'certificates']) {
       assert.equal(imported[dimension].length, baseline[dimension].length, 'roundtrip changed ' + dimension + ' row count');
     }
     const importedInstagram = imported.socialProfiles.find((row) => row.socialProfileId === 'SOC-I0001-INSTAGRAM');
-    const importedPortrait = imported.assets.find((row) => row.assetId === 'PORTRAIT-I0001');
+    const importedPortrait = imported.assets.find((row) => row.assetId === 'PORTRAIT-I0018');
     assert.equal(imported.people.find((person) => person.personId === 'I0015').bio.th, 'ข้อความตั้งต้นที่แก้ผ่าน normalized Sheet roundtrip');
     assert.equal(imported.people.find((person) => person.personId === 'I0015').bio.sourceType, 'first_person_application');
     assert.equal(imported.people.find((person) => person.personId === 'I0001').bio.sourceType, 'factual_fallback');
@@ -211,9 +227,9 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 51);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 24);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 22);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 75);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 73);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       ['linkedin', 'github'].includes(row.platform)
     ));
@@ -224,7 +240,7 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(
       imported.assets.filter((row) => row.publicPath).length,
       baseline.assets.filter((row) => row.publicPath).length - 1,
-      'withholding the I0001 portrait should remove exactly one public asset during roundtrip'
+      'withholding the unverified I0018 portrait should remove exactly one public asset during roundtrip'
     );
     assert.ok(imported.assets.filter((row) => row.publicPath).every((row) =>
       (row.publicationBasis === 'owner_authorized_public_profile_portrait' && row.ownerApproval?.status === 'granted') ||
@@ -248,7 +264,7 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
 
     const assetRoundtrip = JSON.parse(execFileSync(process.execPath, [path.join(root, 'tools/export-sheet-tabs.mjs'), '--snapshot', snapshotPath, '--site-data', path.join(outputDir, 'site-data.json'), 'assets'], { cwd: root, encoding: 'utf8' }));
     const assetRoundtripTab = assetRoundtrip.tabs.assets;
-    const roundtripPortrait = assetRoundtripTab.rows.find((row) => row[assetRoundtripTab.headers.indexOf('asset_id')] === 'PORTRAIT-I0001');
+    const roundtripPortrait = assetRoundtripTab.rows.find((row) => row[assetRoundtripTab.headers.indexOf('asset_id')] === 'PORTRAIT-I0018');
     assert.equal(roundtripPortrait[assetRoundtripTab.headers.indexOf('source_url')], 'https://private.example/portrait-candidate.jpg');
     assert.equal(roundtripPortrait[assetRoundtripTab.headers.indexOf('permission_record_id')], 'PRIVATE-PERMISSION-PENDING');
   } finally {
@@ -979,9 +995,9 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
   assert.equal(linkedIn.length, 51);
-  assert.equal(github.length, 23);
+  assert.equal(github.length, 22);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 74);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 73);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));
@@ -1029,7 +1045,7 @@ test('only exact owner-authorized public profiles and governed local portraits a
     const individuallyApproved = individualPortraits.has(portrait.personId);
     assert.equal(portrait.consentStatus, individuallyApproved ? 'granted' : 'pending');
     assert.equal(portrait.publicationBasis, individuallyApproved ? 'individual_consent' : 'owner_authorized_public_profile_portrait');
-    if (['I0017', 'S0004'].includes(portrait.personId)) assert.equal(portrait.ownerApproval, null);
+    if (['I0012', 'I0017', 'I0022', 'S0004'].includes(portrait.personId)) assert.equal(portrait.ownerApproval, null);
     else assert.equal(portrait.ownerApproval.status, 'granted');
     assert.equal(portrait.rightsStatus, 'cleared');
     assert.match(portrait.sha256, /^[a-f0-9]{64}$/);

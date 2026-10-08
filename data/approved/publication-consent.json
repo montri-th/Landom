@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0",
-  "reviewedAt": "2026-10-06",
+  "reviewedAt": "2026-10-08",
   "scope": "Landom profile and related work pages only",
   "records": [
     {
@@ -608,6 +608,62 @@
         }
       ],
       "sourceRef": "participant_reply_reviewed_2026-10-06"
+    },
+    {
+      "personId": "I0022",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "0911f408102ac20caeeb115bc50fcaa862c815e82bc9b36307712ed2953857a1"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/pattida-poogcharoen-4b207631a/",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "github",
+          "consentStatus": "denied"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-08"
+    },
+    {
+      "personId": "I0020",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "af84f956fec25b72f6687a0c45514d1006e81fa705d4f625f727b6ee279f67a1"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/naphat-wangsiripaisarn-81a991316/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-08"
+    },
+    {
+      "personId": "I0012",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "452e8b94ea0e068845b8944453ce6e081b37ada68e4e2335134b4f0bb4388927"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/suchayalim/",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "github",
+          "consentStatus": "denied"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-08"
     }
   ]
 }

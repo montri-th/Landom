@@ -8,6 +8,7 @@ import {
   PUBLIC_WEB_SOCIAL_PLATFORMS
 } from './normalized-sheet-roundtrip.mjs';
 import { applyPublicationConsent } from './publication-consent.mjs';
+import { applyReviewedPortraitUpdates } from './reviewed-portrait-updates.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -22,7 +23,12 @@ const inputPath = option('--input', path.join(root, 'data/raw/google-sheet-snaps
 const outputDir = option('--output-dir', path.join(root, 'data/generated'));
 const publicSiteRoot = 'https://montri-th.github.io/Landom/';
 
-const snapshot = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
+const reviewedSiteDataPath = option('--reviewed-site-data', null);
+const portraitUpdatesPath = option('--portrait-updates', null);
+if (portraitUpdatesPath && !reviewedSiteDataPath) throw new Error('--portrait-updates requires --reviewed-site-data.');
+// Select the reviewed mode before accessing an ignored or stale raw Sheet snapshot.
+const reviewedSourceText = reviewedSiteDataPath ? fs.readFileSync(reviewedSiteDataPath, 'utf8') : null;
+const snapshot = reviewedSiteDataPath ? null : JSON.parse(fs.readFileSync(inputPath, 'utf8'));
 
 function rowsToObjects(rows) {
   const [header, ...body] = rows;
@@ -108,9 +114,13 @@ function buildPeopleMediaManifest(siteData) {
 
 function writeSiteDataFiles(siteData) {
   const consentPath = path.join(root, 'data/approved/publication-consent.json');
-  if (fs.existsSync(consentPath)) {
-    siteData = applyPublicationConsent(siteData, JSON.parse(fs.readFileSync(consentPath, 'utf8')));
+  const publicationConsent = fs.existsSync(consentPath) ? JSON.parse(fs.readFileSync(consentPath, 'utf8')) : null;
+  if (portraitUpdatesPath) {
+    siteData = applyReviewedPortraitUpdates(siteData, JSON.parse(fs.readFileSync(portraitUpdatesPath, 'utf8')), {
+      repoRoot: root, baselineSha256: createHash('sha256').update(reviewedSourceText).digest('hex'), publicationConsent
+    });
   }
+  if (publicationConsent) siteData = applyPublicationConsent(siteData, publicationConsent);
   const reviewDates = [siteData.meta.dataUpdatedAt, siteData.meta.reviewedAt];
   for (const fileName of ['profile-detail-overrides.json', 'education-placement-overrides.json']) {
     const approvedPath = path.join(root, 'data/approved', fileName);
@@ -140,6 +150,17 @@ function writeSiteDataFiles(siteData) {
   writeJson('people-media.json', buildPeopleMediaManifest(siteData));
   writeJson('certificates.json', siteData.certificates);
   writeJson('site-data.json', siteData);
+}
+
+if (reviewedSiteDataPath) {
+  const reviewed = JSON.parse(reviewedSourceText);
+  const requiredArrays = ['people', 'assets', 'institutions', 'programs', 'educationRecords', 'engagements', 'works', 'contributions', 'achievements', 'publications', 'socialProfiles', 'certificates'];
+  if (reviewed?.meta?.schemaVersion !== '1.5.0' || !reviewed.copy || requiredArrays.some((key) => !Array.isArray(reviewed[key]))) {
+    throw new Error('Reviewed site data must be the complete schema 1.5.0 public graph.');
+  }
+  writeSiteDataFiles(reviewed);
+  console.log('Regenerated reviewed public graph: ' + reviewed.people.length + ' people.');
+  process.exit(0);
 }
 
 if (isNormalizedSheetSnapshot(snapshot)) {

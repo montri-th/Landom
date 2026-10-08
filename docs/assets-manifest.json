@@ -901,56 +901,43 @@
     {
       "assetId": "PORTRAIT-I0012",
       "path": "public/assets/people/I0012.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait-ds-atmosphere-background-edge-refined-v2",
+      "variant": "participant-submitted-profile-portrait",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 55382,
-      "sha256": "be4710c6c0d80f9db6bbfb45c069ab05d3c19c685adfc86d561279a1ed958974",
-      "owner": "Landometer directory owner",
+      "bytes": 64761,
+      "sha256": "452e8b94ea0e068845b8944453ce6e081b37ada68e4e2335134b4f0bb4388927",
+      "owner": "Profile subject",
       "approvalStatus": "approved",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "approvedRoles": [
         "person-avatar"
       ],
       "prohibitedRoles": [
-        "brand-mark"
+        "brand-mark",
+        "hero-image",
+        "social-preview",
+        "favicon",
+        "certificate"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted. Blank white background replaced with governed atmosphere.gradient.ground.current; crop and foreground portrait remain unchanged. Recipe choice does not encode role, status, or category. Edge-refined v2 adjusts only the foreground-mask boundary to reduce residual light fringe; crop, portrait interior, gradient recipe, identity, rights, and publication basis remain unchanged.",
-      "backgroundEdit": {
-        "method": "pixel_preserving_foreground_mask_composite",
-        "requestedAt": "2026-08-25",
-        "sourceRef": "owner_instruction_2026-08-25",
-        "scope": "replace_blank_white_background_only",
-        "foregroundPolicy": "original_portrait_rgb_preserved_under_foreground_mask",
-        "gradientToken": "atmosphere.gradient.ground.current",
-        "gradientCss": "linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%)",
-        "surfaceRole": "product_identity",
-        "deletionTest": "improves",
-        "assignmentPolicy": "contrast_balanced_visual_variety_not_role_status_or_category_encoding",
-        "contextPolicy": "no_environmental_context_present_in_source",
-        "edgeRefinement": {
-          "version": "v2",
-          "requestedAt": "2026-08-25",
-          "sourceRef": "owner_followup_edge_refinement_2026-08-25",
-          "scope": "foreground_mask_boundary_only",
-          "method": "color_aware_soft_matte_projection",
-          "parameters": {
-            "variant": "quadratic_background_projection_soft_matte",
-            "blendStrength": 0.8,
-            "softMaskAlphaLimit": 0.96
-          },
-          "interiorPolicy": "original_portrait_interior_preserved_before_jpeg_reencoding_boundary_transition_only",
-          "gradientPolicy": "existing_gradient_token_and_css_preserved",
-          "encodingPolicy": "existing_jpeg_quality_78_contract_preserved",
-          "derivedFromSha256": "7bfbc53e4c37b0150debcedd79ca91a955eba8560f30db9df168a1296d087746",
-          "rightsAndProvenancePolicy": "unchanged"
-        }
+      "notes": "Direct participant-submitted portrait with consent limited to Landom profile and related work pages. Bounded square crop and 800x800 JPEG78; metadata stripped. No retouching, background replacement, generation, or identity alteration. Original and correspondence remain private.",
+      "width": 800,
+      "height": 800,
+      "sourceOriginalSha256": "ad9e7eb6d182a60ec97c79c7f271230259eb839dd43eb0b43d9548d3db8083aa",
+      "sourceCrop": {
+        "sourceWidth": 2488,
+        "sourceHeight": 2488,
+        "x": 600,
+        "y": 700,
+        "width": 1250,
+        "height": 1250,
+        "retouched": false,
+        "generated": false
+      },
+      "metadataStripped": true,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของพิงกี้",
+        "en": "Profile portrait of Pingy"
       }
     },
     {
@@ -1266,27 +1253,44 @@
     {
       "assetId": "PORTRAIT-I0022",
       "path": "public/assets/people/I0022.jpg",
-      "variant": "normalized-owner-approved-public-profile-portrait",
+      "variant": "participant-submitted-profile-portrait",
       "approvalScope": "person-profile",
       "mediaType": "image/jpeg",
-      "bytes": 93791,
-      "sha256": "600401e2023461cccf506bbe0398ead2f33acdc42e80a1eb6f250be58b6b2154",
-      "owner": "Landometer directory owner",
+      "bytes": 53188,
+      "sha256": "0911f408102ac20caeeb115bc50fcaa862c815e82bc9b36307712ed2953857a1",
+      "owner": "Profile subject",
       "approvalStatus": "approved",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "approvedRoles": [
         "person-avatar"
       ],
       "prohibitedRoles": [
-        "brand-mark"
+        "brand-mark",
+        "hero-image",
+        "social-preview",
+        "favicon",
+        "certificate"
       ],
-      "notes": "Exact identity verified; source URL retained only in private evidence; individual consent is not asserted."
+      "notes": "Direct participant-submitted portrait with consent limited to Landom profile and related work pages. Bounded square crop and 800x800 JPEG78; metadata stripped. No retouching, background replacement, generation, or identity alteration. Original and correspondence remain private.",
+      "width": 800,
+      "height": 800,
+      "sourceOriginalSha256": "c624b65fcc497dcb964620e4c0e004440859948af13aabecd4306d0ebacccc4a",
+      "sourceCrop": {
+        "sourceWidth": 1179,
+        "sourceHeight": 1287,
+        "x": 0,
+        "y": 54,
+        "width": 1179,
+        "height": 1179,
+        "retouched": false,
+        "generated": false
+      },
+      "metadataStripped": true,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของเพลง",
+        "en": "Profile portrait of Pleng"
+      }
     },
     {
       "assetId": "PORTRAIT-I0023",

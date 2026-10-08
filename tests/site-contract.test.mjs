@@ -1022,11 +1022,10 @@ test('Pond, Mos, and Faze use their academic placement for education context eve
   }
 });
 
-test('the nine owner-requested blank-background portraits have governed gradients and edge-refined v2 hashes', async () => {
+test('the eight retained blank-background portraits have governed gradients and edge-refined v2 hashes', async () => {
   const targetPersonIds = [
     'I0001',
     'I0008',
-    'I0012',
     'I0018',
     'I0019',
     'I0021',
@@ -1039,7 +1038,6 @@ test('the nine owner-requested blank-background portraits have governed gradient
   const priorHashes = new Map([
     ['I0001', 'd3afe92f666f5bc36d88bf66d16e83807199a77f00b9401ab77a029efeb3b823'],
     ['I0008', '5681cbc4c7d43f2f714077da68fe02fd7f742b711def940529b60d1e65f18c8a'],
-    ['I0012', '7bfbc53e4c37b0150debcedd79ca91a955eba8560f30db9df168a1296d087746'],
     ['I0018', '1697ef4a5351458eb08644f887dcf693d0192486908e28e1ca6a1e9c64e66b5d'],
     ['I0019', '48588a875fb51c653b5405e9e0ecce01e34eb3bb1051c367c2242f564cdf9884'],
     ['I0021', '1185fbee98581eb482371858b3a5c248dc1a5c8a2bba4aec2da449b74e8234b9'],

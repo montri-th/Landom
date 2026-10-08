@@ -1587,27 +1587,8 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
-    "ownerApproval": {
-      "status": "granted",
-      "approvedAt": "2026-08-23",
-      "scope": "public_profile_link_only",
-      "sourceRef": "owner_instruction_2026-08-23"
-    },
-    "publicationStatus": "publishable",
-    "dataBoundary": "private_candidates_not_emitted"
-  },
-  {
-    "socialProfileId": "SOC-I0012-GITHUB",
-    "personId": "I0012",
-    "platform": "github",
-    "publicUrl": "https://github.com/gygigies",
-    "candidateStatus": "candidate_present",
-    "candidateValueEmitted": false,
-    "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
@@ -2407,8 +2388,8 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
@@ -2613,8 +2594,8 @@
     "candidateStatus": "candidate_present",
     "candidateValueEmitted": false,
     "verificationStatus": "verified",
-    "consentStatus": "pending",
-    "publicationBasis": "owner_authorized_public_profile_link",
+    "consentStatus": "granted",
+    "publicationBasis": "individual_consent",
     "ownerApproval": {
       "status": "granted",
       "approvedAt": "2026-08-23",
@@ -2622,20 +2603,6 @@
       "sourceRef": "owner_instruction_2026-08-23"
     },
     "publicationStatus": "publishable",
-    "dataBoundary": "private_candidates_not_emitted"
-  },
-  {
-    "socialProfileId": "SOC-I0022-GITHUB",
-    "personId": "I0022",
-    "platform": "github",
-    "publicUrl": null,
-    "candidateStatus": "candidate_missing",
-    "candidateValueEmitted": false,
-    "verificationStatus": "missing",
-    "consentStatus": "pending",
-    "publicationBasis": null,
-    "ownerApproval": null,
-    "publicationStatus": "withheld_pending_candidate",
     "dataBoundary": "private_candidates_not_emitted"
   },
   {

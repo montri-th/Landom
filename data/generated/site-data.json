@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": "1.5.0",
-    "generatedAt": "2026-10-06T00:00:00+07:00",
+    "generatedAt": "2026-10-08T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
       "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -62,11 +62,11 @@
       "cooperativeEducationPeople": 7,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 74,
+      "publishedPublicSocialProfiles": 73,
       "participantApprovedProfileCopies": 1
     },
-    "dataUpdatedAt": "2026-10-06",
-    "reviewedAt": "2026-10-06"
+    "dataUpdatedAt": "2026-10-08",
+    "reviewedAt": "2026-10-08"
   },
   "copy": {
     "brand": {
@@ -2805,8 +2805,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -3341,8 +3341,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -3475,8 +3475,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -12789,27 +12789,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_link_only",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
-      "publicationStatus": "publishable",
-      "dataBoundary": "private_candidates_not_emitted"
-    },
-    {
-      "socialProfileId": "SOC-I0012-GITHUB",
-      "personId": "I0012",
-      "platform": "github",
-      "publicUrl": "https://github.com/gygigies",
-      "candidateStatus": "candidate_present",
-      "candidateValueEmitted": false,
-      "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -13609,8 +13590,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -13815,8 +13796,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -13824,20 +13805,6 @@
         "sourceRef": "owner_instruction_2026-08-23"
       },
       "publicationStatus": "publishable",
-      "dataBoundary": "private_candidates_not_emitted"
-    },
-    {
-      "socialProfileId": "SOC-I0022-GITHUB",
-      "personId": "I0022",
-      "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
-      "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
-      "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -17151,20 +17118,15 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "publicationStatus": "publishable",
-      "sha256": "be4710c6c0d80f9db6bbfb45c069ab05d3c19c685adfc86d561279a1ed958974",
+      "sha256": "452e8b94ea0e068845b8944453ce6e081b37ada68e4e2335134b4f0bb4388927",
       "mediaType": "image/jpeg",
-      "bytes": 55382,
-      "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+      "bytes": 64761,
+      "identityVerificationEvidence": "exact_roster_match_and_direct_participant_reply"
     },
     {
       "assetId": "PORTRAIT-I0013",
@@ -17357,9 +17319,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17411,20 +17373,15 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
-      "ownerApproval": {
-        "status": "granted",
-        "approvedAt": "2026-08-23",
-        "scope": "public_profile_portrait",
-        "sourceRef": "owner_instruction_2026-08-23"
-      },
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
       "publicationStatus": "publishable",
-      "sha256": "600401e2023461cccf506bbe0398ead2f33acdc42e80a1eb6f250be58b6b2154",
+      "sha256": "0911f408102ac20caeeb115bc50fcaa862c815e82bc9b36307712ed2953857a1",
       "mediaType": "image/jpeg",
-      "bytes": 93791,
-      "identityVerificationEvidence": "sheet_profile_url_and_visible_profile_title"
+      "bytes": 53188,
+      "identityVerificationEvidence": "exact_roster_match_and_direct_participant_reply"
     },
     {
       "assetId": "PORTRAIT-I0023",

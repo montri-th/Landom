@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-10-06T00:00:00+07:00",
+  "generatedAt": "2026-10-08T00:00:00+07:00",
   "canonicalUrl": "https://montri-th.github.io/Landom/data/generated/people-media.json",
   "contract": {
     "access": "public_read_only",
@@ -541,10 +541,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/I0012.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0012.jpg?v=be4710c6c0d8",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0012.jpg?v=452e8b94ea0e",
         "mediaType": "image/jpeg",
-        "bytes": 55382,
-        "sha256": "be4710c6c0d80f9db6bbfb45c069ab05d3c19c685adfc86d561279a1ed958974",
+        "bytes": 64761,
+        "sha256": "452e8b94ea0e068845b8944453ce6e081b37ada68e4e2335134b4f0bb4388927",
         "alt": {
           "th": "ภาพโปรไฟล์ของพิงกี้",
           "en": "Profile portrait of Pingy"
@@ -880,10 +880,10 @@
       "portrait": {
         "status": "publishable",
         "url": "https://montri-th.github.io/Landom/public/assets/people/I0022.jpg",
-        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0022.jpg?v=600401e20234",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0022.jpg?v=0911f408102a",
         "mediaType": "image/jpeg",
-        "bytes": 93791,
-        "sha256": "600401e2023461cccf506bbe0398ead2f33acdc42e80a1eb6f250be58b6b2154",
+        "bytes": 53188,
+        "sha256": "0911f408102ac20caeeb115bc50fcaa862c815e82bc9b36307712ed2953857a1",
         "alt": {
           "th": "ภาพโปรไฟล์ของเพลง",
           "en": "Profile portrait of Pleng"
