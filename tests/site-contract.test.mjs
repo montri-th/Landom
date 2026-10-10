@@ -417,7 +417,9 @@ test('the unified navigation preserves approved destinations, accessible menu be
   assert.match(styles, /--site-header-height-prominent:\s*76px;/);
   const calmHeight = Number(styles.match(/--site-header-height-calm:\s*(\d+(?:\.\d+)?)px;/)?.[1]);
   assert.ok(Number.isFinite(calmHeight) && calmHeight >= 44);
-  assert.match(styles, /\.site-header\.is-calm\s*\{(?=[^}]*background:\s*color-mix\(in srgb,\s*var\(--surface-canvas\)\s*26%,\s*transparent\);)(?=[^}]*border-bottom(?:-color)?:\s*(?:1px solid )?color-mix\(in srgb,\s*var\(--border-hairline\)\s*20%,\s*transparent\);)[^}]*\}/s);
+  assert.match(styles, /\.site-header\.is-calm\s*\{(?=[^}]*background:\s*var\(--surface-canvas\);)(?=[^}]*border-bottom(?:-color)?:\s*(?:1px solid )?color-mix\(in srgb,\s*var\(--border-hairline\)\s*20%,\s*transparent\);)[^}]*\}/s);
+  assert.match(styles, /\.site-header\s*\{[^}]*background:\s*var\(--surface-canvas\);/s);
+  assert.match(styles, /\.site-header\.is-calm\s+\.header-inner\s*\{[^}]*opacity:\s*1;/s);
   assert.doesNotMatch(styles, /\.site-header\.is-calm\s+(?:\.header-inner|\.header-row|\.site-header__row)\s*\{[^}]*transform:\s*scale\((?:0?\.5)\)/s);
   for (const selector of ['.brand', '.header-link', '.header-cta']) {
     const escaped = selector.replace('.', '\\.');

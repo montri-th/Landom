@@ -60,7 +60,13 @@ const COPY = {
   th: {
     eyebrow: 'ฝึกงานกับเรา',
     heading: 'มาฝึกงานกับ Landometer',
-    intro: 'เลือกงานที่อยากลอง แล้วมาร่วมพัฒนาผลิตภัณฑ์ที่ช่วยให้คนเข้าใจเมืองและใช้ข้อมูลได้ดีขึ้น',
+    intro: 'ลองทำงานกับ Data + AI ผ่านโจทย์จริงของ CityMETER, CityChat และ ijji ตั้งแต่เข้าใจผู้ใช้ ไปจนถึงแคมเปญ ฟีเจอร์ และซอฟต์แวร์ที่มีคนใช้งาน',
+    benefits: [
+      ['มีงานจริงให้ลงมือ', 'เลือกสายการตลาด ผลิตภัณฑ์ หรือซอฟต์แวร์ แล้วร่วมทำงานตั้งแต่โจทย์แรกจนได้เรียนรู้จากผลลัพธ์'],
+      ['เรียนรู้จากทีมและรุ่นพี่', 'ต่อยอดจากโปรแกรมที่มีผลงานของผู้ฝึกงานใช้งานจริง และมีรุ่นพี่นักพัฒนากลับมาช่วยแนะนำและรีวิวโค้ด'],
+      ['พกผลงานกลับไปเล่าต่อ', 'เก็บกระบวนการคิด สิ่งที่ได้ลอง และผลงานที่ได้รับเครดิตในโปรไฟล์ Landom ไว้ใช้เล่าประสบการณ์และทำพอร์ต']
+    ],
+    logistics: 'ระยะเวลา รูปแบบงาน และค่าตอบแทน',
     terms: ['10 สัปดาห์ · ตกลงวันเริ่มงานร่วมกัน', 'Hybrid กรุงเทพฯ · เข้าออฟฟิศใกล้ MRT หัวลำโพง 3 วัน ทำงานทางไกล 2 วัน', 'ค่าตอบแทน 400 บาท/วัน'],
     apply: 'สมัครฝึกงาน',
     details: 'ดูรายละเอียดโปรแกรม',
@@ -73,7 +79,13 @@ const COPY = {
   en: {
     eyebrow: 'Internships',
     heading: 'An internship with Landometer',
-    intro: 'Choose the work you want to try. Help build products that make cities and their data easier to understand.',
+    intro: 'Work with Data + AI on real challenges in CityMETER, CityChat and ijji—from understanding users to campaigns, features and software people use.',
+    benefits: [
+      ['Real work to take on', 'Choose marketing, product or software. Help shape the work from the first question and learn from its results.'],
+      ['Learn with the team and former interns', 'Build on a program with intern work already in use and former developer interns helping with mentorship and code review.'],
+      ['Work you can talk about', 'Bring together your thinking, experiments and credited work on your Landom profile to share your experience and build a portfolio.']
+    ],
+    logistics: 'Duration, working arrangements and allowance',
     terms: ['10 weeks · start date by agreement', 'Hybrid, Bangkok · 3 days on-site near MRT Hua Lamphong, 2 days remote', '400 THB/day'],
     apply: 'Apply for an internship',
     details: 'Program details',
@@ -97,7 +109,11 @@ export function renderRecruitmentSection(locale = 'th') {
     <p class="recruitment-eyebrow">${copy.eyebrow}</p>
     <h2 id="internships-heading">${copy.heading}</h2>
     <p class="recruitment-intro">${copy.intro}</p>
-    <ul class="recruitment-terms">${copy.terms.map((term) => `<li>${escapeHtml(term)}</li>`).join('')}</ul>
+    <dl class="recruitment-benefits">${copy.benefits.map(([title, description]) => `<div><dt>${escapeHtml(title)}</dt><dd>${escapeHtml(description)}</dd></div>`).join('')}</dl>
+    <details class="recruitment-logistics" id="internship-logistics">
+      <summary>${copy.logistics}</summary>
+      <ul class="recruitment-terms">${copy.terms.map((term) => `<li>${escapeHtml(term)}</li>`).join('')}</ul>
+    </details>
   </header>
   <div class="recruitment-grid">${RECRUITMENT_PROGRAMS.map((program) => `
     <article class="recruitment-card" id="internship-${program.id}" aria-labelledby="internship-${program.id}-title">

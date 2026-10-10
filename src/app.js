@@ -4,6 +4,7 @@ import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
 import { contributionRoleLabel, personProfileUrl } from "./public-directory.js";
 import { prepareRecruitmentArrival, updateRecruitmentSection } from "./recruitment.js";
+import { initReadingFocus } from "./reading-focus.js";
 
 const DATA_URL = "./data/generated/site-data.json";
 const THEME_KEY = "lds-theme";
@@ -413,6 +414,7 @@ const reflowAnimations = new WeakMap();
 let approachMotionController = null;
 let brandMotionController = null;
 let mediaParallaxController = null;
+let readingFocusController = null;
 
 function message(key, values = {}) {
   const keys = key.split(".");
@@ -483,6 +485,7 @@ function cycleTheme() {
 function applyLanguage({ persist = false, updateQuery = false, announce = false } = {}) {
   const copy = COPY[state.language];
   updateRecruitmentSection(document.getElementById("recruitment-root"), state.language);
+  readingFocusController?.refresh();
   elements.root.lang = state.language;
   document.title = copy.pageTitle;
   elements.metaDescription?.setAttribute("content", copy.pageDescription);
@@ -1703,6 +1706,7 @@ function renderDirectory() {
   if (state.currentPersonId) openPerson(state.currentPersonId, null, { fromUrl: true, animate: false, scroll: true });
   // Keep readable build-time names and work links until enhancement succeeds.
   if (elements.publicFallback) elements.publicFallback.hidden = true;
+  readingFocusController?.refresh();
 }
 
 function formatNumber(value) {
@@ -2180,6 +2184,7 @@ function setCardExpanded(shell, expanded) {
   }
   if (detail) detail.hidden = !expanded;
   if (cue) cue.textContent = expanded ? message("collapseProfile") : message("readStory");
+  readingFocusController?.setExpanded(shell, expanded);
 }
 
 function renderPersonDetail(id, detail) {
@@ -2414,6 +2419,7 @@ function bindEvents() {
 
 function initialize() {
   const recruitmentArrival = prepareRecruitmentArrival({ win: window, doc: document });
+  readingFocusController = initReadingFocus();
   state.language = LANGUAGES.includes(state.language) ? state.language : "th";
   state.theme = THEMES.includes(state.theme) ? state.theme : "system";
   updateUrl({ lang: state.language, theme: state.theme });

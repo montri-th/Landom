@@ -1,0 +1,13 @@
+/* Component-local reading state, not a data colour or an LDS palette change.
+   Only sibling content is quieted; the selected card and navigation stay intact.
+   No overlay, input interception, layout shift or delayed transition. */
+:root { --reading-quiet-opacity: 0.38; }
+[data-theme="dark"] { --reading-quiet-opacity: 0.44; }
+[data-reading-quiet] { opacity: var(--reading-quiet-opacity) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reading-quiet] { transition: none !important; animation: none !important; }
+}
+@media print, (forced-colors: active) {
+  [data-reading-quiet] { opacity: 1 !important; }
+}
