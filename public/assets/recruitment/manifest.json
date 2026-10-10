@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "landom-recruitment-media-1",
+  "assets": [
+    {
+      "assetId": "internship-msi-set-a-v3",
+      "programId": "msi",
+      "path": "public/assets/recruitment/msi-set-a-v3-9bfcce536f95.png",
+      "sourceFile": "MSI-A-Dan.png",
+      "suppliedBy": "Landometer",
+      "sourceRevision": "Recruitment communication v3, Set A, 2026-10-04",
+      "approval": {
+        "status": "approved",
+        "basis": "Owner requested these three original program posters on the public Landom website",
+        "date": "2026-10-10",
+        "role": "internship recruitment poster"
+      },
+      "transformation": "none; byte-for-byte copy of approved local original",
+      "mimeType": "image/png",
+      "width": 1080,
+      "height": 1528,
+      "byteLength": 1221145,
+      "sha256": "9bfcce536f95ef5acb97d021dbc92bb17e88aa395d56aa41ab0269cf75177dbe",
+      "decodedQrUrl": "https://forms.gle/FWbukGX7X3QWZf317",
+      "qrVerification": "Decoded independently from each original PNG on 2026-10-10",
+      "allowedRoles": [
+        "internship recruitment poster"
+      ],
+      "prohibitedRoles": [
+        "documentary workplace photograph",
+        "new person portrait",
+        "evidence of current employment or guaranteed career outcome"
+      ],
+      "visualReview": "Illustrative-image label, original person credits and complete composition retained. No crop, recoloring, retouching or new portrait extraction.",
+      "attribution": "Original Landometer artwork and credit text retained in full"
+    },
+    {
+      "assetId": "internship-pdi-set-a-v3",
+      "programId": "pdi",
+      "path": "public/assets/recruitment/pdi-set-a-v3-ee744d266cb4.png",
+      "sourceFile": "PDI-A-Hana.png",
+      "suppliedBy": "Landometer",
+      "sourceRevision": "Recruitment communication v3, Set A, 2026-10-04",
+      "approval": {
+        "status": "approved",
+        "basis": "Owner requested these three original program posters on the public Landom website",
+        "date": "2026-10-10",
+        "role": "internship recruitment poster"
+      },
+      "transformation": "none; byte-for-byte copy of approved local original",
+      "mimeType": "image/png",
+      "width": 1080,
+      "height": 1528,
+      "byteLength": 1238792,
+      "sha256": "ee744d266cb4fec479acac5a9cc520b9ae0a81926dd646355b27f0d05394a592",
+      "decodedQrUrl": "https://forms.gle/FWbukGX7X3QWZf317",
+      "qrVerification": "Decoded independently from each original PNG on 2026-10-10",
+      "allowedRoles": [
+        "internship recruitment poster"
+      ],
+      "prohibitedRoles": [
+        "documentary workplace photograph",
+        "new person portrait",
+        "evidence of current employment or guaranteed career outcome"
+      ],
+      "visualReview": "Illustrative-image label, original person credits and complete composition retained. No crop, recoloring, retouching or new portrait extraction.",
+      "attribution": "Original Landometer artwork and credit text retained in full"
+    },
+    {
+      "assetId": "internship-fdi-set-a-v3",
+      "programId": "fdi",
+      "path": "public/assets/recruitment/fdi-set-a-v3-74af307858a4.png",
+      "sourceFile": "FDI-A-Ken.png",
+      "suppliedBy": "Landometer",
+      "sourceRevision": "Recruitment communication v3, Set A, 2026-10-04",
+      "approval": {
+        "status": "approved",
+        "basis": "Owner requested these three original program posters on the public Landom website",
+        "date": "2026-10-10",
+        "role": "internship recruitment poster"
+      },
+      "transformation": "none; byte-for-byte copy of approved local original",
+      "mimeType": "image/png",
+      "width": 1080,
+      "height": 1528,
+      "byteLength": 1266363,
+      "sha256": "74af307858a43739d76be2f22c87cc8a922419bc59ddc48cc4e3c4eb2ef2c51d",
+      "decodedQrUrl": "https://forms.gle/FWbukGX7X3QWZf317",
+      "qrVerification": "Decoded independently from each original PNG on 2026-10-10",
+      "allowedRoles": [
+        "internship recruitment poster"
+      ],
+      "prohibitedRoles": [
+        "documentary workplace photograph",
+        "new person portrait",
+        "evidence of current employment or guaranteed career outcome"
+      ],
+      "visualReview": "Illustrative-image label, original person credits and complete composition retained. No crop, recoloring, retouching or new portrait extraction.",
+      "attribution": "Original Landometer artwork and credit text retained in full"
+    }
+  ]
+}

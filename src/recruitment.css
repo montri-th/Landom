@@ -1,0 +1,82 @@
+/* Scoped LDS 0.9.7 / v0.9.7-owner.1 foundation pairs from color-srgb-10.
+   This section does not migrate or relabel the historically pinned site shell.
+   Poster PNGs are unchanged approved v3 originals, including their own artwork. */
+.recruitment-section {
+  --recruitment-card: #FCFCFA;
+  --recruitment-border: #C9D0CB;
+  --recruitment-primary: #182327;
+  --recruitment-secondary: #5F635A;
+  --recruitment-accent: #176B82;
+  --recruitment-on-accent: #FFFFFF;
+  --recruitment-soft: #EEF1EE;
+  margin-block-start: 96px;
+  color: var(--recruitment-primary);
+  font-family: "Bai Jamjuree", sans-serif;
+  line-height: 1.65;
+}
+
+[data-theme="dark"] .recruitment-section {
+  --recruitment-card: #20292D;
+  --recruitment-border: #46524F;
+  --recruitment-primary: #F1F4EF;
+  --recruitment-secondary: #C4CECA;
+  --recruitment-accent: #68C4E2;
+  --recruitment-on-accent: #182327;
+  --recruitment-soft: #172126;
+}
+
+.recruitment-heading { max-width: 760px; margin-block-end: 32px; }
+.recruitment-eyebrow, .recruitment-code { font-size: 0.875rem; font-weight: 600; }
+.recruitment-heading h2 {
+  margin-block: 8px 16px;
+  font-family: "Arvo", "IBM Plex Sans Thai Looped", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.3;
+  font-weight: 700;
+  text-wrap: balance;
+}
+.recruitment-intro { font-size: 1.125rem; }
+.recruitment-terms { display: grid; gap: 4px; margin-block-start: 16px; padding-inline-start: 24px; color: var(--recruitment-secondary); }
+.recruitment-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.recruitment-card { min-width: 0; border: 1px solid var(--recruitment-border); border-radius: 16px; background: var(--recruitment-card); }
+.recruitment-poster { margin: 0; }
+.recruitment-poster img { display: block; width: 100%; height: auto; border-start-start-radius: 15px; border-start-end-radius: 15px; }
+.recruitment-poster figcaption { padding: 8px 24px 0; color: var(--recruitment-secondary); font-size: 0.75rem; line-height: 1.5; }
+.recruitment-card-body { padding: 24px; }
+.recruitment-code { color: var(--recruitment-secondary); }
+.recruitment-card h3 { margin-block: 8px 16px; font-family: "Arvo", serif; font-weight: 700; font-size: clamp(1.25rem, 1.6vw, 1.5rem); line-height: 1.35; text-wrap: balance; }
+.recruitment-summary { margin-block-end: 24px; }
+.recruitment-apply {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--recruitment-accent);
+  color: var(--recruitment-on-accent);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+.recruitment-apply:hover { text-decoration: underline; text-underline-offset: 4px; }
+.recruitment-details { margin-block-start: 8px; }
+.recruitment-details summary { min-height: 44px; padding-block: 10px; cursor: pointer; font-weight: 600; color: var(--recruitment-primary); }
+.recruitment-details summary:hover { text-decoration: underline; text-underline-offset: 4px; }
+.recruitment-details-body { margin-block-start: 8px; padding: 16px; border-radius: 8px; background: var(--recruitment-soft); }
+.recruitment-details-body h4 { font-family: "Bai Jamjuree", sans-serif; font-size: 1rem; font-weight: 600; line-height: 1.65; }
+.recruitment-details-body ul { padding-inline-start: 20px; }
+.recruitment-details-body li, .recruitment-details-body p { margin-block-start: 12px; }
+.recruitment-section :is(a, summary):focus-visible { outline: 3px solid var(--recruitment-accent); outline-offset: 4px; }
+
+@media (max-width: 1099px) {
+  .recruitment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 699px) {
+  .recruitment-section { margin-block-start: 64px; }
+  .recruitment-grid { grid-template-columns: minmax(0, 1fr); }
+  .recruitment-card-body { padding: 24px 16px; }
+  .recruitment-poster figcaption { padding-inline: 16px; }
+}
+/* No entrance, looping or hover motion: content and native actions stay visible
+   with JavaScript disabled, reduced motion, or a failed directory request. */

@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import { PUBLIC_BUILD_INPUTS, validateSite } from './validate-site.mjs';
 import { LANDOM_PUBLIC_ROOT, publicDirectoryEntries, renderPublicDirectory } from '../src/public-directory.js';
+import { renderRecruitmentSection } from '../src/recruitment.js';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(repoRoot, 'dist');
@@ -107,7 +108,8 @@ function replaceRequired(source, search, replacement, label = search) {
 
 export function renderLocalizedEntrypoint(source, locale) {
   if (!['th', 'en'].includes(locale)) throw new Error(`Unsupported locale route: ${locale}`);
-  if (locale === 'th') return source;
+  const withRecruitment = (html) => replaceRequired(html, '<div id="recruitment-root"></div>', `<div id="recruitment-root">${renderRecruitmentSection(locale)}</div>`, 'recruitment insertion point');
+  if (locale === 'th') return withRecruitment(source);
   const localeUrl = `${canonicalRoot}en/`;
   let html = source;
   html = replaceRequired(html, '  <head>\n', '  <head>\n    <base href="../">\n', '<head>');
@@ -191,7 +193,7 @@ export function renderLocalizedEntrypoint(source, locale) {
     `<a id="footer-people-link" href="${localeUrl}#people">People of Landom</a>`,
     'localized footer people link'
   );
-  return html;
+  return withRecruitment(html);
 }
 
 export function renderPublicEntrypoint(source, locale, data) {
