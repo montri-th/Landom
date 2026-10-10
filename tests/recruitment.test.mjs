@@ -39,7 +39,7 @@ test('both no-script entrypoints expose the same three programs with native dire
     assert.ok(html.indexOf('id="internships"') > html.indexOf('id="people-board"'));
     assert.ok(html.indexOf('id="internships"') < html.indexOf('<footer'));
     assert.equal((section.match(/<article /g) ?? []).length, 3);
-    assert.equal((section.match(/<details /g) ?? []).length, 3);
+    assert.equal((section.match(/<details /g) ?? []).length, 4);
     assert.equal((section.match(/class="recruitment-apply"/g) ?? []).length, 3);
     assert.equal(section.split(`href="${RECRUITMENT_FORM_URL}"`).length - 1, 3);
     for (const program of RECRUITMENT_PROGRAMS) {
@@ -55,6 +55,23 @@ test('both no-script entrypoints expose the same three programs with native dire
   }
 });
 
+test('the bilingual lead foregrounds work and learning while exact compensation stays in native logistics', () => {
+  for (const locale of ['th', 'en']) {
+    const section = renderRecruitmentSection(locale);
+    const lead = section.split('<details class="recruitment-logistics"')[0];
+    const logistics = section.match(/<details class="recruitment-logistics"[^]*?<\/details>/)?.[0];
+    assert.match(lead, /Data \+ AI/);
+    assert.ok(lead.includes(locale === 'th' ? 'มีงานจริงให้ลงมือ' : 'Real work to take on'));
+    assert.ok(lead.includes(locale === 'th' ? 'รุ่นพี่นักพัฒนา' : 'former developer interns'));
+    assert.doesNotMatch(lead, /400|THB|บาท/);
+    assert.ok(logistics.includes(locale === 'th' ? '400 บาท/วัน' : '400 THB/day'));
+    assert.ok(logistics.includes(locale === 'th' ? '3 วัน' : '3 days'));
+    assert.ok(logistics.includes(locale === 'th' ? '2 วัน' : '2 days'));
+    assert.ok(logistics.includes(locale === 'th' ? '10 สัปดาห์' : '10 weeks'));
+    assert.doesNotMatch(section, /guaranteed|job guarantee|รับประกัน|การันตี|ได้งานแน่นอน/i);
+  }
+});
+
 test('matching initial locale preserves native details and focus without hydration replacement', () => {
   const root = {
     querySelector: () => ({ dataset: { recruitmentLocale: 'th' } }),
@@ -66,14 +83,15 @@ test('matching initial locale preserves native details and focus without hydrati
 
 test('switching language preserves which program details are open and does not need the registry request', () => {
   const nextDetails = ['msi', 'pdi', 'fdi'].map((id) => ({ id: `internship-${id}-details`, open: false }));
+  nextDetails.push({ id: 'internship-logistics', open: false });
   const root = {
     querySelector: () => ({ dataset: { recruitmentLocale: 'th' } }),
-    querySelectorAll: (selector) => selector === 'details[open]' ? [{ id: 'internship-pdi-details' }] : nextDetails,
+    querySelectorAll: (selector) => selector === 'details[open]' ? [{ id: 'internship-pdi-details' }, { id: 'internship-logistics' }] : nextDetails,
     innerHTML: ''
   };
   updateRecruitmentSection(root, 'en');
   assert.equal(root.innerHTML, renderRecruitmentSection('en'));
-  assert.deepEqual(nextDetails.map((details) => details.open), [false, true, false]);
+  assert.deepEqual(nextDetails.map((details) => details.open), [false, true, false, true]);
   const before = root.innerHTML;
   assert.throws(() => updateRecruitmentSection(root, 'unverified'), /Unsupported recruitment locale/);
   assert.equal(root.innerHTML, before);

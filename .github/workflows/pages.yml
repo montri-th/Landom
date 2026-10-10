@@ -425,6 +425,8 @@ jobs:
           }
           await verifiedFile('src/recruitment.js', /(?:text|application)\/javascript/);
           await verifiedFile('src/recruitment.css', /text\/css/);
+          await verifiedFile('src/reading-focus.js', /(?:text|application)\/javascript/);
+          await verifiedFile('src/reading-focus.css', /text\/css/);
           for (const [file, locale] of [['/tmp/landom-index.html', 'th'], ['/tmp/landom-en.html', 'en']]) {
             const html = readFileSync(file, 'utf8');
             const section = html.match(/<section class="recruitment-section"[\s\S]*?<\/section>/)?.[0] || '';
