@@ -830,7 +830,7 @@ async function validateUi(publishRoot, errors) {
   }
   if (!/\.\/src\/styles\.css/.test(index)) errors.push('index.html must load ./src/styles.css.');
   if (!/\.\/src\/app\.js/.test(index)) errors.push('index.html must load ./src/app.js.');
-  const joinTeamUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform';
+  const joinTeamUrl = 'https://forms.gle/FWbukGX7X3QWZf317';
   if (!/<header[^>]*data-navigation-header[^>]*>[\s\S]*?<div class="header-identity">[\s\S]*?<nav class="header-nav"/s.test(index)) {
     errors.push('The unified header must preserve the approved identity-first structure and product navigation.');
   }
@@ -1613,6 +1613,19 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   }
 
   function validateDiscoveryHtml(html, { fileLabel, routeUrl, locale, localized }) {
+    const recruitmentUrl = 'https://forms.gle/FWbukGX7X3QWZf317';
+    const recruitmentLabel = locale === 'en' ? 'Join the team' : 'สมัครร่วมทีม';
+    for (const id of ['join-team-link', 'join-team-link-mobile']) {
+      const anchor = html.match(new RegExp(`<a\\b(?=[^>]*\\bid="${id}")[^>]*>[\\s\\S]*?<\\/a>`))?.[0] ?? '';
+      if (anchor.match(/\bhref="([^"]+)"/)?.[1] !== recruitmentUrl ||
+          !anchor.includes(`>${recruitmentLabel}</span>`) || /\bonclick\s*=/i.test(anchor)) {
+        errors.push(`${fileLabel} #${id} must link directly to the current recruitment form with its localized label.`);
+      }
+    }
+    const recruitmentFallback = html.match(/<nav\b[^>]*class="navigation-fallback"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
+    if (!recruitmentFallback.includes(`<a href="${recruitmentUrl}">${recruitmentLabel}</a>`)) {
+      errors.push(`${fileLabel} no-script navigation must retain the current recruitment form link.`);
+    }
     if (!html.includes(`<link rel="canonical" href="${routeUrl}">`)) {
       errors.push(`${fileLabel} canonical URL does not match ${routeUrl}.`);
     }

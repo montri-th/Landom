@@ -334,12 +334,32 @@ test('the footer follows the contact-first rebuild02 treatment without a form an
   }
 });
 
+test('recruitment links stay direct and current in both locale entrypoints, including the no-script fallback', async () => {
+  const source = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const expectedUrl = 'https://forms.gle/FWbukGX7X3QWZf317';
+  for (const locale of ['th', 'en']) {
+    const html = renderLocalizedEntrypoint(source, locale);
+    const label = locale === 'th' ? 'สมัครร่วมทีม' : 'Join the team';
+    for (const id of ['join-team-link', 'join-team-link-mobile']) {
+      const anchor = html.match(new RegExp(`<a\\b(?=[^>]*\\bid="${id}")[^>]*>[\\s\\S]*?<\\/a>`))?.[0];
+      assert.ok(anchor, `${locale}: missing native ${id} anchor`);
+      assert.equal(anchor.match(/\bhref="([^"]+)"/)?.[1], expectedUrl);
+      assert.ok(anchor.includes(`>${label}</span>`));
+      assert.doesNotMatch(anchor, /\bonclick\s*=/i, 'recruitment must not depend on a click handler');
+    }
+    const fallback = html.match(/<nav\b[^>]*class="navigation-fallback"[^>]*>[\s\S]*?<\/nav>/)?.[0];
+    assert.ok(fallback?.includes(`<a href="${expectedUrl}">${label}</a>`));
+    assert.equal(html.split(`href="${expectedUrl}"`).length - 1, 3);
+    assert.doesNotMatch(html, /1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/);
+  }
+});
+
 test('the unified navigation preserves approved destinations, accessible menu behavior, and truthful page anchors', async () => {
   const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
   const navigation = await readFile(new URL('../src/navigation.js', import.meta.url), 'utf8');
   const styles = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
-  const joinTeamUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/viewform';
+  const joinTeamUrl = 'https://forms.gle/FWbukGX7X3QWZf317';
 
   assert.match(index, /<header[^>]*data-navigation-header[^>]*>[\s\S]*?<div class="header-identity">[\s\S]*?<nav class="header-nav"/);
   assert.match(index, /<a class="brand" href="https:\/\/landometer\.com\/"[\s\S]*?landometer-horizontal\.png\?v=6c71c10505ca/);
