@@ -3,6 +3,8 @@ import { spawnSync } from 'node:child_process';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
+import { buildCitymeterContributors } from './citymeter-attribution.mjs';
 
 const PERSON_ID_PATTERN = /^[SPI][0-9]{4}$/;
 const PUBLIC_WEB_SOCIAL_PLATFORMS = new Set(['linkedin', 'github']);
@@ -1902,6 +1904,13 @@ export async function validateSite({ distMode = false } = {}) {
   await validatePublishBoundary(publishRoot, errors, { distMode });
   await validateAssetManifest(publishRoot, siteData, errors);
   await validateGeneratedParity(publishRoot, siteData, errors);
+  try {
+    const media = JSON.parse(await readFile(path.join(publishRoot, 'data/generated/people-media.json'), 'utf8'));
+    const credits = JSON.parse(await readFile(path.join(publishRoot, 'data/generated/citymeter-contributors.json'), 'utf8'));
+    if (!isDeepStrictEqual(credits, buildCitymeterContributors(siteData, media))) errors.push('CityMETER contributor projection differs from the reviewed public registry/media allowlist. Regenerate it.');
+  } catch {
+    errors.push('CityMETER contributor projection or public people media is missing or invalid.');
+  }
   await validateDiscovery(publishRoot, siteData, errors, { distMode });
   if (distMode) await validateBuildManifest(publishRoot, errors);
   return errors;

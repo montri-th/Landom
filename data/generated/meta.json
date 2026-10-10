@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.5.0",
-  "generatedAt": "2026-10-08T00:00:00+07:00",
+  "generatedAt": "2026-10-10T00:00:00+07:00",
   "source": {
     "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
     "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -48,8 +48,8 @@
     "people": 53,
     "engagements": 65,
     "educationRecords": 53,
-    "works": 65,
-    "contributions": 124,
+    "works": 69,
+    "contributions": 129,
     "achievements": 1,
     "publications": 1,
     "certificates": 26,
@@ -64,6 +64,6 @@
     "publishedPublicSocialProfiles": 73,
     "participantApprovedProfileCopies": 1
   },
-  "dataUpdatedAt": "2026-10-08",
-  "reviewedAt": "2026-10-08"
+  "dataUpdatedAt": "2026-10-10",
+  "reviewedAt": "2026-10-10"
 }

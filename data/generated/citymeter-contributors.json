@@ -1,0 +1,1342 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-10-10T00:00:00+07:00",
+  "canonicalUrl": "https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json",
+  "byModuleSlug": {
+    "dataset-registered-companies-status-capital": [
+      {
+        "personId": "I0015",
+        "nickname": {
+          "th": "เฟซ",
+          "en": "Faze"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0015&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0015&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0015.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเฟซ",
+            "en": "Profile portrait of Faze"
+          }
+        }
+      },
+      {
+        "personId": "I0035",
+        "nickname": {
+          "th": "แทน",
+          "en": "Tan"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0035&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0035&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0035.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0035.jpg?v=32b661629ad1",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของแทน",
+            "en": "Profile portrait of Tan"
+          }
+        }
+      }
+    ],
+    "dataset-hotel-market": [
+      {
+        "personId": "I0031",
+        "nickname": {
+          "th": "บิว",
+          "en": "Bill"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0031&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0031&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0031.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0031.jpg?v=4587c8757cf8",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของบิว",
+            "en": "Profile portrait of Bill"
+          }
+        }
+      },
+      {
+        "personId": "I0001",
+        "nickname": {
+          "th": "ปุ๊กกี้",
+          "en": "Pookkie"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของปุ๊กกี้",
+            "en": "Profile portrait of Pookkie"
+          }
+        }
+      }
+    ],
+    "dataset-factories-workers-investment": [
+      {
+        "personId": "I0009",
+        "nickname": {
+          "th": "แฮม",
+          "en": "Ham"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0009&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0009&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0009.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0009.jpg?v=65f6d372b3df",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของแฮม",
+            "en": "Profile portrait of Ham"
+          }
+        }
+      },
+      {
+        "personId": "I0002",
+        "nickname": {
+          "th": "อาม",
+          "en": "Arm"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0002&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0002&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0002.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0002.jpg?v=87479792816f",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของอาม",
+            "en": "Profile portrait of Arm"
+          }
+        }
+      },
+      {
+        "personId": "I0001",
+        "nickname": {
+          "th": "ปุ๊กกี้",
+          "en": "Pookkie"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของปุ๊กกี้",
+            "en": "Profile portrait of Pookkie"
+          }
+        }
+      },
+      {
+        "personId": "S0005",
+        "nickname": {
+          "th": "บิว",
+          "en": "Biw"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0005&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0005&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของบิว",
+            "en": "Profile portrait of Biw"
+          }
+        }
+      }
+    ],
+    "dataset-schools-students-teachers": [
+      {
+        "personId": "I0006",
+        "nickname": {
+          "th": "ทีโน่",
+          "en": "Teno"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0006&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0006&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0006.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0006.jpg?v=fb74b9e3d780",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของทีโน่",
+            "en": "Profile portrait of Teno"
+          }
+        }
+      },
+      {
+        "personId": "S0001",
+        "nickname": {
+          "th": "โอ๊ต",
+          "en": "Oat"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโอ๊ต",
+            "en": "Profile portrait of Oat"
+          }
+        }
+      }
+    ],
+    "dataset-registered-cars": [
+      {
+        "personId": "I0015",
+        "nickname": {
+          "th": "เฟซ",
+          "en": "Faze"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0015&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0015&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0015.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเฟซ",
+            "en": "Profile portrait of Faze"
+          }
+        }
+      }
+    ],
+    "dataset-flood-recurrent": [
+      {
+        "personId": "I0015",
+        "nickname": {
+          "th": "เฟซ",
+          "en": "Faze"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0015&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0015&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0015.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเฟซ",
+            "en": "Profile portrait of Faze"
+          }
+        }
+      }
+    ],
+    "dataset-land-appraisal": [
+      {
+        "personId": "I0003",
+        "nickname": {
+          "th": "แพรวา",
+          "en": "Praewa"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0003&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0003&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของแพรวา",
+            "en": "Profile portrait of Praewa"
+          }
+        }
+      }
+    ],
+    "dataset-crop-area-output": [
+      {
+        "personId": "I0003",
+        "nickname": {
+          "th": "แพรวา",
+          "en": "Praewa"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0003&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0003&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของแพรวา",
+            "en": "Profile portrait of Praewa"
+          }
+        }
+      }
+    ],
+    "dataset-eia-projects": [
+      {
+        "personId": "I0003",
+        "nickname": {
+          "th": "แพรวา",
+          "en": "Praewa"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0003&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0003&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของแพรวา",
+            "en": "Profile portrait of Praewa"
+          }
+        }
+      },
+      {
+        "personId": "I0008",
+        "nickname": {
+          "th": "กาย",
+          "en": "Guy"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0008&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0008&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0008.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0008.jpg?v=7610343014a0",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของกาย",
+            "en": "Profile portrait of Guy"
+          }
+        }
+      }
+    ],
+    "dataset-municipal-revenue": [
+      {
+        "personId": "I0036",
+        "nickname": {
+          "th": "โต๋",
+          "en": "Toh"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0036&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0036&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0036.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0036.jpg?v=6b86ffefe6b6",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโต๋",
+            "en": "Profile portrait of Toh"
+          }
+        }
+      }
+    ],
+    "dataset-road-network-archetypes": [
+      {
+        "personId": "I0039",
+        "nickname": {
+          "th": "จอมใจ",
+          "en": "Jomjai"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0039&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0039&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg?v=e4e163a8e3b9",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของจอมใจ",
+            "en": "Profile portrait of Jomjai"
+          }
+        }
+      }
+    ],
+    "dataset-tourism-demand-spending": [
+      {
+        "personId": "I0043",
+        "nickname": {
+          "th": "ดราฟ",
+          "en": "Draf"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0043&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0043&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0043.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0043.jpg?v=125e00474d0d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของดราฟ",
+            "en": "Profile portrait of Draf"
+          }
+        }
+      }
+    ],
+    "dataset-fuel-stations": [
+      {
+        "personId": "I0043",
+        "nickname": {
+          "th": "ดราฟ",
+          "en": "Draf"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0043&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0043&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0043.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0043.jpg?v=125e00474d0d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของดราฟ",
+            "en": "Profile portrait of Draf"
+          }
+        }
+      },
+      {
+        "personId": "I0045",
+        "nickname": {
+          "th": "คิว",
+          "en": null
+        },
+        "contributionRole": {
+          "th": "กำลังปรับปรุง",
+          "en": "Improving"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0045&lang=en"
+        },
+        "portrait": null
+      }
+    ],
+    "dataset-flood-latest-observed": [
+      {
+        "personId": "I0032",
+        "nickname": {
+          "th": "ยิ้ว",
+          "en": "Yew"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0032&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0032&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของยิ้ว",
+            "en": "Profile portrait of Yew"
+          }
+        }
+      }
+    ],
+    "dataset-shopping-centers": [
+      {
+        "personId": "I0037",
+        "nickname": {
+          "th": "ณิชา",
+          "en": "Nicha"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0037&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0037&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0037.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0037.jpg?v=226bad11daa7",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของณิชา",
+            "en": "Profile portrait of Nicha"
+          }
+        }
+      }
+    ],
+    "dataset-locale-insights": [
+      {
+        "personId": "I0011",
+        "nickname": {
+          "th": "อิ๋ง",
+          "en": "Ing"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0011&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0011&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0011.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0011.jpg?v=d9384fd2964f",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของอิ๋ง",
+            "en": "Profile portrait of Ing"
+          }
+        }
+      }
+    ],
+    "dataset-government-agencies-workforce": [
+      {
+        "personId": "I0038",
+        "nickname": {
+          "th": "ไนน์",
+          "en": "Nine"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0038&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0038&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0038.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0038.jpg?v=d5ff64f6a1de",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของไนน์",
+            "en": "Profile portrait of Nine"
+          }
+        }
+      }
+    ],
+    "dataset-buildings": [
+      {
+        "personId": "I0030",
+        "nickname": {
+          "th": "เคน",
+          "en": "Ken"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0030&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0030&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเคน",
+            "en": "Profile portrait of Ken"
+          }
+        }
+      },
+      {
+        "personId": "S0005",
+        "nickname": {
+          "th": "บิว",
+          "en": "Biw"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0005&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0005&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของบิว",
+            "en": "Profile portrait of Biw"
+          }
+        }
+      },
+      {
+        "personId": "S0006",
+        "nickname": {
+          "th": "นัท",
+          "en": "Nat"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0006&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0006&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0006.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0006.jpg?v=e673f299631e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของนัท",
+            "en": "Profile portrait of Nat"
+          }
+        }
+      },
+      {
+        "personId": "S0007",
+        "nickname": {
+          "th": "โปเต้",
+          "en": "Pote"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0007&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0007&lang=en"
+        },
+        "portrait": null
+      }
+    ],
+    "dataset-population-age-sex": [
+      {
+        "personId": "S0005",
+        "nickname": {
+          "th": "บิว",
+          "en": "Biw"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0005&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0005&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของบิว",
+            "en": "Profile portrait of Biw"
+          }
+        }
+      },
+      {
+        "personId": "S0006",
+        "nickname": {
+          "th": "นัท",
+          "en": "Nat"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0006&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0006&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0006.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0006.jpg?v=e673f299631e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของนัท",
+            "en": "Profile portrait of Nat"
+          }
+        }
+      },
+      {
+        "personId": "S0007",
+        "nickname": {
+          "th": "โปเต้",
+          "en": "Pote"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0007&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0007&lang=en"
+        },
+        "portrait": null
+      }
+    ],
+    "dataset-registered-housing-estates": [
+      {
+        "personId": "I0034",
+        "nickname": {
+          "th": "เอิร์ธ",
+          "en": "Earth"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเอิร์ธ",
+            "en": "Profile portrait of Earth"
+          }
+        }
+      }
+    ],
+    "dataset-condo-appraisal": [
+      {
+        "personId": "S0001",
+        "nickname": {
+          "th": "โอ๊ต",
+          "en": "Oat"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโอ๊ต",
+            "en": "Profile portrait of Oat"
+          }
+        }
+      }
+    ],
+    "dataset-restaurants": [
+      {
+        "personId": "S0001",
+        "nickname": {
+          "th": "โอ๊ต",
+          "en": "Oat"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโอ๊ต",
+            "en": "Profile portrait of Oat"
+          }
+        }
+      }
+    ],
+    "dataset-fire-monitoring": [
+      {
+        "personId": "S0005",
+        "nickname": {
+          "th": "บิว",
+          "en": "Biw"
+        },
+        "contributionRole": {
+          "th": "Full-time staff",
+          "en": "Full-time staff"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0005&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0005&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของบิว",
+            "en": "Profile portrait of Biw"
+          }
+        }
+      }
+    ],
+    "dataset-disaster-historical-impacts": [
+      {
+        "personId": "I0030",
+        "nickname": {
+          "th": "เคน",
+          "en": "Ken"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0030&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0030&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเคน",
+            "en": "Profile portrait of Ken"
+          }
+        }
+      }
+    ],
+    "dataset-events-hat-yai-flood-2025-11": [
+      {
+        "personId": "I0003",
+        "nickname": {
+          "th": "แพรวา",
+          "en": "Praewa"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0003&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0003&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของแพรวา",
+            "en": "Profile portrait of Praewa"
+          }
+        }
+      }
+    ],
+    "dataset-flood-forecast-flash-flood-risk": [
+      {
+        "personId": "I0034",
+        "nickname": {
+          "th": "เอิร์ธ",
+          "en": "Earth"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเอิร์ธ",
+            "en": "Profile portrait of Earth"
+          }
+        }
+      }
+    ],
+    "dataset-flood-forecast-depth": [
+      {
+        "personId": "I0032",
+        "nickname": {
+          "th": "ยิ้ว",
+          "en": "Yew"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0032&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0032&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของยิ้ว",
+            "en": "Profile portrait of Yew"
+          }
+        }
+      }
+    ],
+    "dataset-events-quake-building-inspection": [
+      {
+        "personId": "S0002",
+        "nickname": {
+          "th": "เรเน่",
+          "en": "Renee"
+        },
+        "contributionRole": {
+          "th": "Product development",
+          "en": "Product development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0002&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0002&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0002.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0002.jpg?v=7048d4bb61a9",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเรเน่",
+            "en": "Profile portrait of Renee"
+          }
+        }
+      },
+      {
+        "personId": "S0001",
+        "nickname": {
+          "th": "โอ๊ต",
+          "en": "Oat"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโอ๊ต",
+            "en": "Profile portrait of Oat"
+          }
+        }
+      }
+    ],
+    "dataset-apartment-rent": [
+      {
+        "personId": "S0003",
+        "nickname": {
+          "th": "พัทธ์",
+          "en": "Pat"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0003&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0003&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0003.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0003.jpg?v=e797832329c2",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของพัทธ์",
+            "en": "Profile portrait of Pat"
+          }
+        }
+      }
+    ],
+    "dataset-condo-listing-prices": [
+      {
+        "personId": "I0011",
+        "nickname": {
+          "th": "อิ๋ง",
+          "en": "Ing"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0011&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0011&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0011.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0011.jpg?v=d9384fd2964f",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของอิ๋ง",
+            "en": "Profile portrait of Ing"
+          }
+        }
+      }
+    ],
+    "dataset-condo-rent-yield": [
+      {
+        "personId": "I0010",
+        "nickname": {
+          "th": "ว่าน",
+          "en": "Wan"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0010&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0010&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0010.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0010.jpg?v=ce53d58516f5",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของว่าน",
+            "en": "Profile portrait of Wan"
+          }
+        }
+      }
+    ],
+    "dataset-detached-listing-prices": [
+      {
+        "personId": "I0013",
+        "nickname": {
+          "th": "ปอน",
+          "en": "Pond"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0013&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0013&lang=en"
+        },
+        "portrait": null
+      }
+    ],
+    "dataset-land-listing-prices": [
+      {
+        "personId": "I0008",
+        "nickname": {
+          "th": "กาย",
+          "en": "Guy"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0008&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0008&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0008.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0008.jpg?v=7610343014a0",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของกาย",
+            "en": "Profile portrait of Guy"
+          }
+        }
+      }
+    ],
+    "dataset-office-buildings-rent": [
+      {
+        "personId": "I0014",
+        "nickname": {
+          "th": "มอส",
+          "en": "Mos"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0014&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0014&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0014.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0014.jpg?v=ac843319c494",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของมอส",
+            "en": "Profile portrait of Mos"
+          }
+        }
+      }
+    ],
+    "dataset-traffic-congestion-speed": [
+      {
+        "personId": "I0005",
+        "nickname": {
+          "th": "เดย์",
+          "en": "Day"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0005&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0005&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0005.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0005.jpg?v=59b0734c912d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเดย์",
+            "en": "Profile portrait of Day"
+          }
+        }
+      }
+    ],
+    "dataset-townhouse-listing-prices": [
+      {
+        "personId": "I0007",
+        "nickname": {
+          "th": "ดาวเหนือ",
+          "en": "Daonua"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0007&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0007&lang=en"
+        },
+        "portrait": null
+      }
+    ],
+    "dataset-earthquake-sensors": [
+      {
+        "personId": "S0003",
+        "nickname": {
+          "th": "พัทธ์",
+          "en": "Pat"
+        },
+        "contributionRole": {
+          "th": "Product management",
+          "en": "Product management"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0003&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0003&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0003.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0003.jpg?v=e797832329c2",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของพัทธ์",
+            "en": "Profile portrait of Pat"
+          }
+        }
+      }
+    ],
+    "dataset-grocery-retail": [
+      {
+        "personId": "I0030",
+        "nickname": {
+          "th": "เคน",
+          "en": "Ken"
+        },
+        "contributionRole": {
+          "th": "ร่วมพัฒนา",
+          "en": "Contributor"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0030&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0030&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเคน",
+            "en": "Profile portrait of Ken"
+          }
+        }
+      }
+    ],
+    "dataset-terrain-elevation": [
+      {
+        "personId": "I0034",
+        "nickname": {
+          "th": "เอิร์ธ",
+          "en": "Earth"
+        },
+        "contributionRole": {
+          "th": "ร่วมพัฒนา",
+          "en": "Contributor"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเอิร์ธ",
+            "en": "Profile portrait of Earth"
+          }
+        }
+      }
+    ],
+    "dataset-government-spending": [
+      {
+        "personId": "I0036",
+        "nickname": {
+          "th": "โต๋",
+          "en": "Toh"
+        },
+        "contributionRole": {
+          "th": "ร่วมพัฒนา",
+          "en": "Contributor"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0036&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0036&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0036.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0036.jpg?v=6b86ffefe6b6",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโต๋",
+            "en": "Profile portrait of Toh"
+          }
+        }
+      }
+    ],
+    "dataset-events-notices": [
+      {
+        "personId": "S0001",
+        "nickname": {
+          "th": "โอ๊ต",
+          "en": "Oat"
+        },
+        "contributionRole": {
+          "th": "ร่วมพัฒนา",
+          "en": "Contributor"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของโอ๊ต",
+            "en": "Profile portrait of Oat"
+          }
+        }
+      },
+      {
+        "personId": "I0034",
+        "nickname": {
+          "th": "เอิร์ธ",
+          "en": "Earth"
+        },
+        "contributionRole": {
+          "th": "ร่วมพัฒนา",
+          "en": "Contributor"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเอิร์ธ",
+            "en": "Profile portrait of Earth"
+          }
+        }
+      }
+    ]
+  }
+}

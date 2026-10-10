@@ -787,7 +787,13 @@ test('program-specific contribution roles and exact owner-supplied works replace
   }
 
   const cityCell = data.works.find((work) => work.workId === 'work-citycell-model');
-  assert.ok(data.contributions.every((item) => item.role.th !== 'ผู้มีส่วนร่วม' && item.role.en !== 'Contributor'));
+  const genericOwnerConfirmed = new Set(['C0125', 'C0126', 'C0127', 'C0128', 'C0129']);
+  assert.ok(data.contributions.filter((item) => !genericOwnerConfirmed.has(item.contributionId)).every((item) => item.role.th !== 'ผู้มีส่วนร่วม' && item.role.en !== 'Contributor'));
+  for (const item of data.contributions.filter((row) => genericOwnerConfirmed.has(row.contributionId))) {
+    assert.deepEqual(item.role, { th: 'ร่วมพัฒนา', en: 'Contributor' });
+    assert.equal(item.engagementId, null);
+    assert.deepEqual(item.period, { start: null, end: null, label: null });
+  }
   assert.equal(cityCell.names.en, 'CityCell: Machine learning model for nationwide land appraisal');
   assert.ok(data.contributions.filter((item) => item.workId === cityCell.workId).every((item) => item.role.en === 'Team member'));
   assert.ok(data.contributions.some((item) => item.personId === 'S0003' && item.workId === 'work-citymeter-rugon' && item.role.en === 'Product management'));

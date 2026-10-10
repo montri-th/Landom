@@ -121,6 +121,23 @@ See [the 6 October update](docs/updates/2026-10-06-participant-responses.md) for
 
 ## Publishing
 
+### CityMETER attribution and public discovery — 10 October 2026
+
+See [the scoped CityMETER update](docs/updates/2026-10-10-citymeter-attribution.md) for the four approved work records, five generic contributions, public credit projection, native initial-HTML directory, and reproducible normalization. Existing person facts, publication/consent, portraits, candidate mappings and earlier contributions are preserved. This content/discovery work follows current LDS 0.9.7 guidance without relabeling or rebuilding the retained, historically pinned visual assets.
+
+One reviewed historical route correction removes Business Dynamics' obsolete catalog anchors and links its retained work credit directly to the existing operational route. It remains excluded from the public CityMETER catalog projection; its title, people and historical contribution records are unchanged.
+
+CityMETER can read `data/generated/citymeter-contributors.json` for card-only credits and real localized Landom profile URLs. The file is regenerated from the approved public registry and governed people media; it exposes no contacts, private candidates, import receipts or consent evidence. The owner-authorized core-directory publication policy above remains distinct from individual consent. Current counts are 53 people, 69 works and 129 contributions; the public credit projection has 41 module keys, while two newer module mappings remain unresolved.
+
+When no authorized raw Sheet snapshot is available, preserve the current reviewed public graph and apply the approved additive contract through the existing reviewed mode:
+
+```sh
+node tools/normalize-data.mjs --reviewed-site-data data/generated/site-data.json
+npm run build
+```
+
+Do not hand-edit generated JSON or use this mode to replace unrelated person facts. Repeating the approved import is deterministic; an existing work or contribution that conflicts with the contract fails rather than being overwritten. The build emits readable people/contribution links and identity-only Person nodes for both locales. The same public fallback stays available when JavaScript or the public data fetch fails.
+
 `.github/workflows/pages.yml` validates every pull request. A successful build on `main` uploads the exact `dist/` artifact, deploys it with GitHub Pages, then uses the release SHA to bypass stale caches and requires the live manifest digest to equal this workflow run's build manifest before smoke-testing localized HTML, generated JSON, navigation, approach motion, the owner-directed photo-parallax module, brand-motion control, the footer contract, CSS, active outline icon subsets, discovery files, and governed identity/media/motif assets. Live checks bind the exact motif CSS/JavaScript, canonical quiet SVG source hashes, and exactly four active Landom quiet-gray derived-fallback hashes; derivation checks permit only the recorded color substitution. A local build or manifest entry alone is not production verification.
 
 Repository setup required once: in **Settings → Pages**, select **GitHub Actions** as the source. A local build or a pushed commit is not proof of a live release; use the terminal deployment result and live smoke test.

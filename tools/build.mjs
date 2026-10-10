@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { PUBLIC_BUILD_INPUTS, validateSite } from './validate-site.mjs';
+import { LANDOM_PUBLIC_ROOT, publicDirectoryEntries, renderPublicDirectory } from '../src/public-directory.js';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(repoRoot, 'dist');
@@ -101,7 +102,7 @@ export const PUBLISH_PATHS = PUBLIC_BUILD_INPUTS;
 
 function replaceRequired(source, search, replacement, label = search) {
   if (!source.includes(search)) throw new Error(`Localized entrypoint is missing required source text: ${label}`);
-  return source.replaceAll(search, replacement);
+  return source.replaceAll(search, () => replacement);
 }
 
 export function renderLocalizedEntrypoint(source, locale) {
@@ -193,11 +194,36 @@ export function renderLocalizedEntrypoint(source, locale) {
   return html;
 }
 
+export function renderPublicEntrypoint(source, locale, data) {
+  let html = renderLocalizedEntrypoint(source, locale);
+  const board = '<div class="masonry-board" id="people-board" aria-busy="true"></div>';
+  html = replaceRequired(html, board, `${renderPublicDirectory(data, locale)}\n        ${board}`, 'public directory insertion point');
+  html = replaceRequired(html, 'id="loading-state" aria-hidden="true"', 'id="loading-state" aria-hidden="true" hidden', 'initial loading state');
+  const graphPattern = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+  const graphScripts = [...html.matchAll(graphPattern)];
+  if (graphScripts.length !== 1) throw new Error('Public directory must have one identity graph.');
+  const graph = JSON.parse(graphScripts[0][1]);
+  if (!Array.isArray(graph['@graph'])) throw new Error('Public directory identity graph is missing.');
+  graph['@graph'].push(...publicDirectoryEntries(data, locale).map((person) => ({
+    '@id': `${LANDOM_PUBLIC_ROOT}#person-${person.personId}`,
+    '@type': 'Person',
+    name: person.name,
+    url: person.url
+  })));
+  html = html.replace(graphPattern, () => `<script type="application/ld+json">\n${JSON.stringify(graph, null, 2).replace(/</g, '\\u003c')}\n    </script>`);
+  const noScriptCopy = locale === 'en'
+    ? ['This page uses JavaScript to read and filter the public directory. Search terms stay on your device.', 'Names and contributions are available below without JavaScript. Enable JavaScript to search and open full profile details. Search terms stay on your device.']
+    : ['หน้านี้ต้องใช้ JavaScript เพื่ออ่านและกรองทะเบียนบุคลากร แต่จะไม่ส่งข้อมูลการค้นหาออกจากอุปกรณ์ของคุณ', 'อ่านรายชื่อและผลงานได้โดยไม่ใช้ JavaScript เปิด JavaScript เพื่อค้นหาและดูโปรไฟล์แบบเต็ม โดยคำค้นหาจะอยู่บนอุปกรณ์ของคุณ'];
+  return replaceRequired(html, ...noScriptCopy);
+}
+
 async function createLocalizedEntrypoints() {
   const source = await readFile(path.join(distRoot, 'index.html'), 'utf8');
+  const data = JSON.parse(await readFile(path.join(distRoot, 'data/generated/site-data.json'), 'utf8'));
   const localeDirectory = path.join(distRoot, 'en');
   await mkdir(localeDirectory, { recursive: true });
-  await writeFile(path.join(localeDirectory, 'index.html'), renderLocalizedEntrypoint(source, 'en'), 'utf8');
+  await writeFile(path.join(distRoot, 'index.html'), renderPublicEntrypoint(source, 'th', data), 'utf8');
+  await writeFile(path.join(localeDirectory, 'index.html'), renderPublicEntrypoint(source, 'en', data), 'utf8');
 }
 
 function assertSafeDistPath() {

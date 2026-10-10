@@ -9,6 +9,7 @@ import {
 } from './normalized-sheet-roundtrip.mjs';
 import { applyPublicationConsent } from './publication-consent.mjs';
 import { applyReviewedPortraitUpdates } from './reviewed-portrait-updates.mjs';
+import { applyCitymeterAttribution, buildCitymeterContributors } from './citymeter-attribution.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -121,7 +122,11 @@ function writeSiteDataFiles(siteData) {
     });
   }
   if (publicationConsent) siteData = applyPublicationConsent(siteData, publicationConsent);
+  const attributionPath = path.join(root, 'data/approved/citymeter-attribution-2026-10-10.json');
+  const attribution = fs.existsSync(attributionPath) ? JSON.parse(fs.readFileSync(attributionPath, 'utf8')) : null;
+  if (attribution) siteData = applyCitymeterAttribution(siteData, attribution);
   const reviewDates = [siteData.meta.dataUpdatedAt, siteData.meta.reviewedAt];
+  if (attribution) reviewDates.push(attribution.reviewedAt);
   for (const fileName of ['profile-detail-overrides.json', 'education-placement-overrides.json']) {
     const approvedPath = path.join(root, 'data/approved', fileName);
     if (fs.existsSync(approvedPath)) reviewDates.push(JSON.parse(fs.readFileSync(approvedPath, 'utf8')).reviewedAt);
@@ -147,7 +152,9 @@ function writeSiteDataFiles(siteData) {
   writeJson('publications.json', siteData.publications);
   writeJson('social-profiles.json', siteData.socialProfiles);
   writeJson('assets.json', siteData.assets);
-  writeJson('people-media.json', buildPeopleMediaManifest(siteData));
+  const peopleMedia = buildPeopleMediaManifest(siteData);
+  writeJson('people-media.json', peopleMedia);
+  writeJson('citymeter-contributors.json', buildCitymeterContributors(siteData, peopleMedia));
   writeJson('certificates.json', siteData.certificates);
   writeJson('site-data.json', siteData);
 }
