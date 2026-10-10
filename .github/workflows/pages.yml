@@ -179,12 +179,17 @@ jobs:
             const styles = readFileSync("/tmp/landom-styles.css", "utf8");
             const data = JSON.parse(readFileSync("/tmp/landom-site-data.json", "utf8"));
             const credits = JSON.parse(readFileSync("/tmp/landom-citymeter-contributors.json", "utf8"));
-            if (credits.schemaVersion !== "1.0.0" || Object.keys(credits.byModuleSlug || {}).length !== 41) throw Error("Public CityMETER credit projection is incomplete");
-            for (const [slug, expectedPeople] of [["dataset-grocery-retail", ["I0030"]], ["dataset-terrain-elevation", ["I0034"]], ["dataset-government-spending", ["I0036"]], ["dataset-events-notices", ["S0001", "I0034"]]]) {
+            if (credits.schemaVersion !== "1.0.0" || Object.keys(credits.byModuleSlug || {}).length !== 43) throw Error("Public CityMETER credit projection is incomplete");
+            for (const [slug, expectedPeople] of [["dataset-grocery-retail", ["I0030"]], ["dataset-terrain-elevation", ["I0034"]], ["dataset-government-spending", ["I0036"]], ["dataset-events-notices", ["S0001", "I0034"]], ["dataset-non-bank", ["I0030"]], ["dataset-places-of-worship", ["I0045"]]]) {
               const actual = (credits.byModuleSlug[slug] || []).map((row) => row.personId).sort();
               if (JSON.stringify(actual) !== JSON.stringify(expectedPeople.sort())) throw Error("Approved work/person credits differ from the release contract");
             }
-            for (const slug of ["dataset-business-dynamics", "dataset-non-bank", "dataset-places-of-worship"]) if (slug in credits.byModuleSlug) throw Error("Unapproved catalog mapping entered the public credits");
+            if ("dataset-business-dynamics" in credits.byModuleSlug) throw Error("Hidden catalog mapping entered the public credits");
+            for (const [slug, contributionId, personId, workId, role] of [["dataset-non-bank", "C0124", "I0030", "work-citymeter-nonbank", "Software development"], ["dataset-places-of-worship", "C0122", "I0045", "work-citymeter-religious-places-unresolved", "Developing"]]) {
+              const work = data.works.find((row) => row.workId === workId);
+              const contribution = data.contributions.find((row) => row.contributionId === contributionId);
+              if (work?.moduleSlug !== slug || contribution?.personId !== personId || contribution?.workId !== workId || contribution?.role.en !== role || credits.byModuleSlug[slug][0].contributionRole?.en !== role) throw Error("Existing binding identity or role changed");
+            }
             const historicalWork = data.works.find((work) => work.workId === "work-citymeter-business-dynamics");
             if (!historicalWork || historicalWork.catalogUrl.th !== null || historicalWork.catalogUrl.en !== null || historicalWork.destinationUrl !== "https://landometer.com/v3/citymeter?d=businessDynamics" || historicalWork.linkEvidence.linkScope !== "historical_direct_route") throw Error("Historical Business Dynamics route correction is missing");
             for (const localizedHtml of [html, english]) if (localizedHtml.includes("#dataset-business-dynamics")) throw Error("Obsolete hidden catalog anchor remains in the directory");
