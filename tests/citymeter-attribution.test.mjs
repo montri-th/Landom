@@ -85,8 +85,8 @@ test('historical Business Dynamics uses the approved direct route without restor
   assert.deepEqual(drift, frozen);
 });
 
-test('candidate mappings stay unbound and previous Fuel Stations credits stay distinct', () => {
-  for (const id of ['work-citymeter-nonbank', 'work-citymeter-religious-places-unresolved']) assert.equal(current.works.find((work) => work.workId === id).moduleSlug, null);
+test('existing-work bindings use their approved catalog identities and previous Fuel Stations credits stay distinct', () => {
+  for (const [id, slug] of [['work-citymeter-nonbank', 'dataset-non-bank'], ['work-citymeter-religious-places-unresolved', 'dataset-places-of-worship']]) assert.equal(current.works.find((work) => work.workId === id).moduleSlug, slug);
   const fuel = current.contributions.filter((row) => row.workId === 'work-citymeter-fuel-stations');
   assert.ok(fuel.some((row) => row.personId === 'I0043'));
   assert.ok(fuel.some((row) => row.personId === 'I0045' && row.contributionId === 'C0123' && row.role.en === 'Improving'));
@@ -98,10 +98,10 @@ test('CityMETER public projection has exact identities, localized profile links 
   input.contributions[0].privateReceipt = 'private';
   publicMedia.people[0].sourceUrl = 'https://private.example.invalid';
   const projection = buildCitymeterContributors(input, publicMedia);
-  assert.equal(Object.keys(projection.byModuleSlug).length, 41);
+  assert.equal(Object.keys(projection.byModuleSlug).length, 43);
   assert.equal(projection.byModuleSlug['dataset-business-dynamics'], undefined);
-  assert.equal(projection.byModuleSlug['dataset-non-bank'], undefined);
-  assert.equal(projection.byModuleSlug['dataset-places-of-worship'], undefined);
+  assert.deepEqual(projection.byModuleSlug['dataset-non-bank'].map((row) => row.personId), ['I0030']);
+  assert.deepEqual(projection.byModuleSlug['dataset-places-of-worship'].map((row) => row.personId), ['I0045']);
   assert.deepEqual(projection.byModuleSlug['dataset-events-notices'].map((row) => row.personId), ['S0001', 'I0034']);
   assert.equal(projection.byModuleSlug['dataset-government-spending'][0].nickname.en, 'Toh');
   for (const rows of Object.values(projection.byModuleSlug)) for (const row of rows) {

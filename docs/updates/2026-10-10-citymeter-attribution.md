@@ -23,7 +23,7 @@ The role is only **ร่วมพัฒนา / Contributor**. Engagement, peri
 
 All 53 person records and their education, engagements, profile text, portraits, social links, individual consent and owner authorization remain unchanged. Pending individual consent is not upgraded: the existing owner-authorized public core-directory policy still governs its already-public records. Explicit portrait/social refusals remain effective.
 
-`work-citymeter-nonbank` and `work-citymeter-religious-places-unresolved` remain distinct existing works with unresolved catalog mappings (`CMRW-0039` / `CMRW-0040` in the canonical registry). Non-bank retains its existing exact operational destination and Ken credit; Q's religious-places work remains in progress with no invented module link. Existing Fuel Stations work and Draf's contribution remain separate from Q's `C0123` improvement contribution. None of these earlier records is replaced.
+The initial four-work amendment retained the then-unbound `CMRW-0039` / `CMRW-0040` mappings. The [subsequent guarded existing-work binding](2026-10-10-citymeter-existing-bindings.md) now connects those already-confirmed Non-bank and religious-places works to the published public catalog. Their work and contribution IDs stay stable; religious-places work remains Developing. Existing Fuel Stations work and Draf's contribution remain separate from C0123's Improving role.
 
 The sole correction to an earlier work is Business Dynamics' route. Its old `#dataset-business-dynamics` catalog anchors no longer exist in the public catalog. The approved `routeCorrections` entry clears both catalog URLs, sets `destinationUrl` to `https://landometer.com/v3/citymeter?d=businessDynamics`, and marks `linkEvidence.linkScope` as `historical_direct_route`. This destination was already present in the retained public CityMETER bundle `assets/index-qbT50gkr-v18.js`; no private application source is imported. The work ID, module identity, titles and all historical credits remain unchanged. This is an operational link from a historical work, not permission to restore public catalog discovery or a new detail page.
 
@@ -40,7 +40,7 @@ npm run build
 
 Normalization regenerates every public dimension, `site-data.json`, `people-media.json` and `citymeter-contributors.json`. It preserves the original Sheet fetch timestamp and advances only the deterministic projection review date. Repeating the same approved amendment does not duplicate rows. Unknown people, duplicate identities, role/date fields outside the approval, conflicting work/module identity, or conflicting contribution IDs fail without mutating the input object. Future conflicting facts need an explicit review; do not weaken the check merely to complete an import.
 
-The source graph has 53 people, 69 works and 129 contributions. The card-only credit interface has 41 module keys. Eight retained works already have approved exact-module catalog anchors despite a null `moduleSlug`; the interface reuses those exact TH/EN links, never a guessed name match. `dataset-business-dynamics` is excluded from this new CityMETER projection. The two unresolved newer catalog mappings are not promoted.
+The source graph has 53 people, 69 works and 129 contributions. The card-only credit interface initially had 41 module keys and now has 43 after the separately guarded existing-work binding. Eight retained works already have approved exact-module catalog anchors despite a null `moduleSlug`; the interface reuses those exact TH/EN links, never a guessed name match. `dataset-business-dynamics` remains excluded.
 
 The card interface exposes only:
 
@@ -52,7 +52,8 @@ The card interface exposes only:
   "localizedFields": ["nickname", "contributionRole", "profileUrl"],
   "portraitFields": ["url", "versionedUrl", "alt"],
   "missingPortrait": null,
-  "publicModuleCount": 41,
+  "publicModuleCount": 43,
+  "existingWorkBindings": 2,
   "newWorks": 4,
   "newContributions": 5,
   "historicalRouteCorrections": 1,

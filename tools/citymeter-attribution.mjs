@@ -1,10 +1,54 @@
 import { isDeepStrictEqual } from 'node:util';
+import { createHash } from 'node:crypto';
 
 const SCOPE = 'owner_confirmed_citymeter_attribution_identity_only';
 const CATALOG_ROOT = 'https://montri-th.github.io/CityMETER/';
 const PROJECTION_URL = 'https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json';
 const PUBLIC_LANGUAGES = ['th', 'en'];
 const HIDDEN_MODULES = new Set(['dataset-business-dynamics']);
+const EXISTING_BINDING_IDENTITIES = Object.freeze({
+  'CMRW-0039': ['work-citymeter-nonbank', 'C0124', 'I0030', 'dataset-non-bank', 'nonBank'],
+  'CMRW-0040': ['work-citymeter-religious-places-unresolved', 'C0122', 'I0045', 'dataset-places-of-worship', 'placeOfWorship']
+});
+const BINDING_FIELDS = ['moduleSlug', 'type', 'authorityStatus', 'evidenceNote', 'catalogUrl', 'destinationUrl', 'linkEvidence'];
+
+const bindingState = (work) => Object.fromEntries(BINDING_FIELDS.map((field) => [field, work[field]]));
+
+/** Bind two existing, owner-confirmed contributions to the now-published public
+ * catalog. This is a routing/identity amendment, never a person or work-status
+ * inference. Exact reviewed predecessor states and idempotent final state only. */
+export function applyExistingCitymeterBindings(siteData, contract) {
+  strictObject(contract, ['contractVersion', 'reviewedAt', 'scope', 'sourceRef', 'sourceCatalog', 'bindings'], 'Existing CityMETER bindings');
+  strictObject(contract.sourceCatalog, ['url', 'gitCommit', 'sourceSha256'], 'Public catalog evidence');
+  if (contract.contractVersion !== '1.0' || contract.scope !== 'existing_work_catalog_identity_only' || !/^\d{4}-\d{2}-\d{2}$/.test(contract.reviewedAt) || !/^[a-z0-9_-]+$/.test(contract.sourceRef) || contract.sourceCatalog.url !== `${CATALOG_ROOT}data/catalog.json` || !/^[a-f0-9]{40}$/.test(contract.sourceCatalog.gitCommit) || !/^[a-f0-9]{64}$/.test(contract.sourceCatalog.sourceSha256) || !Array.isArray(contract.bindings) || contract.bindings.length !== 2) throw new Error('Invalid existing-work binding contract.');
+  const result = structuredClone(siteData);
+  const works = unique(result.works, 'workId', 'work');
+  const credits = unique(result.contributions, 'contributionId', 'contribution');
+  unique(contract.bindings, 'mappingId', 'binding');
+  for (const item of contract.bindings) {
+    strictObject(item, ['mappingId', 'workId', 'contributionId', 'personId', 'moduleSlug', 'datasetCode', 'previousPublicState', 'previousSheetStateSha256', 'nextState'], 'Existing binding');
+    if (!isDeepStrictEqual(EXISTING_BINDING_IDENTITIES[item.mappingId], [item.workId, item.contributionId, item.personId, item.moduleSlug, item.datasetCode])) throw new Error('Unapproved existing-work binding identity.');
+    const work = works.get(item.workId);
+    const credit = credits.get(item.contributionId);
+    if (!work || work.parentProduct !== 'CityMETER' || work.scopeLayer !== 'product_specific' || credit?.workId !== item.workId || credit?.personId !== item.personId || !result.people.some((person) => person.personId === item.personId)) throw new Error('Existing binding requires the confirmed work, contribution and person.');
+    if (result.works.some((other) => other.workId !== item.workId && other.moduleSlug === item.moduleSlug)) throw new Error('Binding module already belongs to another work.');
+    if (!/^[a-f0-9]{64}$/.test(item.previousSheetStateSha256)) throw new Error('Binding requires the reviewed Sheet predecessor digest.');
+    for (const state of [item.previousPublicState, item.nextState]) {
+      strictObject(state, BINDING_FIELDS, 'Binding state');
+      strictObject(state.catalogUrl, ['th', 'en'], 'Binding catalog links');
+      strictObject(state.linkEvidence, ['linkScope', 'sourceRef', 'evidenceUrl'], 'Binding link evidence');
+    }
+    const slug = item.moduleSlug.slice('dataset-'.length);
+    const expectedLinks = { th: `${CATALOG_ROOT}datasets/${slug}/`, en: `${CATALOG_ROOT}en/datasets/${slug}/` };
+    const next = item.nextState;
+    if (next.moduleSlug !== item.moduleSlug || next.type !== 'canonical_module' || next.authorityStatus !== 'owner_confirmed_catalog_binding_identity_only' || typeof next.evidenceNote !== 'string' || !next.evidenceNote || !isDeepStrictEqual(next.catalogUrl, expectedLinks) || next.destinationUrl !== `https://landometer.com/v3/citymeter?d=${item.datasetCode}` || !isDeepStrictEqual(next.linkEvidence, { linkScope: 'exact_module', sourceRef: contract.sourceRef, evidenceUrl: expectedLinks.th })) throw new Error('Existing binding changes fields outside the approved catalog identity.');
+    const current = bindingState(work);
+    const sheetDigest = createHash('sha256').update(JSON.stringify(current)).digest('hex');
+    if (![item.previousPublicState, next].some((state) => isDeepStrictEqual(current, state)) && sheetDigest !== item.previousSheetStateSha256) throw new Error('Existing work differs from reviewed binding states: ' + item.workId);
+    Object.assign(work, structuredClone(next));
+  }
+  return result;
+}
 
 function strictObject(value, fields, label) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(label + ' must be an object.');
