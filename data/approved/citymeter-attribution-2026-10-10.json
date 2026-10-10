@@ -1,0 +1,32 @@
+{
+  "contractVersion": "1.0",
+  "reviewedAt": "2026-10-10",
+  "scope": "owner_confirmed_citymeter_attribution_identity_only",
+  "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+  "routeCorrections": [
+    {
+      "workId": "work-citymeter-business-dynamics",
+      "previousCatalogUrl": {
+        "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-business-dynamics",
+        "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-business-dynamics"
+      },
+      "previousDestinationUrl": null,
+      "previousLinkEvidence": { "linkScope": "exact_module", "sourceRef": "official_citymeter_catalog_2026-08-23", "evidenceUrl": null },
+      "destinationUrl": "https://landometer.com/v3/citymeter?d=businessDynamics",
+      "linkScope": "historical_direct_route"
+    }
+  ],
+  "works": [
+    { "workId": "work-citymeter-grocery-retail", "moduleSlug": "dataset-grocery-retail", "name": "CityMETER: Grocery", "destinationUrl": "https://landometer.com/v3/citymeter?d=grocery" },
+    { "workId": "work-citymeter-terrain-elevation", "moduleSlug": "dataset-terrain-elevation", "name": "CityMETER: Terrain", "destinationUrl": "https://landometer.com/v3/citymeter-3d?d=terrain" },
+    { "workId": "work-citymeter-government-spending", "moduleSlug": "dataset-government-spending", "name": "CityMETER: Government Spending", "destinationUrl": "https://landometer.com/v3/citymeter?d=govspending" },
+    { "workId": "work-citymeter-events-notices", "moduleSlug": "dataset-events-notices", "name": "CityMETER: Traffic Incident", "destinationUrl": "https://landometer.com/v3/citymeter?d=trafficIncident" }
+  ],
+  "contributions": [
+    { "contributionId": "C0125", "personId": "I0030", "workId": "work-citymeter-grocery-retail" },
+    { "contributionId": "C0126", "personId": "I0034", "workId": "work-citymeter-terrain-elevation" },
+    { "contributionId": "C0127", "personId": "I0036", "workId": "work-citymeter-government-spending" },
+    { "contributionId": "C0128", "personId": "S0001", "workId": "work-citymeter-events-notices" },
+    { "contributionId": "C0129", "personId": "I0034", "workId": "work-citymeter-events-notices" }
+  ]
+}

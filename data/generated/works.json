@@ -654,13 +654,13 @@
       "CityMETER: Business dynamics"
     ],
     "catalogUrl": {
-      "th": "https://montri-th.github.io/CityMETER/?lang=th#dataset-business-dynamics",
-      "en": "https://montri-th.github.io/CityMETER/en/?lang=en#dataset-business-dynamics"
+      "th": null,
+      "en": null
     },
-    "destinationUrl": null,
+    "destinationUrl": "https://landometer.com/v3/citymeter?d=businessDynamics",
     "linkEvidence": {
-      "linkScope": "exact_module",
-      "sourceRef": "official_citymeter_catalog_2026-08-23",
+      "linkScope": "historical_direct_route",
+      "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
       "evidenceUrl": null
     }
   },
@@ -1929,6 +1929,126 @@
       "linkScope": "exact_module",
       "sourceRef": "owner_instruction_2026-09-29",
       "evidenceUrl": "https://landometer.com/v3/citymeter?d=nonBank"
+    }
+  },
+  {
+    "workId": "work-citymeter-grocery-retail",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-grocery-retail",
+    "names": {
+      "th": "CityMETER: Grocery",
+      "en": "CityMETER: Grocery"
+    },
+    "shortNames": {
+      "th": "CityMETER: Grocery",
+      "en": "CityMETER: Grocery"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_confirmed_attribution_identity_only",
+    "evidenceNote": "Owner confirmed contributor identity for this dataset. Dates, leadership, completion, source ownership and data rights are not established by this attribution.",
+    "sourceAliases": [
+      "CityMETER: Grocery"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/datasets/grocery-retail/",
+      "en": "https://montri-th.github.io/CityMETER/en/datasets/grocery-retail/"
+    },
+    "destinationUrl": "https://landometer.com/v3/citymeter?d=grocery",
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-terrain-elevation",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-terrain-elevation",
+    "names": {
+      "th": "CityMETER: Terrain",
+      "en": "CityMETER: Terrain"
+    },
+    "shortNames": {
+      "th": "CityMETER: Terrain",
+      "en": "CityMETER: Terrain"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_confirmed_attribution_identity_only",
+    "evidenceNote": "Owner confirmed contributor identity for this dataset. Dates, leadership, completion, source ownership and data rights are not established by this attribution.",
+    "sourceAliases": [
+      "CityMETER: Terrain"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/datasets/terrain-elevation/",
+      "en": "https://montri-th.github.io/CityMETER/en/datasets/terrain-elevation/"
+    },
+    "destinationUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-government-spending",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-government-spending",
+    "names": {
+      "th": "CityMETER: Government Spending",
+      "en": "CityMETER: Government Spending"
+    },
+    "shortNames": {
+      "th": "CityMETER: Government Spending",
+      "en": "CityMETER: Government Spending"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_confirmed_attribution_identity_only",
+    "evidenceNote": "Owner confirmed contributor identity for this dataset. Dates, leadership, completion, source ownership and data rights are not established by this attribution.",
+    "sourceAliases": [
+      "CityMETER: Government Spending"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/datasets/government-spending/",
+      "en": "https://montri-th.github.io/CityMETER/en/datasets/government-spending/"
+    },
+    "destinationUrl": "https://landometer.com/v3/citymeter?d=govspending",
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+      "evidenceUrl": null
+    }
+  },
+  {
+    "workId": "work-citymeter-events-notices",
+    "parentProduct": "CityMETER",
+    "moduleSlug": "dataset-events-notices",
+    "names": {
+      "th": "CityMETER: Traffic Incident",
+      "en": "CityMETER: Traffic Incident"
+    },
+    "shortNames": {
+      "th": "CityMETER: Traffic Incident",
+      "en": "CityMETER: Traffic Incident"
+    },
+    "type": "canonical_module",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_confirmed_attribution_identity_only",
+    "evidenceNote": "Owner confirmed contributor identity for this dataset. Dates, leadership, completion, source ownership and data rights are not established by this attribution.",
+    "sourceAliases": [
+      "CityMETER: Traffic Incident"
+    ],
+    "catalogUrl": {
+      "th": "https://montri-th.github.io/CityMETER/datasets/events-notices/",
+      "en": "https://montri-th.github.io/CityMETER/en/datasets/events-notices/"
+    },
+    "destinationUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
+    "linkEvidence": {
+      "linkScope": "exact_module",
+      "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+      "evidenceUrl": null
     }
   }
 ]

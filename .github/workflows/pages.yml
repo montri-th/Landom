@@ -87,6 +87,8 @@ jobs:
           html_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-index.html --write-out '%{content_type}' "$base_url/?$cache_bust")"
           english_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-en.html --write-out '%{content_type}' "$base_url/en/?$cache_bust")"
           data_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-site-data.json --write-out '%{content_type}' "$base_url/data/generated/site-data.json?$cache_bust")"
+          credits_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-citymeter-contributors.json --write-out '%{content_type}' "$base_url/data/generated/citymeter-contributors.json?$cache_bust")"
+          directory_script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-public-directory.js --write-out '%{content_type}' "$base_url/src/public-directory.js?$cache_bust")"
           script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-app.js --write-out '%{content_type}' "$base_url/src/app.js?$cache_bust")"
           navigation_script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-navigation.js --write-out '%{content_type}' "$base_url/src/navigation.js?$cache_bust")"
           approach_motion_script_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-approach-motion.js --write-out '%{content_type}' "$base_url/src/approach-motion.js?$cache_bust")"
@@ -129,6 +131,8 @@ jobs:
           case "$html_type" in text/html*) ;; *) echo "Unexpected HTML content type: $html_type"; exit 1;; esac
           case "$english_type" in text/html*) ;; *) echo "Unexpected English HTML content type: $english_type"; exit 1;; esac
           case "$data_type" in application/json*|text/json*) ;; *) echo "Unexpected JSON content type: $data_type"; exit 1;; esac
+          case "$credits_type" in application/json*|text/json*) ;; *) echo "Unexpected credits content type: $credits_type"; exit 1;; esac
+          case "$directory_script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected directory script content type: $directory_script_type"; exit 1;; esac
           case "$manifest_type" in application/json*|text/json*) ;; *) echo "Unexpected manifest content type: $manifest_type"; exit 1;; esac
           case "$script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected JavaScript content type: $script_type"; exit 1;; esac
           case "$navigation_script_type" in application/javascript*|text/javascript*) ;; *) echo "Unexpected navigation JavaScript content type: $navigation_script_type"; exit 1;; esac
@@ -174,6 +178,16 @@ jobs:
             const mediaParallax = readFileSync("/tmp/landom-media-parallax.js", "utf8");
             const styles = readFileSync("/tmp/landom-styles.css", "utf8");
             const data = JSON.parse(readFileSync("/tmp/landom-site-data.json", "utf8"));
+            const credits = JSON.parse(readFileSync("/tmp/landom-citymeter-contributors.json", "utf8"));
+            if (credits.schemaVersion !== "1.0.0" || Object.keys(credits.byModuleSlug || {}).length !== 41) throw Error("Public CityMETER credit projection is incomplete");
+            for (const [slug, expectedPeople] of [["dataset-grocery-retail", ["I0030"]], ["dataset-terrain-elevation", ["I0034"]], ["dataset-government-spending", ["I0036"]], ["dataset-events-notices", ["S0001", "I0034"]]]) {
+              const actual = (credits.byModuleSlug[slug] || []).map((row) => row.personId).sort();
+              if (JSON.stringify(actual) !== JSON.stringify(expectedPeople.sort())) throw Error("Approved work/person credits differ from the release contract");
+            }
+            for (const slug of ["dataset-business-dynamics", "dataset-non-bank", "dataset-places-of-worship"]) if (slug in credits.byModuleSlug) throw Error("Unapproved catalog mapping entered the public credits");
+            const historicalWork = data.works.find((work) => work.workId === "work-citymeter-business-dynamics");
+            if (!historicalWork || historicalWork.catalogUrl.th !== null || historicalWork.catalogUrl.en !== null || historicalWork.destinationUrl !== "https://landometer.com/v3/citymeter?d=businessDynamics" || historicalWork.linkEvidence.linkScope !== "historical_direct_route") throw Error("Historical Business Dynamics route correction is missing");
+            for (const localizedHtml of [html, english]) if (localizedHtml.includes("#dataset-business-dynamics")) throw Error("Obsolete hidden catalog anchor remains in the directory");
             const manifest = JSON.parse(readFileSync("/tmp/landom-build-manifest.json", "utf8"));
             if (!html.includes("id=\"people-board\"")) throw Error("people board missing from deployed HTML");
             for (const localizedHtml of [html, english]) {
@@ -269,6 +283,8 @@ jobs:
               ["index.html", "/tmp/landom-index.html"],
               ["en/index.html", "/tmp/landom-en.html"],
               ["data/generated/site-data.json", "/tmp/landom-site-data.json"],
+              ["data/generated/citymeter-contributors.json", "/tmp/landom-citymeter-contributors.json"],
+              ["src/public-directory.js", "/tmp/landom-public-directory.js"],
               ["src/app.js", "/tmp/landom-app.js"],
               ["src/navigation.js", "/tmp/landom-navigation.js"],
               ["src/approach-motion.js", "/tmp/landom-approach-motion.js"],

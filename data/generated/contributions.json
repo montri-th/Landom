@@ -2230,5 +2230,95 @@
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-09-29",
     "evidenceNote": "The owner credited Ken with the new nonBank module at the supplied CityMETER destination. No exclusive authorship, project-lead role or exact contribution dates are inferred."
+  },
+  {
+    "contributionId": "C0125",
+    "personId": "I0030",
+    "workId": "work-citymeter-grocery-retail",
+    "engagementId": null,
+    "role": {
+      "th": "ร่วมพัฒนา",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+  },
+  {
+    "contributionId": "C0126",
+    "personId": "I0034",
+    "workId": "work-citymeter-terrain-elevation",
+    "engagementId": null,
+    "role": {
+      "th": "ร่วมพัฒนา",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+  },
+  {
+    "contributionId": "C0127",
+    "personId": "I0036",
+    "workId": "work-citymeter-government-spending",
+    "engagementId": null,
+    "role": {
+      "th": "ร่วมพัฒนา",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+  },
+  {
+    "contributionId": "C0128",
+    "personId": "S0001",
+    "workId": "work-citymeter-events-notices",
+    "engagementId": null,
+    "role": {
+      "th": "ร่วมพัฒนา",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+  },
+  {
+    "contributionId": "C0129",
+    "personId": "I0034",
+    "workId": "work-citymeter-events-notices",
+    "engagementId": null,
+    "role": {
+      "th": "ร่วมพัฒนา",
+      "en": "Contributor"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_and_sheet_confirmed",
+    "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
   }
 ]

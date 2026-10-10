@@ -2,6 +2,7 @@ import { initApproachMotion } from "./approach-motion.js";
 import { initBrandMotion } from "./brand-motion.js";
 import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
+import { contributionRoleLabel, personProfileUrl } from "./public-directory.js";
 
 const DATA_URL = "./data/generated/site-data.json";
 const THEME_KEY = "lds-theme";
@@ -372,6 +373,7 @@ const elements = {
   filterClear: document.querySelector("#filter-clear"),
   filterDone: document.querySelector("#filter-done"),
   board: document.querySelector("#people-board"),
+  publicFallback: document.querySelector("#public-directory-fallback"),
   loading: document.querySelector("#loading-state"),
   empty: document.querySelector("#empty-state"),
   emptyTitle: document.querySelector("#empty-title"),
@@ -1151,8 +1153,8 @@ function workNameForContribution(contribution, workIndex, language = state.langu
 }
 
 function localizedContributionRole(contribution) {
-  const role = localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"], "en");
-  return publicRoleLabel(role);
+  const role = localizedField(contribution, ["roleInWork", "role_in_work", "role", "contributionRole", "contribution_role"], state.language);
+  return contributionRoleLabel(role, state.language);
 }
 
 function contributionRecordsForPerson(id, contributions, workIndex) {
@@ -1651,7 +1653,12 @@ function renderCard(model) {
     if (state.currentPersonId === model.id) closePerson({ trigger: button });
     else openPerson(model.id, button);
   });
-  shell.append(button, detail);
+  const permalink = document.createElement("a");
+  permalink.className = "person-permalink";
+  permalink.href = personProfileUrl(model.id, state.language);
+  permalink.textContent = state.language === "en" ? "Profile link" : "ลิงก์โปรไฟล์";
+  permalink.setAttribute("aria-label", `${permalink.textContent} · ${nickname}`);
+  shell.append(button, permalink, detail);
   return shell;
 }
 
@@ -1692,6 +1699,8 @@ function renderDirectory() {
   setText(elements.resultsCount, message("results", { shown: formatNumber(models.length), total: formatNumber(state.models.length) }));
   updateFilterCount();
   if (state.currentPersonId) openPerson(state.currentPersonId, null, { fromUrl: true, animate: false, scroll: true });
+  // Keep readable build-time names and work links until enhancement succeeds.
+  if (elements.publicFallback) elements.publicFallback.hidden = true;
 }
 
 function formatNumber(value) {
@@ -2318,7 +2327,7 @@ function updateDataNote() {
 }
 
 async function loadData() {
-  elements.loading.hidden = false;
+  elements.loading.hidden = Boolean(elements.publicFallback && !elements.publicFallback.hidden);
   elements.error.hidden = true;
   elements.empty.hidden = true;
   elements.board.hidden = false;
@@ -2343,6 +2352,7 @@ async function loadData() {
     console.error("Unable to load the public people register", error);
     state.raw = null;
     elements.loading.hidden = true;
+    if (elements.publicFallback) elements.publicFallback.hidden = false;
     elements.board.hidden = true;
     elements.board.setAttribute("aria-busy", "false");
     elements.error.hidden = false;

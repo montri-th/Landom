@@ -182,7 +182,7 @@ test('Q keeps the canonical ID, verified CEDT placement and blank deferred state
 test('latest work credits preserve explicit scope, in-progress status and exact Non-bank destination', () => {
   assert.equal(data.people.length, 53);
   assert.equal(data.engagements.length, 65);
-  assert.equal(data.contributions.length, 124);
+  assert.equal(data.contributions.length, 129);
   const added = data.contributions.filter((contribution) => ['C0121', 'C0122', 'C0123', 'C0124'].includes(contribution.contributionId));
   assert.deepEqual(added.map((item) => [item.personId, item.workId, item.role.en]), [
     ['I0044', 'work-ijji', 'Project support'],
@@ -231,7 +231,7 @@ test('late-evening replies preserve corrected names and dates while withholding 
   assert.equal(hamGithub.publicationStatus, 'withheld_pending_verification');
   assert.equal(data.people.length, 53);
   assert.equal(data.engagements.length, 65);
-  assert.equal(data.contributions.length, 124);
+  assert.equal(data.contributions.length, 129);
 });
 
 test('reviewed publication replies apply per scope while nonrespondents and Pote portrait refusal remain truthful', () => {
@@ -275,8 +275,8 @@ test('reviewed publication replies apply per scope while nonrespondents and Pote
     assert.ok(data.socialProfiles.filter((profile) => profile.personId === personId && profile.publicUrl).every((profile) => profile.consentStatus === 'granted'));
   }
   assert.equal(data.socialProfiles.find((profile) => profile.personId === 'S0004' && profile.platform === 'linkedin').consentStatus, 'granted');
-  assert.equal(data.meta.dataUpdatedAt, '2026-10-08');
-  assert.equal(data.meta.reviewedAt, '2026-10-08');
+  assert.equal(data.meta.dataUpdatedAt, '2026-10-10');
+  assert.equal(data.meta.reviewedAt, '2026-10-10');
   if (rawAvailable) {
     const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'data/raw/google-sheet-snapshot.json'), 'utf8'));
     assert.equal(data.meta.source.snapshotFetchedAt, snapshot.source.fetchedAt, 'review dates must not falsify the raw fetch date');
