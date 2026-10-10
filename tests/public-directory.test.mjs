@@ -89,5 +89,6 @@ test('a rejected fetch keeps the visible build fallback and reports an error wit
   assert.equal(state.raw, null);
   const render = app.match(/function renderDirectory\(\) \{[\s\S]*?(?=\nfunction formatNumber\()/)?.[0];
   assert.ok(render.indexOf('elements.publicFallback.hidden = true') > render.indexOf('elements.board.replaceChildren(fragment)'));
-  assert.match(app, /permalink\.href = personProfileUrl\(model\.id, state\.language\)/);
+  assert.doesNotMatch(app, /person-permalink|ลิงก์โปรไฟล์|Profile link/);
+  assert.match(app, /shell\.append\(button, detail\)/);
 });

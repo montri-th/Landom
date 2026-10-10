@@ -22,30 +22,6 @@
   },
   "identityAssets": [
     {
-      "role": "browser-tab favicon",
-      "deliveryUrl": "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f",
-      "variant": "transparent_compact_symbol",
-      "approvalScope": "browser-tab favicon only",
-      "mimeType": "image/png",
-      "intrinsicWidth": 192,
-      "intrinsicHeight": 192,
-      "bytes": 11001,
-      "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85",
-      "transparentCanvas": true,
-      "themeStrategy": "Use the exact transparent RGBA bytes for light, dark, and system themes without carrier, recolor, crop, filter, mask, or reconstructed padding.",
-      "sourceVersion": "Current Landometer Design System 0.9.1 artifact binding; exact favicon bytes retained from the predecessor approval lineage",
-      "approvalRecord": {
-        "manifestPath": "deployment/machine/v0.9.0/identity-approvals.manifest.json",
-        "introducedAtCommit": "36d72ab1dd755cbad5273a7f217e1ee10aeb54a2",
-        "gitBlob": "7e1e084d2340486cd27fe4af5d44c8de6dcf4baa",
-        "sha256": "4d9864b05fc3b95bc76e6c986aff69444245a843509d5c7cdf481719a95e7ea1",
-        "underlyingApprovalSourceCommit": "ce785864e5341321e1957dce35a8326732764432",
-        "underlyingApprovalSource": "Use transparent Landometer symbol favicon"
-      },
-      "cacheRevision": "35a1496f",
-      "sameOrigin": true
-    },
-    {
       "role": "header identity",
       "path": "public/assets/brand/landometer-horizontal.png",
       "variant": "official-horizontal-lockup-optimized",
@@ -88,16 +64,7 @@
       "sameOrigin": true
     }
   ],
-  "omittedRoles": [
-    {
-      "role": "apple-touch icon",
-      "reason": "No separately approved touch rendition exists. The favicon approval does not grant touch-icon use."
-    },
-    {
-      "role": "maskable or install icon",
-      "reason": "No separately approved maskable/application rendition exists. The web manifest therefore declares no icons."
-    }
-  ],
+  "omittedRoles": [],
   "machineDiscovery": {
     "robots": "index,follow at page level; the project-path robots.txt is published but is not the hostname-root robots authority",
     "sitemap": "Thai canonical root and English route with reciprocal th, en, and x-default hreflang alternates",
@@ -105,7 +72,115 @@
   },
   "limitations": [
     "Search-result favicon selection and hostname-root robots behavior are controlled at montri-th.github.io host level, not independently by the /Landom/ project path.",
-    "Third-party search and social caches can remain stale after correct origin metadata is deployed.",
-    "The approved compact symbol has an open small-size browser-tab, bookmark, shortcut, and supported-theme manual review in the governing Design System record."
-  ]
+    "Third-party search and social caches can remain stale after correct origin metadata is deployed."
+  ],
+  "historicalIdentityAssets": [
+    {
+      "role": "browser-tab favicon",
+      "deliveryUrl": "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f",
+      "variant": "transparent_compact_symbol",
+      "approvalScope": "browser-tab favicon only",
+      "mimeType": "image/png",
+      "intrinsicWidth": 192,
+      "intrinsicHeight": 192,
+      "bytes": 11001,
+      "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85",
+      "transparentCanvas": true,
+      "themeStrategy": "Use the exact transparent RGBA bytes for light, dark, and system themes without carrier, recolor, crop, filter, mask, or reconstructed padding.",
+      "sourceVersion": "Current Landometer Design System 0.9.1 artifact binding; exact favicon bytes retained from the predecessor approval lineage",
+      "approvalRecord": {
+        "manifestPath": "deployment/machine/v0.9.0/identity-approvals.manifest.json",
+        "introducedAtCommit": "36d72ab1dd755cbad5273a7f217e1ee10aeb54a2",
+        "gitBlob": "7e1e084d2340486cd27fe4af5d44c8de6dcf4baa",
+        "sha256": "4d9864b05fc3b95bc76e6c986aff69444245a843509d5c7cdf481719a95e7ea1",
+        "underlyingApprovalSourceCommit": "ce785864e5341321e1957dce35a8326732764432",
+        "underlyingApprovalSource": "Use transparent Landometer symbol favicon"
+      },
+      "cacheRevision": "35a1496f",
+      "sameOrigin": true,
+      "retiredFromCurrentDelivery": "2026-10-10",
+      "reason": "Superseded by the exact approved LDS 0.9.7 portfolio icon set with first-party delivery."
+    }
+  ],
+  "iconSet": {
+    "id": "iconset.landometer.portfolio.symbol.01",
+    "dsVersion": "0.9.7",
+    "releaseRef": "v0.9.7-owner.1",
+    "ruleId": "FAVICON-01",
+    "manifestPath": "public/assets/brand/icons/icon-set.json",
+    "manifestSha256": "87dda1d9b880fcd5ae92aa06051f5301504d4482a26f504e16d7ea2fc1c9f06d",
+    "sourceManifestSha256": "aea8f5a7f9793c14a6b183706627e4c2390388b7d8c49129eceacdd9b0bce7a4",
+    "approvalStatus": "approved",
+    "approvalEvidence": "owner-message:2026-09-15:0.9.3-answers",
+    "property": "portfolio",
+    "scope": "Current favicon/touch/manifest delivery only; historical shell and unrelated asset approvals remain separately pinned.",
+    "files": [
+      {
+        "role": "favicon",
+        "path": "public/assets/brand/icons/icon-portfolio-16-c100627d5e8f.png",
+        "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/brand/icons/icon-portfolio-16-c100627d5e8f.png",
+        "mimeType": "image/png",
+        "intrinsicWidth": 16,
+        "intrinsicHeight": 16,
+        "bytes": 768,
+        "sha256": "c100627d5e8fc9d21d168dbf15f9fdab7f5d6931b04df5164e58137df77feca8",
+        "transparentCanvas": true
+      },
+      {
+        "role": "favicon",
+        "path": "public/assets/brand/icons/icon-portfolio-32-5cd19dee724f.png",
+        "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/brand/icons/icon-portfolio-32-5cd19dee724f.png",
+        "mimeType": "image/png",
+        "intrinsicWidth": 32,
+        "intrinsicHeight": 32,
+        "bytes": 1773,
+        "sha256": "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9",
+        "transparentCanvas": true
+      },
+      {
+        "role": "favicon",
+        "path": "public/assets/brand/icons/icon-portfolio-48-443857069292.png",
+        "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/brand/icons/icon-portfolio-48-443857069292.png",
+        "mimeType": "image/png",
+        "intrinsicWidth": 48,
+        "intrinsicHeight": 48,
+        "bytes": 2897,
+        "sha256": "443857069292f6910b9e5cc0383cab6da4273acf1e18a47745864729fc46e08e",
+        "transparentCanvas": true
+      },
+      {
+        "role": "apple-touch",
+        "path": "public/assets/brand/icons/icon-portfolio-180-41ac1e302345.png",
+        "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/brand/icons/icon-portfolio-180-41ac1e302345.png",
+        "mimeType": "image/png",
+        "intrinsicWidth": 180,
+        "intrinsicHeight": 180,
+        "bytes": 8893,
+        "sha256": "41ac1e302345d29d791fcc26a5e7111aeb3a4e222dff63685743b43d0fdd6ef0",
+        "transparentCanvas": false
+      },
+      {
+        "role": "manifest",
+        "path": "public/assets/brand/icons/icon-portfolio-192-1d8bbd3d8656.png",
+        "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/brand/icons/icon-portfolio-192-1d8bbd3d8656.png",
+        "mimeType": "image/png",
+        "intrinsicWidth": 192,
+        "intrinsicHeight": 192,
+        "bytes": 11929,
+        "sha256": "1d8bbd3d8656a83f33c51364d333bba7ca328faf3ae713238fa9450f7810bf8e",
+        "transparentCanvas": true
+      },
+      {
+        "role": "manifest-maskable",
+        "path": "public/assets/brand/icons/icon-portfolio-512-d8939f6cc789.png",
+        "deliveryUrl": "https://montri-th.github.io/Landom/public/assets/brand/icons/icon-portfolio-512-d8939f6cc789.png",
+        "mimeType": "image/png",
+        "intrinsicWidth": 512,
+        "intrinsicHeight": 512,
+        "bytes": 28124,
+        "sha256": "d8939f6cc7891c47bbb3dce1ddb04d4c30ce4c7e78e29f6fb0061858dafc881f",
+        "transparentCanvas": false
+      }
+    ]
+  }
 }

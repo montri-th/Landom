@@ -189,9 +189,9 @@
     --font-display-th-fallback: "Noto Sans Thai Looped", "Leelawadee UI", Tahoma, sans-serif;
     --font-body-fallback: "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
     --font-number-fallback: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-    --font-display-en: "Arvo", var(--font-display-en-fallback);
+    --font-display-en: "Arvo", "IBM Plex Sans Thai Looped", var(--font-display-en-fallback);
     --font-display-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
-    --font-ui-heading-en: "Arvo", var(--font-display-en-fallback);
+    --font-ui-heading-en: "Arvo", "IBM Plex Sans Thai Looped", var(--font-display-en-fallback);
     --font-ui-heading-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
     --font-body: "Bai Jamjuree", var(--font-body-fallback);
     --font-technical-latin: "JetBrains Mono", var(--font-number-fallback);
@@ -432,16 +432,7 @@ lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"] {
   .public-person ul { padding-left: var(--space-5); }
   .public-person li { margin-block: var(--space-3); }
   .public-person small { display: block; color: var(--text-secondary); }
-  .public-person a, .person-permalink { text-decoration: underline; text-underline-offset: 0.2em; }
-
-  .person-permalink {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    padding: var(--space-2) var(--space-5);
-    color: var(--text-secondary);
-    font-size: var(--type-body-sm);
-  }
+  .public-person a { text-decoration: underline; text-underline-offset: 0.2em; }
 
   .skip-link {
     position: fixed;

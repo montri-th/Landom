@@ -1466,7 +1466,7 @@
       },
       "fullName": {
         "th": "นรภัทร รัฐสมุทร",
-        "en": null
+        "en": "Norraphat Rathasamuth"
       },
       "profileUrl": {
         "th": "https://montri-th.github.io/Landom/?person=I0038&lang=th",
@@ -1801,11 +1801,11 @@
       "personId": "I0045",
       "displayName": {
         "th": "คิว",
-        "en": null
+        "en": "Que"
       },
       "fullName": {
         "th": "ณัฐพัฒน์ แดงคงแก้ว",
-        "en": null
+        "en": "Nattapat Daengkongkaew"
       },
       "profileUrl": {
         "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
@@ -1816,7 +1816,7 @@
         "kind": "full_nickname",
         "fullNickname": {
           "th": "คิว",
-          "en": null
+          "en": "Que"
         },
         "reason": "no_governed_person_portrait"
       }

@@ -2,7 +2,7 @@ import { initApproachMotion } from "./approach-motion.js";
 import { initBrandMotion } from "./brand-motion.js";
 import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
-import { contributionRoleLabel, personProfileUrl } from "./public-directory.js";
+import { contributionRoleLabel } from "./public-directory.js";
 import { prepareRecruitmentArrival, updateRecruitmentSection } from "./recruitment.js";
 import { initReadingFocus } from "./reading-focus.js";
 
@@ -1658,12 +1658,7 @@ function renderCard(model) {
     if (state.currentPersonId === model.id) closePerson({ trigger: button });
     else openPerson(model.id, button);
   });
-  const permalink = document.createElement("a");
-  permalink.className = "person-permalink";
-  permalink.href = personProfileUrl(model.id, state.language);
-  permalink.textContent = state.language === "en" ? "Profile link" : "ลิงก์โปรไฟล์";
-  permalink.setAttribute("aria-label", `${permalink.textContent} · ${nickname}`);
-  shell.append(button, permalink, detail);
+  shell.append(button, detail);
   return shell;
 }
 

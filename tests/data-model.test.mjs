@@ -311,7 +311,7 @@ test('verified English full names and exact Thai nicknames override stale regist
   const peopleById = new Map(data.people.map((person) => [person.personId, person]));
   assert.equal(peopleById.get('I0035').names.full.en, 'Passapol Lukthongkum');
   assert.equal(peopleById.get('I0037').names.full.en, 'Nathanicha Sornbundit');
-  assert.equal(peopleById.get('I0038').names.full.en, null);
+  assert.equal(peopleById.get('I0038').names.full.en, 'Norraphat Rathasamuth');
   assert.equal(peopleById.get('I0032').names.full.th, 'ธรรมธร ธนะสมานโชค');
   assert.deepEqual(
     Object.fromEntries(['I0014', 'I0018', 'I0019', 'I0020', 'I0021', 'I0023', 'I0025'].map((personId) => [personId, peopleById.get(personId).names.nickname.th])),
