@@ -134,3 +134,38 @@ export function updateRecruitmentSection(root, locale) {
   root.innerHTML = renderRecruitmentSection(locale);
   for (const details of root.querySelectorAll('details')) details.open = openIds.includes(details.id);
 }
+
+// Native fragments arrive before the directory has replaced its shorter static
+// fallback. Correct that one initial arrival only after its layout is ready.
+export function prepareRecruitmentArrival({ win, doc }) {
+  const hash = win.location.hash;
+  if (!/^#(?:internships|internship-(?:msi|pdi|fdi))$/.test(hash)) return { afterLayout() {} };
+  let active = true;
+  let queued = false;
+  let frame = 0;
+  const events = ['wheel', 'touchstart', 'pointerdown', 'keydown', 'hashchange', 'pagehide'];
+  const cancel = () => {
+    if (!active) return;
+    active = false;
+    win.clearTimeout(timeout);
+    if (frame) win.cancelAnimationFrame(frame);
+    for (const type of events) win.removeEventListener(type, cancel);
+  };
+  const timeout = win.setTimeout(cancel, 10000);
+  for (const type of events) win.addEventListener(type, cancel, { passive: true });
+  return {
+    afterLayout() {
+      if (!active || queued) return;
+      queued = true;
+      // Font-ready handlers and masonry each get their layout frame first.
+      frame = win.requestAnimationFrame(() => {
+        frame = win.requestAnimationFrame(() => {
+          if (!active) return;
+          const target = win.location.hash === hash ? doc.getElementById(hash.slice(1)) : null;
+          cancel();
+          target?.scrollIntoView({ block: 'start', behavior: 'instant' });
+        });
+      });
+    }
+  };
+}

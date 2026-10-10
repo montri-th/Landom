@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
-import { RECRUITMENT_FORM_URL, RECRUITMENT_PROGRAMS, renderRecruitmentSection, updateRecruitmentSection } from '../src/recruitment.js';
+import { RECRUITMENT_FORM_URL, RECRUITMENT_PROGRAMS, prepareRecruitmentArrival, renderRecruitmentSection, updateRecruitmentSection } from '../src/recruitment.js';
 import { renderPublicEntrypoint } from '../tools/build.mjs';
 
 const originalHashes = [
@@ -88,4 +88,70 @@ test('section styles keep posters intact, content visible and keyboard controls 
   assert.doesNotMatch(css, /object-fit:\s*cover|filter:|opacity:\s*0|display:\s*none|visibility:\s*hidden|animation:|transition:|border-left:|border-inline-start:/);
   const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
   assert.match(app, /function applyLanguage[^]*?updateRecruitmentSection\(document\.getElementById\("recruitment-root"\), state\.language\)/);
+});
+
+function arrivalFixture(hash = '#internships') {
+  const listeners = new Map();
+  const frames = new Map();
+  const timers = new Map();
+  const arrivals = [];
+  let sequence = 0;
+  let targetTop = 3000;
+  const win = {
+    location: { hash },
+    addEventListener: (type, listener) => listeners.set(type, listener),
+    removeEventListener: (type) => listeners.delete(type),
+    setTimeout: (callback, delay) => { assert.equal(delay, 10000); timers.set(++sequence, callback); return sequence; },
+    clearTimeout: (id) => timers.delete(id),
+    requestAnimationFrame: (callback) => { frames.set(++sequence, callback); return sequence; },
+    cancelAnimationFrame: (id) => frames.delete(id)
+  };
+  const doc = { getElementById: (id) => ({ scrollIntoView: (options) => arrivals.push({ id, top: targetTop, options }) }) };
+  const flushFrame = () => {
+    const callbacks = [...frames.values()]; frames.clear(); callbacks.forEach((callback) => callback());
+  };
+  return { win, doc, listeners, frames, timers, arrivals, flushFrame, moveTarget: (top) => { targetTop = top; } };
+}
+
+test('initial recruitment fragments arrive once at the post-hydration position without animation', () => {
+  for (const hash of ['#internships', '#internship-msi', '#internship-pdi', '#internship-fdi']) {
+    const fixture = arrivalFixture(hash);
+    const arrival = prepareRecruitmentArrival(fixture);
+    assert.equal(fixture.arrivals.length, 0);
+    arrival.afterLayout();
+    fixture.flushFrame();
+    fixture.moveTarget(38000); // The full people directory replaces its shorter fallback.
+    fixture.flushFrame();
+    assert.deepEqual(fixture.arrivals, [{ id: hash.slice(1), top: 38000, options: { block: 'start', behavior: 'instant' } }]);
+    arrival.afterLayout(); fixture.flushFrame();
+    assert.equal(fixture.arrivals.length, 1);
+    assert.equal(fixture.listeners.size, 0);
+    assert.equal(fixture.timers.size, 0);
+  }
+});
+
+test('intervening user intent, navigation or timeout cancels arrival and cleans up pending work', () => {
+  for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown', 'hashchange', 'pagehide', 'timeout']) {
+    const fixture = arrivalFixture();
+    const arrival = prepareRecruitmentArrival(fixture);
+    arrival.afterLayout();
+    fixture.flushFrame();
+    if (event === 'timeout') [...fixture.timers.values()][0]();
+    else fixture.listeners.get(event)();
+    fixture.flushFrame();
+    arrival.afterLayout(); fixture.flushFrame();
+    assert.equal(fixture.arrivals.length, 0, `${event} must prevent a later jump`);
+    assert.equal(fixture.listeners.size, 0);
+    assert.equal(fixture.frames.size, 0);
+    assert.equal(fixture.timers.size, 0);
+  }
+  const fixture = arrivalFixture('#people');
+  prepareRecruitmentArrival(fixture).afterLayout();
+  assert.equal(fixture.listeners.size, 0, 'other native fragments are untouched');
+  assert.equal(fixture.frames.size, 0);
+});
+
+test('app waits for both the directory attempt and fonts before the bounded recruitment arrival', async () => {
+  const app = await readFile(new URL('../src/app.js', import.meta.url), 'utf8');
+  assert.match(app, /Promise\.allSettled\(\[loadData\(\), document\.fonts\?\.ready\]\)\.then\(\(\) => recruitmentArrival\.afterLayout\(\)\)/);
 });

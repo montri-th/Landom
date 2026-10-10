@@ -11,6 +11,7 @@ The shared terms come directly from that source: ten weeks; start date by agreem
 - `src/recruitment.js` owns public bilingual program copy and the shared renderer. It contains no applicant records or private HR data.
 - `tools/build.mjs` embeds the complete section in both initial HTML entrypoints. It appears without JavaScript or a successful people-data fetch.
 - `src/app.js` uses the same renderer when the chosen language changes. Matching initial content stays intact, and opened program details stay open across language changes.
+- Initial `#internships` and `#internship-msi/pdi/fdi` arrivals are corrected once after the directory attempt and font layout. This compensates for the larger hydrated directory above the posters. The correction is instant, expires after ten seconds and cancels on user interaction, navigation or page exit; it never holds the reader at the section.
 - `src/recruitment.css` applies current LDS 0.9.7 foundation pairs only to the new section. The rest of this historically pinned site retains its truthful existing declarations.
 - `public/assets/recruitment/manifest.json` records immutable source hashes, intrinsic dimensions, role, approval basis and the independently decoded QR destination. All three PNGs are byte-for-byte copies, named with source hash revisions.
 - `tests/recruitment.test.mjs` checks both locale entrypoints, preserved original assets, native application/disclosure behavior, locale parity and visible no-motion styling.
