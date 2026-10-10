@@ -157,11 +157,16 @@ test('latest governed data additions do not change any approved profile biograph
   }
 });
 
-test('Q keeps the canonical ID, verified CEDT placement and blank deferred statement without inferred English identity', () => {
+test('Que uses the owner-confirmed English name while keeping placement, pending consent and deferred statement', () => {
   const q = data.people.find((person) => person.personId === 'I0045');
   assert.equal(q.names.full.th, 'ณัฐพัฒน์ แดงคงแก้ว');
-  assert.equal(q.names.full.en, null);
-  assert.deepEqual(q.names.nickname, { th: 'คิว', en: null });
+  assert.equal(q.names.full.en, 'Nattapat Daengkongkaew');
+  assert.deepEqual(q.names.nickname, { th: 'คิว', en: 'Que' });
+  assert.deepEqual(q.publication, { consentStatus: 'pending', profileStatus: 'withheld_pending_consent' });
+  const portrait = data.assets.find((asset) => asset.personId === q.personId && asset.kind === 'profile_portrait');
+  assert.equal(portrait.publicPath, null);
+  assert.equal(portrait.candidateStatus, 'source_needed');
+  assert.equal(portrait.consentStatus, 'pending');
   assert.equal(q.firstJoined, '2026-08-01');
   assert.equal(q.bio.status, 'owner_pending');
   assert.equal(q.bio.th, null);

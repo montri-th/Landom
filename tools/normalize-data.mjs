@@ -8,6 +8,7 @@ import {
   PUBLIC_WEB_SOCIAL_PLATFORMS
 } from './normalized-sheet-roundtrip.mjs';
 import { applyPublicationConsent } from './publication-consent.mjs';
+import { applyPersonIdentityOverrides } from './person-identity-overrides.mjs';
 import { applyReviewedPortraitUpdates } from './reviewed-portrait-updates.mjs';
 import { applyCitymeterAttribution, applyExistingCitymeterBindings, buildCitymeterContributors } from './citymeter-attribution.mjs';
 
@@ -114,6 +115,8 @@ function buildPeopleMediaManifest(siteData) {
 }
 
 function writeSiteDataFiles(siteData) {
+  const identityContract = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/person-identity-overrides.json'), 'utf8'));
+  siteData = applyPersonIdentityOverrides(siteData, identityContract);
   const consentPath = path.join(root, 'data/approved/publication-consent.json');
   const publicationConsent = fs.existsSync(consentPath) ? JSON.parse(fs.readFileSync(consentPath, 'utf8')) : null;
   if (portraitUpdatesPath) {
@@ -577,55 +580,9 @@ for (const override of profileDetailOverrides.existingPersonTimelineOverrides ??
   }
   person.firstJoined = override.firstJoined;
 }
-const identityOverrideIds = new Set();
-const identityOverrideKeys = new Set([
-  'personId',
-  'fullNameTh',
-  'fullNameEn',
-  'nicknameTh',
-  'verificationStatus',
-  'evidenceBasis',
-  'sourceRef',
-  'reviewedAt'
-]);
-const identityVerificationStatuses = new Set([
-  'owner_confirmed',
-  'sheet_exact',
-  'verified_exact_linkedin_profile'
-]);
-for (const override of personIdentityOverrides.overrides ?? []) {
-  const unknownKeys = Object.keys(override).filter((key) => !identityOverrideKeys.has(key));
-  if (unknownKeys.length) throw new Error('Unknown person-identity override fields: ' + unknownKeys.join(', '));
-  if (!override.fullNameTh && !override.fullNameEn && !override.nicknameTh) {
-    throw new Error('Person-identity override has no governed identity field: ' + override.personId);
-  }
-  if (!identityVerificationStatuses.has(override.verificationStatus)) {
-    throw new Error('Unsupported person-identity verification status: ' + override.verificationStatus);
-  }
-  if (!clean(override.evidenceBasis) || !clean(override.sourceRef) || !/^\d{4}-\d{2}-\d{2}$/.test(override.reviewedAt ?? '')) {
-    throw new Error('Incomplete person-identity evidence contract: ' + override.personId);
-  }
-  if (override.fullNameEn && (!/[A-Za-z]/.test(override.fullNameEn) || /[ก-๙]/.test(override.fullNameEn))) {
-    throw new Error('English full-name override is not evidence-safe Latin text: ' + override.personId);
-  }
-  if (override.fullNameTh && !/[ก-๙]/.test(override.fullNameTh)) {
-    throw new Error('Thai full-name override does not contain Thai text: ' + override.personId);
-  }
-  if (override.nicknameTh && !/[ก-๙]/.test(override.nicknameTh)) {
-    throw new Error('Thai nickname override does not contain Thai text: ' + override.personId);
-  }
-  if (identityOverrideIds.has(override.personId)) {
-    throw new Error('Duplicate person-identity override: ' + override.personId);
-  }
-  identityOverrideIds.add(override.personId);
-  const person = peopleById.get(override.personId);
-  if (!person) throw new Error('Unknown person in identity override: ' + override.personId);
-  if (override.fullNameTh) person.names.full.th = clean(override.fullNameTh);
-  if (override.fullNameEn) person.names.full.en = clean(override.fullNameEn);
-  if (override.nicknameTh) {
-    person.names.nickname.th = clean(override.nicknameTh);
-    person.names.card.th = clean(override.nicknameTh);
-  }
+// Apply the same approved identity contract before raw-mode downstream copy generation.
+for (const updated of applyPersonIdentityOverrides({ people }, personIdentityOverrides).people) {
+  peopleById.get(updated.personId).names = updated.names;
 }
 
 const educationRecords = [];

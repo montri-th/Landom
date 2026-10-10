@@ -127,7 +127,7 @@ jobs:
           robots_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-robots.txt --write-out '%{content_type}' "$base_url/robots.txt?$cache_bust")"
           sitemap_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-sitemap.xml --write-out '%{content_type}' "$base_url/sitemap.xml?$cache_bust")"
           llms_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-llms.txt --write-out '%{content_type}' "$base_url/llms.txt?$cache_bust")"
-          favicon_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-favicon.png --write-out '%{content_type}' "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f&$cache_bust")"
+          favicon_type="$(curl --fail --location --silent --show-error --retry 6 --retry-all-errors --output /tmp/landom-favicon.png --write-out '%{content_type}' "$base_url/public/assets/brand/icons/icon-portfolio-32-5cd19dee724f.png?$cache_bust")"
           case "$html_type" in text/html*) ;; *) echo "Unexpected HTML content type: $html_type"; exit 1;; esac
           case "$english_type" in text/html*) ;; *) echo "Unexpected English HTML content type: $english_type"; exit 1;; esac
           case "$data_type" in application/json*|text/json*) ;; *) echo "Unexpected JSON content type: $data_type"; exit 1;; esac
@@ -369,7 +369,7 @@ jobs:
             }
             const favicon = readFileSync("/tmp/landom-favicon.png");
             const faviconDigest = createHash("sha256").update(favicon).digest("hex");
-            if (favicon.length !== 11001 || faviconDigest !== "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85") {
+            if (favicon.length !== 1773 || faviconDigest !== "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9") {
               throw Error("deployed favicon bytes do not match the exact DS approval record");
             }
             const socialPreview = readFileSync("/tmp/landom-people-og.jpg");
@@ -415,6 +415,14 @@ jobs:
               }
             }
             throw lastError;
+          }
+          const icons = JSON.parse(await verifiedFile('public/assets/brand/icons/icon-set.json', /application\/json/));
+          if (icons.iconSetId !== 'iconset.landometer.portfolio.symbol.01' || icons.files.length !== 6) throw Error('Unexpected approved icon set');
+          for (const icon of icons.files) {
+            const file = `public/assets/brand/icons/${icon.file}`;
+            if (!/^icon-portfolio-(16|32|48|180|192|512)-[a-f0-9]{12}\.png$/.test(icon.file) || icon.sha256 !== expected.get(file)) throw Error('Invalid icon asset binding');
+            const bytes = await verifiedFile(file, /image\/png/);
+            if (bytes.length !== icon.bytes || bytes.readUInt32BE(16) !== icon.sizePx || bytes.readUInt32BE(20) !== icon.sizePx) throw Error('Approved icon dimensions or size differ');
           }
           const media = JSON.parse(await verifiedFile('public/assets/recruitment/manifest.json', /application\/json/));
           if (media.assets.length !== 3 || media.assets.map((asset) => asset.programId).join(',') !== 'msi,pdi,fdi') throw Error('Unexpected recruitment poster set');

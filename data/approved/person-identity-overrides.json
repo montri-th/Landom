@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0",
-  "sourceBoundary": "Only exact owner-confirmed or participant-confirmed Thai names or nicknames recorded in the canonical registry, and an English full name verified on the person's exact LinkedIn profile, may override the registry snapshot. Unverified transliterations stay blank.",
+  "sourceBoundary": "Only exact owner-confirmed or participant-confirmed names or nicknames, canonical registry name facts, and English full names verified on the exact LinkedIn profile may override the snapshot. Unverified transliterations stay blank. Name corrections do not grant biography, portrait, contact or publication consent.",
   "overrides": [
     {
       "personId": "I0014",
@@ -89,6 +89,25 @@
       "evidenceBasis": "participant_supplied_exact_thai_nickname_recorded_in_canonical_registry",
       "sourceRef": "participant_reply_reviewed_2026-10-06",
       "reviewedAt": "2026-10-06"
+    },
+    {
+      "personId": "I0045",
+      "fullNameEn": "Nattapat Daengkongkaew",
+      "nicknameEn": "Que",
+      "expectedThaiFullName": "ณัฐพัฒน์ แดงคงแก้ว",
+      "verificationStatus": "owner_confirmed",
+      "evidenceBasis": "owner_supplied_exact_english_full_name_and_nickname_for_existing_roster_person",
+      "sourceRef": "owner_instruction_2026-10-10",
+      "reviewedAt": "2026-10-10"
+    },
+    {
+      "personId": "I0038",
+      "fullNameEn": "Norraphat Rathasamuth",
+      "expectedThaiFullName": "นรภัทร รัฐสมุทร",
+      "verificationStatus": "owner_confirmed",
+      "evidenceBasis": "owner_supplied_exact_english_full_name_for_existing_nickname_and_roster_identity",
+      "sourceRef": "owner_instruction_2026-10-10",
+      "reviewedAt": "2026-10-10"
     }
   ]
 }

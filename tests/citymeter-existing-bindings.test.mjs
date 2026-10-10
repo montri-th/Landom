@@ -53,7 +53,7 @@ for (const [label, mutate, error] of [
   assert.deepEqual(data, frozen);
 });
 
-test('projection and bilingual native links use the existing exact identities without completion or transliteration', () => {
+test('projection and bilingual native links use exact approved identities without changing work completion', () => {
   const result = applyExistingCitymeterBindings(baseline(), contract);
   const projection = buildCitymeterContributors(result, media);
   assert.equal(Object.keys(projection.byModuleSlug).length, 43);
@@ -61,7 +61,7 @@ test('projection and bilingual native links use the existing exact identities wi
   assert.deepEqual(projection.byModuleSlug['dataset-non-bank'].map((row) => row.personId), ['I0030']);
   const worship = projection.byModuleSlug['dataset-places-of-worship'];
   assert.deepEqual(worship.map((row) => row.personId), ['I0045']);
-  assert.deepEqual(worship[0].nickname, { th: 'คิว', en: null });
+  assert.deepEqual(worship[0].nickname, { th: 'คิว', en: 'Que' });
   assert.equal(worship[0].portrait, null);
   assert.equal(worship[0].contributionRole.en, 'Developing');
   const source = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');

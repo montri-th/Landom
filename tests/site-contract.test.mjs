@@ -5,6 +5,7 @@ import test from 'node:test';
 
 import { PUBLISH_PATHS, renderLocalizedEntrypoint } from '../tools/build.mjs';
 import { REQUIRED_UI_IDS, validateDataContract, validateSite } from '../tools/validate-site.mjs';
+import { validateIconHtml } from '../tools/portfolio-icon-contract.mjs';
 
 function fixture() {
   return {
@@ -272,11 +273,11 @@ test('Thai root and localized English entrypoint have reciprocal metadata and cr
     assert.match(html, /hreflang="th" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
     assert.match(html, /hreflang="en" href="https:\/\/montri-th\.github\.io\/Landom\/en\/"/);
     assert.match(html, /hreflang="x-default" href="https:\/\/montri-th\.github\.io\/Landom\/"/);
-    assert.match(html, /landometer-symbol-transparent\.png\?v=35a1496f/);
+    assert.deepEqual(validateIconHtml(html), []);
     assert.match(html, /property="og:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=a7c46cf31e97"/);
     assert.match(html, /name="twitter:card" content="summary_large_image"/);
     assert.match(html, /name="twitter:image" content="https:\/\/montri-th\.github\.io\/Landom\/public\/assets\/social\/landom-people-og\.jpg\?v=a7c46cf31e97"/);
-    assert.doesNotMatch(html, /apple-touch-icon/);
+    assert.match(html, /apple-touch-icon/);
     assert.doesNotMatch(html, /montri-th\.github\.io\/Landom\/th\//);
   }
   assert.match(thai, /property="og:image:alt" content="ชาว Landom ถ่ายภาพร่วมกันที่สำนักงาน Landometer"/);

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.1",
+  "iconSetId": "iconset.landometer.portfolio.symbol.01",
+  "previousCandidateId": "iconset.landometer.portfolio.symbol.candidate.01",
+  "ruleId": "FAVICON-01",
+  "property": "portfolio",
+  "status": "approved as the official icon_set of the portfolio property (owner decision 15 September 2026, evidenceRef owner-message:2026-09-15:0.9.3-answers); product tiles remain open",
+  "registryRef": "asset-registry.json#/iconSets/iconset.landometer.portfolio.symbol.01",
+  "source": {
+    "file": "montri-th/motif assets/identity/logo/landometer-symbol-color.png",
+    "sha256": "b818eeb6a6f4abeb7a8fac2b858de0e7a03a662dff371842a29ebfe4c21d12f6",
+    "governanceNote": "this file is not listed in motif governance/SHA256SUMS.txt; hash recorded as observed"
+  },
+  "generator": "generate-icon-set.py (Pillow 12.2.0)",
+  "transformations": [
+    "crop to alpha bounding box",
+    "proportional LANCZOS resize",
+    "centre on canvas",
+    "25% rounded corner mask at 16 and 32 (no-op on transparent art)",
+    "opaque brand.beige tile for apple-touch and maskable"
+  ],
+  "prohibited": [
+    "redraw",
+    "recolour",
+    "per-page icon",
+    "status or notification badge in the icon",
+    "motif as icon (MOTIF-01 prohibitedJobs favicon)"
+  ],
+  "files": [
+    {
+      "sizePx": 16,
+      "role": "favicon",
+      "file": "icon-portfolio-16-c100627d5e8f.png",
+      "background": "transparent",
+      "sha256": "c100627d5e8fc9d21d168dbf15f9fdab7f5d6931b04df5164e58137df77feca8",
+      "bytes": 768,
+      "sourceFile": "icon-portfolio-16.png"
+    },
+    {
+      "sizePx": 32,
+      "role": "favicon",
+      "file": "icon-portfolio-32-5cd19dee724f.png",
+      "background": "transparent",
+      "sha256": "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9",
+      "bytes": 1773,
+      "sourceFile": "icon-portfolio-32.png"
+    },
+    {
+      "sizePx": 48,
+      "role": "favicon",
+      "file": "icon-portfolio-48-443857069292.png",
+      "background": "transparent",
+      "sha256": "443857069292f6910b9e5cc0383cab6da4273acf1e18a47745864729fc46e08e",
+      "bytes": 2897,
+      "sourceFile": "icon-portfolio-48.png"
+    },
+    {
+      "sizePx": 180,
+      "role": "apple-touch",
+      "file": "icon-portfolio-180-41ac1e302345.png",
+      "background": "brand.beige #F2F1DF",
+      "sha256": "41ac1e302345d29d791fcc26a5e7111aeb3a4e222dff63685743b43d0fdd6ef0",
+      "bytes": 8893,
+      "sourceFile": "icon-portfolio-180.png"
+    },
+    {
+      "sizePx": 192,
+      "role": "manifest",
+      "file": "icon-portfolio-192-1d8bbd3d8656.png",
+      "background": "transparent",
+      "sha256": "1d8bbd3d8656a83f33c51364d333bba7ca328faf3ae713238fa9450f7810bf8e",
+      "bytes": 11929,
+      "sourceFile": "icon-portfolio-192.png"
+    },
+    {
+      "sizePx": 512,
+      "role": "manifest-maskable",
+      "file": "icon-portfolio-512-d8939f6cc789.png",
+      "background": "brand.beige #F2F1DF",
+      "sha256": "d8939f6cc7891c47bbb3dce1ddb04d4c30ce4c7e78e29f6fb0061858dafc881f",
+      "bytes": 28124,
+      "sourceFile": "icon-portfolio-512.png"
+    }
+  ],
+  "sizes": [
+    16,
+    32,
+    48,
+    180,
+    192,
+    512
+  ],
+  "headTemplate": [
+    "<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"./public/assets/brand/icons/icon-portfolio-16-c100627d5e8f.png\">",
+    "<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./public/assets/brand/icons/icon-portfolio-32-5cd19dee724f.png\">",
+    "<link rel=\"icon\" type=\"image/png\" sizes=\"48x48\" href=\"./public/assets/brand/icons/icon-portfolio-48-443857069292.png\">",
+    "<link rel=\"apple-touch-icon\" type=\"image/png\" sizes=\"180x180\" href=\"./public/assets/brand/icons/icon-portfolio-180-41ac1e302345.png\">"
+  ],
+  "sourceManifestSha256": "aea8f5a7f9793c14a6b183706627e4c2390388b7d8c49129eceacdd9b0bce7a4",
+  "dsVersion": "0.9.7",
+  "releaseRef": "v0.9.7-owner.1"
+}

@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { buildCitymeterContributors } from './citymeter-attribution.mjs';
+import { ICON_SET_ID, ICON_SOURCE_MANIFEST_SHA, ICON_MANIFEST_PATH, PORTFOLIO_ICONS, expectedManifestIcons, validateIconHtml, validatePortfolioIconSet } from './portfolio-icon-contract.mjs';
 
 const PERSON_ID_PATTERN = /^[SPI][0-9]{4}$/;
 const PUBLIC_WEB_SOCIAL_PLATFORMS = new Set(['linkedin', 'github']);
@@ -1513,7 +1514,11 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     th: canonicalUrl,
     en: `${canonicalUrl}en/`
   };
-  const faviconHref = 'https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f';
+  let iconSetResult;
+  try {
+    iconSetResult = await validatePortfolioIconSet(publishRoot);
+    errors.push(...iconSetResult.errors);
+  } catch (error) { errors.push(`Approved portfolio icons are unavailable: ${error.message}`); }
   const index = await readIfPresent(path.join(publishRoot, 'index.html'));
   const llms = await readIfPresent(path.join(publishRoot, 'llms.txt'));
   const robots = await readIfPresent(path.join(publishRoot, 'robots.txt'));
@@ -1641,18 +1646,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
     if (!html.includes(`<meta property="og:url" content="${routeUrl}">`)) {
       errors.push(`${fileLabel} Open Graph URL does not match its canonical route.`);
     }
-    const iconLinks = html.match(/<link\b[^>]*\brel=["']icon["'][^>]*>/gi) ?? [];
-    if (
-      iconLinks.length !== 1 ||
-      !iconLinks[0].includes(`href="${faviconHref}"`) ||
-      !iconLinks[0].includes('type="image/png"') ||
-      !iconLinks[0].includes('sizes="192x192"')
-    ) {
-      errors.push(`${fileLabel} must use only the exact DS-approved 192x192 transparent browser-tab favicon.`);
-    }
-    if (/<link\b[^>]*\brel=["'][^"']*apple-touch-icon/i.test(html)) {
-      errors.push(`${fileLabel} must not claim an unapproved apple-touch icon.`);
-    }
+    errors.push(...validateIconHtml(html).map((message) => `${fileLabel}: ${message}`));
     const expectedPreviewAlt = SOCIAL_PREVIEW.alt[locale];
     const requiredPreviewMetadata = [
       `<meta property="og:image" content="${SOCIAL_PREVIEW.url}">`,
@@ -1763,8 +1757,8 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
       if (manifest.id !== '/Landom/' || manifest.start_url !== '/Landom/' || manifest.scope !== '/Landom/') {
         errors.push('The web manifest id, start_url, and scope must match the canonical GitHub Pages project root.');
       }
-      if (Array.isArray(manifest.icons) && manifest.icons.length > 0) {
-        errors.push('The web manifest must not claim touch, maskable, or install icons without separate approval.');
+      if (!isDeepStrictEqual(manifest.icons, expectedManifestIcons())) {
+        errors.push('The web manifest must use the exact approved 192px any and 512px maskable portfolio icons.');
       }
     } catch (error) {
       errors.push(`public/manifest.webmanifest is invalid JSON: ${error.message}`);
@@ -1787,23 +1781,20 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
   else {
     try {
       const identityRecord = JSON.parse(identityRecordText);
-      const favicon = identityRecord?.identityAssets?.find((asset) => asset.role === 'browser-tab favicon');
-      const approvalRecord = favicon?.approvalRecord;
-      if (
-        favicon?.deliveryUrl !== faviconHref ||
-        favicon?.sha256 !== '35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85' ||
-        favicon?.bytes !== 11001 ||
-        favicon?.intrinsicWidth !== 192 ||
-        favicon?.intrinsicHeight !== 192 ||
-        favicon?.approvalScope !== 'browser-tab favicon only' ||
-        favicon?.sourceVersion !== 'Current Landometer Design System 0.9.1 artifact binding; exact favicon bytes retained from the predecessor approval lineage' ||
-        approvalRecord?.manifestPath !== 'deployment/machine/v0.9.0/identity-approvals.manifest.json' ||
-        approvalRecord?.introducedAtCommit !== '36d72ab1dd755cbad5273a7f217e1ee10aeb54a2' ||
-        approvalRecord?.gitBlob !== '7e1e084d2340486cd27fe4af5d44c8de6dcf4baa' ||
-        approvalRecord?.sha256 !== '4d9864b05fc3b95bc76e6c986aff69444245a843509d5c7cdf481719a95e7ea1' ||
-        approvalRecord?.underlyingApprovalSourceCommit !== 'ce785864e5341321e1957dce35a8326732764432'
-      ) {
-        errors.push('docs/identity-discovery.json does not pin the exact DS-approved favicon role and evidence.');
+      const iconSet = identityRecord.iconSet;
+      if (iconSet?.id !== ICON_SET_ID || iconSet?.dsVersion !== '0.9.7' ||
+          iconSet?.manifestPath !== ICON_MANIFEST_PATH || iconSet?.manifestSha256 !== iconSetResult?.manifestSha256 ||
+          iconSet?.sourceManifestSha256 !== ICON_SOURCE_MANIFEST_SHA || iconSet?.approvalStatus !== 'approved' ||
+          iconSet?.approvalEvidence !== 'owner-message:2026-09-15:0.9.3-answers' || iconSet?.files?.length !== 6) {
+        errors.push('docs/identity-discovery.json must pin the approved current portfolio icon set and source evidence.');
+      }
+      for (const expected of PORTFOLIO_ICONS) {
+        const icon = iconSet?.files?.find((record) => record.path === expected.path);
+        if (!icon || icon.role !== expected.role || icon.sha256 !== expected.sha256 || icon.bytes !== expected.bytes ||
+            icon.intrinsicWidth !== expected.sizePx || icon.intrinsicHeight !== expected.sizePx ||
+            icon.mimeType !== 'image/png' || icon.deliveryUrl !== `${canonicalUrl}${expected.path}`) {
+          errors.push(`Icon identity evidence differs for ${expected.sizePx}px.`);
+        }
       }
       const socialPreview = identityRecord?.identityAssets?.find((asset) => asset.role === 'social preview image');
       if (
@@ -1826,7 +1817,7 @@ async function validateDiscovery(publishRoot, siteData, errors, { distMode }) {
       }
       const omittedRoles = new Set((identityRecord?.omittedRoles ?? []).map((record) => record.role));
       for (const role of ['apple-touch icon', 'maskable or install icon']) {
-        if (!omittedRoles.has(role)) errors.push(`docs/identity-discovery.json must record the missing ${role} approval.`);
+        if (omittedRoles.has(role)) errors.push(`docs/identity-discovery.json must not mark the approved ${role} as omitted.`);
       }
       if (omittedRoles.has('social preview image')) {
         errors.push('docs/identity-discovery.json must not mark the approved social-preview role as omitted.');
