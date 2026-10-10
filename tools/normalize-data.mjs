@@ -9,7 +9,7 @@ import {
 } from './normalized-sheet-roundtrip.mjs';
 import { applyPublicationConsent } from './publication-consent.mjs';
 import { applyReviewedPortraitUpdates } from './reviewed-portrait-updates.mjs';
-import { applyCitymeterAttribution, buildCitymeterContributors } from './citymeter-attribution.mjs';
+import { applyCitymeterAttribution, applyExistingCitymeterBindings, buildCitymeterContributors } from './citymeter-attribution.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -125,8 +125,12 @@ function writeSiteDataFiles(siteData) {
   const attributionPath = path.join(root, 'data/approved/citymeter-attribution-2026-10-10.json');
   const attribution = fs.existsSync(attributionPath) ? JSON.parse(fs.readFileSync(attributionPath, 'utf8')) : null;
   if (attribution) siteData = applyCitymeterAttribution(siteData, attribution);
+  const bindingsPath = path.join(root, 'data/approved/citymeter-existing-work-bindings-2026-10-10.json');
+  const bindings = fs.existsSync(bindingsPath) ? JSON.parse(fs.readFileSync(bindingsPath, 'utf8')) : null;
+  if (bindings) siteData = applyExistingCitymeterBindings(siteData, bindings);
   const reviewDates = [siteData.meta.dataUpdatedAt, siteData.meta.reviewedAt];
   if (attribution) reviewDates.push(attribution.reviewedAt);
+  if (bindings) reviewDates.push(bindings.reviewedAt);
   for (const fileName of ['profile-detail-overrides.json', 'education-placement-overrides.json']) {
     const approvedPath = path.join(root, 'data/approved', fileName);
     if (fs.existsSync(approvedPath)) reviewDates.push(JSON.parse(fs.readFileSync(approvedPath, 'utf8')).reviewedAt);

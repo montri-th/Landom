@@ -1873,7 +1873,7 @@
   {
     "workId": "work-citymeter-religious-places-unresolved",
     "parentProduct": "CityMETER",
-    "moduleSlug": null,
+    "moduleSlug": "dataset-places-of-worship",
     "names": {
       "th": "CityMETER: ศาสนสถาน",
       "en": "CityMETER: Religious Places"
@@ -1882,28 +1882,28 @@
       "th": "CityMETER: ศาสนสถาน",
       "en": "CityMETER: Religious Places"
     },
-    "type": "module_name_unreconciled",
+    "type": "canonical_module",
     "scopeLayer": "product_specific",
-    "authorityStatus": "owner_supplied_name_not_current_catalog_authority",
-    "evidenceNote": "The owner identified Q's work on religious places as in progress on 29 September 2026. Religious Places is a descriptive English translation, not an asserted catalog or release name. No route, module slug, completion or detailed implementation scope is inferred.",
+    "authorityStatus": "owner_confirmed_catalog_binding_identity_only",
+    "evidenceNote": "The existing owner-confirmed religious-places work and contribution C0122 are bound to the published Places of Worship catalog record. The contribution remains Developing. Catalog identity and links do not establish completion, new person facts, roles, dates, source ownership or data rights.",
     "sourceAliases": [
       "CityMETER: ศาสนสถาน"
     ],
     "catalogUrl": {
-      "th": null,
-      "en": null
+      "th": "https://montri-th.github.io/CityMETER/datasets/places-of-worship/",
+      "en": "https://montri-th.github.io/CityMETER/en/datasets/places-of-worship/"
     },
-    "destinationUrl": null,
+    "destinationUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
     "linkEvidence": {
-      "linkScope": "unverified_no_link",
-      "sourceRef": null,
-      "evidenceUrl": null
+      "linkScope": "exact_module",
+      "sourceRef": "owner_instruction_2026-09-29_reconciled_public_catalog_2026-10-10",
+      "evidenceUrl": "https://montri-th.github.io/CityMETER/datasets/places-of-worship/"
     }
   },
   {
     "workId": "work-citymeter-nonbank",
     "parentProduct": "CityMETER",
-    "moduleSlug": null,
+    "moduleSlug": "dataset-non-bank",
     "names": {
       "th": "CityMETER: Non-bank",
       "en": "CityMETER: Non-bank"
@@ -1912,23 +1912,23 @@
       "th": "CityMETER: Non-bank",
       "en": "CityMETER: Non-bank"
     },
-    "type": "module_name_unreconciled",
+    "type": "canonical_module",
     "scopeLayer": "product_specific",
-    "authorityStatus": "owner_supplied_live_module_pending_catalog_reconciliation",
-    "evidenceNote": "The owner supplied this exact CityMETER destination and credited Ken's new work on 29 September 2026. The live destination is evidence for this module only; no current catalog slug, exclusive authorship or project-lead role is inferred.",
+    "authorityStatus": "owner_confirmed_catalog_binding_identity_only",
+    "evidenceNote": "The existing owner-confirmed Non-bank work and Ken contribution C0124 are bound to the published Non-bank catalog record. This reconciles catalog identity and links only; no person facts, roles, dates, leadership, completion, source ownership or data rights change.",
     "sourceAliases": [
       "CityMETER: NonBank",
       "nonBank"
     ],
     "catalogUrl": {
-      "th": null,
-      "en": null
+      "th": "https://montri-th.github.io/CityMETER/datasets/non-bank/",
+      "en": "https://montri-th.github.io/CityMETER/en/datasets/non-bank/"
     },
     "destinationUrl": "https://landometer.com/v3/citymeter?d=nonBank",
     "linkEvidence": {
       "linkScope": "exact_module",
-      "sourceRef": "owner_instruction_2026-09-29",
-      "evidenceUrl": "https://landometer.com/v3/citymeter?d=nonBank"
+      "sourceRef": "owner_instruction_2026-09-29_reconciled_public_catalog_2026-10-10",
+      "evidenceUrl": "https://montri-th.github.io/CityMETER/datasets/non-bank/"
     }
   },
   {

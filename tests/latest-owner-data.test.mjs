@@ -194,8 +194,14 @@ test('latest work credits preserve explicit scope, in-progress status and exact 
   const nonbank = data.works.find((work) => work.workId === 'work-citymeter-nonbank');
   assert.equal(nonbank.destinationUrl, 'https://landometer.com/v3/citymeter?d=nonBank');
   assert.equal(nonbank.linkEvidence.linkScope, 'exact_module');
-  assert.equal(nonbank.linkEvidence.sourceRef, 'owner_instruction_2026-09-29');
-  assert.deepEqual(nonbank.catalogUrl, { th: null, en: null });
+  assert.equal(nonbank.linkEvidence.sourceRef, 'owner_instruction_2026-09-29_reconciled_public_catalog_2026-10-10');
+  assert.equal(nonbank.moduleSlug, 'dataset-non-bank');
+  assert.equal(nonbank.catalogUrl.th, 'https://montri-th.github.io/CityMETER/datasets/non-bank/');
+  assert.equal(data.contributions.find((row) => row.contributionId === 'C0124').sourceRef, 'owner_instruction_2026-09-29');
+  assert.deepEqual(nonbank.catalogUrl, {
+    th: 'https://montri-th.github.io/CityMETER/datasets/non-bank/',
+    en: 'https://montri-th.github.io/CityMETER/en/datasets/non-bank/'
+  });
   const dada = data.engagements.find((engagement) => engagement.engagementId === 'E0038');
   assert.deepEqual([dada.start, dada.end, dada.status], ['2026-01-21', '2026-02-05', 'completed']);
   assert.equal(data.engagements.find((engagement) => engagement.engagementId === 'E0060').end, '2025-11-13');

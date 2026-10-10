@@ -1215,6 +1215,49 @@
         }
       }
     ],
+    "dataset-places-of-worship": [
+      {
+        "personId": "I0045",
+        "nickname": {
+          "th": "คิว",
+          "en": null
+        },
+        "contributionRole": {
+          "th": "กำลังจัดทำ",
+          "en": "Developing"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0045&lang=en"
+        },
+        "portrait": null
+      }
+    ],
+    "dataset-non-bank": [
+      {
+        "personId": "I0030",
+        "nickname": {
+          "th": "เคน",
+          "en": "Ken"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0030&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0030&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเคน",
+            "en": "Profile portrait of Ken"
+          }
+        }
+      }
+    ],
     "dataset-grocery-retail": [
       {
         "personId": "I0030",
