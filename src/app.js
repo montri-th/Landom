@@ -1,3 +1,4 @@
+import { uiIconMarkup } from "./interface-icons.js";
 import { initApproachMotion } from "./approach-motion.js";
 import { initBrandMotion } from "./brand-motion.js";
 import { initMediaParallax } from "./media-parallax.js";
@@ -58,6 +59,7 @@ const COPY = {
     results: "พบ {shown} จาก {total} คน",
     searchLabel: "ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน",
     searchPlaceholder: "ค้นหาคนหรือผลงาน",
+    clearSearch: "ล้างคำค้นหา",
     filter: "ตัวกรอง",
     filtersCount: "ตัวกรอง ({count})",
     refine: "เลือกดูให้ตรงความสนใจ",
@@ -194,6 +196,7 @@ const COPY = {
     results: "Showing {shown} of {total} people",
     searchLabel: "Search by name, university, program or contribution",
     searchPlaceholder: "Search people or work",
+    clearSearch: "Clear search",
     filter: "Filters",
     filtersCount: "Filters ({count})",
     refine: "NARROW THE RESULTS",
@@ -356,6 +359,7 @@ const elements = {
   resultsCount: document.querySelector("#results-count"),
   searchInput: document.querySelector("#search-input"),
   searchLabel: document.querySelector("#search-label"),
+  searchClear: document.querySelector("#search-clear"),
   filterOpen: document.querySelector("#filter-open"),
   filterOpenLabel: document.querySelector("#filter-open-label"),
   filterCount: document.querySelector("#filter-count"),
@@ -549,6 +553,8 @@ function applyLanguage({ persist = false, updateQuery = false, announce = false 
   setText(elements.directoryKicker, copy.directoryKicker);
   setText(elements.directoryHeading, copy.directoryTitle);
   setText(elements.searchLabel, copy.searchLabel);
+  elements.searchClear?.setAttribute("aria-label", copy.clearSearch);
+  elements.searchClear?.setAttribute("title", copy.clearSearch);
   if (elements.searchInput) elements.searchInput.placeholder = copy.searchPlaceholder;
   setText(elements.filterOpenLabel, copy.filter);
   setText(elements.filterKicker, copy.refine);
@@ -1646,7 +1652,7 @@ function renderCard(model) {
       ${educationMarkup}
       ${storyMarkup}
       ${workMarkup}
-      <span class="card-open-cue">${escapeHtml(message("readStory"))}</span>
+      <span class="card-open-cue"><span>${escapeHtml(message("readStory"))}</span>${uiIconMarkup("expand_more")}</span>
     </span>
   `;
   const detail = document.createElement("div");
@@ -1698,6 +1704,7 @@ function renderDirectory() {
   setText(elements.peopleTotal, formatNumber(state.models.length));
   setText(elements.resultsCount, message("results", { shown: formatNumber(models.length), total: formatNumber(state.models.length) }));
   updateFilterCount();
+  updateSearchClear();
   if (state.currentPersonId) openPerson(state.currentPersonId, null, { fromUrl: true, animate: false, scroll: true });
   // Keep readable build-time names and work links until enhancement succeeds.
   if (elements.publicFallback) elements.publicFallback.hidden = true;
@@ -1716,7 +1723,18 @@ function updateFilterCount() {
   elements.filterOpen.setAttribute("aria-label", count ? message("filtersCount", { count: formatNumber(count) }) : message("filter"));
 }
 
+function updateSearchClear() {
+  if (elements.searchClear) elements.searchClear.hidden = !elements.searchInput.value;
+}
+
+function clearSearchQuery() {
+  elements.searchInput.value = "";
+  syncFilterState();
+  elements.searchInput.focus({ preventScroll: true });
+}
+
 function syncFilterState() {
+  updateSearchClear();
   state.filters.query = elements.searchInput.value;
   state.filters.role = elements.filterRole.value;
   state.filters.cohort = elements.filterCohort.value;
@@ -1817,16 +1835,8 @@ function roleTitleForHistory(engagement) {
 }
 
 function detailIconMarkup(kind) {
-  const paths = {
-    education: '<path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M7 12v4.2c2.8 2.1 7.2 2.1 10 0V12"/><path d="M21 10v5"/>',
-    history: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
-    contributions: '<path d="M5 5.5h5v5H5zM14 13.5h5v5h-5z"/><path d="M10 8h2a4 4 0 0 1 4 4v1.5M14 16h-2a4 4 0 0 1-4-4v-1.5"/>',
-    achievements: '<path d="M8 4.5h8v3a4 4 0 0 1-8 0v-3Z"/><path d="M8 6H5.5v1.5A3.5 3.5 0 0 0 9 11M16 6h2.5v1.5A3.5 3.5 0 0 1 15 11M12 11.5V16M8.5 19.5h7M10 16h4v3.5"/>',
-    publications: '<path d="M6.5 3.5h8l3 3v14h-11z"/><path d="M14.5 3.5v3h3M9.5 11h5M9.5 14h5M9.5 17h3"/>',
-    certificates: '<path d="M12 3.5 14 5l2.5-.1.6 2.4 2 1.4-1 2.3.7 2.4-2.2 1.2-.8 2.4-2.5-.3-1.8 1.7-1.8-1.7-2.5.3-.8-2.4L4.2 13l.7-2.4-1-2.3 2-1.4.6-2.4L9 5l3-1.5Z"/><path d="m9.2 11.3 1.8 1.8 3.8-4"/>',
-    profiles: '<circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.1 3.3 8.5S14.2 18.2 12 20.5M12 3.5C9.8 5.8 8.7 8.6 8.7 12s1.1 6.2 3.3 8.5"/>'
-  };
-  return `<svg class="detail-section-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">${paths[kind] || paths.contributions}</svg>`;
+  const glyphs = { education: "school", history: "history", contributions: "account_tree", achievements: "emoji_events", publications: "article", certificates: "verified", profiles: "language" };
+  return uiIconMarkup(glyphs[kind] || glyphs.contributions, "detail-section-icon");
 }
 
 function detailHeadingMarkup(id, label, icon) {
@@ -1935,7 +1945,7 @@ function publicationsMarkup(model) {
           const meta = [publication.outlet, publication.year].filter(Boolean).join(" · ");
           return `<li><a class="publication-link" href="${escapeHtml(publication.publicUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openPublication", { name: accessibleTitle }))}">
             <span class="publication-copy"><strong>${escapeHtml(accessibleTitle)}</strong>${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</span>
-            <span class="publication-cue" aria-hidden="true">↗</span>
+            ${uiIconMarkup("open_in_new", "publication-cue")}
           </a></li>`;
         }).join("")}
       </ul>
@@ -1999,7 +2009,7 @@ function certificatesMarkup(model) {
           return `<button class="certificate-preview" type="button" data-certificate-id="${escapeHtml(certificate.id)}" aria-label="${escapeHtml(message("openCertificate", { name: currentNickname(model) }))}">
             <span class="certificate-thumbnail"><img src="${escapeHtml(certificate.publicUrl)}" alt="" loading="lazy" decoding="async"></span>
             <span class="certificate-preview-copy"><strong>${escapeHtml(title)}</strong>${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</span>
-            <span class="certificate-preview-cue" aria-hidden="true">↗</span>
+            ${uiIconMarkup("open_in_new", "certificate-preview-cue")}
           </button>`;
         }).join("")}
       </div>
@@ -2017,7 +2027,7 @@ function personDetailMarkup(model) {
         </lm-motif>
         <div class="inline-detail-actions">
           ${profileSocialIconsMarkup(model)}
-          <button class="icon-button inline-detail-close" type="button" data-inline-close aria-label="${escapeHtml(message("closeDetails"))}"><span aria-hidden="true">×</span></button>
+          <button class="icon-button inline-detail-close" type="button" data-inline-close aria-label="${escapeHtml(message("closeDetails"))}">${uiIconMarkup("close")}</button>
         </div>
       </div>
       <div class="detail-content">
@@ -2178,7 +2188,7 @@ function setCardExpanded(shell, expanded) {
       : message("openProfile", { name: currentNickname(state.models.find((model) => model.id === shell.dataset.personId) || {}) }));
   }
   if (detail) detail.hidden = !expanded;
-  if (cue) cue.textContent = expanded ? message("collapseProfile") : message("readStory");
+  if (cue) cue.innerHTML = `<span>${escapeHtml(expanded ? message("collapseProfile") : message("readStory"))}</span>${uiIconMarkup(expanded ? "expand_less" : "expand_more")}`;
   readingFocusController?.setExpanded(shell, expanded);
 }
 
@@ -2366,6 +2376,7 @@ async function loadData() {
 function bindEvents() {
   elements.themeButton.addEventListener("click", cycleTheme);
   elements.searchInput.addEventListener("input", syncFilterState);
+  elements.searchClear?.addEventListener("click", clearSearchQuery);
   elements.filterForm.addEventListener("change", syncFilterState);
   elements.filterForm.addEventListener("submit", (event) => event.preventDefault());
   elements.filterOpen.addEventListener("click", openFilters);

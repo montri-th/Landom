@@ -1,3 +1,4 @@
+import { uiIconMarkup } from "./interface-icons.js";
 // The build and browser share this narrow public projection. Do not add private
 // provenance, profile statements, portraits or social links to this fallback.
 export const LANDOM_PUBLIC_ROOT = "https://montri-th.github.io/Landom/";
@@ -76,7 +77,7 @@ export function renderPublicDirectory(data, language = "th") {
     <div class="public-directory-grid">${entries.map((person) => `<article class="public-person" data-public-person-id="${esc(person.personId)}">
       <h4><a href="${esc(person.url)}">${esc(person.name)}</a></h4>
       ${person.fullName && person.fullName !== person.name ? `<p>${esc(person.fullName)}</p>` : ""}
-      ${person.contributions.length ? `<details><summary>${labels.works} (${person.contributions.length})</summary><ul>${person.contributions.map((work) => `<li data-public-work-id="${esc(work.workId)}">${work.url ? `<a href="${esc(work.url)}">${esc(work.name)}</a>` : esc(work.name)}${work.role ? `<small>${esc(work.role)}</small>` : ""}</li>`).join("")}</ul></details>` : ""}
+      ${person.contributions.length ? `<details><summary><span>${labels.works} (${person.contributions.length})</span>${uiIconMarkup("expand_more", "disclosure-icon")}</summary><ul>${person.contributions.map((work) => `<li data-public-work-id="${esc(work.workId)}">${work.url ? `<a href="${esc(work.url)}">${esc(work.name)}</a>` : esc(work.name)}${work.role ? `<small>${esc(work.role)}</small>` : ""}</li>`).join("")}</ul></details>` : ""}
     </article>`).join("")}</div>
   </section>`;
 }

@@ -596,7 +596,7 @@ test('the office map action matches the published rebuild02 capsule and icon con
   const fontRecord = fontManifest.faces.find((record) => record.file === 'material-symbols-rounded-footer-r10.ttf');
 
   assert.match(index, /rel="preload" href="\.\/public\/assets\/fonts\/material-symbols-rounded-footer-r10\.ttf" as="font" type="font\/ttf" crossorigin/);
-  assert.match(index, /class="footer-map-link"[^>]*maps\.app\.goo\.gl\/8DQPVMtPdxWMBoZU9[^>]*>[\s\S]*?class="icon-symbol footer-map-icon"[^>]*>map<[\s\S]*?id="footer-map-label"[\s\S]*?class="text-link__cue"[^>]*>↗</s);
+  assert.match(index, /class="footer-map-link"[^>]*maps\.app\.goo\.gl\/8DQPVMtPdxWMBoZU9[^>]*>[\s\S]*?class="icon-symbol footer-map-icon"[^>]*>map<[\s\S]*?id="footer-map-label"[\s\S]*?class="ui-icon text-link__cue"[^>]*>open_in_new</s);
   assert.match(styles, /\.footer-map-link\s*\{(?=[^}]*min-height:\s*44px;)(?=[^}]*padding-inline:\s*var\(--space-3\);)(?=[^}]*border:\s*1px solid)(?=[^}]*border-radius:\s*var\(--radius-pill\);)(?=[^}]*text-decoration:\s*none;)[^}]*\}/s);
   assert.match(styles, /\.footer-map-icon\s*\{[^}]*font-family:\s*"Material Symbols Rounded Footer";[^}]*font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/s);
   assert.equal(font.byteLength, 9464);

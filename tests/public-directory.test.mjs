@@ -22,7 +22,7 @@ test('public fallback projects only public names, roles and work links in each l
   assert.match(html, /ชื่อ &lt;ทดสอบ&gt;/);
   assert.match(html, /ศาสนสถาน &amp; ชุมชน/);
   assert.match(html, /<details><summary>/);
-  assert.doesNotMatch(html, /UNAPPROVED_STATEMENT|PRIVATE_EMAIL|INTERNAL_RECEIPT|hidden/);
+  assert.doesNotMatch(html.replace(/<span class="ui-icon disclosure-icon" aria-hidden="true">expand_more<\/span>/g, ""), /UNAPPROVED_STATEMENT|PRIVATE_EMAIL|INTERNAL_RECEIPT|hidden/);
 });
 
 test('unsafe destinations and unknown work references never become fallback links', () => {

@@ -124,6 +124,7 @@
     <link rel="preload" href="./public/assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-nav-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-footer-r10.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./public/assets/fonts/material-symbols-rounded-ui-300-e20efc44e402.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="./public/assets/hero/landom-community-anchor.jpg" as="image" fetchpriority="high">
     <link rel="manifest" href="./public/manifest.webmanifest">
     <link rel="stylesheet" href="./public/assets/design-system/color-srgb-05.production.css">
@@ -261,7 +262,7 @@
             type="button"
             aria-pressed="false"
           >
-            <span class="motion-button-dot" aria-hidden="true"></span>
+            <span class="ui-icon motion-icon" aria-hidden="true">pause</span>
             <span id="motion-toggle-label">หยุดการเคลื่อนไหว</span>
           </button>
           <span class="sr-only" id="preference-status" role="status" aria-live="polite"></span>
@@ -372,9 +373,9 @@
         </div>
 
         <div class="search-row">
-          <label class="search-field" for="search-input">
-            <span class="sr-only" id="search-label">ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน</span>
-            <span class="search-symbol" aria-hidden="true"></span>
+          <div class="search-field">
+            <label class="sr-only" id="search-label" for="search-input">ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน</label>
+            <span class="ui-icon search-symbol" aria-hidden="true">search</span>
             <input
               id="search-input"
               type="search"
@@ -384,8 +385,10 @@
               placeholder="ค้นหาคนหรือผลงาน"
               aria-labelledby="search-label"
             >
-          </label>
+            <button class="icon-button search-clear" id="search-clear" type="button" aria-label="ล้างคำค้นหา" title="ล้างคำค้นหา" hidden><span class="ui-icon" aria-hidden="true">close</span></button>
+          </div>
           <button class="filter-open" id="filter-open" type="button" aria-haspopup="dialog" aria-controls="filter-dialog">
+            <span class="ui-icon" aria-hidden="true">tune</span>
             <span id="filter-open-label">ตัวกรอง</span>
             <span class="filter-count" id="filter-count" aria-hidden="true">0</span>
           </button>
@@ -399,7 +402,7 @@
                 <h3 id="filter-title">ตัวกรอง</h3>
               </div>
               <button class="icon-button filter-close" id="filter-close" type="button" aria-label="ปิดตัวกรอง">
-                <span aria-hidden="true">×</span>
+                <span class="ui-icon" aria-hidden="true">close</span>
               </button>
             </div>
 
@@ -411,6 +414,7 @@
                 <option value="parttime">พนักงานพาร์ตไทม์</option>
                 <option value="intern">Intern</option>
               </select>
+              <span class="ui-icon select-icon" aria-hidden="true">expand_more</span>
             </label>
 
             <label class="filter-field" for="filter-cohort">
@@ -418,6 +422,7 @@
               <select id="filter-cohort" name="cohort">
                 <option value="">ทุกรุ่น</option>
               </select>
+              <span class="ui-icon select-icon" aria-hidden="true">expand_more</span>
             </label>
 
             <label class="filter-field" for="filter-status">
@@ -427,6 +432,7 @@
                 <option value="active">ร่วมงานอยู่</option>
                 <option value="alumni">เคยร่วมงาน</option>
               </select>
+              <span class="ui-icon select-icon" aria-hidden="true">expand_more</span>
             </label>
 
             <label class="filter-field filter-field--wide" for="filter-work">
@@ -434,6 +440,7 @@
               <select id="filter-work" name="work">
                 <option value="">ทุกผลงาน</option>
               </select>
+              <span class="ui-icon select-icon" aria-hidden="true">expand_more</span>
             </label>
 
             <div class="filter-actions">
@@ -483,7 +490,7 @@
           <a class="footer-map-link" id="footer-map-link" href="https://maps.app.goo.gl/8DQPVMtPdxWMBoZU9" target="_blank" rel="noopener noreferrer">
             <span class="icon-symbol footer-map-icon" aria-hidden="true">map</span>
             <span id="footer-map-label">เปิดแผนที่สำนักงาน</span>
-            <span class="text-link__cue" aria-hidden="true">↗</span>
+            <span class="ui-icon text-link__cue" aria-hidden="true">open_in_new</span>
             <lm-motif class="footer-action-motif" kind="slice" quiet replay="hover" data-artifact-quiet-ink="gray-luminous">
               <img src="./public/assets/landometer/svg/slice-quiet-gray.svg" alt="">
             </lm-motif>
@@ -540,7 +547,7 @@
             <p class="certificate-dialog-meta" id="certificate-dialog-meta"></p>
           </div>
           <button class="icon-button certificate-close" id="certificate-close" type="button" aria-label="ปิดประกาศนียบัตร">
-            <span aria-hidden="true">×</span>
+            <span class="ui-icon" aria-hidden="true">close</span>
           </button>
         </header>
         <div class="certificate-image-stage">

@@ -1,3 +1,4 @@
+import { uiIconMarkup } from "./interface-icons.js";
 // Public recruitment copy: owner-supplied v3 Set A, 4 October 2026.
 // These program descriptions do not amend any person's registry record.
 export const RECRUITMENT_FORM_URL = 'https://forms.gle/FWbukGX7X3QWZf317';
@@ -111,7 +112,7 @@ export function renderRecruitmentSection(locale = 'th') {
     <p class="recruitment-intro">${copy.intro}</p>
     <dl class="recruitment-benefits">${copy.benefits.map(([title, description]) => `<div><dt>${escapeHtml(title)}</dt><dd>${escapeHtml(description)}</dd></div>`).join('')}</dl>
     <details class="recruitment-logistics" id="internship-logistics">
-      <summary>${copy.logistics}</summary>
+      <summary><span>${copy.logistics}</span>${uiIconMarkup("expand_more", "disclosure-icon")}</summary>
       <ul class="recruitment-terms">${copy.terms.map((term) => `<li>${escapeHtml(term)}</li>`).join('')}</ul>
     </details>
   </header>
@@ -127,7 +128,7 @@ export function renderRecruitmentSection(locale = 'th') {
         <p class="recruitment-summary">${escapeHtml(program.summary[locale])}</p>
         <a class="recruitment-apply" href="${RECRUITMENT_FORM_URL}" aria-label="${copy.apply} — ${program.name}">${copy.apply}</a>
         <details class="recruitment-details" id="internship-${program.id}-details">
-          <summary>${copy.details}<span class="sr-only"> — ${program.name}</span></summary>
+          <summary><span>${copy.details}<span class="sr-only"> — ${program.name}</span></span>${uiIconMarkup("expand_more", "disclosure-icon")}</summary>
           <div class="recruitment-details-body">
             <h4>${copy.tasks}</h4>
             <ul>${program.tasks[locale].map((task) => `<li>${escapeHtml(task)}</li>`).join('')}</ul>

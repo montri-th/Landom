@@ -50,7 +50,7 @@ test('both no-script entrypoints expose the same three programs with native dire
     assert.ok(section.includes(locale === 'th' ? 'ตกลงวันเริ่มงานร่วมกัน' : 'start date by agreement'));
     assert.ok(section.includes(locale === 'th' ? '400 บาท/วัน' : '400 THB/day'));
     assert.ok(section.includes(locale === 'th' ? 'ดูรายละเอียดโปรแกรม' : 'Program details'));
-    assert.doesNotMatch(section, /onclick=|onload=|hidden|aria-hidden|<script|<iframe|<form|\/edit\b|mailto:|response[s]?[\/-]|JobPosting/);
+    assert.doesNotMatch(section.replace(/<span class="ui-icon disclosure-icon" aria-hidden="true">expand_more<\/span>/g, ""), /onclick=|onload=|hidden|aria-hidden|<script|<iframe|<form|\/edit\b|mailto:|response[s]?[\/-]|JobPosting/);
     assert.equal((html.match(/class="loading-card/g) ?? []).length, 3, 'people loading skeletons are preserved');
   }
 });
