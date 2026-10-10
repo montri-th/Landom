@@ -3,6 +3,7 @@ import { initBrandMotion } from "./brand-motion.js";
 import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
 import { contributionRoleLabel, personProfileUrl } from "./public-directory.js";
+import { prepareRecruitmentArrival, updateRecruitmentSection } from "./recruitment.js";
 
 const DATA_URL = "./data/generated/site-data.json";
 const THEME_KEY = "lds-theme";
@@ -481,6 +482,7 @@ function cycleTheme() {
 
 function applyLanguage({ persist = false, updateQuery = false, announce = false } = {}) {
   const copy = COPY[state.language];
+  updateRecruitmentSection(document.getElementById("recruitment-root"), state.language);
   elements.root.lang = state.language;
   document.title = copy.pageTitle;
   elements.metaDescription?.setAttribute("content", copy.pageDescription);
@@ -2411,6 +2413,7 @@ function bindEvents() {
 }
 
 function initialize() {
+  const recruitmentArrival = prepareRecruitmentArrival({ win: window, doc: document });
   state.language = LANGUAGES.includes(state.language) ? state.language : "th";
   state.theme = THEMES.includes(state.theme) ? state.theme : "system";
   updateUrl({ lang: state.language, theme: state.theme });
@@ -2426,7 +2429,7 @@ function initialize() {
   mediaParallaxController = initMediaParallax();
   syncFilterDialogMode();
   updateFilterCount();
-  loadData();
+  Promise.allSettled([loadData(), document.fonts?.ready]).then(() => recruitmentArrival.afterLayout());
   document.fonts?.ready.then(() => scheduleMasonryLayout());
 }
 

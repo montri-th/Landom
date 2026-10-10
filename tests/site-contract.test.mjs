@@ -349,7 +349,7 @@ test('recruitment links stay direct and current in both locale entrypoints, incl
     }
     const fallback = html.match(/<nav\b[^>]*class="navigation-fallback"[^>]*>[\s\S]*?<\/nav>/)?.[0];
     assert.ok(fallback?.includes(`<a href="${expectedUrl}">${label}</a>`));
-    assert.equal(html.split(`href="${expectedUrl}"`).length - 1, 3);
+    assert.equal(html.split(`href="${expectedUrl}"`).length - 1, 6, 'three navigation links plus three program applications');
     assert.doesNotMatch(html, /1FAIpQLSdGVOA--7YLOP2Go4hB-Edj4452MPJyVuWsPDi_O9H2jM6wiw/);
   }
 });

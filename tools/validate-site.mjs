@@ -845,7 +845,8 @@ async function validateUi(publishRoot, errors) {
   if (headerDirectControls.length > 4) {
     errors.push(`The desktop navbar exposes ${headerDirectControls.length} direct controls; DS v0.9.1 permits at most four including brand.`);
   }
-  if ((index.match(new RegExp(`href="${joinTeamUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) ?? []).length !== 3) {
+  const navigationBeforeMain = index.split('<main')[0];
+  if ((navigationBeforeMain.match(new RegExp(`href="${joinTeamUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) ?? []).length !== 3) {
     errors.push('The unified navigation must expose the exact join-team destination in desktop, compact-menu, and fail-open contexts.');
   }
   if (
