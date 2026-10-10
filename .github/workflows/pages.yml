@@ -431,6 +431,11 @@ jobs:
             const bytes = await verifiedFile(asset.path, /image\/png/);
             if (bytes.length !== asset.byteLength || bytes.readUInt32BE(16) !== 1080 || bytes.readUInt32BE(20) !== 1528) throw Error('Recruitment poster dimensions or size differ');
           }
+          await verifiedFile('src/interface-icons.js', /(?:text|application)\/javascript/);
+          const fonts = JSON.parse(await verifiedFile('public/assets/fonts/font-assets.manifest.json', /application\/json/));
+          const uiIcons = fonts.faces.find((face) => face.subset === 'landom-ui-15-20261010');
+          if (!uiIcons || uiIcons.axesLock !== 'FILL 0, wght 300, GRAD 0, opsz 24' || uiIcons.glyphs.length !== 15) throw Error('Current outline UI font contract missing');
+          await verifiedFile(`public/assets/fonts/${uiIcons.file}`, /font\/ttf/);
           await verifiedFile('src/recruitment.js', /(?:text|application)\/javascript/);
           await verifiedFile('src/recruitment.css', /text\/css/);
           await verifiedFile('src/reading-focus.js', /(?:text|application)\/javascript/);

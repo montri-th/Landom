@@ -54,6 +54,7 @@ const EN_INITIAL_HTML_REPLACEMENTS = Object.freeze([
   ['กำลังโหลด…', 'Loading…'],
   ['ค้นหาชื่อ มหาวิทยาลัย สาขาที่เรียน หรือผลงาน', 'Search by name, university, program or contribution'],
   ['ค้นหาคนหรือผลงาน', 'Search people or work'],
+  ['ล้างคำค้นหา', 'Clear search'],
   ['ตัวกรอง', 'Filters'],
   ['เลือกดูให้ตรงความสนใจ', 'NARROW THE RESULTS'],
   ['บทบาท', 'Role'],

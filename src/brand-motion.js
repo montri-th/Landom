@@ -140,6 +140,8 @@ export function initBrandMotion(options = {}) {
     button.setAttribute("title", reduced ? labels.reduced : (userPaused ? labels.resume : labels.pause));
     const text = button.querySelector("#motion-toggle-label") ?? button;
     text.textContent = reduced ? labels.reduced : (userPaused ? labels.resume : labels.pause);
+    const icon = button.querySelector(".motion-icon");
+    if (icon) icon.textContent = !reduced && userPaused ? "play_arrow" : "pause";
   }
 
   function announce(value) {

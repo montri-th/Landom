@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Landom interface symbols only; social/brand logos and approved identity icons are separate.",
+  "designSystem": {
+    "version": "0.9.7",
+    "rule": "ICON-01",
+    "scope": "Scoped UI icon alignment; no full-site migration claim"
+  },
+  "authority": {
+    "instruction": "icon เป็น google fonts แบบ round + outlined ทั้งหมดนะครับ",
+    "date": "2026-10-10",
+    "kind": "owner_instruction"
+  },
+  "font": {
+    "family": "Material Symbols Rounded",
+    "localFamily": "Material Symbols Rounded UI",
+    "glyphs": [
+      "account_tree",
+      "article",
+      "close",
+      "emoji_events",
+      "expand_less",
+      "expand_more",
+      "history",
+      "language",
+      "open_in_new",
+      "pause",
+      "play_arrow",
+      "school",
+      "search",
+      "tune",
+      "verified"
+    ],
+    "axes": {
+      "FILL": 0,
+      "wght": 300,
+      "GRAD": 0,
+      "opsz": 24
+    },
+    "sourceCssUrl": "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded%3Aopsz%2Cwght%2CFILL%2CGRAD%4024%2C300%2C0%2C0&icon_names=account_tree%2Carticle%2Cclose%2Cemoji_events%2Cexpand_less%2Cexpand_more%2Chistory%2Clanguage%2Copen_in_new%2Cpause%2Cplay_arrow%2Cschool%2Csearch%2Ctune%2Cverified&display=block",
+    "sourceCssFinalUrl": "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded%3Aopsz%2Cwght%2CFILL%2CGRAD%4024%2C300%2C0%2C0&icon_names=account_tree%2Carticle%2Cclose%2Cemoji_events%2Cexpand_less%2Cexpand_more%2Chistory%2Clanguage%2Copen_in_new%2Cpause%2Cplay_arrow%2Cschool%2Csearch%2Ctune%2Cverified&display=block",
+    "sourceCssMime": "text/css; charset=utf-8",
+    "sourceCssSha256": "1a2872ba80dcfcd370cb95f0233ddbc01b8c0ab5937f4b6548ecfe8568b2976a",
+    "sourceUrl": "https://fonts.gstatic.com/l/font?kit=syl0-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjpZIvDmUSVOK7BDB_Qb9vUSzq3wzLK-P0J-V_Zs-QtQth3-jOcbTCVpeRL2w5rwZu2rNmlXxKRO8cDespv7zECSC5EHlpF9RrZdTgYXM5TU9AAimCLX665oaa0k1KmeaLzA8XuJMph89I&skey=70ddea8fe54d532e&v=v378",
+    "finalUrl": "https://fonts.gstatic.com/l/font?kit=syl0-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjpZIvDmUSVOK7BDB_Qb9vUSzq3wzLK-P0J-V_Zs-QtQth3-jOcbTCVpeRL2w5rwZu2rNmlXxKRO8cDespv7zECSC5EHlpF9RrZdTgYXM5TU9AAimCLX665oaa0k1KmeaLzA8XuJMph89I&skey=70ddea8fe54d532e&v=v378",
+    "mime": "font/ttf",
+    "bytes": 6576,
+    "sha256": "e20efc44e4020e7196fa620afbe87b7035f36651b6e107118155cad1ce329cb4",
+    "file": "material-symbols-rounded-ui-300-e20efc44e402.ttf",
+    "license": "Apache License 2.0",
+    "licenseFile": "licenses/material-symbols-Apache-2.0.txt",
+    "reference": "https://developers.google.com/fonts/docs/material_symbols",
+    "retrievedAt": "2026-10-10",
+    "approvalReceiptRef": "owner_instruction_2026-10-10_google_rounded_outlined_all_ui",
+    "approvalScope": "Artifact-specific UI subset; no assertion of a new normative LDS release",
+    "fallback": "Visible labels and accessible names remain; icons are supplementary and aria-hidden"
+  },
+  "existingApprovedSubsets": [
+    "unified-nav-7",
+    "open_in_new",
+    "rebuild02-footer-r10"
+  ],
+  "statePolicy": "FILL0 and weight300 stay fixed in all states. Expansion and motion use named outline glyphs; no filled selected state.",
+  "fallback": "Visible labels or accessible names remain independently of font loading. Glyph spans are aria-hidden.",
+  "platformBoundary": "Native select popups and browser/system chrome remain platform controls; the closed select indicator is a Rounded outline glyph."
+}
