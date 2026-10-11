@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": "1.5.0",
-    "generatedAt": "2026-10-10T00:00:00+07:00",
+    "generatedAt": "2026-10-11T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
       "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -50,7 +50,7 @@
       "engagements": 65,
       "educationRecords": 53,
       "works": 69,
-      "contributions": 129,
+      "contributions": 130,
       "achievements": 1,
       "publications": 1,
       "certificates": 26,
@@ -65,8 +65,8 @@
       "publishedPublicSocialProfiles": 73,
       "participantApprovedProfileCopies": 1
     },
-    "dataUpdatedAt": "2026-10-10",
-    "reviewedAt": "2026-10-10"
+    "dataUpdatedAt": "2026-10-11",
+    "reviewedAt": "2026-10-11"
   },
   "copy": {
     "brand": {
@@ -11358,6 +11358,24 @@
       "evidenceStatus": "owner_and_sheet_confirmed",
       "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
       "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+    },
+    {
+      "contributionId": "C0130",
+      "personId": "I0034",
+      "workId": "work-citymeter-locale-insights",
+      "engagementId": null,
+      "role": {
+        "th": "พัฒนาต่อ",
+        "en": "Continued development"
+      },
+      "period": {
+        "start": null,
+        "end": null,
+        "label": null
+      },
+      "evidenceStatus": "owner_supplied",
+      "sourceRef": "owner_instruction_2026-10-11_locale_insight_continuation",
+      "evidenceNote": "The owner confirms Earth continues Ing's Locale Insight work. Ing's original module credit and Earth's separate shared-layer credit are retained. No contribution date, version, engagement, leadership or completion is inferred."
     }
   ],
   "achievements": [

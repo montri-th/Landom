@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "product": "Landom",
+  "status": "published_verified_with_open_manual_gates",
+  "checkedAt": "2026-10-10T15:32:04.223Z",
+  "liveUrl": "https://montri-th.github.io/Landom/",
+  "englishUrl": "https://montri-th.github.io/Landom/en/",
+  "repository": "montri-th/Landom",
+  "pullRequest": "https://github.com/montri-th/Landom/pull/10",
+  "reviewedHeadSha": "9c6e62552c1127f2669410cdff95b5c2e2095702",
+  "mergeCommitSha": "d8b7643ce5990f7b0abf65023f1e9ddc58891494",
+  "deployedSourceSha": "d8b7643ce5990f7b0abf65023f1e9ddc58891494",
+  "reviewedTreeSha": "8b8ebd02c818961687bd92008e7ffbf6c1a6f5a2",
+  "mergedTreeSha": "8b8ebd02c818961687bd92008e7ffbf6c1a6f5a2",
+  "sourceTreeParity": true,
+  "provider": {
+    "type": "GitHub Pages workflow",
+    "runId": 38063718052,
+    "runUrl": "https://github.com/montri-th/Landom/actions/runs/38063718052",
+    "status": "completed",
+    "conclusion": "success",
+    "deploymentId": 6982914450,
+    "deploymentState": "success",
+    "deployedAt": "2026-10-10T15:29:34Z"
+  },
+  "build": {
+    "manifestSha256": "8cdf3bb6a44f2489ae33e81b57dc20d5d0d0d6a969b6a585b22c9c2ba96b57df",
+    "manifestFiles": 169,
+    "providerManifestMatches": true,
+    "tests": {
+      "total": 168,
+      "passed": 166,
+      "failed": 0,
+      "skipped": 2,
+      "skipReason": "Existing unavailable private raw-snapshot fixtures"
+    },
+    "sourceValidation": "pass",
+    "distValidation": "pass"
+  },
+  "live": {
+    "checks": 177,
+    "passed": 177,
+    "failed": 0,
+    "exitCode": 0,
+    "checkedAt": "2026-10-10T15:31:22.896Z",
+    "finalUrlStatusMimeBytesAndHash": "all pass",
+    "attestation": "live-attestation.json",
+    "fullLog": "live-check.log",
+    "config": "live-checks.json"
+  },
+  "changes": {
+    "interfaceSymbols": "Google Material Symbols Rounded, outlined FILL0, fixed weight300, GRAD0; all existing UI cues aligned",
+    "subset": {
+      "source": "Official Google Fonts",
+      "family": "Material Symbols Rounded",
+      "localFont": "public/assets/fonts/material-symbols-rounded-ui-300-e20efc44e402.ttf",
+      "sha256": "e20efc44e4020e7196fa620afbe87b7035f36651b6e107118155cad1ce329cb4",
+      "glyphs": 15,
+      "verified": "TrueType cmap/GSUB ligatures for every declared icon; fixed static instance, weight300; official CSS request FILL0/GRAD0/opsz24"
+    },
+    "behavior": "Clear query preserves selected filters and input focus; expand/collapse and motion glyphs track native state",
+    "brandLogos": "Existing official social/platform logos preserved",
+    "fallback": "Visible labels and accessible names retained; supplementary glyph spans aria-hidden"
+  },
+  "preserved": {
+    "people": 53,
+    "works": 69,
+    "contributions": 129,
+    "creditModules": 43,
+    "generatedPeopleAndCreditFiles": "byte-identical to base 4d6ad15",
+    "consentPortraitsAndNames": "unchanged",
+    "publicEmail": "none added",
+    "originalRecruitmentPosters": "3 approved PNGs unchanged",
+    "oldReceipts": "untouched",
+    "citymeterRepository": "no mutations during this Landom release"
+  },
+  "experience": {
+    "receipt": "browser-qa.json",
+    "rootRenderedApproval": "Four Thai/English light/dark desktop and narrow states passed before merge",
+    "screenshot": {
+      "path": "../rendered-review/landom-rounded-mobile-filter.png",
+      "sha256": "f13f76011840fc1086ae572f7d27471064a97d4012517a63a7d63dbf56f3b50c",
+      "bytes": 22346,
+      "description": "Actual English dark narrow filter panel"
+    },
+    "peerReview": {
+      "agent": "repo_audit",
+      "status": "no material behavior, accessibility, identity or privacy finding",
+      "scope": "4d6ad15..9c6e625"
+    },
+    "manualGates": {
+      "zoom": "No new icon-release zoom assessment; preceding identity release records its own native125/150/200% checks",
+      "exactThai130Percent": "not tested",
+      "physicalIphone": "not tested; carried prior open gate",
+      "fullDesignSystemConformance": "not claimed"
+    },
+    "renderedReviewSurface": "Local exact reviewed build; live delivery independently byte-attested"
+  },
+  "sourceClean": true,
+  "history": {
+    "localBuild": "An initial local test run failed three obsolete markup assertions; narrowly updated assertions passed final build. Earlier logs retained under ../rounded-icons. No failed product CI or live attestation checks.",
+    "testsLogs": "../rounded-icons/build-1.log, build-2.log, build-3.log"
+  },
+  "fullDesignSystemConformance": "not claimed"
+}

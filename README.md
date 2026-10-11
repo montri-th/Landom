@@ -4,6 +4,16 @@ Static, privacy-aware community directory for **Landom**. The site turns an auth
 
 > แลนด้อมของคนที่อยากเข้าใจเมืองและช่วยกันทำให้ดีขึ้น
 
+## เริ่มงานสำหรับ intern และ AI agent — 11 ตุลาคม 2026
+
+เปิด [Handoff + Implementation Plan ฉบับรวม r2](docs/unified-handoff/2026-10-11/CityMETER_Landom_Unified_Handoff_Implementation_Plan_2026-10-11.md) ก่อนแก้ **Landom, CityMETER Catalog หรือ Article** เอกสารเดียวรวมข้อกำหนดที่ต้องรักษา ขั้นตอน T00–T12, acceptance checks, inventory 43 dataset และ prompts สำหรับ coding agent
+
+- สำหรับเครื่องมือ: [JSON ฉบับเดียวกัน](docs/unified-handoff/2026-10-11/CityMETER_Landom_Unified_Handoff_Implementation_Plan_2026-10-11.json)
+- ไฟล์อ้างอิง ภาพ และวิธีตรวจแพ็ก: [เริ่มจากไฟล์นี้](docs/unified-handoff/2026-10-11/README.md)
+- ฉบับคู่กันใน [CityMETER](https://github.com/montri-th/CityMETER/tree/main/docs/unified-handoff/2026-10-11)
+
+อ่าน baseline และ D01–D15 แล้วเลือกเฉพาะ task ที่ตรงงาน ไม่ต้องทำส่วนที่เผยแพร่แล้วใหม่ ฉบับนี้รวมคำยืนยันว่า **Locale Insight เวอร์ชันล่าสุดเอิร์ธ (CEDT) พัฒนาต่อจากอิ๋ง** โดยคงเครดิตงานเดิม; baseline hashes และ receipts เก่าแยกจากการเผยแพร่เครดิตใหม่
+
 ## Naming contract
 
 - `Landometer` is the brand and shared portfolio/methodology layer.
@@ -127,7 +137,7 @@ See [the scoped CityMETER update](docs/updates/2026-10-10-citymeter-attribution.
 
 One reviewed historical route correction removes Business Dynamics' obsolete catalog anchors and links its retained work credit directly to the existing operational route. It remains excluded from the public CityMETER catalog projection; its title, people and historical contribution records are unchanged.
 
-CityMETER can read `data/generated/citymeter-contributors.json` for card-only credits and real localized Landom profile URLs. The file is regenerated from the approved public registry and governed people media; it exposes no contacts, private candidates, import receipts or consent evidence. The owner-authorized core-directory publication policy above remains distinct from individual consent. Current counts are 53 people, 69 works and 129 contributions; the public credit projection has 43 module keys after the two existing-work bindings. This count describes catalog attribution, not completed work, data ownership or verified ingestion.
+CityMETER can read `data/generated/citymeter-contributors.json` for card-only credits and real localized Landom profile URLs. The file is regenerated from the approved public registry and governed people media; it exposes no contacts, private candidates, import receipts or consent evidence. The owner-authorized core-directory publication policy above remains distinct from individual consent. Current counts are 53 people, 69 works and 130 contributions; the public credit projection has 43 module keys after the two existing-work bindings. This count describes catalog attribution, not completed work, data ownership or verified ingestion.
 
 When no authorized raw Sheet snapshot is available, preserve the current reviewed public graph and apply the approved additive contract through the existing reviewed mode:
 
@@ -143,3 +153,7 @@ Do not hand-edit generated JSON or use this mode to replace unrelated person fac
 Repository setup required once: in **Settings → Pages**, select **GitHub Actions** as the source. A local build or a pushed commit is not proof of a live release; use the terminal deployment result and live smoke test.
 
 See [the implementation handoff](docs/implementation-handoff.md) for data maintenance, controlled Sheet writeback, asset intake, release gates, and known manual checks.
+
+## Locale Insight continuation — 11 October 2026
+
+The [approved continuation](data/approved/citymeter-locale-insight-credit-2026-10-11.json) adds Earth (`I0034`, CEDT) to the existing Locale Insights module as **พัฒนาต่อ / Continued development** (`C0130`). Ing's original module credit (`C0071`) and Earth's separate Locale Insight Intelligence Layer credit (`C0086`) are retained unchanged. This owner-confirmed repository delta does not claim a new version number, completion date or cloud Sheet update.

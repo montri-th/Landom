@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "owner_authorized_repository_documentation_package",
+  "revision": "r2",
+  "scope": "Same human+machine handoff and immutable references in both repos; historical app evidence plus owner-confirmed Locale Insight OD01",
+  "hash": "SHA-256",
+  "files": [
+    {
+      "path": "CityMETER_Landom_Unified_Handoff_Implementation_Plan_2026-10-11.json",
+      "bytes": 248735,
+      "sha256": "8c7542fbc96a13428cba21e77ce03516f46116c117bab2eed0e64db42dd6487a"
+    },
+    {
+      "path": "CityMETER_Landom_Unified_Handoff_Implementation_Plan_2026-10-11.md",
+      "bytes": 337936,
+      "sha256": "74cb3087c16413855beab50a607e8bf502b0f323e87160b593f9235e1150d4e4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4307,
+      "sha256": "18af6c5dac4d5bc230d73015270639397c3385bee828a8dd777526e26ea186af"
+    },
+    {
+      "path": "authorities/CityMETER Catalog Redesign.zip",
+      "bytes": 237753,
+      "sha256": "c00d5a217759aaf7ccaf0d66816e419c0077ad627d6822ef9488cf646e12bdef"
+    },
+    {
+      "path": "authorities/Landometer-Design-System-v0.9.7.md",
+      "bytes": 1142051,
+      "sha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96"
+    },
+    {
+      "path": "authorities/Landometer_Master_Brand_Brief_v0_5_3_ecosystem_alignment_evidence_standard.md",
+      "bytes": 76984,
+      "sha256": "33041749f59bca930459dccc3637bad1a4884bf4cecc8e1a543f8ec3771fe87c"
+    },
+    {
+      "path": "authorities/Location-Intelligence-Profile-for-LDS-v0.9.7.md",
+      "bytes": 123685,
+      "sha256": "5d4856041709735d3a04d4a510a88b551df86c211fdcab8a0707e8fe7c9efc3b"
+    },
+    {
+      "path": "authorities/Product_Brief_CityMETER_Landometer_Aligned_v6-2.md",
+      "bytes": 120412,
+      "sha256": "3c84c6b51fe0f8a288090ddaeb5b732c53f30234241103daa1d5a8baa0914448"
+    },
+    {
+      "path": "evidence/citymeter-release-receipt.json",
+      "bytes": 3760,
+      "sha256": "97d9b579713f7014faf44ebfa280cacba2465645636920d150fc5506c70e503f"
+    },
+    {
+      "path": "evidence/landom-release-receipt.json",
+      "bytes": 4467,
+      "sha256": "57976c4da4a73292fa1360eb9a78848735c4d028134f396d167040ac231a166c"
+    },
+    {
+      "path": "reference-images/article-dark-desktop.png",
+      "bytes": 113812,
+      "sha256": "af2cdd46038b4cf4da5be4ac3496161a815f9df9a28536358b1add6819d14414"
+    },
+    {
+      "path": "reference-images/article-th-light-zoom200.png",
+      "bytes": 38453,
+      "sha256": "fbf2446031c64b6603e52056eefc1d061b790df84e82b7f95a3b443c8f399e9e"
+    },
+    {
+      "path": "reference-images/catalog-examples-dark-desktop.png",
+      "bytes": 143031,
+      "sha256": "6206a7bb12b188a7005db77c9b25a60a0fc206ab5f9a22cb6c4f4e1fabb0b19d"
+    },
+    {
+      "path": "reference-images/catalog-explore-dark-mobile.png",
+      "bytes": 38416,
+      "sha256": "ae4874ac92e04f68d619bc903c777ad5995bd8908111c5194a79b68c0e6a919b"
+    },
+    {
+      "path": "reference-images/catalog-explore-light-desktop.png",
+      "bytes": 140077,
+      "sha256": "8608b95abe0df544b81b158dae8d816ad5cde7601b582a04ec4bcf71da6315ef"
+    },
+    {
+      "path": "reference-images/landom-mobile-filter.png",
+      "bytes": 22346,
+      "sha256": "f13f76011840fc1086ae572f7d27471064a97d4012517a63a7d63dbf56f3b50c"
+    },
+    {
+      "path": "validate-handoff.py",
+      "bytes": 7698,
+      "sha256": "03a43a6ccedce561af8961da7c6c5507a94aa5e88968955439b514d07e40a615"
+    },
+    {
+      "path": "validation-report.json",
+      "bytes": 5209,
+      "sha256": "5d4138e84427acbf0e8f7c8eb39f525726143769595118da3407bf5f964e9497"
+    }
+  ]
+}

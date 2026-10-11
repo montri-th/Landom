@@ -10,7 +10,7 @@ import {
 import { applyPublicationConsent } from './publication-consent.mjs';
 import { applyPersonIdentityOverrides } from './person-identity-overrides.mjs';
 import { applyReviewedPortraitUpdates } from './reviewed-portrait-updates.mjs';
-import { applyCitymeterAttribution, applyExistingCitymeterBindings, buildCitymeterContributors } from './citymeter-attribution.mjs';
+import { applyCitymeterAttribution, applyExistingCitymeterBindings, applyLocaleInsightContinuation, buildCitymeterContributors } from './citymeter-attribution.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -131,9 +131,13 @@ function writeSiteDataFiles(siteData) {
   const bindingsPath = path.join(root, 'data/approved/citymeter-existing-work-bindings-2026-10-10.json');
   const bindings = fs.existsSync(bindingsPath) ? JSON.parse(fs.readFileSync(bindingsPath, 'utf8')) : null;
   if (bindings) siteData = applyExistingCitymeterBindings(siteData, bindings);
+  const localeCreditPath = path.join(root, 'data/approved/citymeter-locale-insight-credit-2026-10-11.json');
+  const localeCredit = fs.existsSync(localeCreditPath) ? JSON.parse(fs.readFileSync(localeCreditPath, 'utf8')) : null;
+  if (localeCredit) siteData = applyLocaleInsightContinuation(siteData, localeCredit);
   const reviewDates = [siteData.meta.dataUpdatedAt, siteData.meta.reviewedAt];
   if (attribution) reviewDates.push(attribution.reviewedAt);
   if (bindings) reviewDates.push(bindings.reviewedAt);
+  if (localeCredit) reviewDates.push(localeCredit.reviewedAt);
   for (const fileName of ['profile-detail-overrides.json', 'education-placement-overrides.json']) {
     const approvedPath = path.join(root, 'data/approved', fileName);
     if (fs.existsSync(approvedPath)) reviewDates.push(JSON.parse(fs.readFileSync(approvedPath, 'utf8')).reviewedAt);

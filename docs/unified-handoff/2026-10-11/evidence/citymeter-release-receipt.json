@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "published_verified_with_open_manual_gates",
+  "checkedAt": "2026-10-11T01:15:46.918891+00:00",
+  "repository": "montri-th/CityMETER",
+  "pullRequest": "https://github.com/montri-th/CityMETER/pull/21",
+  "liveUrl": "https://montri-th.github.io/CityMETER/",
+  "exampleArticle": "https://montri-th.github.io/CityMETER/datasets/government-agencies-workforce/",
+  "reviewedHeadSha": "64ea93d44a6a4d9a7a496aa246038bd90503fcb6",
+  "reviewedTreeSha": "63b7eca10af5dee77612ff922a43e0c228ffd70a",
+  "mergeCommitSha": "70c34f8a7953f07c1ff74ad6f33e3e0b44fab1ea",
+  "mergedTreeSha": "63b7eca10af5dee77612ff922a43e0c228ffd70a",
+  "treesEqual": true,
+  "mergeMethod": "squash",
+  "checkoutClean": true,
+  "deployedSourceSha": "70c34f8a7953f07c1ff74ad6f33e3e0b44fab1ea",
+  "provider": {
+    "status": "success",
+    "runUrl": "https://github.com/montri-th/CityMETER/actions/runs/38100983440",
+    "deploymentId": 6989235133,
+    "deploymentStatus": "success",
+    "environment": "github-pages",
+    "public": true,
+    "pagesSource": "main /"
+  },
+  "validation": {
+    "premergeQuality": "pr-quality.json",
+    "postmergeQuality": "postmerge-quality.json",
+    "deterministicSourceChecks": "final-npm-check.log",
+    "articleHtml": 86,
+    "publicDatasets": 43,
+    "qrDecodedLocally": 43,
+    "catalogRuntimeFixtures": 18,
+    "articleRuntimeFixtures": 14,
+    "uiIconChecks": 245,
+    "integrationCases": {
+      "navbarAuthored": 28,
+      "navbarGenerated": 28,
+      "compiledTheme": 12,
+      "subgroupMutation": 9,
+      "sharedArticleNavbars": 86
+    }
+  },
+  "rendered": {
+    "articleCases": 344,
+    "catalogCases": 8,
+    "locales": [
+      "th",
+      "en"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "widths": [
+      390,
+      1710
+    ],
+    "geometry": "zero horizontal overflow or clipped headings",
+    "scope": "all-page Chrome geometry; representative content screenshots; bounded native200% two-state review",
+    "sourceNotes": "closed on arrival",
+    "browserReceipt": "browser-qa.json",
+    "liveBrowserReceipt": "../qa/live-browser.json",
+    "productionConsoleErrorsObserved": []
+  },
+  "liveBytes": {
+    "exactUrlChecks": 365,
+    "uniqueLocalFiles": 353,
+    "allPass": true,
+    "finalUrlStatusMimeBytesShaVerified": true,
+    "receipt": "live-attestation.json",
+    "qrAssets": 43,
+    "qrReceipt": "live-qr-attestation.json",
+    "externalReferencesNotByteAttested": 26
+  },
+  "preserved": {
+    "catalogSourceRecords": "identical baseline",
+    "storySourceRecords": "identical baseline",
+    "peopleCreditsPhotos": "unchanged",
+    "catalogMotionRuntime": "identical baseline",
+    "analyticalScreenshotBytesColors": "unchanged",
+    "LandomRepository": "not changed by this release",
+    "crawlTrainingPolicy": "unchanged"
+  },
+  "designSystem": {
+    "package": "LDS0.9.7/color-srgb-10",
+    "packageIntegrity": "PASS 9768",
+    "staticScanner": "FAIL scoped historical literals and compositing functions; retained separately governed aliases/layers were rendered and reviewed",
+    "fullConformanceClaim": false,
+    "scopeReview": "../qa/ds-scope-review.json"
+  },
+  "noJavascript": {
+    "status": "source_verified_browser_not_assessed",
+    "completeInitialContentAndNativeLinks": true
+  },
+  "openManualGates": [
+    "physical iPhone",
+    "exact130% Thai zoom",
+    "complete keyboard audit",
+    "native assistive technology"
+  ],
+  "handoff": {
+    "human": "work/publish-citymeter/docs/claude-design-handoff-20261011.md",
+    "machine": "work/publish-citymeter/docs/claude-design-handoff-20261011.json",
+    "stateAtCommit": "local verified, provider pending; this external receipt records the completed provider/live state"
+  },
+  "viewportAndZoomRestored": true
+}
