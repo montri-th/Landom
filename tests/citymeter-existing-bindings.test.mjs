@@ -28,7 +28,7 @@ test('two existing catalog bindings preserve the complete people and contributio
     const expected = { ...previous, ...item.nextState };
     assert.deepEqual(result.works.find((work) => work.workId === item.workId), expected);
   }
-  assert.deepEqual([result.people.length, result.works.length, result.contributions.length], [53, 69, 129]);
+  assert.deepEqual([result.people.length, result.works.length, result.contributions.length], [53, 69, before.contributions.length]);
   assert.deepEqual(applyExistingCitymeterBindings(result, contract), result, 'repeated normalization is idempotent');
   assert.equal(result.contributions.find((row) => row.contributionId === 'C0122').role.en, 'Developing');
   assert.equal(result.contributions.find((row) => row.contributionId === 'C0123').role.en, 'Improving');

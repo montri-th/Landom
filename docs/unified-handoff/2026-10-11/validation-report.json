@@ -1,0 +1,211 @@
+{
+  "status": "pass",
+  "scope": "documentation_only",
+  "checks": [
+    {
+      "check": "one_embedded_contract",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "embedded_separate_json_parity",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "required_top_level_fields",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "schema_version",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_repositories_ids",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_authority_ids",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_decisions_ids",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_tasks_ids",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_acceptance_ids",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_codingPrompts_ids",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "acceptance_references",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "task_dependency_references",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "acyclic_task_graph",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "prompt_task_references",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "43_pinned_baseline_records",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "baseline_groups",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_inventory_datasetCode",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_inventory_slug",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "unique_inventory_moduleSlug",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "43_credit_modules_with_people",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "86_localized_article_routes",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "schema_profile",
+      "status": "pass",
+      "detail": "This standard-library validator checks document joins and contract shape; it is not a general JSON Schema engine."
+    },
+    {
+      "check": "markdown_local_links",
+      "status": "pass",
+      "detail": {
+        "count": 12
+      }
+    },
+    {
+      "check": "no_absolute_host_paths_or_private_email",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "location_profile_base_binding",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "bundled_authority_hashes",
+      "status": "pass",
+      "detail": {
+        "count": 5
+      }
+    },
+    {
+      "check": "future_recipes_not_pending_rebuilds",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "published_vs_documentation_state",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "receipt_relative_reference_scope",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "pinned_source_git_blob_hashes",
+      "status": "pass",
+      "detail": {
+        "count": 90,
+        "fullInventoryCount": 90,
+        "failed": [],
+        "baselines": [
+          {
+            "repository": "CityMETER",
+            "tree": "63b7eca10af5dee77612ff922a43e0c228ffd70a",
+            "expectedTree": "63b7eca10af5dee77612ff922a43e0c228ffd70a"
+          },
+          {
+            "repository": "Landom",
+            "tree": "8b8ebd02c818961687bd92008e7ffbf6c1a6f5a2",
+            "expectedTree": "8b8ebd02c818961687bd92008e7ffbf6c1a6f5a2"
+          }
+        ]
+      }
+    },
+    {
+      "check": "immutable_release_receipt_copies",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "locale_insight_owner_continuation",
+      "status": "pass",
+      "detail": null
+    },
+    {
+      "check": "package_file_hashes",
+      "status": "pass",
+      "detail": {
+        "count": 18,
+        "failed": []
+      }
+    }
+  ],
+  "checkedAt": "2026-10-11T09:55:13.655145+00:00",
+  "revision": "r2",
+  "applicationChecks": "New Locale Insight correction checked separately via Landom build; original app release receipts remain immutable.",
+  "sourceHashMethod": "git show baselineSha:path; 90 historical source blobs, not current working files",
+  "peerReview": {
+    "status": "pass",
+    "scope": "Human/machine task steps, gates, authority hashes, owner delta and historical baseline checks"
+  },
+  "privacyReview": {
+    "status": "pass",
+    "scope": "19 package files and nested Claude ZIP; no secrets, contacts, private applicant/raw registry records; normative references preserved byte-identical including two non-secret local workflow example paths."
+  },
+  "publication": "Owner-authorized repository publication; exact commit/PR/Pages/live state kept in separate receipt.",
+  "renderedMarkdownSample": {
+    "status": "not_run_for_r2",
+    "note": "r1 representative rendered preview retained only as historical evidence; GitHub rendering checked after repository publication."
+  }
+}

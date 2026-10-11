@@ -2320,5 +2320,23 @@
     "evidenceStatus": "owner_and_sheet_confirmed",
     "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
     "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+  },
+  {
+    "contributionId": "C0130",
+    "personId": "I0034",
+    "workId": "work-citymeter-locale-insights",
+    "engagementId": null,
+    "role": {
+      "th": "พัฒนาต่อ",
+      "en": "Continued development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-10-11_locale_insight_continuation",
+    "evidenceNote": "The owner confirms Earth continues Ing's Locale Insight work. Ing's original module credit and Earth's separate shared-layer credit are retained. No contribution date, version, engagement, leadership or completion is inferred."
   }
 ]

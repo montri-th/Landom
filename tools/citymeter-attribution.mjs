@@ -14,6 +14,44 @@ const BINDING_FIELDS = ['moduleSlug', 'type', 'authorityStatus', 'evidenceNote',
 
 const bindingState = (work) => Object.fromEntries(BINDING_FIELDS.map((field) => [field, work[field]]));
 
+/** Owner-confirmed continuation of one existing module. Retain both Ing's
+ * original module credit and Earth's distinct shared-layer credit unchanged. */
+export function applyLocaleInsightContinuation(siteData, contract) {
+  strictObject(contract, ['contractVersion', 'reviewedAt', 'scope', 'sourceRef', 'workId', 'moduleSlug', 'expectedWorkSha256', 'preservedContributions', 'contribution'], 'Locale Insight continuation');
+  const item = contract.contribution;
+  strictObject(item, ['contributionId', 'personId', 'workId', 'predecessorContributionId', 'role'], 'Locale Insight credit');
+  strictObject(item.role, ['th', 'en'], 'Locale Insight role');
+  if (contract.contractVersion !== '1.0' || contract.scope !== 'owner_confirmed_locale_insight_continuation_only' || !/^\d{4}-\d{2}-\d{2}$/.test(contract.reviewedAt) || contract.sourceRef !== 'owner_instruction_2026-10-11_locale_insight_continuation' || contract.workId !== 'work-citymeter-locale-insights' || contract.moduleSlug !== 'dataset-locale-insights' || item.contributionId !== 'C0130' || item.personId !== 'I0034' || item.workId !== contract.workId || item.predecessorContributionId !== 'C0071' || !isDeepStrictEqual(item.role, { th: 'พัฒนาต่อ', en: 'Continued development' })) throw new Error('Unapproved Locale Insight continuation identity or role.');
+  const result = structuredClone(siteData);
+  const people = unique(result.people, 'personId', 'person');
+  const works = unique(result.works, 'workId', 'work');
+  const credits = unique(result.contributions, 'contributionId', 'contribution');
+  if (people.get('I0034')?.names.full.th !== 'ไอศูรย์ ทิพย์ธนทรัพย์' || people.get('I0011')?.names.full.th !== 'อิงครัตน์ รัตนโอภา') throw new Error('Locale Insight requires the exact reviewed Earth and Ing identities.');
+  const digest = (value) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+  const work = works.get(contract.workId);
+  if (!work || work.moduleSlug !== contract.moduleSlug || work.parentProduct !== 'CityMETER' || work.scopeLayer !== 'product_specific' || !/^[a-f0-9]{64}$/.test(contract.expectedWorkSha256) || digest(work) !== contract.expectedWorkSha256 || result.works.some((other) => other.workId !== work.workId && other.moduleSlug === work.moduleSlug)) throw new Error('Locale Insight work differs from the reviewed module.');
+  if (!Array.isArray(contract.preservedContributions) || !isDeepStrictEqual(contract.preservedContributions.map((row) => row.contributionId), ['C0071', 'C0086'])) throw new Error('Locale Insight must preserve both existing credits.');
+  for (const expected of contract.preservedContributions) {
+    strictObject(expected, ['contributionId', 'sha256'], 'Preserved Locale Insight credit');
+    const credit = credits.get(expected.contributionId);
+    if (!credit || !/^[a-f0-9]{64}$/.test(expected.sha256) || digest(credit) !== expected.sha256) throw new Error('Existing Locale Insight credit differs from reviewed evidence.');
+  }
+  if (credits.get('C0071').personId !== 'I0011' || credits.get('C0071').workId !== work.workId || credits.get('C0086').personId !== 'I0034' || credits.get('C0086').workId !== 'work-locale-insight-intelligence-layer') throw new Error('Existing Locale Insight credit identity mismatch.');
+  const contribution = {
+    contributionId: item.contributionId, personId: item.personId, workId: item.workId,
+    engagementId: null, role: structuredClone(item.role),
+    period: { start: null, end: null, label: null }, evidenceStatus: 'owner_supplied',
+    sourceRef: contract.sourceRef,
+    evidenceNote: 'The owner confirms Earth continues Ing\'s Locale Insight work. Ing\'s original module credit and Earth\'s separate shared-layer credit are retained. No contribution date, version, engagement, leadership or completion is inferred.'
+  };
+  if (result.contributions.some((row) => row.personId === item.personId && row.workId === item.workId && row.contributionId !== item.contributionId)) throw new Error('Locale Insight person/work already has another contribution ID.');
+  const current = credits.get(item.contributionId);
+  if (current && !isDeepStrictEqual(current, contribution)) throw new Error('Existing Locale Insight continuation differs from approval.');
+  if (!current) result.contributions.push(contribution);
+  result.meta.counts.contributions = result.contributions.length;
+  return result;
+}
+
 /** Bind two existing, owner-confirmed contributions to the now-published public
  * catalog. This is a routing/identity amendment, never a person or work-status
  * inference. Exact reviewed predecessor states and idempotent final state only. */

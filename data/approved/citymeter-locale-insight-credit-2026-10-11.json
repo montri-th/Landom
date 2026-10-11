@@ -1,0 +1,29 @@
+{
+  "contractVersion": "1.0",
+  "reviewedAt": "2026-10-11",
+  "scope": "owner_confirmed_locale_insight_continuation_only",
+  "sourceRef": "owner_instruction_2026-10-11_locale_insight_continuation",
+  "workId": "work-citymeter-locale-insights",
+  "moduleSlug": "dataset-locale-insights",
+  "expectedWorkSha256": "5246c856cac27df76613902ecbeab9f1014b2cf07a3121b76e5149026cb5c365",
+  "preservedContributions": [
+    {
+      "contributionId": "C0071",
+      "sha256": "54efd861bd4b38f63ecf0b8b57c50cb7d35fc67be07c7ba546f05196207b8553"
+    },
+    {
+      "contributionId": "C0086",
+      "sha256": "a904df4c7ff1cafc6af08746cfd1fa016d82c37eafd38cb6dfd3aa718bc1382d"
+    }
+  ],
+  "contribution": {
+    "contributionId": "C0130",
+    "personId": "I0034",
+    "workId": "work-citymeter-locale-insights",
+    "predecessorContributionId": "C0071",
+    "role": {
+      "th": "พัฒนาต่อ",
+      "en": "Continued development"
+    }
+  }
+}

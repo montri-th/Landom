@@ -12,7 +12,9 @@ const media = read('data/generated/people-media.json');
 function baseline() {
   const data = structuredClone(current);
   data.works = data.works.filter((row) => !approved.works.some((item) => item.workId === row.workId));
-  data.contributions = data.contributions.filter((row) => !approved.contributions.some((item) => item.contributionId === row.contributionId));
+  // This fixture reconstructs the historical Oct 10 amendment before the
+  // separately governed Locale Insight continuation.
+  data.contributions = data.contributions.filter((row) => row.contributionId !== 'C0130' && !approved.contributions.some((item) => item.contributionId === row.contributionId));
   for (const correction of approved.routeCorrections) Object.assign(data.works.find((work) => work.workId === correction.workId), {
     catalogUrl: structuredClone(correction.previousCatalogUrl), destinationUrl: correction.previousDestinationUrl, linkEvidence: structuredClone(correction.previousLinkEvidence)
   });
@@ -57,8 +59,8 @@ for (const [label, mutate, message] of [
   ['private input field', (data, contract) => { contract.works[0].internalReceipt = 'private'; }, /unsupported fields/],
   ['duplicate contribution', (data, contract) => { contract.contributions.push(contract.contributions[0]); }, /Duplicate/],
   ['different work already using module', (data, contract) => { data.works.push({ ...current.works.at(-4), workId: 'work-other', moduleSlug: contract.works[0].moduleSlug }); }, /another work/],
-  ['canonical contribution ID conflict', (data, contract) => { data.contributions.push({ ...current.contributions.at(-5), personId: 'I0034' }); }, /differs/],
-  ['different ID for same person/work', (data, contract) => { data.contributions.push({ ...current.contributions.at(-5), contributionId: 'C0999' }); }, /another contribution ID/]
+  ['canonical contribution ID conflict', (data, contract) => { data.contributions.push({ ...current.contributions.find((row) => row.contributionId === 'C0125'), personId: 'I0034' }); }, /differs/],
+  ['different ID for same person/work', (data, contract) => { data.contributions.push({ ...current.contributions.find((row) => row.contributionId === 'C0125'), contributionId: 'C0999' }); }, /another contribution ID/]
 ]) test('attribution fails closed for ' + label, () => {
   const data = baseline(); const contract = structuredClone(approved); mutate(data, contract);
   const frozen = structuredClone(data);

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-10-10T00:00:00+07:00",
+  "generatedAt": "2026-10-11T00:00:00+07:00",
   "canonicalUrl": "https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json",
   "byModuleSlug": {
     "dataset-registered-companies-status-capital": [
@@ -576,6 +576,29 @@
           "alt": {
             "th": "ภาพโปรไฟล์ของอิ๋ง",
             "en": "Profile portrait of Ing"
+          }
+        }
+      },
+      {
+        "personId": "I0034",
+        "nickname": {
+          "th": "เอิร์ธ",
+          "en": "Earth"
+        },
+        "contributionRole": {
+          "th": "พัฒนาต่อ",
+          "en": "Continued development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเอิร์ธ",
+            "en": "Profile portrait of Earth"
           }
         }
       }
