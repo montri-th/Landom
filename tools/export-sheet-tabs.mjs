@@ -317,7 +317,9 @@ const contributionRows = site.contributions.map((contribution) => ({
   period_label: contribution.period.label,
   evidence_status: contribution.evidenceStatus,
   source_ref: contribution.sourceRef,
-  evidence_note: contribution.evidenceNote
+  evidence_note: contribution.evidenceNote,
+  summary_th: contribution.summary?.th,
+  summary_en: contribution.summary?.en
 }));
 
 const achievementRows = site.achievements.map((achievement) => ({
@@ -635,7 +637,9 @@ const tabs = {
   works: tab(['work_id', 'parent_product', 'module_slug', 'canonical_name_th', 'canonical_name_en', 'short_name_th', 'short_name_en', 'type', 'scope_layer', 'authority_status', 'source_aliases', 'evidence_note', 'catalog_url_th', 'catalog_url_en', 'destination_url', 'link_scope', 'url_source_ref', 'link_evidence_url'], workRows, {
     validations: { P: ['exact_module', 'exact_product', 'evidence_only', 'broader_catalog', 'unverified_no_link'] }
   }),
-  contributions: tab(['contribution_id', 'person_id', 'work_id', 'engagement_id', 'role_th', 'role_en', 'period_start', 'period_end', 'period_label', 'evidence_status', 'source_ref', 'evidence_note'], contributionRows),
+  contributions: tab(['contribution_id', 'person_id', 'work_id', 'engagement_id', 'role_th', 'role_en', 'period_start', 'period_end', 'period_label', 'evidence_status', 'source_ref', 'evidence_note', 'summary_th', 'summary_en'], contributionRows, {
+    columnWidths: { M: 520, N: 520 }
+  }),
   achievements: tab(['achievement_id', 'title_th', 'title_en', 'result_th', 'result_en', 'organizer_th', 'organizer_en', 'awarded_on', 'date_verification_status', 'work_id', 'evidence_status', 'evidence_url', 'evidence_note'], achievementRows),
   person_achievements: tab(['person_achievement_id', 'achievement_id', 'person_id'], personAchievementRows),
   external_publications: tab(['publication_id', 'person_id', 'title_th', 'title_en', 'outlet', 'volume', 'year', 'doi', 'public_url', 'owner_evidence_url', 'bibliographic_url', 'relationship', 'scope', 'verification_status', 'publication_basis', 'evidence_note'], publicationRows, {

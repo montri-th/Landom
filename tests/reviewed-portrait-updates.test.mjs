@@ -70,7 +70,7 @@ test('reviewed CLI preserves the complete approved graph and never accesses a mi
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'landom-reviewed-cli-'));
   try {
     for (const dir of ['tools', 'data/approved']) fs.mkdirSync(path.join(root, dir), { recursive: true });
-    for (const file of ['normalize-data.mjs', 'normalized-sheet-roundtrip.mjs', 'publication-consent.mjs', 'reviewed-portrait-updates.mjs', 'citymeter-attribution.mjs', 'person-identity-overrides.mjs']) {
+    for (const file of ['normalize-data.mjs', 'normalized-sheet-roundtrip.mjs', 'publication-consent.mjs', 'reviewed-portrait-updates.mjs', 'citymeter-attribution.mjs', 'board-contributions.mjs', 'person-identity-overrides.mjs']) {
       fs.copyFileSync(new URL('../tools/' + file, import.meta.url), path.join(root, 'tools', file));
     }
     fs.copyFileSync(new URL('../data/approved/person-identity-overrides.json', import.meta.url), path.join(root, 'data/approved/person-identity-overrides.json'));

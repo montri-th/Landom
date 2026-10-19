@@ -1,0 +1,311 @@
+{
+  "contractVersion": "1.0",
+  "reviewedAt": "2026-10-19",
+  "scope": "owner_approved_completed_task_contributions_only",
+  "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+  "evidenceBoundary": "Only reviewed tasks marked Complete inform these descriptions. Work still in progress and unresolved identities or module mappings are excluded. Existing approved credits are preserved.",
+  "work": {
+    "workId": "work-citymeter-yolk",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER Yolk",
+      "en": "CityMETER Yolk"
+    },
+    "shortNames": {
+      "th": "CityMETER Yolk",
+      "en": "CityMETER Yolk"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_approved_board_contribution_scope",
+    "sourceAliases": [
+      "Workspace",
+      "Workspace v3",
+      "CityMETER Yolk"
+    ],
+    "evidenceNote": "Workspace is the former name used for the reviewed CityMETER Yolk work. No public destination or dataset-catalog module is asserted.",
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+      "evidenceUrl": null
+    }
+  },
+  "summaries": [
+    {
+      "contributionId": "C0051",
+      "personId": "I0036",
+      "expectedCoreSha256": "0d714c69664fd0c1b0e52b085b31011d56c8a9a4ce3fd8b3af787f501cfa85ab",
+      "completedTaskRefs": [
+        "BL-169"
+      ],
+      "summary": {
+        "th": "ร่วมเพิ่มแฮชแท็กและแผนที่สำหรับเจ้าหน้าที่ใน CityChat",
+        "en": "Contributed hashtags and a map for officers in CityChat."
+      }
+    },
+    {
+      "contributionId": "C0081",
+      "personId": "I0031",
+      "expectedCoreSha256": "17f87a296c62276b1daeec20efe67dab7ef2a9d8decbb0972a336da6c5489a4b",
+      "completedTaskRefs": [
+        "BL-159",
+        "BL-168",
+        "BL-174",
+        "BL-175",
+        "BL-196",
+        "BL-223",
+        "BL-237"
+      ],
+      "summary": {
+        "th": "ร่วมจัดทำข้อมูลสถานที่สำคัญ ประชากร และแผนที่ชุมชนของเทศบาลเมืองศิลา พร้อมปรับหน้าจอ CityChat การแสดงแผนที่ประกอบแคมเปญ และสื่อสาธิต",
+        "en": "Contributed key-place and population data, community maps, CityChat interface updates, campaign map support, and demo materials for Sila Municipality."
+      }
+    },
+    {
+      "contributionId": "C0083",
+      "personId": "I0030",
+      "expectedCoreSha256": "c28d718fa6fb3e098aca80d593d6a81edad212516932c7c6024fbd827b81c75d",
+      "completedTaskRefs": [
+        "BL-181"
+      ],
+      "summary": {
+        "th": "ร่วมเชื่อมข้อมูลอาคารจาก OpenStreetMap เข้ากับชุดข้อมูลอาคาร เพื่อเสริมรายละเอียดบนแผนที่",
+        "en": "Contributed spatial joins between OpenStreetMap buildings and the building dataset to enrich map details."
+      }
+    },
+    {
+      "contributionId": "C0121",
+      "personId": "I0044",
+      "expectedCoreSha256": "117d65e13bed8e5ab9b098e8099412e2bb26980a99acf1a4af77b609ec23facb",
+      "completedTaskRefs": [
+        "BL-202",
+        "BL-205",
+        "BL-219"
+      ],
+      "summary": {
+        "th": "ร่วมวิจัยแบรนด์และร้านค้า พร้อมจัดทำ Problem Cards เพื่อสรุปข้อมูลที่ทราบ สมมติฐาน และประเด็นที่ต้องตรวจสอบสำหรับทีม ijji",
+        "en": "Contributed brand and business research and prepared problem cards that distinguish known information, hypotheses, and questions for the ijji team."
+      }
+    },
+    {
+      "contributionId": "C0122",
+      "personId": "I0045",
+      "expectedCoreSha256": "81e60086a0d05dc7e29e927427ad3f5ed07c4c846d0fc0d9071c556b10fef4b2",
+      "completedTaskRefs": [
+        "BL-161"
+      ],
+      "summary": {
+        "th": "ร่วมเตรียมชุดข้อมูล ไฟล์ย้ายฐานข้อมูล และการนำ CityMETER ศาสนสถานขึ้นใช้งาน",
+        "en": "Contributed dataset and database-migration preparation and deployment work for CityMETER Religious Places."
+      }
+    },
+    {
+      "contributionId": "C0123",
+      "personId": "I0045",
+      "expectedCoreSha256": "a0665e6bee3b910e647c9c35a6ed5923bdb21a170a862ebd10f5c84bf5bea784",
+      "completedTaskRefs": [
+        "BL-160",
+        "BL-198",
+        "BL-211",
+        "BL-215"
+      ],
+      "summary": {
+        "th": "ร่วมปรับปรุงข้อมูลสถานีบริการเชื้อเพลิง ตรวจข้อมูลซ้ำ และพัฒนาโหมดเปรียบเทียบ",
+        "en": "Contributed fuel-station data improvements, duplicate checks, and comparison-mode development."
+      }
+    },
+    {
+      "contributionId": "C0125",
+      "personId": "I0030",
+      "expectedCoreSha256": "9e0b6106c11f57280ee8b49fa9c7e4e21c319791fa6ee6ff0e76983376dcf1e7",
+      "completedTaskRefs": [
+        "BL-171"
+      ],
+      "summary": {
+        "th": "ร่วมปรับปรุงชุดข้อมูลร้านสะดวกซื้อและนำมารองรับ CityMETER V3",
+        "en": "Contributed convenience-store dataset updates and its migration to CityMETER V3."
+      }
+    },
+    {
+      "contributionId": "C0126",
+      "personId": "I0034",
+      "expectedCoreSha256": "652154307bc6995f166cbbc1b7575ee892931a3b1b448ff06c84c227ba8a1116",
+      "completedTaskRefs": [
+        "BL-183"
+      ],
+      "summary": {
+        "th": "ร่วมพัฒนา CityMETER Terrain สำหรับอ่านระดับความสูงและลักษณะภูมิประเทศ",
+        "en": "Contributed CityMETER Terrain for exploring elevation and terrain characteristics."
+      }
+    }
+  ],
+  "contributions": [
+    {
+      "completedTaskRefs": [
+        "BL-156",
+        "BL-157",
+        "BL-163",
+        "BL-164",
+        "BL-170",
+        "BL-172",
+        "BL-173",
+        "BL-176",
+        "BL-177",
+        "BL-178",
+        "BL-225"
+      ],
+      "record": {
+        "contributionId": "C0131",
+        "personId": "I0039",
+        "workId": "work-citymeter-rugon",
+        "engagementId": "E0049",
+        "role": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "period": {
+          "start": null,
+          "end": null,
+          "label": null
+        },
+        "evidenceStatus": "owner_supplied",
+        "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+        "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+        "summary": {
+          "th": "ร่วมพัฒนาแผนที่และการเจาะดูข้อมูลแผ่นดินไหวใน RUGON พร้อมปรับข้อความไทย–อังกฤษและเตรียมนำระบบขึ้นใช้งาน",
+          "en": "Contributed RUGON earthquake maps and drilldowns, Thai and English copy, and deployment preparation."
+        }
+      }
+    },
+    {
+      "completedTaskRefs": [
+        "BL-218"
+      ],
+      "record": {
+        "contributionId": "C0132",
+        "personId": "I0030",
+        "workId": "work-citymeter-population",
+        "engagementId": "E0040",
+        "role": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "period": {
+          "start": null,
+          "end": null,
+          "label": null
+        },
+        "evidenceStatus": "owner_supplied",
+        "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+        "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+        "summary": {
+          "th": "ร่วมพัฒนาชุดข้อมูลประชากรบน CityMETER",
+          "en": "Contributed to the population dataset in CityMETER."
+        }
+      }
+    },
+    {
+      "completedTaskRefs": [
+        "BL-226"
+      ],
+      "record": {
+        "contributionId": "C0133",
+        "personId": "I0030",
+        "workId": "work-citymeter-schools",
+        "engagementId": "E0040",
+        "role": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "period": {
+          "start": null,
+          "end": null,
+          "label": null
+        },
+        "evidenceStatus": "owner_supplied",
+        "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+        "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+        "summary": {
+          "th": "ร่วมปรับปรุงชุดข้อมูลโรงเรียน นักเรียน และครูบน CityMETER",
+          "en": "Contributed updates to school, student, and teacher data in CityMETER."
+        }
+      }
+    },
+    {
+      "completedTaskRefs": [
+        "BL-201"
+      ],
+      "record": {
+        "contributionId": "C0134",
+        "personId": "I0030",
+        "workId": "work-dwr-telemetry",
+        "engagementId": "E0040",
+        "role": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "period": {
+          "start": null,
+          "end": null,
+          "label": null
+        },
+        "evidenceStatus": "owner_supplied",
+        "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+        "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+        "summary": {
+          "th": "ร่วมเพิ่มกราฟปริมาณน้ำฝนบนกราฟระดับน้ำ ทั้งในแถบรายละเอียดและมุมมองขยายของระบบโทรมาตร",
+          "en": "Contributed rainfall overlays on water-level charts in both the detail sidebar and expanded view of the telemetry system."
+        }
+      }
+    },
+    {
+      "completedTaskRefs": [
+        "BL-158",
+        "BL-165",
+        "BL-199"
+      ],
+      "record": {
+        "contributionId": "C0135",
+        "personId": "I0036",
+        "workId": "work-citymeter-yolk",
+        "engagementId": "E0046",
+        "role": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "period": {
+          "start": null,
+          "end": null,
+          "label": null
+        },
+        "evidenceStatus": "owner_supplied",
+        "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+        "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+        "summary": {
+          "th": "ร่วมออกแบบ Workspace และพัฒนาฟังก์ชันพื้นฐานของ CityMETER Yolk",
+          "en": "Contributed Workspace design and core features for CityMETER Yolk."
+        }
+      }
+    }
+  ],
+  "preservedContributions": [
+    {
+      "contributionId": "C0071",
+      "sha256": "54efd861bd4b38f63ecf0b8b57c50cb7d35fc67be07c7ba546f05196207b8553"
+    },
+    {
+      "contributionId": "C0086",
+      "sha256": "a904df4c7ff1cafc6af08746cfd1fa016d82c37eafd38cb6dfd3aa718bc1382d"
+    },
+    {
+      "contributionId": "C0130",
+      "sha256": "890147a5b24e65adef961dd7547af9128c7026708e2d104991503d3915c2f3b9"
+    }
+  ]
+}

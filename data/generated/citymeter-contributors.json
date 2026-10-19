@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-10-11T00:00:00+07:00",
+  "generatedAt": "2026-10-19T00:00:00+07:00",
   "canonicalUrl": "https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json",
   "byModuleSlug": {
     "dataset-registered-companies-status-capital": [
@@ -237,6 +237,29 @@
           "alt": {
             "th": "ภาพโปรไฟล์ของโอ๊ต",
             "en": "Profile portrait of Oat"
+          }
+        }
+      },
+      {
+        "personId": "I0030",
+        "nickname": {
+          "th": "เคน",
+          "en": "Ken"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0030&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0030&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเคน",
+            "en": "Profile portrait of Ken"
           }
         }
       }
@@ -777,6 +800,29 @@
           "en": "https://montri-th.github.io/Landom/en/?person=S0007&lang=en"
         },
         "portrait": null
+      },
+      {
+        "personId": "I0030",
+        "nickname": {
+          "th": "เคน",
+          "en": "Ken"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0030&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0030&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของเคน",
+            "en": "Profile portrait of Ken"
+          }
+        }
       }
     ],
     "dataset-registered-housing-estates": [
@@ -1234,6 +1280,29 @@
           "alt": {
             "th": "ภาพโปรไฟล์ของพัทธ์",
             "en": "Profile portrait of Pat"
+          }
+        }
+      },
+      {
+        "personId": "I0039",
+        "nickname": {
+          "th": "จอมใจ",
+          "en": "Jomjai"
+        },
+        "contributionRole": {
+          "th": "Software development",
+          "en": "Software development"
+        },
+        "profileUrl": {
+          "th": "https://montri-th.github.io/Landom/?person=I0039&lang=th",
+          "en": "https://montri-th.github.io/Landom/en/?person=I0039&lang=en"
+        },
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0039.jpg?v=e4e163a8e3b9",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของจอมใจ",
+            "en": "Profile portrait of Jomjai"
           }
         }
       }

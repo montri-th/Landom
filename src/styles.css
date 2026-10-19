@@ -2360,6 +2360,14 @@ lm-motif[quiet][data-artifact-quiet-ink="gray-luminous"] {
     line-height: var(--leading-compact);
   }
 
+  .contribution-summary {
+    margin-top: var(--space-2);
+    color: var(--text-secondary);
+    font-size: var(--type-body-sm);
+    line-height: var(--leading-body);
+    overflow-wrap: anywhere;
+  }
+
   .timeline-meta {
     letter-spacing: 0.02em;
     text-transform: none;

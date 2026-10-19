@@ -6,8 +6,22 @@ import { publicDirectoryEntries } from '../src/public-directory.js';
 
 const read = (path) => JSON.parse(fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8'));
 const approved = read('data/approved/citymeter-attribution-2026-10-10.json');
-const current = read('data/generated/site-data.json');
+const released = read('data/generated/site-data.json');
+const current = historicalGraph(released);
 const media = read('data/generated/people-media.json');
+
+// Keep this historical approval fixture separate from later approved Board
+// additions and their optional public descriptions.
+function historicalGraph(data) {
+  const result = structuredClone(data);
+  result.works = result.works.filter((row) => row.workId !== 'work-citymeter-yolk');
+  result.contributions = result.contributions
+    .filter((row) => !['C0131', 'C0132', 'C0133', 'C0134', 'C0135'].includes(row.contributionId))
+    .map(({ summary, ...row }) => row);
+  result.meta.counts.works = result.works.length;
+  result.meta.counts.contributions = result.contributions.length;
+  return result;
+}
 
 function baseline() {
   const data = structuredClone(current);
@@ -114,7 +128,7 @@ test('CityMETER public projection has exact identities, localized profile links 
   }
   const text = JSON.stringify(projection);
   for (const privateValue of ['contacts_internal', 'private@example.invalid', 'privateReceipt', 'sourceUrl', 'consentStatus', 'engagementId', 'C0125']) assert.equal(text.includes(privateValue), false);
-  assert.deepEqual(read('data/generated/citymeter-contributors.json'), buildCitymeterContributors(current, media));
+  assert.deepEqual(read('data/generated/citymeter-contributors.json'), buildCitymeterContributors(released, media));
 });
 
 test('no portrait or removed public person creates no fallback image or identity', () => {

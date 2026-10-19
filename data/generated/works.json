@@ -2050,5 +2050,37 @@
       "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
       "evidenceUrl": null
     }
+  },
+  {
+    "workId": "work-citymeter-yolk",
+    "parentProduct": "CityMETER",
+    "moduleSlug": null,
+    "names": {
+      "th": "CityMETER Yolk",
+      "en": "CityMETER Yolk"
+    },
+    "shortNames": {
+      "th": "CityMETER Yolk",
+      "en": "CityMETER Yolk"
+    },
+    "type": "product_specific_deliverable",
+    "scopeLayer": "product_specific",
+    "authorityStatus": "owner_approved_board_contribution_scope",
+    "sourceAliases": [
+      "Workspace",
+      "Workspace v3",
+      "CityMETER Yolk"
+    ],
+    "evidenceNote": "Workspace is the former name used for the reviewed CityMETER Yolk work. No public destination or dataset-catalog module is asserted.",
+    "catalogUrl": {
+      "th": null,
+      "en": null
+    },
+    "destinationUrl": null,
+    "linkEvidence": {
+      "linkScope": "unverified_no_link",
+      "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+      "evidenceUrl": null
+    }
   }
 ]

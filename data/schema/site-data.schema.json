@@ -320,6 +320,13 @@
         "workId": { "type": "string" },
         "engagementId": { "type": ["string", "null"] },
         "role": { "$ref": "#/$defs/localizedRequired" },
+        "summary": {
+          "$ref": "#/$defs/localized",
+          "anyOf": [
+            { "properties": { "th": { "type": "string", "pattern": "\\S" } } },
+            { "properties": { "en": { "type": "string", "pattern": "\\S" } } }
+          ]
+        },
         "period": { "$ref": "#/$defs/period" },
         "evidenceStatus": { "enum": ["sheet_recorded", "owner_supplied", "owner_and_sheet_confirmed", "owner_detail_required"] },
         "sourceRef": { "type": "string" }

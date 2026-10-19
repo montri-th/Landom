@@ -13,6 +13,7 @@ const EXISTING_BINDING_IDENTITIES = Object.freeze({
 const BINDING_FIELDS = ['moduleSlug', 'type', 'authorityStatus', 'evidenceNote', 'catalogUrl', 'destinationUrl', 'linkEvidence'];
 
 const bindingState = (work) => Object.fromEntries(BINDING_FIELDS.map((field) => [field, work[field]]));
+const contributionCore = ({ summary, ...record }) => record;
 
 /** Owner-confirmed continuation of one existing module. Retain both Ing's
  * original module credit and Earth's distinct shared-layer credit unchanged. */
@@ -165,7 +166,7 @@ export function applyCitymeterAttribution(siteData, contract) {
       evidenceNote: 'Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred.'
     };
     const current = contributions.get(contribution.contributionId);
-    if (current && !isDeepStrictEqual(current, contribution)) throw new Error('Existing contribution differs from approved attribution: ' + contribution.contributionId);
+    if (current && !isDeepStrictEqual(contributionCore(current), contribution)) throw new Error('Existing contribution differs from approved attribution: ' + contribution.contributionId);
     if (!current) { result.contributions.push(contribution); contributions.set(contribution.contributionId, contribution); }
   }
   result.meta.counts.works = result.works.length;

@@ -41,6 +41,11 @@ export function contributionRoleLabel(role, language = "th") {
   return labels[value] || value;
 }
 
+export function contributionSummary(contribution, language = "th") {
+  const summary = contribution?.summary;
+  return String(summary?.[language] || "").trim() || String(summary?.[language === "en" ? "th" : "en"] || "").trim();
+}
+
 export function publicDirectoryEntries(data, language = "th") {
   const works = new Map((data.works || []).map((work) => [work.workId, work]));
   return (data.people || []).flatMap((person) => {
@@ -56,7 +61,7 @@ export function publicDirectoryEntries(data, language = "th") {
         if (!name) return [];
         const destination = [work.publicUrls, work.catalogUrls, work.publicUrl, work.catalogUrl, work.destinationUrl]
           .map((value) => localized(value, language)).find(Boolean);
-        return [{ workId: item.workId, name, url: safeUrl(destination), role: contributionRoleLabel(localized(item.roleInWork || item.role, language), language) }];
+        return [{ workId: item.workId, name, url: safeUrl(destination), role: contributionRoleLabel(localized(item.roleInWork || item.role, language), language), summary: contributionSummary(item, language) }];
       });
     return [{ personId: person.personId, name, fullName: localized(person.names?.full, language), url, contributions }];
   });
@@ -77,7 +82,7 @@ export function renderPublicDirectory(data, language = "th") {
     <div class="public-directory-grid">${entries.map((person) => `<article class="public-person" data-public-person-id="${esc(person.personId)}">
       <h4><a href="${esc(person.url)}">${esc(person.name)}</a></h4>
       ${person.fullName && person.fullName !== person.name ? `<p>${esc(person.fullName)}</p>` : ""}
-      ${person.contributions.length ? `<details><summary><span>${labels.works} (${person.contributions.length})</span>${uiIconMarkup("expand_more", "disclosure-icon")}</summary><ul>${person.contributions.map((work) => `<li data-public-work-id="${esc(work.workId)}">${work.url ? `<a href="${esc(work.url)}">${esc(work.name)}</a>` : esc(work.name)}${work.role ? `<small>${esc(work.role)}</small>` : ""}</li>`).join("")}</ul></details>` : ""}
+      ${person.contributions.length ? `<details><summary><span>${labels.works} (${person.contributions.length})</span>${uiIconMarkup("expand_more", "disclosure-icon")}</summary><ul>${person.contributions.map((work) => `<li data-public-work-id="${esc(work.workId)}">${work.url ? `<a href="${esc(work.url)}">${esc(work.name)}</a>` : esc(work.name)}${work.role ? `<small>${esc(work.role)}</small>` : ""}${work.summary ? `<p class="contribution-summary">${esc(work.summary)}</p>` : ""}</li>`).join("")}</ul></details>` : ""}
     </article>`).join("")}</div>
   </section>`;
 }

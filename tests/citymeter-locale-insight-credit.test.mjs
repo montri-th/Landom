@@ -10,8 +10,22 @@ import { publicDirectoryEntries } from '../src/public-directory.js';
 const root = new URL('../', import.meta.url).pathname;
 const read = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const contract = read('data/approved/citymeter-locale-insight-credit-2026-10-11.json');
-const current = read('data/generated/site-data.json');
+const released = read('data/generated/site-data.json');
+const current = historicalGraph(released);
 const media = read('data/generated/people-media.json');
+
+// Keep this historical approval fixture separate from later approved Board
+// additions and their optional public descriptions.
+function historicalGraph(data) {
+  const result = structuredClone(data);
+  result.works = result.works.filter((row) => row.workId !== 'work-citymeter-yolk');
+  result.contributions = result.contributions
+    .filter((row) => !['C0131', 'C0132', 'C0133', 'C0134', 'C0135'].includes(row.contributionId))
+    .map(({ summary, ...row }) => row);
+  result.meta.counts.works = result.works.length;
+  result.meta.counts.contributions = result.contributions.length;
+  return result;
+}
 function baseline() {
   const data = structuredClone(current);
   data.contributions = data.contributions.filter((row) => row.contributionId !== 'C0130');
@@ -85,11 +99,11 @@ test('reviewed normalization recreates the credit and projection without raw She
     const generated = JSON.parse(fs.readFileSync(path.join(output, 'site-data.json'), 'utf8'));
     const projected = JSON.parse(fs.readFileSync(path.join(output, 'citymeter-contributors.json'), 'utf8'));
     assert.equal(generated.contributions.filter((row) => row.contributionId === 'C0130').length, 1);
-    assert.equal(generated.meta.counts.contributions, 130);
-    assert.equal(generated.meta.reviewedAt, contract.reviewedAt);
-    assert.deepEqual(generated.people, current.people);
-    assert.deepEqual(generated.works, current.works);
-    assert.deepEqual(generated.assets, current.assets);
+    assert.equal(generated.meta.counts.contributions, released.meta.counts.contributions);
+    assert.equal(generated.meta.reviewedAt, released.meta.reviewedAt);
+    assert.deepEqual(generated.people, released.people);
+    assert.deepEqual(generated.works, released.works);
+    assert.deepEqual(generated.assets, released.assets);
     assert.deepEqual(projected.byModuleSlug['dataset-locale-insights'].map((row) => row.personId), ['I0011', 'I0034']);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });

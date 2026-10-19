@@ -341,6 +341,7 @@ export function importNormalizedSheetSnapshot(snapshot, baseline) {
     workId: text(row.work_id),
     engagementId: nullable(row.engagement_id),
     role: localized(row.role_th, row.role_en),
+    ...(text(row.summary_th) || text(row.summary_en) ? { summary: localized(row.summary_th, row.summary_en) } : {}),
     period: { start: nullable(row.period_start), end: nullable(row.period_end), label: nullable(row.period_label) },
     evidenceStatus: text(row.evidence_status),
     sourceRef: text(row.source_ref),
