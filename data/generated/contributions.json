@@ -915,7 +915,11 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-08-23",
-    "evidenceNote": null
+    "evidenceNote": null,
+    "summary": {
+      "th": "ร่วมเพิ่มแฮชแท็กและแผนที่สำหรับเจ้าหน้าที่ใน CityChat",
+      "en": "Contributed hashtags and a map for officers in CityChat."
+    }
   },
   {
     "contributionId": "C0052",
@@ -1455,7 +1459,11 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-08-23",
-    "evidenceNote": null
+    "evidenceNote": null,
+    "summary": {
+      "th": "ร่วมจัดทำข้อมูลสถานที่สำคัญ ประชากร และแผนที่ชุมชนของเทศบาลเมืองศิลา พร้อมปรับหน้าจอ CityChat การแสดงแผนที่ประกอบแคมเปญ และสื่อสาธิต",
+      "en": "Contributed key-place and population data, community maps, CityChat interface updates, campaign map support, and demo materials for Sila Municipality."
+    }
   },
   {
     "contributionId": "C0082",
@@ -1491,7 +1499,11 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-08-23",
-    "evidenceNote": null
+    "evidenceNote": null,
+    "summary": {
+      "th": "ร่วมเชื่อมข้อมูลอาคารจาก OpenStreetMap เข้ากับชุดข้อมูลอาคาร เพื่อเสริมรายละเอียดบนแผนที่",
+      "en": "Contributed spatial joins between OpenStreetMap buildings and the building dataset to enrich map details."
+    }
   },
   {
     "contributionId": "C0084",
@@ -2175,7 +2187,11 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-09-29",
-    "evidenceNote": "The owner confirmed Sorso is supporting Renee on ijji. Exact tasks, deliverables and contribution dates were not supplied; no lead role or completed outcome is inferred."
+    "evidenceNote": "The owner confirmed Sorso is supporting Renee on ijji. Exact tasks, deliverables and contribution dates were not supplied; no lead role or completed outcome is inferred.",
+    "summary": {
+      "th": "ร่วมวิจัยแบรนด์และร้านค้า พร้อมจัดทำ Problem Cards เพื่อสรุปข้อมูลที่ทราบ สมมติฐาน และประเด็นที่ต้องตรวจสอบสำหรับทีม ijji",
+      "en": "Contributed brand and business research and prepared problem cards that distinguish known information, hypotheses, and questions for the ijji team."
+    }
   },
   {
     "contributionId": "C0122",
@@ -2193,7 +2209,11 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-09-29",
-    "evidenceNote": "The owner identified Q's religious-places work as in progress and asked to defer the profile statement until the work is finished. No completion, detailed responsibilities or outcome is inferred."
+    "evidenceNote": "The owner identified Q's religious-places work as in progress and asked to defer the profile statement until the work is finished. No completion, detailed responsibilities or outcome is inferred.",
+    "summary": {
+      "th": "ร่วมเตรียมชุดข้อมูล ไฟล์ย้ายฐานข้อมูล และการนำ CityMETER ศาสนสถานขึ้นใช้งาน",
+      "en": "Contributed dataset and database-migration preparation and deployment work for CityMETER Religious Places."
+    }
   },
   {
     "contributionId": "C0123",
@@ -2211,7 +2231,11 @@
     },
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-09-29",
-    "evidenceNote": "The owner identified Q's Gas station improvement work as in progress. It is reconciled to the existing Fuel Stations work record without inferring completion, a release, detailed responsibilities or an outcome."
+    "evidenceNote": "The owner identified Q's Gas station improvement work as in progress. It is reconciled to the existing Fuel Stations work record without inferring completion, a release, detailed responsibilities or an outcome.",
+    "summary": {
+      "th": "ร่วมปรับปรุงข้อมูลสถานีบริการเชื้อเพลิง ตรวจข้อมูลซ้ำ และพัฒนาโหมดเปรียบเทียบ",
+      "en": "Contributed fuel-station data improvements, duplicate checks, and comparison-mode development."
+    }
   },
   {
     "contributionId": "C0124",
@@ -2247,7 +2271,11 @@
     },
     "evidenceStatus": "owner_and_sheet_confirmed",
     "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
-    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred.",
+    "summary": {
+      "th": "ร่วมปรับปรุงชุดข้อมูลร้านสะดวกซื้อและนำมารองรับ CityMETER V3",
+      "en": "Contributed convenience-store dataset updates and its migration to CityMETER V3."
+    }
   },
   {
     "contributionId": "C0126",
@@ -2265,7 +2293,11 @@
     },
     "evidenceStatus": "owner_and_sheet_confirmed",
     "sourceRef": "owner_instruction_2026-10-10_public_repo_implementation",
-    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred."
+    "evidenceNote": "Generic contribution confirmed by the owner. No engagement, contribution dates, lead role or completion is inferred.",
+    "summary": {
+      "th": "ร่วมพัฒนา CityMETER Terrain สำหรับอ่านระดับความสูงและลักษณะภูมิประเทศ",
+      "en": "Contributed CityMETER Terrain for exploring elevation and terrain characteristics."
+    }
   },
   {
     "contributionId": "C0127",
@@ -2338,5 +2370,115 @@
     "evidenceStatus": "owner_supplied",
     "sourceRef": "owner_instruction_2026-10-11_locale_insight_continuation",
     "evidenceNote": "The owner confirms Earth continues Ing's Locale Insight work. Ing's original module credit and Earth's separate shared-layer credit are retained. No contribution date, version, engagement, leadership or completion is inferred."
+  },
+  {
+    "contributionId": "C0131",
+    "personId": "I0039",
+    "workId": "work-citymeter-rugon",
+    "engagementId": "E0049",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+    "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+    "summary": {
+      "th": "ร่วมพัฒนาแผนที่และการเจาะดูข้อมูลแผ่นดินไหวใน RUGON พร้อมปรับข้อความไทย–อังกฤษและเตรียมนำระบบขึ้นใช้งาน",
+      "en": "Contributed RUGON earthquake maps and drilldowns, Thai and English copy, and deployment preparation."
+    }
+  },
+  {
+    "contributionId": "C0132",
+    "personId": "I0030",
+    "workId": "work-citymeter-population",
+    "engagementId": "E0040",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+    "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+    "summary": {
+      "th": "ร่วมพัฒนาชุดข้อมูลประชากรบน CityMETER",
+      "en": "Contributed to the population dataset in CityMETER."
+    }
+  },
+  {
+    "contributionId": "C0133",
+    "personId": "I0030",
+    "workId": "work-citymeter-schools",
+    "engagementId": "E0040",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+    "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+    "summary": {
+      "th": "ร่วมปรับปรุงชุดข้อมูลโรงเรียน นักเรียน และครูบน CityMETER",
+      "en": "Contributed updates to school, student, and teacher data in CityMETER."
+    }
+  },
+  {
+    "contributionId": "C0134",
+    "personId": "I0030",
+    "workId": "work-dwr-telemetry",
+    "engagementId": "E0040",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+    "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+    "summary": {
+      "th": "ร่วมเพิ่มกราฟปริมาณน้ำฝนบนกราฟระดับน้ำ ทั้งในแถบรายละเอียดและมุมมองขยายของระบบโทรมาตร",
+      "en": "Contributed rainfall overlays on water-level charts in both the detail sidebar and expanded view of the telemetry system."
+    }
+  },
+  {
+    "contributionId": "C0135",
+    "personId": "I0036",
+    "workId": "work-citymeter-yolk",
+    "engagementId": "E0046",
+    "role": {
+      "th": "Software development",
+      "en": "Software development"
+    },
+    "period": {
+      "start": null,
+      "end": null,
+      "label": null
+    },
+    "evidenceStatus": "owner_supplied",
+    "sourceRef": "owner_instruction_2026-10-19_board_contributions",
+    "evidenceNote": "The owner approved this bounded description from Board tasks marked Complete. This does not establish sole authorship, completion of the whole product, deployment verification, data accuracy or business outcomes. Existing credits and governance states are retained.",
+    "summary": {
+      "th": "ร่วมออกแบบ Workspace และพัฒนาฟังก์ชันพื้นฐานของ CityMETER Yolk",
+      "en": "Contributed Workspace design and core features for CityMETER Yolk."
+    }
   }
 ]

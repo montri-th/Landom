@@ -532,6 +532,14 @@ export function validateDataContract(data) {
   const contributionCount = new Map(data.people.map((person) => [person.personId, 0]));
   for (const contribution of data.contributions) {
     contributionCount.set(contribution.personId, (contributionCount.get(contribution.personId) ?? 0) + 1);
+    if (Object.hasOwn(contribution, 'summary')) {
+      const summary = contribution.summary;
+      const valid = summary && typeof summary === 'object' && !Array.isArray(summary) &&
+        ['th', 'en'].every((locale) => Object.hasOwn(summary, locale) && (summary[locale] === null || typeof summary[locale] === 'string')) &&
+        Object.keys(summary).every((key) => ['th', 'en'].includes(key)) &&
+        ['th', 'en'].some((locale) => typeof summary[locale] === 'string' && summary[locale].trim());
+      if (!valid) errors.push(`Contribution ${contribution.contributionId} summary must contain only th/en strings or null, with at least one non-empty locale.`);
+    }
     if (contribution.engagementId) {
       const engagement = engagementsById.get(contribution.engagementId);
       if (engagement && engagement.personId !== contribution.personId) {

@@ -3,7 +3,7 @@ import { initApproachMotion } from "./approach-motion.js";
 import { initBrandMotion } from "./brand-motion.js";
 import { initMediaParallax } from "./media-parallax.js";
 import { initSiteNavigation } from "./navigation.js";
-import { contributionRoleLabel } from "./public-directory.js";
+import { contributionRoleLabel, contributionSummary } from "./public-directory.js";
 import { prepareRecruitmentArrival, updateRecruitmentSection } from "./recruitment.js";
 import { initReadingFocus } from "./reading-focus.js";
 
@@ -1192,6 +1192,7 @@ function contributionRecordsForPerson(id, contributions, workIndex) {
         publicUrl,
         evidenceOnlyUrl,
         role: localizedContributionRole(contribution),
+        summary: contributionSummary(contribution, state.language),
         period: periodForContribution(contribution)
       };
     })
@@ -1908,7 +1909,7 @@ function contributionsMarkup(model) {
           const evidenceMarkup = contribution.evidenceOnlyUrl
             ? `<a class="contribution-evidence-link" href="${escapeHtml(contribution.evidenceOnlyUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(message("openAwardEvidence", { name }))}"><span>${escapeHtml(message("awardEvidence"))}</span>${externalLinkIconMarkup()}</a>`
             : "";
-          return `<li class="contribution-item" data-work-id="${escapeHtml(contribution.workId)}">${nameMarkup}${evidenceMarkup}${meta ? `<p class="contribution-meta">${escapeHtml(meta)}</p>` : ""}</li>`;
+          return `<li class="contribution-item" data-work-id="${escapeHtml(contribution.workId)}">${nameMarkup}${evidenceMarkup}${meta ? `<p class="contribution-meta">${escapeHtml(meta)}</p>` : ""}${contribution.summary ? `<p class="contribution-summary">${escapeHtml(contribution.summary)}</p>` : ""}</li>`;
         }).join("")}
       </ul>
     </section>

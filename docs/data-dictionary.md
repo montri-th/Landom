@@ -225,6 +225,7 @@ Locale Insight Intelligence Layer อยู่ใน `shared_landometer` แต�
 | `workId` | FK → works |
 | `engagementId` | FK → engagements หรือ null เมื่อผูกช่วงบทบาทไม่ได้อย่างปลอดภัย |
 | `role.th/en` | FDI=`Software development`, PDI=`Product development`, MSI=`Go-to-market`; IMP ใช้ TH=`ที่ปรึกษาธุรกิจ`, EN=`Consulting Partner`; CityCell=`Team member`; program อื่นคง role ตามหลักฐานและห้ามยกระดับเอง |
+| `summary.th/en` | ข้อความสรุปสิ่งที่ร่วมทำตามหลักฐานที่อนุมัติ (optional); มีอย่างน้อยหนึ่งภาษาที่ไม่ว่าง อีกภาษาเป็น null ได้และหน้าเว็บใช้ภาษาที่มีอยู่แทน; เก็บแยกจาก role, period และ private evidence note; Sheet ใช้ `summary_th`/`summary_en` ที่ M:N ต่อท้าย A:L เดิม |
 | `period` | start/end/label ตาม precision ของหลักฐาน |
 | `evidenceStatus` | ดูตารางด้านล่าง |
 | `sourceRef` | แหล่งข้อมูลระดับ record |

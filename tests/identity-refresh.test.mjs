@@ -18,7 +18,7 @@ test('owner-confirmed Que identity changes only three English name values and re
   assert.deepEqual(updated, data);
   assert.equal(person.names.full.en, null, 'input remains unchanged');
   assert.deepEqual(applyPersonIdentityOverrides(updated, contract), updated, 'idempotent');
-  assert.deepEqual([updated.people.length, updated.works.length, updated.contributions.length], [53, 69, baseline.contributions.length]);
+  assert.deepEqual([updated.people.length, updated.works.length, updated.contributions.length], [53, baseline.works.length, baseline.contributions.length]);
   const que = updated.people.find((row) => row.personId === 'I0045');
   assert.deepEqual(que.names, { full: { th: 'ณัฐพัฒน์ แดงคงแก้ว', en: 'Nattapat Daengkongkaew' }, nickname: { th: 'คิว', en: 'Que' }, card: { th: 'คิว', en: 'Que' } });
   assert.deepEqual(que.publication, { consentStatus: 'pending', profileStatus: 'withheld_pending_consent' });
