@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-10-06",
+  "generatedFrom": "owner_approved_and_participant_submitted_portrait_import_2026-08-23_through_2026-10-19",
   "sourceUrlsExcluded": true,
   "assets": [
     {
@@ -166,7 +166,7 @@
       "bytes": 63486,
       "sha256": "ce53d58516f51ca852ff8fa50ac45ee858b38bb6bbfa0ce9e581a237fe8085c7",
       "identityVerification": "sheet_profile_url_and_visible_profile_title",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -1155,7 +1155,7 @@
       "bytes": 99029,
       "sha256": "582a35ef4a5119f015777540b13218bc8b149086c6a243aa0d01870cd6556bce",
       "identityVerification": "exact_linkedin_profile_url_and_visible_profile_title",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-24",
@@ -1372,6 +1372,38 @@
           "y": 240,
           "width": 1108,
           "height": 1108
+        },
+        "metadataStripped": true,
+        "width": 800,
+        "height": 800,
+        "resampling": "LANCZOS",
+        "colorHandling": "embedded_to_srgb",
+        "subsampling": 2,
+        "optimize": false,
+        "progressive": false,
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "personId": "I0045",
+      "publicPath": "public/assets/people/I0045.jpg",
+      "mime": "image/jpeg",
+      "bytes": 91707,
+      "sha256": "1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
+      "optimization": {
+        "format": "jpeg",
+        "maxDimension": 800,
+        "quality": 78,
+        "sourceOriginalPreservedPrivately": true,
+        "sourceOriginalSha256": "ab5b11a87a0a5905e8d74313474b71c3620cac8761bd245ec3281e912a14211a",
+        "crop": {
+          "x": 900,
+          "y": 1580,
+          "width": 1500,
+          "height": 1500
         },
         "metadataStripped": true,
         "width": 800,

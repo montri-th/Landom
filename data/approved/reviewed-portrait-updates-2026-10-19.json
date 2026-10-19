@@ -1,0 +1,17 @@
+{
+  "contractVersion": "1.1",
+  "reviewedAt": "2026-10-19",
+  "sourceBaseCommit": "ca5f400694714478d11bca17ab0acad07c0a14bc",
+  "baseSiteDataSha256": "3eb220ff40e4f05aef677234b3a9aa0a2c12224a7aa4b2c312588cfff7f5276e",
+  "scope": "Landom profile portrait additions and replacements only",
+  "records": [
+    {
+      "personId": "I0045",
+      "operation": "add",
+      "expectedPreviousSha256": null,
+      "publicPath": "public/assets/people/I0045.jpg",
+      "sha256": "1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e",
+      "bytes": 91707
+    }
+  ]
+}

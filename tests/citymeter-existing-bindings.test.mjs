@@ -76,7 +76,7 @@ test('projection and bilingual native links use exact approved identities withou
   const worship = projection.byModuleSlug['dataset-places-of-worship'];
   assert.deepEqual(worship.map((row) => row.personId), ['I0045']);
   assert.deepEqual(worship[0].nickname, { th: 'คิว', en: 'Que' });
-  assert.equal(worship[0].portrait, null);
+  assert.deepEqual(worship[0].portrait, { url: media.people.find((row) => row.personId === 'I0045').portrait.url, versionedUrl: media.people.find((row) => row.personId === 'I0045').portrait.versionedUrl, alt: { th: 'ภาพโปรไฟล์ของคิว', en: 'Profile portrait of Que' } });
   assert.equal(worship[0].contributionRole.en, 'Developing');
   const source = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   for (const locale of ['th', 'en']) {

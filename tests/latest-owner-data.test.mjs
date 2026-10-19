@@ -157,16 +157,24 @@ test('latest governed data additions do not change any approved profile biograph
   }
 });
 
-test('Que uses the owner-confirmed English name while keeping placement, pending consent and deferred statement', () => {
+test('Que participant consent and supplied portrait preserve the owner-confirmed identity, placement and deferred statement', () => {
   const q = data.people.find((person) => person.personId === 'I0045');
   assert.equal(q.names.full.th, 'ณัฐพัฒน์ แดงคงแก้ว');
   assert.equal(q.names.full.en, 'Nattapat Daengkongkaew');
   assert.deepEqual(q.names.nickname, { th: 'คิว', en: 'Que' });
-  assert.deepEqual(q.publication, { consentStatus: 'pending', profileStatus: 'withheld_pending_consent' });
+  assert.deepEqual(q.publication, { consentStatus: 'granted', profileStatus: 'eligible' });
   const portrait = data.assets.find((asset) => asset.personId === q.personId && asset.kind === 'profile_portrait');
-  assert.equal(portrait.publicPath, null);
-  assert.equal(portrait.candidateStatus, 'source_needed');
-  assert.equal(portrait.consentStatus, 'pending');
+  assert.equal(portrait.publicPath, 'public/assets/people/I0045.jpg');
+  assert.equal(portrait.candidateStatus, 'candidate_present');
+  assert.equal(portrait.consentStatus, 'granted');
+  assert.equal(portrait.sha256, '1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e');
+  assert.equal(portrait.bytes, 91707);
+  assert.equal(portrait.ownerApproval, null);
+  assert.equal(portrait.publicationBasis, 'individual_consent');
+  assert.deepEqual(data.socialProfiles.filter((row) => row.personId === 'I0045' && row.publicUrl).map((row) => ({ platform: row.platform, publicUrl: row.publicUrl, consentStatus: row.consentStatus })), [
+    { platform: 'linkedin', publicUrl: 'https://www.linkedin.com/in/n-q-83a86b287', consentStatus: 'granted' },
+    { platform: 'github', publicUrl: 'https://github.com/nattapatque', consentStatus: 'granted' }
+  ]);
   assert.equal(q.firstJoined, '2026-08-01');
   assert.equal(q.bio.status, 'owner_pending');
   assert.equal(q.bio.th, null);
@@ -247,9 +255,9 @@ test('late-evening replies preserve corrected names and dates while withholding 
 
 test('reviewed publication replies apply per scope while nonrespondents and Pote portrait refusal remain truthful', () => {
   const consent = JSON.parse(fs.readFileSync(path.join(root, 'data/approved/publication-consent.json'), 'utf8'));
-  assert.equal(consent.records.length, 36);
+  assert.equal(consent.records.length, 39);
   const respondents = new Set(consent.records.map((record) => record.personId));
-  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 36);
+  assert.equal(data.people.filter((person) => person.publication.consentStatus === 'granted').length, 39);
   for (const person of data.people) {
     assert.equal(person.publication.consentStatus, respondents.has(person.personId) ? 'granted' : 'pending');
   }

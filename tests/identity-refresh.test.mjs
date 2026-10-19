@@ -8,7 +8,7 @@ import { renderLocalizedEntrypoint } from '../tools/build.mjs';
 const root = new URL('../', import.meta.url).pathname;
 const readJson = async (file) => JSON.parse(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'));
 
-test('owner-confirmed Que identity changes only three English name values and retains consent, credits and portrait absence', async () => {
+test('owner-confirmed Que identity changes only three English name values and retains consent, credits and governed media', async () => {
   const contract = await readJson('data/approved/person-identity-overrides.json');
   const data = await readJson('data/generated/site-data.json');
   const baseline = structuredClone(data);
@@ -21,11 +21,11 @@ test('owner-confirmed Que identity changes only three English name values and re
   assert.deepEqual([updated.people.length, updated.works.length, updated.contributions.length], [53, baseline.works.length, baseline.contributions.length]);
   const que = updated.people.find((row) => row.personId === 'I0045');
   assert.deepEqual(que.names, { full: { th: 'ณัฐพัฒน์ แดงคงแก้ว', en: 'Nattapat Daengkongkaew' }, nickname: { th: 'คิว', en: 'Que' }, card: { th: 'คิว', en: 'Que' } });
-  assert.deepEqual(que.publication, { consentStatus: 'pending', profileStatus: 'withheld_pending_consent' });
+  assert.deepEqual(que.publication, person.publication);
   assert.equal(que.bio.en, null);
   const media = await readJson('data/generated/people-media.json');
   const publicQue = media.people.find((row) => row.personId === 'I0045');
-  assert.equal(publicQue.portrait, null);
+  assert.equal(publicQue.portrait.sha256, data.assets.find((asset) => asset.personId === 'I0045').sha256);
   assert.deepEqual(publicQue.fallback.fullNickname, que.names.card);
 });
 

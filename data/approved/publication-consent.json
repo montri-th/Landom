@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0",
-  "reviewedAt": "2026-10-08",
+  "reviewedAt": "2026-10-19",
   "scope": "Landom profile and related work pages only",
   "records": [
     {
@@ -664,6 +664,64 @@
         }
       ],
       "sourceRef": "participant_reply_reviewed_2026-10-08"
+    },
+    {
+      "personId": "I0004",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "582a35ef4a5119f015777540b13218bc8b149086c6a243aa0d01870cd6556bce"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/thanatcha-thanasombat-0951862b4/",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-19"
+    },
+    {
+      "personId": "I0010",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "ce53d58516f51ca852ff8fa50ac45ee858b38bb6bbfa0ce9e581a237fe8085c7"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/ratchapol-kunthong-7b7279310/",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/WanRatchapol",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-19"
+    },
+    {
+      "personId": "I0045",
+      "profileConsent": "granted",
+      "portrait": {
+        "consentStatus": "granted",
+        "sha256": "1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e"
+      },
+      "socials": [
+        {
+          "platform": "linkedin",
+          "publicUrl": "https://www.linkedin.com/in/n-q-83a86b287",
+          "consentStatus": "granted"
+        },
+        {
+          "platform": "github",
+          "publicUrl": "https://github.com/nattapatque",
+          "consentStatus": "granted"
+        }
+      ],
+      "sourceRef": "participant_reply_reviewed_2026-10-19"
     }
   ]
 }

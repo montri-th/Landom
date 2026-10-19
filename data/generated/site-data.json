@@ -62,7 +62,7 @@
       "cooperativeEducationPeople": 7,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 73,
+      "publishedPublicSocialProfiles": 75,
       "participantApprovedProfileCopies": 1
     },
     "dataUpdatedAt": "2026-10-19",
@@ -2269,8 +2269,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -2671,8 +2671,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -5279,8 +5279,8 @@
         "ownerApproval": null
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_confirmed_and_application_response_verified",
@@ -12347,8 +12347,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -12975,8 +12975,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -12994,8 +12994,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -17012,28 +17012,28 @@
       "socialProfileId": "SOC-I0045-LINKEDIN",
       "personId": "I0045",
       "platform": "linkedin",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://www.linkedin.com/in/n-q-83a86b287",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
       "socialProfileId": "SOC-I0045-GITHUB",
       "personId": "I0045",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/nattapatque",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
@@ -17309,9 +17309,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-24",
@@ -17466,9 +17466,9 @@
       },
       "candidateStatus": "candidate_present",
       "verificationStatus": "verified",
-      "consentStatus": "pending",
+      "consentStatus": "granted",
       "rightsStatus": "cleared",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -18481,23 +18481,23 @@
       "assetId": "PORTRAIT-I0045",
       "personId": "I0045",
       "kind": "profile_portrait",
-      "publicPath": null,
+      "publicPath": "public/assets/people/I0045.jpg",
       "sourceUrl": null,
       "alt": {
         "th": "ภาพโปรไฟล์ของคิว",
-        "en": "Profile portrait of I0045"
+        "en": "Profile portrait of Que"
       },
-      "candidateStatus": "source_needed",
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "rightsStatus": "pending",
-      "publicationBasis": null,
+      "candidateStatus": "candidate_present",
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "rightsStatus": "cleared",
+      "publicationBasis": "individual_consent",
       "ownerApproval": null,
-      "publicationStatus": "withheld_pending_rights_consent_and_verification",
-      "sha256": null,
-      "mediaType": null,
-      "bytes": null,
-      "identityVerificationEvidence": null
+      "publicationStatus": "publishable",
+      "sha256": "1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e",
+      "mediaType": "image/jpeg",
+      "bytes": 91707,
+      "identityVerificationEvidence": "exact_roster_match_and_direct_participant_reply"
     }
   ],
   "certificates": [
