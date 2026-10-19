@@ -49,6 +49,44 @@ test('exact subject portrait consent suffices with null directory-owner approval
   } finally { f.cleanup(); }
 });
 
+function firstPortraitFixture() {
+  const f = fixture();
+  f.baseline.people[0].names.card = { th: 'พิงกี้', en: 'Pingy' };
+  Object.assign(f.baseline.assets[0], { publicPath: null, sourceUrl: null, sha256: null, mediaType: null, bytes: null, identityVerificationEvidence: null, publicationBasis: null, ownerApproval: null, verificationStatus: 'missing', candidateStatus: 'source_needed', consentStatus: 'pending', rightsStatus: 'pending', publicationStatus: 'withheld_pending_rights_consent_and_verification' });
+  Object.assign(f.contract, { contractVersion: '1.1', scope: 'Landom profile portrait additions and replacements only' });
+  Object.assign(f.contract.records[0], { operation: 'add', expectedPreviousSha256: null });
+  f.manifest.alt = { th: 'ภาพโปรไฟล์ของพิงกี้', en: 'Profile portrait of Pingy' };
+  f.save();
+  return f;
+}
+
+test('first portrait fills only the exact missing stable asset after all governance gates', () => {
+  const f = firstPortraitFixture();
+  try {
+    const before = structuredClone(f.baseline);
+    const result = applyReviewedPortraitUpdates(f.baseline, f.contract, f.options);
+    assert.deepEqual(f.baseline, before);
+    assert.equal(result.assets.length, before.assets.length);
+    assert.equal(result.assets[0].assetId, 'PORTRAIT-I0012');
+    assert.equal(result.assets[0].sha256, f.approved.sha256);
+    assert.deepEqual(result.assets[0].alt, f.manifest.alt);
+    assert.equal(result.assets[0].consentStatus, 'pending');
+    for (const field of ['meta', 'people', 'educationRecords', 'socialProfiles', 'copy', 'certificates']) assert.deepEqual(result[field], before[field]);
+  } finally { f.cleanup(); }
+});
+
+for (const [label, modify, error] of [
+  ['implicit operation', (f) => { delete f.contract.records[0].operation; }, /explicitly add or replace/],
+  ['pretend previous hash', (f) => { f.contract.records[0].expectedPreviousSha256 = 'c'.repeat(64); }, /untouched missing/],
+  ['existing image', (f) => { f.baseline.assets[0].publicPath = f.approved.publicPath; }, /untouched missing/],
+  ['prior refusal', (f) => { f.baseline.assets[0].consentStatus = 'denied'; }, /untouched missing/],
+  ['wrong identity alt', (f) => { f.manifest.alt.en = 'Another person'; f.save(); }, /alt text/]
+]) test('first portrait fails closed for ' + label, () => {
+  const f = firstPortraitFixture();
+  try { modify(f); assert.throws(() => applyReviewedPortraitUpdates(f.baseline, f.contract, f.options), error); }
+  finally { f.cleanup(); }
+});
+
 for (const [label, modify, error] of [
   ['wrong baseline hash', (f) => { f.options.baselineSha256 = 'c'.repeat(64); }, /baseline SHA/],
   ['unknown stable person', (f) => { f.contract.records[0].personId = 'I9999'; }, /Unknown stable/],
@@ -70,7 +108,7 @@ test('reviewed CLI preserves the complete approved graph and never accesses a mi
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'landom-reviewed-cli-'));
   try {
     for (const dir of ['tools', 'data/approved']) fs.mkdirSync(path.join(root, dir), { recursive: true });
-    for (const file of ['normalize-data.mjs', 'normalized-sheet-roundtrip.mjs', 'publication-consent.mjs', 'reviewed-portrait-updates.mjs', 'citymeter-attribution.mjs', 'board-contributions.mjs', 'person-identity-overrides.mjs']) {
+    for (const file of ['normalize-data.mjs', 'normalized-sheet-roundtrip.mjs', 'publication-consent.mjs', 'reviewed-portrait-updates.mjs', 'reviewed-social-updates.mjs', 'citymeter-attribution.mjs', 'board-contributions.mjs', 'person-identity-overrides.mjs']) {
       fs.copyFileSync(new URL('../tools/' + file, import.meta.url), path.join(root, 'tools', file));
     }
     fs.copyFileSync(new URL('../data/approved/person-identity-overrides.json', import.meta.url), path.join(root, 'data/approved/person-identity-overrides.json'));

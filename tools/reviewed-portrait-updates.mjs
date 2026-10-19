@@ -47,10 +47,11 @@ function jpegDimensions(bytes) {
   return dimensions;
 }
 
-/** Replace only approved portrait bytes in an immutable reviewed graph; emit no source URLs. */
+/** Add or replace only approved portrait bytes in an immutable reviewed graph; emit no source URLs. */
 export function applyReviewedPortraitUpdates(siteData, contract, { repoRoot, baselineSha256, publicationConsent }) {
   strictObject(contract, ['contractVersion', 'reviewedAt', 'scope', 'sourceBaseCommit', 'baseSiteDataSha256', 'records'], 'Portrait update contract');
-  if (contract.contractVersion !== '1.0' || contract.scope !== SCOPE || !/^\d{4}-\d{2}-\d{2}$/.test(contract.reviewedAt ?? '') || !Number.isFinite(Date.parse(contract.reviewedAt)) || !/^[a-f0-9]{40}$/.test(contract.sourceBaseCommit ?? '') || !SHA.test(contract.baseSiteDataSha256 ?? '') || !Array.isArray(contract.records)) throw new Error('Invalid portrait update contract.');
+  const firstPortraitsAllowed = contract.contractVersion === '1.1' && contract.scope === 'Landom profile portrait additions and replacements only';
+  if (!(firstPortraitsAllowed || (contract.contractVersion === '1.0' && contract.scope === SCOPE)) || !/^\d{4}-\d{2}-\d{2}$/.test(contract.reviewedAt ?? '') || !Number.isFinite(Date.parse(contract.reviewedAt)) || !/^[a-f0-9]{40}$/.test(contract.sourceBaseCommit ?? '') || !SHA.test(contract.baseSiteDataSha256 ?? '') || !Array.isArray(contract.records)) throw new Error('Invalid portrait update contract.');
   if (baselineSha256 !== contract.baseSiteDataSha256) throw new Error('Reviewed baseline SHA-256 mismatch.');
   if (siteData?.meta?.schemaVersion !== '1.5.0' || !Array.isArray(siteData.people) || !Array.isArray(siteData.assets)) throw new Error('Reviewed graph schema mismatch.');
   const result = structuredClone(siteData);
@@ -61,18 +62,23 @@ export function applyReviewedPortraitUpdates(siteData, contract, { repoRoot, bas
   const consent = unique(publicationConsent?.records ?? [], (record) => record.personId, 'publication consent person ID');
   const records = unique(contract.records, (record) => record.personId, 'portrait replacement person ID');
   for (const [personId, update] of records) {
-    strictObject(update, ['personId', 'expectedPreviousSha256', 'publicPath', 'sha256', 'bytes'], 'Portrait replacement');
+    strictObject(update, ['personId', 'expectedPreviousSha256', 'publicPath', 'sha256', 'bytes', ...(firstPortraitsAllowed ? ['operation'] : [])], 'Portrait replacement');
     const current = portraits.get(personId);
     const publicPath = `public/assets/people/${personId}.jpg`;
     if (!ID.test(personId ?? '') || !people.has(personId) || !current || current.assetId !== `PORTRAIT-${personId}`) throw new Error('Unknown stable portrait person ID: ' + personId);
-    if (current.publicPath !== publicPath || update.publicPath !== publicPath) throw new Error('Replacement public path mismatch: ' + personId);
-    if (!SHA.test(update.expectedPreviousSha256 ?? '') || update.expectedPreviousSha256 !== current.sha256) throw new Error('Previous portrait SHA-256 mismatch: ' + personId);
+    const adding = firstPortraitsAllowed && update.operation === 'add';
+    if (firstPortraitsAllowed && !['add', 'replace'].includes(update.operation)) throw new Error('Portrait operation must explicitly add or replace: ' + personId);
+    if (update.publicPath !== publicPath || (!adding && current.publicPath !== publicPath)) throw new Error('Replacement public path mismatch: ' + personId);
+    if (adding) {
+      if (update.expectedPreviousSha256 !== null || ['publicPath', 'sourceUrl', 'sha256', 'mediaType', 'bytes', 'identityVerificationEvidence', 'publicationBasis', 'ownerApproval'].some((key) => current[key] !== null) || current.verificationStatus !== 'missing' || current.candidateStatus !== 'source_needed' || current.consentStatus !== 'pending' || current.rightsStatus !== 'pending' || current.publicationStatus !== 'withheld_pending_rights_consent_and_verification') throw new Error('First portrait requires an untouched missing-portrait baseline: ' + personId);
+    } else if (!SHA.test(update.expectedPreviousSha256 ?? '') || update.expectedPreviousSha256 !== current.sha256) throw new Error('Previous portrait SHA-256 mismatch: ' + personId);
     if (!SHA.test(update.sha256 ?? '') || update.sha256 === current.sha256 || !Number.isSafeInteger(update.bytes) || update.bytes <= 0) throw new Error('Invalid replacement hash/bytes: ' + personId);
     const inventory = approved.get(personId);
     const assetManifest = manifest.get(publicPath);
     const approval = consent.get(personId);
     if (!inventory || inventory.publicPath !== publicPath || inventory.mime !== 'image/jpeg' || inventory.sha256 !== update.sha256 || inventory.bytes !== update.bytes || inventory.publicationBasis !== 'individual_consent' || typeof inventory.identityVerification !== 'string' || !/^[a-z0-9_]+$/.test(inventory.identityVerification) || !validOptionalOwnerApproval(inventory.ownerApproval, contract.reviewedAt)) throw new Error('Approved portrait inventory mismatch: ' + personId);
     if (!assetManifest || assetManifest.assetId !== current.assetId || assetManifest.sha256 !== update.sha256 || assetManifest.bytes !== update.bytes || assetManifest.mediaType !== 'image/jpeg' || assetManifest.width !== 800 || assetManifest.height !== 800 || assetManifest.metadataStripped !== true || assetManifest.approvalScope !== 'person-profile' || assetManifest.publicationBasis !== 'individual_consent' || !validOptionalOwnerApproval(assetManifest.ownerApproval, contract.reviewedAt)) throw new Error('Approved portrait manifest mismatch: ' + personId);
+    if (adding && (assetManifest.alt?.th !== 'ภาพโปรไฟล์ของ' + people.get(personId).names?.card?.th || assetManifest.alt?.en !== 'Profile portrait of ' + people.get(personId).names?.card?.en)) throw new Error('First portrait alt text must match the reviewed person: ' + personId);
     if (approval?.profileConsent !== 'granted' || approval.portrait?.consentStatus !== 'granted' || approval.portrait?.sha256 !== update.sha256) throw new Error('Exact replacement portrait consent missing: ' + personId);
     const filePath = path.join(repoRoot, publicPath);
     if (fs.lstatSync(filePath).isSymbolicLink()) throw new Error('Replacement portrait may not be a symlink: ' + personId);
@@ -85,6 +91,7 @@ export function applyReviewedPortraitUpdates(siteData, contract, { repoRoot, bas
       consentStatus: 'pending', rightsStatus: 'cleared', publicationBasis: null,
       publicationStatus: 'withheld_pending_rights_consent_and_verification', ownerApproval: structuredClone(inventory.ownerApproval ?? null)
     });
+    if (adding) current.alt = structuredClone(assetManifest.alt);
     // applyPublicationConsent owns the final publication decision immediately afterward.
   }
   return result;

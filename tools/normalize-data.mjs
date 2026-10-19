@@ -10,6 +10,7 @@ import {
 import { applyPublicationConsent } from './publication-consent.mjs';
 import { applyPersonIdentityOverrides } from './person-identity-overrides.mjs';
 import { applyReviewedPortraitUpdates } from './reviewed-portrait-updates.mjs';
+import { applyReviewedSocialUpdates } from './reviewed-social-updates.mjs';
 import { applyBoardContributions } from './board-contributions.mjs';
 import { applyCitymeterAttribution, applyExistingCitymeterBindings, applyLocaleInsightContinuation, buildCitymeterContributors } from './citymeter-attribution.mjs';
 
@@ -28,7 +29,9 @@ const publicSiteRoot = 'https://montri-th.github.io/Landom/';
 
 const reviewedSiteDataPath = option('--reviewed-site-data', null);
 const portraitUpdatesPath = option('--portrait-updates', null);
+const socialUpdatesPath = option('--social-updates', null);
 if (portraitUpdatesPath && !reviewedSiteDataPath) throw new Error('--portrait-updates requires --reviewed-site-data.');
+if (socialUpdatesPath && !reviewedSiteDataPath) throw new Error('--social-updates requires --reviewed-site-data.');
 // Select the reviewed mode before accessing an ignored or stale raw Sheet snapshot.
 const reviewedSourceText = reviewedSiteDataPath ? fs.readFileSync(reviewedSiteDataPath, 'utf8') : null;
 const snapshot = reviewedSiteDataPath ? null : JSON.parse(fs.readFileSync(inputPath, 'utf8'));
@@ -123,6 +126,11 @@ function writeSiteDataFiles(siteData) {
   if (portraitUpdatesPath) {
     siteData = applyReviewedPortraitUpdates(siteData, JSON.parse(fs.readFileSync(portraitUpdatesPath, 'utf8')), {
       repoRoot: root, baselineSha256: createHash('sha256').update(reviewedSourceText).digest('hex'), publicationConsent
+    });
+  }
+  if (socialUpdatesPath) {
+    siteData = applyReviewedSocialUpdates(siteData, JSON.parse(fs.readFileSync(socialUpdatesPath, 'utf8')), {
+      baselineSha256: createHash('sha256').update(reviewedSourceText).digest('hex'), publicationConsent
     });
   }
   if (publicationConsent) siteData = applyPublicationConsent(siteData, publicationConsent);

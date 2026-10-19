@@ -525,8 +525,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -927,8 +927,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",
@@ -3535,8 +3535,8 @@
       "ownerApproval": null
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_confirmed_and_application_response_verified",

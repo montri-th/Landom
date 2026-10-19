@@ -226,10 +226,10 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.candidateStatus, 'candidate_present');
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 51);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 22);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 52);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 23);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 73);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 75);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       ['linkedin', 'github'].includes(row.platform)
     ));
@@ -991,7 +991,7 @@ test('private contact values and unapproved social/portrait candidates do not le
   )));
 });
 
-test('only exact owner-authorized public profiles and governed local portraits are emitted', () => {
+test('only exact individually approved or owner-authorized profiles and governed portraits are emitted', () => {
   const data = loadGenerated();
   assert.equal(
     data.meta.evidenceBoundary.socialAndPortraits,
@@ -1000,10 +1000,10 @@ test('only exact owner-authorized public profiles and governed local portraits a
   const linkedIn = data.socialProfiles.filter((profile) => profile.platform === 'linkedin' && profile.publicUrl);
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
-  assert.equal(linkedIn.length, 51);
-  assert.equal(github.length, 22);
+  assert.equal(linkedIn.length, 52);
+  assert.equal(github.length, 23);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 73);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 75);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));
@@ -1039,19 +1039,21 @@ test('only exact owner-authorized public profiles and governed local portraits a
     assert.equal(profile.verificationStatus, 'verified');
     assert.equal(profile.consentStatus, individuallyApproved ? 'granted' : 'pending');
     assert.equal(profile.publicationBasis, individuallyApproved ? 'individual_consent' : 'owner_authorized_public_profile_link');
-    assert.equal(profile.ownerApproval.status, 'granted');
-    assert.equal(profile.ownerApproval.scope, 'public_profile_link_only');
+    if (profile.ownerApproval) {
+      assert.equal(profile.ownerApproval.status, 'granted');
+      assert.equal(profile.ownerApproval.scope, 'public_profile_link_only');
+    } else assert.ok(individuallyApproved, 'A profile without owner authorization needs exact participant consent.');
   }
 
   const portraits = data.assets.filter((asset) => asset.publicPath);
-  assert.equal(portraits.length, 49);
+  assert.equal(portraits.length, 50);
   for (const portrait of portraits) {
     assert.match(portrait.publicPath, /^public\/assets\/people\/[SPI]\d{4}\.jpg$/);
     assert.equal(portrait.sourceUrl, null);
     const individuallyApproved = individualPortraits.has(portrait.personId);
     assert.equal(portrait.consentStatus, individuallyApproved ? 'granted' : 'pending');
     assert.equal(portrait.publicationBasis, individuallyApproved ? 'individual_consent' : 'owner_authorized_public_profile_portrait');
-    if (['I0012', 'I0017', 'I0022', 'S0004'].includes(portrait.personId)) assert.equal(portrait.ownerApproval, null);
+    if (['I0012', 'I0017', 'I0022', 'S0004', 'I0045'].includes(portrait.personId)) assert.equal(portrait.ownerApproval, null);
     else assert.equal(portrait.ownerApproval.status, 'granted');
     assert.equal(portrait.rightsStatus, 'cleared');
     assert.match(portrait.sha256, /^[a-f0-9]{64}$/);

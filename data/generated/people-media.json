@@ -1811,14 +1811,25 @@
         "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
         "en": "https://montri-th.github.io/Landom/en/?person=I0045&lang=en"
       },
-      "portrait": null,
+      "portrait": {
+        "status": "publishable",
+        "url": "https://montri-th.github.io/Landom/public/assets/people/I0045.jpg",
+        "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0045.jpg?v=1b011635df9f",
+        "mediaType": "image/jpeg",
+        "bytes": 91707,
+        "sha256": "1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e",
+        "alt": {
+          "th": "ภาพโปรไฟล์ของคิว",
+          "en": "Profile portrait of Que"
+        }
+      },
       "fallback": {
         "kind": "full_nickname",
         "fullNickname": {
           "th": "คิว",
           "en": "Que"
         },
-        "reason": "no_governed_person_portrait"
+        "reason": "image_load_failure"
       }
     }
   ]

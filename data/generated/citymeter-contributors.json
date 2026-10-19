@@ -525,7 +525,14 @@
           "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
           "en": "https://montri-th.github.io/Landom/en/?person=I0045&lang=en"
         },
-        "portrait": null
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0045.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0045.jpg?v=1b011635df9f",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของคิว",
+            "en": "Profile portrait of Que"
+          }
+        }
       }
     ],
     "dataset-flood-latest-observed": [
@@ -1322,7 +1329,14 @@
           "th": "https://montri-th.github.io/Landom/?person=I0045&lang=th",
           "en": "https://montri-th.github.io/Landom/en/?person=I0045&lang=en"
         },
-        "portrait": null
+        "portrait": {
+          "url": "https://montri-th.github.io/Landom/public/assets/people/I0045.jpg",
+          "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0045.jpg?v=1b011635df9f",
+          "alt": {
+            "th": "ภาพโปรไฟล์ของคิว",
+            "en": "Profile portrait of Que"
+          }
+        }
       }
     ],
     "dataset-non-bank": [

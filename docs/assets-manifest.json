@@ -883,7 +883,7 @@
       "sha256": "ce53d58516f51ca852ff8fa50ac45ee858b38bb6bbfa0ce9e581a237fe8085c7",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -1997,7 +1997,7 @@
       "sha256": "582a35ef4a5119f015777540b13218bc8b149086c6a243aa0d01870cd6556bce",
       "owner": "Landometer directory owner",
       "approvalStatus": "approved",
-      "publicationBasis": "owner_authorized_public_profile_portrait",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-24",
@@ -2163,6 +2163,51 @@
         "en": "Profile portrait of Film"
       },
       "notes": "Direct participant-submitted portrait with consent limited to Landom profile and related work pages. Bounded square crop and 800x800 JPEG78; metadata stripped. No retouching, background replacement, generation, or identity alteration. Original and correspondence remain private."
+    },
+    {
+      "assetId": "PORTRAIT-I0045",
+      "path": "public/assets/people/I0045.jpg",
+      "variant": "participant-submitted-profile-portrait",
+      "approvalScope": "person-profile",
+      "mediaType": "image/jpeg",
+      "bytes": 91707,
+      "sha256": "1b011635df9fb2efe4f6c98905ca7b96bc14a155209c8c64f85d36acad1f609e",
+      "owner": "Profile subject",
+      "approvalStatus": "approved",
+      "approver": "Profile subject",
+      "approvedAt": "2026-10-11",
+      "approvalBasis": "participant_submitted_portrait_and_explicit_scoped_consent",
+      "publicationBasis": "individual_consent",
+      "ownerApproval": null,
+      "approvedRoles": [
+        "person-avatar"
+      ],
+      "prohibitedRoles": [
+        "brand-mark",
+        "hero-image",
+        "social-preview",
+        "favicon",
+        "certificate"
+      ],
+      "notes": "Direct participant-submitted portrait with consent limited to Landom profile and related work pages. Bounded square crop and 800x800 JPEG78; metadata stripped. No retouching, background replacement, generation, or identity alteration. Original and correspondence remain private.",
+      "width": 800,
+      "height": 800,
+      "sourceOriginalSha256": "ab5b11a87a0a5905e8d74313474b71c3620cac8761bd245ec3281e912a14211a",
+      "sourceCrop": {
+        "sourceWidth": 3024,
+        "sourceHeight": 4032,
+        "x": 900,
+        "y": 1580,
+        "width": 1500,
+        "height": 1500,
+        "retouched": false,
+        "generated": false
+      },
+      "metadataStripped": true,
+      "alt": {
+        "th": "ภาพโปรไฟล์ของคิว",
+        "en": "Profile portrait of Que"
+      }
     }
   ]
 }

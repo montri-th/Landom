@@ -1,0 +1,23 @@
+{
+  "contractVersion": "1.0",
+  "reviewedAt": "2026-10-19",
+  "sourceBaseCommit": "ca5f400694714478d11bca17ab0acad07c0a14bc",
+  "baseSiteDataSha256": "3eb220ff40e4f05aef677234b3a9aa0a2c12224a7aa4b2c312588cfff7f5276e",
+  "scope": "Landom first LinkedIn and GitHub profiles only",
+  "records": [
+    {
+      "personId": "I0045",
+      "platform": "linkedin",
+      "expectedPreviousPublicUrl": null,
+      "publicUrl": "https://www.linkedin.com/in/n-q-83a86b287",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply"
+    },
+    {
+      "personId": "I0045",
+      "platform": "github",
+      "expectedPreviousPublicUrl": null,
+      "publicUrl": "https://github.com/nattapatque",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply"
+    }
+  ]
+}
