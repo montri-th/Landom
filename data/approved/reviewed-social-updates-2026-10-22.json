@@ -1,0 +1,16 @@
+{
+  "contractVersion": "1.0",
+  "reviewedAt": "2026-10-22",
+  "sourceBaseCommit": "2d688113331ac81164612ba74beee81f380e1c14",
+  "baseSiteDataSha256": "b4887052e2082fccb604e551591f645305ade591603990c54dcbc41202771599",
+  "scope": "Landom first LinkedIn and GitHub profiles only",
+  "records": [
+    {
+      "personId": "I0006",
+      "platform": "github",
+      "expectedPreviousPublicUrl": null,
+      "publicUrl": "https://github.com/TenoSocub",
+      "identityVerification": "exact_roster_match_and_direct_participant_reply"
+    }
+  ]
+}
