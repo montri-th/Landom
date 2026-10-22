@@ -227,9 +227,9 @@ test('normalized Sheet roundtrip preserves private social and asset candidates w
     assert.equal(importedPortrait.publicPath, null);
     assert.equal(importedPortrait.sourceUrl, null);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'linkedin' && row.publicUrl).length, 52);
-    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 23);
+    assert.equal(imported.socialProfiles.filter((row) => row.platform === 'github' && row.publicUrl).length, 24);
     assert.equal(imported.socialProfiles.filter((row) => row.platform === 'facebook' && row.publicUrl).length, 0);
-    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 75);
+    assert.equal(imported.meta.counts.publishedPublicSocialProfiles, 76);
     assert.ok(imported.socialProfiles.filter((row) => row.publicUrl).every((row) =>
       ['linkedin', 'github'].includes(row.platform)
     ));
@@ -1001,9 +1001,9 @@ test('only exact individually approved or owner-authorized profiles and governed
   const github = data.socialProfiles.filter((profile) => profile.platform === 'github' && profile.publicUrl);
   const facebook = data.socialProfiles.filter((profile) => profile.platform === 'facebook' && profile.publicUrl);
   assert.equal(linkedIn.length, 52);
-  assert.equal(github.length, 23);
+  assert.equal(github.length, 24);
   assert.equal(facebook.length, 0);
-  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 75);
+  assert.equal(data.meta.counts.publishedPublicSocialProfiles, 76);
   assert.ok(data.socialProfiles.filter((profile) => profile.publicUrl).every((profile) =>
     ['linkedin', 'github'].includes(profile.platform)
   ));

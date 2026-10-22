@@ -659,8 +659,8 @@
       }
     },
     "publication": {
-      "consentStatus": "pending",
-      "profileStatus": "withheld_pending_consent"
+      "consentStatus": "granted",
+      "profileStatus": "eligible"
     },
     "dataQuality": {
       "profileVerificationStatus": "owner_review_required",

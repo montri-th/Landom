@@ -1,7 +1,7 @@
 {
   "meta": {
     "schemaVersion": "1.5.0",
-    "generatedAt": "2026-10-19T00:00:00+07:00",
+    "generatedAt": "2026-10-22T00:00:00+07:00",
     "source": {
       "spreadsheetId": "1f01d_b36N5XV0BzGP1LzcQCDSZkJUEFwjas7sMJoLuM",
       "snapshotFetchedAt": "2026-08-23T00:00:00+07:00",
@@ -62,11 +62,11 @@
       "cooperativeEducationPeople": 7,
       "verifiedInstitutionLinkedInProfiles": 8,
       "verifiedProgramLinkedInProfiles": 1,
-      "publishedPublicSocialProfiles": 75,
+      "publishedPublicSocialProfiles": 76,
       "participantApprovedProfileCopies": 1
     },
-    "dataUpdatedAt": "2026-10-19",
-    "reviewedAt": "2026-10-19"
+    "dataUpdatedAt": "2026-10-22",
+    "reviewedAt": "2026-10-22"
   },
   "copy": {
     "brand": {
@@ -2403,8 +2403,8 @@
         }
       },
       "publication": {
-        "consentStatus": "pending",
-        "profileStatus": "withheld_pending_consent"
+        "consentStatus": "granted",
+        "profileStatus": "eligible"
       },
       "dataQuality": {
         "profileVerificationStatus": "owner_review_required",
@@ -12558,8 +12558,8 @@
       "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
       "verificationStatus": "verified",
-      "consentStatus": "pending",
-      "publicationBasis": "owner_authorized_public_profile_link",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": {
         "status": "granted",
         "approvedAt": "2026-08-23",
@@ -12573,14 +12573,14 @@
       "socialProfileId": "SOC-I0006-GITHUB",
       "personId": "I0006",
       "platform": "github",
-      "publicUrl": null,
-      "candidateStatus": "candidate_missing",
+      "publicUrl": "https://github.com/TenoSocub",
+      "candidateStatus": "candidate_present",
       "candidateValueEmitted": false,
-      "verificationStatus": "missing",
-      "consentStatus": "pending",
-      "publicationBasis": null,
+      "verificationStatus": "verified",
+      "consentStatus": "granted",
+      "publicationBasis": "individual_consent",
       "ownerApproval": null,
-      "publicationStatus": "withheld_pending_candidate",
+      "publicationStatus": "publishable",
       "dataBoundary": "private_candidates_not_emitted"
     },
     {
